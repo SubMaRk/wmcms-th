@@ -20,6 +20,6 @@ if ( file_exists($tempPath.$cPath.'.php') )
 }
 else
 {
-	die('后台视图文件：'.$tempPath.$cPath.'.php 不存在！');
+	die('ไฟล์มุมมองพื้นหลัง'.$tempPath.$cPath.'.php ไม่มีอยู่!');
 }
 ?>
