@@ -32,7 +32,7 @@ thead th {
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="5%" data-order-field="sign_id">ไอดี</th>
 				<th width="8%" data-order-field="user_id">ไอดีผู้ใช้</th>
-				<th>用户昵称</th>
+				<th>ชื่อเล่น</th>
 				<th width="8%" data-order-field="sign_sum">จำนวนเช็คชื่อ</th>
 				<th width="10%" data-order-field="sign_con">เช็คชื่อต่อเนื่อง</th>
 	            <th width="15%" data-order-field="sign_time">เวลาเช็คชื่อ</th>
