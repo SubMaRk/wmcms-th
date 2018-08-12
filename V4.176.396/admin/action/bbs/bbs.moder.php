@@ -15,13 +15,13 @@ if ( $type == 'edit' || $type == "add"  )
 {
 	if ( $post['tid'] == '' )
 	{
-		Ajax('对不起，请选择版块！',300);
+		Ajax('ขออภัย! โปรดเลือกบอร์ดก่อน',300);
 	}
 
 	//先删除现有版主信息
 	$where['type_id'] = $post['tid'];
 	wmsql::Delete($table , $where);
-	
+
 	//如果uid不为空则插入
 	if( $post['uids'] != '' )
 	{
@@ -34,10 +34,10 @@ if ( $type == 'edit' || $type == "add"  )
 			wmsql::Insert($table , $data);
 		}
 	}
-	
+
 	//写入操作记录
-	SetOpLog( '修改办版块版主' , 'bbs' , 'update' , $table , $where );
-	
-	Ajax('当前版块的版主修改成功！');
+	SetOpLog( 'แก้ไขผู้จัดการบอร์ด' , 'bbs' , 'update' , $table , $where );
+
+	Ajax('แก้ไขผู้จัดการบอร์ดสำเร็จแล้ว!');
 }
 ?>
