@@ -18,18 +18,18 @@ if ( $type == 'edit' || $type == "add"  )
 {
 	$data = str::Escape($post['type'] , 'e');
 	$where['type_id'] = $post['type_id'];
-	
+
 	if ( $data['type_name'] == '' )
 	{
-		Ajax('对不起，分类名字必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อหมวดหมู่ก่อน',300);
 	}
 	else if( !str::Number($data['type_order']) )
 	{
-		Ajax('对不起，分类排序必须为数字！',300);
+		Ajax('ขออภัย! ต้องกรอกลำดับก่อน',300);
 	}
 	else if( !str::Number($data['type_topid']) )
 	{
-		Ajax('对不起，所属分类必须选择！',300);
+		Ajax('ขออภัย! ต้องเลือกหมวดหมู่ก่อน',300);
 	}
 
 	//友链名字检查
@@ -38,30 +38,30 @@ if ( $type == 'edit' || $type == "add"  )
 	$wheresql['where']['type_name'] = $data['type_name'];
 	if ( wmsql::GetCount($wheresql) > 0 )
 	{
-		Ajax('对不起，该分类名已经存在！',300);
+		Ajax('ขออภัย! มีชื่อหมวดหมู่นี้อยู่แล้ว',300);
 	}
-	
+
 
 	//查询上级所有id
 	$data['type_pid'] = GetPids( $table , $data['type_topid'] );
-	
+
 	//新增数据
 	if( $type == 'add' )
 	{
-		$info = '恭喜您，信息分类添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มหมวดหมู่สำเร็จแล้ว';
 		$where['type_id'] = wmsql::Insert($table, $data);
-		
+
 		//写入操作记录
-		SetOpLog( '新增了信息分类'.$data['type_name'] , 'about' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มหมวดหมู่ใหม่'.$data['type_name'] , 'about' , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
-		$info = '恭喜您，信息分类修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขหมวดหมู่สำเร็จแล้ว';
 		wmsql::Update($table, $data, $where);
-		
+
 		//写入操作记录
-		SetOpLog( '修改了信息分类'.$data['type_name'] , 'about' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขหมวดหมู่'.$data['type_name'] , 'about' , 'update' , $table , $where , $data );
 	}
 
 	//写入自定义字段
@@ -70,10 +70,10 @@ if ( $type == 'edit' || $type == "add"  )
 	$fieldArr['tid'] = $where['type_id'];
 	$fieldArr['pid'] = $data['type_topid'];
 	$conSer->SetFieldOption($fieldArr);
-	
+
 	//插入或者修改html规则
 	$seoSer->SetTypeHtml('about' , $post['html'] , $where['type_id']);
-	
+
 	Ajax($info);
 }
 //删除分类
@@ -85,11 +85,11 @@ else if ( $type == 'del' )
 		wmsql::Delete('@about_about', array('type_id'=>$tid));
 	}
 	DelType();
-	
+
 
 	//写入操作记录
 	$where['type_id'] = GetDelId();
-	SetOpLog( '删除了信息分类' , 'about' , 'delete' , $table , $where);
-	Ajax('信息分类删除成功!');
+	SetOpLog( 'ลบหมวดหมู่' , 'about' , 'delete' , $table , $where);
+	Ajax('ลบหมวดหมู่แล้ว!');
 }
 ?>
