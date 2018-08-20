@@ -30,7 +30,7 @@ if( $name != '' )
 		case '2':
 			$filed = 'article_author';
 			break;
-			
+
 		default:
 			$filed = 'article_id';
 			break;
@@ -39,7 +39,7 @@ if( $name != '' )
 }
 else
 {
-	$name = '请输入标题关键字';
+	$name = 'โปรดกรอกคำหลัก';
 }
 
 

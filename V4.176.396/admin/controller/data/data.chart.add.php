@@ -17,15 +17,15 @@ $timeArr = $dataSer->GetTime($type);
 //当前查询的是什么时间数据
 if($type == 'week')
 {
-	$nowTitle = '本周';
+	$nowTitle = 'สัปดาห์';
 }
 else if($type == 'month')
 {
-	$nowTitle = date('Y-m').'月';
+	$nowTitle = date('Y-m').'เดือน';
 }
 else if($type == 'year')
 {
-	$nowTitle = date('Y').'年';
+	$nowTitle = date('Y').'ปี';
 }
 
 //用户注册增长量

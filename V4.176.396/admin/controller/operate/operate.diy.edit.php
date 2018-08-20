@@ -27,7 +27,7 @@ if ( $type == 'edit')
 	$where['where']['diy_id'] = $id;
 
 	$data = wmsql::GetOne($where);
-	
+
 	//查询使用的模版信息
 	$temp['cname'] = $tempSer->GetTemp( $data['diy_ctempid'] , 'temp_name' );
 }
@@ -36,8 +36,8 @@ else
 {
 	$data['diy_status'] = '1';
 	$data['diy_read'] = '0';
-	$data['diy_title'] = '网页标题';
-	$data['diy_key'] = '网页关键词';
-	$data['diy_desc'] = '网页描述';
+	$data['diy_title'] = 'ชื่อ';
+	$data['diy_key'] = 'คำหลัก';
+	$data['diy_desc'] = 'คำอธิบาย';
 }
 ?>

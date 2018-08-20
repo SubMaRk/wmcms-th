@@ -27,7 +27,7 @@ if ( $type == 'edit')
 	$where['where']['zt_id'] = $id;
 
 	$data = wmsql::GetOne($where);
-	
+
 	//查询使用的模版信息
 	$temp['cname'] = $tempSer->GetTemp( $data['zt_ctempid'] , 'temp_name' );
 }
@@ -36,8 +36,8 @@ else
 {
 	$data['zt_status'] = '1';
 	$data['zt_read'] = '0';
-	$data['zt_title'] = '网页标题';
-	$data['zt_key'] = '网页关键词';
-	$data['zt_desc'] = '网页描述';
+	$data['zt_title'] = 'ชื่อ';
+	$data['zt_key'] = 'คำหลัก';
+	$data['zt_desc'] = 'คำอธิบาย';
 }
 ?>

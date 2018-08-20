@@ -42,9 +42,9 @@ if ( $type == 'edit')
 		}
 		else
 		{
-			$top['name'] = '顶级分类';
+			$top['name'] = 'หมวดหมู่ยอดนิยม';
 		}
-		
+
 		//查询使用的模版信息
 		$temp['name'] = $tempSer->GetTemp( $data['type_tempid'] , 'temp_name' );
 		$temp['cname'] = $tempSer->GetTemp( $data['type_ctempid'] , 'temp_name' );

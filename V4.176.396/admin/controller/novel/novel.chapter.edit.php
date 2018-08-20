@@ -24,9 +24,9 @@ if ( $type == 'edit')
 	$where['table'] = '@novel_chapter as n';
 	$where['left']['@novel_novel'] = 'novel_id=chapter_nid';
 	$where['where']['chapter_id'] = $id;
-	
+
 	$data = wmsql::GetOne($where);
-	
+
 	$nid = $data['chapter_nid'];
 	$data['content'] = str::ToTxt($chapterMod->GetTxtContent($data['type_id'],$nid,$data['chapter_id'],$data['chapter_istxt']));
 }
@@ -39,7 +39,7 @@ else
 		$where['where']['novel_id'] = $nid;
 		$data = wmsql::GetOne($where);
 	}
-	
+
 	//发布状态
 	$data['chapter_status'] = $novelConfig['admin_chapter_add'];
 	$data['chapter_isvip'] = $novelConfig['chapter_isvip'];
@@ -57,5 +57,5 @@ if( $nid > 0 || $type == 'edit')
 	$wheresql['order'] = 'volume_order desc';
 	$vidArr = wmsql::GetAll($wheresql);
 }
-$vidArr[] = array('volume_id'=>1,'volume_name'=>'正文');
+$vidArr[] = array('volume_id'=>1,'volume_name'=>'ข้อความ');
 ?>

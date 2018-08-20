@@ -23,7 +23,7 @@ else
 	$pluginData = $pluginMod->GetById($id);
 	if( !$pluginData )
 	{
-		$errInfo = '对不起，插件不存在！';
+		$errInfo = 'ขออภัย! ไอดีปลั๊กอินไม่ถูกต้อง';
 	}
 	else
 	{
@@ -35,7 +35,7 @@ else
 		$qrcodeFile = WMPLUGIN.'apps/'.$pluginData['plugin_floder'].'/qrcode.png';
 		//二维码的相对路径
 		$qrcodePath = '/plugin/apps/'.$pluginData['plugin_floder'].'/qrcode.png';
-		
+
 		//如果配置文件存在就引入
 		if( file_exists($pluginConfigFile) )
 		{
@@ -48,7 +48,7 @@ else
 		}
 		//默认首页地址
 		$pluginIndexUrl = Url('plugin;'.$pluginData['plugin_floder'].'.index.'.$defaultAction.';',true);
-		
+
 
 		//首页二维码如果不存在就生成二维码
 		if( !file_exists($qrcodeFile) )
