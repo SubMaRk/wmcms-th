@@ -17,7 +17,7 @@ if ( $type == 'edit' || $type == "add"  )
 	$appSer = AdminNewClass('app.app');
 	$firmsSer = AdminNewClass('app.firms');
 	$htmlMod = NewModel('system.html' , array('module'=>$curModule));
-	
+
 	//接受参数
 	$data = str::Escape( $post['app'], 'e' );
 	$where = $post['id'];
@@ -28,11 +28,11 @@ if ( $type == 'edit' || $type == "add"  )
 	//检查
 	if ( $data['app_name'] == '' )
 	{
-		Ajax('对不起，应用标题必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อแอปฯ ก่อน',300);
 	}
 	else if( !str::Number($data['type_id']) )
 	{
-		Ajax('对不起，应用分类必须选择！',300);
+		Ajax('ขออภัย! ต้องเลือกหมวดหมู่แอป ฯ ก่อน',300);
 	}
 
 	//检查厂商是否存在
@@ -40,7 +40,7 @@ if ( $type == 'edit' || $type == "add"  )
 	$appWhere['app_id'] = array('<>',$where['app_id']);
 	if ( $appSer->CheckName($appWhere) !== false)
 	{
-		Ajax('对不起，该应用已经存在！',300);
+		Ajax('ขออภัย! มีแอปฯ นี้อยู่แล้ว',300);
 	}
 
 	//检查数据
@@ -49,29 +49,29 @@ if ( $type == 'edit' || $type == "add"  )
 	$data['app_aid'] = $firmsData['a'];
 	//运营商
 	$data['app_oid'] = $firmsData['o'];
-	
-	
+
+
 	//新增数据
 	if( $type == 'add' )
 	{
 		//写入标签
 		$mangerSer = AdminNewClass('manager');
 		$mangerSer->SetTags('app' , $data['app_tags']);
-		
-		$info = '恭喜您，应用添加成功！';
+
+		$info = 'ยินดีด้วย! เพิ่มแอปฯ สำเร็จแล้ว';
 		$where['app_id'] = wmsql::Insert($table, $data);
-		
+
 		//写入操作记录
-		SetOpLog( '新增了应用'.$data['app_name'] , 'app' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มแอปฯ'.$data['app_name'] , 'app' , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
-		$info = '恭喜您，应用修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขแอปฯ สำเร็จแล้ว';
 		wmsql::Update($table, $data, $where);
-		
+
 		//写入操作记录
-		SetOpLog( '修改了应用'.$data['app_name'] , 'app' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขแอปฯ'.$data['app_name'] , 'app' , 'update' , $table , $where , $data );
 	}
 
 	//写入自定义字段
@@ -85,13 +85,13 @@ if ( $type == 'edit' || $type == "add"  )
 	//修改编辑器上传的内容id
 	$uploadMod = NewModel('upload.upload');
 	$uploadMod->UpdateCid( 'editor',$curModule , $where['about_id']);
-	
+
 	//上传的文件描述重新写入
 	$uploadSer = AdminNewClass('upload');
 	$uploadSer->UpUpload( @$post['pic'] , 'app' , $where['app_id']);
 	//创建HTML
 	$htmlMod->CreateContentHtml($where['app_id']);
-	
+
 	Ajax($info);
 }
 //删除数据和永久删除数据
@@ -103,19 +103,19 @@ else if ( $type == 'del' )
 	if( $data )
 	{
 		$uploadSer = AdminNewClass('upload');
-		
+
 		foreach ($data as $k=>$v)
 		{
 			//删除应用记录
 			$wheresql['app_id'] = $v['app_id'];
 			wmsql::Delete($table , $wheresql);
-			
+
 			$uploadSer->DelUpload('app',$v['app_id']);
 		}
 	}
 
-	SetOpLog( '删除了应用' , 'app' , 'delete' , $table , $where['where']);
-	Ajax('应用删除成功!');
+	SetOpLog( 'ลบแอปฯ' , 'app' , 'delete' , $table , $where['where']);
+	Ajax('ลบแอปฯ แล้ว!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -125,17 +125,17 @@ else if ( $type == 'status' )
 
 	if( Request('status') == '1')
 	{
-		$msg = '审核通过';
+		$msg = 'ตรวจสอบ';
 	}
 	else
 	{
-		$msg = '取消审核';
+		$msg = 'ละทิ้ง';
 	}
 	//写入操作记录
-	SetOpLog( $msg.'了应用' , 'app' , 'update' , $table , $where);
-	
+	SetOpLog( $msg.'แอปฯ' , 'app' , 'update' , $table , $where);
+
 	wmsql::Update($table, $data, $where);
-	Ajax('应用'.$msg.'成功!');
+	Ajax('แอปฯ ถูก'.$msg.'แล้ว!');
 }
 //移动数据
 else if ( $type == 'move' )
@@ -144,28 +144,28 @@ else if ( $type == 'move' )
 	$where['app_id'] = GetDelId();
 
 	//写入操作记录
-	SetOpLog( '移动了应用' , 'app' , 'update' , $table , $where);
-	
+	SetOpLog( 'ย้ายแอปฯ' , 'app' , 'update' , $table , $where);
+
 	wmsql::Update($table, $data, $where);
-	Ajax('应用移动成功!');
+	Ajax('ย้ายแอปฯ สำเร็จแล้ว!');
 }
 //属性操作
 else if ( $type == 'attr' )
 {
 	$data['app_'.$post['attr']] = $post['val'];
 	$where['app_id'] = GetDelId();
-	
+
 	switch($post['attr'])
 	{
 		case "rec":
-			$msg = "推荐";
+			$msg = "แนะนำ";
 			break;
 	}
 
 	//写入操作记录
-	SetOpLog( $msg.'了应用' , 'app' , 'update' , $table , $where);
+	SetOpLog( $msg.'แอปฯ' , 'app' , 'update' , $table , $where);
 
 	wmsql::Update($table, $data, $where);
-	Ajax($msg.'了应用!');
+	Ajax($msg.'แอปฯ แล้ว!');
 }
 ?>

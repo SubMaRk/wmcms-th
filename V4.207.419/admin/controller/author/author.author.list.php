@@ -18,7 +18,7 @@ if( $orderField == '' )
 {
 	$where['order'] = 'author_id desc';
 }
-$typeArr = array('aid'=>"作者id",'aname'=>"作者笔名",'uid'=>"用户id",'uname'=>"用户昵称");
+$typeArr = array('aid'=>"ไอดีผู้แต่ง",'aname'=>"นามแฝง",'uid'=>"ไอดีผู้ใช้",'uname'=>"ชื่อเล่น");
 //判断是否搜索标题
 if( $name != '' )
 {
@@ -27,15 +27,15 @@ if( $name != '' )
 		case 'aname':
 			$filed = 'author_nickname';
 			break;
-			
+
 		case 'uid':
 			$filed = 'a.user_id';
 			break;
-			
+
 		case 'uname':
 			$filed = 'user_nickname';
 			break;
-			
+
 		default:
 			$filed = 'author_id';
 			break;
@@ -44,7 +44,7 @@ if( $name != '' )
 }
 else
 {
-	$name = '请输入标题关键字';
+	$name = 'โปรดกรอกคำหลัก';
 }
 
 

@@ -23,11 +23,11 @@ if ( $type == 'del' )
 	if( $data )
 	{
 		//写入操作记录
-		SetOpLog( '删除了小说修改申请' , 'system' , 'delete' , $table , $where);
+		SetOpLog( 'ลบคำขอแก้ไขนิยาย' , 'system' , 'delete' , $table , $where);
 		$applyMod->Delete($where);
 	}
-	
-	Ajax('小说修改申请删除成功!');
+
+	Ajax('ลบคำขอแก้ไขนิยายสำเร็จแล้ว!');
 }
 //清空记录
 else if ( $type == 'clear' )
@@ -36,8 +36,8 @@ else if ( $type == 'clear' )
 	$where['apply_type'] = 'novel_editnovel';
 	$applyMod->Delete($where);
 	//写入操作记录
-	SetOpLog( '清空了小说申请记录' , 'system' , 'delete');
-	Ajax('所有小说申请记录成功清空！');
+	SetOpLog( 'ล้างคำขอแก้ไขนิยาย' , 'system' , 'delete');
+	Ajax('ล้างคำขอแก้ไขนิยายสำเร็จแล้ว');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -45,19 +45,19 @@ else if ( $type == 'status' )
 	$status = Request('status');
 	if( $status == 0)
 	{
-		Ajax('对不起，不能变更为未审核状态！');
+		Ajax('ขออภัย! ไม่สามารถเปลี่ยนสถานะกลับไปได้');
 	}
 	else if( $status == 1)
 	{
 		$novelMod = NewModel('novel.novel');
 		$chapterMod = NewModel('novel.chapter');
 		$novelConfig = GetModuleConfig('novel');
-		
+
 		$data['apply_status'] = $status;
 		$where['apply_id'] = GetDelId();
 		$where['apply_module'] = 'author';
 		$where['apply_type'] = 'novel_editnovel';
-		
+
 		$dataList = $applyMod->GetAll($where);
 		if( $dataList )
 		{
@@ -78,24 +78,24 @@ else if ( $type == 'status' )
 					{
 						$novelMod->MoveNovelFolder($oldData['type_id'],$novelData['type_id'],$v['apply_cid']);
 					}
-					
+
 					//插入消息和修改申请记录
 					$applyMod->HandleApply('novel_editnovel' , $v['apply_uid'] , $v['apply_cid'] , $data['apply_status']);
 				}
 			}
-	
+
 			//写入操作记录
-			$msg = '取消审核';
+			$msg = 'ละทิ้ง';
 			if( Request('status') == '1')
 			{
-				$msg = '审核通过';
+				$msg = 'ตรวจสอบ';
 			}
-			SetOpLog( $msg.'了小说修改申请' , 'system' , 'update' , $table , $where);
-			Ajax('小说修改申请'.$msg.'成功!');
+			SetOpLog( $msg.'คำขอแก้ไขนิยาย' , 'system' , 'update' , $table , $where);
+			Ajax('คำขอแก้ไขนิยายถูก'.$msg.'แล้ว!');
 		}
 		else
 		{
-			Ajax('对不起，小说修改申请不存在！');
+			Ajax('ขออภัย! ไม่มีคำขอแก้ไขนิยาย');
 		}
 	}
 }

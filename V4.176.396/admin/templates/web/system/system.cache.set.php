@@ -122,7 +122,7 @@
 			      </tr>
 			    </table>
 			    <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-			      <thead><tr><th colspan="6" style="text-align:left;"><b>模块类详情页(单位：秒)</b></th></tr></thead>
+			      <thead><tr><th colspan="6" style="text-align:left;"><b>โมดูลหน้ารายละเอียด (หน่วย : วินาที)</b></th></tr></thead>
 			      <tr>
 			        <td>โมดูลเนื้อหา (เนื้อหาบทความ, เนื้อหาบทนิยาย) : </td>
 			        <td><?php echo $manager->GetForm('cache' , 'cache_module_content');?></td>

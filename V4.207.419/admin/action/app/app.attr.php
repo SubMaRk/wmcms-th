@@ -18,11 +18,11 @@ if ( $type == 'edit' || $type == "add"  )
 
 	if ( $data['attr_name'] == '' )
 	{
-		Ajax('对不起，应用资料名必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อแอปฯ ก่อน',300);
 	}
 	else if( $data['attr_type'] == '' )
 	{
-		Ajax('对不起，应用资料类型必须选择！',300);
+		Ajax('ขออภัย! ต้องเลือกประเภทแอปฯ ก่อน',300);
 	}
 
 	//应用名字检查
@@ -31,28 +31,28 @@ if ( $type == 'edit' || $type == "add"  )
 	$wheresql['where']['attr_name'] = $data['attr_name'];
 	if ( wmsql::GetCount($wheresql) > 0 )
 	{
-		Ajax('对不起，该应用资料已经存在！',300);
+		Ajax('ขออภัย! มีข้อมูลแอปฯ อยู่แล้ว',300);
 	}
-	
+
 	//新增数据
 	if( $type == 'add' )
 	{
-		$info = '恭喜您，应用资料添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มข้อมูลแอปฯ แล้ว';
 		$where['attr_id'] = wmsql::Insert($table, $data);
-		
+
 		//写入操作记录
-		SetOpLog( '新增了应用资料'.$data['attr_name'] , 'app' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มข้อมูลแอปฯ'.$data['attr_name'] , 'app' , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
-		$info = '恭喜您，应用资料修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขข้อมูลแอปฯ แล้ว';
 		wmsql::Update($table, $data, $where);
-		
+
 		//写入操作记录
-		SetOpLog( '修改了应用资料'.$data['attr_name'] , 'app' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขข้อมูลแอปฯ'.$data['attr_name'] , 'app' , 'update' , $table , $where , $data );
 	}
-	
+
 	Ajax($info);
 }
 //删除数据和永久删除数据
@@ -61,7 +61,7 @@ else if ( $type == 'del' )
 	$where['attr_id'] = GetDelId();
 	wmsql::Delete($table,$where);
 
-	SetOpLog( '删除了应用资料' , 'app' , 'delete' , $table , $where);
-	Ajax('应用资料删除成功!');
+	SetOpLog( 'ลบข้อมูลแอปฯ' , 'app' , 'delete' , $table , $where);
+	Ajax('ลบข้อมูลแอปฯ แล้ว!');
 }
 ?>

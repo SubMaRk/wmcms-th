@@ -16,6 +16,6 @@ if ( $type == 'getlist' )
 	$page = str::Page(Request('page'));
 	$pageCount = str::Int(Request('pagecount' , 20));
 	$rs = $cloudSer->GetErrlogList($page , $pageCount);
-	Ajax('请求成功！',200,$rs);
+	Ajax('คำขอสำเร็จ!',200,$rs);
 }
 ?>

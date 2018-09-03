@@ -35,7 +35,7 @@ if( $logArr )
 		$logArr[$k]['login_status_text'] = $safeSer->GetAdminStatus($v['login_status']);
 		if( $v['manager_cid'] == '0' )
 		{
-			$logArr[$k]['comp_name'] = '超级管理员';
+			$logArr[$k]['comp_name'] = 'ผู้ดูแลระบบสูงสุด';
 		}
 	}
 }

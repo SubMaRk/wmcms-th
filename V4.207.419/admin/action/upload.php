@@ -70,7 +70,7 @@ else
 {
 	//绝对定位
 	$result['abspath'] = str_replace('../', '/', $result['path']);
-	
+
 	//检查是否存在模块分类
 	$module = Request('module');
 	$uType = Request('utype');
@@ -88,7 +88,7 @@ else
 		//文件id
 		$result['fileid'] = WMSql::Insert('@upload', $data);
 	}
-	
+
 	//如果是上传的静态资源文件就进行解压
 	if( $type == 'static' )
 	{
@@ -101,7 +101,7 @@ else
 		//删除压缩文件
 		file::DelFile(WMROOT.$result['path']);
 	}
-	
-	Ajax( '上传成功！' , '200' , $result);
+
+	Ajax( 'อัปโหลดเสร็จแล้ว!' , '200' , $result);
 }
 ?>

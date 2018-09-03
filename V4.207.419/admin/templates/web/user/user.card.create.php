@@ -1,9 +1,9 @@
-<div class="bjui-pageContent">	                       
+<div class="bjui-pageContent">
     <form action="index.php?a=yes&c=user.card&t=create" data-reload="false" data-toggle="validate" method="post">
 		<fieldset>
-			<legend>卡号信息编辑</legend>
+			<legend>แก้ไขข้อมูลบัตร</legend>
             <ul class="nav nav-tabs" role="tablist">
-            	<li class="active"><a href="#<?php echo $cFun;?>base" role="tab" data-toggle="tab">基本信息</a></li>
+            	<li class="active"><a href="#<?php echo $cFun;?>base" role="tab" data-toggle="tab">ข้อมูลทั่วไป</a></li>
             </ul>
             <div class="tab-content">
             	<div class="tab-pane fade active in" id="<?php echo $cFun;?>base">
@@ -11,9 +11,9 @@
 			            <tbody>
 			                <tr>
 				                <td colspan="2">
-				                	<b>卡号类型：</b>
+				                	<b>ประเภทบัตร : </b>
 				                    <select data-toggle="selectpicker" id="<?php echo $cFun?>Type" name="type" data-rule="required;number">
-		                            	<option value="">请选择卡号类型</option>
+		                            	<option value="">โปรดเลือกประเภทบัตร</option>
 		                                <?php foreach ($cardArr as $k=>$v)
 		                                {
 		                                	echo '<option value="'.$k.'">'.$v.'</option>';
@@ -24,37 +24,37 @@
 			                </tr>
 			                <tr id="<?php echo $cFun?>type_1" style="display: none">
 			                   <td>
-			                        <b>卡号金额：</b>
-			                        <input type="text" name="money" size="15"  data-rule="required;number" value="100"> 元
+			                        <b>ยอดเงิน : </b>
+			                        <input type="text" name="money" size="15"  data-rule="required;number" value="100"> บาท
 			                   </td>
 			                   <td>
-			                        <b>赠送金额：</b>
+			                        <b>ของขวัญ : </b>
 			                        <input type="text" name="give" size="15"  data-rule="required;number" value="0"> <?php echo $userConfig['gold2_name'];?>
 			                   </td>
 			                </tr>
 			                <tr>
 			                    <td width="400">
-			                        <b>生成条数：</b>
+			                        <b>จำนวนเล่ม : </b>
 			                        <input type="text"  data-rule="required;digits" size="15" name="number" value="100">
 			                    </td>
 			                   <td>
-			                        <b>发布渠道：</b>
-			                        <input type="text" size="15" name="channel" placeholder="如：淘宝自动发号">
+			                        <b>ช่องทางจำหน่าย : </b>
+			                        <input type="text" size="15" name="channel" placeholder="เช่น Taobao">
 			                    </td>
 			                </tr>
 			                <tr>
 			                   <td colspan="2" id="<?php echo $cFun;?>start">
-			                        <b>开头字符：</b>
-                            		<input type="radio" checked name="start" value="0" data-toggle="icheck" data-label="随机字符开头">
-                            		<input type="radio" name="start" value="1" data-toggle="icheck" data-label="指定字符开头">
+			                        <b>อักษรเริ่มต้น : </b>
+                            		<input type="radio" checked name="start" value="0" data-toggle="icheck" data-label="เริ่มด้วยอักษรแบบสุ่ม">
+                            		<input type="radio" name="start" value="1" data-toggle="icheck" data-label="เริ่มมด้วยอักษรที่กำหนด">
 			                        <input type="text" size="10" name="start_str" readonly value="">
 			                    </td>
 			                </tr>
 			                <tr>
 			                   <td colspan="2">
-			                        <b>生成位数：</b>
-			                        <input type="radio" checked name="length" value="16" data-toggle="icheck" data-label="共16位字符">
-                            		<input type="radio" name="length" value="32" data-toggle="icheck" data-label="共32位字符">
+			                        <b>จำนวนตัวเลข : </b>
+			                        <input type="radio" checked name="length" value="16" data-toggle="icheck" data-label="ทั้งหมด 16 อักษร">
+                            		<input type="radio" name="length" value="32" data-toggle="icheck" data-label="ทั้งหมด 32 อักษร">
 			                   </td>
 			                </tr>
 			            </tbody>
@@ -67,8 +67,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">จัดเก็บ</button></li>
     </ul>
 </div>
 

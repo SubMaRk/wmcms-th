@@ -15,11 +15,11 @@ $pluginData = array();
 
 if( !str::Number($id) )
 {
-	$errInfo = '对不起，插件id错误！';
+	$errInfo = 'ขออภัย! ไอดีปลั๊กอินไม่ถูกต้อง';
 }
 else if( $action == '' )
 {
-	die('对不起，action不能为空！');
+	die('ขออภัย! การดำเนินการต้องไม่ว่าง');
 }
 else
 {
@@ -28,13 +28,13 @@ else
 	$pluginData = $pluginMod->GetById($id);
 	if( !$pluginData )
 	{
-		die('对不起，插件不存在！');
+		die('ขออภัย! ไม่มีปลั๊กอินอยู่');
 	}
 	else
 	{
 		$manager = AdminNewClass('manager');
 		C('manager',$manager);
-		
+
 		//设置标签
 		tpl::SetLabel('cFun', $cFun);
 		tpl::SetLabel('id', $id);
@@ -42,7 +42,7 @@ else
 		tpl::SetLabel('action', 'index.php?d=yes&c=cloud.apps.plugin.business&t=business&id='.$id.'&action=');
 		//设置插件名
 		$m = $pluginData['plugin_floder'];
-		
+
 		//引入插件管理
 		require_once WMPLUGIN.'admin.php';
 	}

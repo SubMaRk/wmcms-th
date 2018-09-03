@@ -134,7 +134,7 @@ else if ( $type == 'config' )
 			}
 
 			//写入操作记录
-			SetOpLog( 'แก้ไขการกำหนดค่าปลั๊กอิน'.$pluginData['plugin_name'] , 'system' , 'update');
+			SetOpLog( 'แก้ไขการกำหนดค่าปลั๊กอิน'.$pluginData['plugin_name'].'กำหนดค่าระบบแล้ว！' , 'system' , 'update');
 			Ajax('แก้ไขการกำหนดค่าปลั๊กอินสำเร็จแล้ว!');
 		}
 	}
