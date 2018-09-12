@@ -1,0 +1,31 @@
+{header:header.html}
+<nav class="New-nav">
+<a class=""  href="{首页}">首页</a>
+<a class="active"  href="{小说排行首页}">排行</a>
+<a class=""  href="{小说首页}">分类</a>
+<a class=""  href="{我的收藏}">收藏</a>
+<a class=""  href="{签到中心}">签到</a>
+</nav>
+<div class="girl_list_tie">
+ <a href="{小说排行首页}">排行首页</a> > {排行类型}排行列表</div>
+{小说列表:数量=10}
+ <div class="book-pic-list">
+ <div class="al"  onclick="location.href='{url}'">
+ <div class="img"><img src="{小说封面}" alt="{小说名字}"/></div>
+ <div class="conter">
+ <div class="name"><span>[{小说分类简称}]</span> {小说名字}</div>
+ <div class="new-Author">{小说作者}</div>
+ <div class="infor-name">{小说简介:50}...</div></div></div>
+ <div class="quickly-read"  onclick="location.href='{url}'">立即阅读</div></div>
+ <div class="bg_witer"><hr align="center" size="1" color="#efefef" class="fenge"></div>
+{/小说列表}
+
+<div class="btBox">
+<div class="bt2">
+<a href="{上一页}">上一页</a>
+<a href="{下一页}">下一页</a>
+</div></div>
+<div class="showpage">第 {当前页}/{总页数} 页，共 {总数据} 条 </div>
+<div class="btBox"><div class="bt2"><a href="javascript:history.go(-1);">返回上页</a><a href="{首页}">返回首页</a></div></div>
+
+{footer:footer.html}
