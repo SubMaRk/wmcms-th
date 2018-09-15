@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html>
 <head>
-<title>小说互动操作 - {网站名}</title>
+<title>ดำเนินการนิยาย - {网站名}</title>
 <style>
 body{margin:auto;}
 .clear{clear:both;}
@@ -60,12 +60,12 @@ body{margin:auto;}
 
 <div class="box">
 	<div class="title">
-		<div class="title-tip"><p>您的打赏是作者最大的动力~</p></div>
+		<div class="title-tip"><p>รางวัลคือพลังของผู้แต่ง~</p></div>
 		<div>
-			<div class="title-nav {cur:tab=reward}title-nav-hover{/cur}"><h3>赠送礼物</h3></div>
-			<div class="title-nav {cur:tab=gold}title-nav-hover{/cur}"><h3>打赏{金币2名字}</h3></div>
-			<div class="title-nav {cur:tab=rec}title-nav-hover{/cur}"><h3>我要推荐</h3></div>
-			<div class="title-nav {cur:tab=month}title-nav-hover{/cur}"><h3>我投月票</h3></div>
+			<div class="title-nav {cur:tab=reward}title-nav-hover{/cur}"><h3>ให้ของขวัญ</h3></div>
+			<div class="title-nav {cur:tab=gold}title-nav-hover{/cur}"><h3>ให้{金币2名字}</h3></div>
+			<div class="title-nav {cur:tab=rec}title-nav-hover{/cur}"><h3>แนะนำ</h3></div>
+			<div class="title-nav {cur:tab=month}title-nav-hover{/cur}"><h3>สมัครรายเดือน</h3></div>
 			<div class="clear"></div>
 		</div>
 	</div>
@@ -81,16 +81,16 @@ body{margin:auto;}
 					</li>
 					{/道具}
 				</ul>
-	
+
 				<div class="clear"></div>
-				<div class="content-dashang-money">（您共有{用户金币1数量}{金币1名字} , {用户金币2数量}{金币2名字}）</div>
+				<div class="content-dashang-money">(คุณมีทั้งหมด {用户金币1数量} {金币1名字}, {用户金币2数量} {金币2名字}）</div>
 				<div class="content-dashang-remarks">
 	                <div class="dashang-remarks-btn">
-						<div class="dashang-btn" id="dashang">打赏</div>
-						<div class="dashang-btn-tip">支持作者，有我一份！</div>
+						<div class="dashang-btn" id="dashang">ให้รางวัล</div>
+						<div class="dashang-btn-tip">สนับสนุนผู้แต่ง!</div>
 					</div>
 					<div class="dashang-remarks-text">
-						<textarea placeholder="作者大大我跟你说：这么多高科技，赶紧用起，别再借口说没电脑哈~还等着看呢" name="dashang-remarks" maxlength="30"></textarea>
+						<textarea placeholder="ฉันอยากจะบอกว่า : ตอนนี้เป็นยุคไฮเทคแล้ว ดังนั้นมาเร็ว ๆ ด้วย แย่ามาแก้ตัวว่าคอมพังเชียวนะ~ จะคอยมาดูเรื่อย" name="dashang-remarks" maxlength="30"></textarea>
 					</div>
 				</div>
 			</div>
@@ -103,7 +103,7 @@ body{margin:auto;}
 					<li><div class="dashang-props-img"><span>20</span>{金币2名字}</div></li>
 					<li>
 						<div class="dashang-props-img"><span>50</span>{金币2名字}</div>
-						<span class="dashang-props-checked">选中</span>
+						<span class="dashang-props-checked">เลือก</span>
 					</li>
 					<li><div class="dashang-props-img"><span>100</span>{金币2名字}</div></li>
 					<li><div class="dashang-props-img"><span>200</span>{金币2名字}</div></li>
@@ -113,52 +113,52 @@ body{margin:auto;}
 					<li><div class="dashang-props-img"><span>5000</span>{金币2名字}</div></li>
 					<li><div class="dashang-props-img"><span>10000</span>{金币2名字}</div></li>
 				</ul>
-	
+
 				<div class="clear"></div>
 				<div class="content-dashang-remarks content-gold-remarks">
-	                <div class="content-gold-number">（您共有{用户金币1数量}{金币1名字} , {用户金币2数量}{金币2名字}）</div>
+	                <div class="content-gold-number">(คุณมีทั้งหมด {用户金币1数量} {金币1名字}, {用户金币2数量} {金币2名字}）</div>
 	                <div class="dashang-remarks-btn" style="margin: auto;float: none">
-						<div class="dashang-btn" id="gold_btn">打赏</div>
+						<div class="dashang-btn" id="gold_btn">ให้รางวัล</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="content-box" style="display:none">
 			<div class="content-dashang-box content-rec-box">
 				<ul class="content-dashang-props content-rec-props" style="text-align:center;">
-	                <div class="content-rec-number">剩余{推荐票名字}数{推荐票}张·当前最多能投{推荐票}张</div>
+	                <div class="content-rec-number">ยังเหลือ {推荐票名字} จำนวน {推荐票} ใบ : โหวตไป {推荐票} ใบ</div>
 					<div class="vote-form-wrap">
-				        <h4>投票数量</h4>
+				        <h4>จำนวนที่โหวต</h4>
 				        <input id="recNumber" maxlength="3" value="1">
 				    </div>
 				</ul>
-	
+
 				<div class="clear"></div>
 				<div class="content-dashang-remarks content-gold-remarks">
 	                <div class="dashang-remarks-btn" style="margin: auto;float: none">
-						<div class="dashang-btn" id="rec_btn">推荐你</div>
-						<div class="dashang-btn-tip">支持作者，有我一份！</div>
+						<div class="dashang-btn" id="rec_btn">แนะนำ</div>
+						<div class="dashang-btn-tip">สนับสนุนผู้แต่ง!</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="content-box" style="display:none">
 			<div class="content-dashang-box content-rec-box">
 				<ul class="content-dashang-props content-rec-props" style="text-align:center;">
-	                <div class="content-rec-number">剩余{月票名字}数{月票}张·当前最多能投{月票}张</div>
+	                <div class="content-rec-number">ยังเหลือ {月票名字} จำนวน {月票} ใบ : โหวตไป {月票} ใบ</div>
 					<div class="vote-form-wrap">
-				        <h4>投票数量</h4>
+				        <h4>จำนวนที่โหวต</h4>
 				        <input id="monthNumber" maxlength="3" value="1">
 				    </div>
 				</ul>
-	
+
 				<div class="clear"></div>
 				<div class="content-dashang-remarks content-gold-remarks">
 	                <div class="dashang-remarks-btn" style="margin: auto;float: none">
-						<div class="dashang-btn" id="month_btn">月票走你</div>
-						<div class="dashang-btn-tip">支持作者，有我一份！</div>
+						<div class="dashang-btn" id="month_btn">ตั๋วรายเดือน</div>
+						<div class="dashang-btn-tip">สนันสนุนผู้แปล!</div>
 					</div>
 				</div>
 			</div>
@@ -170,10 +170,10 @@ body{margin:auto;}
 <script>
 //打赏文本框的默认值
 var dashangRemarks= [
-'作者大大我跟你说：这么多高科技，赶紧用起，别再借口说没电脑哈~还等着看呢',
-'作者大大我跟你说：电脑不卡了吧，哈哈，爷有钱，你就安心码字吧~',
-'作者大大我跟你说：这小说真心不错，真不错，真TM不错！！！',
-'作者大大我跟你说：送你个鼓励师，我只要好看的小说，其他的你随意，哈哈~',
+'ฉันอยากจะบอกว่า : ตอนนี้เป็นยุคไฮเทคแล้ว ดังนั้นมาเร็ว ๆ ด้วย แย่ามาแก้ตัวว่าคอมพังเชียวนะ~ จะคอยมาดูเรื่อย',
+'ผู้แต่งบอกว่า : คอมของฉันไม่ได้พัง ฮ่า ฮ่า เงินมาเดี๋ยวจะทยอยแต่งออกมาเรื่อย ๆ ~',
+'ผู้แต่งบอกว่า ：นิยายเรื่องนี้ดีจริง ๆ นะ เรียบเรียงออกมาได้ดีมาก!!!',
+'ผู้แต่งบอกว่า : ให้มันเป็นแรงบันดาลใจ ฉันอยากจะอ่านนิยาย ดั่งอิสระภาพ ฮ่า ฮ่า~',
 ];
 
 $(function(){
@@ -191,11 +191,11 @@ $(function(){
 	//点击切换
 	$(".content-dashang-props li").click(function(){
 		$(".content-dashang-props li").find(".dashang-props-checked").remove();
-		$(this).append('<span class="dashang-props-checked">选中</span>');
+		$(this).append('<span class="dashang-props-checked">เลือก</span>');
 		$("[name='dashang-gold2']").val($(this).find("money").html());
 		$(".dashang-remarks-text textarea").attr('placeholder',dashangRemarks[$(this).index()]);
 	});
-	
+
 
 	/*道具打赏*/
 	$("#dashang").click(function(){
@@ -206,9 +206,9 @@ $(function(){
 		var gold = thisGold;
 		thisGold = parseInt(thisGold);
 		if(typeof(gold) == 'undefined' || thisGold < 1 || pid < 1){
-			easydialog_autoclose("对不起，请选择赠送的道具!");
+			easydialog_autoclose("ขออภัย! โปรดเลือกพร็อพ");
 		}else if( thisGold > {用户金币2数量} ){
-			easydialog_alert("对不起，您的{金币2名字}为{用户金币2数量}，不足"+thisGold+"{金币2名字}，无法赠送道具！<br/>请先<a href='{充值}'>充值</a>后再试!",'{金币2名字}不足','','');
+			easydialog_alert("ขออภัย! {金币2名字} {用户金币2数量} ที่เหลืออยู่ไม่เพียงพอ "+thisGold+" {金币2名字} ไม่สามารถเลือกพร็พนี้ได้!<br/>โปรด<a href='{充值}'>เติมเงิน</a>แล้วลองใหม่อีกครั้ง!",'{金币2名字} ไม่เพียงพอ','','');
 		}else{
 			if( remark == '' ){
 				remark = dashangRemarks[parent.index()];
@@ -236,9 +236,9 @@ $(function(){
 		var gold = thisGold;
 		thisGold = parseInt(thisGold);
 		if(typeof(gold) == 'undefined' || thisGold < 1){
-			easydialog_autoclose("对不起，请选择打赏的数量!");
+			easydialog_autoclose("ขออภัย! โปรดเลือกจำนวนรางวัล");
 		}else if( thisGold > {用户金币2数量} ){
-			easydialog_alert("对不起，您的{金币2名字}为{用户金币2数量}，不足"+thisGold+"{金币2名字}，无法完成打赏！<br/>请先<a href='{充值}'>充值</a>后再试!",'{金币2名字}不足','','');
+			easydialog_alert("ขออภัย! {金币2名字} {用户金币2数量} ของคุณไม่เพียงพอ "+thisGold+" {金币2名字} ไม่สามารถให้รางวัลได้! <br/>โปรด<a href='{充值}'>เติมเงิน</a>แล้วลองอีกครั้ง!",'{金币2名字} ไม่เพียงพอ','','');
 		}else{
 			//打赏金币操作
 			$.ajax({
@@ -261,7 +261,7 @@ $(function(){
 	$("#rec_btn").click(function(){
 		var rec = $("#recNumber").val();
 		if( rec > {推荐票} ){
-			easydialog_autoclose("对不起，您的{推荐票名字}为{推荐票}张，不足"+rec+"张，不能完成投票！");
+			easydialog_autoclose("ขออภัย! {推荐票名字} ของคุณเหลือ {推荐票} ใบ ไม่เพียงพอ "+rec+" ใบ ไม่สามารถโหวตนิยายได้!");
 		}else{
 			//推荐操作
 			$.ajax({
@@ -284,7 +284,7 @@ $(function(){
 	$("#month_btn").click(function(){
 		var month = $("#monthNumber").val();
 		if( month > {月票} ){
-			easydialog_autoclose("对不起，您的{月票名字}为{月票}张，不足"+month+"张，不能完成投票！");
+			easydialog_autoclose("ขออภัย! {月票名字} ของคุณเหลือ {月票} ใบ ไม่เพียงพอ "+month+" ใบ ไม่สามารถโหวตนิยายได้!");
 		}else{
 			//月票操作
 			$.ajax({
