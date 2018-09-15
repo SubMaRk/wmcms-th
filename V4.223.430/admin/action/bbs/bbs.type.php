@@ -22,18 +22,18 @@ if ( $type == 'edit' || $type == "add"  )
 	$data = str::Escape($post['type'] , 'e');
 	$data['type_last_post'] = strtotime(@$data['type_last_post']);
 	$data['type_uptime'] = strtotime(@$data['type_uptime']);
-	
+
 	if ( $data['type_name'] == '' )
 	{
-		Ajax('对不起，版块名字必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อบอร์ดก่อน',300);
 	}
 	else if( !str::Number($data['type_order']) )
 	{
-		Ajax('对不起，版块排序必须为数字！',300);
+		Ajax('ขออภัย! ต้องกรอกลำดับบอร์ดก่อน',300);
 	}
 	else if( !str::Number($data['type_topid']) )
 	{
-		Ajax('对不起，所属版块必须选择！',300);
+		Ajax('ขออภัย! ต้องเลือกบอร์ดก่อน',300);
 	}
 
 	//版块名字检查
@@ -41,29 +41,29 @@ if ( $type == 'edit' || $type == "add"  )
 	$typeWhere['type_id'] =  array('<>',$where['type_id']);
 	if ( $typeSer->CheckName($typeWhere) !== false)
 	{
-		Ajax('对不起，该版块已经存在！',300);
+		Ajax('ขออภัย! มีบอร์ดนี้อยู่แล้ว',300);
 	}
-	
+
 	//查询上级所有id
 	$data['type_pid'] = GetPids( $table , $data['type_topid'] );
-	
+
 	//新增数据
 	if( $type == 'add' )
 	{
-		$info = '恭喜您，论坛版块添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มบอร์ดสำเร็จแล้ว';
 		$where['type_id'] = wmsql::Insert($table, $data);
-		
+
 		//写入操作记录
-		SetOpLog( '新增了论坛版块'.$data['type_name'] , 'bbs' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มบอร์ด'.$data['type_name'] , 'bbs' , 'insert' , $table , $where , $data );
 	}
 	//修改版块
 	else
 	{
-		$info = '恭喜您，论坛版块修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขบอร์ดสำเร็จแล้ว';
 		wmsql::Update($table, $data, $where);
-		
+
 		//写入操作记录
-		SetOpLog( '修改了论坛版块'.$data['type_name'] , 'bbs' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขบอร์ด'.$data['type_name'] , 'bbs' , 'update' , $table , $where , $data );
 	}
 
 	//写入自定义字段
@@ -72,10 +72,10 @@ if ( $type == 'edit' || $type == "add"  )
 	$fieldArr['tid'] = $where['type_id'];
 	$fieldArr['pid'] = $data['type_topid'];
 	$conSer->SetFieldOption($fieldArr);
-	
+
 	//插入或者修改html规则
 	$seoSer->SetTypeHtml('bbs' , $post['html'] , $where['type_id']);
-	
+
 	Ajax($info);
 }
 //删除版块
@@ -84,7 +84,7 @@ else if ( $type == 'del' )
 	$where['type_id'] = GetDelId();
 
 	//写入操作记录
-	SetOpLog( '删除了论坛版块' , 'bbs' , 'delete' , $table , $where);
+	SetOpLog( 'ลบบอร์ด' , 'bbs' , 'delete' , $table , $where);
 
 	//删除版块
 	wmsql::Delete($table, $where);
@@ -92,7 +92,7 @@ else if ( $type == 'del' )
 	wmsql::Delete('@bbs_bbs', $where);
 	//删除当前分类的自定义字段
 	$conSer->DelField($where['type_id']);
-	
-	Ajax('论坛版块删除成功!');
+
+	Ajax('ลบบอร์ดสำเร็จแล้ว!');
 }
 ?>

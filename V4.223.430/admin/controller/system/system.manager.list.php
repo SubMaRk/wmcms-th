@@ -33,7 +33,7 @@ if( $managerArr )
 		$managerArr[$k]['manager_status_text'] = $managerSer->GetAdminStatus($v['manager_status']);
 		if( $v['manager_cid'] == '0' )
 		{
-			$managerArr[$k]['comp_name'] = '超级管理员';
+			$managerArr[$k]['comp_name'] = 'ผู้ดูแลระบบสูงสุด';
 		}
 	}
 }

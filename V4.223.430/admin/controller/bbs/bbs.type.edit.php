@@ -40,9 +40,9 @@ if ( $type == 'edit')
 		}
 		else
 		{
-			$top['name'] = '顶级分类';
+			$top['name'] = 'หมวดหมู่ยอดนิยม';
 		}
-		
+
 		//查询使用的模版信息
 		$temp['name'] = $tempSer->GetTemp( $data['type_tempid'] );
 		$temp['cname'] = $tempSer->GetTemp( $data['type_ctempid'] );
@@ -60,9 +60,9 @@ else
 	$html['list'] = '/html/bbs/{tid}_{page}.html';
 	$html['replay'] = '/html/bbs/{cid}_{page}.html';
 	$html['content'] = '/html/bbs/{cid}.html';
-	
+
 	$data['type_ico'] = $bbsConfig['default_ico'];
-	
+
 	$data['type_tempid'] = $data['type_ctempid'] = $data['type_rtempid'] = 0;
 
 	$data['type_sum_post'] = $data['type_sum_replay'] = $data['type_sum_read'] = 0;

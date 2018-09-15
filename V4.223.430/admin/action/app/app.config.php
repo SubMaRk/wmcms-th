@@ -17,11 +17,11 @@ if( $post )
 	$configMod->UpdateToForm($post);
 
 	//写入操作记录
-	SetOpLog( '修改应用模块设置' , 'app' , 'update' );
-	
+	SetOpLog( 'แก้ไขการตั้งค่าโมดูลแอปฯ' , 'app' , 'update' );
+
 	//更新配置文件
 	$manager->UpConfig('app');
-	
+
 	Ajax();
 }
 ?>

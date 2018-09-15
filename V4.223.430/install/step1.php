@@ -7,5 +7,5 @@
 		<input type="hidden" name="action" value="step2">
 	</form>
 
-	<a href="javascript:;" onClick="document.getElementById('form').submit();return false;" class="btn">接 受</a>
+	<a href="javascript:;" onClick="document.getElementById('form').submit();return false;" class="btn">เห็นด้วย</a>
 </div>

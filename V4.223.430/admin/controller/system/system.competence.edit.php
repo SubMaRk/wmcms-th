@@ -13,7 +13,7 @@ $manager = AdminNewClass('manager');
 $menuArr = $manager->GetMenu(false , 'a');
 //获得所有站内站群
 $siteList = array();
-$siteList[] = array('id'=>0,'domain'=>$_SERVER['SERVER_NAME'],'name'=>'主站');
+$siteList[] = array('id'=>0,'domain'=>$_SERVER['SERVER_NAME'],'name'=>'เว็บไซต์หลัก');
 $siteMod = NewModel('system.site');
 $siteData = $siteMod->SiteGetAll(array('where'=>array('site_status'=>1,'site_type'=>1)));
 if( $siteData )
@@ -49,14 +49,14 @@ if ( $type == 'edit')
 		{
 			$menuStr .= $v['menu_title'].',';
 		}
-		
-		
+
+
 		//判断是否是主站的权限
 		foreach (explode(',', $data['comp_site']) as $k=>$v)
 		{
 			if($v=='0')
 			{
-				$siteStr .= '主站【'.$_SERVER['SERVER_NAME'].'】,';
+				$siteStr .= 'เว็บไซต์หลัก【'.$_SERVER['SERVER_NAME'].'】,';
 			}
 		}
 		//其他站点信息

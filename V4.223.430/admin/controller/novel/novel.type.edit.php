@@ -38,7 +38,7 @@ if ( $type == 'edit')
 		}
 		else
 		{
-			$top['name'] = '顶级分类';
+			$top['name'] = 'หมวดหมู่ยอดนิยม';
 		}
 
 		//查询使用的模版信息
@@ -59,7 +59,7 @@ if ( $type == 'edit')
 else
 {
 	$data['type_tempid'] = $data['type_ctempid'] = $data['type_mtempid'] = $data['type_rtempid'] = $data['type_titempid'] = 0;
-	
+
 	$html['tindex'] = '/html/novel/{tid}.html';
 	$html['list'] = '/html/novel/{tid}_{page}.html';
 	$html['content'] = '/html/novel/{nid}.html';

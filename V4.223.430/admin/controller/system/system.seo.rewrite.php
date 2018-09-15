@@ -20,7 +20,7 @@ $where['table'] = '@seo_urls';
 if( $name != '' )
 {
 	$where['where']['urls_pagename'] = array('like',$name);
-}		
+}
 if( $module != '' )
 {
 	$where['where']['urls_module'] = $module;
@@ -39,5 +39,5 @@ $keyArr = wmsql::GetAll($where);
 
 //所有模块分类
 $moduleArr = GetModuleName();
-$moduleArr['sitemap'] = '网站地图';
+$moduleArr['sitemap'] = 'แผนผังเว็บไซต์';
 ?>
