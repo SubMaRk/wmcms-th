@@ -1,19 +1,19 @@
 {header:header.html}
 <nav class="New-nav">
-<a class=""  href="{首页}">首页</a>
-<a class=""  href="{小说排行首页}">排行</a>
-<a class=""  href="{小说首页}">分类</a>
-<a class=""  href="{我的收藏}">收藏</a>
-<a class=""  href="{签到中心}">签到</a>
+  <a class=""  href="{首页}">หน้าหลัก</a>
+  <a class=""  href="{小说排行首页}">อันดับ</a>
+  <a class=""  href="{小说首页}">หมวดหมู่</a>
+  <a class=""  href="{我的收藏}">ชั้นหนังสือ</a>
+  <a class=""  href="{签到中心}">เข้าสู่ระบบ</a>
 </nav>
 <div class="muma_wap  magin">
     <div class="book_top ">
         <div class="img "><img src="{封面}" alt="{名字}"></div>
         <div class="infour">
             <div class="in_textone" style="padding-right:15px;">{名字}</div>
-            <div class="in_texttwo">{分类简称} - 作者：{作者}</div>
-            <div class="in_texttwo">最后更新：{更新时间}</div>
-            <div class="in_texttwo">小说标签：{标签}</div>
+            <div class="in_texttwo">{分类简称} - ผู้แต่ง : {作者}</div>
+            <div class="in_texttwo">อัปเดทล่าสุด : {更新时间}</div>
+            <div class="in_texttwo">ป้ายกำกับ : {标签}</div>
                        <!-- <div class="bk_fl">
             	                <div class="fl" data-text="{标签}">{标签}</div>
                             </div> -->
@@ -26,19 +26,19 @@
                 <span></span>
             </div>
         </div>
-		
+
 		 <div class="mulu_s_btn" onclick="location.href='{加入书架}'">
             <div>
                 <span></span>
             </div>
         </div>
 	</div>
-	
+
 	<!-- NEWS -->
     <div class="new-book" style="">
-        <div class="zx">最新</div>
+        <div class="zx">ล่าสุด</div>
         	{小说章节列表:数量=1;排序=更新时间}
-        	{无数据}暂无最新章节{/无数据}
+        	{无数据}ยังไม่มีบทใหม่{/无数据}
         	<div class="fn13" onclick="location.href='{url}'">{小说章节名字}</div>
         	{/小说章节列表}
            <!--   <div class="time_hoe">{更新时间}</div>   -->
@@ -65,31 +65,31 @@ function setTab(name,cursel,n){
 </script>
 <div class="_advert_show"  data-plugid="447" data-typeid="8" data-step="0" ></div><div class="_advert_show"  data-plugid="473" data-typeid="0" data-step="0" ></div><div class="mulu_lists">
         <div class="catalog">
-        <div onclick="setTab('one',1,3)" id="one1" class="active">简介</div>
-        <div onclick="setTab('one',2,3)" id="one2" >目录</div>
-         <div onclick="setTab('one',3,3)" id="one3" >评论</div> 
+        <div onclick="setTab('one',1,3)" id="one1" class="active">เรื่องย่อ</div>
+        <div onclick="setTab('one',2,3)" id="one2" >สารบัญ</div>
+         <div onclick="setTab('one',3,3)" id="one3" >ความเห็น</div>
     </div>
     <div id="con_one_1">
         <div class="janjie">
            {简介}
-            <div class="fn15">创建时间：{创建时间}</div>
+            <div class="fn15">ลงเมื่อ ：{创建时间}</div>
         </div>
             </div>
-			
+
    <div id="con_one_2" style="display: none;">
    {小说章节列表:数量=3}
     	    	    	             <div class="list_main"  onclick="location.href='{url}'">
-             
-            <font>正文_第{i}章：{小说章节名字}</font>
+
+            <font>บทที่ {i} : {小说章节名字}</font>
         </div>
-	{/小说章节列表}	       
-		<div class="menu_more_black marign"><a href="{目录链接}">更多目录 <span></span></a></div>
+	{/小说章节列表}
+		<div class="menu_more_black marign"><a href="{目录链接}">ดูเพิ่มเติม <span></span></a></div>
       </div>
-	  
+
 	  <div id="con_one_3" style="display: none;">
         <div class="pinlun">
-            <div class="fn17">共有{评论量}条评论</div>
-            <div class="my_pinlun"><a href="{评论列表}">我要评论</a></div>
+            <div class="fn17">ทั้งหมด {评论量} ความคิดเห็น</div>
+            <div class="my_pinlun"><a href="{评论列表}">แสดงความคิดเห็น</a></div>
         </div>
 		{评论:数量=3;排序=最新}
         <div class="review">
@@ -103,7 +103,7 @@ function setTab(name,cursel,n){
             </div>
         </div>
 		{/评论}
-        <div class="menu_more_black marign"><a href="{评论列表}">查看更多评论 <span></span></a></div>
+        <div class="menu_more_black marign"><a href="{评论列表}">อ่านเพิ่มเติม <span></span></a></div>
     </div>
 </div>
 
@@ -137,20 +137,20 @@ function setTab(name,cursel,n){
 <!--打赏操作-->
 <div class="all_title operateBox" id="operateBox">
 	<ul>
-		<a href="javascript:"><li><div class="icon">礼</div>送礼物</li></a>
-		<a href="javascript:"><li><div class="icon">赏</div>打赏</li></a>
-		<a href="javascript:"><li><div class="icon">月</div>投月票</li></a>
-		<a href="javascript:"><li><div class="icon">推</div>投推荐票</li></a>
+		<a href="javascript:"><li><div class="icon">ของขวัญ</div>ส่งของขวัญ</li></a>
+		<a href="javascript:"><li><div class="icon">รางวัล</div>ให้รางวัล</li></a>
+		<a href="javascript:"><li><div class="icon">สมัคร</div>โหวตรายเดือน</li></a>
+		<a href="javascript:"><li><div class="icon">โหวต</div>โหวตให้เป็นเรื่องแนะนำ</li></a>
 	</ul>
 </div>
 <div class="operateMaskBox"></div>
 <div class="operateHideBox">
 	<div class="operateBox operateSelect" id="operateSelect">
 		<ul>
-			<a href="javascript:"><li><div class="icon">礼</div>送礼物</li></a>
-			<a href="javascript:"><li><div class="icon">赏</div>打赏</li></a>
-			<a href="javascript:"><li><div class="icon">月</div>投月票</li></a>
-			<a href="javascript:"><li><div class="icon">推</div>投推荐票</li></a>
+			<a href="javascript:"><li><div class="icon">ของขวัญ</div>ส่งของขวัญ</li></a>
+			<a href="javascript:"><li><div class="icon">รางวัล</div>ให้รางวัล</li></a>
+			<a href="javascript:"><li><div class="icon">สมัคร</div>โหวตรายเดือน</li></a>
+			<a href="javascript:"><li><div class="icon">โหวต</div>โหวตให้เป็นเรื่องแนะนำ</li></a>
 		</ul>
 	</div>
 	<div id="operateContentBox">
@@ -168,7 +168,7 @@ function setTab(name,cursel,n){
 				</div>
 				<div class="operateContentFooter">
 					<div class="nowData">{金币2名字}<span class="red">{用户金币2数量}</span>{金币2单位}</div>
-					<div class="useData" id="dashang">赠送礼物</div>
+					<div class="useData" id="dashang">ให้ของขวัญ/div>
 				</div>
 			</li>
 			<li>
@@ -186,7 +186,7 @@ function setTab(name,cursel,n){
 				</div>
 				<div class="operateContentFooter">
 					<div class="nowData">{金币2名字}<span class="red">{用户金币2数量}</span>{金币2单位}</div>
-					<div class="useData" id="gold_btn">打赏<span>0</span>{金币2名字}</div>
+					<div class="useData" id="gold_btn">ให้รางวัล<span>0</span>{金币2名字}</div>
 				</div>
 			</li>
 			<li>
@@ -199,12 +199,12 @@ function setTab(name,cursel,n){
 					<div class="contentList monthBox" data-number="5"><span>5</span><div>{月票名字}</div></div>
 					<div class="contentList monthBox" data-number="10"><span>10</span><div>{月票名字}</div></div>
 					<div class="contentList monthBox" data-number="20"><span>20</span><div>{月票名字}</div></div>
-					<div class="contentList monthBox" data-number="{月票}"><span>全部</span><div>{月票名字}</div></div>
+					<div class="contentList monthBox" data-number="{月票}"><span>ทั้งหมด</span><div>{月票名字}</div></div>
 					<div class="clear"></div>
 				</div>
 				<div class="operateContentFooter">
-					<div class="nowData">{月票名字}<span class="red">{月票}</span>张</div>
-					<div class="useData" id="month_btn">投<span>0</span>张{月票名字}</div>
+					<div class="nowData">{月票名字}<span class="red">{月票}</span>ใบ</div>
+					<div class="useData" id="month_btn">ให้ <span>0</span>ใบ {月票名字}</div>
 				</div>
 			</li>
 			<li>
@@ -217,12 +217,12 @@ function setTab(name,cursel,n){
 					<div class="contentList recBox" data-number="5"><span>5</span><div>{推荐票名字}</div></div>
 					<div class="contentList recBox" data-number="10"><span>10</span><div>{推荐票名字}</div></div>
 					<div class="contentList recBox" data-number="20"><span>20</span><div>{推荐票名字}</div></div>
-					<div class="contentList recBox" data-number="{推荐票}"><span>全部</span><div>{推荐票名字}</div></div>
+					<div class="contentList recBox" data-number="{推荐票}"><span>ทั้งหมด</span><div>{推荐票名字}</div></div>
 					<div class="clear"></div>
 				</div>
 				<div class="operateContentFooter">
-					<div class="nowData">{推荐票名字}<span class="red">{推荐票}</span>张</div>
-					<div class="useData" id="rec_btn">投<span>0</span>张{推荐票名字}</div>
+					<div class="nowData">{推荐票名字}<span class="red">{推荐票}</span> ใบ</div>
+					<div class="useData" id="rec_btn">ให้<span>0</span>ใบ {推荐票名字}</div>
 				</div>
 			</li>
 		</ul>
@@ -230,7 +230,7 @@ function setTab(name,cursel,n){
 </div>
 
 <div class="all_title">
-<span style="">你可能还想看</span></div>
+<span style="">คุณอาจสนใจ</span></div>
 {小说:数量=5;排序=随机}
  <div class="book-pic-list">
  <div class="al"  onclick="location.href='{url}'">
@@ -239,11 +239,11 @@ function setTab(name,cursel,n){
  <div class="name">{小说名字}</div>
  <div class="new-Author">{小说作者}</div>
  <div class="infor-name">{小说简介:50}...</div></div></div>
- <div class="quickly-read"  onclick="location.href='{url}'">立即阅读</div></div>
+ <div class="quickly-read"  onclick="location.href='{url}'">อ่านเลย</div></div>
  <div class="bg_witer"><hr align="center" size="1" color="#efefef" class="fenge"></div>
 {/小说}
 
-<div class="btBox"><div class="bt2"><a href="javascript:history.go(-1);">返回上页</a><a href="{首页}">返回首页</a></div></div>
+<div class="btBox"><div class="bt2"><a href="javascript:history.go(-1);">ย้อนกลับ</a><a href="{首页}">หน้าหลัก</a></div></div>
 
 
 <script src="/files/js/easydialog/easydialog.js"></script>
@@ -254,7 +254,7 @@ $(document).ready(function(){
 		$('body').css('overflow','hidden');
 		$(".operateHideBox").show();
 		$(".operateMaskBox").show();
-		
+
 		$("#operateSelect li").removeClass('active');
 		$("#operateSelect").find('li').eq($(this).index()).addClass('active');
 		$("#operateContentBox li").hide();
@@ -275,7 +275,7 @@ $(document).ready(function(){
 		$(this).parent().find('.liwuBox').removeClass('contentListSelect');
 		$(this).addClass('contentListSelect');
 		$('#dashang').addClass('useDataSelect');
-	}); 
+	});
 	$(".goldBox").click(function(){
 		$(this).parent().find('.goldBox').removeClass('contentListSelect');
 		$(this).addClass('contentListSelect');
@@ -294,8 +294,8 @@ $(document).ready(function(){
 		$('#rec_btn span').html($(this).data('number'));
 		$('#rec_btn').addClass('useDataSelect');
 	});
-	
-	
+
+
 	/*道具打赏*/
 	$("#dashang").click(function(){
 		var Obj = $(this).parent().parent().find('.contentListSelect');
@@ -304,9 +304,9 @@ $(document).ready(function(){
 		var gold = thisGold;
 		thisGold = parseInt(thisGold);
 		if(typeof(gold) == 'undefined' || thisGold < 1 || pid < 1){
-			easydialog_autoclose("对不起，请选择赠送的道具!");
+			easydialog_autoclose("ขออภัย! โปรดเลือกของขวัญก่อน");
 		}else if( thisGold > {用户金币2数量} ){
-			easydialog_alert("对不起，{金币2名字}不足！<br/>请先<a href='{充值}' style='color: blue;text-decoration: underline;'>充值</a>后再试!",'{金币2名字}不足','','');
+			easydialog_alert("ขออภัย! {金币2名字} ไม่เพียงพอ<br/>โปรด<a href='{充值}' style='color: blue;text-decoration: underline;'>เติมเงิน</a>แล้วลองอีกครั้ง!",'{金币2名字}不足','','');
 		}else{
 			//赠送道具操作
 			$.ajax({
@@ -325,7 +325,7 @@ $(document).ready(function(){
 			});
 		}
 	});
-	
+
 	/*金币打赏*/
 	$("#gold_btn").click(function(){
 		var thisGold = $(this).parent().parent().find('.contentListSelect').data('money');
@@ -334,7 +334,7 @@ $(document).ready(function(){
 		if(typeof(gold) == 'undefined' || thisGold < 1){
 			easydialog_autoclose("对不起，请选择打赏的数量!");
 		}else if( thisGold > {用户金币2数量} ){
-			easydialog_alert("对不起，{金币2名字}不足！<br/>请先<a href='{充值}' style='color: blue;text-decoration: underline;'>充值</a>后再试!",'{金币2名字}不足','','');
+			easydialog_alert("ขออภัย! {金币2名字} ไม่เพียงพอ<br/>โปรด<a href='{充值}' style='color: blue;text-decoration: underline;'>เติมเงิน</a>แล้วอลงอีกครั้ง!",'{金币2名字}不足','','');
 		}else{
 			//打赏金币操作
 			$.ajax({
@@ -357,7 +357,7 @@ $(document).ready(function(){
 	$("#rec_btn").click(function(){
 		var rec = parseInt($(this).parent().parent().find('.contentListSelect').data('number'));
 		if( rec > {推荐票} || rec == 0 ){
-			easydialog_autoclose("{推荐票名字}不足！");
+			easydialog_autoclose("{推荐票名字}ไม่เพียงพอ!");
 		}else{
 			//推荐操作
 			$.ajax({
@@ -380,7 +380,7 @@ $(document).ready(function(){
 	$("#month_btn").click(function(){
 		var month = parseInt($(this).parent().parent().find('.contentListSelect').data('number'));
 		if( month > {月票} || month == 0){
-			easydialog_autoclose("{月票名字}不足！");
+			easydialog_autoclose("{月票名字}ไม่เพียงพอ!");
 		}else{
 			//月票操作
 			$.ajax({

@@ -19,7 +19,7 @@
 <div class="content-wrap">
 <div class="content">
 
- 
+
 
 <style>
 .bg, .content-wrap{ background:#EEE;}
@@ -193,10 +193,10 @@ input, select, textarea, button {
 <header class="header">
   <div class="hdc cl"> <a href="javascript:;" onclick="history.go(-1);" class="menu-z">
   <img src="{templates}/img/icon_back.png" /></a>
-    <h2 class="tit">验证邮箱</h2>
-    <div class="user_fun"> 
+    <h2 class="tit">ยืนยันอีเมล์</h2>
+    <div class="user_fun">
       <a href="{用户中心}" class="user_avt" title="{用户昵称}">
-	  <img src="{用户头像}" /></a> 
+	  <img src="{用户头像}" /></a>
     </div>
   </div>
 </header>
@@ -204,10 +204,10 @@ input, select, textarea, button {
 <div class="imui_scrollx size_16 bo_b topnv topnv_nr">
   <div class="imui_scrollx_area b_f">
     <ul>
-                                  <li><a href="{基本资料}" class="gettab" tab="sp_profile">基本资料</a></li>
-                                      <li><a href="{头像设置}" class="gettab" tab="sp_profile">头像修改</a></li>
-                                      <li><a href="{修改密码}" class="gettab" tab="sp_profile">修改密码</a></li>
-                                      <li class="a"><a href="{验证邮箱}" class="gettab" tab="sp_profile">验证邮箱</a></li>
+                                  <li><a href="{基本资料}" class="gettab" tab="sp_profile">โปรไฟล์</a></li>
+                                      <li><a href="{头像设置}" class="gettab" tab="sp_profile">เปลี่ยนรูป</a></li>
+                                      <li><a href="{修改密码}" class="gettab" tab="sp_profile">เปลี่ยนรหัสผ่าน</a></li>
+                                      <li class="a"><a href="{验证邮箱}" class="gettab" tab="sp_profile">ยืนยันอีเมล์</a></li>
 
     </ul>
   </div>
@@ -219,29 +219,29 @@ input, select, textarea, button {
 <input type="hidden" name="type" value="varemail" >
 <div class="imui_blocks b_f size_16">
 <div class="imui_block">
-<div class="imui_block_hd cg">{未验证}邮箱地址{/未验证}{已验证}已验证{/已验证}</div>
+<div class="imui_block_hd cg">{未验证}ที่อยู่อีเมล์{/未验证}{已验证}ยืนยันแล้ว{/已验证}</div>
 <div class="imui_block_bd flex">
 {未验证}
 <input type="text" class="imui_input" autocomplete="off"  value="{用户邮箱}" >{/未验证}
 {已验证}
 <input type="text" class="imui_input" autocomplete="off"  value="{用户邮箱}" >{/已验证}
-</div><div class="imui_block_ft"></div></div>                       
- 
+</div><div class="imui_block_ft"></div></div>
 
-                     
+
+
 
   </div>
-{未验证}<input type="submit"  value="验证" class="btn">{/未验证}
-</form>		
+{未验证}<input type="submit"  value="ส่ง" class="btn">{/未验证}
+</form>
 
-<div class="tipa">1.此处修改邮箱地址无效<br>2.用户邮箱经过认证之后是无法修改的<br>3.修改邮箱地址请到资料设置
-</div>						
+<div class="tipa">1.แก้ไขที่อยู่อีเมล์ที่นี่หากไม่ถูกต้อง<br>2.ไม่สามารถเปลี่ยนที่อยู่อีเมล์หลังผ่านการรับรอง<br>3.ไปที่ตั้งค่าข้อมูลเพื่อเปลี่ยนที่อยู่อีกเมล์
+</div>
 </div>
 </div>
 </div>
 
 <script src="{templates}/js/main.js" type="text/javascript"></script>
-<script src="{templates}/js/classie.js" type="text/javascript"></script> 
+<script src="{templates}/js/classie.js" type="text/javascript"></script>
 <script src="{templates}/js/jquery.scrollUp.min.js"type="text/javascript"></script>
 <script type="text/javascript">
 jQuery(function(){
@@ -249,7 +249,7 @@ jQuery(function(){
   animation: 'fade', // Fade, slide, none
       scrollText: 'GoTop',
   }
-  
+
   );
 });
 jQuery(function(){
@@ -265,5 +265,5 @@ jQuery(window).scroll(function(){
 });
 });
 </script>
-<div class="btBox"><div class="bt2"><a href="javascript:history.go(-1);">返回上页</a><a href="{首页}">返回首页</a></div></div>	
+<div class="btBox"><div class="bt2"><a href="javascript:history.go(-1);">ย้อนกลับ</a><a href="{首页}">หน้าหลัก</a></div></div>	
 {footer:footer.html}

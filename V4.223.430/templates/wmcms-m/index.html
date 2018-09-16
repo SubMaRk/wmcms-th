@@ -1,10 +1,10 @@
 {header:header.html}
 <nav class="New-nav">
-<a class="active"  href="{首页}">首页</a>
-<a class=""  href="{小说排行首页}">排行</a>
-<a class=""  href="{小说首页}">分类</a>
-<a class=""  href="{我的收藏}">收藏</a>
-<a class=""  href="{签到中心}">签到</a>
+<a class="active"  href="{首页}">หน้าหลัก</a>
+<a class=""  href="{小说排行首页}">อันดับ</a>
+<a class=""  href="{小说首页}">หมวดหมู่</a>
+<a class=""  href="{我的收藏}">ชั้นหนังสือ</a>
+<a class=""  href="{签到中心}">เข้าสู่ระบบ</a>
 </nav>
 
 <div class="Focus">
@@ -32,7 +32,7 @@
     });
  });
  </script>
- 
+
 <!---- 搜索 ---->
 <a name="so">
 	<div class="new_so">
@@ -40,7 +40,7 @@
 	<form method="GET" action="{搜索提交地址}">
 	<input type="hidden" name="module" value="novel" />
 	<input type="hidden" name="type" value="1" />
-	<input type="text" name="key" placeholder="请输入关键字" id="keyword"></div>
+	<input type="text" name="key" placeholder="โปรดกรอกคำหลัก" id="keyword"></div>
 	<input type="submit" class="soso_ico" id="soso" value=" ">
 	</form>
 	</div>
@@ -51,9 +51,9 @@
  <div  onclick="location.href='{url}'">{搜索关键字:3}</div>
  {/热门搜索}
  </div><div class="_advert_show"  data-plugid="392" data-typeid="0" data-step="0" ></div>
- 
+
  <div class="all_title">
-<span style="">重磅推荐</span></div>
+<span style="">แนะนำ</span></div>
 {小说:数量=3;排序=总点击}
  <div class="book-pic-list">
  <div class="al"  onclick="location.href='{url}'">
@@ -62,22 +62,22 @@
  <div class="name">{小说名字}</div>
  <div class="new-Author">{小说作者}</div>
  <div class="infor-name">{小说简介:50}...</div></div></div>
- <div class="quickly-read"  onclick="location.href='{url}'">立即阅读</div></div>
+ <div class="quickly-read"  onclick="location.href='{url}'">อ่านเลย</div></div>
  <div class="bg_witer"><hr align="center" size="1" color="#efefef" class="fenge"></div>
 {/小说}
 
  <div class="all_title">
-<span style="">小说分类</span></div>
+<span style="">หมวดหมู่</span></div>
 <div class="new-fenlei_list">
 {小说分类:数量=4;排序=随机}
 <div {i:1}class="lf_left"{/i}{i:2}class="lf_right"{/i}{i:3}class="lf_left"{/i}{i:4}class="lf_right"{/i} onclick="location.href='{url}'">
 {小说分类名字}</div>{i:2}</div><div class="new-fenlei_list">{/i}
 {/小说分类}
 </div>
- <div class="more_h5"><a href="{小说首页}">查看更多分类 <span> </span></a></div>
- 
+ <div class="more_h5"><a href="{小说首页}">ดูเพิ่มเติม <span> </span></a></div>
+
  <div class="all_title">
-<span style="">热评小说</span></div>
+<span style="">น่าสนใจ</span></div>
 {小说:数量=3;排序=评论}
  <div class="book-pic-list">
  <div class="al"  onclick="location.href='{url}'">
@@ -86,24 +86,24 @@
  <div class="name">{小说名字}</div>
  <div class="new-Author">{小说作者}</div>
  <div class="infor-name">{小说简介:50}...</div></div></div>
- <div class="quickly-read"  onclick="location.href='{url}'">立即阅读</div></div>
+ <div class="quickly-read"  onclick="location.href='{url}'">อ่านเลย</div></div>
  <div class="bg_witer"><hr align="center" size="1" color="#efefef" class="fenge"></div>
 {/小说}
- 
+
 <div class="all_title">
-<span style="">最新更新</span></div>
+<span style="">อัปเดทล่าสุด</span></div>
 <div class="free_book_h5">
 {小说:数量=3;排序=最新更新}
 <div  onclick="location.href='{url}'"><dl><a ><img src="{小说封面}" alt="{小说名字}"></a></dl><dt>{小说名字}</dt></div>
 {/小说}
 </div>
 <div class="bg_witer"><hr align="center" size="1" color="#efefef" class="fenge"></div>
- 
+
  <div class="Ranking" id="ranking127">
  <menu class="Ranking-menu">
- <div class="active" data-tab="1">点击排行</div>
- <div class="" data-tab="2">人气排行</div>
- <div class="" data-tab="3">收藏排行</div>
+ <div class="active" data-tab="1">เข้าชม</div>
+ <div class="" data-tab="2">ยอดนิยม</div>
+ <div class="" data-tab="3">ชั้นหนังสือ</div>
  </menu>
  <div id="ranking1" class="_rking" style="">
  <div class="Ranking-nr" >
@@ -113,8 +113,8 @@
  <div class="cont"><div class="ameee"><span>[{小说分类简称}]</span>{小说名字}</div></div></div>
  <div class="bg_witer"><hr align="center" size="1" color="#efefef" class="fenge"></div>
 {/小说}
- </div><div class="more_h5"><a href="{小说排行首页}">查看更多排行 <span> </span></a></div></div>
- 
+</div><div class="more_h5"><a href="{小说排行首页}">ดูเพิ่มเติม <span> </span></a></div></div>
+
  <div id="ranking2" class="_rking" style="display:none">
  <div class="Ranking-nr" >
   {小说:数量=5;排序=顶}
@@ -123,8 +123,8 @@
  <div class="cont"><div class="ameee"><span>[{小说分类简称}]</span>{小说名字}</div></div></div>
  <div class="bg_witer"><hr align="center" size="1" color="#efefef" class="fenge"></div>
 {/小说}
- </div><div class="more_h5"><a href="{小说排行首页}">查看更多排行 <span> </span></a></div></div>
- 
+</div><div class="more_h5"><a href="{小说排行首页}">ดูเพิ่มเติม <span> </span></a></div></div>
+
  <div id="ranking3" class="_rking" style="display:none">
  <div class="Ranking-nr" >
  {小说:数量=5;排序=日收藏}
@@ -134,10 +134,10 @@
  <div class="bg_witer"><hr align="center" size="1" color="#efefef" class="fenge"></div>
 {/小说}
  </div>
- <div class="more_h5"><a href="{小说排行首页}">查看更多排行 <span> </span></a></div></div></div>
- 
+ <div class="more_h5"><a href="{小说排行首页}">ดูเพิ่มเติม <span> </span></a></div></div></div>
+
  <script>
  $(function(){$("#ranking127 .Ranking-menu").find("div").on("click",function(){$this = $(this);$this.parent().find("div").removeClass("active");$this.addClass("active");var tab = $this.data("tab");$("#ranking127 ._rking").hide();$("#ranking127  #ranking"+tab).show()})});
  </script>
- 
+
 {footer:footer.html}
