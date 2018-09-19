@@ -1,0 +1,140 @@
+{header:header.html}
+
+<body class="bg">
+
+<div class="content">
+
+<style>
+
+.bg{ background-color:#F3F3F3; background-size:100%; background-repeat:no-repeat!important;}
+.container, .content-wrap, .user_main {
+background:none;
+}
+.user_main{background-color: #F3F3F3;}
+.header, .header .nav {
+position: absolute;
+top: 0;
+width: 100%;
+z-index: 19;
+background:none;
+}
+.user_main{background-color: #F3F3F3;}
+
+.u_profile{ background:#f3f3f3;}
+
+.xld dt a {
+font-size: 16px;
+}
+.xld dd {
+font-size: 14px;
+}
+.xld .atc img {
+max-width: 120px;
+max-height: 120px;
+}
+.visitnum{background: rgba(49,49,49,.35);
+    padding: 0 10px 0 5px;
+    position: absolute;
+    right: 10px;
+    top: 130px;
+    border-radius: 10px; color: #FFF;
+    height: 22px;
+    line-height: 22px;}
+.visitnum i{ width:20px; height:20px; background:#fff; margin-right:5px; float:left;}
+
+
+</style>
+
+<!-- header start -->
+<header class="header">
+  <div class="nav">
+  <div class="menu-y">
+    	    <a href="{首页}"><span class="other-button" id="other-button"></span></a>
+    </div>
+    <a href="javascript:;" onclick="history.go(-1);" class="menu-z"><img src="{templates}/img/icon_back.png" /></a>
+    </div>
+</header>
+<!-- header end --> 
+
+ 
+
+<div id="uhd"> 
+    <div class="uhdbg"><img src="{templates}/img/b-j.png" /></div>
+    <div class="visitnum" style="display:none;"><i></i>0</div>
+  <div class="uhdbox">
+    <div class="icn avt"><a href="{头像设置}"><img src="{用户头像}" /></a></div>
+    <h2><a style="color:#fff;" href="{基本资料}">{用户昵称}</a></h2>
+    <p class="mtn clamp2"> 
+      {用户签名} 
+    </p>
+  </div>
+</div>
+<div class="mycenter_box cl">
+  <ul>
+    <li class="a"><a href="{账号属性}"><img src="{templates}/img/ziliao.png" class="vm mrm"/><em>我的资料</em></a>
+    </li>
+    <li><a href="{消息列表}"><img src="{templates}/img/xiaoxi.png" class="vm mrm"/><em>我的消息</em><span>({未读消息})</span></a>
+    </li>
+     
+    <li><a><img src="{templates}/img/jinbi.png" class="vm mrm"/><em>{金币1名字}</em><span>{用户金币1数量}</span></a>
+    </li>
+     
+     
+    <li><a><img src="{templates}/img/jifen.png" class="vm mrm"/><em>{金币2名字}</em><span>{用户金币2数量}</span></a>
+    </li>
+    <li><a href="{我的书架}"><img src="{templates}/img/xiezuo.png" class="vm mrm"/><em>我的书架</em><span></span></a>
+    </li>   
+  </ul>
+</div>
+<div class="mycenter_box cl">
+  <ul>
+    <li><a href="{签到中心}"><img src="{templates}/img/qiandao.png" class="vm mrm"/><em>每日签到</em></a></li>
+    <li><a href="{基本资料}"><img src="{templates}/img/shezhi.png" class="vm mrm"/><em>资料设置</em></a></li>
+    <li><a href="{头像设置}" ><img src="{templates}/img/tupian.png" class="vm mrm"/><em>头像设置</em> 
+       
+      </a> </li>
+  </ul>
+</div>
+
+ 
+<div class="mycenter_box cl">
+
+
+
+<li id="sslct_menu"> 
+  
+<a href="/module/user/fhome.php?pt={pt}&uid={用户id}"><img src="{templates}/img/kongjian.png" class="vm mrm"/><em>我的空间</em></a> 
+ 
+</li>
+<li><a href="{退出登录}"><img src="{templates}/img/zhuxiao.png" class="vm mrm"/><em>退出登录</em></a></li>
+ 
+
+</div>
+
+<script src="{templates}/js/main.js" type="text/javascript"></script>
+<script src="{templates}/js/classie.js" type="text/javascript"></script> 
+<script src="{templates}/js/jquery.scrollUp.min.js"type="text/javascript"></script>
+<script type="text/javascript">
+jQuery(function(){
+  jQuery.scrollUp({
+  animation: 'fade', // Fade, slide, none
+      scrollText: 'GoTop',
+  }
+  
+  );
+});
+jQuery(function(){
+jQuery(window).scroll(function(){
+          height = jQuery(window).scrollTop();
+   	  	  if(height > 200){
+ jQuery('.header').addClass("fixed");
+ jQuery('.slnav').addClass("fixed");
+   	  	  }else{
+ jQuery('.header').removeClass("fixed");
+ jQuery('.slnav').removeClass("fixed");
+   	  	  };
+});
+});
+</script>
+<div class="btBox"><div class="bt2"><a href="javascript:history.go(-1);">返回上页</a><a href="{首页}">返回首页</a></div></div>	
+{footer:footer.html}
