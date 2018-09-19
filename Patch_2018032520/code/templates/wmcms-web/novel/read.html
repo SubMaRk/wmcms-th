@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=1280">
+<title>{title}</title>
+<meta name="Keywords" content="{key}" />
+<meta name="Description" content="{desc}" />
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/pkg_ydcommon_bview_d094781.css"/>
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/pkg_ydcore_bookviewui_a992cd7.css"/>
+<link rel="stylesheet" type="text/css" href="{templates}/static/css/pkg_ydcore_txtreader_5c9ac9d.css"/>
+<style>
+.vip-limit-wrap{font-size:14px;padding-top:48px;text-align:center;border-top:1px solid #d8d8d8}
+.vip-limit-wrap h3{font-size:24px;line-height:30px;margin-bottom:48px;color:#999;color:rgba(0,0,0,.4)}
+.vip-limit-wrap h3 i{margin-right:24px}
+.vip-limit-wrap .subscribe-btn-wrap{position:relative;z-index:1;width:370px;height:70px;margin:0 auto 15px}
+.vip-limit-wrap .subscribe-btn-wrap a{position:absolute;z-index:1;border-radius:4px;text-decoration:none;border:none}
+.vip-limit-wrap .subscribe-btn-wrap a em{display:block;margin-top:13px;margin-bottom:5px;color:#1a1a1a}
+.vip-limit-wrap .subscribe-btn-wrap a span{display:block;color:#666}
+.vip-limit-wrap .subscribe-btn-wrap a span i{font-style:normal;margin-right:5px;vertical-align:-1px}
+.vip-limit-wrap .subscribe-btn-wrap a:focus {outline:none;-moz-outline:none;}
+.vip-limit-wrap .subscribe-btn-wrap a.single{right:210px;width:160px;height:70px;background:#bf2c24}
+.vip-limit-wrap .subscribe-btn-wrap a.single em{font-size:16px;font-style:normal;color:#fff}
+.vip-limit-wrap .subscribe-btn-wrap a.single span{color:#fcfcfa;color:rgba(255,255,255,.6);filter:alpha(opacity=60)}
+.vip-limit-wrap .subscribe-btn-wrap a.single:hover{background:#ed4259}
+.vip-limit-wrap .subscribe-btn-wrap a.all{border:1px solid #d8d8d8;background:#fffcf7;background:rgba(255,255,255,.5)}
+.vip-limit-wrap .subscribe-btn-wrap a.all:hover{background:#F5F4F4}
+.vip-limit-wrap .subscribe-btn-wrap a.all em{color:#000000}
+.vip-limit-wrap .subscribe-btn-wrap a.all i{color:#000000}
+.vip-limit-wrap .subscribe-btn-wrap a.all span{color:#000000}
+
+.vip-limit-wrap .subscribe-btn-wrap.no-subscribe-btn-box a em{margin-top:23px}
+.vip-limit-wrap .subscribe-btn-wrap.no-subscribe-btn-box a.all:hover{width:158px}
+.vip-limit-wrap p span{position:relative;vertical-align:middle}
+.vip-limit-wrap p label{font-size:12px;vertical-align:middle;color:#999;color:rgba(0,0,0,.4)}
+
+.content{margin: 23px 0;line-height: 2;font-size:18px;white-space:pre-wrap}
+</style>
+</head>
+
+<body>
+<div id="doc" style="width:850px;position:relative;">
+	<div class="mod reader-page complex" id="reader-page-wrap">
+		<div id="format-pager-container">
+			<div class="format-pager-wrap">
+				<div class="pager-inner txt-reader-wrap reader-for-win7" id="content" style="margin-top: 0px;overflow: auto; " >
+					<h2 class="p-b p-b-1 p-b-1-1">{章节名字}</span></span></h2>
+					{已订阅}<div class="content">{章节内容}</div>{/已订阅}
+					{未订阅}
+						<div class="vip-limit-wrap">
+				            <h3 class="lang"><i>这是VIP章节</i>需要订阅后才能阅读</h3>
+				            <div class="subscribe-btn-wrap dib-wrap ">
+								<a class="single j_subscribeBtn" style="right:325px;" href="javascript:sub(1);"><em>订阅本章</em><span><i>{本章价格}</i>{金币2名字}(共{章节字数}字)</span></a>
+								{包月出售}<a class="single all j_subscribeBtn" style="right:100px;" href="javascript:sub(3);"><em>订阅本月</em><span><i>{包月价格}</i>{金币2名字}</span></a>{/包月出售}
+				           		{全本出售}<a class="single all j_subscribeBtn" style="right:-115px;" href="javascript:sub(2);"><em>订阅全本</em><span><i>{全本价格}</i>{金币2名字}</span></a>{/全本出售}
+				           	</div>
+				            <p>
+				                <span class="lbf-checkbox j_autoSubs">
+				                    <input id="j_autoSubscribe" type="checkbox">
+				                </span>
+				                <label class="j_autoSubs">不再显示订阅提醒，自动续订（单章有效）</label>
+				            </p>
+			        	</div>
+			        {/未订阅}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="tools-bar toolsBarFixed bdjson-tools-bar" id="tools-bar">
+	<div class="inner">
+ 		<div class="center">
+			<div class="item-wrap title-wrap">
+				<div class="title" style="width:80%;"><div class="title-text">{章节名字}</div></div>
+				<div class="percent" style="width:20%;"><div class="percent-text">{名字}</div></div>
+			</div>
+		</div>
+	
+		<div class="right right-in-ffk">
+		    <div class="item-wrap catalog-wrap">
+		    	<a href="{目录链接}" class="catalog">
+		    	<b class="ic ic-catalog tools-btn-ic"></b>
+		    	<span class="catalog-text tools-btn-text">目录</span>
+		    	</a>
+		    </div>
+	   		<div class="item-wrap pageBar-wrap">
+				<div class="page-bar no-select-range">
+					<a class="ic-page ic-page-prev" href="{上一章}"></a>
+					<a class="ic-page ic-page-next" href="{下一章}"></a>
+				</div>
+				<a href="" class="side-bar-fankui log-xsend">意见反馈</a>
+			</div>
+	  	</div>
+	
+		<div class="item-wrap pay-wrap hide-pay-area" style="height: 791px;">
+		    <div class="item-wrap back-wrap">
+		      <a href="{内容链接}" class="back">
+		        <b class="ic ic-back tools-btn-ic"></b>
+		        <span class="back-text tools-btn-text">退出阅读</span></a>
+		    </div>
+	  	</div>
+	</div>
+</div>
+
+
+<script src="/files/js/common.js"></script>
+<script>
+var content = document.getElementById("content");
+content.style.cssText = "min-height: "+(window.screen.availHeight)+"px";
+
+function sub(type){
+	var auto = 0;
+	if($('#j_autoSubscribe').is(':checked')) {
+		auto = 1;
+	}
+	if(type == '1' && {本章价格} > {用户金币2数量}){
+		easydialog_alert("对不起，您的{金币2名字}为{用户金币2数量}，不足{本章价格}{金币2名字}，无法订阅本章！!<br/>请先<a href='{充值}'>充值</a>后再试!",'{金币2名字}不足','','');
+	}else if(type == '3' && {包月价格} > {用户金币2数量}){
+		easydialog_alert("对不起，您的{金币2名字}为{用户金币2数量}，不足{包月价格}{金币2名字}，无法包月！!<br/>请先<a href='{充值}'>充值</a>后再试!",'{金币2名字}不足','','');
+	}else if(type == '2' && {全本价格} > {用户金币2数量}){
+		easydialog_alert("对不起，您的{金币2名字}为{用户金币2数量}，不足{全本价格}{金币2名字}，无法订阅全本！!<br/>请先<a href='{充值}'>充值</a>后再试!",'{金币2名字}不足','','');
+	}else{
+		//赠送道具操作
+		var btn = function(){$.ajax({
+			type:"POST",
+			url:"{url:action;novel.sub&ajax=yes}",
+			data:{'nid':{id},'cid':'{章节id}','st':type,'auto':auto},
+			dataType:"json",
+			success:function(data)
+			{
+				if(data.code==200){
+					easydialog_autoclose(data.msg,'success',1000);
+					setTimeout(function(){window.parent.location = '';},1000);
+				}else{
+					easydialog_autoclose(data.msg,'',2000);
+				}
+			}
+		})};
+		
+		easydialog_alert("确定要订阅吗？",'是否订阅',btn);
+		
+	}
+}
+</script>
+
+</body>
+</html>

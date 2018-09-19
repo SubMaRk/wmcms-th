@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>{title}</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport">
+<link rel="stylesheet" data-ignore="true" href="{templates}/css/pay.css">
+<style>
+.account{margin-top: -13px;display:none}
+.chargeType{display: block;width: 45%;text-align: center;} 
+</style>
+<script src="/files/js/common.js"></script>
+</head>
+<body>
+<div class="page-group">
+    <div class="page page-current">
+        <!-- start 头部 -->
+        <header class="bar bar-nav">
+            <a class="button button-link button-nav pull-left" href="javascript:history.back();">
+                <span style="color: #2e9de7;">&lt; 返回</span>
+            </a>
+            <h1 class="title">在线充值</h1>
+        </header>
+        
+        <!-- end 头部 -->
+        <div class="content">
+            <!-- start 账号 -->
+            <div class="account-wrap cf chargeTypeBox">
+                <a class="chargeType" data-val="2" style="float: right;">卡密充值</a>
+                <a class="chargeType" data-val="1" style="border-bottom: #1196d4 2px solid;">在线充值</a>
+            </div>
+            <!-- start 账号 -->
+            <div class="account-wrap cf">
+                <span>
+	                <select id="account_type" name="account_type" style="background: transparent;border:none">
+	                	<option value="0">为自己充值</option>
+	                	<option value="1">为好友充值</option>
+	                </select>
+                </span>
+                <em>充值账号</em>
+            </div>
+            <div class="account-wrap account">
+                <span>
+	                <input type="text" size="25" placeholder="好友的登录账号" id="account" name="account" />
+                </span>
+                <em>好友账号</em>
+            </div>
+            <div class="account-wrap account" style="margin-top:-12px">
+                <span>
+	                <input type="text" size="25" placeholder="重复好友的登录账号" id="reAccount" name="reAccount" />
+                </span>
+                <em>重复好友账号</em>
+            </div>
+            <!-- end 账号 -->
+            
+            <!-- start 选择充值渠道 -->
+            <div id="payBox">
+	            <div class="select-trench">
+	                <ul>
+	                	{支付方式:支付类型=wap支付;数量=10}
+		                {无数据}<li class="system"><a href="javascript:"><div class="border-box"><div class="trench-name"><h3>暂未开启任何支付方式</h3></div></div> </a></li>{/无数据}
+	                    <li class="{支付方式标识}" data-id="{支付方式标识}">
+	                        <a href="javascript:">
+	                            <span class="sprite"></span>
+	                            <div class="border-box">
+	                                <div class="trench-name"><h3>{支付方式名字}</h3></div>
+	                            </div>
+	                       		<span class="icon icon-right"></span>
+	                        </a>
+	                    </li>
+						{/支付方式}
+	                </ul>
+	            </div>
+	            <!-- end 选择充值渠道 -->
+	            
+	            
+	            <!-- start 选择充值金额 -->
+	            <div class="select-money" style="display:none">
+	                <ul>
+	                	{充值等级:数量=5}
+	                    <li {i:1}class="act"{/i} data-money="{充值金额}" data-real="{充值折扣}" data-reward_gold2="{充值赠送金币2}">
+	                        <div class="item-box">
+	                            <span>¥{充值金额}</span>
+	                            <i>{运算:{充值金额}*{充值比例}+{充值赠送金币2}} {金币2名字}</i>
+	                        </div>
+	                    </li>
+	                    {/充值等级}
+	                    
+	                    <li class="custom">
+	                        <div class="item-box">
+	                            <i id="ortherGold2Html">0 {金币2名字}</i>
+								<input class="lbf-text-input" id="OtherMoeny" type="text" value="" hidefocus="true" maxlength="5" placeholder="输入自定义金额">
+							</div>
+	                    </li>
+	                </ul>
+	            </div>
+            </div>
+          	<!-- end 选择充值金额 -->
+          	
+          	
+            <!-- start 卡号充值 -->
+            <div id="cardBox" style="display:none">
+	            <div class="account-wrap">
+	                <span style="float:none;padding-left: 30px;">
+		                <input type="text" style="width:300px" placeholder="请输入您的卡密"  id="cardKey" name="cardKey" />
+	                </span>
+	                <em>卡密</em>
+	            </div>
+	            <div class="account-wrap">
+	                <em>
+	            <a href="{卡号购买地址}" target="_blank" class="imgCheckBtn">点此获得充值卡密</a></em>
+	            </div>
+            </div>
+          	<!-- end 卡号充值 -->
+			
+			<input type="hidden" id="chargeType" value="1">
+			<input type="hidden" id="payType" value="">
+			<input type="hidden" id="payMoney" value="">
+			
+            <!-- start 按钮 -->
+            <div class="btn-wrap" style="display:none">
+                <a id="pay" class="blue-btn" href="javascript:" data-tamount="10" data-method="1">立即支付 <span>¥0</span></a>
+            </div>
+            <!-- end 按钮 -->
+            
+        </div>
+    </div>
+</div>
+
+<script>
+var close = true;
+var chargeList = new Array();
+var chargeObj;
+{充值等级:}
+chargeObj = new Object();
+chargeObj.money = {充值金额};
+chargeObj.real = {充值折扣};
+chargeObj.reward_gold2 = {充值赠送金币2};
+chargeList[{i}] = chargeObj;{/充值等级}
+
+$(document).ready(function(){
+	//点击金额
+	$(".chargeTypeBox a").click(function(){
+		$('.chargeTypeBox a').css('border-bottom','');
+		$(this).css('border-bottom','#1196d4 2px solid');
+		$('#chargeType').val($(this).data('val'));
+		if($(this).data('val')=='1'){
+			$('#payBox').show();
+			$('#cardBox').hide();
+			$(".btn-wrap").hide();
+			$("#pay").html('立即支付 <span>¥0</span>');
+		}else{
+			$(".btn-wrap").show();
+			$("#pay").html('使用卡密 <span></span>');
+			$('#cardBox').show();
+			$('#payBox').hide();
+			
+			$('.select-trench ul li').show();
+			$(".select-money").hide();
+			$(".select-money li").removeClass('act');
+			$(".select-money li").eq(0).addClass('act');
+			$('#OtherMoeny').val('');
+			$('#payMoney').val('0');
+			$('#payType').val('');
+			$("#ortherGold2Html").html('0 {金币2名字}');
+			close = true;
+		}
+	});
+	//充值账号类型
+	$("#account_type").change(function(){
+		var type = $(this).val();
+		if(type==0){
+			$('.account').hide();
+		}else{
+			$('.account').show();
+		}
+	});
+	//自定义输入金额
+	$("#OtherMoeny").keyup(function(){
+		var money = $(this).val();
+		var real = money;
+		var rewardGold2 = money*{充值比例};
+		for(o in chargeList){
+			if(chargeList[o].money<=money){
+				console.log(chargeList[o]);
+				real=money-(chargeList[o].money-chargeList[o].real);
+				rewardGold2=money*{充值比例}+chargeList[o].reward_gold2;
+			}
+		}
+		$("#ortherGold2Html").html(rewardGold2+' {金币2名字}');
+		$('#pay span').html('¥'+real);
+		$('#payMoney').val(money);
+	});
+	//点击支付类型
+	$(".select-trench ul li").click(function(){
+		var id = $(this).data('id');
+		if( close ==true){
+			var money = $(".select-money").find('.act').data('money');
+			$('.select-trench ul li').hide();
+			$(this).show();
+			$('#pay span').html('¥'+money);
+			$(".select-money").show();
+			$(".btn-wrap").show();
+			$('#payMoney').val(money);
+			$('#payType').val($(this).data('id'));
+			close = false;
+		}else{
+			$('.select-trench ul li').show();
+			$(".select-money").hide();
+			$(".btn-wrap").hide();
+			$(".select-money li").removeClass('act');
+			$(".select-money li").eq(0).addClass('act');
+			$('#OtherMoeny').val('');
+			$('#payMoney').val('0');
+			$('#payType').val('');
+			$("#ortherGold2Html").html('0 {金币2名字}');
+			close = true;
+		}
+	});
+	//点击金额
+	$(".select-money ul li").click(function(){
+		$('.select-money ul li').removeClass('act');
+		$(this).addClass('act');
+		if($(this).data('money')>0){
+			$('#pay span').html('¥'+$(this).data('real'));
+			$('#payMoney').val($(this).data('real'));
+		}
+	});
+	
+
+	//提交
+	$("#pay").click(function(){
+		var chargeType = $("#chargeType").val();
+		var accountType = $("[name=account_type]").val();
+		var account=$("#account").val();
+		var reAccount=$("#reAccount").val();
+		var cardKey=$("#cardKey").val();
+		var payType=$("#payType").val();
+		var payMoney=$("#payMoney").val();
+
+		if(accountType == 1 && (account.length>16 || account.length<5)){
+			easydialog_autoclose('对不起，账号长度只能为5-16个字符!');
+			return false;
+		}else if(accountType == 1 && (reAccount != account) ){
+			easydialog_autoclose('对不起，两次输入的账号不一致!');
+			return false;
+		//在线充值
+		}else if( chargeType== '1'){
+			if( payMoney < 10 ){
+				easydialog_autoclose('对不起，至少充值十元!');
+				return false;
+			}else{
+				var par = {'accounttype':accountType,'account':account,'reaccount':reAccount,'money':payMoney,'paytype':payType};
+				Post("{url:action;finance.pay_charge}",par,'_self');
+			}
+			return false;
+		//卡号充值
+		}else if( chargeType== '2'){
+			if( cardKey.length != 16 && cardKey.length != 32 ){
+				easydialog_autoclose('对不起，请输入正确的卡密!');
+				return false;
+			}else{
+				$.ajax({
+					type:"POST",
+					url:"{url:action;finance.card_charge&ajax=yes}",
+					data:{'accounttype':accountType,'account':account,'reaccount':reAccount,'cardkey':cardKey},
+					dataType:"json",
+					success:function(data){
+						if( data.code == 200 ){
+							easydialog_autoclose('卡密使用成功，跳转中，请稍候...','success',30000);
+							setTimeout(function(){window.parent.location='{用户中心}';},1000);
+						}else{
+							easydialog_autoclose(data.msg,'error');
+						}
+					},
+					async:true,
+				});
+			}
+		}
+	});
+});
+</script>
+</body>
+</html>
