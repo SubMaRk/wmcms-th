@@ -14,26 +14,26 @@ $cloudSer = NewClass('cloud');
 if ( $type == 'getnext' )
 {
 	$rs = $cloudSer->GetVersionNext(1);
-	Ajax('请求成功！',200,$rs);
+	Ajax('คำขอสำเร็จ!',200,$rs);
 }
 //获得最新版本
 else if ( $type == 'getnew' )
 {
 	$rs = $cloudSer->GetNewVer();
-	Ajax('请求成功！',200,$rs);
+	Ajax('คำขอสำเร็จ!',200,$rs);
 }
 //开始升级
 else if ( $type == 'update' )
 {
 	$adminPath = $C['config']['web']['admin_path'];
-	
+
 	if( $adminPath == '' )
 	{
-		Ajax('对不起，请在系统管理-网站设置-基本设置里面设置后台目录，否则无法进行升级操作！',300);
+		Ajax('ขออภัย! โปรดตั้งไดเร็กทอรี่พื้นหลังในจัดการระบบ > ตั้งค่าเว็บไซต์ > ตั้งค่าทั่วไป มิเช่นนั้นจะไม่สามารถอัปเกรดได้',300);
 	}
 	else if( !is_dir(WMROOT.$adminPath) )
 	{
-		Ajax('对不起，网站设置的后台目录不存在无法进行升级！',300);
+		Ajax('ขออภัย! ไม่พบไดเร็กทอรี่พื้นหลังในการตั้งค่าระบบ ไม่สามารถอัปเกรดได้',300);
 	}
 	else
 	{
@@ -42,7 +42,7 @@ else if ( $type == 'update' )
 		{
 			if( $rs['data']['version_down'] == '0' )
 			{
-				Ajax('对不起，该版本不允许后台在线升级，请到官网下载手动更新！',300);
+				Ajax('ขออภัย! เวอร์ชั่นนี้ไม่รองรับการอัปเกรดผ่านพื้นหลัง โปรดไปที่เว็บไซต์ทางการเพื่อดาวน์โหลดอัปเดทด้วยตนเอง',300);
 			}
 			//总大小
 			Session('update_size' , $rs['data']['version_size']);
@@ -52,16 +52,17 @@ else if ( $type == 'update' )
 				$file = str::GetLast($rs['data']['version_downurl'],'/');
 				list($fileName,$fileExt) = explode('.', $file);
 				$zipFilePath = WMROOT.'upload/update/'.$fileName;
-				
+
 				//检查是否下载过文件了,下载过就删除文件。
-				if( file_exists($zipFilePath) )
+				if( !file_exists($zipFilePath) )
 				{
 					file::DelFile($zipFilePath);
 				}
 				//下载服务器升级补丁
-				Session('update_downLen' , $rs['data']['version_size']);
-				file::DownloadFile($rs['data']['version_downurl'],2,WMROOT.'upload/update','update');
-				
+					Session('update_downLen' , $rs['data']['version_size']);
+					file::DownloadFile($rs['data']['version_downurl'],2,WMROOT.'upload/update','update');
+				}
+
 				$zip = NewClass('pclzip',$zipFilePath.'.'.$fileExt);
 				//解压缩到当前id文件夹下面
 				if ( $zip->extract(PCLZIP_OPT_PATH, $zipFilePath) )
@@ -86,22 +87,22 @@ else if ( $type == 'update' )
 					//修改版本
 					SetVersion($rs['data']['version_number'],date('Ymd', strtotime($rs['data']['version_addtime'])));
 				}
-	
+
 				$cloudSer->SetUpdateLog(WMVER,$rs['data']['version_number']);
 
 				//写入操作记录
-				SetOpLog( '对程序进行了升级！' , 'system' , 'update' );
-				Ajax('恭喜您，升级成功，请重新登录后台以便获得最新版本的体验!',200,$zipFilePath);
-			
+				SetOpLog( 'อัปเกรดระบบ' , 'system' , 'update' );
+				Ajax('ยินดีด้วย! อัปเกรดระบบสำเร็จ โปรดออกจากระบบแล้วเข้าสู่ระบบใหม่อีกครั้งเพื่อสัมผัสประสบการณ์ของเวอร์ชั่นล่าสุด',200,$zipFilePath);
+
 			}
 			else
 			{
-				Ajax('对不起，当前版本无需升级！',300);
+				Ajax('ขออภัย! เวอร์ชั่นปัจจุบันไม่ต้องอัปเกรด',300);
 			}
 		}
 		else
 		{
-			Ajax('对不起，没有最新版本了！',300);
+			Ajax('ขออภัย! ไม่พบเวอร์ชั่นใหม่',300);
 		}
 	}
 }
@@ -111,25 +112,25 @@ else if ( $type == 'getbarline' )
 	//总大小
 	$size = Session('update_size');
 	$downSize = Session('update_downLen');
-	
+
 	if($size > 0 )
 	{
 		Session('update_size',0);
 		Session('update_downLen',0);
-		
+
 		$data['success'] = 0;
 		$data['barline'] = round($downSize/$size,2)*100;
-		
+
 		if( $downSize == $size)
 		{
 			$data['success'] = 1;
-			Ajax('下载中...' , 201 , $data);
+			Ajax('กำลังดาวน์โหลด...' , 201 , $data);
 		}
-		Ajax('下载中...' , 200 , $data);
+		Ajax('กำลังดาวน์โหลด...' , 200 , $data);
 	}
 	else
 	{
-		Ajax('下载失败！',300);
+		Ajax('ดาวน์โหลดล้มเหลว!',300);
 	}
 }
 ?>

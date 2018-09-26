@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?> 
-<config> 
-<name>wmcms默认触屏模版</name> 
-	<author>Yaw Zhou</author> 
-	<ver>V1.0</ver> 
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+<name>รุ่นสัมผัส WMCMS</name> 
+	<author>Yaw Zhou</author>
+	<ver>V1.0</ver>
 	<time>2016-05-12</time>
 	<url>http://www.yawzhou.cn</url>
 	<appid>2</appid>
-</config> 
+</config>

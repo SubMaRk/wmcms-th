@@ -11,7 +11,7 @@
 $config = GetModuleConfig('user');
 
 $lvModule = array(
-	'novel'=>'小说模块',
+	'novel'=>'โมดูลนิยาย',
 );
 
 $data['sign_divide'] = '7:3';

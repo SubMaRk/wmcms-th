@@ -26,7 +26,7 @@ if( $name != '' )
 }
 else
 {
-	$name = '站点名字';
+	$name = 'ชื่อเว็บ';
 }
 //数据条数
 $total = $siteMod->ProGetCount($where);

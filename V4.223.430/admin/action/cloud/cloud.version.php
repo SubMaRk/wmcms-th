@@ -53,9 +53,12 @@ else if ( $type == 'update' )
 				list($fileName,$fileExt) = explode('.', $file);
 				$zipFilePath = WMROOT.'upload/update/'.$fileName;
 
-				//检查是否下载过文件了,没有下载就进行下载升级包。
+				//检查是否下载过文件了,下载过就删除文件。
 				if( !file_exists($zipFilePath) )
 				{
+					file::DelFile($zipFilePath);
+				}
+				//下载服务器升级补丁
 					Session('update_downLen' , $rs['data']['version_size']);
 					file::DownloadFile($rs['data']['version_downurl'],2,WMROOT.'upload/update','update');
 				}

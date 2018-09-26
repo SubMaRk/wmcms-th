@@ -1,5 +1,5 @@
 <?php
-header('Content-Type:text/html;charset=utf-8'); 
+header('Content-Type:text/html;charset=utf-8');
 if (version_compare("5.3", PHP_VERSION, ">")) {
 	die("PHP >= 5.3 or greater is required!!!");
 }
@@ -21,7 +21,7 @@ define('TCP_TYPE',GetHttpType());
 
 $title = $step = '';
 $a = Post('action');
-//是否安装过了 
+//是否安装过了
 if(file_exists(WMCONFIG.'install.lock.txt') && $a !='step5')
 {
 	$file = 'lock.php';
@@ -43,31 +43,31 @@ else
 	{
 		case '':
 			$file = 'step1.php';
-			$title = 'Step 1 阅读安装协议';
+			$title = 'ขั้นตอนที่ 1 ข้อตกลงการติดตั้ง';
 			$step = 'step2';
 			break;
 
 		case 'step2':
 			$file = 'step2.php';
-			$title = 'Step 2 运行环境检查';
+			$title = 'ขั้นตอนที่ 2 ตรวจสอบสภาพแวดล้อม';
 			$step = 'step3';
 			break;
-				
+
 		case 'step3':
 			$file = 'step3.php';
-			$title = 'Step 3 填写数据库信息与创始人信息';
+			$title = 'ขั้นตอนที่ 3 กรอกข้อมูลฐานข้อมูลและการก่อตั้ง';
 			$step = 'step4';
 			break;
-				
+
 		case 'step4':
 			$file = 'step4.php';
-			$title = 'Step 4 阅读安装协议';
+			$title = 'ขั้นตอนที่ 4 สร้างข้อมูล';
 			$step = 'step5';
 			break;
-				
+
 		case 'step5':
 			$file = 'step5.php';
-			$title = 'Step 5 完成操作';
+			$title = 'ขั้นตอนที่ 5 เสร็จสิ้นการติดตั้ง';
 			break;
 	}
 }
@@ -76,7 +76,7 @@ else
 <html>
 <head>
 <meta charset="utf-8" />
-<title>wmcms 安装程序 <?php echo $title?></title>
+<title>ตัวติดตั้ง WMCMS<?php echo $title?></title>
 <link rel="stylesheet" href="Content/install.css" />
 <!--[if IE]>
 <script src="Scripts/html5.js" type="text/javascript"></script>
@@ -87,9 +87,9 @@ else
 	<div class="wrap">
 	<header class="header">
 		<div class="head">
-			<h1 class="logo_install">安装</h1>
-			<div class="version">版本:v<?php echo WMVER;?>  UTF-8 (<?php echo WMVER_TIME?>)</div>
-			
+			<h1 class="logo_install">การติดตั้ง</h1>
+			<div class="version">เวอร์ชั่น : V<?php echo WMVER;?>  UTF-8 (<?php echo WMVER_TIME?>)</div>
+
 		</div>
 	</header>
 	<section class="section">
@@ -97,7 +97,7 @@ else
 	</section>
 	</div>
 	<footer class="footer">
-		&copy; 2014-2018 <a href="<?php echo WMURL;?>">wmcms</a>（wmcms团队版权所有）
+		&copy; 2014-2018 <a href="<?php echo WMURL;?>">wmcms</a>(ทีม wmcms ขอสงวนลิขสิทธิ์)
 	</footer>
 </body>
 </html>

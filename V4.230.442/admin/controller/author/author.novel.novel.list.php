@@ -31,11 +31,11 @@ if( $name != '' )
 		case '1':
 			$where['where']['novel_name'] = array('like',$name);
 			break;
-			
+
 		case '2':
 			$where['where']['novel_author'] = array('like',$name);
 			break;
-			
+
 		case '3':
 			$where['where']['novel_id'] = array('like',$name);
 			break;
@@ -43,7 +43,7 @@ if( $name != '' )
 }
 else
 {
-	$name = '请输入搜索关键字';
+	$name = 'โปรดกรอกคำหลัก';
 }
 //判断是否搜索分类
 if( $tid != '' )

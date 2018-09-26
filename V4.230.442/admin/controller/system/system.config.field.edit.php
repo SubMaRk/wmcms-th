@@ -23,9 +23,9 @@ if ( $type == 'edit')
 {
 	$where['table'] = '@config_field';
 	$where['where']['field_id'] = $id;
-	
+
 	$data = wmsql::GetOne($where);
-	
+
 	if( $data )
 	{
 		$wheresql['table'] = '@'.$data['field_module'].'_type';
@@ -34,13 +34,13 @@ if ( $type == 'edit')
 		if( !$typeData )
 		{
 			$data['type_list']['type_id'] = '';
-			$data['type_list']['type_name'] = '对不起，当前模块没有分类';
+			$data['type_list']['type_name'] = 'ขออภัย! โมดูลนี้ยังไม่จัดหมวดหมู่';
 		}
 		else
 		{
 			$data['type_list'] = $typeData;
 		}
-		
+
 		//循环分类
 		foreach ($typeData as $k=>$v){
 			if( $v['type_id'] == $data['field_type_id'])
@@ -51,7 +51,7 @@ if ( $type == 'edit')
 		}
 		if( $data['type_name'] == '' )
 		{
-			$data['type_name'] = '全部分类';
+			$data['type_name'] = 'หมวดหมู่ทั้งหมด';
 		}
 	}
 }

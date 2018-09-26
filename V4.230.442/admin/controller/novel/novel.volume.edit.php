@@ -22,7 +22,7 @@ if ( $type == 'edit' )
 	$data= wmsql::GetOne($where);
 	if( $data['volume_nid'] == '0' )
 	{
-		Ajax('对不起，系统分卷禁止操作',300);
+		Ajax('ขออภัย! ไม่สามารถดำเนินการกับระบบเล่มได้',300);
 	}
 }
 //如果书籍的id不为空

@@ -1,8 +1,8 @@
 <div class="step">
 	<ul>
-	<li><em>1</em>检测环境</li>
-	<li class="current"><em>2</em>创建数据</li>
-	<li><em>3</em>完成安装</li>
+	<li><em>1</em>ทดสอบสภาพแวดล้อม</li>
+	<li class="current"><em>2</em>สร้างข้อมูล</li>
+	<li><em>3</em>เสร็จสิ้นการติดตั้ง</li>
 	</ul>
 </div>
 
@@ -11,13 +11,13 @@
 	<input type="hidden" name="action" value="step4">
 	<table width="100%">
 	<tr>
-		<td class="td1" width="100">模块选择</td>
+		<td class="td1" width="100">เลือกโมดูล</td>
 		<td class="td1" width="200">&nbsp;</td>
 		<td class="td1">&nbsp;</td>
 	</tr>
 	<tr>
 		<td colspan="3">
-			<?php 
+			<?php
 			$i = 1;
 			foreach ($module as $k=>$v)
 			{

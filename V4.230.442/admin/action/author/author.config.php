@@ -17,11 +17,11 @@ if( $post )
 	$configMod->UpdateToForm($post);
 
 	//写入操作记录
-	SetOpLog( '修改作者模块设置' , 'author' , 'update' );
-	
+	SetOpLog( 'แก้ไขการตั้งค่าโมดูลผู้แต่ง' , 'author' , 'update' );
+
 	//更新配置文件
 	$manager->UpConfig('author');
-	
+
 	Ajax();
 }
 ?>

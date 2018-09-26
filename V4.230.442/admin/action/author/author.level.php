@@ -16,7 +16,7 @@ if ( $type == "add" )
 	$data = str::Escape( @$post['level'], 'e' );
 	if( !$data )
 	{
-		Ajax('对不起，请添加数据后再点击保存!',300);
+		Ajax('ขออภัย! โปรดกรอกข้อมูลแล้วคลิ๊กจัดเก็บ',300);
 	}
 	else
 	{
@@ -27,12 +27,12 @@ if ( $type == "add" )
 		{
 			$where['level_id'] = wmsql::Insert($table, $data);
 			//写入操作记录
-			SetOpLog( '新增了作者等级' , 'author' , 'insert' , $table , $where , $data );
-			Ajax('恭喜您，作者等级添加成功！' , 200 );
+			SetOpLog( 'เพิ่มระดับผู้แต่ง' , 'author' , 'insert' , $table , $where , $data );
+			Ajax('ยินดีด้วย! เพิ่มระดับผู้แต่งแล้ว' , 200 );
 		}
 		else
 		{
-			Ajax('恭喜您，等级名不能为空！' , 300 );
+			Ajax('ขออภัย! ต้องกรอกชื่อระดับก่อน' , 300 );
 		}
 	}
 }
@@ -46,8 +46,8 @@ else if ( $type == 'update')
 	$data['level_order'] = intval(Post('order'));
 	wmsql::Update($table, $data, $where);
 	//写入操作记录
-	SetOpLog( '修改了作者等级' , 'author' , 'delete' , $table , $where , $data);
-	Ajax('作者等级修改成功!');
+	SetOpLog( 'แก้ไขระดับผู้แต่ง' , 'author' , 'delete' , $table , $where , $data);
+	Ajax('แก้ไขระดับผู้แต่งสำเร็จแล้ว!');
 }
 //修改全部数据
 else if ( $type == 'upall')
@@ -60,8 +60,8 @@ else if ( $type == 'upall')
 		}
 	}
 	//写入操作记录
-	SetOpLog( '修改了全部作者等级' , 'author' , 'update' , $table);
-	Ajax('全部作者等级修改成功!');
+	SetOpLog( 'แก้ไขระดับผู้แต่งทั้งหมด' , 'author' , 'update' , $table);
+	Ajax('แก้แก้ไขระดับผู้แต่งทั้งหมดสำเร็จแล้ว!');
 }
 //删除数据
 else if ( $type == 'del')
@@ -69,7 +69,7 @@ else if ( $type == 'del')
 	$where['level_id'] = GetDelId();
 	wmsql::Delete($table , $where);
 	//写入操作记录
-	SetOpLog( '删除了作者等级' , 'author' , 'delete' , $table , $where);
-	Ajax('作者等级删除成功!');
+	SetOpLog( 'ลบระดับผู้แต่ง' , 'author' , 'delete' , $table , $where);
+	Ajax('ลบระดับผู้แต่งสำเร็จแล้ว!');
 }
 ?>
