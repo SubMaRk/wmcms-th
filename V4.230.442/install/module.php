@@ -1,9 +1,9 @@
 <?php
 //wm_system_menu表的菜单id
 $module = array(
-	'novel'=>array('id'=>'74','name'=>'โมดูลนิยาย','checked'=>'checked onClick="alert(\'โมดูลพื้นญานที่ต้องติดตั้ง!\');return false;"'),
-	'user'=>array('id'=>'107','name'=>'โมดูลผู้ใช้','checked'=>'checked onClick="alert(\'โมดูลพื้นญานที่ต้องติดตั้ง!\');return false;"'),
-	'replay'=>array('id'=>'131','name'=>'โมดูลความคิดเห็น','checked'=>'checked onClick="alert(\'โมดูลพื้นญานที่ต้องติดตั้ง!\');return false;"'),
+	'novel'=>array('id'=>'74','name'=>'โมดูลนิยาย','checked'=>'checked onClick="alert(\'โมดูลพื้นฐานที่ต้องติดตั้ง!\');return false;"'),
+	'user'=>array('id'=>'107','name'=>'โมดูลผู้ใช้','checked'=>'checked onClick="alert(\'โมดูลพื้นฐานที่ต้องติดตั้ง!\');return false;"'),
+	'replay'=>array('id'=>'131','name'=>'โมดูลความคิดเห็น','checked'=>'checked onClick="alert(\'โมดูลพื้นฐานที่ต้องติดตั้ง!\');return false;"'),
 	'search'=>array('id'=>'136','name'=>'โมดูลค้นหา','checked'=>'checked onClick="alert(\'โมดูลพื้นฐานที่ต้องติดตั้ง!\');return false;"'),
 	'author'=>array('id'=>'92','name'=>'โมดูลนักเขียน'),
 	'article'=>array('id'=>'26','name'=>'โมดูลบทความ'),
