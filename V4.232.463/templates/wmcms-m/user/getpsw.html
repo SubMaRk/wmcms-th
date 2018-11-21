@@ -1,0 +1,114 @@
+{header:header.html}
+
+
+<body class="bg">
+<div id="upfile"></div>
+<div class="container">
+
+
+
+ 
+
+ 
+
+
+<div class="content-wrap">
+<div class="content">
+<style>
+.bg, .content-wrap {
+background: #eee;
+}
+input:-webkit-autofill {
+-webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+}
+.imgcode{height: 40px;width: 190px;}
+.login_from li.rein .txtcode{display: block;margin-left: 120px;}
+</style>
+
+<!-- header start -->
+<header class="header">
+  <div class="nav"> <a href="javascript:;" onclick="history.go(-1)" class="menu-z"><img src="{templates}/img/icon_back.png" /></a>
+    <h2 class="layer_login tit">找回密码</h2>
+    <div class="user_fun"> 
+      <a href="{用户中心}" class="user_avt" title="{用户昵称}">
+	  <img src="{用户头像}" /></a> 
+    </div>
+  </div>
+</header>
+<!-- header end --> 
+
+  
+
+<!-- userinfo start -->
+<div class="layer_login loginbox "> 
+    <form method="post" action="{表单提交地址}" onsubmit="" >
+    {表单锁}
+	<input type="hidden" name="type" value="getpsw" />
+        <div class="login_from">
+      <ul>
+        <li class="rein"><span>用户名</span>
+          <input type="text" value="" tabindex="1" class="p_fre username" size="30" autocomplete="off" value="" name="name"  placeholder="用户名" fwin="login">
+          <a class="uin_del" id="del" href="javascript:void(0);" style="display:none;"></a> </li>
+
+       <li class="rein"><span>邮箱</span>
+          <input type="text" tabindex="2" class="p_fre s_fre" size="30" value="" name="email" placeholder="邮箱地址" fwin="login">
+        </li>
+		{找回密码验证码开启}<li class="rein"><span>密码</span>
+          <input type="text" id="text" class="p_fre s_fre" style="display:-webkit-inline-box;width: 100px;" value="" name="code" placeholder="验证码">{找回密码验证码}
+        </li>{/找回密码验证码开启}
+      </ul>
+       
+    </div>
+    <div class="btn_login">
+      <button tabindex="3" value="true" type="submit" name="submit" class="formdialog pn pnc"><span>找回密码</span></button>
+    </div>
+    
+    
+          
+
+    
+    
+    
+  </form>
+
+
+
+  
+  
+   
+</div>
+
+<div id="mask" style="display:none;"></div>
+
+
+
+</div>
+</div>
+</div>
+<script src="{templates}/js/main.js" type="text/javascript"></script>
+<script src="{templates}/js/classie.js" type="text/javascript"></script> 
+<script src="{templates}/js/jquery.scrollUp.min.js"type="text/javascript"></script>
+<script type="text/javascript">
+jQuery(function(){
+  jQuery.scrollUp({
+  animation: 'fade', // Fade, slide, none
+      scrollText: 'GoTop',
+  }
+  
+  );
+});
+jQuery(function(){
+jQuery(window).scroll(function(){
+          height = jQuery(window).scrollTop();
+   	  	  if(height > 200){
+ jQuery('.header').addClass("fixed");
+ jQuery('.slnav').addClass("fixed");
+   	  	  }else{
+ jQuery('.header').removeClass("fixed");
+ jQuery('.slnav').removeClass("fixed");
+   	  	  };
+});
+});
+</script>
+<div class="btBox"><div class="bt2"><a href="javascript:history.go(-1);">返回上页</a><a href="{首页}">返回首页</a></div></div>	
+{footer:footer.html}
