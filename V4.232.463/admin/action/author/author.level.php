@@ -1,75 +1,75 @@
-<?php
-/**
-* 作者等级处理器
-*
-* @version        $Id: author.level.php 2017年3月4日 14:41  weimeng
-* @package        WMCMS
-* @copyright      Copyright (c) 2015 WeiMengCMS, Inc.
-* @link           http://www.weimengcms.com
-*
-*/
-$table = '@author_level';
 
-//新增数据
-if ( $type == "add" )
-{
-	$data = str::Escape( @$post['level'], 'e' );
-	if( !$data )
-	{
-		Ajax('对不起，请添加数据后再点击保存!',300);
-	}
-	else
-	{
-		$data['level_start'] = intval($data['level_start']);
-		$data['level_end'] = intval($data['level_end']);
-		$data['level_order'] = intval($data['level_order']);
-		if( $data['level_name'] != '' )
-		{
 			$where['level_id'] = wmsql::Insert($table, $data);
 			//写入操作记录
-			SetOpLog( '新增了作者等级' , 'author' , 'insert' , $table , $where , $data );
-			Ajax('恭喜您，作者等级添加成功！' , 200 );
-		}
-		else
-		{
-			Ajax('恭喜您，等级名不能为空！' , 300 );
-		}
-	}
-}
-//修改数据
-else if ( $type == 'update')
-{
-	$where['level_id'] = intval(Get('id'));
-	$data['level_name'] = Post('name');
-	$data['level_start'] = intval(Post('start'));
-	$data['level_end'] = intval(Post('end'));
-	$data['level_order'] = intval(Post('order'));
-	wmsql::Update($table, $data, $where);
-	//写入操作记录
-	SetOpLog( '修改了作者等级' , 'author' , 'delete' , $table , $where , $data);
-	Ajax('作者等级修改成功!');
-}
-//修改全部数据
-else if ( $type == 'upall')
-{
-	if( $post['level'] )
-	{
-		foreach ($post['level'] as $k=>$v)
-		{
+			Ajax('ขออภัย! ต้องกรอกชื่อระดับก่อน' , 300 );
+			Ajax('ยินดีด้วย! เพิ่มระดับผู้แต่งแล้ว' , 200 );
+			SetOpLog( 'เพิ่มระดับผู้แต่ง' , 'author' , 'insert' , $table , $where , $data );
 			wmsql::Update($table, $v['data'], $v['id']);
+		$data['level_end'] = intval($data['level_end']);
+		$data['level_order'] = intval($data['level_order']);
+		$data['level_start'] = intval($data['level_start']);
+		{
+		{
+		{
 		}
-	}
-	//写入操作记录
-	SetOpLog( '修改了全部作者等级' , 'author' , 'update' , $table);
-	Ajax('全部作者等级修改成功!');
-}
-//删除数据
-else if ( $type == 'del')
-{
+		}
+		}
+		Ajax('ขออภัย! โปรดกรอกข้อมูลแล้วคลิ๊กจัดเก็บ',300);
+		else
+		foreach ($post['level'] as $k=>$v)
+		if( $data['level_name'] != '' )
+	$data = str::Escape( @$post['level'], 'e' );
+	$data['level_end'] = intval(Post('end'));
+	$data['level_name'] = Post('name');
+	$data['level_order'] = intval(Post('order'));
+	$data['level_start'] = intval(Post('start'));
 	$where['level_id'] = GetDelId();
-	wmsql::Delete($table , $where);
+	$where['level_id'] = intval(Get('id'));
 	//写入操作记录
-	SetOpLog( '删除了作者等级' , 'author' , 'delete' , $table , $where);
-	Ajax('作者等级删除成功!');
-}
+	//写入操作记录
+	//写入操作记录
+	{
+	{
+	{
+	}
+	}
+	}
+	Ajax('ลบระดับผู้แต่งสำเร็จแล้ว!');
+	Ajax('แก้ไขระดับผู้แต่งสำเร็จแล้ว!');
+	Ajax('แก้แก้ไขระดับผู้แต่งทั้งหมดสำเร็จแล้ว!');
+	else
+	if( !$data )
+	if( $post['level'] )
+	SetOpLog( 'ลบระดับผู้แต่ง' , 'author' , 'delete' , $table , $where , $data);
+	SetOpLog( 'แก้ไขระดับผู้แต่งทั้งหมด' , 'author' , 'update' , $table);
+	SetOpLog( 'แก้ไขระดับผู้แต่ง' , 'author' , 'delete' , $table , $where , $data);
+	wmsql::Delete($table , $where);
+	wmsql::Update($table, $data, $where);
+$table = '@author_level';
+*
+*
+* @copyright      Copyright (c) 2015 WeiMengCMS, Inc.
+* @link           http://www.weimengcms.com
+* @package        WMCMS
+* @version        $Id: author.level.php 2017年3月4日 14:41  weimeng
+* 作者等级处理器
+*/
+/**
+//修改全部数据
+//修改数据
+//删除数据
+//新增数据
 ?>
+{
+{
+{
+{
+}
+}
+}
+}
+<?php
+else if ( $type == 'del')
+else if ( $type == 'upall')
+else if ( $type == 'update')
+if ( $type == "add" )

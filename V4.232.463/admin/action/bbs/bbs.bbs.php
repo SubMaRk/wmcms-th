@@ -19,19 +19,19 @@ if ( $type == 'del' )
 	if( $data )
 	{
 		$uploadSer = AdminNewClass('upload');
-		
+
 		foreach ($data as $k=>$v)
 		{
 			//删除主题记录
 			$wheresql['bbs_id'] = $v['bbs_id'];
 			wmsql::Delete($table , $wheresql);
-			
+
 			$uploadSer->DelUpload('bbs',$v['bbs_id']);
 		}
 	}
 
-	SetOpLog( '删除了主题' , 'bbs' , 'delete' , $table , $where['where']);
-	Ajax('主题删除成功!');
+	SetOpLog( 'ลบกระทู้' , 'bbs' , 'delete' , $table , $where['where']);
+	Ajax('ลบกระทู้สำเร็จแล้ว!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -41,17 +41,17 @@ else if ( $type == 'status' )
 
 	if( Request('status') == '1')
 	{
-		$msg = '审核通过';
+		$msg = 'ตรวจสอบ';
 	}
 	else
 	{
-		$msg = '取消审核';
+		$msg = 'ละทิ้ง';
 	}
 	//写入操作记录
-	SetOpLog( $msg.'了主题' , 'bbs' , 'update' , $table , $where);
-	
+	SetOpLog( $msg.'กระทู้' , 'bbs' , 'update' , $table , $where);
+
 	wmsql::Update($table, $data, $where);
-	Ajax('主题'.$msg.'成功!');
+	Ajax('กระทู้ถูก'.$msg.'แล้ว!');
 }
 //移动数据
 else if ( $type == 'move' )
@@ -60,44 +60,44 @@ else if ( $type == 'move' )
 	$where['bbs_id'] = GetDelId();
 
 	//写入操作记录
-	SetOpLog( '移动了主题' , 'bbs' , 'update' , $table , $where);
-	
+	SetOpLog( 'ย้ายกระทู้' , 'bbs' , 'update' , $table , $where);
+
 	wmsql::Update($table, $data, $where);
-	Ajax('主题移动成功!');
+	Ajax('ย้ายกระทู้สำเร็จแล้ว!');
 }
 //属性操作
 else if ( $type == 'attr' )
 {
 	$data['bbs_'.$post['attr']] = $post['val'];
 	$where['bbs_id'] = GetDelId();
-	
+
 	switch($post['attr'])
 	{
 		case "rec":
-			$msg = "推荐";
+			$msg = "แนะนำ";
 			break;
-			
+
 		case "es":
-			$msg = "精华";
+			$msg = "สำคัญ";
 			break;
-			
+
 		case "top":
-			$msg = "置顶";
+			$msg = "ปักหมุด";
 			break;
 	}
 	if( $post['val'] == '1' )
 	{
-		$msg .= '设为';
+		$msg .= 'ตั้งเป็น';
 	}
 	else
 	{
-		$msg .= '取消';
+		$msg .= 'เลิก';
 	}
 
 	//写入操作记录
-	SetOpLog( $msg.'了主题' , 'bbs' , 'update' , $table , $where);
+	SetOpLog( $msg.'กระทู้' , 'bbs' , 'update' , $table , $where);
 
 	wmsql::Update($table, $data, $where);
-	Ajax($msg.'了主题!');
+	Ajax($msg.'กระทู้แล้ว!');
 }
 ?>

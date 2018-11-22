@@ -16,29 +16,29 @@ if ( $type == 'install' || $type == 'uninstall' )
 	$path = Get('path');
 	if( $path == '' )
 	{
-		Ajax('需要安装的插件文件夹不能为空！',300);
+		Ajax('โฟลเดอร์ที่จำเป็นสำหรับการติดตั้งต้องไม่ว่างเปล่า!',300);
 	}
 	else if ( !file_exists(WMPLUGIN.'apps/'.$path.'/copyright.xml') )
 	{
-		Ajax('对不起，插件版权文件不存在！',300);
+		Ajax('ขออภัย! ไม่มีไฟล์ลิขสิทธิ์',300);
 	}
 	else
 	{
 		//安装/卸载文件路径
 		$installFile = WMPLUGIN.'apps/'.$path.'/install/install.php';
 		$unInstallFile = WMPLUGIN.'apps/'.$path.'/install/uninstall.php';
-		
+
 		//获得插件版权信息
 		$copyData = GetTempCopy( $path , WMPLUGIN.'apps/');
 		//查询是否安装过了
 		$data = $pluginMod->GetByFloder($path);
-		
+
 		//安装插件操作
 		if( $type == 'install' )
 		{
 			if( $data )
 			{
-				Ajax('对不起，此插件已经安装过了！',300);
+				Ajax('ขออภัย! ปลั๊กอินถูกติดตั้งไปแล้ว',300);
 			}
 			else
 			{
@@ -47,17 +47,17 @@ if ( $type == 'install' || $type == 'uninstall' )
 				{
 					require_once $installFile;
 				}
-				
+
 				$data['plugin_name'] = $copyData['name'];
 				$data['plugin_floder'] = $path;
 				$data['plugin_author'] = $copyData['author'];
 				$data['plugin_version'] = $copyData['ver'];
 				$pluginMod->Insert($data);
-				
+
 				//写入操作记录
-				SetOpLog( '安装了插件'.$copyData['name'] , 'system' , 'insert' );
-				
-				Ajax('插件安装成功！');
+				SetOpLog( 'ติดตั้งปลั๊กอิน'.$copyData['name'] , 'system' , 'insert' );
+
+				Ajax('ติดตั้งปลั๊กอินสำเร็จแล้ว!');
 			}
 		}
 		//卸载插件操作
@@ -65,7 +65,7 @@ if ( $type == 'install' || $type == 'uninstall' )
 		{
 			if( !$data )
 			{
-				Ajax('对不起，此插件没有安装无需卸载！！');
+				Ajax('ขออภัย! ปลั๊กอินยังไม่ติดตั้ง ไม่จำเป็นต้องถอนการติดตั้ง');
 			}
 			else
 			{
@@ -74,11 +74,11 @@ if ( $type == 'install' || $type == 'uninstall' )
 				{
 					require_once $unInstallFile;
 				}
-				
+
 				$pluginMod->DelById($data['plugin_id']);
 				//写入操作记录
-				SetOpLog( '卸载了插件'.$data['plugin_name'] , 'system' , 'update' );
-				Ajax('模版卸载成功！');
+				SetOpLog( 'ถอนการติดตั้งปลั๊กอิน'.$data['plugin_name'] , 'system' , 'update' );
+				Ajax('ถอนการติดตั้งปลั๊กอินสำเร็จแล้ว!');
 			}
 		}
 	}
@@ -89,7 +89,7 @@ else if ( $type == 'config' )
 	$id = Post('id');
 	if( $id < 1 )
 	{
-		Ajax('对不起，插件id不存在！',300);
+		Ajax('ขออภัย! ไม่มีลำดับปลั๊กอิน',300);
 	}
 	else
 	{
@@ -100,11 +100,11 @@ else if ( $type == 'config' )
 		//post参数
 		$data = Post();
 		unset($data['id']);
-		
+
 		//安装插件操作
 		if( !$pluginData )
 		{
-			Ajax('对不起，此插件没有安装或者不存在！',300);
+			Ajax('ขออภัย! ปลั๊กอินไม่ถูกติดตั้งหรือไม่มีอยู่',300);
 		}
 		//修改配置操作
 		else
@@ -113,7 +113,7 @@ else if ( $type == 'config' )
 			$configMod = NewModel('plugin.config');
 			$configList = $configMod->GetList($id);
 			$configList = str::ArrRestKey($configList,'config_key');
-			
+
 			if( $data )
 			{
 				foreach ($data as $k=>$v)
@@ -134,8 +134,8 @@ else if ( $type == 'config' )
 			}
 
 			//写入操作记录
-			SetOpLog( '修改了插件'.$pluginData['plugin_name'].'的系统配置！' , 'system' , 'update');
-			Ajax('插件配置修改成功！');
+			SetOpLog( 'แก้ไขการกำหนดค่าปลั๊กอิน'.$pluginData['plugin_name'].'กำหนดค่าระบบแล้ว！' , 'system' , 'update');
+			Ajax('แก้ไขการกำหนดค่าปลั๊กอินสำเร็จแล้ว!');
 		}
 	}
 }
