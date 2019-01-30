@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>
+<title>{title}</title>
+<meta name="description" content="{desc}">
+<meta name="keywords" content="{key}">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="white"/>
+<link href="{templates}/css/style.css" rel="stylesheet" type="text/css">
+<link href="{templates}/css/wm.css" rel="stylesheet" type="text/css">
+<link href="{templates}/css/novel.css" rel="stylesheet" type="text/css">
+</head>
+<body class="bg">
+<div class="content-wrap">
+<div class="content">
+
+ 
+
+<style>
+.content, .bg, .wp{background:#EEE;}
+</style>
+<style>
+.b_m {
+    margin: 10px 10px 46px;
+    padding-bottom: 10px;
+}
+.fastpost .message {
+    margin: 0 54px 0 0;
+}
+</style>
+<!-- header start -->
+    
+    
+<header class="header">
+  <div class="nav">  
+    <a href="home.php?mod=space&amp;do=pm&amp;mobile=2" class="menu-z"><img src="{templates}/img/icon_back.png" /></a>
+     <h2 class="tit">查看消息</h2> 
+	 <div class="user_fun"> 
+      <a href="{用户中心}" class="user_avt" title="{用户昵称}">
+	  <img src="{用户头像}" /></a> 
+    </div>
+	</div>
+</header>
+<!-- header end -->
+<!-- main viewmsg_box start -->
+<div class="wp">
+<div class="msgbox b_m">
+<div class="self_msg cl">
+<div class="avat y"><img style="height:36px;width:36px;" src="{发信用户头像}" /></div>
+<div class="dialog_green y">			
+<div class="dialog_c">
+<div class="dialog_t">{消息内容} </div>
+</div>
+<div class="dialog_b"></div>
+<div class="date"><a href="{删除消息}">删除</a>　|　{发信时间}</div>
+</div>
+</div>
+
+     
+</div>
+<!-- main viewmsg_box end -->
+
+<div id="mask" style="display:none;"></div>
+
+
+</div>
+</div>
+</div>
+<script src="{templates}/js/main.js" type="text/javascript"></script>
+<script src="{templates}/js/classie.js" type="text/javascript"></script> 
+<script src="{templates}/js/jquery.scrollUp.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+jQuery(function(){
+  jQuery.scrollUp({
+  animation: 'fade', // Fade, slide, none
+      scrollText: 'GoTop',
+  }
+  
+  );
+});
+</script>
+<div class="btBox"><div class="bt2"><a href="javascript:history.go(-1);">返回上页</a><a href="{首页}">返回首页</a></div></div>	
+{footer:footer.html}
