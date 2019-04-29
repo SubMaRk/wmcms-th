@@ -1,1 +1,0 @@
-	$passWord = Post('psw');
