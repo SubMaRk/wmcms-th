@@ -1,0 +1,498 @@
+<!--调用全局顶部-->
+{header:header.html} 
+<nav class="New-nav">
+<a class=""  href="{首页}">首页</a>
+<a class=""  href="/module/novel/topindex.php">排行</a>
+<a class=""  href="/module/novel/index.php">分类</a>
+<a class=""  href="{我的收藏}">收藏</a>
+<a class="active"  href="{签到中心}">签到</a>
+</nav>
+<body class="bg">
+<div id="upfile"></div>
+<div class="container">
+
+<div class="content-wrap">
+<div class="content">
+
+ 
+
+<style>
+.bg, .content-wrap{ background:#EEE;}
+.xld .atc {float: left;margin: 0 15px 0 0;}
+#thumbslist .listbox{ margin:0;}
+
+.headera {
+	height: 170px;
+	width: 100%;
+	background: #3272ee;
+	background: url({templates}/img/top_bg.jpg) no-repeat center top;
+	position: relative;
+	
+}
+
+.info{
+	height: 50px;
+	width: 100%;
+	background: #FFFFFF;
+	box-shadow: 0 1px 2px 0 #e0e0e0;
+	opacity: 0.5;
+	-khtml-opacity:0.5;
+	-moz-opacity: 0.5;
+	position:absolute;
+	left:0;
+	bottom:0;
+}
+
+.info .item{
+	float: left;
+	width: 48.8%;
+	margin-top: 5px;
+	height: 40px;
+	text-align: center;
+	font-size: 14px;
+	color: #555;
+	border-right: 1px solid #cccdce;
+}
+
+.nav {
+	height: 38px;
+	line-height: 38px;
+	display: -webkit-box;
+	width: 100%;
+	padding-right:0px;
+	background: #fff;
+	box-shadow: 0 1px 3px 0 #dadcde;
+	font-size:16px;
+}
+
+.nav a {
+	width: 33%;
+	float:left;
+	text-align: center;
+	display: block;
+	position: relative;
+	z-index: 0;
+}
+
+.nav a.nav-cur {
+	color: #00aeef;
+}
+
+.nav-cur span {
+	display: inline-block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 2px;
+	background: #00aeef;
+}
+
+a.btn{
+
+	display: block;
+	width: 96%;
+	margin: 8px auto;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 4px;
+	background: #00aeef;
+	text-align: center;
+	color: #fff;
+	font-size: 18px;
+	text-decoration:none;
+}
+
+a.btn_visited{
+	display: block;
+	width: 96%;
+	margin: 8px auto;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 4px;
+	background: #87C7ee;
+	text-align: center;
+	color: #fff;
+	font-size: 18px;
+	text-decoration:none;
+}
+
+a.btn:visited{
+	color: #FFFFFF;	
+}
+
+a.btn:active{
+	background-color:#3272ee;
+}
+
+
+
+.common {
+	width: 100%;
+	background: #FFFFFF;
+	border-radius: 2px;
+	margin: 0px auto;
+	text-align: center;
+	color: #555;
+}
+
+
+.sort-search-con a:first-child b {
+	background: #e43600;
+}
+
+
+table.common{
+	border-collapse:collapse;
+	border: 1px solid #e0e0e0;
+}
+
+.common tr td {
+	border-top: 1px solid #e0e0e0;
+	border-bottom: 1px solid #e0e0e0;
+	height: 24px;;
+}
+
+.common .order {
+	display: inline-block;
+	height: 14px;
+	width: 14px;
+	line-height: 14px;
+	text-align: center;
+	font-size: 12px;
+	background: #b9c4cb;
+	color: #fff;
+	border-radius: 2px;
+	margin: 0 6px 0 10px;
+}
+
+.common .first {
+	background: #e43600;
+}
+
+.common .second {
+	background: #ff7c00;
+}
+
+.common .third {
+	background: #2baf0f
+}
+
+.footer-nav {
+	width: 90%;
+	margin: 28px auto 0;
+	display: -webkit-box;
+	display: box;
+}
+
+.footer-nav a {
+	display: block;
+	width: 24%;
+	text-align: center;
+	font-size: 14px;
+	color: #555;
+	height: 14px;
+	line-height: 14px;
+	border-right: 1px solid #cccdce;
+}
+
+.footer-nav a:last-child {
+	border-right: 0;
+}
+
+.footer-nav div {
+	display: inline-block;
+	width: 10px;
+	height: 12px;
+	-webkit-background-size: 80px auto;
+	position: relative;
+	top: 1px;
+	margin-left: 2px;
+}
+
+.footer-cr {
+	color: #c2c3c3;
+	font-size: 12px;
+	text-align: center;
+	margin-top: 18px;
+}
+
+.overlay_container {
+	position: fixed;
+	z-index: 100003;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.1);
+	
+}
+
+.toast {
+	margin:0 auto;
+	width: 210px;
+	padding: 16px;
+	font-size: 16px;
+	line-height: 20px;
+	background-color: rgba(0,0,0,.9);
+	border-radius: 8px;
+	color: #fff;
+	text-align: center;
+	z-index: 100000;
+}
+.more {
+	display:block;
+	width: 96%;
+	margin:0 auto;
+	cursor: pointer;
+	color: #303030;
+	border: 1px solid #e0e0e0;
+	border-radius: 3px;
+	text-align: center;
+	height: 29px;
+	line-height: 29px;
+	font-size: 13px;
+	background-color: #fff;
+}
+
+.body_content .lineC {
+  padding-top: 0px;
+}
+.body_content .lineC .lineC_left {
+  float: left;
+  width: 100%;
+  overflow: hidden;
+  background-color: #fff;
+  padding-bottom: 15px;
+  position: relative;
+  border-radius: 5px;
+}
+.body_content .lineC .lineC_left .left_tit {
+  height: 50px;
+  border-bottom: 1px solid #eef0f2;
+}
+.body_content .lineC .lineC_left .left_tit .paihang {
+  padding-left: 15px;
+  list-style-type: none;
+  padding-top: 15px;
+}
+.body_content .lineC .lineC_left .left_tit .paihang .active {
+  color: #fff;
+  background-color: #00aeef;
+}
+.body_content .lineC .lineC_left .left_tit .paihang li {
+  float: left;
+  border-radius: 3px;
+  width: 65px;
+  height: 24px;
+  line-height: 24px;
+  color: #aab2be;
+  font-size: 12px;
+  text-align: center;
+  font-weight: normal;
+  cursor: pointer;
+}
+.body_content .lineC .lineC_left .left_tit .paihang li {
+  float: left;
+  border-radius: 3px;
+  width: 65px;
+  height: 24px;
+  line-height: 24px;
+  color: #aab2be;
+  font-size: 12px;
+  text-align: center;
+  font-weight: normal;
+  cursor: pointer;
+}
+.body_content .lineC .lineC_left .arr_detail {
+  padding: 15px 15px 0 15px;
+}
+
+
+.body_content .lineC .lineC_left .arr_detail table {
+  width: 100%;
+}
+.body_content .lineC .lineC_left .arr_detail table tr {
+}
+
+.body_content .lineC .lineC_left .arr_detail table th {
+  color: #646c78;
+  background: #fcfcfc;
+  border: 1px solid #eee;
+  padding: 12px 10px;
+}
+
+.body_content .lineC .lineC_left .arr_detail table td {
+  font-size: 12px;
+  color: #646c78;
+  border: 1px solid #eee;
+  padding: 12px 10px;
+}
+
+.body_content .lineB .qdleft .btnvisted {
+  background-position: -7px -100px;
+}
+.user p {
+    font-size: 11px;
+    line-height: 18px;
+    height: 0px;
+    color: #aab2be;
+    padding-left: 0px;
+    margin: -60px 0 0 0;
+}
+
+
+.bangdan .bang-con .num {
+    left: 19px;
+    top: 14px;
+}
+
+.num {
+    background: #ff3c00;
+}
+
+
+.data-top:nth-child(2) .num{
+    color: #fff;
+    border: 7px solid transparent;
+    border-bottom-color: white;
+    font-size: 12px;
+    overflow: hidden;
+    _border-style: dashed;
+    _border-bottom-style: solid;
+    border-width: 6px 8px;
+    z-index: 1;
+}
+
+.bang-con .num {
+    width: 13px;
+    height: 16px;
+    position: absolute;
+    left: 11px;
+    top: 14px;
+    display: inline-block;
+    color: #333;
+    text-align: center;
+    line-height: 16px;
+    font-size: 12px;
+}
+.data-top:nth-child(3) .num {
+    background: #ffa200;
+}
+
+
+
+
+</style>
+<!--
+<header class="header">
+  <div class="hdc cl"> <a href="javascript:;" onclick="history.go(-1);" class="menu-z">
+  <img src="{templates}/img/icon_back.png" /></a>
+    <h2 class="tit">每日签到</h2>
+    <div class="user_fun"> 
+      <a href="{用户中心}" class="user_avt" title="{用户昵称}">
+	  <img src="{用户头像}" /></a> 
+    </div>
+  </div>
+</header>
+-->
+
+<div class="headera">
+<div style="width:70px;height:70px;position: absolute; top:40px; left:16px; border-radius: 8px;background: rgba(255,255,255,1);">
+<img src="{用户头像}" style="width:64px;height:64px;margin-top:3px;margin-left:3px; border-radius: 8px;">
+</div>
+<div style="position: absolute;padding:2px 5px; border-radius: 6px; text-align:center; top:40px;left:96px;color:#FFFFFF;height:20px;line-height: 20px;">
+{用户昵称}</div>
+<div style="position: absolute;padding:2px 5px; border-radius: 6px; text-align:center; top:80px;left:96px;color:#FFFFFF;background: rgba(0,0,0,.5);height:20px;line-height: 20px; font-size:10px;">
+                	签到等级&nbsp;{用户等级}&nbsp;</div>
+<div class="info">
+
+<div class="item">
+<div style="font-weight: bold;height: 20px;line-height: 20px;">
+连续签到
+</div>
+<div style="height: 20px;line-height: 20px">{连续签到天数}
+天
+</div>
+</div>
+<div class="item" style="border-right: none;">
+<div style="font-weight: bold;height: 20px;line-height: 20px;">
+累计签到
+</div>
+<div style="height: 20px;line-height: 20px">{总共签到天数}
+天
+</div>
+</div>
+</div>
+</div>
+ {未签到} 
+<a href="{签到}" class="btn" style="background-color:;">签到</a>{/未签到}
+{已签到}<a class="btn" style="background-color:;">已签到</a>{/已签到}
+<div class="body_content">
+    <div class="lineC cl">
+        <div class="lineC_left">
+            <div class="left_tit">
+                <ul class="paihang J_phbtn cl" id="rankselect">
+                    <li class="active" data-type="day"> 今日排行</li>
+                    <li data-type="month" class=""> 本月排行 </li>
+                    <li data-type="total" class=""> 总排行 </li>
+                    <li data-type="reward" class=""> 奖励排行 </li>
+                </ul>
+            </div>
+            <div id="rankshow"><div id="rankshowday"><div class="arr_detail dis">
+    <table>
+        <tbody>
+            <tr>
+                <th width="120" style="text-align:center;">用户名</th>
+                <th width="80" style="text-align:center;">排名</th>
+                <th width="150" style="text-align:center;">签到时间</th>
+				 <th width="60" style="text-align:center;">连续签到</th>
+            </tr>
+ {签到列表:数量=10;排序=签到时间;}
+                        <tr>
+                <td width="100" style="text-align:center;">
+                    <div><a href="#">{签到用户昵称}</a></div>
+                </td>
+                <td style="text-align:center;">第<b>{i}</b>名</td>
+
+
+                <td style="text-align:center;">{用户签到时间}</td>
+<td style="text-align:center;">{用户连续签到}天</td>
+            </tr>
+     {/签到列表}         
+                    </tbody>
+    </table>
+    
+  
+</div></div></div>
+        </div>
+     
+    </div>
+	    </div>
+
+<script src="{templates}/js/main.js" type="text/javascript"></script>
+<script src="{templates}/js/classie.js" type="text/javascript"></script> 
+<script src="{templates}/js/jquery.scrollUp.min.js"type="text/javascript"></script>
+<script type="text/javascript">
+jQuery(function(){
+  jQuery.scrollUp({
+  animation: 'fade', // Fade, slide, none
+      scrollText: 'GoTop',
+  }
+  
+  );
+});
+jQuery(function(){
+jQuery(window).scroll(function(){
+          height = jQuery(window).scrollTop();
+   	  	  if(height > 200){
+ jQuery('.header').addClass("fixed");
+ jQuery('.slnav').addClass("fixed");
+   	  	  }else{
+ jQuery('.header').removeClass("fixed");
+ jQuery('.slnav').removeClass("fixed");
+   	  	  };
+});
+});
+</script>
+<div class="btBox"><div class="bt2"><a href="javascript:history.go(-1);">返回上页</a><a href="{首页}">返回首页</a></div></div>	
+{footer:footer.html}
