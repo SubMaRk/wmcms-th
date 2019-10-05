@@ -26,15 +26,15 @@ if ( $type == 'edit' || $type == "add"  )
 	
 	if ( $data['article_name'] == '' )
 	{
-		Ajax('对不起，文章标题必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อบทความก่อน',300);
 	}
 	else if( !str::Number($data['type_id']) )
 	{
-		Ajax('对不起，文章分类必须选择！',300);
+		Ajax('ขออภัย! ต้องเลือกหมวดหมู่ก่อน',300);
 	}
 	else if( $data['article_author'] == '' || $data['article_source'] == ''  )
 	{
-		Ajax('对不起，文章作者和来源不能为空！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อผู้เขียนก่อน',300);
 	}
 	
 	//获得文章简介
@@ -59,20 +59,20 @@ if ( $type == 'edit' || $type == "add"  )
 		//写入标签
 		$mangerSer->SetTags('article' , $data['article_tags']);
 		
-		$info = '恭喜您，文章添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มบทความสำเร็จแล้ว';
 		$where['article_id'] = $articleMod->Insert($data);
 
 		//写入操作记录
-		SetOpLog( '新增了文章'.$data['article_name'] , 'article' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มบทความ'.$data['article_name'] , 'article' , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
-		$info = '恭喜您，文章修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขบทความสำเร็จแล้ว';
 		$articleMod->Update($data,$where);
 		
 		//写入操作记录
-		SetOpLog( '修改了文章'.$data['article_name'] , 'article' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขบทความ'.$data['article_name'] , 'article' , 'update' , $table , $where , $data );
 	}
 
 	//写入自定义字段
@@ -102,7 +102,7 @@ else if ( $type == 'del' || $type == 'realdel' )
 		$data['article_status'] = 2;
 		
 		//写入操作记录
-		SetOpLog( '删除了文章到回收站' , 'article' , 'delete' , $table , $where);
+		SetOpLog( 'ลบบทความชั่วคราว' , 'article' , 'delete' , $table , $where);
 		wmsql::Update($table, $data, $where);
 	}
 	//永久删除数据
@@ -119,7 +119,7 @@ else if ( $type == 'del' || $type == 'realdel' )
 		$uploadMod->UnFileBind();
 		
 		//写入操作记录
-		SetOpLog( '彻底删除了文章' , 'article' , 'delete' , $table , $where);
+		SetOpLog( 'ลบบทความถาวร' , 'article' , 'delete' , $table , $where);
 		
 		//删除申请记录
 		$applyMod = NewModel('system.apply');
@@ -128,7 +128,7 @@ else if ( $type == 'del' || $type == 'realdel' )
 		$applyWhere['apply_type'] = array('or','article_editarticle,article_cover');
 		$applyMod->Delete($applyWhere);
 	}
-	Ajax('文章删除成功!');
+	Ajax('ลบบทความแล้ว!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -138,17 +138,17 @@ else if ( $type == 'status' )
 
 	if( Request('status') == '1')
 	{
-		$msg = '审核通过';
+		$msg = 'ตรวจสอบ';
 	}
 	else
 	{
-		$msg = '取消审核';
+		$msg = 'ละทิ้ง';
 	}
 	//写入操作记录
-	SetOpLog( $msg.'了文章' , 'article' , 'update' , $table , $where);
-	
+	SetOpLog( $msg.'บทความ' , 'article' , 'update' , $table , $where);
+
 	wmsql::Update($table, $data, $where);
-	Ajax('文章'.$msg.'成功!');
+	Ajax('บทความถูก'.$msg.'แล้ว!');
 }
 //还原数据
 else if( $type == 'reduction' )
@@ -156,10 +156,10 @@ else if( $type == 'reduction' )
 	$data['article_status'] = 1;
 	$where['article_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '文章从回收站还原了' , 'article' , 'update' , $table , $where);
-	
+	SetOpLog( 'กู้คืนบทความ' , 'article' , 'update' , $table , $where);
+
 	wmsql::Update($table, $data, $where);
-	Ajax('文章还原成功!');
+	Ajax('บทความถูกกู้คืนกลับมาแล้ว!');
 }
 //移动数据
 else if ( $type == 'move' )
@@ -168,10 +168,10 @@ else if ( $type == 'move' )
 	$where['article_id'] = GetDelId();
 
 	//写入操作记录
-	SetOpLog( '移动了文章' , 'article' , 'update' , $table , $where);
-	
+	SetOpLog( 'ย้ายบทความ' , 'article' , 'update' , $table , $where);
+
 	wmsql::Update($table, $data, $where);
-	Ajax('文章移动成功!');
+	Ajax('ย้ายบทความสำเร็จแล้ว!');
 }
 //属性操作
 else if ( $type == 'attr' )
@@ -182,26 +182,26 @@ else if ( $type == 'attr' )
 	switch($post['attr'])
 	{
 		case "rec":
-			$msg = "推荐/取消";
+			$msg = "แนะนำ/เลิกแนะนำ";
 			break;
 		  
 		case "head":
-			$msg = "头条/取消";
+			$msg = "พาดหัว/เลิกพาดหัว";
 			break;
 		  
 		case "strong":
-			$msg = "加粗/取消";
+			$msg = "เน้น/เลิกเน้น";
 			break;
 			
 		case "display":
-			$msg = "隐藏/显示";
+			$msg = "ซ่อน/แสดง";
 			break;
 	}
 
 	//写入操作记录
-	SetOpLog( $msg.'了文章' , 'article' , 'update' , $table , $where);
+	SetOpLog( $msg.'บทความ' , 'article' , 'update' , $table , $where);
 
 	wmsql::Update($table, $data, $where);
-	Ajax($msg.'了文章!');
+	Ajax($msg.'บทความแล้ว!');
 }
 ?>

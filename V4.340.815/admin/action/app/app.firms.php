@@ -19,11 +19,11 @@ if ( $type == 'edit' || $type == "add"  )
 
 	if ( $data['firms_name'] == '' )
 	{
-		Ajax('对不起，厂商名字必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อผู้ขายก่อน',300);
 	}
 	else if( $data['firms_type'] == '' )
 	{
-		Ajax('对不起，厂商类型必须选择！',300);
+		Ajax('ขออภัย! ต้องเลือกประเภทผู้ขายก่อน',300);
 	}
 	
 	//检查厂商是否存在
@@ -31,7 +31,7 @@ if ( $type == 'edit' || $type == "add"  )
 	$firmsWhere['firms_id'] = array('<>',$where['firms_id']);
 	if ( $firmsSer->CheckName($firmsWhere) !== false )
 	{
-		Ajax('对不起，该厂商已经存在！',300);
+		Ajax('ขออภัย! มีผู้ขายนี้อยู่แล้ว',300);
 	}
 	
 	//新增数据
@@ -39,19 +39,19 @@ if ( $type == 'edit' || $type == "add"  )
 	{
 		$data['firms_addtime'] = time();
 		$where['firms_id'] = wmsql::Insert($table, $data);
-		
-		$info = '恭喜您，厂商添加成功！';
+
+		$info = 'ยินดีด้วย! เพิ่มข้อมูลผู้ขายใหม่แล้ว';
 		//写入操作记录
-		SetOpLog( '新增了厂商'.$data['firms_name'] , 'app' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มข้อมูลผู้ขาย'.$data['firms_name'] , 'app' , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
 		wmsql::Update($table, $data, $where);
 
-		$info = '恭喜您，厂商修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขข้อมูลผู้ขายแล้ว';
 		//写入操作记录
-		SetOpLog( '修改了厂商'.$data['firms_name'] , 'app' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขข้อมูลผู้ขาย'.$data['firms_name'] , 'app' , 'update' , $table , $where , $data );
 	}
 	//修改编辑器上传的内容id
 	$uploadMod = NewModel('upload.upload');
@@ -64,9 +64,9 @@ else if ( $type == 'del' )
 {
 	$where['firms_id'] = GetDelId();
 	wmsql::Delete($table , $where);
-			
-	SetOpLog( '删除了厂商' , 'app' , 'delete' , $table , $where);
-	Ajax('厂商删除成功!');
+
+	SetOpLog( 'ลบข้อมูลผู้ขาย' , 'app' , 'delete' , $table , $where);
+	Ajax('ลบข้อมูลผู้ขายแล้ว!');
 }
 //厂商搜索操作
 else if ( $type == 'search' )
@@ -106,7 +106,7 @@ else if ( $type == 'search' )
 			$data[$k] = array('key'=>$v['firms_id'],'val'=>$typeName.' - '.$v['firms_name']);
 		}
 	}
-	
-	Ajax('查询成功!',null,$data);
+
+	Ajax('เรียกข้อมูลสำเร็จแล้ว!',null,$data);
 }
 ?>
