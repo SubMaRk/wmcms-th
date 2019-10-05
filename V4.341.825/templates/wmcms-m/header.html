@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+<title>{title}</title>
+<meta name="description" content="{desc}">
+<meta name="keywords" content="{key}">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="white"/>
+<link href="{templates}/css/wm.css" rel="stylesheet" type="text/css">
+<link href="{templates}/css/novel.css" rel="stylesheet" type="text/css">
+<link href="{templates}/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{templates}/js/zpmuslazy.min.js"></script>
+<script type="text/javascript" src="{templates}/js/h5.slider.min.js"></script>
+{微信浏览器}
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+<script type="text/javascript">
+wx.config({
+    debug: false,
+    {微信JS签名:}
+    jsApiList: ['updateTimelineShareData','updateAppMessageShareData',
+    'onMenuShareAppMessage','onMenuShareTimeline',
+    'onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone'],
+    success:function(){
+    	alert('分享成功');
+    }
+})
+wx.ready(function () {
+    var shareData = { 
+        title: '润看文学',
+        desc: '分享来自WMCMS',
+        link: '{当前url}',
+        imgUrl: '{网站地址}{logo}',
+        success: function () {
+        	alert('分享成功');
+        }
+	};
+    wx.onMenuShareTimeline(shareData);
+    wx.onMenuShareAppMessage(shareData);
+});
+</script>
+{/微信浏览器}
+</head>
+<body>
+<div class="login_top">
+    <h1 class="logo"><a href="{首页}"><img src="{logo}" alt="{网站名}"></a></h1>
+    <a href="{我的书架}"><div class="shujia"></div></a>
+    <a href="{用户中心}"><div class="people"></div></a>
+    <a href="{首页}#so"><div class="menusearch"></div></a>
+</div>
