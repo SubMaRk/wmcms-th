@@ -54,16 +54,16 @@ p.center{color: #fff;font-family: "Microsoft YaHei";}
 	<div id="login_form" class="form">
 		<form class="login-form" name="login_form" id="login_form">
 			{表单锁}
-			<input type="text" placeholder="用户名" name="name"/>
-			<input type="password" placeholder="密码" name="psw"/>
-			{登录验证码开启}<input type="text" placeholder="验证码" name="code" style="width:40%"/>{登录验证码}{/登录验证码开启}
+			<input type="text" placeholder="ชื่อผู้ใช้" name="name"/>
+			<input type="password" placeholder="รหัสผ่าน" name="psw"/>
+			{登录验证码开启}<input type="text" placeholder="โค้ดยืนยัน" name="code" style="width:40%"/>{登录验证码}{/登录验证码开启}
 			<input type="hidden" name="time" value="2592000" />
 			<input type="hidden" name="remember" value="1" />
-			<button id="login">登　录</button>
-			<p class="message" style="margin-top:30px">还没有账户? <a href="#">注册账号</a></p>
+			<button id="login">เข้าสู่ระบบ</button>
+			<p class="message" style="margin-top:30px">ไม่มีบัญชี? <a href="#">ลงทะเบียน</a></p>
 			
 			<div class="other_login">
-				<div class="other_title">---- 使用其他方式登录 ----</div>
+				<div class="other_title">---- เข้าสู่ระบบด้วยวิธีอื่น ----</div>
 				<ul>
 					{qq登录开启}<li><a target="_parent" href="{qq登录}" class="qq">QQ登录</a></li>{/qq登录开启}
 					{微信登录开启}<li><a target="_parent" href="{微信登录}" class="wx">微信登录</a></li>{/微信登录开启}
@@ -76,13 +76,13 @@ p.center{color: #fff;font-family: "Microsoft YaHei";}
 
 		<form class="register-form" id="reg_form" name="reg_form">
 			{表单锁}
-			<input type="text" placeholder="登录用户名" name="name"/>
-			<input type="password" placeholder="密码，6-16位字母、数字" name="psw" />
-			<input type="password" placeholder="重复一次密码！" name="repsw"/>
+			<input type="text" placeholder="ชื่อผู้ใช้" name="name"/>
+			<input type="password" placeholder="รหัสผ่าน 6-16 ตัวอักษร" name="psw" />
+			<input type="password" placeholder="ยืนยันรหัสผ่าน" name="repsw"/>
 			<input type="text" placeholder="邮箱，用于找回密码，不能修改！" name="email"/>
-			{注册验证码开启}<input type="text" placeholder="验证码" name="code" style="width:40%"/>{注册验证码}{/注册验证码开启}
-			<button id="reg">立即注册</button>
-			<p class="message">已经有了一个账户? <a href="#">立刻登录</a></p>
+			{注册验证码开启}<input type="text" placeholder="โค้ดยืนยัน" name="code" style="width:40%"/>{注册验证码}{/注册验证码开启}
+			<button id="reg">ลงทะเบียน</button>
+			<p class="message">มีบัญชีอยู่แล้ว? <a href="#">เข้าสู่ระบบ</a></p>
 		</form>
 	</div>
 </div>
@@ -101,19 +101,19 @@ $(function(){
 		var email=$("#reg_form [name=email]").val();
 
 		if(name.length>16 || name.length<5){
-			easydialog_alert('对不起，账号长度只能为5-16个字符！','','','');
+			easydialog_alert('ขออภัย! ชื่อบัญชีต้องมีความยาว 5-16 ตัวอักษร','','','');
 			return false;
 		}else if(psw.length>16 || psw.length<5){
-			easydialog_alert('对不起，密码长度只能为5-16个字符！','','','');
+			easydialog_alert('ขออภัย! รหัสผ่านต้องมีความยาว 5-16 ตัวอักษร','','','');
 			return false;
 		}else if( psw != repsw ){
-			easydialog_alert('对不起，两次输入的密码不一致！','','','');
+			easydialog_alert('ขออภัย! รหัสผ่านไม่ตรงกัน','','','');
 			return false;
 		}else if( !isEmail(email) ){
-			easydialog_alert('对不起，邮箱格式错误！','','','');
+			easydialog_alert('ขออภัย! รูปแบบอีเมล์ไม่ถูกต้อง','','','');
 			return false;
 		{注册验证码开启}}else if( $("#reg_form [name=code]") && $("#reg_form [name=code]").val() == ''){
-			easydialog_alert('对不起，请输入验证码！','','','');
+			easydialog_alert('ขออภัย! โปรดกรอกโค้ดยืนยันก่อน','','','');
 			return false;{/注册验证码开启}
 		}else{
 			easydialog_loading();
@@ -126,7 +126,7 @@ $(function(){
 					if( data.code != 200 ){
 						easydialog_alert(data.msg,'','','');
 					}else{
-						easydialog_autoclose('注册成功，系统会在两秒后关闭','success');
+						easydialog_autoclose('ลงทะเบียนเสร็จสิ้น จะเปลี่ยนหน้าใน 2 วินาที','success');
 						if( self!=top ){
 							setTimeout(function(){window.parent.location='{用户中心}';},1500);
 						}else{
@@ -146,13 +146,13 @@ $(function(){
 		var psw=$("#login_form [name=psw]").val();
 		var loginInfo;
 		if(name.length>16 || name.length<5){
-			easydialog_alert('对不起，账号长度只能为5-16个字符！','','','');
+			easydialog_alert('ขออภัย! ชื่อบัญชีต้องมีความยาว 5-16 ตัวอักษร','','','');
 			return false;
 		}else if(psw.length>16 || psw.length<5){
-			easydialog_alert('对不起，密码长度只能为5-16个字符！','','','');
+			easydialog_alert('ขออภัย! รหัสผ่านต้องมีความยาว 5-16 ตัวอักษร','','','');
 			return false;
 		{登录验证码开启}}else if( $("#login_form [name=code]") && $("#login_form [name=code]").val() == ''){
-			easydialog_alert('对不起，请输入验证码！','','','');
+			easydialog_alert('ขออภัย! โปรดกรอกโค้ดยืนยันก่อน','','','');
 			return false;{/登录验证码开启}
 		}else{
 			easydialog_loading();
@@ -166,9 +166,9 @@ $(function(){
 						easydialog_alert(data.msg,'','','');
 					}else{
 						if( '{登录后操作}' == 'ref'){
-							loginInfo = '登录成功，系统会在两秒后关闭!';
+							loginInfo = 'เข้าสู่ระบบสำเร็จ จะเปลี่ยนหน้าในอีก 25 วินาที!';
 						}else if( '{登录后操作}' == 'jump'){
-							loginInfo = '登录成功，两秒后跳转到用户中心!';
+							loginInfo = 'เข้าสู่ระบบสำเร็จจะเปลี่ยนไปหน้าศูนย์ผู้ใช้ในอีก 2 วินาที!';
 						}
 						easydialog_autoclose(loginInfo,'success');
 						if( self!=top ){

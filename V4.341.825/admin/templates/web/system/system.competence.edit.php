@@ -2,15 +2,15 @@
 <form action="index.php?a=yes&c=system.competence.competence&t=<?php echo $type;?>" data-reload="false" data-toggle="ajaxform" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
 <input name="id" type="hidden" class="input-text" value="<?php echo C('comp_id',null,'data');?>">
 <table class="table table-border table-bordered table-bg table-sort">
-	<th colspan="2" style="padding-left:10px;"><b>管理员可用权限选择</b></th></tr>
+	<th colspan="2" style="padding-left:10px;"><b>ผู้ดูแลสามารถเลือกสิทธิ์ได้</b></th></tr>
     <tr>
-      <td valign="top" width="200">权限名字：</td>
+      <td valign="top" width="200">ชื่อสิทธิ์ : </td>
       <td valign="top">
       	&nbsp;<input name="name" type="text" class="input-text" value="<?php echo C('comp_name',null,'data');?>">
       </td>
 	</tr>
 	<tr>
-    <td valign="top">管理站点：</td>
+    <td valign="top">จัดการเว็บไซต์ : </td>
     <td valign="top">
     <input id="<?php echo $cFun.$type;?>site" name="site" type="hidden" value="<?php echo C('comp_site',null,'data');?>">
     <input type="text" id="<?php echo $cFun.$type;?>site_ztree_input" data-toggle="selectztree" data-tree="#<?php echo $cFun.$type;?>site_ztree_select" readonly value="<?php echo C('comp_site_name',null,'data');?>">
@@ -30,7 +30,7 @@
    	</ul>
 	</tr>
 	<tr>
-    <td valign="top">可用权限选择：</td>
+    <td valign="top">สิทธิ์ที่ใช้ได้ : </td>
     <td valign="top">
     <input id="<?php echo $cFun.$type;?>comp" name="comp" type="hidden" value="<?php echo C('comp_content',null,'data');?>">
     <input type="text" id="<?php echo $cFun.$type;?>_ztree_input" data-toggle="selectztree" data-tree="#<?php echo $cFun.$type;?>_ztree_select" readonly value="<?php echo C('comp_content_name',null,'data');?>">
@@ -57,8 +57,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">จัดเก็บ</button></li>
     </ul>
 </div>
 

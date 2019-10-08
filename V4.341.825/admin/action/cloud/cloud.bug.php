@@ -14,7 +14,7 @@ $cloudSer = NewClass('cloud');
 if ( $type == 'gettype' )
 {
 	$rs = $cloudSer->GetMessageType();
-	Ajax('请求成功！',200,$rs['data']);
+	Ajax('คำขอสำเร็จ!',200,$rs['data']);
 }
 //获得反馈列表
 else if ( $type == 'getlist' )
@@ -24,8 +24,8 @@ else if ( $type == 'getlist' )
 	$pageCount = str::Int(Request('pagecount' , 20));
 	$isUser = str::Int(Request('isuser'));
 	$rs = $cloudSer->GetMessageList($tid , $page , $pageCount,$isUser);
-	
-	Ajax('请求成功！',200,$rs);
+
+	Ajax('คำขอสำเร็จ!',200,$rs);
 }
 //提交新的反馈
 else if ( $type == 'add' )
@@ -37,7 +37,7 @@ else if ( $type == 'add' )
 	$rs = $cloudSer->MessageAdd($tid , $open , $domainShow , $content);
 	
 	//写入操作记录
-	SetOpLog( '提交了新的反馈到云中心！' , 'system' , 'update' );
-	Ajax('反馈成功！',200,$rs);
+	SetOpLog( 'เพิ่มความติชม' , 'system' , 'update' );
+	Ajax('เพิ่มคำติชมแล้ว!',200,$rs);
 }
 ?>
