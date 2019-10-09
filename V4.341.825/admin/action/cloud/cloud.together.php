@@ -24,13 +24,13 @@ if ( $type == 'getlist' )
 else if ( $type == 'add' )
 {
 	$domainShow = str::Int(Request('domainshow'));
-	$title = str::IsEmpty(Request('title'),'需求标题不能为空！');
-	$desc = str::IsEmpty(Request('desc'),'需求内容不能为空！');
+	$title = str::IsEmpty(Request('title'),'ชื่อต้องไม่ว่าง!');
+	$desc = str::IsEmpty(Request('desc'),'รายละเอียดต้องไม่ว่าง!');
 	$rs = $cloudSer->TogetherAdd($domainShow, $title , $desc);
 
 	//写入操作记录
-	SetOpLog( '提交了新的需求到云中心！' , 'system' , 'update' );
-	Ajax('需求提交成功！',200,$rs);
+	SetOpLog( 'ส่งความต้องการไปศูนย์คลาวด์' , 'system' , 'update' );
+	Ajax('ส่งความต้องการสำเร็จ!',200,$rs);
 }
 //需求互动操作
 else if ( $type == 'operation' )
@@ -40,7 +40,7 @@ else if ( $type == 'operation' )
 	$rs = $cloudSer->TogetherOperation($id , $need);
 	if( $rs['code'] == 200 )
 	{
-		Ajax('需求互动操作成功！',200);
+		Ajax('ดำเนินความต้องการสำเร็จ!',200);
 	}
 	else
 	{
