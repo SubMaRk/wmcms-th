@@ -17,22 +17,22 @@ if ( $type == 'rename' )
 	
 	if( $oldName == '' || $newName == '' )
 	{
-		Ajax( '对不起，旧的文件名和新的文件名必填写!' , 300);
+		Ajax( 'ดำเนินความต้องการสำเร็จ!' , 300);
 	}
 	else if( str::in_string('../',$path,1) || str::in_string('..',$path,1))
 	{
-		Ajax('对不起，文件路径错误！' , 300);
+		Ajax('ขออภัย! ที่ตั้งไฟล์ไม่ถูกต้อง' , 300);
 	}
 	else
 	{
 		if( file_exists(WMROOT.$path.$newName) )
 		{
-			Ajax( '对不起，已存在重名文件或文件夹!' , 300);
+			Ajax( 'ขออภัย! มีไฟล์หรือโฟลเดอร์ใช้ชื่อนี้อยู่' , 300);
 		}
 		else
 		{
 			rename(WMROOT.$path.str::EnCoding($oldName,'gb2312'),WMROOT.$path.$newName);
-			Ajax( '恭喜您，文件或文件夹重名成功!');
+			Ajax( 'ยินดีด้วย! เปลี่ยนชื่อไฟล์หรือโฟลเดอร์สำเร็จ!');
 		}
 	}
 }
@@ -44,7 +44,7 @@ else if( $type == 'del' )
 
 	if( str::in_string('../',$path,1) || str::in_string('..',$path,1))
 	{
-		Ajax('对不起，文件路径错误！' , 300);
+		Ajax('ขออภัย! ที่ตั้งไฟล์ไม่ถูกต้อง' , 300);
 	}
 	else
 	{
@@ -52,13 +52,13 @@ else if( $type == 'del' )
 		if( $dt == 'folder' )
 		{
 			file::DelDir(WMROOT.$path);
-			Ajax( '恭喜您，文件夹删除成功!');
+			Ajax( 'ยินดีด้วย! ลบโฟลเดอร์สำเร็จ');
 		}
 		//删除文件
 		else
 		{
 			file::DelFile(WMROOT.$path);
-			Ajax( '恭喜您，文件删除成功!');
+			Ajax( 'ยินดีด้วย! ลบไฟล์สำเร็จ');
 		}
 	}
 }
@@ -70,19 +70,19 @@ else if( $type == 'createfolder' )
 	
 	if( str::in_string('../',$path,1) || str::in_string('..',$path,1))
 	{
-		Ajax('对不起，文件路径错误！' , 300);
+		Ajax('ขออภัย! ที่ตั้งไฟล์ไม่ถูกต้อง' , 300);
 	}
 	else
 	{
 		if( $newName == '' )
 		{
-			Ajax( '对不起，新的文件夹名必填写!' , 300);
+			Ajax( 'ขออภัย! ต้องกรอกชื่อโฟลเดอร์ใหม่ก่อน' , 300);
 		}
 		//创建文件夹
 		else
 		{
 			file::CreateFolder(WMROOT.$path.$newName);
-			Ajax( '恭喜您，文件夹创建成功!');
+			Ajax( 'ยินดีด้วย! สร้างโฟลเดอร์สำเร็จ');
 		}
 	}
 }
@@ -95,11 +95,11 @@ else if( $type == 'movefile' )
 	
 	if( $newPath == '' )
 	{
-		Ajax( '对不起，移动的位置不能为空!' , 300);
+		Ajax( 'ขออภัย! ตำแหน่งที่จะย้ายต้องไม่ว่าง' , 300);
 	}
 	else if( str_replace('../', '', $newPath) != $newPath )
 	{
-		Ajax( '对不起，禁止使用../符号' , 300);
+		Ajax( 'ขออภัย! ไม่สามารถใช้สัญลักษณ์ ../ ได้' , 300);
 	}
 	//创建文件夹
 	else
@@ -120,7 +120,7 @@ else if( $type == 'movefile' )
 		}
 		
 		file::MoveFile(WMROOT.$oldPath, WMROOT.$newPath, $fileName);
-		Ajax( '恭喜您，文件移动成功!');
+		Ajax( 'ยินดีด้วย! ย้ายไฟล์สำเร็จ');
 	}
 }
 //创建文件
@@ -137,31 +137,31 @@ else if( $type == "create" || $type == "edit" )
 
 	if( $fileName == '' )
 	{
-		Ajax( '对不起，文件名字不能为空' , 300);
+		Ajax( 'ขออภัย! ชื่อต้องไม่ว่าง' , 300);
 	}
 	else if( str_replace('../', '', $path) != $path )
 	{
-		Ajax( '对不起，禁止使用../符号' , 300);
+		Ajax( 'ขออภัย! ไม่สามารถใช้ ../ ได้' , 300);
 	}
 	else if( file_exists(WMROOT.$path.$fileName) && $type == "create")
 	{
-		Ajax( '对不起，已经存在同名文件！' , 300);
+		Ajax( 'ขออภัย! มีไฟล์ที่ใช้ชื่อเดียวกันอยู่แล้ว' , 300);
 	}
 	else if( !file_exists(WMROOT.$path.$fileName) && $type == "edit")
 	{
-		Ajax( '对不起，此文件不存在！' , 300);
+		Ajax( 'ขออภัย! ไม่มีไฟล์นี้อยู่' , 300);
 	}
 	else
 	{
 		if( $type == 'create' )
 		{
 			file::CreateFile(WMROOT.$path.$fileName, $fileContent);
-			Ajax( '恭喜您，文件创建成功！' );
+			Ajax( 'ยินดีด้วย! สร้างไฟล์สำเร็จ' );
 		}
 		else
 		{
 			file::CreateFile(WMROOT.$path.$fileName, $fileContent , '1');
-			Ajax( '恭喜您，文件修改成功！' );
+			Ajax( 'ยินดีด้่วย! แก้ไขไฟล์สำเร็จ' );
 		}
 	}
 }
@@ -175,7 +175,7 @@ else if( $type == 'backup' )
 	}
 	else
 	{
-		Ajax( '备份成功' );
+		Ajax( 'สำรองข้อมูลสำเร็จ' );
 	}
 }
 //下载文件
