@@ -93,15 +93,15 @@ else if ( $type == 'search' )
 		{
 			if( $v['firms_type'] == 'a')
 			{
-				$typeName = '开发商';
+				$typeName = 'นักพัฒนา';
 			}
 			else if( $v['firms_type'] == 'o')
 			{
-				$typeName = '运营商';
+				$typeName = 'ผู้ประกอบการ';
 			}
 			else
 			{
-				$typeName = '自研自营';
+				$typeName = 'พัฒนาด้วยตนเอง';
 			}
 			$data[$k] = array('key'=>$v['firms_id'],'val'=>$typeName.' - '.$v['firms_name']);
 		}
