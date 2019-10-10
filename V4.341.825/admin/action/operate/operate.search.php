@@ -18,17 +18,17 @@ if ( $type == 'rec' )
 
 	if( Request('rec') == '1')
 	{
-		$msg = '设置推荐';
+		$msg = 'แนะนำ';
 	}
 	else
 	{
-		$msg = '取消推荐';
+		$msg = 'แนะนำ';
 	}
 	
 	wmsql::Update($table, $data, $where);
 	//写入操作记录
-	SetOpLog( $msg.'了搜索关键词' , 'system' , 'update' , $table , $where);
-	Ajax('搜索关键词'.$msg.'成功!');
+	SetOpLog( $msg.'คำค้น' , 'system' , 'update' , $table , $where);
+	Ajax('คำค้นถูก'.$msg.'แล้ว!');
 }
 //删除记录
 else if ( $type == 'del' )
@@ -36,9 +36,9 @@ else if ( $type == 'del' )
 	$where['search_id'] = GetDelId();
 	
 	wmsql::Delete($table, $where);
-	SetOpLog( '删除了搜索记录' , 'system' , 'delete' , $table , $where);
+	SetOpLog( 'ลบประวัติการค้นหา' , 'system' , 'delete' , $table , $where);
 	
-	Ajax('搜索记录删除成功!');
+	Ajax('ลบประวัติการค้นหาสำเร็จ!');
 }
 //清空请求记录
 else if ( $type == 'clear' )
@@ -46,7 +46,7 @@ else if ( $type == 'clear' )
 	wmsql::Delete($table);
 
 	//写入操作记录
-	SetOpLog( '清空了搜索记录' , 'system' , 'delete');
-	Ajax('所有搜索记录成功清空！');
+	SetOpLog( 'ล้างประวัติการค้นหา' , 'system' , 'delete');
+	Ajax('ล้างประวัติการค้นหาสำเร็จ!');
 }
 ?>

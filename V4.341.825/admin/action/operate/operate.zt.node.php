@@ -18,7 +18,7 @@ if ( $type == 'edit' || $type == "add"  )
 	
 	if ( $data['node_name'] == '' || $data['node_pinyin'] == '')
 	{
-		Ajax('对不起，专题节点名字和专题节点标识不能为空！',300);
+		Ajax('ขออภัย! ชื่อกระทู้และไอดีกระทู้ต้องไม่ว่าง',300);
 	}
 	
 	//节点标识检查
@@ -28,7 +28,7 @@ if ( $type == 'edit' || $type == "add"  )
 	$wheresql['where']['node_pinyin'] = $data['node_pinyin'];
 	if ( wmsql::GetCount($wheresql) > 0 )
 	{
-		Ajax('对不起，当前节点标识已经使用了！',300);
+		Ajax('ขออภัย! ไอดีปัจจุบันถูกใช้งานอยู่',300);
 	}
 	
 	
@@ -36,20 +36,20 @@ if ( $type == 'edit' || $type == "add"  )
 	if( $type == 'add' )
 	{
 		$data['node_time'] = time();
-		$info = '恭喜您，专题节点添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มกระทู้สำเร็จ';
 		$where['node_id'] = wmsql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了专题节点'.$data['node_name'] , 'zt' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มกระทู้'.$data['node_name'] , 'zt' , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
-		$info = '恭喜您，专题节点修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขกระทู้สำเร็จ';
 		wmsql::Update($table, $data, $where);
 		
 		//写入操作记录
-		SetOpLog( '修改了专题节点'.$data['node_name'] , 'zt' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขกระทู้'.$data['node_name'] , 'zt' , 'update' , $table , $where , $data );
 	}
 	//修改编辑器上传的内容id
 	$uploadMod = NewModel('upload.upload');
@@ -62,10 +62,10 @@ else if ( $type == 'del' )
 {
 	$where['node_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了专题节点' , 'zt' , 'delete' , $table , $where);
+	SetOpLog( 'ลบกระทู้' , 'zt' , 'delete' , $table , $where);
 	wmsql::Delete($table , $where);
 		
-	Ajax('专题节点删除成功!');
+	Ajax('ลบกระทู้สำเร็จ!');
 }
 //清空请求记录
 else if ( $type == 'clear' )
@@ -73,13 +73,13 @@ else if ( $type == 'clear' )
 	$zid = Request('zid');
 	if( $zid == '' )
 	{
-		Ajax('对不起，必须选择节点所属的专题！',300);
+		Ajax('ขออภัย! คุณต้องเลือกกระทู้ก่อน',300);
 	}
 	$where['node_zt_id'] = $zid;
 	wmsql::Delete( $table , $where);
 
 	//写入操作记录
-	SetOpLog( '清空了某个专题节点' , 'zt' , 'delete');
-	Ajax('某个专题节点成功清空！');
+	SetOpLog( 'ล้างกระทู้' , 'zt' , 'delete');
+	Ajax('ล้างกระทู้สำเร็จ!');
 }
 ?>

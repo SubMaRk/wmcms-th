@@ -18,31 +18,31 @@ if ( $type == 'edit' || $type == "add"  )
 	
 	if ( $data['zt_name'] == '' )
 	{
-		Ajax('对不起，专题标题不能为空！',300);
+		Ajax('ขออภัย! ชื่อกระทู้ต้องไม่ว่าง',300);
 	}
 	else if( !str::Number(GetKey($data,'type_id')) )
 	{
-		Ajax('对不起，专题分类必须选择！',300);
+		Ajax('ขออภัย! ต้องเลือกหมวดหมู่กระทู้ก่อน',300);
 	}
 	
 	//新增数据
 	if( $type == 'add' )
 	{
 		$data['zt_time'] = time();
-		$info = '恭喜您，专题添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มกระทู้สำเร็จ';
 		$where['zt_id'] = wmsql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了专题'.$data['zt_name'] , 'zt' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มกระทู้'.$data['zt_name'] , 'zt' , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
-		$info = '恭喜您，专题修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขกระทู้สำเร็จ';
 		wmsql::Update($table, $data, $where);
 		
 		//写入操作记录
-		SetOpLog( '修改了专题'.$data['zt_name'] , 'zt' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขกระทู้'.$data['zt_name'] , 'zt' , 'update' , $table , $where , $data );
 	}
 	//修改编辑器上传的内容id
 	$uploadMod = NewModel('upload.upload');
@@ -55,10 +55,10 @@ else if ( $type == 'del' )
 {
 	$where['zt_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了专题' , 'zt' , 'delete' , $table , $where);
+	SetOpLog( 'ลบกระทู้' , 'zt' , 'delete' , $table , $where);
 	wmsql::Delete($table , $where);
 		
-	Ajax('专题删除成功!');
+	Ajax('ลบกระทู้สำเร็จ!');
 }
 //清空请求记录
 else if ( $type == 'clear' )
@@ -66,8 +66,8 @@ else if ( $type == 'clear' )
 	wmsql::Delete($table);
 
 	//写入操作记录
-	SetOpLog( '清空了专题' , 'zt' , 'delete');
-	Ajax('所有专题成功清空！');
+	SetOpLog( 'ล้างกระทู้' , 'zt' , 'delete');
+	Ajax('ล้างกระทู้สำเร็จ!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -77,16 +77,16 @@ else if ( $type == 'status' )
 
 	if( Request('status') == '1')
 	{
-		$msg = '显示';
+		$msg = 'แสดง';
 	}
 	else
 	{
-		$msg = '隐藏';
+		$msg = 'ซ่อน';
 	}
 	//写入操作记录
-	SetOpLog( $msg.'了专题' , 'zt' , 'update' , $table , $where);
+	SetOpLog( $msg.'กระทู้พิเศษ' , 'zt' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('专题'.$msg.'成功!');
+	Ajax('กระทู้พิเศษถูก'.$msg.'แล้ว!');
 }
 ?>

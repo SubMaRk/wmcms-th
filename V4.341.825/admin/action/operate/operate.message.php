@@ -16,10 +16,10 @@ if ( $type == 'del' )
 {
 	$where['message_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了留言' , 'message' , 'delete' , $table , $where);
+	SetOpLog( 'ลบข้อความ' , 'message' , 'delete' , $table , $where);
 	wmsql::Delete($table , $where);
 		
-	Ajax('留言删除成功!');
+	Ajax('ลบข้อความสำเร็จ!');
 }
 //清空请求记录
 else if ( $type == 'clear' )
@@ -27,8 +27,8 @@ else if ( $type == 'clear' )
 	wmsql::Delete($table);
 
 	//写入操作记录
-	SetOpLog( '清空了留言' , 'message' , 'delete');
-	Ajax('所有留言成功清空！');
+	SetOpLog( 'ล้างข้อความ' , 'message' , 'delete');
+	Ajax('ล้างข้อความสำเร็จ');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -38,16 +38,16 @@ else if ( $type == 'status' )
 
 	if( Request('status') == '1')
 	{
-		$msg = '通过审核';
+		$msg = 'ตรวจสอบ';
 	}
 	else
 	{
-		$msg = '取消审核';
+		$msg = 'ละเว้น';
 	}
 	//写入操作记录
-	SetOpLog( $msg.'了留言' , 'message' , 'update' , $table , $where);
+	SetOpLog( $msg.'ข้อความ' , 'message' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('留言'.$msg.'成功!');
+	Ajax('ข้อความถูก'.$msg.'แล้ว!');
 }
 ?>
