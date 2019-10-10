@@ -25,7 +25,7 @@ if ( $type == 'edit' || $type == "add"  )
 	//不存在小说
 	if( count($novelList) == 0 )
 	{
-		Ajax('对不起，该小说不存在！',300);
+		Ajax('ขออภัย! ไม่มีนิยายเรื่องนี้อยู่',300);
 	}
 	//只有一条小说
 	else if( count($novelList) == 1 )
@@ -35,7 +35,7 @@ if ( $type == 'edit' || $type == "add"  )
 	//小说大于一本，并且作者为空
 	else if( GetKey($post,'author') == '' )
 	{
-		Ajax('对不起，存在同名小说，您必须同时输入小说作者才能添加分卷！',300);
+		Ajax('ขออภัย! มีนิยายที่ใช้ชื่อเดียวกันอยู่แล้ว คุณต้องกรอกชื่อผู้แต่งนิยายด้วยเพื่อเพิ่มเล่ม',300);
 	}
 	else
 	{
@@ -49,7 +49,7 @@ if ( $type == 'edit' || $type == "add"  )
 		}
 		if( empty($novelData) )
 		{
-			Ajax('对不起，当前小说不存在该作者，请检查是否输入错误！',300);	
+			Ajax('ขออภัย! ไม่พบชื่อผู้แต่งในนิยายเรื่องนี้ โปรดตรวจสอบว่าคุณกรอกถูกต้อง',300);	
 		}
 	}
 	//设置分卷的小说id
@@ -63,7 +63,7 @@ if ( $type == 'edit' || $type == "add"  )
 	$wheresql['where']['volume_nid'] = $novelData['novel_id'];
 	if ( wmsql::GetCount($wheresql) > 0 )
 	{
-		Ajax('对不起，该小说的分卷名已经存在！',300);
+		Ajax('ขออภัย! มีนิยายชื่อนี้อยู่แล้ว',300);
 	}
 	
 	
@@ -72,20 +72,20 @@ if ( $type == 'edit' || $type == "add"  )
 	{
 		$data['volume_time'] = time();
 		
-		$info = '恭喜您，小说分卷添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มเล่มให้นิยายสำเร็จ';
 		$where['volume_id'] = wmsql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了小说分卷'.$data['volume_name'] , 'novel' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มเล่มนิยาย'.$data['volume_name'] , 'novel' , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
 		wmsql::Update($table, $data, $where);
-		$info = '恭喜您，小说分卷修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขเล่มให้นิยายสำเร็จ';
 
 		//写入操作记录
-		SetOpLog( '修改了小说分卷'.$data['volume_name'] , 'novel' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขเล่มนิยาย'.$data['volume_name'] , 'novel' , 'update' , $table , $where , $data );
 	}
 	
 	Ajax($info);
@@ -95,10 +95,10 @@ else if ( $type == 'del' )
 {
 	$where['volume_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了小说分卷' , 'novel' , 'delete' , $table , $where);
+	SetOpLog( 'ลบเล่มนิยาย' , 'novel' , 'delete' , $table , $where);
 	wmsql::Delete($table , $where);
 
-	Ajax('小说分卷删除成功!');
+	Ajax('ลบเล่มของนิยายสำเร็จ!');
 }
 //获取分卷列表
 else if ( $type == 'getvolume' )

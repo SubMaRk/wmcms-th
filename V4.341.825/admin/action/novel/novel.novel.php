@@ -51,15 +51,15 @@ if ( $type == 'edit' || $type == "add"  )
 	
 	if ( $data['novel_name'] == '' || $data['novel_author'] == '' )
 	{
-		$info = '对不起，小说名字和小说作者必须填写！';
+		$info = 'ขออภัย! ต้องกรอกชื่อนิยายและชื่อผู้แต่งก่อน';
 	}
 	else if( !str::Number($data['type_id']) )
 	{
-		$info = '对不起，小说分类必须选择！';
+		$info = 'ขออภัย! ต้องเลือกหมวดหมู่นิยายก่อน';
 	}
 	else if ( $novelData )
 	{
-		$info = '对不起，该小说已经存在！';
+		$info = 'ขออภัย! มีนิยายเรื่องนี้อยู่แล้ว';
 	}
 	else
 	{
@@ -79,13 +79,13 @@ if ( $type == 'edit' || $type == "add"  )
 			$mangerSer->SetTags('novel' , $data['novel_tags']);
 
 			$code = 200;
-			$info = '恭喜您，小说添加成功！';
+			$info = 'ยินดีด้วย! เพิ่มนิยายสำเร็จ';
 			$where['novel_id'] = wmsql::Insert($table, $data);
 			$novelData['novel_id'] = $where['novel_id'];
 			$novelData['chapter_number'] = 0;
 			
 			//写入操作记录
-			SetOpLog( '新增了小说'.$data['novel_name'] , 'novel' , 'insert' , $table , $where , $data );
+			SetOpLog( 'เพิ่มนิยาย'.$data['novel_name'] , 'novel' , 'insert' , $table , $where , $data );
 		}
 		//修改分类
 		else
@@ -94,7 +94,7 @@ if ( $type == 'edit' || $type == "add"  )
 			$oldData = $novelMod->GetOne($where['novel_id']);
 			
 			$code = 200;
-			$info = '恭喜您，小说修改成功！';
+			$info = 'ยินดีด้วย! แก้ไขนิยายสำเร็จ';
 			$result = wmsql::Update($table, $data, $where);
 
 			//修改小说分类移动文件
@@ -104,7 +104,7 @@ if ( $type == 'edit' || $type == "add"  )
 			}
 			
 			//写入操作记录
-			SetOpLog( '修改了小说'.$data['novel_name'] , 'novel' , 'update' , $table , $where , $data );
+			SetOpLog( 'แก้ไขนิยาย'.$data['novel_name'] , 'novel' , 'update' , $table , $where , $data );
 		}
 		
 		//拼音已经存在就重新设置
@@ -177,7 +177,7 @@ else if ( $type == 'del' )
 		$recMod->Delete(array("rec_nid"=>$where['novel_id']));
 		
 		//写入操作记录
-		SetOpLog( '删除了小说' , 'novel' , 'delete' , $table , $where);
+		SetOpLog( 'ลบนิยาย' , 'novel' , 'delete' , $table , $where);
 		wmsql::Delete($table , $where);
 		
 		foreach ($novelData as $k=>$v)
@@ -191,7 +191,7 @@ else if ( $type == 'del' )
 	}
 	
 	
-	Ajax('小说删除成功!');
+	Ajax('ลบนิยายสำเร็จ!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -205,17 +205,17 @@ else if ( $type == 'status' )
 		$applyMod = NewModel('system.apply','author');
 		$applyMod->BatchUpdateStatus('novel_editnovel' , $where['novel_id']);
 		
-		$msg = '审核通过';
+		$msg = 'ตรวจสอบ';
 	}
 	else
 	{
-		$msg = '取消审核';
+		$msg = 'ละเว้น';
 	}
 	//写入操作记录
-	SetOpLog( $msg.'了小说' , 'novel' , 'update' , $table , $where);
+	SetOpLog( $msg.'นิยาย' , 'novel' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('小说'.$msg.'成功!');
+	Ajax('นิยายถูก'.$msg.'แล้ว!');
 }
 //移动数据
 else if ( $type == 'move' )
@@ -224,10 +224,10 @@ else if ( $type == 'move' )
 	$where['novel_id'] = GetDelId();
 
 	//写入操作记录
-	SetOpLog( '移动了小说' , 'novel' , 'update' , $table , $where);
+	SetOpLog( 'ย้ายนิยาย' , 'novel' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('小说移动成功!');
+	Ajax('ย้ายนิยายสำเร็จ!');
 }
 //小说搜索操作
 else if ( $type == 'search' )
@@ -262,6 +262,6 @@ else if ( $type == 'search' )
 		}
 	}
 	
-	Ajax('查询成功!',null,$data);
+	Ajax('ดึงข้อมูลสำเร็จ!',null,$data);
 }
 ?>

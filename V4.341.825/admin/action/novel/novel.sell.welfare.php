@@ -18,7 +18,7 @@ if ( $type == "edit"  )
 	$where['welfare_nid'] = $data['welfare_nid'];
 	if( $data['welfare_nid'] < 1)
 	{
-		Ajax('对不起，所有小说id错误！',300);
+		Ajax('ขออภัย! ไอดีนิยายไม่ถูกต้อง',300);
 	}
 	else
 	{
@@ -34,8 +34,8 @@ if ( $type == "edit"  )
 			$welfareMod->Insert($data);
 		}
 		//写入操作记录
-		SetOpLog( '设置了小说福利' , 'novel' , 'update' , '@novel_welfare' , $where , $data );
-		Ajax('小说福利设置成功');
+		SetOpLog( 'กำหนดสวัสดิการนิยาย' , 'novel' , 'update' , '@novel_welfare' , $where , $data );
+		Ajax('กำหนดสวัสดิการนิยายสำเร็จ!');
 	}
 }
 ?>

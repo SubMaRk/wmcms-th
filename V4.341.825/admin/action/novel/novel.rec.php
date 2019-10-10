@@ -27,9 +27,9 @@ if( $type == 'edit' || $type == "add" )
 	}
 	else
 	{
-		$info = '恭喜您，小说推荐修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขนิยายแนะนำสำเร็จ';
 		//写入操作记录
-		SetOpLog( '修改了小说推荐', 'novel' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขนิยายแนะนำ', 'novel' , 'update' , $table , $where , $data );
 	}
 
 	//修改小说推荐-先检查是否存在推荐的信息
@@ -61,45 +61,45 @@ else if ( $type == 'rec' )
 	switch($rec)
 	{
 		case "icr":
-			$msg = "首页封面推荐";
+			$msg = "แนะนำที่หน้าหลัก";
 	  		break;
 	  		
 		case "ibr":
-			$msg = "首页精品推荐";
+			$msg = "แนะนำพิเศษ";
 	  		break;
 	  		
 		case "ir":
-			$msg = "首页推荐";
+			$msg = "แนะนำที่หน้าหลัก";
 	  		break;
 	  		
 		case "ccr":
-			$msg = "分类封面推荐";
+			$msg = "แนะนำในหน้าหลักหมวดหมู่";
 	  		break;
 	  		
 		case "cbr":
-			$msg = "分类精品推荐";
+			$msg = "แนะนำในหมวดหมู่พิเศษ";
 	  		break;
 	  		
 		case "cr":
-			$msg = "分类推荐";
+			$msg = "แนะนำในหมวดหมู่";
 	  		break;
 	}
 	//操作类型设置
 	switch($val)
 	{
 		case 0:
-			$type = "取消";
+			$type = "ยกเลิก";
 	  		break;
 	  		
 		default:
-			$type = "设置";
+			$type = "กำหนด";
 	  		break;
 	}
 	
 	//写入操作记录
-	SetOpLog( $type.'了小说'.$msg , 'novel' , 'update' , $table , $where);
+	SetOpLog( $type.'นิยาย'.$msg , 'novel' , 'update' , $table , $where);
 
-	Ajax($type.'了小说'.$msg);
+	Ajax($type.'นิยาย'.$msg);
 }
 //删除推荐
 else if ( $type == 'del' )
@@ -107,11 +107,11 @@ else if ( $type == 'del' )
 	$where['rec_id'] = GetDelId();
 
 	//写入操作记录
-	SetOpLog( '删除了小说推荐' , 'novel' , 'delete' , $table , $where);
+	SetOpLog( 'ลบนิยายแนะนำ' , 'novel' , 'delete' , $table , $where);
 
 	//删除分类
 	wmsql::Delete($table, $where);
 	
-	Ajax('小说推荐删除成功!');
+	Ajax('ลบนิยายแนะนำสำเร็จ!');
 }
 ?>
