@@ -17,7 +17,7 @@ if ( $type == 'del' )
 	$where['sell_id'] = GetDelId();
 	wmsql::Delete($table,$where);
 	//写入操作记录
-	SetOpLog( '删除了道具销售记录' , $curModule , 'delete' , $table , $where);
-	Ajax('道具删除成功!');
+	SetOpLog( 'ลบบันทึกการขายไอเท็ม' , $curModule , 'delete' , $table , $where);
+	Ajax('ลบบันทึกการขายไอเท็มสำเร็จ!');
 }
 ?>
