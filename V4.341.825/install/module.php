@@ -8,7 +8,7 @@ $module = array(
 	'author'=>array('id'=>'92','name'=>'โมดูลนักเขียน'),
 	'article'=>array('id'=>'26','name'=>'โมดูลบทความ'),
 	'link'=>array('id'=>'119','name'=>'โมดูลลิ้งก์เพื่อนบ้าน'),
-	'picture'=>array('id'=>'43','name'=>'โมดูลรูปภาพ'),
+	'picture'=>array('id'=>'43','name'=>'โมดูลอัลบั้มภาพ'),
 	'diy'=>array('id'=>'152','name'=>'โมดูลหน้าเดี่ยว'),
 	'zt'=>array('id'=>'149','name'=>'โมดูลคะแนน'),
 	'message'=>array('id'=>'144','name'=>'โมดูลข้อความ'),

@@ -42,7 +42,7 @@ else if ( $type == 'status' )
 	}
 	else
 	{
-		$msg = 'ละเว้น';
+		$msg = 'ละทิ้ง';
 	}
 	//写入操作记录
 	SetOpLog( $msg.'ข้อความ' , 'message' , 'update' , $table , $where);

@@ -23,7 +23,7 @@ if ( $type == 'status' )
 	}
 	else
 	{
-		$msg = 'ละเว้น';
+		$msg = 'ละทิ้ง';
 	}
 	//写入操作记录
 	SetOpLog( $msg.'ความคิดเห็น' , 'replay' , 'update' , $table , $where);

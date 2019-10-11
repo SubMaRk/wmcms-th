@@ -44,12 +44,12 @@ else if ( $type == 'optimize' || $type == 'repair' )
 			//优化表
 			case "optimize":
 				$info = $table.' ถูกเพิ่มประสิทธิภาพแล้ว';
-				$sql = 'OPTIMIZE TABLE  `'.$table.'`';
+				$sql = 'เพิ่มประสิทธิภาพตาราง  `'.$table.'`';
 			
 			//修复表
 			case "repair":
 				$info = $table.' ถูกซ่อมแซมแล้ว';
-				$sql = 'REPAIR TABLE  `'.$table.'`';
+				$sql = 'ซ่อมแซมตาราง  `'.$table.'`';
 				break;
 		}
 		
