@@ -30,7 +30,7 @@ function pathIsHtml($url)
 {
 	if( str_replace('.php', '', $url) != $url )
 	{
-		Ajax('对不起，当前链接没有设置伪静态的保存路径！' , 300);
+		Ajax('ขออภัย! ลิ้งก์ปัจจุบันไม่มีที่จัดเก็บแบบลิ้งก์ปรับแต่ง่' , 300);
 	}
 	return $url;
 }
@@ -38,7 +38,7 @@ function pathIsHtml($url)
 //检查是否开启了html访问
 if( $C['config']['route']['ishtml'] != '1' )
 {
-	Ajax('对不起，网站没有开启HTML静态访问！' , 300);
+	Ajax('ขออภัย! เว็บไซต์ไม่ได้เปิดให้เข้าถึง HTML แบบคงที่' , 300);
 }
 //生成首页
 else if ( $type == 'index' )
@@ -48,7 +48,7 @@ else if ( $type == 'index' )
 	
 	if( $module == '' || $id == '' )
 	{
-		Ajax('参数错误!',300);
+		Ajax('พารามิเตอร์ผิดพลาด!',300);
 	}
 	else
 	{
@@ -66,7 +66,7 @@ else if ( $type == 'index' )
 		
 		if($url == '' || $path == '' )
 		{
-			Ajax('对不起，当前分类首页不存在！');
+			Ajax('ขออภัย! ไม่มีหมวดหมู่หน้าหลักปัจจุบันอยู่');
 		}
 		else
 		{
@@ -87,7 +87,7 @@ else if ( $type == 'index' )
 				$html = $httpSer->GetUrl($domain.$url);
 				file::CreateFile(WMROOT.$path, $html , 1);
 			}
-			Ajax($path.'生成成功！');
+			Ajax($path.'สร้างสำเร็จ!');
 		}
 	}
 }
@@ -97,7 +97,7 @@ else if ( $type == 'gettype' )
 	if( $module == '' )
 	{
 		$data[] = array('type_id'=>0,'type_topid'=>0,'type_pid'=>0,'type_name'=>'对不起，请选择模块');
-		Ajax('获取成功' , 200 , $data);
+		Ajax('สำเร็จ!' , 200 , $data);
 	}
 	else
 	{
@@ -110,7 +110,7 @@ else if ( $type == 'gettype' )
 		}
 		$data = wmsql::GetAll($wheresql);
 
-		Ajax('获取成功' , 200 , $data);
+		Ajax('สำเร็จ+' , 200 , $data);
 	}
 }
 
@@ -122,7 +122,7 @@ else if( $type == 'list' && $step == 'init')
 {
 	if( Request('module') == '' )
 	{
-		Ajax('请选择模块!' , 300);
+		Ajax('โปรดเลือกโมดูล!' , 300);
 	}
 	$child = Post('child');
 	$all = Post('all');
@@ -179,13 +179,13 @@ else if( $type == 'list' && $step == 'init')
 		switch ($module)
 		{
 			case 'article':
-				$listLabel = '文章列表';
+				$listLabel = 'รายการบทความ';
 				break;
 			case 'novel':
-				$listLabel = '小说列表';
+				$listLabel = 'รายการนิยาย';
 				break;
 			case 'picture':
-				$listLabel = '图集列表';
+				$listLabel = 'รายการอัลบั้ม';
 				break;
 		}
 
@@ -259,11 +259,11 @@ else if( $type == 'list' && $step == 'init')
 		//记录开始时间
 		$cacheData['start_time'] = time();
 		file::CreateFile(WMCACHE.'createhtml/'.$module.'_type.txt', serialize($cacheData),1);
-		Ajax('初始化成功！' , 200 );
+		Ajax('เตรียมการสำเร็จ!' , 200 );
 	}
 	else
 	{
-		Ajax('没有需要生成的数据!' , 300);
+		Ajax('ไม่มีข้อมูลที่ต้องสร้าง!' , 300);
 	}
 }
 //生成列表操作
@@ -271,7 +271,7 @@ else if( $type == 'list' && $step == 'create')
 {
 	if( Request('module') == '' )
 	{
-		Ajax('请选择模块!' , 300);
+		Ajax('โปรดเลือกโมดูล!' , 300);
 	}
 	else
 	{
@@ -284,7 +284,7 @@ else if( $type == 'list' && $step == 'create')
 			//删除临时文件
 			file::DelFile(WMCACHE.'createhtml/'.$module.'_type.txt');
 			
-			die('<html><head></head><body>任务完成，本次共生成'.$cacheData['sum_data'].'个分类，'.$cacheData['sum_page_count'].'个页面!<br/>任务开始时间：'.date('Y-m-d H:i:s',$cacheData['start_time']).'<br/>任务结束时间：'.date('Y-m-d H:i:s',time()).'</body></html>');
+			die('<html><head></head><body>การดำเนินงานสำเร็จ ได้ทำการสร้างหมวดหมู่ '.$cacheData['sum_data'].'แล้ว มีทั้งหมด '.$cacheData['sum_page_count'].' หน้า!<br/>เวลาที่เริ่มงาน : '.date('Y-m-d H:i:s',$cacheData['start_time']).'<br/>เวลาสิ้นสุดงาน : '.date('Y-m-d H:i:s',time()).'</body></html>');
 		}
 		else
 		{
@@ -356,7 +356,7 @@ else if( $type == 'list' && $step == 'create')
 			unset($cacheData['data']);
 			file::CreateFile(WMCACHE.'createhtml/'.$module.'_type.txt', serialize($cacheData),1);
 		}
-		die('<html><head><meta http-equiv="refresh" content="1;url="></head><body>生成中....['.$cacheData['now_page_count'].'/'.$cacheData['sum_page_count'].']已完成'.$progress.'%！</body></html>');
+		die('<html><head><meta http-equiv="refresh" content="1;url="></head><body>สำเร็จ....['.$cacheData['now_page_count'].'/'.$cacheData['sum_page_count'].'] กำลังสร้าง '.$progress.'%！</body></html>');
 	}
 }
 
@@ -368,7 +368,7 @@ else if( $type == 'content' && $step == 'init')
 	$pageType = Post('pagetype');
 	if( Request('module') == '' )
 	{
-		Ajax('请选择模块!' , 300);
+		Ajax('โปรดเลือกโมดูล!' , 300);
 	}
 	$cTable = $tableSer->tableArr[$module]['table'];
 	$cidName = $tableSer->tableArr[$module]['id'];
@@ -444,11 +444,11 @@ else if( $type == 'content' && $step == 'init')
 		//记录开始时间
 		$cacheData['start_time'] = time();
 		file::CreateFile(WMCACHE.'createhtml/'.$module.'_content.txt', serialize($cacheData),1);
-		Ajax('初始化成功！' , 200 );
+		Ajax('เตรียมการสำเร็จ!' , 200 );
 	}
 	else
 	{
-		Ajax('没有需要生成的数据!' , 300);
+		Ajax('ไม่มีข้อมูลที่ต้องสร้าง!' , 300);
 	}
 }
 //生成内容html操作
@@ -456,7 +456,7 @@ else if( $type == 'content' && $step == 'create')
 {
 	if( Request('module') == '' )
 	{
-		Ajax('请选择模块!' , 300);
+		Ajax('โปรดเลือกโมดูล!' , 300);
 	}
 	else
 	{
@@ -468,7 +468,7 @@ else if( $type == 'content' && $step == 'create')
 		{
 			//删除临时文件
 			file::DelFile(WMCACHE.'createhtml/'.$module.'_content.txt');
-			die('<html><head></head><body>任务完成，本次共生成'.$cacheData['sum_data'].'条数据!<br/>任务开始时间：'.date('Y-m-d H:i:s',$cacheData['start_time']).'<br/>任务结束时间：'.date('Y-m-d H:i:s',time()).'</body></html>');
+			die('<html><head></head><body>การดำเนินงานสำเร็จ มีบทความทั้งหมด '.$cacheData['sum_data'].' รายการ!<br/>เวลาเริ่มงาน : '.date('Y-m-d H:i:s',$cacheData['start_time']).'<br/>เวลาสิ้นสุดงาน : '.date('Y-m-d H:i:s',time()).'</body></html>');
 		}
 		else
 		{
@@ -530,7 +530,7 @@ else if( $type == 'content' && $step == 'create')
 			unset($cacheData['data']);
 			file::CreateFile(WMCACHE.'createhtml/'.$module.'_content.txt', serialize($cacheData),1);
 		}
-		die('<html><head><meta http-equiv="refresh" content="1;url="></head><body>生成中....['.$cacheData['now_data'].'/'.$cacheData['sum_data'].']已完成'.$progress.'%！</body></html>');
+		die('<html><head><meta http-equiv="refresh" content="1;url="></head><body>สำเร็จ....['.$cacheData['now_data'].'/'.$cacheData['sum_data'].'] กำลังสร้าง '.$progress.'%！</body></html>');
 	}
 }
 
@@ -540,7 +540,7 @@ else if( $type == 'tindex' && $step == 'init')
 {
 	if( Request('module') == '' )
 	{
-		Ajax('请选择模块!' , 300);
+		Ajax('โปรดเลือกโมดูล!' , 300);
 	}
 	$child = Post('child');
 	$tTable = $tableSer->tableArr[$module.'type']['table'];
@@ -567,11 +567,11 @@ else if( $type == 'tindex' && $step == 'init')
 				'tpinyin'=>$v['type_pinyin'],
 			);
 		}
-		Ajax('初始化成功！' , 200 , $newData , count($data));
+		Ajax('เตรียมการสำเร็จ!' , 200 , $newData , count($data));
 	}
 	else
 	{
-		Ajax('没有需要生成的数据!' , 300);
+		Ajax('ไม่มีข้อมูลที่ต้องสร้าง!' , 300);
 	}
 }
 //生成分类首页html操作
@@ -579,12 +579,12 @@ else if( $type == 'tindex' && $step == 'create')
 {
 	if( Request('module') == '' || Request('tid') == '')
 	{
-		Ajax('参数错误!' , 300);
+		Ajax('พารามิเตอร์ผิดพลาด!' , 300);
 	}
 	$htmlPath = GetKey($C,'config,seo,htmls,'.$module.','.$tid.',tindex,path4');
 	if( $htmlPath == '' )
 	{
-		Ajax('当前分类没有设置列表HTML保存路径!');
+		Ajax('หมวดหมู่ปัจจุบันไม่ำด้ถูกกำหนดในรายการที่ตั้งจัดเก็บ HTML!');
 	}
 	else
 	{
@@ -600,7 +600,7 @@ else if( $type == 'tindex' && $step == 'create')
 
 		$html = $httpSer->GetUrl($domain.$url);
 		file::CreateFile(WMROOT.$htmlPath, $html , 1);
-		Ajax('分类ID：'.$tid.'的分类首页生成成功！');
+		Ajax('ไอดีหมวดหมู่ : '.$tid.' ของหมวดหมู่หน้าหลักถูกสร้างสำเร็จ!');
 	}
 }
 
@@ -609,7 +609,7 @@ else if( $type == 'menu' && $step == 'init')
 {
 	if( Request('module') == '' )
 	{
-		Ajax('请选择模块!' , 300);
+		Ajax('โปรดเลือกโมดูล!' , 300);
 	}
 	$child = Post('child');
 	$tTable = $tableSer->tableArr[$module.'type']['table'];
@@ -657,7 +657,7 @@ else if( $type == 'menu' && $step == 'init')
 				switch ($module)
 				{
 					case 'novel':
-						$listLabel = '小说章节列表';
+						$listLabel = 'รายการบทนิยาย';
 						break;
 				}
 				
@@ -720,11 +720,11 @@ else if( $type == 'menu' && $step == 'init')
 		//记录开始时间
 		$cacheData['start_time'] = time();
 		file::CreateFile(WMCACHE.'createhtml/'.$module.'_menu.txt', serialize($cacheData),1);
-		Ajax('初始化成功！' , 200 );
+		Ajax('เตรียมการสำเร็จ!' , 200 );
 	}
 	else
 	{
-		Ajax('没有需要生成的数据!' , 300);
+		Ajax('ไม่มีข้อมูลที่ต้องสร้าง!' , 300);
 	}
 }
 //生成目录列表html操作
@@ -732,7 +732,7 @@ else if( $type == 'menu' && $step == 'create')
 {
 	if( Request('module') == '' )
 	{
-		Ajax('请选择模块!' , 300);
+		Ajax('โปรดเลือกโมดูล!' , 300);
 	}
 	else
 	{
@@ -744,7 +744,7 @@ else if( $type == 'menu' && $step == 'create')
 		{
 			//删除临时文件
 			file::DelFile(WMCACHE.'createhtml/'.$module.'_menu.txt');
-			die('<html><head></head><body>任务完成，本次共生成'.$cacheData['sum_data'].'本书籍，'.$cacheData['sum_page_count'].'个页面!<br/>任务开始时间：'.date('Y-m-d H:i:s',$cacheData['start_time']).'<br/>任务结束时间：'.date('Y-m-d H:i:s',time()).'</body></html>');
+			die('<html><head></head><body>ดำเนินงานเสำเร็จ ได้สร้างหนังสือ '.$cacheData['sum_data'].' เล่ม มีทั้งหมด '.$cacheData['sum_page_count'].' หน้า!<br/>เวลาเริ่มงาน : '.date('Y-m-d H:i:s',$cacheData['start_time']).'<br/>เวลาสิ้นสุดงาน : '.date('Y-m-d H:i:s',time()).'</body></html>');
 		}
 		else
 		{
@@ -814,7 +814,7 @@ else if( $type == 'menu' && $step == 'create')
 			unset($cacheData['data']);
 			file::CreateFile(WMCACHE.'createhtml/'.$module.'_menu.txt', serialize($cacheData),1);
 		}
-		die('<html><head><meta http-equiv="refresh" content="1;url="></head><body>生成中....['.$cacheData['now_page_count'].'/'.$cacheData['sum_page_count'].']已完成'.$progress.'%！</body></html>');
+		die('<html><head><meta http-equiv="refresh" content="1;url="></head><body>สำเร็จ....['.$cacheData['now_page_count'].'/'.$cacheData['sum_page_count'].'] กำลังสร้าง '.$progress.'%！</body></html>');
 	}
 }
 ?>

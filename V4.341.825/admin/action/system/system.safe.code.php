@@ -18,7 +18,7 @@ if( $type == 'config'  )
 	$configMod->UpdateToForm($post);
 	
 	//写入操作记录
-	SetOpLog( '修改验证码设置' , 'system' , 'update' );
+	SetOpLog( 'แก้ไขการตั้งค่าตัวตรวจบ็อท' , 'system' , 'update' );
 	
 	//更新配置文件
 	$manager->UpConfig('web');

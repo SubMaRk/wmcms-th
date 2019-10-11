@@ -17,7 +17,7 @@ if ( $type == 'edit' || $type == "add" )
 	
 	if ( $temp['temp_name'] == '' )
 	{
-		Ajax('对不起，模版名字必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อเทมเพลตก่อน',300);
 	}
 	
 	//新增菜单
@@ -31,23 +31,23 @@ if ( $type == 'edit' || $type == "add" )
 		$count = wmsql::GetCount($wheresql);
 		if ( $count > 0 )
 		{
-			Ajax('对不起，该模版已经存在了！',300);
+			Ajax('ขออภัย! มีเทมเพลตนี้อยู่แล้ว',300);
 		}
 		
 		$data['id'] = WMSql::Insert($table, $temp);
 		$data['name'] = $temp['temp_name'];
 
 		//写入操作记录
-		SetOpLog( '新增了预设模版' , 'system' , 'insert' , $table , array('temp_id'=>$data['id']) , $data );
-		Ajax('模版新增成功!',null,$data);
+		SetOpLog( 'เพิ่มเทมเพลต' , 'system' , 'insert' , $table , array('temp_id'=>$data['id']) , $data );
+		Ajax('เพิ่มเทมเพลตสำเร็จ!',null,$data);
 	}
 	//修改菜单
 	else
 	{
 		//写入操作记录
-		SetOpLog( '修改了预设模版' , 'system' , 'update' , $table , $where , $temp );
+		SetOpLog( 'แก้ไขเทมเพลต' , 'system' , 'update' , $table , $where , $temp );
 		WMSql::Update($table, $temp, $where);
-		Ajax('模版修改成功!');
+		Ajax('แก้ไขเทมเพลตสำเร็จ!');
 	}
 }
 //ajax获取每个模块的分类
@@ -65,10 +65,10 @@ else if ( $type == 'del' )
 {
 	$where['temp_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了预设模版' , 'system' , 'delete' , $table , $where);
+	SetOpLog( 'ลบเทมเพลต' , 'system' , 'delete' , $table , $where);
 	wmsql::Delete($table , $where);
 		
-	Ajax('预设模版删除成功!');
+	Ajax('ลบเทมเพลตสำเร็จ!');
 }
 //清空请求记录
 else if ( $type == 'clear' )
@@ -76,8 +76,8 @@ else if ( $type == 'clear' )
 	wmsql::Delete($table);
 
 	//写入操作记录
-	SetOpLog( '清空了预设模版' , 'system' , 'delete');
-	Ajax('所有预设模版成功清空！');
+	SetOpLog( 'ล้างเทมเพลต' , 'system' , 'delete');
+	Ajax('ล้างเทมเพลตสำเร็จ!');
 }
 //删除静态资源操作
 else if ( $type == 'delstatic' )
@@ -86,15 +86,15 @@ else if ( $type == 'delstatic' )
 	$path = Request('path');
 	if( $id == '' || $path == '' )
 	{
-		Ajax('对不起，预设模版的id和静态资源类型不能为空！' , 300);
+		Ajax('ขออภัย! รูปแบบไอดีและทรัพยากรแบบคงที่ของเทมเพลตค่าเริ่มต้นต้องไม่ว่าง' , 300);
 	}
 	else if( str::in_string('../',$path,1) || str::in_string('..',$path,1))
 	{
-		Ajax('对不起，静态资源路径错误！' , 300);
+		Ajax('ขออภัย! ที่ตั้งทรัพยากรแบบคงที่ไม่ถูกต้อง' , 300);
 	}
 	file::DelDir(WMSTATIC.$id.'/'.$path);
 	//写入操作记录
-	SetOpLog( '删除了ID='.$id.'预设模版的静态资源' , 'system' , 'delete');
-	Ajax('预设模版的静态资源删除成功！');
+	SetOpLog( 'ไอดีที่ลบ = '.$id.' ทรัพยากรแบบคงที่ของเทมเพลตค่าเริ่มต้น' , 'system' , 'delete');
+	Ajax('ลบทรัพยากรแบบคงที่ของเทมเพลตค่าเริ่มต้นสำเร็จ!');
 }
 ?>

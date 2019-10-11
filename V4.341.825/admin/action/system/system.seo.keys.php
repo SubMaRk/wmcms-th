@@ -10,7 +10,7 @@
 */
 $table = '@seo_keys';
 $status = 200;
-$msg = '查询成功';
+$msg = 'ดึงข้อมูลสำเร็จ';
 
 //修改关键词信息
 if ( $type == 'edit' || $type == "add"  )
@@ -25,15 +25,15 @@ if ( $type == 'edit' || $type == "add"  )
 		unset($post['keys_id']);
 
 		//写入操作记录
-		SetOpLog( '修改关键词信息' , 'system' , 'update' , $table  , $where , $post );
+		SetOpLog( 'แก้ไขข้อมูลคำค้น' , 'system' , 'update' , $table  , $where , $post );
 		//修改数据
 		WMSql::Update($table, $post, $where);
-		Ajax('关键词更新成功，请在全部修改完成后点击头部的生存缓存让配置生效!');
+		Ajax('แก้ไขคำค้นสำเร็จ! โปรดคลิ๊กอัปเดทแคชเพื่อแสดงผลบน Header');
 	}
 	//如果是增加页面
 	else
 	{
-		Ajax('暂未开通新增页面功能',300);
+		Ajax('โมดูลหน้าเดี่ยวไม่ได้เปิดใช้งาน',300);
 	}
 }
 //生成静态文件
@@ -43,7 +43,7 @@ else if ( $type == 'config' )
 	$seoSer->UpConfig();
 
 	//写入操作记录
-	SetOpLog( '生成了SEO关键字缓存' , 'system' , 'update' );
-	Ajax('静态缓存生成成功！');
+	SetOpLog( 'สร้างแคชคำค้น SEO' , 'system' , 'update' );
+	Ajax('สร้างแคชคำค้น SEO สำเร็จ!');
 }
 ?>

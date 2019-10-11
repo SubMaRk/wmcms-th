@@ -17,7 +17,7 @@ if( $type == 'add'  )
 	
 	if( $data['api_title'] == '' || $data['api_name'] == '' )
 	{
-		Ajax('对不起，接口名和标识必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อและคำหลักของ API ก่อน',300);
 	}
 	else
 	{
@@ -46,8 +46,8 @@ if( $type == 'add'  )
 		wmsql::Insert('@api_api', $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了接口'.$data['api_title'], 'system' , 'insert' );
-		Ajax('接口新增成功！');
+		SetOpLog( 'เพิ่ม API'.$data['api_title'], 'system' , 'insert' );
+		Ajax('เพิ่ม API สำเร็จ!');
 	}
 	
 }

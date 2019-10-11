@@ -31,7 +31,7 @@ if( $type == 'config'  )
 	file::CreateFile(WMCONFIG.'define.config.php', $defineContent , 1);
 	
 	//写入操作记录
-	SetOpLog( '修改开发者配置' , 'system' , 'update' );
+	SetOpLog( 'แก้ไขการกำหนดค่าผู้พัฒนา' , 'system' , 'update' );
 	Ajax();
 }
 ?>

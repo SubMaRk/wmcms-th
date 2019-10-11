@@ -17,7 +17,7 @@ if( $post )
 	$configMod->UpdateToForm($post);
 
 	//写入操作记录
-	SetOpLog( '修改站群设置' , 'system' , 'update' );
+	SetOpLog( 'แก้ไขการตั้งค่ากลุ่มเว็บไซต์' , 'system' , 'update' );
 	
 	//更新系统配置文件
 	$manager->UpConfig('web');

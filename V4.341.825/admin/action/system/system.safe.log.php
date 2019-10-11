@@ -16,16 +16,16 @@ if ( $type == 'del' )
 	$where['login_id'] = GetDelId();
 
 	//写入操作记录
-	SetOpLog( '删除了登录记录' , 'system' , 'delete' , $table , $where);
+	SetOpLog( 'ลบบันทึกการเข้าสู่ระบบ' , 'system' , 'delete' , $table , $where);
 	wmsql::Delete($table, $where);
-	Ajax('登录记录删除成功!');
+	Ajax('ลบบันทึกการเข้าสู่ระบบสำเร็จ!');
 }
 //清空登录记录
 else if ( $type == 'clear' )
 {
 	wmsql::Delete($table);
 	//写入操作记录
-	SetOpLog( '清空了登录记录' , 'system' , 'delete');
-	Ajax('所有登录记录成功清空！');
+	SetOpLog( 'ล้างบันทึกการเข้าสู่ระบบ' , 'system' , 'delete');
+	Ajax('ล้างบันทึกการเข้าสู่ระบบสำเร็จ!');
 }
 ?>

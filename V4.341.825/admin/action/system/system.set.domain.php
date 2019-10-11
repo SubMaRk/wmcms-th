@@ -22,7 +22,7 @@ if( $post )
 		$code = $httpSer->GetUrl($post['admin_domain'].'/'.$post['admin_path']);
 		if( empty($code) || !$code )
 		{
-			Ajax('对不起，请确保后台域名能够正常访问，否则将无法访问后台！',300);
+			Ajax('ขออภัย! โปรดตรวจสอบให้มั่นใจว่าชื่อโดเมนในพื้นหลังสามารถเข้าถึงได้ตามปกติ ไม่เช่นนั้นคุณจะไม่สามารถเข้าถึงพื้นหลังนี้ได้',300);
 		}
 	}
 	else
@@ -56,7 +56,7 @@ if( $post )
 	}
 
 	//写入操作记录
-	SetOpLog( '修改域名配置' , 'system' , 'update' );
+	SetOpLog( 'แก้ไขกำหนดค่าชื่อโดเมน' , 'system' , 'update' );
 	
 	//更新配置文件
 	$manager->UpConfig('web');

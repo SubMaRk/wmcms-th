@@ -21,7 +21,7 @@ if ( $type == 'edit' || $type == "add"  )
 
 	if( $data['field_name'] == '' ||  GetKey($data,'field_type_id') == '' || GetKey($data,'field_module') == '' )
 	{
-		Ajax('对不起，所有项不能为空',300);
+		Ajax('ขออภัย! ฟิลด์ทั้งหมดต้องไม่ว่าง',300);
 	}
 	
 	//循环option
@@ -39,7 +39,7 @@ if ( $type == 'edit' || $type == "add"  )
 	//是否存在options
 	if( !$options )
 	{
-		Ajax('对不起，字段选项必须填写一个！',300);
+		Ajax('ขออภัย! ต้องเลือกตัวเลือกฟิลด์ก่อน',300);
 	}
 	else
 	{
@@ -70,18 +70,18 @@ if ( $type == 'edit' || $type == "add"  )
 		$where['field_id'] = WMSql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了自定义字段'.$data['field_name'] , 'system' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มฟิลด์ที่กำหนดเอง'.$data['field_name'] , 'system' , 'insert' , $table , $where , $data );
 		
-		Ajax('自定义字段新增成功!');
+		Ajax('เพิ่มฟิลด์ที่กำหนดเองสำเร็จ!');
 	}
 	//修改自定义字段
 	else
 	{
 		//写入操作记录
-		SetOpLog( '修改自定义字段' , 'system' , 'update' , $table  , $where , $data );
+		SetOpLog( 'แก้ไขฟิลด์ที่กำหนดเอง' , 'system' , 'update' , $table  , $where , $data );
 		//修改数据
 		WMSql::Update($table, $data, $where);
-		Ajax('自定义字段修改成功！');
+		Ajax('แก้ไขฟิลด์ที่กำหนดเองสำเร็จ!');
 	}
 }
 //删除自定义字段
@@ -89,22 +89,22 @@ else if ( $type == 'del' )
 {
 	$where['field_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了自定义字段' , 'system' , 'delete' , $table , $where);
+	SetOpLog( 'ลบฟิลด์ที่กำหนดเอง' , 'system' , 'delete' , $table , $where);
 
 	//删除标题
 	wmsql::Delete($table, $where);
 	//删除值
 	wmsql::Delete('@config_field_value', array('value_field_id'=>$where['field_id']));
 	
-	Ajax('自定义字段删除成功!');
+	Ajax('ลบฟิลด์ที่กำหนดเองสำเร็จ!');
 }
 //根据模块获取分类
 else if ( $type == 'gettype' )
 {
 	if( $module == '' )
 	{
-		$data[] = array('type_id'=>0,'type_topid'=>0,'type_pid'=>0,'type_name'=>'对不起，请选择模块');
-		Ajax('获取成功' , 200 , $data);
+		$data[] = array('type_id'=>0,'type_topid'=>0,'type_pid'=>0,'type_name'=>'ขออภัย! โปรดเลือกโมดูลก่อน');
+		Ajax('สำเร็จ!' , 200 , $data);
 	}
 	else
 	{
@@ -113,7 +113,7 @@ else if ( $type == 'gettype' )
 		$wheresql['order'] = 'type_order';
 		$data = wmsql::GetAll($wheresql);
 
-		Ajax('获取成功' , 200 , $data);
+		Ajax('สำเร็จ!' , 200 , $data);
 	}
 }
 //根据模块和分类id获得自定义字段的内容
@@ -136,6 +136,6 @@ else if( $type == 'getfield')
 			$fieldArr[$k]['form'] = $conSer->GetForm($v);
 		}
 	}
-	Ajax('获取成功' , 200 , $fieldArr);
+	Ajax('สำเร็จ!' , 200 , $fieldArr);
 }
 ?>

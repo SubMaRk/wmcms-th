@@ -17,12 +17,12 @@ if ( $type == 'config' )
 	$configMod->UpdateToForm($post);
 
 	//写入操作记录
-	SetOpLog( '修改上传水印设置' , 'system' , 'update' );
+	SetOpLog( 'แก้ไขการตั้งค่าลายน้ำ' , 'system' , 'update' );
 	
 	//更新配置文件
 	$manager->UpConfig('web');
 	
-	Ajax('水印设置保存成功！');
+	Ajax('จัดเก็บการตั้งค่าลายน้ำสำเร็จ!');
 }
 //测试生成水印
 else if( $type == 'water_test' )
@@ -47,11 +47,11 @@ else if( $type == 'water_test' )
 		$imgSer->WaterMark( $waterRoot.$waterTest );
 		
 		$data['src'] = $src.'?'.time();
-		Ajax('生成成功！',200,$data);
+		Ajax('สร้างสำเร็จ!',200,$data);
 	}
 	else
 	{
-		Ajax('对不起，水印背景图不存在，请确保'.$bgSrc.'文件存在',300);
+		Ajax('ขออภัย! ไม่มีรูปภาพลายน้ำพื้นหลังอยู่ โปรดตรวจสอบว่ามีไฟล์ '.$bgSrc.' อยู่',300);
 	}
 }
 ?>
