@@ -40,7 +40,7 @@ if ( $type == 'edit')
 		}
 		else
 		{
-			$top['name'] = '顶级分类';
+			$top['name'] = 'หมวดหมู่สูงสุด';
 		}
 	}
 }

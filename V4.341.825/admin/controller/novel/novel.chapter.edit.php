@@ -57,5 +57,5 @@ if( $nid > 0 || $type == 'edit')
 	$wheresql['order'] = 'volume_order desc';
 	$vidArr = wmsql::GetAll($wheresql);
 }
-$vidArr[] = array('volume_id'=>1,'volume_name'=>'正文');
+$vidArr[] = array('volume_id'=>1,'volume_name'=>'เล่มหลัก');
 ?>

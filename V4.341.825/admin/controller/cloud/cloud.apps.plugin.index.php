@@ -14,7 +14,7 @@ $pluginData = array();
 
 if( !str::Number($id) )
 {
-	$errInfo = '对不起，插件id错误！';
+	$errInfo = 'ขออภัย! ไอดัปลั๊กอินไม่ถูกต้อง';
 }
 else
 {
@@ -23,7 +23,7 @@ else
 	$pluginData = $pluginMod->GetById($id);
 	if( !$pluginData )
 	{
-		$errInfo = '对不起，插件不存在！';
+		$errInfo = 'ขออภัย! ไม่มีปลั๊กอินอยู่';
 	}
 	else
 	{
