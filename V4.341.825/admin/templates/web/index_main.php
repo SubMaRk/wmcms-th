@@ -31,7 +31,7 @@
                     <br><span class="label label-default">เทมเพลต : </span> <a href="#">@Kind Xiaochou (เซินเจิ้น)</a> <a href="#">@Junzi (ปักกิ่ง)</a>
                     <br><span class="label label-default">ทดสอบ & ลองใช้ : </span> <a href="#">@YawZhou (ชานซี)</a> <a href="#">@ReaL (เหอหนาน)</a>
                     <br><span class="label label-default">โปรโมท & ดูแล : </span> <a href="#">@Idaho (ปักกิ่ง)</a>
-										<!-- SubMaRk --><br><span class="label label-default">แปลไทย : </span> <a href="https://www.facebook.com/NumSubMaRk" target="_blank">@SubMaRk (ประเทศไทย)</a>
+										<!-- SubMaRk --><br><span class="label label-default">แปลไทย : </span> <a href="https://naynum.engineer" target="_blank">@SubMaRk (ประเทศไทย)</a>
                 </div>
             </div>
             <div class="col-md-6" style="padding:5px;">
@@ -66,7 +66,7 @@
         <div class="row" style="padding: 0 8px;">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h3 class="panel-title">เวอร์ชั่นปัจจุบัน : <code>V<?php echo WMVER?></code> เวอร์ชั่นล่าสุด : <code id="version_new">V<?php echo WMVER?></code> บันทึกการอัปเดทล่าสุด (<code id="version_time">......</code>) : </h3></div>
+                    <div class="panel-heading"><h3 class="panel-title">เวอร์ชั่นปัจจุบัน : <code>V<?php echo WMVER?></code> เวอร์ชั่นล่าสุด : <code id="version_new">V<?php echo WMVER?></code> บันทึกการอัปเดทล่าสุด (<code id="version_time">......</code>)</h3></div>
                     <div class="panel-body bjui-doc" style="padding:0;">
                         <ul>
                             <li id="version_remark" style="font-size: 15px">กำลังโหลด...</li>
@@ -99,7 +99,7 @@ function <?php echo $cFun;?>ajaxCallBack(json){
 	if(data){
 		if( '<?php echo WMVER?>' != data['version_number'] )
 		{
-			$(this).alertmsg("ok", "服务器有新版本可以更新!");
+			$(this).alertmsg("ok", "พบเวอร์ชั่นใหม่บนเซิร์ฟเวอร์ที่สามารถอัปเดทได้!");
 		}
 		$("#version_new").html('V'+data['version_number']);
 		$("#version_time").html(data['version_addtime']);

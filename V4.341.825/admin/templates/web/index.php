@@ -192,9 +192,9 @@ if( $apiAppid == 0 || $apiApikey == '0000' || $apiApikey == '0000' )
 ?>
 </script>
 </head>
-<body>
+<body><!-- SubMaRk -->
     <!--[if lte IE 7]>
-        <div id="errorie"><div>您还在使用老掉牙的IE，正常使用系统前请升级您的浏览器到 IE8以上版本 <a target="_blank" href="http://windows.microsoft.com/zh-cn/internet-explorer/ie-8-worldwide-languages">点击升级</a>&nbsp;&nbsp;强烈建议您更改换浏览器：<a href="http://down.tech.sina.com.cn/content/40975.html" target="_blank">谷歌 Chrome</a></div></div>
+        <div id="errorie"><div>คุณใช้เบราว์เซอร์ IE เวอร์ชั่นเก่าอยู่ โปรดอัปเดทเบราว์เซอร์ของคุณเป็น IE8 หรือใหม่กว่าก่อนจึงจะเข้าใช้งานระบบได้ตามปกติ <a target="_blank" href="https://support.microsoft.com/th-th/help/17621/internet-explorer-downloads">คลิ๊กเพื่ออัปเดท</a>&nbsp;&nbsp; หรือเราแนะนำให้คุณเปลี่ยนไปใช้เบราว์เซอร์อื่นแทน <a href="https://www.google.com/intl/th_th/chrome/" target="_blank">Google Chrome</a></div></div>
     <![endif]-->
     <div id="bjui-window">
     <header id="bjui-header">
@@ -208,7 +208,7 @@ if( $apiAppid == 0 || $apiApikey == '0000' || $apiApikey == '0000' )
             <ul class="bjui-navbar-right">
 				<li><span class="wrap_bjui_btn_box" style="position: relative; display: inline-block;"><input type="text" placeholder="เมนูค้นหา" id="searchMenuKey" class="doc_lookup form-control" size="10" ><a class="bjui-lookup" href="javascript:;" onClick="SerachMenu()" style="height: 22px; line-height: 22px;"><i class="fa fa-search"></i></a></span></li>
                 <li class="datetime"><div><span id="bjui-date"></span> <span id="bjui-clock"></span></div></li>
-                <!--<li><a href="#">消息 <span class="badge">4</span></a></li>-->
+                <!--<li><a href="#">ข่าวสาร <span class="badge">4</span></a></li>-->
                 <li><a href="/" target="_blank">หน้าหลัก </a></li>
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">สวัสดี! <?php echo Session('admin_name');?><span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -389,7 +389,7 @@ if( $apiAppid == 0 || $apiApikey == '0000' || $apiApikey == '0000' )
         </div>
     </div>
 
-    <footer id="bjui-footer">Powered by <a href="<?php echo WMURL;?>" target="_blank"><?php echo WMCMS;?></a> Inc. | แปลไทยโดย <a href="https://www.facebook.com/NumSubMaRk" target="_blank">SubMaRk</a></footer>
+    <footer id="bjui-footer">Powered by <a href="<?php echo WMURL;?>" target="_blank"><?php echo WMCMS;?></a> Inc. | แปลไทยโดย <a href="https://naynum.engineer" target="_blank">SubMaRk</a></footer>
 </div>
 
 <script type="text/javascript">

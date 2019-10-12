@@ -55,5 +55,5 @@
             </div>
   </div>
 </div>
-<div class="jianyi">Powered by <a href="<?php echo WMURL;?>" target="_blank"><?php echo WMCMS;?></a> Inc. | แปลไทยโดย <a href="https://www.facebook.com/NumSubMaRk" target="_blank">SubMaRk</a></div>
+<div class="jianyi">Powered by <a href="<?php echo WMURL;?>" target="_blank"><?php echo WMCMS;?></a> Inc.<!-- SubMaRk --> | แปลไทยโดย <a href="https://naynum.engineer" target="_blank">SubMaRk</a></div>
 </body></html>
