@@ -18,7 +18,7 @@ class AppApp
 	function GetAttr()
 	{
 		$arr = array(
-			'rec'=>'推荐',
+			'rec'=>'แนะนำ',
 		);
 		
 		return $arr;

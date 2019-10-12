@@ -22,8 +22,8 @@ class pictureType
 		}
 		echo '<dt class="cf">
 			<div class="btn-toolbar opt-btn cf">
-				<a href="index.php?d=yes&c=picture.type.edit&t=edit&id='.$v['type_id'].'" data-toggle="navtab" data-id="picture-type-edit" data-title="编辑图集分类"><span class="btn btn-secondary size-MINI radius">编辑</span></a>
-				<a class="btn btn-danger radius" onclick="'.GetCFun().'delAjax('.$v['type_id'].')">删除</a>
+				<a href="index.php?d=yes&c=picture.type.edit&t=edit&id='.$v['type_id'].'" data-toggle="navtab" data-id="picture-type-edit" data-title="แก้ไขหมวดหมู่อัลบั้ม"><span class="btn btn-secondary size-MINI radius">แก้ไข</span></a>
+				<a class="btn btn-danger radius" onclick="'.GetCFun().'delAjax('.$v['type_id'].')">ลบ</a>
 			</div>
 			<div class="fold"><i></i></div>
 			<div class="order">'.$v['type_id'].'</div>

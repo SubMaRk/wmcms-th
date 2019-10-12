@@ -26,18 +26,18 @@ class SystemConfig
 	{
 		$arr = GetModuleName();
 		
-		$arr['domain'] = '域名设置';
-		$arr['templates'] = '模版配置';
-		$arr['email'] = '邮件配置';
-		$arr['system'] = '系统配置';
-		$arr['tongji'] = '统计配置';
-		$arr['upload'] = '上传配置';
-		$arr['logo'] = 'LOGO配置';
-		$arr['cache'] = '缓存配置';
-		$arr['finance'] = '财务配置';
-		$arr['code'] = '验证码配置';
-		$arr['site'] = '站群配置';
-		$arr['urlmode'] = '路由配置';
+		$arr['domain'] = 'ตั้งค่าโดเมน';
+		$arr['templates'] = 'ตั้งค่าเทมเพลต';
+		$arr['email'] = 'ตั้งค่าอีเมล์';
+		$arr['system'] = 'ตั้งค่าระบบ';
+		$arr['tongji'] = 'ตั้งค่าสถิติ';
+		$arr['upload'] = 'ตั้งค่าการอัปโหลด';
+		$arr['logo'] = 'ตั้งค่าโลโก้';
+		$arr['cache'] = 'ตั้งค่าแคช';
+		$arr['finance'] = 'ตั้งค่าการเงิน';
+		$arr['code'] = 'ตั้งค่าตัวตรวจบ็อท';
+		$arr['site'] = 'ตั้งค่ากลุ่มเว็บไซต์';
+		$arr['urlmode'] = 'ตั้งค่าลิ้งก์';
 		
 		unset($arr['all']);
 		return $arr;
@@ -74,11 +74,11 @@ class SystemConfig
 	function GetFromType( $key = '' )
 	{
 		$arr = array(
-			"input"=>'文本框',
-			"select"=>'下拉选项',
-			"radio"=>'单选按钮',
-			"check"=>'复选按钮',
-			"textarea"=>'文本域',
+			"input"=>'กล่องข้อความ',
+			"select"=>'ตัวเลือกแบบเลื่อน',
+			"radio"=>'ปุ่ม',
+			"check"=>'ปุ่มติ๊ก',
+			"textarea"=>'ฟิลด์ข้อความ',
 		);
 		
 		if( $key != '' )

@@ -21,8 +21,8 @@ class OperateAd
 	function GetStatus( $k = '' )
 	{
 		$arr = array(
-			'1'=>'显示',
-			'0'=>'隐藏',
+			'1'=>'แสดง',
+			'0'=>'ซ่อน',
 		);
 	
 		if( $k != '' )
@@ -43,9 +43,9 @@ class OperateAd
 	function GetType( $k = '' )
 	{
 		$arr = array(
-			'1'=>'文字广告',
-			'2'=>'图片广告',
-			'3'=>'JS广告',
+			'1'=>'ข้อความโฆษณา',
+			'2'=>'รูปภาพโฆษณา',
+			'3'=>'JS โฆษณา',
 		);
 	
 		if( $k != '' )
@@ -66,10 +66,10 @@ class OperateAd
 	function GetPt( $k = '' )
 	{
 		$arr = array(
-			'4'=>'电脑端',
-			'3'=>'触屏端',
-			'2'=>'3G端',
-			'1'=>'wap端',
+			'4'=>'คอมพิวเตอร์',
+			'3'=>'รุ่นสัมผัส',
+			'2'=>'รุ่น 3G',
+			'1'=>'มือถือ',
 		);
 	
 		if( $k != '' )
@@ -109,7 +109,7 @@ class OperateAd
 		//如果是限制时间的广告
 		if( $data['ad_time_type'] == '1')
 		{
-			$content = 'var startTime='.$data['ad_start_time'].';var endTime='.$data['ad_end_time'].';var nowTime= Date.parse(new Date())/1000;if( nowTime<startTime){document.write("对不起，广告还未到开启时间！");}else if( endTime<nowTime ){document.write("对不起，广告已经到期停止显示！");}else{'.$content.'}';
+			$content = 'var startTime='.$data['ad_start_time'].';var endTime='.$data['ad_end_time'].';var nowTime= Date.parse(new Date())/1000;if( nowTime<startTime){document.write("ขออภัย! โฆษณานี้ยังไม่เปิดให้เข้าชมในตอนนี้");}else if( endTime<nowTime ){document.write("ขออภัย! โฆษณานี้หมดอายุและหยุดการแสดงแล้ว");}else{'.$content.'}';
 		}
 		file::CreateFile($file, str::Escape($content) , '1');
 	}

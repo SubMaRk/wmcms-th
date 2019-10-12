@@ -31,7 +31,7 @@ class SystemApply
 		$result['table'] = $this->authorTable;
 		$result['where'] = $where;
 		$result['data'] = $data;
-		$result['info'] = '拒绝了作者申请！';
+		$result['info'] = 'ละทิ้งคำร้องผู้แต่งสำเร็จ!';
 		return $result;
 	}
 	
@@ -51,7 +51,7 @@ class SystemApply
 		$result['table'] = $this->novelTable;
 		$result['where'] = $where;
 		$result['data'] = $data;
-		$result['info'] = '拒绝了封面申请！';
+		$result['info'] = 'ละทิ้งคำร้องปกสำเร็จ!';
 		return $result;
 	}
 	
@@ -70,7 +70,7 @@ class SystemApply
 		$result['table'] = $this->novelTable;
 		$result['where'] = $where;
 		$result['data'] = $data;
-		$result['info'] = '拒绝了小说修改申请！';
+		$result['info'] = 'ละทิ้งคำร้องแก้ไขนิยายสำเร็จ!';
 		return $result;
 	}
 	
@@ -89,7 +89,7 @@ class SystemApply
 		$result['table'] = $this->chapterTable;
 		$result['where'] = $where;
 		$result['data'] = $data;
-		$result['info'] = '拒绝了章节修改申请！';
+		$result['info'] = 'ละทิ้งคำร้องแก้ไขบทสำเร็จ!';
 		return $result;
 	}
 
@@ -109,7 +109,7 @@ class SystemApply
 		$result['table'] = $this->articleTable;
 		$result['where'] = $where;
 		$result['data'] = $data;
-		$result['info'] = '拒绝了文章投稿修改申请！';
+		$result['info'] = 'ละทิ้งคำร้องแก้ไขการส่งบทความสำเร็จ!';
 		return $result;
 	}
 }
