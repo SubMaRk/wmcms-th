@@ -19,7 +19,7 @@ if ( $type == "add" || $type == "edit" )
 		$data = str::Escape( GetKey($post,'level'), 'e' );
 		if( !$data )
 		{
-			Ajax('对不起，请添加数据后再点击保存!',300);
+			Ajax('ขออภัย! โปรดเพิ่มข้อมูลแล้วคลิ๊กจัดเก็บ!',300);
 		}
 		foreach ($data as $k=>$v)
 		{
@@ -27,10 +27,10 @@ if ( $type == "add" || $type == "edit" )
 			{
 				$where['level_id'] = wmsql::Insert($table, $v);
 				//写入操作记录
-				SetOpLog( '新增了用户等级' , 'user' , 'insert' , $table , $where , $v );
+				SetOpLog( 'เพิ่มระดับผู้ใช้' , 'user' , 'insert' , $table , $where , $v );
 			}
 		}
-		$info = '恭喜您，用户等级添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มระดับผู้ใช้สำเร็จ';
 	}
 	else if( $type == 'edit' )
 	{
@@ -40,10 +40,10 @@ if ( $type == "add" || $type == "edit" )
 			{
 				wmsql::Update($table, $v['data'], $v['id']);
 				//写入操作记录
-				SetOpLog( '修改了用户等级' , 'user' , 'update' , $table , $v['id'] , $v['data'] );
+				SetOpLog( 'แก้ไขระดับผู้ใช้' , 'user' , 'update' , $table , $v['id'] , $v['data'] );
 			}
 		}
-		$info = '恭喜您，用户等级修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขระดับผู้ใช้สำเร็จ';
 	}
 	
 	Ajax($info);
@@ -55,8 +55,8 @@ else if ( $type == 'del')
 	wmsql::Delete($table , $where);
 	
 	//写入操作记录
-	SetOpLog( '删除了用户等级' , 'user' , 'delete' , $table , $where);
+	SetOpLog( 'ลบระดับผู้ใช้' , 'user' , 'delete' , $table , $where);
 	
-	Ajax('用户等级删除成功!');
+	Ajax('ลบระดับผู้ใช้สำเร็จ!');
 }
 ?>

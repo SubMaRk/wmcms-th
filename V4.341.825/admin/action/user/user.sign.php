@@ -15,10 +15,10 @@ if ( $type == 'del')
 {
 	$where['user_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了用户签到记录' , 'user' , 'delete' , $table , $where);
+	SetOpLog( 'ลบบันทึกการเช็คชื่อผู้ใช้' , 'user' , 'delete' , $table , $where);
 	wmsql::Delete($table , $where);
 	
-	Ajax('用户签到记录删除成功!');
+	Ajax('ลบบันทึกการเช็คชื่อผู้ใช้สำเร็จ!');
 }
 //清空请求记录
 else if ( $type == 'clear' )
@@ -26,7 +26,7 @@ else if ( $type == 'clear' )
 	wmsql::Delete($table);
 
 	//写入操作记录
-	SetOpLog( '清空了签到记录' , 'user' , 'delete');
-	Ajax('所有签到记录成功清空！');
+	SetOpLog( 'ล้างบันทึกการเช็คชื่อผู้ใช้' , 'user' , 'delete');
+	Ajax('ล้างบันทึกการเช็คชื่อผู้ใช้สำเร็จ!');
 }
 ?>

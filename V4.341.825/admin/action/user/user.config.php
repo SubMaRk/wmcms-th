@@ -17,7 +17,7 @@ if( $post )
 	$configMod->UpdateToForm($post);
 
 	//写入操作记录
-	SetOpLog( '修改用户模块设置' , 'user' , 'update' );
+	SetOpLog( 'แก้ไขการตั้งค่าโมดูลผู้ใช้' , 'user' , 'update' );
 	
 	//更新配置文件
 	$manager->UpConfig('user');

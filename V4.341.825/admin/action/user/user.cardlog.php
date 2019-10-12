@@ -15,17 +15,17 @@ if ( $type == 'del')
 {
 	$where['log_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了卡号使用记录！' , 'user' , 'delete' , $table , $where);
+	SetOpLog( 'ลบบันทึกการใช้บัตร' , 'user' , 'delete' , $table , $where);
 	wmsql::Delete($table , $where);
 	
-	Ajax('卡号使用记录批量删除成功!');
+	Ajax('ลบบันทึกการใช้บัตรสำเร็จ!');
 }
 //清空数据
 else if ( $type == 'clear')
 {
 	//写入操作记录
-	SetOpLog( '清空了所有卡号使用记录！' , 'user' , 'delete' , $table);
+	SetOpLog( 'ล้างบันทึกการใช้บัตร' , 'user' , 'delete' , $table);
 	wmsql::Delete($table);
-	Ajax('卡号使用记录全部清空成功！');
+	Ajax('ล้างบันทึกการใช้บัตรสำเร็จ!');
 }
 ?>

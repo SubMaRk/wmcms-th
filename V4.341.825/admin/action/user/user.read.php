@@ -15,7 +15,7 @@ $readMod = NewModel('user.read');
 //检测参数
 if( $module=='' || $type == '' )
 {
-	Ajax('对不起，参数错误!',300);
+	Ajax('ขออภัย! พารามิเตอร์ไม่ถูกต้อง',300);
 }
 //删除数据
 else if ( $type == 'del')
@@ -24,8 +24,8 @@ else if ( $type == 'del')
 	$where['read_module'] = $module;
 	$readMod->DelLog($where);
 	//写入操作记录
-	SetOpLog( '删除了阅读记录！' , 'user' , 'delete' , $table , $where);
-	Ajax('阅读记录批量删除成功!');
+	SetOpLog( 'ลบบันทึกการอ่าน' , 'user' , 'delete' , $table , $where);
+	Ajax('ลบบันทึกการอ่านสำเร็จ!');
 }
 //清空数据
 else if ( $type == 'clear')
@@ -33,7 +33,7 @@ else if ( $type == 'clear')
 	$where['read_module'] = $module;
 	$readMod->DelLog($where);
 	//写入操作记录
-	SetOpLog( '清空了所有卡号！' , 'user' , 'delete' , $table);
-	Ajax('阅读记录全部清空成功！');
+	SetOpLog( 'ล้างบันทึกการอ่าน' , 'user' , 'delete' , $table);
+	Ajax('ล้างบันทึกการอ่านสำเร็จ!');
 }
 ?>

@@ -34,11 +34,11 @@ if ( $type == 'edit' || $type == "add"  )
 
 	if ( $data['user_name'] == '' || $data['user_nickname'] == '' || $data['user_email'] == '' )
 	{
-		Ajax('对不起，用户账号、昵称和邮箱地址必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อบัญชี ชื่อเล่น และที่อยู่อีเมล์ก่อน',300);
 	}
 	else if ( str::CheckEmail($data['user_email']) == false )
 	{
-		Ajax('对不起，邮箱格式错误！',300);
+		Ajax('ขออภัย! ที่อยู่อีเมล์ไม่ถูกต้อง',300);
 	}
 	if ( $data['user_psw'] != '' )
 	{
@@ -53,7 +53,7 @@ if ( $type == 'edit' || $type == "add"  )
 	$wheresql['where']['user_name'] = $data['user_name'];
 	if ( wmsql::GetCount($wheresql) > 0 )
 	{
-		Ajax('对不起，该用户名已经注册了！',300);
+		Ajax('ขออภัย! มีชื่อผู้ใช้นี้ลงทะเบียนแล้ว',300);
 	}
 	
 	//用户邮箱检查
@@ -63,7 +63,7 @@ if ( $type == 'edit' || $type == "add"  )
 	$wheresql['where']['user_email'] = $data['user_email'];
 	if ( wmsql::GetCount($wheresql) > 0 )
 	{
-		Ajax('对不起，该邮箱已经注册了！',300);
+		Ajax('ขออภัย! ที่อยู่อีเมล์นี้ถูกใช้ลงทะเบียนแล้ว',300);
 	}
 	
 	//用户昵称检查
@@ -73,7 +73,7 @@ if ( $type == 'edit' || $type == "add"  )
 	$wheresql['where']['user_nickname'] = $data['user_nickname'];
 	if ( wmsql::GetCount($wheresql) > 0 )
 	{
-		Ajax('对不起，用户昵称已经被注册了！',300);
+		Ajax('ขออภัย! ชื่อเล่นนี้ถูกใช้ลงทะเบียนไปแล้ว',300);
 	}
 	
 	
@@ -82,7 +82,7 @@ if ( $type == 'edit' || $type == "add"  )
 	{
 		if ( $data['user_psw'] == '' )
 		{
-			Ajax('对不起，用户密码不能为空！',300);
+			Ajax('ขออภัย! ต้องกรอกรหัสผ่านก่อน',300);
 		}
 		//插入作者信息
 		$where['user_id'] = wmsql::Insert($table, $data);
@@ -92,8 +92,8 @@ if ( $type == 'edit' || $type == "add"  )
 		$financeMod->InsertFinance($financeData);
 		
 		//写入操作记录
-		$info = '恭喜您，用户添加成功！';
-		SetOpLog( '新增了用户'.$data['user_name'] , 'user' , 'insert' , $table , $where , $data );
+		$info = 'ยินดีด้วย! เพิ่มผู้ใช้สำเร็จ';
+		SetOpLog( 'เพิ่มผู้ใช้'.$data['user_name'] , 'user' , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
@@ -109,8 +109,8 @@ if ( $type == 'edit' || $type == "add"  )
 		$financeMod->UpdateFinance($financeData , $where['user_id']);
 		
 		//写入操作记录
-		$info = '恭喜您，用户修改成功！';
-		SetOpLog( '修改了用户'.$data['user_name'] , 'user' , 'update' , $table , $where , $data );
+		$info = 'ยินดีด้วย! แก้ไขผู้ใช้สำเร็จ';
+		SetOpLog( 'แก้ไขผู้ใช้'.$data['user_name'] , 'user' , 'update' , $table , $where , $data );
 	}
 	
 	Ajax($info);
@@ -122,8 +122,8 @@ else if ( $type == 'del')
 	wmsql::Delete($table , $where);
 	wmsql::Delete('@user_apilogin' , array('api_uid'=>GetDelId()));
 	//写入操作记录
-	SetOpLog( '删除了用户' , 'user' , 'delete' , $table , $where);
-	Ajax('用户删除成功!');
+	SetOpLog( 'ลบผู้ใช้' , 'user' , 'delete' , $table , $where);
+	Ajax('ลบผู้ใช้สำเร็จ!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -133,17 +133,17 @@ else if ( $type == 'status' )
 
 	if( Request('status') == '1')
 	{
-		$msg = '审核通过';
+		$msg = 'ตรวจสอบ';
 	}
 	else
 	{
-		$msg = '取消审核';
+		$msg = 'ละทิ้ง';
 	}
 	//写入操作记录
-	SetOpLog( $msg.'了用户' , 'user' , 'update' , $table , $where);
+	SetOpLog( $msg.'ผู้ใช้' , 'user' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('用户'.$msg.'成功!');
+	Ajax('ผู้ใช้ถูก'.$msg.'แล้ว!');
 }
 //用户金币奖惩操作
 else if ( $type == 'reward' )
@@ -157,11 +157,11 @@ else if ( $type == 'reward' )
 
 	if( !str::Number($id) )
 	{
-		Ajax('用id错误!',300);
+		Ajax('ไอดีผิดพลาด!',300);
 	}
 	else if( $gold1 == '0' && $gold2 == '0' && $money == '0')
 	{
-		Ajax('奖惩金币不能为空!',300);
+		Ajax('เหรียญรางวัลต้องไม่ว่าง!',300);
 	}
 	else
 	{
@@ -173,7 +173,7 @@ else if ( $type == 'reward' )
 		//如果用户不存在
 		if( $count < 1 )
 		{
-			Ajax('用信息不存在!',300);
+			Ajax('ไม่มีข้อมูลนี้อยู่!',300);
 		}
 		else
 		{
@@ -211,7 +211,7 @@ else if ( $type == 'reward' )
 			$msg .= '<br/>'.$operator.$gold2.$userConfig['gold2_name'].'!';
 			$msgMod->Insert($id , $msg);
 			
-			Ajax($remark.'成功!');
+			Ajax($remark.'สำเร็จ!');
 		}
 	}
 }

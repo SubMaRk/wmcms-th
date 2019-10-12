@@ -33,23 +33,23 @@ if ( $type == 'create'  )
 	
 	if( $cType == '' )
 	{
-		Ajax('对不起，请选择卡号类型！' , 300);
+		Ajax('ขออภัย! โปรดเลือกรูปแบบหมายเลขบัตรก่อน' , 300);
 	}
 	else if( $number == '' )
 	{
-		Ajax('对不起，请输入生成数量！' , 300);
+		Ajax('ขออภัย! โปรดกรอกหมายเลขก่อน' , 300);
 	}
 	else if( $channel == '' )
 	{
-		Ajax('对不起，请输入发布渠道！' , 300);
+		Ajax('ขออภัย! โปรดดรอกช่องทางจำหน่ายก่อน' , 300);
 	}
 	else if( $start == '1' && $startStr == '')
 	{
-		Ajax('对不起，请输入指定开头字符串！' , 300);
+		Ajax('ขออภัย! โปรดกรอกคำที่ระบุก่อน' , 300);
 	}
 	else if( $cType == 1 && $money == '' )
 	{
-		Ajax('对不起，请输入卡号金额！' , 300);
+		Ajax('ขออภัย! โปรดกรอกจำนวนบัตร' , 300);
 	}
 	
 	
@@ -86,8 +86,8 @@ if ( $type == 'create'  )
 	file::CreateFile($fileName, $txtContent);
 	
 	//写入操作记录
-	$info = '恭喜您，卡号生成成功！';
-	SetOpLog( '批量生成了'.$number.'组卡号' , 'user' , 'update' , $table);
+	$info = 'ยินดีด้วย! สร้างหมายเลขบัตรสำเร็จ';
+	SetOpLog( 'สร้างหมายเลขบัตร'.$number.'กลุ่มหมายเลขบัตร' , 'user' , 'update' , $table);
 	
 	Ajax($info , 200 , array('file'=>$fileName));
 }
@@ -96,17 +96,17 @@ else if ( $type == 'del')
 {
 	$where['card_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了卡号！' , 'user' , 'delete' , $table , $where);
+	SetOpLog( 'ลบหมายเลขบัตร' , 'user' , 'delete' , $table , $where);
 	wmsql::Delete($table , $where);
 	
-	Ajax('卡号批量删除成功!');
+	Ajax('ลบหมายเลขบัตรสำเร็จ!');
 }
 //清空数据
 else if ( $type == 'clear')
 {
 	//写入操作记录
-	SetOpLog( '清空了所有卡号！' , 'user' , 'delete' , $table);
+	SetOpLog( 'ล้างหมายเลขบัตร' , 'user' , 'delete' , $table);
 	wmsql::Delete($table);
-	Ajax('卡号全部清空成功！');
+	Ajax('ล้างหมายเลขบัตรสำเร็จ!');
 }
 ?>

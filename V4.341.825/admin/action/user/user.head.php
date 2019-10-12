@@ -17,17 +17,17 @@ if ( $type == "add"  )
 
 	if ( $data['head_src'] == '' )
 	{
-		Ajax('对不起，文件地址不能为空！',300);
+		Ajax('ขออภัย! ที่อยู่ไฟล์ต้องไม่ว่าง',300);
 	}
 	
 	//新增数据
 	if( $type == 'add' )
 	{
-		$info = '恭喜您，头像添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มรูปโปรไฟล์สำเร็จ';
 		$where['head_id'] = wmsql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了头像' , 'user' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มรูปโปรไฟล์' , 'user' , 'insert' , $table , $where , $data );
 	}
 	
 	Ajax($info);
@@ -51,8 +51,8 @@ else if ( $type == 'del')
 		}
 	}
 	//写入操作记录
-	SetOpLog( '删除了头像' , 'user' , 'delete' , $table , $where);
+	SetOpLog( 'ลบรูปโปรไฟล์' , 'user' , 'delete' , $table , $where);
 	
-	Ajax('头像删除成功!');
+	Ajax('ลบรูปโปรไฟล์สำเร็จ!');
 }
 ?>

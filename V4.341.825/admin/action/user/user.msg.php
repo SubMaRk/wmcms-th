@@ -20,11 +20,11 @@ if ( $type == "send"  )
 
 	if ( !str::IsEmpty($uid) )
 	{
-		Ajax($uid.'对不起，用户id不能为空！',300);
+		Ajax($uid.'ขออภัย! ไอดีผู้ใช้ต้องไม่ว่าง',300);
 	}
 	else if ( $data['msg_content'] == '' )
 	{
-		Ajax('对不起，消息内容为空！',300);
+		Ajax('ขออภัย! เนื้อหาข้อความต้องไม่ว่าง',300);
 	}
 	
 
@@ -56,8 +56,8 @@ if ( $type == "send"  )
 	$uploadMod->UpdateCid( 'editor','user_msg', $where['msg_id']);
 	
 	//写入操作记录
-	SetOpLog( '群发了消息' , 'user' , 'insert' , $table , $where , $data );
-	Ajax('恭喜您，消息发送成功！');
+	SetOpLog( 'ส่งข้อความ' , 'user' , 'insert' , $table , $where , $data );
+	Ajax('ยินดีด้วย! ส่งข้อความสำเร็จ');
 }
 //删除请求记录
 else if ( $type == 'del' )
@@ -65,9 +65,9 @@ else if ( $type == 'del' )
 	$where['msg_id'] = GetDelId();
 	
 	wmsql::Delete($table, $where);
-	SetOpLog( '删除了消息记录' , 'user' , 'delete' , $table , $where);
+	SetOpLog( 'ลบบันทึกการส่งข้อความ' , 'user' , 'delete' , $table , $where);
 	
-	Ajax('消息删除成功!');
+	Ajax('ลบบันทึกการส่งข้อความสำเร็จ!');
 }
 //清空请求记录
 else if ( $type == 'clear' )
@@ -75,7 +75,7 @@ else if ( $type == 'clear' )
 	wmsql::Delete($table);
 
 	//写入操作记录
-	SetOpLog( '清空了消息记录' , 'user' , 'delete');
-	Ajax('所有消息成功清空！');
+	SetOpLog( 'ล้างบันทึกการส่งข้อความ' , 'user' , 'delete');
+	Ajax('ล้างบันทึกการส่งข้อความสำเร็จ!');
 }
 ?>
