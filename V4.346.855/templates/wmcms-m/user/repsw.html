@@ -1,0 +1,110 @@
+{header:header.html}
+
+<body class="bg">
+<div id="upfile"></div>
+<div class="container">
+
+
+
+ 
+
+ 
+
+
+<div class="content-wrap">
+<div class="content">
+
+
+
+<style>
+.bg, .content-wrap {
+background: #eee;
+}
+input:-webkit-autofill {
+-webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+}
+
+
+</style>
+
+<!-- header start -->
+<header class="header">
+  <div class="nav"> <a href="javascript:;" onclick="history.go(-1)" class="menu-z"><img src="{templates}/img/icon_back.png" /></a>
+    <h2 class="layer_login tit">重置密码</h2>
+
+  </div>
+</header>
+<!-- header end --> 
+
+  
+
+<!-- userinfo start -->
+<div class="layer_login loginbox "> 
+    <form method="post" action="{表单提交地址}" onsubmit="" >
+	<input type="hidden" name="type" value="repsw" />
+        <div class="login_from">
+      <ul>
+        <li class="rein"><span>新密码</span>
+          <input type="password" value="" tabindex="1" class="p_fre username" size="30" autocomplete="off" value="" name="psw"  placeholder="新密码" fwin="login">
+          <a class="uin_del" id="del" href="javascript:void(0);" style="display:none;"></a> </li>
+
+       <li class="rein"><span>确认新密码</span>
+          <input type="password" tabindex="2" class="p_fre s_fre" size="30" value="" name="repsw" placeholder="确认新密码" fwin="login">
+        </li>
+
+      </ul>
+       
+    </div>
+    <div class="btn_login">
+      <button tabindex="3" value="true" type="submit" name="submit" class="formdialog pn pnc"><span>确认重置</span></button>
+    </div>
+    
+    
+          
+
+    
+    
+    
+  </form>
+
+
+
+  
+  
+   
+</div>
+
+<div id="mask" style="display:none;"></div>
+
+
+
+</div>
+</div>
+</div>
+<script src="{templates}/js/main.js" type="text/javascript"></script>
+<script src="{templates}/js/classie.js" type="text/javascript"></script> 
+<script src="{templates}/js/jquery.scrollUp.min.js"type="text/javascript"></script>
+<script type="text/javascript">
+jQuery(function(){
+  jQuery.scrollUp({
+  animation: 'fade', // Fade, slide, none
+      scrollText: 'GoTop',
+  }
+  
+  );
+});
+jQuery(function(){
+jQuery(window).scroll(function(){
+          height = jQuery(window).scrollTop();
+   	  	  if(height > 200){
+ jQuery('.header').addClass("fixed");
+ jQuery('.slnav').addClass("fixed");
+   	  	  }else{
+ jQuery('.header').removeClass("fixed");
+ jQuery('.slnav').removeClass("fixed");
+   	  	  };
+});
+});
+</script>
+<div class="btBox"><div class="bt2"><a href="javascript:history.go(-1);">返回上页</a><a href="{首页}">返回首页</a></div></div>	
+{footer:footer.html}

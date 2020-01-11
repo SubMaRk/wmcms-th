@@ -1,0 +1,360 @@
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+[   Time   ] 2020-01-05 18:24:24
+[  Status  ] SUCCESS
+[  Start   ] 1578219864.5294
+[   End    ] 1578219864.5816
+[  RunTime ] 0.052
+------------------------
+[  Server  ] Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9
+[  Method  ] GET
+[   Root   ] E:/phpstudy/PHPTutorial/WWW/wmcms
+[   Host   ] wmcms.com
+[ ServerIp ] 127.0.0.1
+[    Url   ] http://wmcms.com/clear/
+[   Param  ] array (
+)
+------------------------
+[ ClientIp ] 127.0.0.1
+[  Client  ] Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+[   Time   ] 2020-01-05 18:24:38
+[  Status  ] SUCCESS
+[  Start   ] 1578219872.6997
+[   End    ] 1578219878.114
+[  RunTime ] 5.414
+------------------------
+[  Server  ] Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9
+[  Method  ] POST
+[   Root   ] E:/phpstudy/PHPTutorial/WWW/wmcms
+[   Host   ] wmcms.com
+[ ServerIp ] 127.0.0.1
+[    Url   ] http://wmcms.com/clear/?p=1
+[   Param  ] array (
+)
+------------------------
+[ ClientIp ] 127.0.0.1
+[  Client  ] Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36
+------------------------
+[ReturnJson] {"msg":"\u6570\u636e\u6e05\u7406\u5b8c\u6210","code":200,"data":[],"count":0}
+------------------------
+[   Sql   ] [ RunTime:0.000466 S ] UPDATE wm_manager_manager set `manager_psw`='d4b6232e4aa20cd032009cbb79b3452507a24830',`manager_salt`='a8e52ffc28e3300ee098aec5b1415b6cea5befcb' where `manager_id`='1'
+[   Sql   ] [ RunTime:0.001009 S ] delete wm_about_about from wm_about_about
+[   Sql   ] [ RunTime:0.000805 S ] delete wm_about_type from wm_about_type
+[   Sql   ] [ RunTime:0.001169 S ] delete wm_ad_ad from wm_ad_ad
+[   Sql   ] [ RunTime:0.001167 S ] delete wm_ad_type from wm_ad_type
+[   Sql   ] [ RunTime:0.000863 S ] delete wm_app_app from wm_app_app
+[   Sql   ] [ RunTime:0.00078 S ] delete wm_article_article from wm_article_article
+[   Sql   ] [ RunTime:0.000657 S ] delete wm_author_author from wm_author_author
+[   Sql   ] [ RunTime:0.000702 S ] delete wm_author_draft from wm_author_draft
+[   Sql   ] [ RunTime:0.001311 S ] delete wm_author_end from wm_author_end
+[   Sql   ] [ RunTime:0.001199 S ] delete wm_author_exp from wm_author_exp
+[   Sql   ] [ RunTime:0.00076 S ] delete wm_author_module_income from wm_author_module_income
+[   Sql   ] [ RunTime:0.000763 S ] delete wm_author_word from wm_author_word
+[   Sql   ] [ RunTime:0.000832 S ] delete wm_bbs_bbs from wm_bbs_bbs
+[   Sql   ] [ RunTime:0.001385 S ] delete wm_bbs_moderator from wm_bbs_moderator
+[   Sql   ] [ RunTime:0.001212 S ] delete wm_bbs_type from wm_bbs_type
+[   Sql   ] [ RunTime:0.001187 S ] delete wm_config_field from wm_config_field
+[   Sql   ] [ RunTime:0.000767 S ] delete wm_config_field_value from wm_config_field_value
+[   Sql   ] [ RunTime:0.000726 S ] delete wm_config_label from wm_config_label
+[   Sql   ] [ RunTime:0.001525 S ] delete wm_diy_diy from wm_diy_diy
+[   Sql   ] [ RunTime:0.000752 S ] delete wm_fans_module from wm_fans_module
+[   Sql   ] [ RunTime:0.000946 S ] delete wm_fans_module_consume from wm_fans_module_consume
+[   Sql   ] [ RunTime:0.000829 S ] delete wm_finance_order_cash from wm_finance_order_cash
+[   Sql   ] [ RunTime:0.000678 S ] delete wm_finance_order_charge from wm_finance_order_charge
+[   Sql   ] [ RunTime:0.000977 S ] delete wm_flash_flash from wm_flash_flash
+[   Sql   ] [ RunTime:0.000779 S ] delete wm_link_click from wm_link_click
+[   Sql   ] [ RunTime:0.000997 S ] delete wm_manager_login from wm_manager_login
+[   Sql   ] [ RunTime:0.000788 S ] delete wm_manager_operation from wm_manager_operation
+[   Sql   ] [ RunTime:0.000736 S ] delete wm_manager_recycle from wm_manager_recycle
+[   Sql   ] [ RunTime:0.000686 S ] delete wm_manager_request from wm_manager_request
+[   Sql   ] [ RunTime:0.000714 S ] delete wm_message_message from wm_message_message
+[   Sql   ] [ RunTime:0.001265 S ] delete wm_novel_chapter from wm_novel_chapter
+[   Sql   ] [ RunTime:0.001661 S ] delete wm_novel_content from wm_novel_content
+[   Sql   ] [ RunTime:0.000996 S ] delete wm_novel_novel from wm_novel_novel
+[   Sql   ] [ RunTime:0.000812 S ] delete wm_novel_rec from wm_novel_rec
+[   Sql   ] [ RunTime:0.000775 S ] delete wm_novel_sell from wm_novel_sell
+[   Sql   ] [ RunTime:0.001011 S ] delete wm_novel_sign from wm_novel_sign
+[   Sql   ] [ RunTime:0.000811 S ] delete wm_novel_sublog from wm_novel_sublog
+[   Sql   ] [ RunTime:0.001132 S ] delete wm_novel_volume from wm_novel_volume where `volume_id` > '1'
+[   Sql   ] [ RunTime:0.000787 S ] delete wm_novel_rewardlog from wm_novel_rewardlog
+[   Sql   ] [ RunTime:0.000948 S ] delete wm_operate_operate from wm_operate_operate
+[   Sql   ] [ RunTime:0.000729 S ] delete wm_operate_score from wm_operate_score
+[   Sql   ] [ RunTime:0.000997 S ] delete wm_picture_picture from wm_picture_picture
+[   Sql   ] [ RunTime:0.000803 S ] delete wm_picture_type from wm_picture_type
+[   Sql   ] [ RunTime:0.000349 S ] delete wm_plugin from wm_plugin where `plugin_id` > '6'
+[   Sql   ] [ RunTime:0.000978 S ] delete wm_plugin_config from wm_plugin_config where `config_id` > '4'
+[   Sql   ] [ RunTime:0.000821 S ] delete wm_props_sell from wm_props_sell
+[   Sql   ] [ RunTime:0.000795 S ] delete wm_replay_replay from wm_replay_replay
+[   Sql   ] [ RunTime:0.000848 S ] delete wm_search_search from wm_search_search
+[   Sql   ] [ RunTime:0.001046 S ] delete wm_system_competence from wm_system_competence
+[   Sql   ] [ RunTime:0.000806 S ] delete wm_system_errlog from wm_system_errlog
+[   Sql   ] [ RunTime:0.000754 S ] delete wm_system_tags from wm_system_tags
+[   Sql   ] [ RunTime:0.000791 S ] delete wm_upload from wm_upload
+[   Sql   ] [ RunTime:0.000785 S ] delete wm_user_apilogin from wm_user_apilogin
+[   Sql   ] [ RunTime:0.000673 S ] delete wm_user_card from wm_user_card
+[   Sql   ] [ RunTime:0.000764 S ] delete wm_user_card_log from wm_user_card_log
+[   Sql   ] [ RunTime:0.000728 S ] delete wm_user_coll from wm_user_coll
+[   Sql   ] [ RunTime:0.000806 S ] delete wm_user_finance from wm_user_finance
+[   Sql   ] [ RunTime:0.000872 S ] delete wm_user_finance_log from wm_user_finance_log
+[   Sql   ] [ RunTime:0.000808 S ] delete wm_user_login from wm_user_login
+[   Sql   ] [ RunTime:0.000632 S ] delete wm_user_msg from wm_user_msg
+[   Sql   ] [ RunTime:0.000731 S ] delete wm_user_sign from wm_user_sign
+[   Sql   ] [ RunTime:0.000804 S ] delete wm_user_ticket from wm_user_ticket
+[   Sql   ] [ RunTime:0.000838 S ] delete wm_user_ticket_log from wm_user_ticket_log
+[   Sql   ] [ RunTime:0.000748 S ] delete wm_user_vist from wm_user_vist
+[   Sql   ] [ RunTime:0.00066 S ] delete wm_zt_node from wm_zt_node
+[   Sql   ] [ RunTime:0.000967 S ] delete wm_zt_zt from wm_zt_zt
+[   Sql   ] [ RunTime:0.000898 S ] delete wm_user_user from wm_user_user where `user_id` > '1'
+[   Sql   ] [ RunTime:0.000982 S ] delete wm_system_apply from wm_system_apply
+[   Sql   ] [ RunTime:0.000969 S ] delete wm_seo_errpage from wm_seo_errpage
+[   Sql   ] [ RunTime:0.000849 S ] delete wm_seo_spider from wm_seo_spider
+[   Sql   ] [ RunTime:0.000764 S ] delete wm_site_site from wm_site_site
+[   Sql   ] [ RunTime:0.00061 S ] delete wm_site_product from wm_site_product
+[   Sql   ] [ RunTime:0.000601 S ] delete wm_system_email_log from wm_system_email_log
+[   Sql   ] [ RunTime:0.00054 S ] delete wm_user_read from wm_user_read
+[   Sql   ] [ RunTime:0.000723 S ] delete wm_user_read_log from wm_user_read_log
+[   Sql   ] [ RunTime:0.000652 S ] delete wm_system_menu_default from wm_system_menu_default
+[   Sql   ] [ RunTime:0.00077 S ] delete wm_zt_type from wm_zt_type
+[   Sql   ] [ RunTime:0.000739 S ] delete wm_flash_type from wm_flash_type
+[   Sql   ] [ RunTime:0.000721 S ] delete wm_seo_html_plan from wm_seo_html_plan
+[   Sql   ] [ RunTime:0.000684 S ] delete wm_weixin_account from wm_weixin_account
+[   Sql   ] [ RunTime:0.000734 S ] delete wm_weixin_autoreply from wm_weixin_autoreply
+[   Sql   ] [ RunTime:0.000731 S ] delete wm_weixin_fans from wm_weixin_fans
+[   Sql   ] [ RunTime:0.000719 S ] delete wm_weixin_media from wm_weixin_media
+[   Sql   ] [ RunTime:0.000602 S ] delete wm_weixin_menu from wm_weixin_menu
+[   Sql   ] [ RunTime:0.000624 S ] delete wm_weixin_msg from wm_weixin_msg
+[   Sql   ] [ RunTime:0.000212 S ] UPDATE wm_user_user set `user_salt`='',`user_psw`='280a2b0b4a054aa53596a1b7106b4060f1f91aad' where `user_id`='1'
+[   Sql   ] [ RunTime:0.000153 S ] delete wm_weixin_msg from wm_weixin_msg
+[   Sql   ] [ RunTime:0.021518 S ] SHOW TABLE STATUS
+[   Sql   ] [ RunTime:0.11636 S ] OPTIMIZE TABLE `wm_about_about`;ALTER TABLE `wm_about_about` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_about_type`;ALTER TABLE `wm_about_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_ad_ad`;ALTER TABLE `wm_ad_ad` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_ad_type`;ALTER TABLE `wm_ad_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_api_api`;ALTER TABLE `wm_api_api` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_api_type`;ALTER TABLE `wm_api_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_app_app`;ALTER TABLE `wm_app_app` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_app_attr`;ALTER TABLE `wm_app_attr` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_app_firms`;ALTER TABLE `wm_app_firms` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_app_type`;ALTER TABLE `wm_app_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_article_article`;ALTER TABLE `wm_article_article` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_article_author`;ALTER TABLE `wm_article_author` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_article_type`;ALTER TABLE `wm_article_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_author_author`;ALTER TABLE `wm_author_author` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_author_draft`;ALTER TABLE `wm_author_draft` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_author_end`;ALTER TABLE `wm_author_end` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_author_exp`;ALTER TABLE `wm_author_exp` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_author_level`;ALTER TABLE `wm_author_level` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_author_module_income`;ALTER TABLE `wm_author_module_income` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_author_sign`;ALTER TABLE `wm_author_sign` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_author_word`;ALTER TABLE `wm_author_word` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_bbs_bbs`;ALTER TABLE `wm_bbs_bbs` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_bbs_moderator`;ALTER TABLE `wm_bbs_moderator` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_bbs_type`;ALTER TABLE `wm_bbs_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_config_config`;ALTER TABLE `wm_config_config` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_config_field`;ALTER TABLE `wm_config_field` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_config_field_value`;ALTER TABLE `wm_config_field_value` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_config_group`;ALTER TABLE `wm_config_group` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_config_label`;ALTER TABLE `wm_config_label` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_config_option`;ALTER TABLE `wm_config_option` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_diy_diy`;ALTER TABLE `wm_diy_diy` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_fans_module`;ALTER TABLE `wm_fans_module` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_fans_module_consume`;ALTER TABLE `wm_fans_module_consume` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_fans_module_level`;ALTER TABLE `wm_fans_module_level` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_finance_apply`;ALTER TABLE `wm_finance_apply` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_finance_level`;ALTER TABLE `wm_finance_level` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_finance_order_cash`;ALTER TABLE `wm_finance_order_cash` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_finance_order_charge`;ALTER TABLE `wm_finance_order_charge` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_flash_flash`;ALTER TABLE `wm_flash_flash` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_flash_type`;ALTER TABLE `wm_flash_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_link_click`;ALTER TABLE `wm_link_click` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_link_link`;ALTER TABLE `wm_link_link` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_link_type`;ALTER TABLE `wm_link_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_manager_login`;ALTER TABLE `wm_manager_login` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_manager_manager`;ALTER TABLE `wm_manager_manager` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_manager_operation`;ALTER TABLE `wm_manager_operation` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_manager_recycle`;ALTER TABLE `wm_manager_recycle` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_manager_request`;ALTER TABLE `wm_manager_request` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_message_message`;ALTER TABLE `wm_message_message` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_chapter`;ALTER TABLE `wm_novel_chapter` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_content`;ALTER TABLE `wm_novel_content` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_novel`;ALTER TABLE `wm_novel_novel` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_rec`;ALTER TABLE `wm_novel_rec` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_rewardlog`;ALTER TABLE `wm_novel_rewardlog` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_sell`;ALTER TABLE `wm_novel_sell` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_sign`;ALTER TABLE `wm_novel_sign` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_sublog`;ALTER TABLE `wm_novel_sublog` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_timelimit`;ALTER TABLE `wm_novel_timelimit` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_type`;ALTER TABLE `wm_novel_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_volume`;ALTER TABLE `wm_novel_volume` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_welfare`;ALTER TABLE `wm_novel_welfare` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_operate_operate`;ALTER TABLE `wm_operate_operate` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_operate_score`;ALTER TABLE `wm_operate_score` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_picture_picture`;ALTER TABLE `wm_picture_picture` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_picture_type`;ALTER TABLE `wm_picture_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_plugin`;ALTER TABLE `wm_plugin` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_plugin_config`;ALTER TABLE `wm_plugin_config` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_plugin_demo_apply`;ALTER TABLE `wm_plugin_demo_apply` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_props_props`;ALTER TABLE `wm_props_props` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_props_sell`;ALTER TABLE `wm_props_sell` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_props_type`;ALTER TABLE `wm_props_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_replay_replay`;ALTER TABLE `wm_replay_replay` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_search_search`;ALTER TABLE `wm_search_search` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_seo_errpage`;ALTER TABLE `wm_seo_errpage` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_seo_html`;ALTER TABLE `wm_seo_html` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_seo_html_plan`;ALTER TABLE `wm_seo_html_plan` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_seo_keys`;ALTER TABLE `wm_seo_keys` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_seo_spider`;ALTER TABLE `wm_seo_spider` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_seo_urls`;ALTER TABLE `wm_seo_urls` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_site_product`;ALTER TABLE `wm_site_product` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_site_site`;ALTER TABLE `wm_site_site` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_apply`;ALTER TABLE `wm_system_apply` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_competence`;ALTER TABLE `wm_system_competence` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_domain`;ALTER TABLE `wm_system_domain` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_email`;ALTER TABLE `wm_system_email` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_email_log`;ALTER TABLE `wm_system_email_log` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_email_temp`;ALTER TABLE `wm_system_email_temp` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_errlog`;ALTER TABLE `wm_system_errlog` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_menu`;ALTER TABLE `wm_system_menu` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_menu_default`;ALTER TABLE `wm_system_menu_default` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_menu_quick`;ALTER TABLE `wm_system_menu_quick` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_retrieval`;ALTER TABLE `wm_system_retrieval` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_retrieval_type`;ALTER TABLE `wm_system_retrieval_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_tags`;ALTER TABLE `wm_system_tags` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_templates`;ALTER TABLE `wm_system_templates` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_templates_templates`;ALTER TABLE `wm_templates_templates` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_upload`;ALTER TABLE `wm_upload` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_apilogin`;ALTER TABLE `wm_user_apilogin` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_card`;ALTER TABLE `wm_user_card` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_card_log`;ALTER TABLE `wm_user_card_log` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_coll`;ALTER TABLE `wm_user_coll` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_finance`;ALTER TABLE `wm_user_finance` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_finance_log`;ALTER TABLE `wm_user_finance_log` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_head`;ALTER TABLE `wm_user_head` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_level`;ALTER TABLE `wm_user_level` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_login`;ALTER TABLE `wm_user_login` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_msg`;ALTER TABLE `wm_user_msg` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_read`;ALTER TABLE `wm_user_read` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_read_log`;ALTER TABLE `wm_user_read_log` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_sign`;ALTER TABLE `wm_user_sign` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_ticket`;ALTER TABLE `wm_user_ticket` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_ticket_log`;ALTER TABLE `wm_user_ticket_log` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_user`;ALTER TABLE `wm_user_user` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_vist`;ALTER TABLE `wm_user_vist` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_weixin_account`;ALTER TABLE `wm_weixin_account` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_weixin_autoreply`;ALTER TABLE `wm_weixin_autoreply` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_weixin_fans`;ALTER TABLE `wm_weixin_fans` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_weixin_media`;ALTER TABLE `wm_weixin_media` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_weixin_menu`;ALTER TABLE `wm_weixin_menu` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_weixin_msg`;ALTER TABLE `wm_weixin_msg` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_zt_node`;ALTER TABLE `wm_zt_node` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_zt_type`;ALTER TABLE `wm_zt_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_zt_zt`;ALTER TABLE `wm_zt_zt` AUTO_INCREMENT=0;
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+[   Time   ] 2020-01-05 18:24:38
+[  Status  ] SUCCESS
+[  Start   ] 1578219872.6997
+[   End    ] 1578219878.116
+[  RunTime ] 5.416
+------------------------
+[  Server  ] Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9
+[  Method  ] POST
+[   Root   ] E:/phpstudy/PHPTutorial/WWW/wmcms
+[   Host   ] wmcms.com
+[ ServerIp ] 127.0.0.1
+[    Url   ] http://wmcms.com/clear/?p=1
+[   Param  ] array (
+)
+------------------------
+[ ClientIp ] 127.0.0.1
+[  Client  ] Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36
+------------------------
+[   Sql   ] [ RunTime:0.000466 S ] UPDATE wm_manager_manager set `manager_psw`='d4b6232e4aa20cd032009cbb79b3452507a24830',`manager_salt`='a8e52ffc28e3300ee098aec5b1415b6cea5befcb' where `manager_id`='1'
+[   Sql   ] [ RunTime:0.001009 S ] delete wm_about_about from wm_about_about
+[   Sql   ] [ RunTime:0.000805 S ] delete wm_about_type from wm_about_type
+[   Sql   ] [ RunTime:0.001169 S ] delete wm_ad_ad from wm_ad_ad
+[   Sql   ] [ RunTime:0.001167 S ] delete wm_ad_type from wm_ad_type
+[   Sql   ] [ RunTime:0.000863 S ] delete wm_app_app from wm_app_app
+[   Sql   ] [ RunTime:0.00078 S ] delete wm_article_article from wm_article_article
+[   Sql   ] [ RunTime:0.000657 S ] delete wm_author_author from wm_author_author
+[   Sql   ] [ RunTime:0.000702 S ] delete wm_author_draft from wm_author_draft
+[   Sql   ] [ RunTime:0.001311 S ] delete wm_author_end from wm_author_end
+[   Sql   ] [ RunTime:0.001199 S ] delete wm_author_exp from wm_author_exp
+[   Sql   ] [ RunTime:0.00076 S ] delete wm_author_module_income from wm_author_module_income
+[   Sql   ] [ RunTime:0.000763 S ] delete wm_author_word from wm_author_word
+[   Sql   ] [ RunTime:0.000832 S ] delete wm_bbs_bbs from wm_bbs_bbs
+[   Sql   ] [ RunTime:0.001385 S ] delete wm_bbs_moderator from wm_bbs_moderator
+[   Sql   ] [ RunTime:0.001212 S ] delete wm_bbs_type from wm_bbs_type
+[   Sql   ] [ RunTime:0.001187 S ] delete wm_config_field from wm_config_field
+[   Sql   ] [ RunTime:0.000767 S ] delete wm_config_field_value from wm_config_field_value
+[   Sql   ] [ RunTime:0.000726 S ] delete wm_config_label from wm_config_label
+[   Sql   ] [ RunTime:0.001525 S ] delete wm_diy_diy from wm_diy_diy
+[   Sql   ] [ RunTime:0.000752 S ] delete wm_fans_module from wm_fans_module
+[   Sql   ] [ RunTime:0.000946 S ] delete wm_fans_module_consume from wm_fans_module_consume
+[   Sql   ] [ RunTime:0.000829 S ] delete wm_finance_order_cash from wm_finance_order_cash
+[   Sql   ] [ RunTime:0.000678 S ] delete wm_finance_order_charge from wm_finance_order_charge
+[   Sql   ] [ RunTime:0.000977 S ] delete wm_flash_flash from wm_flash_flash
+[   Sql   ] [ RunTime:0.000779 S ] delete wm_link_click from wm_link_click
+[   Sql   ] [ RunTime:0.000997 S ] delete wm_manager_login from wm_manager_login
+[   Sql   ] [ RunTime:0.000788 S ] delete wm_manager_operation from wm_manager_operation
+[   Sql   ] [ RunTime:0.000736 S ] delete wm_manager_recycle from wm_manager_recycle
+[   Sql   ] [ RunTime:0.000686 S ] delete wm_manager_request from wm_manager_request
+[   Sql   ] [ RunTime:0.000714 S ] delete wm_message_message from wm_message_message
+[   Sql   ] [ RunTime:0.001265 S ] delete wm_novel_chapter from wm_novel_chapter
+[   Sql   ] [ RunTime:0.001661 S ] delete wm_novel_content from wm_novel_content
+[   Sql   ] [ RunTime:0.000996 S ] delete wm_novel_novel from wm_novel_novel
+[   Sql   ] [ RunTime:0.000812 S ] delete wm_novel_rec from wm_novel_rec
+[   Sql   ] [ RunTime:0.000775 S ] delete wm_novel_sell from wm_novel_sell
+[   Sql   ] [ RunTime:0.001011 S ] delete wm_novel_sign from wm_novel_sign
+[   Sql   ] [ RunTime:0.000811 S ] delete wm_novel_sublog from wm_novel_sublog
+[   Sql   ] [ RunTime:0.001132 S ] delete wm_novel_volume from wm_novel_volume where `volume_id` > '1'
+[   Sql   ] [ RunTime:0.000787 S ] delete wm_novel_rewardlog from wm_novel_rewardlog
+[   Sql   ] [ RunTime:0.000948 S ] delete wm_operate_operate from wm_operate_operate
+[   Sql   ] [ RunTime:0.000729 S ] delete wm_operate_score from wm_operate_score
+[   Sql   ] [ RunTime:0.000997 S ] delete wm_picture_picture from wm_picture_picture
+[   Sql   ] [ RunTime:0.000803 S ] delete wm_picture_type from wm_picture_type
+[   Sql   ] [ RunTime:0.000349 S ] delete wm_plugin from wm_plugin where `plugin_id` > '6'
+[   Sql   ] [ RunTime:0.000978 S ] delete wm_plugin_config from wm_plugin_config where `config_id` > '4'
+[   Sql   ] [ RunTime:0.000821 S ] delete wm_props_sell from wm_props_sell
+[   Sql   ] [ RunTime:0.000795 S ] delete wm_replay_replay from wm_replay_replay
+[   Sql   ] [ RunTime:0.000848 S ] delete wm_search_search from wm_search_search
+[   Sql   ] [ RunTime:0.001046 S ] delete wm_system_competence from wm_system_competence
+[   Sql   ] [ RunTime:0.000806 S ] delete wm_system_errlog from wm_system_errlog
+[   Sql   ] [ RunTime:0.000754 S ] delete wm_system_tags from wm_system_tags
+[   Sql   ] [ RunTime:0.000791 S ] delete wm_upload from wm_upload
+[   Sql   ] [ RunTime:0.000785 S ] delete wm_user_apilogin from wm_user_apilogin
+[   Sql   ] [ RunTime:0.000673 S ] delete wm_user_card from wm_user_card
+[   Sql   ] [ RunTime:0.000764 S ] delete wm_user_card_log from wm_user_card_log
+[   Sql   ] [ RunTime:0.000728 S ] delete wm_user_coll from wm_user_coll
+[   Sql   ] [ RunTime:0.000806 S ] delete wm_user_finance from wm_user_finance
+[   Sql   ] [ RunTime:0.000872 S ] delete wm_user_finance_log from wm_user_finance_log
+[   Sql   ] [ RunTime:0.000808 S ] delete wm_user_login from wm_user_login
+[   Sql   ] [ RunTime:0.000632 S ] delete wm_user_msg from wm_user_msg
+[   Sql   ] [ RunTime:0.000731 S ] delete wm_user_sign from wm_user_sign
+[   Sql   ] [ RunTime:0.000804 S ] delete wm_user_ticket from wm_user_ticket
+[   Sql   ] [ RunTime:0.000838 S ] delete wm_user_ticket_log from wm_user_ticket_log
+[   Sql   ] [ RunTime:0.000748 S ] delete wm_user_vist from wm_user_vist
+[   Sql   ] [ RunTime:0.00066 S ] delete wm_zt_node from wm_zt_node
+[   Sql   ] [ RunTime:0.000967 S ] delete wm_zt_zt from wm_zt_zt
+[   Sql   ] [ RunTime:0.000898 S ] delete wm_user_user from wm_user_user where `user_id` > '1'
+[   Sql   ] [ RunTime:0.000982 S ] delete wm_system_apply from wm_system_apply
+[   Sql   ] [ RunTime:0.000969 S ] delete wm_seo_errpage from wm_seo_errpage
+[   Sql   ] [ RunTime:0.000849 S ] delete wm_seo_spider from wm_seo_spider
+[   Sql   ] [ RunTime:0.000764 S ] delete wm_site_site from wm_site_site
+[   Sql   ] [ RunTime:0.00061 S ] delete wm_site_product from wm_site_product
+[   Sql   ] [ RunTime:0.000601 S ] delete wm_system_email_log from wm_system_email_log
+[   Sql   ] [ RunTime:0.00054 S ] delete wm_user_read from wm_user_read
+[   Sql   ] [ RunTime:0.000723 S ] delete wm_user_read_log from wm_user_read_log
+[   Sql   ] [ RunTime:0.000652 S ] delete wm_system_menu_default from wm_system_menu_default
+[   Sql   ] [ RunTime:0.00077 S ] delete wm_zt_type from wm_zt_type
+[   Sql   ] [ RunTime:0.000739 S ] delete wm_flash_type from wm_flash_type
+[   Sql   ] [ RunTime:0.000721 S ] delete wm_seo_html_plan from wm_seo_html_plan
+[   Sql   ] [ RunTime:0.000684 S ] delete wm_weixin_account from wm_weixin_account
+[   Sql   ] [ RunTime:0.000734 S ] delete wm_weixin_autoreply from wm_weixin_autoreply
+[   Sql   ] [ RunTime:0.000731 S ] delete wm_weixin_fans from wm_weixin_fans
+[   Sql   ] [ RunTime:0.000719 S ] delete wm_weixin_media from wm_weixin_media
+[   Sql   ] [ RunTime:0.000602 S ] delete wm_weixin_menu from wm_weixin_menu
+[   Sql   ] [ RunTime:0.000624 S ] delete wm_weixin_msg from wm_weixin_msg
+[   Sql   ] [ RunTime:0.000212 S ] UPDATE wm_user_user set `user_salt`='',`user_psw`='280a2b0b4a054aa53596a1b7106b4060f1f91aad' where `user_id`='1'
+[   Sql   ] [ RunTime:0.000153 S ] delete wm_weixin_msg from wm_weixin_msg
+[   Sql   ] [ RunTime:0.021518 S ] SHOW TABLE STATUS
+[   Sql   ] [ RunTime:0.11636 S ] OPTIMIZE TABLE `wm_about_about`;ALTER TABLE `wm_about_about` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_about_type`;ALTER TABLE `wm_about_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_ad_ad`;ALTER TABLE `wm_ad_ad` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_ad_type`;ALTER TABLE `wm_ad_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_api_api`;ALTER TABLE `wm_api_api` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_api_type`;ALTER TABLE `wm_api_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_app_app`;ALTER TABLE `wm_app_app` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_app_attr`;ALTER TABLE `wm_app_attr` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_app_firms`;ALTER TABLE `wm_app_firms` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_app_type`;ALTER TABLE `wm_app_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_article_article`;ALTER TABLE `wm_article_article` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_article_author`;ALTER TABLE `wm_article_author` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_article_type`;ALTER TABLE `wm_article_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_author_author`;ALTER TABLE `wm_author_author` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_author_draft`;ALTER TABLE `wm_author_draft` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_author_end`;ALTER TABLE `wm_author_end` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_author_exp`;ALTER TABLE `wm_author_exp` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_author_level`;ALTER TABLE `wm_author_level` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_author_module_income`;ALTER TABLE `wm_author_module_income` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_author_sign`;ALTER TABLE `wm_author_sign` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_author_word`;ALTER TABLE `wm_author_word` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_bbs_bbs`;ALTER TABLE `wm_bbs_bbs` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_bbs_moderator`;ALTER TABLE `wm_bbs_moderator` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_bbs_type`;ALTER TABLE `wm_bbs_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_config_config`;ALTER TABLE `wm_config_config` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_config_field`;ALTER TABLE `wm_config_field` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_config_field_value`;ALTER TABLE `wm_config_field_value` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_config_group`;ALTER TABLE `wm_config_group` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_config_label`;ALTER TABLE `wm_config_label` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_config_option`;ALTER TABLE `wm_config_option` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_diy_diy`;ALTER TABLE `wm_diy_diy` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_fans_module`;ALTER TABLE `wm_fans_module` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_fans_module_consume`;ALTER TABLE `wm_fans_module_consume` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_fans_module_level`;ALTER TABLE `wm_fans_module_level` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_finance_apply`;ALTER TABLE `wm_finance_apply` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_finance_level`;ALTER TABLE `wm_finance_level` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_finance_order_cash`;ALTER TABLE `wm_finance_order_cash` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_finance_order_charge`;ALTER TABLE `wm_finance_order_charge` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_flash_flash`;ALTER TABLE `wm_flash_flash` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_flash_type`;ALTER TABLE `wm_flash_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_link_click`;ALTER TABLE `wm_link_click` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_link_link`;ALTER TABLE `wm_link_link` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_link_type`;ALTER TABLE `wm_link_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_manager_login`;ALTER TABLE `wm_manager_login` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_manager_manager`;ALTER TABLE `wm_manager_manager` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_manager_operation`;ALTER TABLE `wm_manager_operation` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_manager_recycle`;ALTER TABLE `wm_manager_recycle` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_manager_request`;ALTER TABLE `wm_manager_request` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_message_message`;ALTER TABLE `wm_message_message` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_chapter`;ALTER TABLE `wm_novel_chapter` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_content`;ALTER TABLE `wm_novel_content` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_novel`;ALTER TABLE `wm_novel_novel` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_rec`;ALTER TABLE `wm_novel_rec` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_rewardlog`;ALTER TABLE `wm_novel_rewardlog` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_sell`;ALTER TABLE `wm_novel_sell` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_sign`;ALTER TABLE `wm_novel_sign` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_sublog`;ALTER TABLE `wm_novel_sublog` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_timelimit`;ALTER TABLE `wm_novel_timelimit` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_type`;ALTER TABLE `wm_novel_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_volume`;ALTER TABLE `wm_novel_volume` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_novel_welfare`;ALTER TABLE `wm_novel_welfare` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_operate_operate`;ALTER TABLE `wm_operate_operate` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_operate_score`;ALTER TABLE `wm_operate_score` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_picture_picture`;ALTER TABLE `wm_picture_picture` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_picture_type`;ALTER TABLE `wm_picture_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_plugin`;ALTER TABLE `wm_plugin` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_plugin_config`;ALTER TABLE `wm_plugin_config` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_plugin_demo_apply`;ALTER TABLE `wm_plugin_demo_apply` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_props_props`;ALTER TABLE `wm_props_props` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_props_sell`;ALTER TABLE `wm_props_sell` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_props_type`;ALTER TABLE `wm_props_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_replay_replay`;ALTER TABLE `wm_replay_replay` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_search_search`;ALTER TABLE `wm_search_search` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_seo_errpage`;ALTER TABLE `wm_seo_errpage` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_seo_html`;ALTER TABLE `wm_seo_html` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_seo_html_plan`;ALTER TABLE `wm_seo_html_plan` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_seo_keys`;ALTER TABLE `wm_seo_keys` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_seo_spider`;ALTER TABLE `wm_seo_spider` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_seo_urls`;ALTER TABLE `wm_seo_urls` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_site_product`;ALTER TABLE `wm_site_product` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_site_site`;ALTER TABLE `wm_site_site` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_apply`;ALTER TABLE `wm_system_apply` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_competence`;ALTER TABLE `wm_system_competence` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_domain`;ALTER TABLE `wm_system_domain` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_email`;ALTER TABLE `wm_system_email` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_email_log`;ALTER TABLE `wm_system_email_log` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_email_temp`;ALTER TABLE `wm_system_email_temp` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_errlog`;ALTER TABLE `wm_system_errlog` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_menu`;ALTER TABLE `wm_system_menu` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_menu_default`;ALTER TABLE `wm_system_menu_default` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_menu_quick`;ALTER TABLE `wm_system_menu_quick` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_retrieval`;ALTER TABLE `wm_system_retrieval` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_retrieval_type`;ALTER TABLE `wm_system_retrieval_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_tags`;ALTER TABLE `wm_system_tags` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_system_templates`;ALTER TABLE `wm_system_templates` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_templates_templates`;ALTER TABLE `wm_templates_templates` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_upload`;ALTER TABLE `wm_upload` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_apilogin`;ALTER TABLE `wm_user_apilogin` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_card`;ALTER TABLE `wm_user_card` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_card_log`;ALTER TABLE `wm_user_card_log` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_coll`;ALTER TABLE `wm_user_coll` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_finance`;ALTER TABLE `wm_user_finance` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_finance_log`;ALTER TABLE `wm_user_finance_log` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_head`;ALTER TABLE `wm_user_head` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_level`;ALTER TABLE `wm_user_level` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_login`;ALTER TABLE `wm_user_login` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_msg`;ALTER TABLE `wm_user_msg` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_read`;ALTER TABLE `wm_user_read` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_read_log`;ALTER TABLE `wm_user_read_log` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_sign`;ALTER TABLE `wm_user_sign` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_ticket`;ALTER TABLE `wm_user_ticket` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_ticket_log`;ALTER TABLE `wm_user_ticket_log` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_user`;ALTER TABLE `wm_user_user` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_user_vist`;ALTER TABLE `wm_user_vist` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_weixin_account`;ALTER TABLE `wm_weixin_account` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_weixin_autoreply`;ALTER TABLE `wm_weixin_autoreply` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_weixin_fans`;ALTER TABLE `wm_weixin_fans` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_weixin_media`;ALTER TABLE `wm_weixin_media` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_weixin_menu`;ALTER TABLE `wm_weixin_menu` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_weixin_msg`;ALTER TABLE `wm_weixin_msg` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_zt_node`;ALTER TABLE `wm_zt_node` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_zt_type`;ALTER TABLE `wm_zt_type` AUTO_INCREMENT=0;OPTIMIZE TABLE `wm_zt_zt`;ALTER TABLE `wm_zt_zt` AUTO_INCREMENT=0;
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+[   Time   ] 2020-01-05 18:27:23
+[  Status  ] SUCCESS
+[  Start   ] 1578220043.7397
+[   End    ] 1578220043.7908
+[  RunTime ] 0.051
+------------------------
+[  Server  ] Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9
+[  Method  ] GET
+[   Root   ] E:/phpstudy/PHPTutorial/WWW/wmcms
+[   Host   ] wmcms.com
+[ ServerIp ] 127.0.0.1
+[    Url   ] http://wmcms.com/pageback/
+[   Param  ] array (
+)
+------------------------
+[ ClientIp ] 127.0.0.1
+[  Client  ] Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+[   Time   ] 2020-01-05 18:27:53
+[  Status  ] SUCCESS
+[  Start   ] 1578220072.5365
+[   End    ] 1578220073.5152
+[  RunTime ] 0.979
+------------------------
+[  Server  ] Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9
+[  Method  ] POST
+[   Root   ] E:/phpstudy/PHPTutorial/WWW/wmcms
+[   Host   ] wmcms.com
+[ ServerIp ] 127.0.0.1
+[    Url   ] http://wmcms.com/pageback/?a=yes
+[   Param  ] array (
+  'type' => '2',
+  'ver' => '4.346.855',
+  'time' => '20200106',
+)
+------------------------
+[ ClientIp ] 127.0.0.1
+[  Client  ] Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36
+------------------------
+[ReturnJson] {"msg":"\u7a0b\u5e8f\u5347\u7ea7\u5305\u66f4\u65b0\u5b8c\u6210\uff0c\u8bf7\u5bfc\u51fa\u53d8\u66f4\u7684sql\u6587\u4ef6\u5230\/20200105\/update.php","code":200,"data":[],"count":0}
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+[   Time   ] 2020-01-05 18:27:53
+[  Status  ] SUCCESS
+[  Start   ] 1578220072.5365
+[   End    ] 1578220073.5162
+[  RunTime ] 0.98
+------------------------
+[  Server  ] Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9
+[  Method  ] POST
+[   Root   ] E:/phpstudy/PHPTutorial/WWW/wmcms
+[   Host   ] wmcms.com
+[ ServerIp ] 127.0.0.1
+[    Url   ] http://wmcms.com/pageback/?a=yes
+[   Param  ] array (
+  'type' => '2',
+  'ver' => '4.346.855',
+  'time' => '20200106',
+)
+------------------------
+[ ClientIp ] 127.0.0.1
+[  Client  ] Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+[   Time   ] 2020-01-05 18:27:58
+[  Status  ] SUCCESS
+[  Start   ] 1578220078.1651
+[   End    ] 1578220078.221
+[  RunTime ] 0.056
+------------------------
+[  Server  ] Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9
+[  Method  ] POST
+[   Root   ] E:/phpstudy/PHPTutorial/WWW/wmcms
+[   Host   ] wmcms.com
+[ ServerIp ] 127.0.0.1
+[    Url   ] http://wmcms.com/pageback/?a=yes
+[   Param  ] array (
+  'type' => '1',
+  'ver' => '4.346.855',
+  'time' => '20200106',
+)
+------------------------
+[ ClientIp ] 127.0.0.1
+[  Client  ] Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36
+------------------------
+[ReturnJson] {"msg":"\u7a0b\u5e8f\u5b89\u88c5\u5305\u6253\u5305\u5b8c\u6210\uff0c\u8bf7\u5bfc\u51fasql\u6587\u4ef6\u5230\/install\/sql.sql","code":200,"data":[],"count":0}
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+[   Time   ] 2020-01-05 18:27:58
+[  Status  ] SUCCESS
+[  Start   ] 1578220078.1651
+[   End    ] 1578220078.2228
+[  RunTime ] 0.058
+------------------------
+[  Server  ] Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9
+[  Method  ] POST
+[   Root   ] E:/phpstudy/PHPTutorial/WWW/wmcms
+[   Host   ] wmcms.com
+[ ServerIp ] 127.0.0.1
+[    Url   ] http://wmcms.com/pageback/?a=yes
+[   Param  ] array (
+  'type' => '1',
+  'ver' => '4.346.855',
+  'time' => '20200106',
+)
+------------------------
+[ ClientIp ] 127.0.0.1
+[  Client  ] Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+

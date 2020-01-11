@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<head>
+<title>{title}</title>
+<meta name="description" content="{desc}">
+<meta name="keywords" content="{key}">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="white"/>
+<link href="{templates}/css/wm.css" rel="stylesheet" type="text/css">
+<link href="{templates}/css/novel.css" rel="stylesheet" type="text/css">
+<style>
+.bt5 span{font-size:16px}
+.topBar{position:absolute;top:0;left:0;right:0;z-index:30;height:45px;line-height:45px;background-color:#ff577b;color:#fff;font-size:14px;text-align:center;}
+.topBar .back{position:absolute;top:0;left:10px;width:45px;padding-left:10px;line-height:45px;}.topBar .back:before{content:'';width:10px;height:10px;display:block;border-top:1px solid #fff;border-left:1px solid #fff;-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg);position:absolute;top:50%;margin-top:-6px;left:0;}.topBar .back.back-home{font-size:20px;left:65px;width:auto;}.topBar .back.back-home:before{display:none;}.topBar .back.back-home:after{content:'';position:absolute;top:15px;bottom:15px;left:0;border-left:1px solid #DDDDDD;}
+.topBar .resetGroup{position:absolute;top:0;right:15px;}
+body.chapterInfo.bag0{background-image:url({templates}/img/bag0.png);}
+body.chapterInfo.bag1{background-image:url({templates}/img/bag1.png);}
+body.chapterInfo.bag1 .novelTitle{color:#6a6a6a;}
+body.chapterInfo.bag1 .date{color:#6a6a6a;}
+body.chapterInfo.bag1 .chapterContentOuter,body.chapterInfo.bag1 .flex.flex-chapter{color:#6a6a6a;}
+body.chapterInfo.bag1 .panel.panel-blue{background-color:#0e0f11;border:1px solid #2d2e2e;margin-left:15px;margin-right:15px;-webkit-box-shadow:inset 0 0 36px 2px #393939;-moz-box-shadow:inset 0 0 36px 2px #393939;box-shadow:inset 0 0 36px 2px #393939;color:#6a6a6a;}body.chapterInfo.bag1 .panel.panel-blue .panel-header,body.chapterInfo.bag1 .panel.panel-blue .panel-footer{border-bottom:1px solid #2d2e2e;}body.chapterInfo.bag1 .topBar{background-color:#1e1f20;}body.chapterInfo.bag2{background-image:url({templates}/img/bag2.png);}body.chapterInfo.bag2 .novelTitle{color:#3f8a9f;}body.chapterInfo.bag2 .chapterContentOuter,body.chapterInfo.bag2 .flex.flex-chapter{color:#3f8a9f;}body.chapterInfo.bag2 .date{color:#3f8a9f;}body.chapterInfo.bag3{background-image:url({templates}/img/bag3.png);}body.chapterInfo.bag3 .novelTitle{color:#826720;}body.chapterInfo.bag3 .chapterContentOuter,body.chapterInfo.bag3 .flex.flex-chapter{color:#826720;}body.chapterInfo.bag3 .date{color:#826720;}body.chapterInfo.bag3 .panel.panel-blue{color:#826720;background-color:#ecd8a1;border:1px solid #e0d1a2;margin-left:15px;margin-right:15px;-webkit-box-shadow:inset 0 0 36px 2px #a5d5e9;-moz-box-shadow:inset 0 0 36px 2px #a5d5e9;box-shadow:inset 0 0 36px 2px #d5bd7b;}body.chapterInfo.bag3 .panel.panel-blue .panel-header,body.chapterInfo.bag3 .panel.panel-blue .panel-footer{border-bottom:1px solid #e0d1a2;}body.chapterInfo.bag3 .topBar{background-color:#3c2f08;}body.chapterInfo.bag4{background-image:url({templates}/img/bag4.png);}body.chapterInfo.bag4 .novelTitle{color:#6a936a;}body.chapterInfo.bag4 .chapterContentOuter,body.chapterInfo.bag4 .flex.flex-chapter{color:#6a936a;}body.chapterInfo.bag4 .date{color:#6a936a;}body.chapterInfo.bag4 .panel.panel-blue{background-color:#c9e8c9;border:1px solid #d0e2d0;margin-left:15px;margin-right:15px;-webkit-box-shadow:inset 0 0 36px 2px #b5d5b5;-moz-box-shadow:inset 0 0 36px 2px #b5d5b5;box-shadow:inset 0 0 36px 2px #b5d5b5;color:#6a936a;}body.chapterInfo.bag4 .panel.panel-blue .panel-header,body.chapterInfo.bag4 .panel.panel-blue .panel-footer{border-bottom:1px solid #d0e2d0;}body.chapterInfo.bag4 .topBar{background-color:#6a936a;}body.chapterInfo.bag5{background-image:url{templates}img/bag5.png);}body.chapterInfo.bag5 .novelTitle{color:#2f2f2f;}body.chapterInfo.bag5 .chapterContentOuter,body.chapterInfo.bag5 .flex.flex-chapter{color:#4b4b4b;}body.chapterInfo.bag5 .date{color:#2f2f2f;}body.chapterInfo.bag5 .panel.panel-blue{background-color:#cdcdcd;border:1px solid #c1c1c1;margin-left:15px;margin-right:15px;-webkit-box-shadow:inset 0 0 36px 2px #b8bec0;-moz-box-shadow:inset 0 0 36px 2px #b8bec0;box-shadow:inset 0 0 36px 2px #b8bec0;color:#4b4b4b;}body.chapterInfo.bag5 .panel.panel-blue .panel-header,body.chapterInfo.bag5 .panel.panel-blue .panel-footer{border-bottom:1px solid #c1c1c1;}body.chapterInfo.bag5 .topBar{background-color:#6e6e6e;}body.chapterInfo.bag6{background-image:url({templates}/img/bag6.png);}body.chapterInfo.bag6 .novelTitle{color:#2f2f2f;}body.chapterInfo.bag6 .chapterContentOuter,body.chapterInfo.bag6 .flex.flex-chapter{color:#4b4b4b;}body.chapterInfo.bag6 .date{color:#2f2f2f;}.center.userCenter{position:relative;padding-left:85px;}
+.topBar a{color:#FFFFFF}
+</style>
+</head>
+<body class="bg">
+<div class="topBar">
+	<a href="javascript:history.go(-1)" data-action="switch" data-params="39cec6d4" class="back">返回</a>
+	<a href="{首页}" data-action="switch" class="back back-home font" style="font-size:15px;">首页</a>
+	<div class="resetGroup">
+		<a href="javascript:;" data-cmd="resetColor" class="colorBlock" onclick="chagebg(this)"  style="background-image: url('{templates}/img/bag0.png');height: 45px;width: 40px;display: block;float: right;    color: #000000;">背景</a>
+		<a href="javascript:;" data-cmd="resetFont" data-type="1" onclick="chagefont(this)" class="bigger font" style="height: 45px;width: 40px;display: block;float: right; background: #FFFFFF;border-radius: 24px;margin-right: 10px;    color: #000000;">大</a>
+		<a href="javascript:;" data-cmd="resetFont" data-type="0" onclick="chagefont(this)" class="smaller font" style="height: 45px;width: 40px;display: block;float: right;background: #FFFFFF;border-radius: 24px;margin-right: 10px;    color: #000000;">小</a>
+	</div>
+</div>
+<div class="read">
+<div class="readtitle" style="margin-top: 50px;">{章节名字}</div>
+<div class="readcontent">
+{已订阅}{章节内容}{/已订阅}
+{未订阅}
+	<h3>这是VIP章节需要订阅后才能阅读</h3>
+    <div class="bt5">
+		<div><a href="javascript:sub(1);">订阅本章</a><span>&nbsp;{本章价格} {金币2名字}(共{章节字数}字)</span></div>
+		{包月出售}<div style="clear:both;margin-top:10px"><a href="javascript:sub(3);">订阅本月</a><span>&nbsp;{包月价格} {金币2名字}</span></div>{/包月出售}
+	   	{全本出售}<div style="clear:both;margin-top:10px"><a href="javascript:sub(2);">订阅全本</a><span>&nbsp;{全本价格} {金币2名字}</span></div>{/全本出售}
+	</div>
+	<p>
+		<span><input id="j_autoSubscribe" type="checkbox"></span>
+		<label style="font-size:14px">不再显示订阅提醒，自动续订（单章有效）</label>
+	</p>
+{/未订阅}
+</div>
+
+<div class="btBox">
+<div class="bt5">
+<a href="/module/novel/info.php?pt={pt}&tid={分类id}&nid={id}">简介</a>
+<a href="{目录链接}">目录</a>
+<a href="/module/novel/replay.php?pt={pt}&tid={分类id}&nid={id}&page=1">评论</a>
+<a href="{报错}">报错</a>
+<a href="{催更}">催更</a>
+</div></div>
+<div class="btBox">
+<div class="bt2">
+<a href="{上一章}">上一章</a>
+<a href="{下一章}">下一章</a>
+</div></div>
+</div>
+
+
+<script src="/files/js/common.js"></script>
+<script>
+var nowfontsize = localStorage.getItem('fontsize');
+$('.readcontent').css('font-size',nowfontsize+'px')
+var nowbg = localStorage.getItem('fontbg');
+if(nowfontsize != null || nowfontsize != 'NaN'){
+	$('.readcontent').css('font-size',nowfontsize)
+}
+if(nowbg != null || nowbg != 'NaN'){
+	$('.read').css('background-image','url({templates}/img/bag'+nowbg+'.png)');
+}
+var chagefont = function(data){
+	var type = $(data).attr('data-type');
+	var nowfontsize = localStorage.getItem('fontsize');
+	if(nowfontsize == null || nowfontsize == 'NaN'){
+
+		localStorage.setItem('fontsize',20);
+		 nowfontsize = localStorage.getItem('fontsize');
+	}
+	switch (type){
+		case '0':
+				$('.readcontent').css('font-size',nowfontsize*1-2)
+			//localStorage.fontsize = nowfontsize*1-2;
+			localStorage.setItem('fontsize',nowfontsize*1-2);
+			break;
+		case '1':
+			$('.readcontent').css('font-size',nowfontsize*1+2)
+			localStorage.setItem('fontsize',nowfontsize*1+2);
+			break;
+		default:
+			$('.readcontent').css('font-size',nowfontsize*1+2)
+			localStorage.setItem('fontsize',nowfontsize*1+2);
+	}
+
+}
+
+var chagebg = function(data){
+	var nowbg = localStorage.getItem('fontbg');
+	if(nowbg == null || nowbg == 'NaN'){
+
+		localStorage.setItem('fontbg',0);
+		nowbg = localStorage.getItem('nowbg');
+	}else{
+		localStorage.setItem('fontbg',Math.floor(Math.random()*6+1));
+	}
+	$('.read').css('background-image','url({templates}/img/bag'+nowbg+'.png)');
+}
+function sub(type){
+	var auto = 0;
+	if($('#j_autoSubscribe').is(':checked')) {
+		auto = 1;
+	}
+	if(type == '1' && {本章价格} > {用户金币2数量}){
+		easydialog_alert("对不起，您的{金币2名字}为{用户金币2数量}，不足{本章价格}{金币2名字}，无法订阅本章！!<br/>请先<a href='{充值}' class='paybt'>充值</a>后再试!",'{金币2名字}不足','','');
+	}else if(type == '3' && {包月价格} > {用户金币2数量}){
+		easydialog_alert("对不起，您的{金币2名字}为{用户金币2数量}，不足{包月价格}{金币2名字}，无法包月！!<br/>请先<a href='{充值}' class='paybt'>充值</a>后再试!",'{金币2名字}不足','','');
+	}else if(type == '2' && {全本价格} > {用户金币2数量}){
+		easydialog_alert("对不起，您的{金币2名字}为{用户金币2数量}，不足{全本价格}{金币2名字}，无法订阅全本！!<br/>请先<a href='{充值}' class='paybt'>充值</a>后再试!",'{金币2名字}不足','','');
+	}else{
+		//赠送道具操作
+		var btn = function(){$.ajax({
+			type:"POST",
+			url:"{url:action;novel.sub&ajax=yes}",
+			data:{'nid':{id},'cid':'{章节id}','st':type,'auto':auto},
+			dataType:"json",
+			success:function(data)
+			{
+				if(data.code==200){
+					easydialog_autoclose(data.msg,'success',1000);
+					setTimeout(function(){window.parent.location = '';},1000);
+				}else{
+					easydialog_autoclose(data.msg,'',2000);
+				}
+			}
+		})};
+		
+		easydialog_alert("确定要订阅吗？",'是否订阅',btn);
+		
+	}
+}
+</script>
+</body>
+</html>
