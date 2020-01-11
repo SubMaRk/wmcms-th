@@ -16,12 +16,12 @@ $(document).ready(function(){
 </style>
 
 <div class="mainRight pb260 fl">
-	<div class="crumbsWrap"> <i><span>收入管理</span></i> </div>
+	<div class="crumbsWrap"> <i><span>จัดการรายได้</span></i> </div>
 	<div class="tabSwitch cf">
-	    <span {cur:type=all}class="act"{/cur}><a href="{小说收入列表}">总收入</a></span>
-	    <span {cur:type=props}class="act"{/cur}><a href="{小说收入列表:props}">道具收入</a></span>
-	    <span {cur:type=reward}class="act"{/cur}><a href="{小说收入列表:reward}">打赏收入</a></span>
-	    <span {cur:type=sub}class="act"{/cur}><a href="{小说收入列表:sub}">订阅收入</a></span>
+	    <span {cur:type=all}class="act"{/cur}><a href="{小说收入列表}">รายได้ทั้งหมด</a></span>
+	    <span {cur:type=props}class="act"{/cur}><a href="{小说收入列表:props}">ของขวัญที่ได้</a></span>
+	    <span {cur:type=reward}class="act"{/cur}><a href="{小说收入列表:reward}">รางวัลที่ได้</a></span>
+	    <span {cur:type=sub}class="act"{/cur}><a href="{小说收入列表:sub}">ผู้สมัคร</a></span>
 	</div>
 	<div class="incomeWrap">
 		<div class="filter-box income cf">
@@ -67,7 +67,7 @@ $(document).ready(function(){
 	            </thead>
                 <tbody>
                 	{收入列表:数量=20;排序=收入时间}
-	                {无数据}<tr><td colspan="5">暂无任何数据</td></tr>{/无数据}
+	                {无数据}<tr><td colspan="5">ไม่มีข้อมูลใด ๆ </td></tr>{/无数据}
 	                <tr>
 	                    <td>{收入时间}</td>
 	                    <td>{收入作品}</td>
@@ -78,11 +78,11 @@ $(document).ready(function(){
 	    			{/收入列表}
 	    			<tr>
 	                    <td colspan="5">
-	                    <a href="{第一页}">首页</a> . 
-	                    <a href="{上一页}">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
-	                    	共{当前页}/{总页数}页 &nbsp;&nbsp;&nbsp;&nbsp;
-	                    <a href="{下一页}">下一页</a> . 
-	                    <a href="{最后页}">末页</a>
+	                    <a href="{第一页}">หน้าแรก</a> .
+	                    <a href="{上一页}">ก่อนหน้า</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	                    	มี {当前页}/{总页数} หน้า &nbsp;&nbsp;&nbsp;&nbsp;
+	                    <a href="{下一页}">ถัดไป</a> .
+	                    <a href="{最后页}">ท้ายสุด</a>
 	                    </td>
 	    			</tr>
 				</tbody>
@@ -99,10 +99,10 @@ $(document).ready(function(){
 	var month = d.getMonth()+1;
 	var yearHtml = monthHtml = '';
 	for(var i=0;i<5;i++){
-		yearHtml += '<option value="">'+(year-i)+'年</option>';
+		yearHtml += '<option value="">'+(year-i)+' ปี</option>';
 	}
 	for(var i=1;i<=12;i++){
-		monthHtml += '<option value="">'+i+'月</option>';
+		monthHtml += '<option value="">'+i+' เดือน</option>';
 	}
 	$("#year").append(yearHtml);
 	$("#month").append(monthHtml);

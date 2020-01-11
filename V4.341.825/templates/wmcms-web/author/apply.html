@@ -2,25 +2,25 @@
 <link rel="stylesheet" type="text/css" href="{templates}/static/css/author/apply.css" />
 {header:author/inc_toper.html}
 <div class="authorApplyWrap">
-	<h3>申请作者</h3>
+	<h3>ลงทะเบียนเป็นนักเขียน / นักแปล</h3>
 	<center id="stepTabBox" class="stepTitle">
-		<span class="act">1</span><em class="actText">基础信息</em><i class="icon nogt"></i>
-		<span>2</span><em>详细信息</em><i class="icon nogt"></i>
-		<span>3</span><em>申请成功</em>
+		<span class="act">1</span><em class="actText">ข้อมูลทั่วไป</em><i class="icon nogt"></i>
+		<span>2</span><em>รายละเอียด</em><i class="icon nogt"></i>
+		<span>3</span><em>ลงทะเบียนสำเร็จ</em>
 	</center>
 	<!-- 基础信息 -->
 	<form name="Form" id="form">
 		<div class="applyForm infoListWrap" id="step1">
 			<ul>
 				<li>
-					<em>笔名</em>
+					<em>นามปากกา</em>
 					<input class="midInput" id="nickname" name="nickname" type="text">
 					<cite data-node="ok" class="icon ok" style="display:none;"></cite>
-					<p data-node="tip" class="tip">2~12个汉字、数字或英文字母组成，<span style="color:red">笔名申请后不可变更</span></p>
+					<p data-node="tip" class="tip">ต้องมีอย่างน้อย 3-16 ตัวอักษร! <span style="color:red">หลังลงทะเบียนจะไม่สามารถเปลี่ยนแปลงได้</span></p>
 				</li>
 			</ul>
 			<p class="confirm">
-				<a class="button" href="javascript:step(1,2);">下一步</a>
+				<a class="button" href="javascript:step(1,2);">ต่อไป</a>
 			</p>
 		</div>
 		
@@ -28,11 +28,11 @@
 		<div class="applyForm infoListWrap" style="display:none;" id="step2">
 			<ul>
 				<li>
-					<em>真实姓名</em>
+					<em>ชื่อจริง</em>
 					<input class="midInput" id="realname" name="realname" type="text">
 					<cite data-node="ok" class="icon ok" style="display:none;"></cite>
-					<p data-node="tip" class="tip">真实姓名请使用2~10位汉字或英文！</p>
-				</li>
+					<p data-node="tip" class="tip">ต้องมีอย่างน้อย 3-30 ตัวอักษร!</p>
+				</li><!--
 				<li>
 					<em>身份证号码</em>
 					<input class="midInput" id="cardid" name="cardid" type="text">
@@ -44,20 +44,20 @@
 					<input class="midInput" id="address" name="address" type="text">
 					<cite data-node="ok" class="icon ok" style="display:none;"></cite>
 					<p data-node="tip" class="tip">您当前的居住地址，方便合同邮寄</p>
-				</li>
+				</li>-->
 				<li>
 					<span class="checkBox agreen"><input id="agreeCheckbox" name="agreement" type="checkbox" value="1"></span>
 					<label class="f12" for="agreeCheckbox">
-						我已阅读并同意
-						<a class="blue" href="{作家注册协议}" target="_blank">《{网站名}作家注册投稿协议》</a>
+						ฉันอ่านและเห็นด้วยกับ
+						<a class="blue" href="{作家注册协议}" target="_blank">《{网站名} ข้อตกลงการลงทะเบียนเป็นผู้แต่ง/แปล》</a>
 					</label>
 					<cite data-node="ok" class="icon ok" style="display:none;"></cite>
 				</li>
 			</ul>
 			<br>
 			<p class="confirm">
-				<a id="submitBtn" class="button" href="javascript:sub()">提交申请</a>
-				<a id="preStepBtn" class="back" href="javascript:step(2,1)">返回上一步</a>
+				<a id="submitBtn" class="button" href="javascript:sub()">ลงทะเบียน</a>
+				<a id="preStepBtn" class="back" href="javascript:step(2,1)">ก่อนหน้า</a>
 			</p>
 		</div>
 	</form>
@@ -66,13 +66,13 @@
 	<div id="successBox" class="applyForm" style="display:none;">
 		<div class="welcome">
 			<h4>
-				<span class="icon ok"></span>作者申请成功
+				<span class="icon ok"></span>ลงทะเบียนสำเร็จ!
 			</h4>
-			<p id="status0" style="display:none">系统开启了审核，请等待管理员审核通过！</p>
-			<p id="status1" style="display:none">恭喜，系统已经通过您的请求，您现在可以进行如下操作！</p>
+			<p id="status0" style="display:none">โปรดรอให้ผู้ดูแลระบบตรวจสอบข้อมูลก่อน!</p>
+			<p id="status1" style="display:none">ยินดีด้วย! ทำการลงทะเบียนเรียบร้อยแล้ว คุณสามารถทำสิ่งเหล่านี้ได้เลย</p>
 			<center id="set" style="display:none">
-				<a class="button" href="{创建小说}">创建作品</a>
-				<a class="button white" href="{作家基本资料}">完善作者资料</a>
+				<a class="button" href="{创建小说}">เขียนนิยาย</a>
+				<a class="button white" href="{作家基本资料}">ปรับปรุงข้อมูล</a>
 			</center>
 		</div>
 	</div>
@@ -107,11 +107,11 @@ function step(now,next){
 	if(now == 1 && next == 2){
 		var nickname = $("#nickname").val();
 		if( nickname == '' ){
-			easydialog_alert('对不起，笔名为必填项！','','','');
-		}else if( nickname.length < 2 || nickname.length > 12 || !isString(nickname) ){
-			easydialog_alert('笔名只能为2到12为的数字、字母和中文组成！','','','');
+			easydialog_alert('ต้องกรอกนามปากกาก่อน!','','','');
+		}else if( nickname.length < 2 || nickname.length > 17 || !isString(nickname) ){
+			easydialog_alert('ต้องมีอย่างน้อย 3-16 ตัวอักษร!','','','');
 		}else{
-			easydialog_alert('笔名一旦注册便无法修改，是否使用“'+nickname+'”笔名？','',nextBtnFn);
+			easydialog_alert('นามปากกา "'+nickname+'" จะไม่สามารถเปลี่ยนแปลงได้ คุณยืนยันที่จะใช้มันหรือไม่?','',nextBtnFn);
 		}
 	}else if(now == 2 && next == 1){
 		preBtnFn();
@@ -122,25 +122,25 @@ function sub(){
 	if( isSub == true){
 		var nickname = $("#nickname").val();
 		var realname = $("#realname").val();
-		var cardid = $("#cardid").val();
-		var address = $("#address").val();
+		//var cardid = $("#cardid").val();
+		//var address = $("#address").val();
 		var agreement = $("#agreeCheckbox").is(':checked');
-		if( nickname.length < 2 || nickname.length > 12 || !isString(nickname) ){
-			easydialog_alert('笔名只能为2到12为的数字、字母和中文组成！','','','');
-		}else if( !isName(realname) || realname.length < 2 || realname.length > 10){
-			easydialog_alert('真实姓名只能为2-10位的中文或英文！','','','');
-		}else if( !isCardId(cardid) ){
+		if( nickname.length < 2 || nickname.length > 17 || !isString(nickname) ){
+			easydialog_alert('ต้องมีอย่างน้อย 3-16 ตัวอักษร!','','','');
+		}else if( !isName(realname) || realname.length < 2 || realname.length > 30){
+			easydialog_alert('ต้องมีอย่างน้อย 3-30 ตัวอักษร!','','','');
+		/*}else if( !isCardId(cardid) ){
 			easydialog_alert('对不起，身份证号码格式错误！','','','');
 		}else if( address == '' ){
 			easydialog_alert('对不起，联系地址不能为空！','','','');
-		}else if( agreement == false){
-			easydialog_alert('请先同意注册协议！','','','');
+		*/}else if( agreement == false){
+			easydialog_alert('ต้องยอมรับเงื่อนไขเราก่อน!','','','');
 		}else if(nickNameStatus == false){
-			easydialog_alert('对不起，您的笔名被占用，请返回上一步修改后提交！','','','');
+			easydialog_alert('มีนามปากกานี้อยู่แล้ว โปรดกลับไปแก้ไขแล้วส่งใหม่อีกครั้ง','','','');
 		}else{
 			isSub = false;
 			$("#submitBtn").css("background","#B0B9C1");
-			$("#submitBtn").html("加载中...");
+			$("#submitBtn").html("กำลังโหลด...");
 			$.ajax({
 				type:"POST",
 				url:"{表单提交地址}&ajax=yes",
@@ -162,7 +162,7 @@ function sub(){
 						}
 					}else{
 						$("#submitBtn").css("background","#4EA8FF");
-						$("#submitBtn").html("提交申请");
+						$("#submitBtn").html("ส่งข้อมูล");
 						easydialog_alert(data.msg,'','','');
 					}
 					isSub = true;
@@ -176,7 +176,7 @@ $(document).ready(function(){
 	$("#nickname").blur(function(){
 		var nicknameObj = $(this);
 		var nickname = nicknameObj.val();
-		if( nickname.length < 2 || nickname.length > 12 || !isString(nickname) ){
+		if( nickname.length < 3 || nickname.length > 17 || !isString(nickname) ){
 			nicknameObj.css('border','1px solid #D62D2D');
 			nicknameObj.parent().find('cite').hide();
 		}else{
@@ -203,7 +203,7 @@ $(document).ready(function(){
 	});
 	$("#realname").blur(function(){
 		var realname = $(this).val();
-		if( !isName(realname) || realname.length < 2 || realname.length > 10){
+		if( !isName(realname) || realname.length < 2 || realname.length > 31){
 			$(this).css('border','1px solid #D62D2D');
 			$(this).parent().find('cite').hide();
 		}else{
@@ -211,7 +211,7 @@ $(document).ready(function(){
 			$(this).parent().find('cite').show();
 		}
 	});
-	$("#cardid").blur(function(){
+	/*$("#cardid").blur(function(){
 		var cardid = $(this).val();
 		if( !isCardId(cardid) ){
 			$(this).css('border','1px solid #D62D2D');
@@ -230,7 +230,7 @@ $(document).ready(function(){
 			$(this).css('border','1px solid #4EAB80');
 			$(this).parent().find('cite').show();
 		}
-	});
+	});*/
 });
 </script>
 {header:author/inc_footer.html}
