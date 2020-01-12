@@ -12,9 +12,9 @@
     <div class="main">
 		<div class="layout_top">
 			<ul class="clearfix">
-				<li data-type="online"><a class="on" href="javascript:void(0)">在线充值<em>推荐</em></a></li>
-				<li data-type="card"><a href="javascript:void(0)">卡密充值</a></li>
-				<li data-type="other"><a href="javascript:void(0)">其他充值方式</a></li>
+				<li data-type="online"><a class="on" href="javascript:void(0)">แลกเปลี่ยน</a></li>
+				<li data-type="card"><a href="javascript:void(0)">บัตรคูปอง</a></li>
+				<li data-type="other"><a href="javascript:void(0)">วิธีอื่น</a></li>
 			</ul>
 		</div>
 
@@ -23,20 +23,20 @@
 			<input type="hidden" id="charge" name="charge" value="1"/>
             <table class="conTable">
                 <tr>
-                    <th>充值账号：</th>
+                    <th>บัญชีเติมเงิน : </th>
                     <td>
-                        <input type="radio" name="account_type" checked value="0" class="inputTxt" style="width:15px" /><span>为自己充值</span>
+                        <input type="radio" name="account_type" checked value="0" class="inputTxt" style="width:15px" /><span>เติมให้ตัวเอง</span>
 						&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="radio" name="account_type" value="1" class="inputTxt" style="width:15px" /><span>为好友充值</span>
+                        <input type="radio" name="account_type" value="1" class="inputTxt" style="width:15px" /><span>เติมให้เพื่อน</span>
                     </td>
                 </tr>
                 <tr class="account_box" style="display:none">
-                    <th>您好友的账号：</th>
-                    <td><input type="text" class="inputTxt account" placeholder="好友的登录账号" id="account" name="account" /></td>
+                    <th>บัญชีของเพื่อนคุณ : </th>
+                    <td><input type="text" class="inputTxt account" placeholder="บัญชีเข้าสู่ระบบของเพื่อนคุณ" id="account" name="account" /></td>
                 </tr>
                 <tr class="account_box" style="display:none">
-                    <th>再次输入账号：</th>
-                    <td><input type="text" class="inputTxt account" placeholder="重复输入好友的登录账号" id="reAccount" name="reAccount" /></td>
+                    <th>บัญชีของเพื่อนคุณอีกครั้ง : </th>
+                    <td><input type="text" class="inputTxt account" placeholder="บัญชีเข้าสู่ระบบของเพื่อนคุณอีกครั้ง" id="reAccount" name="reAccount" /></td>
                 </tr>
 				
 				
@@ -63,9 +63,9 @@
 				
 				
                 <tr class="card_box" style="display:none">
-                    <th>卡密充值：</th>
+                    <th>บัตรเติมเงิน : </th>
                     <td><input type="text" class="inputTxt account" value="" placeholder="输入您购买的卡密" id="cardKey" name="cardKey">
-						<a href="{卡号购买地址}" target="_blank" class="imgCheckBtn">点此获得充值卡密</a>
+						<a href="{卡号购买地址}" target="_blank" class="imgCheckBtn">คลิ๊กที่นี่เพื่อรับการ์ด</a>
 					</td>
                 </tr>
 				<tr>
@@ -74,7 +74,7 @@
                 <tr>
                     <th></th>
                     <td class="btnBox">
-                        <a href="javascript:;" class="btn" id="btnOK">立即充值</a>
+                        <a href="javascript:;" class="btn" id="btnOK">เติมทันที</a>
                     </td>
                 </tr>
             </table>
@@ -90,9 +90,9 @@
 			success:function(json){
 				if( json.code == 200 ){
 					if(json.data.charge_status != '1'){
-						easydialog_autoclose('对不起，订单还没有支付完成！','error');
+						easydialog_autoclose('ขออภัย! คำสั่งชำระเงินยังไม่สมบูรณ์','error');
 					}else{
-						easydialog_autoclose('充值成功！','success');
+						easydialog_autoclose('เติมเงินสำเร็จ!','success');
 						setTimeout(function(){window.parent.location='{充值成功}';},2000);
 					}
 				}else{
@@ -107,7 +107,7 @@
 		$(".layout_top ul li").click(function(){
 			var type = $(this).data('type');
 			if( type == 'other'){
-				easydialog_autoclose('对不起，暂时没有开通更多的支付方式!');
+				easydialog_autoclose('ขออภัย! ยังไม่มีวิธีเติมเงินใด ๆ พร้อมในขณะนี้!');
 			}else{
 				$(".layout_top ul li a").removeClass('on');
 				$(".layout_top ul li").find("a").eq($(this).index()).addClass('on');
@@ -182,19 +182,19 @@
 			var payType=$("#payType").find('.qdRadioSel').data('id');
 			
 			if(accountType == 1 && (account.length>16 || account.length<5)){
-				easydialog_autoclose('对不起，账号长度只能为5-16个字符!');
+				easydialog_autoclose('ขออภัย! บัญชีต้องยาวอย่างน้อย 5-16 ตัวอักษร!');
 				return false;
 			}else if(accountType == 1 && (reAccount != account) ){
-				easydialog_autoclose('对不起，两次输入的账号不一致!');
+				easydialog_autoclose('ขออภัย! บัญชีที่กรอกทั้งสองไม่ตรงกัน!');
 				return false;
 			//在线充值
 			}else if( chargeType== 1){
 				if( $("#money").val() < 10 ){
-					easydialog_autoclose('对不起，至少充值十元!');
+					easydialog_autoclose('ขออภัย! โปรดกรอกการ์ดที่ถูกต้อง!');
 					return false;
 				}else{
-					easydialog_alert('充值金额：'+money+'元<br/>如果您在充值的过程中遇到任何问题请联系客服<br/>qq:{qq}<br/>邮箱:{邮箱}<br/>',
-							'充值提示',returnFun,'','充值完成','其他支付方式');
+					easydialog_alert('จำนวนที่เติม : '+money+' บาท<br/>หากคุณพบปัญหาใด ๆ ระหว่างการเติมเงิน กรุณาติดต่อฝ่ายบริการลูกค้า<br/>qq:{qq}<br/>อีเมล์ : :{邮箱}<br/>',
+							'เคล็ดลับการเติมเงิน',returnFun,'','เติมเงินสำเร็จ','วิธีชำระอื่น');
 					var par = {'accounttype':accountType,'account':account,'reaccount':reAccount,'money':$("#money").val(),'paytype':payType};
 					Post("{url:action;finance.pay_charge}",par);
 				}
@@ -202,7 +202,7 @@
 			//卡号充值
 			}else if( chargeType== 2){
 				if( cardKey.length != 16 && cardKey.length != 32 ){
-					easydialog_autoclose('对不起，请输入正确的卡密!');
+					easydialog_autoclose('ขออภัย! โปรดกรอกการ์ดที่ถูกต้อง!');
 					return false;
 				}else{
 					$.ajax({
