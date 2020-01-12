@@ -1,23 +1,23 @@
 {header:header.html}
 <nav class="New-nav">
-<a class=""  href="{首页}">首页</a>
-<a class=""  href="{小说排行首页}">排行</a>
-<a class=""  href="{小说首页}">分类</a>
-<a class=""  href="{我的收藏}">收藏</a>
-<a class=""  href="{签到中心}">签到</a>
+  <a class=""  href="{首页}">หน้าหลัก</a>
+  <a class=""  href="{小说排行首页}">อันดับ</a>
+  <a class=""  href="{小说首页}">หมวดหมู่</a>
+  <a class=""  href="{我的收藏}">ชั้นหนังสือ</a>
+  <a class=""  href="{签到中心}">เข้าสู่ระบบ</a>
 </nav>
 <div class="girl_list_tie">
- <a href="/module/novel/info.php?pt={pt}&tid={分类id}&nid={id}">{名字}</a> > 评论列表</div>
+ <a href="/module/novel/info.php?pt={pt}&tid={分类id}&nid={id}">{名字}</a> > รายการความคิดเห็น</div>
 <div class="other-author-wrap related-tag">
 	<div id="comments">
 		<div class="comment-post" id="comment-post">
 			<form name="re" action="{评论提交地址}" method="post">
 			{表单锁}{评论隐藏表单}
-			<p><textarea name="content" rows="10" class="post-area" placeholder="你的评论可以一针见血" style="width:100%"></textarea></p>
+			<p><textarea name="content" rows="10" class="post-area" placeholder="ความคิดเห็นของคุณ" style="width:100%"></textarea></p>
 			<div class="gdpl">
-			<div title="评论" class="face"><a href="#">评论({评论数量})</a></div>
-			{发表评论验证码开启}{发表评论验证码}<input type="text" name="code" size="8" placeholder="请输入验证码"/>{/发表评论验证码开启}
-			<input type="submit" name="go" class="open2" id="submit" value="发表评论"></div>
+			<div title="ความคิดเห็น" class="face"><a href="#">ความคิดเห็น ({评论数量})</a></div>
+			{发表评论验证码开启}{发表评论验证码}<input type="text" name="code" size="8" placeholder="โปรดกรอกโค้ดยืนยัน"/>{/发表评论验证码开启}
+			<input type="submit" name="go" class="open2" id="submit" value="ส่ง"></div>
 			</form>
 		</div>
 	</div>
@@ -32,8 +32,8 @@
             </div>
             <div class="pl-box-ctt">{评论内容}</div>
             <div class="pl-box-btn">
-                                    <a href="{评论顶链接}">顶你个肺</a> ( {评论顶} )
-                                    <a href="{评论踩链接}">踩你丫的</a> ( {评论踩} )
+                                    <a href="{评论顶链接}">ความเห็นยอดนิยม</a> ( {评论顶} )
+                                    <a href="{评论踩链接}">แสดงความคิดเห็น</a> ( {评论踩} )
             </div>
         </div>
 	{/评论}
@@ -42,11 +42,11 @@
 		
 <div class="btBox">
 <div class="bt2">
-<a href="{上一页}">上一页</a>
-<a href="{下一页}">下一页</a>
+<a href="{上一页}">ก่อนหน้า</a>
+<a href="{下一页}">ถัดไป</a>
 </div></div>
-<div class="showpage">第 {当前页}/{总页数} 页，共 {总数据} 条 </div>
-<div class="btBox"><div class="bt2"><a href="javascript:history.go(-1);">返回上页</a><a href="{首页}">返回首页</a></div></div>	
+<div class="showpage">จาก {当前页}/{总页数} หน้า ทั้งหมด {总数据} ความคิดเห็น </div>
+<div class="btBox"><div class="bt2"><a href="javascript:history.go(-1);">ย้นกลับ</a><a href="{首页}">หน้าหลัก</a></div></div>
 
 
 {footer:footer.html}		

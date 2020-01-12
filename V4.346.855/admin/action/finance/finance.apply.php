@@ -16,17 +16,17 @@ if ( $type == 'del'  )
 {
 	$where['apply_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了财务申请！' , 'finance' , 'delete' , $applyTable , $where);
+	SetOpLog( 'ลบข้อมูลการเงิน' , 'finance' , 'delete' , $applyTable , $where);
 	wmsql::Delete($applyTable , $where);
 	
-	Ajax('财务申请批量删除成功!');
+	Ajax('ลบข้อมูลการเงินสำเร็จ!');
 }
 //清空数据记录
 else if ( $type == 'clear')
 {
-	SetOpLog( '清空了所有财务申请！' , 'finance' , 'delete' , $applyTable);
+	SetOpLog( 'ล้างบันทึกข้อมูลการเงิย' , 'finance' , 'delete' , $applyTable);
 	wmsql::Delete($applyTable);
-	Ajax('财务申请全部清空成功！');
+	Ajax('ล้างบันทึกข้อมูลการเงินสำเร็จ!');
 }
 //审核操作
 else if ( $type == 'status')
@@ -37,7 +37,7 @@ else if ( $type == 'status')
 	$data = $applyMod->GetById($id);
 	if( $data['apply_status'] != '0' )
 	{
-		Ajax('对不起，该财务申请已经处理过了！',300);
+		Ajax('ขออภัย! ข้อมูลการเงินถูกดำเนินการแล้ว',300);
 	}
 	else
 	{
@@ -61,18 +61,18 @@ else if ( $type == 'status')
 			//发送系统消息
 			$userConfig = AdminInc('user');
 			$msgMod = NewModel('user.msg');
-			$msg = $data['apply_month'].'财务结算！<br/>结算总额：'.$data['apply_total'].$userConfig['gold2_name'].'，实际到账：'.$data['apply_real'].$userConfig['gold2_name'].'<br/>';
+			$msg = $data['apply_month'].'บันทึกการชำระเงิน!<br/>จำนวนรายได้ทั้งหมด : '.$data['apply_total'].$userConfig['gold2_name'].' รายได้จริง '.$data['apply_real'].$userConfig['gold2_name'].'<br/>';
 			if( $data['apply_bonus'] > '0' )
 			{
-				$msg .= '其中额外奖金：'.$data['apply_bonus'].$userConfig['gold2_name'].'，原因：'.$data['apply_bonus_remark'].$userConfig['gold2_name'].'<br/>';
+				$msg .= 'โบนัสพิเศษ : '.$data['apply_bonus'].$userConfig['gold2_name'].' จากเดิม : '.$data['apply_bonus_remark'].$userConfig['gold2_name'].'<br/>';
 			}
 			if( $data['apply_deduct'] > '0' )
 			{
-				$msg .= '其中扣除奖金：'.$data['apply_deduct'].$userConfig['gold2_name'].'，原因：'.$data['apply_deduct_remark'].$userConfig['gold2_name'].'<br/>';
+				$msg .= 'หักโบนัส : '.$data['apply_deduct'].$userConfig['gold2_name'].' จากเดิม : '.$data['apply_deduct_remark'].$userConfig['gold2_name'].'<br/>';
 			}
 			$msgMod->Insert($data['apply_to_user_id'] , $msg);
 		}
-		Ajax('财务申请处理成功！');
+		Ajax('ดำเนินการข้อมูลทางการเงินสำเร็จ!');
 	}
 }
 ?>

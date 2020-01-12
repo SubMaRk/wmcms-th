@@ -255,17 +255,17 @@ class manager{
 			{
 				//单选按钮
 				case 'radio':
-					$optionText .= '<input type="radio" data-toggle="icheck" data-label="暂无选项" value="" />';
+					$optionText .= '<input type="radio" data-toggle="icheck" data-label="ไม่มีตัวเลือก" value="" />';
 					break;
 					
 				//多选按钮
 				case 'radio':
-					$optionText .= '<input type="checkbox" data-toggle="icheck" data-label="暂无选项" value="" />';
+					$optionText .= '<input type="checkbox" data-toggle="icheck" data-label="ไม่มีตัวเลือก" value="" />';
 					break;
 
 				//下拉列表
 				default:
-					$optionText .= '<option value="0">暂无选项</option>';
+					$optionText .= '<option value="0">ไม่มีตัวเลือก</option>';
 					break;
 			}
 		}

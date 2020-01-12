@@ -10,11 +10,11 @@ $(document).ready(function(){
 
 <div class="mainRight fl">
     <div class="crumbsWrap">
-        <i><span>小说管理</span></i>
+        <i><span>จัดการนิยาย</span></i>
     </div>
     <div class="msgBoxTitle">
-        <p class="f12 c555">当前作品总数<span id="bookCount" class="blue Num">{总数据}</span>本</p>
-        <a class="create button" href="{创建小说}"><em class="icon"></em>创建作品</a>
+        <p class="f12 c555">แปลทั้งหมด <span id="bookCount" class="blue Num">{总数据}</span> เรื่อง</p>
+        <a class="create button" href="{创建小说}"><em class="icon"></em>เพิ่มเรื่องใหม่</a>
     </div>
     <!-- 存在作品 -->
     <div id="bookManageExist" class="worksCtrlWrap">
@@ -33,13 +33,13 @@ $(document).ready(function(){
                 <thead>
 	                <tr>
 	                    <th></th>
-	                    <th class="tl">书名</th>
-	                    <th class="tl">状态</th>
-	                    <th class="tl">最新章节</th>
-	                    <th class="center">小说类型</th>
-	                    <th>收藏</th>
-	                    <th>进程</th>
-	                    <th class="center">操作</th>
+	                    <th class="tl">ชื่อเรื่อง</th>
+	                    <th class="tl">สถานะ</th>
+	                    <th class="tl">บทล่าสุด</th>
+	                    <th class="center">ประเภทนิยาย</th>
+	                    <th>เรื่องที่ชอบ</th>
+	                    <th>กระบวนการ</th>
+	                    <th class="center">การดำเนินการ</th>
 	                </tr>
                 </thead>
                 <tbody id="novelList">
@@ -48,7 +48,7 @@ $(document).ready(function(){
                		<tr class="active">
 	               		<td colspan="8">
 						    <div class="worksCtrlWrap">
-						        <div class="null"><p>你还没有发布任何作品，<a class="button" style="color: #FFF;" href="{创建小说}">创建作品</a></p></div>
+						        <div class="null"><p>คุณยังไม่ได้เผยแพร่งานแปลใด ๆ ของคุณเลย!<a class="button" style="color: #FFF;" href="{创建小说}">เพิ่มเรื่องใหม่</a></p></div>
 						    </div>
 					    </td>
 				    </tr>
@@ -69,8 +69,8 @@ $(document).ready(function(){
                 		<td><em>{小说分类名字}</em></td>
                 		<td><em class="Num">{小说总收藏}</em></td>
                 		<td>{小说进程}</td>
-                		<td><div class="dib-wrap"><a class="button blue" href="{deurl}"><span class="icon"></span><i>写新章节</i></a>
-                		<a class="button white" href="{curl}"><span class="icon"></span><i>已发布章节</i></a></div></td>
+                		<td><div class="dib-wrap"><a class="button blue" href="{deurl}"><span class="icon"></span><i>เขียนบทใหม่</i></a>
+                		<a class="button white" href="{curl}"><span class="icon"></span><i>เผยแพร่แล้ว</i></a></div></td>
                 		</tr>
                 	{/小说列表}
                 </tbody>

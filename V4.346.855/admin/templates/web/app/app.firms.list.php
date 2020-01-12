@@ -17,10 +17,10 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                <span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
+                <span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน : </span>
                 
 				<select data-toggle="selectpicker" name="attr" data-width="100">
-                	<option value="">全部类型</option>
+                	<option value="">ประเภททั้งหมด</option>
                 	<?php
                 	foreach ($typeArr as $k=>$v)
                 	{
@@ -29,10 +29,10 @@ thead th {
                 	}
                 	?>
                 </select>
-                <input type="text" placeholder="请输入公司关键字" name="name" size="15">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
-				<a href="index.php?a=yes&c=app.firms&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
+                <input type="text" placeholder="โปรดกรอกคำค้นบริษัท" name="name" size="15">
+				<button type="submit" class="btn btn-warning radius" data-icon="search">ดึงข้อมูล</button>
+				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
+				<a href="index.php?a=yes&c=app.firms&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="คุณต้องการลบรายการที่เลือกหรือไม่?" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
 		
 			</form>
 		</div>
@@ -44,14 +44,14 @@ thead th {
 			<thead>
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
-				<th width="5%" data-order-field="firms_id">ID</th>
-				<th width="7%" data-order-field="firms_type">厂商类型</th>
-				<th data-order-field="firms_name">厂商名字</th>
-				<th width="15%" data-order-field="firms_cname">厂商简称</th>
-	            <th width="10%" data-order-field="firms_phone">联系电话</th>
-	            <th width="10%" data-order-field="firms_email">联系邮箱</th>
-	            <th width="14%" data-order-field="firms_addtime">添加时间</th>
-	            <th width="10%">操作</th>
+				<th width="5%" data-order-field="firms_id">ไอดี</th>
+				<th width="7%" data-order-field="firms_type">ประเภท</th>
+				<th data-order-field="firms_name">ชื่อเต็ม</th>
+				<th width="15%" data-order-field="firms_cname">ชื่อย่อ</th>
+	            <th width="10%" data-order-field="firms_phone">หมายเลขโทรศัพท์</th>
+	            <th width="10%" data-order-field="firms_email">อีเมล์</th>
+	            <th width="14%" data-order-field="firms_addtime">วันที่เพิ่ม</th>
+	            <th width="10%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody id="<?php echo $cFun?>List">
@@ -72,8 +72,8 @@ thead th {
 							<td style="text-align: center;">'.$v['firms_email'].'</td>
 							<td style="text-align: center;">'.date( 'Y-m-d H:i:s' , $v['firms_addtime']).'</td>
 							<td style="text-align: center;" data-noedit="true">
-				            	<a class="btn btn-secondary radius size-MINI" data-toggle="navtab" data-id="app-firms-edit" data-title="编辑厂商信息" href="index.php?d=yes&c=app.firms.edit&t=edit&id='.$v['firms_id'].'">编辑</a> 
-								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['firms_id'].')">删除</a>
+				            	<a class="btn btn-secondary radius size-MINI" data-toggle="navtab" data-id="app-firms-edit" data-title="แก้ไขข้อมูลผู้จำหน่าย" href="index.php?d=yes&c=app.firms.edit&t=edit&id='.$v['firms_id'].'">แก้ไข</a> 
+								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['firms_id'].')">ลบ</a>
 				            </td>
 						</tr>';
 					$i++;
@@ -81,7 +81,7 @@ thead th {
 			}
 			else
 			{
-				echo '<script type="text/javascript">$(document).ready(function(){$(this).alertmsg("info", "没有数据了!")});</script>';
+				echo '<script type="text/javascript">$(document).ready(function(){$(this).alertmsg("info", "ไม่มีข้อมูล!")});</script>';
 			}
 			?>
 			</tbody>
@@ -90,7 +90,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -99,7 +99,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp;รายการ จากทั้งหมด <?php echo $total;?> รายการ</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>
@@ -124,7 +124,7 @@ function <?php echo $cFun;?>delAjax(id)
 	ajaxData.id = id;
 	ajaxOptions['data'] = ajaxData;
 	ajaxOptions['url'] = "index.php?a=yes&c=app.firms&t=del";
-	ajaxOptions['confirmMsg'] = "确定要删除所选的厂商吗？";
+	ajaxOptions['confirmMsg'] = "คุณต้องการลบผู้จำหน่ายที่เลือกหรือไม่?";
 	ajaxOptions['callback'] = "<?php echo $cFun;?>ajaxCallBack";
 	$(".btn-danger").bjuiajax('doAjax', ajaxOptions);
 }

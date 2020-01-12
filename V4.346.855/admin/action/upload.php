@@ -126,7 +126,7 @@ else
 		//删除压缩文件
 		file::DelFile(WMROOT.$result['path']);
 	}
-	
-	Ajax( '上传成功！' , '200' , $result);
+
+	Ajax( 'อัปโหลดเสร็จแล้ว!' , '200' , $result);
 }
 ?>

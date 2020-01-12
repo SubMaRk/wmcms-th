@@ -17,8 +17,8 @@ if( $post )
 	$configMod->UpdateToForm($post);
 
 	//写入操作记录
-	SetOpLog( '修改文章模块设置' , 'article' , 'update' );
-	
+	SetOpLog( 'แก้ไขการตั้งค่าโมดูลบทความ' , 'article' , 'update' );
+
 	//更新配置文件
 	$manager->UpConfig('article');
 	

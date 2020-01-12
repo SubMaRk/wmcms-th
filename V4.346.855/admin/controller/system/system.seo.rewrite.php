@@ -39,5 +39,5 @@ $keyArr = wmsql::GetAll($where);
 
 //所有模块分类
 $moduleArr = GetModuleName();
-$moduleArr['sitemap'] = '网站地图';
+$moduleArr['sitemap'] = 'แผนผังเว็บไซต์';
 ?>

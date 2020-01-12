@@ -18,7 +18,7 @@ if ( $type == 'edit' || $type == "add"  )
 	
 	if ( $data['type_name'] == '')
 	{
-		Ajax('对不起，广告分类名字必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อหมวดหมู่โฆษณาก่อน',300);
 	}
 
 	//分类名字检查
@@ -27,26 +27,26 @@ if ( $type == 'edit' || $type == "add"  )
 	$wheresql['where']['type_id'] = array('<>',$where['type_id']);
 	if ( wmsql::GetCount($wheresql) > 0 )
 	{
-		Ajax('对不起，该分类已经存在！',300);
+		Ajax('ขออภัย! มีหมวดหมู่นี้อยู่แล้ว',300);
 	}
 	
 	//新增数据
 	if( $type == 'add' )
 	{
-		$info = '恭喜您，广告分类添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มหมวดหมู่โฆษณาสำเร็จ';
 		$where['type_id'] = wmsql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了广告分类'.$data['type_name'] , 'system' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มหมวดหมู่โฆษณา'.$data['type_name'] , 'system' , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
-		$info = '恭喜您，广告分类修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขหมวดหมู่โฆษณาสำเร็จ';
 		wmsql::Update($table, $data, $where);
 		
 		//写入操作记录
-		SetOpLog( '修改了广告分类'.$data['type_name'] , 'system' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขหมวดหมู่โฆษณา'.$data['type_name'] , 'system' , 'update' , $table , $where , $data );
 	}
 	
 	Ajax($info);
@@ -56,10 +56,10 @@ else if ( $type == 'del' )
 {
 	$where['type_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了广告分类' , 'system' , 'delete' , $table , $where);
+	SetOpLog( 'ลบหมวดหมู่โฆษณา' , 'system' , 'delete' , $table , $where);
 	wmsql::Delete($table , $where);
 
-	Ajax('广告删除成功!');
+	Ajax('ลบหมวดหมู่โฆษณาสำเร็จ!');
 }
 //清空请求记录
 else if ( $type == 'clear' )
@@ -67,7 +67,7 @@ else if ( $type == 'clear' )
 	wmsql::Delete($table);
 
 	//写入操作记录
-	SetOpLog( '清空了广告分类' , 'system' , 'delete' , $table);
-	Ajax('所有广告分类成功清空！');
+	SetOpLog( 'ล้างหมวดหมู่โฆษณา' , 'system' , 'delete' , $table);
+	Ajax('ล้างหมวดหมู่โฆษณาสำเร็จ');
 }
 ?>

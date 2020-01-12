@@ -39,12 +39,12 @@ class NovelNovel
 	function GetRec()
 	{
 		$arr = array(
-			'rec_icr'=>'首页封面',
-			'rec_ibr'=>'首页精品',
-			'rec_ir'=>'首页推荐',
-			'rec_ccr'=>'分类封面',
-			'rec_cbr'=>'分类精品',
-			'rec_cr'=>'分类推荐',
+			'rec_icr'=>'แนะนำที่หน้าหลัก',
+			'rec_ibr'=>'แนะนำพิเศษ',
+			'rec_ir'=>'แนะนำที่หน้าหลัก',
+			'rec_ccr'=>'แนะนำในหน้าหลักหมวดหมู่',
+			'rec_cbr'=>'แนะนำในหมวดหมู่พิเศษ',
+			'rec_cr'=>'แนะนำในหมวดหมู่',
 		);
 		
 		return $arr;

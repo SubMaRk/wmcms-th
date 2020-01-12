@@ -18,11 +18,11 @@ $nid = $post['data']['sell_novel_id'];
 $novelData = $novelMod->GetOne($nid);
 if( !$novelData )
 {
-	Ajax('对不起，小说不存在！',300);
+	Ajax('ขออภัย! ไม่มีนิยายเรื่องนี้อยู่',300);
 }
 else if($novelData['novel_sign_id'] < 1 & $novelData['novel_copyright'] < 1)
 {
-	Ajax('对不起，小说上架前请先签约！',300);
+	Ajax('ขออภัย! โปรดเซ็นสัญญาก่อน',300);
 }
 
 
@@ -32,7 +32,7 @@ if ( $type == "add"  )
 	$data = $post['data'];
 	if( !isset($data['sell_type']) )
 	{
-		Ajax('对不起，请至少选择一种收费方式！',300);
+		Ajax('ขออภัย! โปรดเลือกช่องทางเก็บเงินอย่างน้อยหนึ่งช่องทาง',300);
 	}
 	else
 	{
@@ -40,15 +40,15 @@ if ( $type == "add"  )
 		{
 			if($v == 1 && $data['sell_number'] == '' )
 			{
-				Ajax('对不起，请输入千字价格！',300);
+				Ajax('ขออภัย! โปรดกรอกราคาต่อหนึ่งพันคำ',300);
 			}
 			else if($v == 2 && $data['sell_all'] == '' )
 			{
-				Ajax('对不起，请输入全本价格！',300);
+				Ajax('ขออภัย! โปรดกรอกราคาเต็ม',300);
 			}
 			else if($v == 3 && $data['sell_month'] == '' )
 			{
-				Ajax('对不起，请输入包月价格！',300);
+				Ajax('ขออภัย! โปรดกรอกราคารายเดือน',300);
 			}
 		}
 	}
@@ -57,7 +57,7 @@ if ( $type == "add"  )
 	$sellData = $sellMod->GetLastOne($nid);
 	if( $sellData && $sellData['sell_status'] == 1)
 	{
-		Ajax('对不起，该小说已经上架了！',300);
+		Ajax('ขออภัย! นิยายเรื่องนี้อยู่บนชั้นหนังสือแล้ว',300);
 	}
 	else
 	{
@@ -67,8 +67,8 @@ if ( $type == "add"  )
 		$sellMod->SetNovelSell($nid);
 		
 		//写入操作记录
-		SetOpLog( '小说《'.$novelData['novel_name'].'》上架成功！' , $curModule , 'insert' , $table , $where , $data );
-		Ajax('恭喜您，小说上架成功！');
+		SetOpLog( 'นิยายเรื่อง 《'.$novelData['novel_name'].'》 อยู่บนชั้นหนังสือ' , $curModule , 'insert' , $table , $where , $data );
+		Ajax('ยินดีด้วย! นิยายเรื่องนี้อยู่บนชั้นแล้ว');
 	}
 }
 else if($type == 'remove')
@@ -77,9 +77,9 @@ else if($type == 'remove')
 	$sellData['sell_status'] = 0;
 	$where['sell_id'] = $sellMod->Insert($sellData);
 	//写入操作记录
-	SetOpLog( '小说《'.$novelData['novel_name'].'》下架成功！' , $curModule , 'insert' , $table , $where , $sellData );
+	SetOpLog( 'นิยายเรื่อง 《'.$novelData['novel_name'].'》 ถูกนำออกจากชั้นหนังสือ' , $curModule , 'insert' , $table , $where , $sellData );
 	//修改小说签约数据
 	$sellMod->SetNovelSell($nid , 0);
-	Ajax('恭喜您，小说下架成功！');
+	Ajax('ยินดีด้วย! ถอดนิยายออกจากชั้นหนังสือแล้ว');
 }
 ?>

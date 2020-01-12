@@ -10,7 +10,7 @@
 */
 $table = '@seo_urls';
 $status = 200;
-$msg = '查询成功';
+$msg = 'ดึงข้อมูลสำเร็จ';
 
 //修改关键词信息
 if ( $type == 'edit' || $type == "add"  )
@@ -25,14 +25,14 @@ if ( $type == 'edit' || $type == "add"  )
 		unset($post['urls_id']);
 
 		//写入操作记录
-		SetOpLog( '修改SEO的URL信息' , 'system' , 'update' , $table, $where , $post );
+		SetOpLog( 'แก้ไขข้อมูลลิ้งก์ SEO' , 'system' , 'update' , $table, $where , $post );
 		WMSql::Update($table, $post, $where);
-		Ajax('伪静态更新成功，请在全部修改完成后点击头部的生存缓存让配置生效!');
+		Ajax('อัปเดทลิ้งก์แบบคงที่สำเร็จ! โปรดคลิ๊กอัปเดทแคชเพื่อแสดงผลบน Header');
 	}
 	//如果是增加页面
 	else
 	{
-		Ajax('暂未开通新增URL功能',300);
+		Ajax('ไม่ได้เปิดใช้งานฟังก์ชั่นปรับเปลี่ยนลิ้งก์',300);
 	}
 }
 //生成静态文件
@@ -42,7 +42,7 @@ else if ( $type == 'config' )
 	$seoSer->UpConfig();
 
 	//写入操作记录
-	SetOpLog( '生成了SEO的URL缓存' , 'system' , 'update' );
-	Ajax('静态缓存生成成功！');
+	SetOpLog( 'สร้างแคชลิ้งก์ SEO' , 'system' , 'update' );
+	Ajax('สร้างแคชลิ้งก์ SEO สำเร็จ!');
 }
 ?>

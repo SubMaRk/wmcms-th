@@ -20,7 +20,7 @@
 			    			$BGR = '';
 							if( $v['now_ver'] < $v['new_ver'] )
 							{
-								$v['ver'] = '有更新';
+								$v['ver'] = 'อัปเดท';
 			    				$BGR = 'background:#5cb85c';
 							}
 			        		echo '<li><div class="img"><img src="'.$v['cover'].'" width="210" height="210" class="hoverZoomLink"></div>
@@ -87,7 +87,7 @@ $(document).ready(function(){
 			ajaxOptions['loadingmask'] = true;
 			ajaxOptions['data'] = ajaxData;
 			ajaxOptions['url'] = "index.php?a=yes&c=cloud.apps&t=update";
-			ajaxOptions['confirmMsg'] = "更新前请确认做好数据、代码备份。更新详情请到应用详情页查看。是否更新？";
+			ajaxOptions['confirmMsg'] = "โปรดตรวจสอบให้แน่ใจว่าคุณได้ทำการสำรองข้อมูลและโค้ดก่อนทำการอัปเดทแล้ว โปรดตรวจสอบในหน้ารายละเอียกการอัปเดท จะอัปเดทหรือไม่?";
 			$(this).bjuiajax('doAjax', ajaxOptions);
 		}
 	});

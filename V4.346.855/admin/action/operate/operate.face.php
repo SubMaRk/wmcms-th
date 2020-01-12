@@ -20,6 +20,6 @@ if ( $type == 'install' )
 	//创建编辑器表情配置
 	$faceSer->CreateFaceJson('editor' , GetKey($post,'editor') , $faceArr);
 	
-	Ajax('表情配置生成成功！',200);
+	Ajax('สร้างการกำหนดค่าอีโมติคอนสำเร็จ!',200);
 }
 ?>

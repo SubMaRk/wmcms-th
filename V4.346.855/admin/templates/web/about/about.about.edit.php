@@ -2,10 +2,10 @@
     <form action="index.php?a=yes&c=about.about&t=<?php echo $type;?>" data-reload="false" data-toggle="validate" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
 	<input name="id[about_id]" id="<?php echo $cFun.$type;?>_cid" type="hidden" class="input-text" value="<?php echo $id;?>">
 		<fieldset>
-			<legend>信息内容编辑</legend>
+			<legend>แก้ไขเนื้อหา</legend>
 			<ul class="nav nav-tabs" role="tablist">
-            	<li class="active"><a href="#<?php echo $cFun.$type;?>base" role="tab" data-toggle="tab">基本信息</a></li>
-            	<li><a href="#<?php echo $cFun.$type;?>field" id="<?php echo $cFun.$type;?>field_tab" role="tab" data-toggle="tab">自定义字段</a></li>
+            	<li class="active"><a href="#<?php echo $cFun.$type;?>base" role="tab" data-toggle="tab">ข้อมูลทั่วไป</a></li>
+            	<li><a href="#<?php echo $cFun.$type;?>field" id="<?php echo $cFun.$type;?>field_tab" role="tab" data-toggle="tab">ฟิลด์ที่กำหนดเอง</a></li>
             </ul>
             <div class="tab-content">
             	<div class="tab-pane fade active in" id="<?php echo $cFun.$type;?>base">
@@ -13,7 +13,7 @@
 		            <tbody>
 		            	<tr>
 						  <td colspan="3">
-						  	<b>信 息 分 类：</b>
+						  	<b>หมวดหมู่ : </b>
 							<input id="<?php echo $cFun.$type;?>type_id" name="about[type_id]" type="hidden" value="<?php echo C('type_id',null,'data');?>">
 					      	<input type="text" id="<?php echo $cFun.$type;?>_ztree_input" data-toggle="selectztree" data-tree="#<?php echo $cFun.$type;?>_ztree_select" readonly value="<?php echo C('type_name',null,'data');?>">
                             <ul id="<?php echo $cFun.$type;?>_ztree_select" class="ztree hide" data-toggle="ztree" data-expand-all="true" data-check-enable="true" data-chk-style="radio" data-radio-type="all" data-on-check="<?php echo $cFun.$type;?>S_NodeCheck" data-on-click="<?php echo $cFun.$type;?>S_NodeClick">
@@ -32,47 +32,47 @@
 						</tr>
 		                <tr>
 		                    <td width="50%">
-		                        <b>信 息 标 题：</b>
+		                        <b>ชื่อ : </b>
 		                        <input type="text" name="about[about_name]" value="<?php echo C('about_name',null,'data');?>" data-rule="required">
 		                    </td>
 		                    <td>
-		                        <b>信 息 拼 音：</b>
+		                        <b>พินอิน : </b>
 		                        <input type="text" name="about[about_pinyin]" value="<?php echo C('about_pinyin',null,'data');?>">
 		                    </td>
 		                </tr>
 					    <tr>
-					      <td colspan="2"><b>使 用 模 版：</b>
+					      <td colspan="2"><b>เทมเพลตที่ใช้ : </b>
 					      	<input id="about_ctempid" name="about[about_ctempid]" type="hidden" value="<?php echo C('about_ctempid',null,'data');?>">
-					      	<input id="temp_cname" name="temp[temp_cname]" type="text" value="<?php echo C('cname',null,'temp');?>" data-toggle="lookup" data-url="index.php?c=system.templates.lookup&module=about&page=content&name=cname&tid=ctempid&rename=about" data-title="选择当前信息分类内容页模版" size="15" data-width="700" data-height="500">
-					      	<a class="btn btn-default" href="index.php?c=system.templates.edit&t=add&module=about&page=content&name=cname&tid=ctempid&rename=about" data-toggle="dialog" data-mask="true" data-title="上传新的信息内容页模版" data-width="540" data-height="450" ><i class="fa fa-cloud-upload">&nbsp;</i>上传模板</a>
+					      	<input id="temp_cname" name="temp[temp_cname]" type="text" value="<?php echo C('cname',null,'temp');?>" data-toggle="lookup" data-url="index.php?c=system.templates.lookup&module=about&page=content&name=cname&tid=ctempid&rename=about" data-title="เลือกเทมเพลตที่จะใช้กับหน้านี้" size="15" data-width="700" data-height="500">
+					      	<a class="btn btn-default" href="index.php?c=system.templates.edit&t=add&module=about&page=content&name=cname&tid=ctempid&rename=about" data-toggle="dialog" data-mask="true" data-title="อัปโหลดเทมเพลตใหม่" data-width="540" data-height="450" ><i class="fa fa-cloud-upload">&nbsp;</i>อัปโหลดเทมเพลต</a>
 					      </td>
 						</tr>
 		                <tr>
 		                    <td colspan="2">
-		                        <b>页 面 标 题：</b>
+		                        <b>ชื่อหน้า : </b>
 		                        <input type="text" name="about[about_title]" value="<?php echo C('about_title',null,'data');?>" size="40">
 		                    </td>
 		                </tr>
 		                <tr>
 		                    <td colspan="2">
-		                        <b>页面关键字：</b>
+		                        <b>คำหลัก : </b>
 		                        <input type="text" name="about[about_key]" value="<?php echo C('about_key',null,'data');?>" size="40">
 		                    </td>
 		                </tr>
 		                <tr>
 		                    <td colspan="2">
-		                        <b>页 面 描 述：</b>
+		                        <b>คำอธิบาย : </b>
 		                        <input type="text" name="about[about_desc]" value="<?php echo C('about_desc',null,'data');?>" size="40">
 		                    </td>
 		                </tr>
 		            	<tr>
-						  <td colspan="4"><b>发 布 时 间：</b>
+						  <td colspan="4"><b>วันที่เผยแพร่ : </b>
 							<input type="text" name="about[about_time]" value="<?php echo date('Y-m-d H:i:s',C('about_time',null,'data'));?>" data-toggle="datepicker" data-pattern="yyyy-MM-dd H:m:s" size="19">
 					      </td>
 						</tr>
 		                <tr>
 		                   <td colspan="3">
-		                        <b>信 息 内 容：</b>
+		                        <b>เนื้อหา : </b>
 		                        <div class="wm_form_content_box">
 									<?php echo Ueditor('width: 90%;height:300px' , 'about[about_content]' , C('about_content',null,'data') , 'editor.about');?>
 		                        </div>
@@ -92,8 +92,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">จัดเก็บ</button></li>
     </ul>
 </div>
 
@@ -151,7 +151,7 @@ function <?php echo $cFun.$type;?>getfield(json){
 			      '<td valign="top">'+option[i]['form']+'</td></tr>';
 		}
 	}else{
-		html ='<tr><td valign="top"><b>请先添加自定义字段</b></td></tr>';
+		html ='<tr><td valign="top"><b>โปรดเพิ่มฟิลด์ที่กำหนดเองก่อน!</b></td></tr>';
 	}
 	$("#<?php echo $cFun.$type;?>field table").html(html);
 	$("#<?php echo $cFun.$type;?>field table").trigger('bjui.initUI');
@@ -165,7 +165,7 @@ $(document).ready(function(){
 		var tid = $("#<?php echo $cFun.$type;?>type_id").val();
 
 		if( tid == '' ){
-			$(this).alertmsg('error', '对不起，请先选择分类');
+			$(this).alertmsg('error', 'ขออภัย! โปรดเลือกหมวดหมู่ก่อน');
 			return false;
 		}else{
 			var op = new Array();

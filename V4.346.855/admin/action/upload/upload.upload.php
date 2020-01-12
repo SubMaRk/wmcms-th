@@ -17,12 +17,12 @@ if( $type == 'del' )
 	$id = Request('id/i');
 	if( $id == '' )
 	{
-		Ajax('ID错误',300);
+		Ajax('ไอดีผิดพลาด!',300);
 	}
 	else
 	{
 		wmsql::Delete($table,array('upload_id'=>$id));
-		Ajax('删除成功');
+		Ajax('ลบสำเร็จ!');
 	}
 }
 ?>

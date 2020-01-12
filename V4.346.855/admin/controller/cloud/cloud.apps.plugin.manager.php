@@ -15,7 +15,7 @@ $cFun = $cFun.'_'.$id;
 
 if( !str::Number($id) )
 {
-	$errInfo = '对不起，插件id错误！';
+	$errInfo = 'ขออภัย! ไอดีปลั๊กอินไม่ถูกต้อง';
 }
 else
 {
@@ -24,15 +24,15 @@ else
 	$pluginData = $pluginMod->GetById($id);
 	if( !$pluginData )
 	{
-		$errInfo = '对不起，插件不存在！';
+		$errInfo = 'ขออภัย! ไม่มีปลั๊กอินอยู่';
 	}
 	else
 	{
 		$pluginMenu = array();
 		$pluginSystemMenu = array(
 			'system'=>array(
-				'name'=>'系统菜单',
-				'menu'=>array(array('name'=>'插件首页','action'=>'index')),
+				'name'=>'เมนูระบบ',
+				'menu'=>array(array('name'=>'หน้าหลักปลั๊กอิน','action'=>'index')),
 			),
 		);
 		

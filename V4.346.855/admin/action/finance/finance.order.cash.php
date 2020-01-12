@@ -15,17 +15,17 @@ if ( $type == 'del'  )
 {
 	$where['cash_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了提现申请！' , 'finance' , 'delete' , $cashTable , $where);
+	SetOpLog( 'ลบคำร้องขอถอนเงิน' , 'finance' , 'delete' , $cashTable , $where);
 	wmsql::Delete($cashTable , $where);
 	
-	Ajax('提现申请批量删除成功!');
+	Ajax('ลบคำร้องขอถอนเงินสำเร็จ!');
 }
 //清空数据记录
 else if ( $type == 'clear')
 {
-	SetOpLog( '清空了所有提现申请！' , 'finance' , 'delete' , $cashTable);
+	SetOpLog( 'ล้างคำร้องขอถอนเงิน' , 'finance' , 'delete' , $cashTable);
 	wmsql::Delete($cashTable);
-	Ajax('提现申请全部清空成功！');
+	Ajax('ล้างคำร้องขอถอนเงินสำเร็จ!');
 }
 //审核操作
 else if ( $type == 'status')
@@ -43,8 +43,8 @@ else if ( $type == 'status')
 		$cashMod->UpdateStatus($id , $status);
 		if( $status == 1)
 		{
-			SetOpLog( '同意了提现申请！' , 'finance' , 'delete' , $cashTable , $where , $data);
-			Ajax('同意提现申请成功！');
+			SetOpLog( 'อนุมัติการถอนเงิน' , 'finance' , 'delete' , $cashTable , $where , $data);
+			Ajax('อนุมัติการถอนเงินสำเร็จ!');
 		}
 		else
 		{
@@ -54,15 +54,15 @@ else if ( $type == 'status')
 			$logData['module'] = 'finance';
 			$logData['type'] = 'cash_refuse';
 			$logData['uid'] = $cashData['cash_user_id'];
-			$logData['remark'] = '提现拒绝返还！';
+			$logData['remark'] = 'คำร้องขอถอนเงินถูกปฏิเสธ!';
 			$userMod->CapitalChange( $cashData['cash_user_id'] , $logData , 0 , $cashData['cash_money']/$config['gold2_to_money']);
-			SetOpLog( '拒绝了提现申请！' , 'finance' , 'delete' , $cashTable , $where , $data);
-			Ajax('拒绝提现申请成功！');
+			SetOpLog( 'ปฏิเสธการถอนเงิน' , 'finance' , 'delete' , $cashTable , $where , $data);
+			Ajax('ปฏิเสธการถอนเงินสำเร็จ!');
 		}
 	}
 	else
 	{
-		Ajax('对不起，该提现申请不存在！');
+		Ajax('ขออภัย! ไม่มีคำร้องขอถอนเงินนี้อยู่');
 	}
 }
 ?>

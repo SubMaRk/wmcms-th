@@ -10,10 +10,10 @@
 */
 //所有模块分类
 $moduleArr = array(
-	'article'=>'文章模块',
-	'about'=>'关于模块',
-	'novel'=>'小说模块',
-	'picture'=>'图集模块',
+	'article'=>'โมดูลบทความ',
+	'about'=>'โมดูลเกี่ยวกับ',
+	'novel'=>'โมดูลนิยาย',
+	'picture'=>'โมดูลอัลบั้ม',
 );
 
 $startTime = date('Y-m-d 00:00:00');

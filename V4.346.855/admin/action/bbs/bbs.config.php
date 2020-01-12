@@ -17,8 +17,8 @@ if( $post )
 	$configMod->UpdateToForm($post);
 
 	//写入操作记录
-	SetOpLog( '修改论坛模块设置' , 'bbs' , 'update' );
-	
+	SetOpLog( 'แก้ไขการตั้งค่าโมดูลบอร์ด' , 'bbs' , 'update' );
+
 	//更新配置文件
 	$manager->UpConfig('bbs');
 	

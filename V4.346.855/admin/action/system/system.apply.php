@@ -20,11 +20,11 @@ if ( $type == 'refuse_'.$module.'_'.$mt )
 	$cid = Request('cid/i');
 	if( $remark == '' )
 	{
-		Ajax('对不起，拒绝原因不能为空！',300);
+		Ajax('ขออภัย! ต้องกรอกเหตุผลที่ละทิ้งก่อน',300);
 	}
 	else if($module == '' || $mt == '' || !str::Number($uid) || !str::Number($cid) || !str::Number($uid) )
 	{
-		Ajax('对不起，参数错误！',300);
+		Ajax('ขออภัย! พารามิเตอร์ไม่ถูกต้อง',300);
 	}
 	else
 	{
@@ -46,7 +46,7 @@ if ( $type == 'refuse_'.$module.'_'.$mt )
 		
 		//写入操作记录
 		SetOpLog( $result['info'] , $module , $type , $result['table'] , $result['where'] , $result['data'] );
-		Ajax('拒绝申请成功！' , 200);
+		Ajax('ละทิ้งคำร้องสำเร็จ!' , 200);
 	}
 }
 ?>

@@ -16,16 +16,16 @@ if ( $type == 'del' )
 	$where['spider_id'] = GetDelId();
 
 	//写入操作记录
-	SetOpLog( '删除了蜘蛛爬行记录' , 'system' , 'delete' , $table , $where);
+	SetOpLog( 'ลบบันทึกการสำรวจข้อมูล' , 'system' , 'delete' , $table , $where);
 	wmsql::Delete($table, $where);
-	Ajax('蜘蛛爬行记录删除成功!');
+	Ajax('ลบบันทึกการสำรวจข้อมูลสำเร็จ!');
 }
 //清空登录记录
 else if ( $type == 'clear' )
 {
 	wmsql::Delete($table);
 	//写入操作记录
-	SetOpLog( '清空了蜘蛛爬行记录' , 'system' , 'delete');
-	Ajax('所有蜘蛛爬行记录成功清空！');
+	SetOpLog( 'ล้างบันทึกการสำรวจข้อมูล' , 'system' , 'delete');
+	Ajax('ล้างบันทึกการสำรวจข้อมูลสำเร็จ');
 }
 ?>

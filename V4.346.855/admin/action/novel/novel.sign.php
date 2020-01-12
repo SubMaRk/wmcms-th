@@ -18,7 +18,7 @@ $id = Request('nid');
 $novelData = $novelMod->GetOne($id);
 if( !$novelData )
 {
-	Ajax('对不起，小说不存在！',300);
+	Ajax('ขออภัย! ไม่มีนิยายเรื่องนี้อยู่',300);
 }
 //签约操作
 if ( $type == "add"  )
@@ -30,11 +30,11 @@ if ( $type == "add"  )
 
 	if((str::Int($nid) == 0 || str::Int($copy) == 0) && GetKey($signData,'sign_status') != 1)
 	{
-		Ajax('对不起，所有项必须选择！',300);
+		Ajax('ขออภัย! ต้องเลือกรายการทั้งหมดก่อน',300);
 	}
 	else if($copy == 1 && $sid == 0  && GetKey($signData,'sign_status') != 1)
 	{
-		Ajax('对不起，请选择签约等级！',300);
+		Ajax('ขออภัย! โปรดเลือกระดับการทำสัญญาก่อน',300);
 	}
 	else
 	{
@@ -46,13 +46,13 @@ if ( $type == "add"  )
 			//修改小说签约数据
 			$signMod->SetNovelSign($nid,$copy,$sid);
 			
-			$opTxt = '小说《'.$novelData['novel_name'].'》取消签约成功！';
-			$setTxt = '恭喜您，小说取消签约成功！';
+			$opTxt = 'นิยายเรื่อง 《'.$novelData['novel_name'].'》 ยกเลิกสัญญาสำเร็จ!';
+			$setTxt = 'ยินดีด้วย! นิยายเรื่องนี้ถูกยกเลิกสัญญาแล้ว';
 		}
 		else
 		{
-			$opTxt = '小说《'.$novelData['novel_name'].'》签约成功！';
-			$setTxt = '恭喜您，小说签约成功！';
+			$opTxt = 'นิยายเรื่อง 《'.$novelData['novel_name'].'》 ทำสัญญาสำเร็จ!';
+			$setTxt = 'ยินดีด้วย! นิยายเรื่องนี้ถูกทำสัญญาแล้ว';
 		}
 
 		//插入签约数据

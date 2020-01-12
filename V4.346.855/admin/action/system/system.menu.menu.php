@@ -22,7 +22,7 @@ if ( $type == 'order' )
 	//检查参数
 	if( !str::Number($post['id']) || !str::Number($post['order']) )
 	{
-		Ajax($post['order'].'对不起，菜单id和顺序必须为数字',300);
+		Ajax($post['order'].'ขออภัย! ลำดับและไอดีเมนูต้องเป็นตัวเลขเท่านั้น',300);
 	}
 	//设置条件
 	$where['menu_id'] = $post['id'];
@@ -35,12 +35,12 @@ if ( $type == 'order' )
 	
 	
 	//写入操作记录
-	SetOpLog( '移动了菜单显示顺序' , 'system' , 'updata' , $table , $where , $data );
+	SetOpLog( 'ย้ายลำดับเมนู' , 'system' , 'updata' , $table , $where , $data );
 	
 	
 	WMSql::Update($table, $data, $where);
 
-	Ajax('菜单移动成功!');
+	Ajax('ย้ายลำดับเมนูสำเร็จ!');
 }
 else if ( $type == 'edit' || $type == "add" )
 {
@@ -65,16 +65,16 @@ else if ( $type == 'edit' || $type == "add" )
 	{
 		$where['menu_id'] = WMSql::Insert($table, $data);
 		//写入操作记录
-		SetOpLog( '新增了菜单' , 'system' , 'insert' , $table , $where , $data );
-		Ajax('菜单新增成功!');
+		SetOpLog( 'เพิ่มเมนู' , 'system' , 'insert' , $table , $where , $data );
+		Ajax('เพิ่มเมนูสำเร็จ!');
 	}
 	//修改菜单
 	else
 	{
 		//写入操作记录
-		SetOpLog( '修改了菜单' , 'system' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขเมนู' , 'system' , 'update' , $table , $where , $data );
 		WMSql::Update($table, $data, $where);
-		Ajax('菜单更新成功!');
+		Ajax('แก้ไขเมนูสำเร็จ!');
 	}
 }
 //删除菜单
@@ -82,9 +82,9 @@ else if ( $type == 'del' )
 {
 	$where['menu_id'] = Post('id');
 	//写入操作记录
-	SetOpLog( '删除了菜单' , 'system' , 'delete' , $table , $where);
+	SetOpLog( 'ลบเมนู' , 'system' , 'delete' , $table , $where);
 	wmsql::Delete($table, $where);
-	Ajax('菜单删除成功!');
+	Ajax('ลบเมนูสำเร็จ!');
 }
 //添加或者删除快捷菜单
 else if ( $type == 'quick' )
@@ -100,16 +100,16 @@ else if ( $type == 'quick' )
 		$quickWhere = array("quick_id"=>$data['quick_id']);
 		wmsql::Delete($table , $quickWhere);
 		//写入操作记录
-		SetOpLog( '取消了快捷菜单' , 'system' , 'delete' , $table , $quickWhere);
-		Ajax('快捷菜单取消成功！');
+		SetOpLog( 'ยกเลิกเมนูทางลัด' , 'system' , 'delete' , $table , $quickWhere);
+		Ajax('ยกเลิกเมนูทางลัดสำเร็จ!');
 	}
 	//不存在就添加快捷菜单
 	else
 	{
 		wmsql::Insert($table, $where['where']);
 		//写入操作记录
-		SetOpLog( '添加了快捷菜单' , 'system' , 'insert' , $table , $where['where']);
-		Ajax('快捷菜单添加成功！');
+		SetOpLog( 'เพิ่มเมนูทางลัด' , 'system' , 'insert' , $table , $where['where']);
+		Ajax('เพิ่มเมนูทางลัดสำเร็จ!');
 	}
 }
 //快捷菜单排序
@@ -117,7 +117,7 @@ else if ( $type == 'quickorder' )
 {
 	if( empty($post['qucik']) )
 	{
-		Ajax('对不起，请添加快捷菜单后操作！',300);
+		Ajax('ขออภัย! โปรดเพิ่มเมนูางลัดก่อน',300);
 	}
 	else
 	{
@@ -126,8 +126,8 @@ else if ( $type == 'quickorder' )
 			wmsql::Update('@system_menu_quick', array('quick_order'=>$v), array('quick_id'=>$k));
 		}
 		//写入操作记录
-		SetOpLog( '更新了快捷菜单排序' , 'system' , 'update' , $table );
-		Ajax('快捷菜单顺序更新成功！');
+		SetOpLog( 'แก้ไขลำดับเมนูทางลัด' , 'system' , 'update' , $table );
+		Ajax('แก้ไขลำดับเมนูทางลัดสำเร็จ!');
 	}
 }
 //设置默认首页
@@ -136,7 +136,7 @@ else if ( $type == 'default_index' )
 	$data['default_controller'] = Post('index');
 	if( $data['default_controller'] == '' )
 	{
-		Ajax('对不起，控制器不能为空！');
+		Ajax('ขออภัย! ต้องเลือกตัวควบคุมก่อน');
 	} 
 	else
 	{
@@ -152,8 +152,8 @@ else if ( $type == 'default_index' )
 			$menuMod->DefaultInsert($data);
 		}
 		//写入操作记录
-		SetOpLog( '更新了新的默认首页' , 'system' , 'update' , $table );
-		Ajax('新的默认首页更新成功，刷新后生效！');
+		SetOpLog( 'แก้ไขค่าเริ่มต้นหน้าหลัก' , 'system' , 'update' , $table );
+		Ajax('แก้ไขค่าเริ่มต้นหน้าหลักสำเร็จ! โปรดรีเฟรชเพื่อดูผลลัพธ์');
 	}
 }
 ?>

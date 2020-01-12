@@ -25,11 +25,11 @@ class SystemLogin
 		$browser = GetKey($uaArr,'1');
 		if( $userAgent == '' )
 		{
-			$userAgent = '未知UA';
+			$userAgent = 'UA ที่ไม่รู้จัก';
 		}
 		if( $browser == '' )
 		{
-			$browser = '未知浏览器';
+			$browser = 'เบราว์เซอร์ที่ไม่รู้จัก';
 		}
 		$log['manager_id'] = $mid;
 		$log['login_time'] = time();

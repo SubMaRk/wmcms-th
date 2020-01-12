@@ -17,7 +17,7 @@ if( $post )
 	$configMod->UpdateToForm($post);
 
 	//写入操作记录
-	SetOpLog( '修改小说模块设置' , 'novel' , 'update' );
+	SetOpLog( 'แก้ไขการตั้งค่าโมดูลนิยาย' , 'novel' , 'update' );
 	
 	//更新配置文件
 	$manager->UpConfig('novel');

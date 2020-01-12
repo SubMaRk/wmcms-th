@@ -19,10 +19,10 @@ class SystemManager
 		switch ($status)
 		{
 			case "1":
-				$status = '<span style="color:green">正在使用</span>';
+				$status = '<span style="color:green">ใช้อยู่</span>';
 				break;
 			default:
-				$status = '<span style="color:red">已经禁用</span>';
+				$status = '<span style="color:red">เลิกใช้</span>';
 				break;
 		}
 		return $status;

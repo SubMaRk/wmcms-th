@@ -19,7 +19,7 @@ if ( $type == "leveladd" || $type == "leveledit" )
 		$data = str::Escape( GetKey($post,'level'), 'e' );
 		if( !$data )
 		{
-			Ajax('对不起，请添加数据后再点击保存!',300);
+			Ajax('ขออภัย! โปรดเพิ่มข้อมูลแล้วกดจัดเก็บ',300);
 		}
 		foreach ($data as $k=>$v)
 		{
@@ -27,10 +27,10 @@ if ( $type == "leveladd" || $type == "leveledit" )
 			{
 				$where['level_id'] = wmsql::Insert($levelTable, $v);
 				//写入操作记录
-				SetOpLog( '新增了充值等级' , 'finance' , 'insert' , $levelTable , $where , $v );
+				SetOpLog( 'เพิ่มระดับการเติมเงิน' , 'finance' , 'insert' , $levelTable , $where , $v );
 			}
 		}
-		$info = '恭喜您，充值等级添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มระดับการเติมเงินสำเร็จ';
 	}
 	else if( $type == 'leveledit' )
 	{
@@ -40,10 +40,10 @@ if ( $type == "leveladd" || $type == "leveledit" )
 			{
 				wmsql::Update($levelTable, $v['data'], $v['id']);
 				//写入操作记录
-				SetOpLog( '修改了充值等级' , 'finance' , 'update' , $levelTable , $v['id'] , $v['data'] );
+				SetOpLog( 'แก้ไขระดับการเติมเงิน' , 'finance' , 'update' , $levelTable , $v['id'] , $v['data'] );
 			}
 		}
-		$info = '恭喜您，充值等级修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขระดับการเติมเงินสำเร็จ';
 	}
 
 	Ajax($info);
@@ -55,8 +55,8 @@ else if ( $type == 'leveldel')
 	wmsql::Delete($levelTable , $where);
 	
 	//写入操作记录
-	SetOpLog( '删除了充值等级' , 'finance' , 'delete' , $levelTable , $where);
+	SetOpLog( 'ลบระดับการเติมเงิน' , 'finance' , 'delete' , $levelTable , $where);
 	
-	Ajax('充值等级删除成功!');
+	Ajax('ลบระดับการเติมเงินแล้ว!');
 }
 ?>

@@ -18,15 +18,15 @@ if ( $type == 'type_edit' || $type == "type_add"  )
 	
 	if ( $data['type_name'] == '' )
 	{
-		Ajax('对不起，分类名字必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อหมวดหมู่ก่อน',300);
 	}
 	else if( !str::Number($data['type_order']) )
 	{
-		Ajax('对不起，分类排序必须为数字！',300);
+		Ajax('ขออภัย! ต้องกรอกหมายเลขลำดับก่อน',300);
 	}
 	else if( !str::Number($data['type_topid']) )
 	{
-		Ajax('对不起，所属分类必须选择！',300);
+		Ajax('ขออภัย! ต้องเลือกหมวดหมู่ก่อน',300);
 	}
 
 	//幻灯片分类名字检查
@@ -35,7 +35,7 @@ if ( $type == 'type_edit' || $type == "type_add"  )
 	$wheresql['where']['type_name'] = $data['type_name'];
 	if ( wmsql::GetCount($wheresql) > 0 )
 	{
-		Ajax('对不起，该分类名已经存在！',300);
+		Ajax('ขออภัย! มีชื่อหมวดหมู่นี้อยู่แล้ว',300);
 	}
 	
 	//查询上级所有id
@@ -44,20 +44,20 @@ if ( $type == 'type_edit' || $type == "type_add"  )
 	//新增数据
 	if( $type == 'type_add' )
 	{
-		$info = '恭喜您，幻灯片分类添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มหมวดหมู่สไลด์สำเร็จ';
 		$where['type_id'] = wmsql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了幻灯片分类'.$data['type_name'] , 'flash' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มหมวดหมู่สไลด์'.$data['type_name'] , 'flash' , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
-		$info = '恭喜您，幻灯片分类修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขหมวดหมู่สไลด์สำเร็จ';
 		wmsql::Update($table, $data, $where);
 		
 		//写入操作记录
-		SetOpLog( '修改了幻灯片分类'.$data['type_name'] , 'flash' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขหมวดหมู่สไลด์'.$data['type_name'] , 'flash' , 'update' , $table , $where , $data );
 	}
 
 	Ajax($info);
@@ -75,7 +75,7 @@ else if ( $type == 'type_del' )
 
 	//写入操作记录
 	$where['type_id'] = GetDelId();
-	SetOpLog( '删除了幻灯片分类' , 'flash' , 'delete' , $table , $where);
-	Ajax('幻灯片分类删除成功!');
+	SetOpLog( 'ลบหมวดหมู่สไลด์' , 'flash' , 'delete' , $table , $where);
+	Ajax('ลบหมวดหมู่สไลด์สำเร็จ!');
 }
 ?>

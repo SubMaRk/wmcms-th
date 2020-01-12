@@ -18,9 +18,9 @@ class bbsbbs
 	function GetAttr()
 	{
 		$arr = array(
-			'rec'=>'推荐',
-			'es'=>'精华',
-			'top'=>'置顶',
+			'rec'=>'แนะนำ',
+			'es'=>'สำคัญ',
+			'top'=>'ปักหมุด',
 		);
 		
 		return $arr;

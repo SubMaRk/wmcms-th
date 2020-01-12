@@ -70,7 +70,7 @@ thead th {
 				<th width="4%" data-order-field="article_strong">加粗</th>
 	            <th width="8%" data-order-field="article_author">文章作者</th>
 	            <th width="5%" data-order-field="article_read">点击量</th>
-	            <th width="5%" data-order-field="article_save_path">保存方式</th>
+	            <th width="5%" data-order-field="article_replay">评论量</th>
 	            <th width="14%" data-order-field="article_addtime">发布时间</th>
 	            <th width="10%">操作</th>
 	            </tr>
@@ -100,7 +100,7 @@ thead th {
 							<td style="text-align: center;">'.$strong.'</td>
 							<td style="text-align: center;">'.$v['article_author'].'</td>
 							<td style="text-align: center;">'.$v['article_read'].'</td>
-							<td style="text-align: center;">'.$articleMod->GetSaveType($v['article_save_type']).'</td>
+							<td style="text-align: center;">'.$v['article_replay'].'</td>
 							<td style="text-align: center;">'.date( 'Y-m-d H:i:s' , $v['article_addtime']).'</td>
 							<td style="text-align: center;" data-noedit="true">
 				            	<a class="btn btn-secondary radius size-MINI" data-toggle="navtab" data-id="article-article-edit" data-title="编辑文章内容" href="index.php?d=yes&c=article.article.edit&t=edit&id='.$v['article_id'].'">编辑</a> 

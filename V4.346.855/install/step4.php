@@ -33,7 +33,7 @@ try{
 	}
 	else if($appid == '' || $apikey == '' || $secret == '' )
 	{
-		die('没有获取到appid，无法完成安装！');
+		die('ไม่สามารถรับไอดีแอปฯ และไม่สามารถติดตั้งให้สมบูรณ์ได้');
 	}
 	else
 	{
@@ -66,7 +66,7 @@ try{
 		//修改网站的API接口配置
 		$db->exec("update `wm_api_api` set `api_appid`='".$appid."',`api_apikey`='".$apikey."',`api_secretkey`='".$secret."' where `api_id`=1");
 		$apiContent=file_get_contents("../wmcms/config/api.config.php");
-		$apiContent=preg_replace("/'system' => array\('api_type'=>'1','api_title'=>'站内通用','api_ctitle'=>'','api_open'=>'1','api_appid'=>'(.*?)','api_apikey'=>'(.*?)','api_secretkey'=>'(.*?)',/", "'system' => array('api_type'=>'1','api_title'=>'站内通用','api_ctitle'=>'','api_open'=>'1','api_appid'=>'{$appid}','api_apikey'=>'{$apikey}','api_secretkey'=>'{$secret}',", $apiContent);
+		$apiContent=preg_replace("/'system' => array\('api_type'=>'1','api_title'=>'สถานีทั่วไป','api_ctitle'=>'','api_open'=>'1','api_appid'=>'(.*?)','api_apikey'=>'(.*?)','api_secretkey'=>'(.*?)',/", "'system' => array('api_type'=>'1','api_title'=>'สถานีทั่วไป','api_ctitle'=>'','api_open'=>'1','api_appid'=>'{$appid}','api_apikey'=>'{$apikey}','api_secretkey'=>'{$secret}',", $apiContent);
 		file_put_contents("../wmcms/config/api.config.php",$apiContent);
 		
 		
@@ -154,30 +154,30 @@ try{
 }catch(PDOException $e) {
 	$errstr=$e->getMessage();
 	if(strpos($errstr,'[2005]')){
-		$errinfo='对不起，数据库地址无法连接！';
+		$errinfo='ขออภัย! ไม่สามารถเชื่อมต่อฐานข้อมูล';
 	}else if(strpos($errstr,'[2002]')){
-		$errinfo='对不起，数据配置错误！';
+		$errinfo='ขออภัย! การกำหนดค่าฐานข้อมูลไม่ถูกต้อง';
 	}else if(strpos($errstr,'[2003]')){
-		$errinfo='对不起，数据库端口不正确！';
+		$errinfo='ขออภัย! พอร์ตฐานข้อมูลไม่ถูกต้อง';
 	}else if(strpos($errstr,'[1044]')){
-		$errinfo='对不起，您没有新建数据库的权限，请使用系统默认的数据库名！';
+		$errinfo='ขออภัย! คุณไม่มีสิทธิ์สร้างฐานข้อมูลใหม่ โปรดใช้ชื่อฐานข้อมูลตามค่าพื้นฐาน';
 	}else if(strpos($errstr,'[1045]')){
-		$errinfo='对不起，数据库账号或密码错误！';
+		$errinfo='ขออภัย! ชื่อผู้ใช้หรือรหัสผ่านฐานข้อมูลไม่ภูกต้อง';
 	}else if(strpos($errstr,'[1049]')){
 		//创建数据库
 	}else if(strpos($errstr,'[1045]')){
 		$errinfo=$errstr;
 	}
-	echo '<div class="main cc"><div class="success_tip error_tip" style="margin-bottom: 30px;"><p>'.$errinfo.'</p></div><div class="bottom tac"><a href="javascript:;" onclick="javascript:history.go(-1);return false;" class="btn">返 回</a></div></div>';
+	echo '<div class="main cc"><div class="success_tip error_tip" style="margin-bottom: 30px;"><p>'.$errinfo.'</p></div><div class="bottom tac"><a href="javascript:;" onclick="javascript:history.go(-1);return false;" class="btn">ย้อนกลับ</a></div></div>';
 	exit;
 }
 $db = null;
 ?>
 <div class="step">
 	<ul>
-		<li class="on"><em>1</em>检测环境</li>
-		<li class="on"><em>2</em>创建数据</li>
-		<li class="current"><em>3</em>完成安装</li>
+		<li class="on"><em>1</em>ตรวจสภาพแวดล้อม</li>
+		<li class="on"><em>2</em>สร้างข้อมูล</li>
+		<li class="current"><em>3</em>ติดตั้งสำเร็จ</li>
 	</ul>
 </div>
 
@@ -190,11 +190,11 @@ $db = null;
 </form>
 
 <div class="bottom tac">
-	<a href="javascript:;" class="btn_old">正在安装...</a>
+	<a href="javascript:;" class="btn_old">กำลังติดตั้ง...</a>
 </div>
 
 <script type="text/javascript">
-var log = "系统配置创建成功!<wind>建立数据表 wm_app_abs ... 成功!<wind>建立数据表 wm_app_app ... 成功!<wind>建立数据表 wm_app_firms ... 成功!<wind>建立数据表 wm_app_type ... 成功!<wind>建立数据表  wm_article_article ... 成功!<wind>建立数据表 wm_article_sourceauthor ... 成功!<wind>建立数据表 wm_article_type ... 成功!<wind>建立数据表 wm_bbs_bbs ... 成功!<wind>建立数据表 wm_bbs_type ... 成功!<wind>建立数据表 wm_bbs_typemanager ... 成功!<wind>建立数据表 wm_flash_flash ... 成功!<wind>建立数据表 wm_link_click ... 成功!<wind>建立数据表 wm_link_link ... 成功!<wind>建立数据表 wm_link_set ... 成功!<wind>建立数据表 wm_link_type ... 成功!<wind>建立数据表 wm_novel_author ... 成功!<wind>建立数据表 wm_novel_chapter ... 成功!<wind>建立数据表 wm_novel_content ... 成功!<wind>建立数据表 wm_novel_authorvip ... 成功!<wind>建立数据表 wm_novel_dashang ... 成功!<wind>建立数据表 wm_novel_novel ... 成功!<wind>建立数据表 wm_novel_paychapter ... 成功!<wind>建立数据表 wm_novel_paynovel ... 成功!<wind>建立数据表 wm_novel_rec ... 成功!<wind>建立数据表 wm_novel_score ... 成功!<wind>建立数据表 wm_novel_set ... 成功!<wind>建立数据表 wm_novel_tags ... 成功!<wind>建立数据表 wm_novel_type ... 成功!<wind>建立数据表 wm_novel_user_bookshelf ... 成功!<wind>建立数据表 wm_novel_user_coll ... 成功!<wind>建立数据表 wm_novel_user_lvconfig ... 成功!<wind>建立数据表 wm_novel_user_rec ... 成功!<wind>建立数据表 wm_novel_volume ... 成功!<wind>建立数据表 wm_replay_content ... 成功!<wind>建立数据表 wm_replay_set ... 成功!<wind>建立数据表 wm_sign_sign ... 成功!<wind>建立数据表 wm_system_ad ... 成功!<wind>建立数据表 wm_system_competence ... 成功!<wind>建立数据表 wm_system_diy ... 成功!<wind>建立数据表 wm_system_domain ... 成功!<wind>建立数据表 wm_system_keys ... 成功!<wind>建立数据表 wm_system_manager ... 成功!<wind>建立数据表 wm_system_managerlogin ... 成功!<wind>建立数据表 wm_system_message ... 成功!<wind>建立数据表 wm_system_mession ... 成功!<wind>建立数据表 wm_system_operation ... 成功!<wind>建立数据表 wm_system_rules ... 成功!<wind>建立数据表 wm_system_searchkey ... 成功!<wind>建立数据表 wm_system_set ... 成功!<wind>建立数据表 wm_system_temp ... 成功!<wind>建立数据表 wm_system_urls ... 成功!<wind>建立数据表 wm_system_users ... 成功!<wind>建立数据表 wm_system_usershead ... 成功!<wind>建立数据表 wm_system_userslv ... 成功!<wind>建立数据表 wm_system_usersvist ... 成功!<wind>建立数据表 wm_system_users_msg ... 成功!<wind>建立数据表 wm_system_zt ... 成功!<wind>建立数据表 wm_system_ztdiytemp ... 成功!<wind>管理员信息创建成功!插件添加成功!<wind>系统缓存更新完成!";
+var log = "สร้างกำหนดค่าระบบสำเร็จ!<wind>สร้างตารางข้อมูล wm_app_abs ... สำเร็จ!<wind>สร้างตาราง wm_app_app ... สำเร็จ!<wind>สร้างตาราง wm_app_firms ... สำเร็จ!<wind>สร้างตาราง wm_app_type ... สำเร็จ!<wind>สร้างตาราง  wm_article_article ... สำเร็จ!<wind>สร้างตาราง wm_article_sourceauthor ... สำเร็จ!<wind>สร้างตาราง wm_article_type ... สำเร็จ!<wind>สร้างตาราง wm_bbs_bbs ... สำเร็จ!<wind>สร้างตาราง wm_bbs_type ... สำเร็จ!<wind>สร้างตาราง wm_bbs_typemanager ... สำเร็จ!<wind>สร้างตาราง wm_flash_flash ... สำเร็จ!<wind>สร้างตาราง wm_link_click ... สำเร็จ!<wind>สร้างตาราง wm_link_link ... สำเร็จ!<wind>สร้างตาราง wm_link_set ... สำเร็จ!<wind>สร้างตาราง wm_link_type ... สำเร็จ!<wind>สร้างตาราง wm_novel_author ... สำเร็จ!<wind>สร้างตาราง wm_novel_chapter ... สำเร็จ!<wind>สร้างตาราง wm_novel_content ... สำเร็จ!<wind>สร้างตาราง wm_novel_authorvip ... สำเร็จ!<wind>สร้างตาราง wm_novel_dashang ... สำเร็จ!<wind>สร้างตาราง wm_novel_novel ... สำเร็จ!<wind>สร้างตาราง wm_novel_paychapter ... สำเร็จ!<wind>สร้างตาราง wm_novel_paynovel ... สำเร็จ!<wind>สร้างตาราง wm_novel_rec ... สำเร็จ!<wind>สร้างตาราง wm_novel_score ... สำเร็จ!<wind>สร้างตาราง wm_novel_set ... สำเร็จ!<wind>สร้างตาราง wm_novel_tags ... สำเร็จ!<wind>สร้างตาราง wm_novel_type ... สำเร็จ!<wind>สร้างตาราง wm_novel_user_bookshelf ... สำเร็จ!<wind>สร้างตาราง wm_novel_user_coll ... สำเร็จ!<wind>สร้างตาราง wm_novel_user_lvconfig ... สำเร็จ!<wind>สร้างตาราง wm_novel_user_rec ... สำเร็จ!<wind>สร้างตาราง wm_novel_volume ... สำเร็จ!<wind>สร้างตาราง wm_replay_content ... สำเร็จ!<wind>สร้างตาราง wm_replay_set ... สำเร็จ!<wind>สร้างตาราง wm_sign_sign ... สำเร็จ!<wind>สร้างตาราง wm_system_ad ... สำเร็จ!<wind>สร้างตาราง wm_system_competence ... สำเร็จ!<wind>สร้างตาราง wm_system_diy ... สำเร็จ!<wind>สร้างตาราง wm_system_domain ... สำเร็จ!<wind>สร้างตาราง wm_system_keys ... สำเร็จ!<wind>สร้างตาราง wm_system_manager ... สำเร็จ!<wind>สร้างตาราง wm_system_managerlogin ... สำเร็จ!<wind>สร้างตาราง wm_system_message ... สำเร็จ!<wind>สร้างตาราง wm_system_mession ... สำเร็จ!<wind>สร้างตาราง wm_system_operation ... สำเร็จ!<wind>สร้างตาราง wm_system_rules ... สำเร็จ!<wind>สร้างตาราง wm_system_searchkey ... สำเร็จ!<wind>สร้างตาราง wm_system_set ... สำเร็จ!<wind>สร้างตาราง wm_system_temp ... สำเร็จ!<wind>สร้างตาราง wm_system_urls ... สำเร็จ!<wind>สร้างตาราง wm_system_users ... สำเร็จ!<wind>สร้างตาราง wm_system_usershead ... สำเร็จ!<wind>สร้างตาราง wm_system_userslv ... สำเร็จ!<wind>สร้างตาราง wm_system_usersvist ... สำเร็จ!<wind>สร้างตาราง wm_system_users_msg ... สำเร็จ!<wind>สร้างตาราง wm_system_zt ... สำเร็จ!<wind>สร้างตาราง wm_system_ztdiytemp ... สำเร็จ!<wind>สร้างข้อมูลผู้ดูแลระบบสำเร็จ!<wind>เพิ่มปลั๊กอินสำเร็จ!<wind>อัปเดทแคชระบบเสร็จสิ้น!";
 var n = 0;
 var timer = 0;
 log = log.split('<wind>');

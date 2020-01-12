@@ -19,7 +19,7 @@ if ( $type == 'edit' || $type == "add" )
 	
 	if( $data['email_smtp'] == 'smtp.qq.com' )
 	{
-		Ajax('对不起，QQ个人smtp.qq.com服务无法使用，请使用qq企业或者网易等其他邮箱!',300);
+		Ajax('ขออภัย! บริการอีเมล์ QQ ส่วนตัว (smtp.qq.com) ไม่สามารถใช้งานได้ โปรดใช้บริการ QQ สำหรับองค์กร, NetEase หรือผู้ให้บริการอีเมล์อื่น',300);
 	}
 
 	//密码加密判断处理
@@ -37,17 +37,17 @@ if ( $type == 'edit' || $type == "add" )
 		//插入记录
 		$where['email_id'] = $emailMod->EmailInsert($data);
 		//写入操作记录
-		SetOpLog( '新增了邮件服务' , 'system' , 'insert' , $table , $where , $data );
-		Ajax('邮件服务新增成功!');
+		SetOpLog( 'เพิ่มบริการอีเมล์' , 'system' , 'insert' , $table , $where , $data );
+		Ajax('เพิ่มบริการอีเมล์สำเร็จ!');
 	}
 	//如果是增加页面
 	else
 	{
 		//写入操作记录
-		SetOpLog( '修改邮件服务' , 'system' , 'update' , $table  , $where , $data );
+		SetOpLog( 'แก้ไขบริการอีเมล์' , 'system' , 'update' , $table  , $where , $data );
 		//修改数据
 		$emailMod->EmailUpdate($data,$where);
-		Ajax('邮件服务修改成功！');
+		Ajax('แก้ไขบริการอีเมล์สำเร็จ!');
 	}
 }
 //删除邮件服务
@@ -56,8 +56,8 @@ else if ( $type == 'del' )
 	$where['email_id'] = GetDelId();
 	$emailMod->EmailDel($where);
 	//写入操作记录
-	SetOpLog( '删除了邮件服务' , 'system' , 'delete' , $table , $where);
-	Ajax('邮件服务删除成功!');
+	SetOpLog( 'ลบบริการอีเมล์' , 'system' , 'delete' , $table , $where);
+	Ajax('ลบบริการอีเมล์สำเร็จ!');
 }
 //使用禁用邮件服务
 else if ( $type == 'status' )
@@ -67,17 +67,17 @@ else if ( $type == 'status' )
 
 	if( Request('status') == '1')
 	{
-		$msg = '使用成功';
+		$msg = 'ใช้งาน';
 	}
 	else
 	{
-		$msg = '禁用成功';
+		$msg = 'เลิกใช้';
 	}
 	$emailMod->EmailUpdate($data,$where);
 	
 	//写入操作记录
-	SetOpLog( '邮件服务'.$msg , 'system' , 'update' , $table , $where);
-	Ajax('邮件服务'.$msg);
+	SetOpLog( 'บริการอีเมล์'.$msg , 'system' , 'update' , $table , $where);
+	Ajax('บริการอีเมล์'.$msg'แล้ว');
 }
 //发送测试邮件
 else if ( $type == 'test' )
@@ -88,20 +88,20 @@ else if ( $type == 'test' )
 		$return = $emailMod->SendMail($data['email_name'],'admin','test',null,true);
 		
 		//写入操作记录
-		SetOpLog( '发送了测试邮件' , 'system' , 'update' );
+		SetOpLog( 'ส่งอีเมล์ทดสอบ' , 'system' , 'update' );
 		
 		if ( $return === true )
 		{
-			Ajax('邮件发送成功，请前往邮箱查看!');
+			Ajax('ส่งอีเมล์สำเร็จ! โปรดไปที่ก่อลข้อความเพื่อดูรายละเอียด');
 		}
 		else
 		{
-			Ajax('测试邮件发送失败!'.$return,300);
+			Ajax('ทดสอบส่งอีเมล์ล้มเหลว!'.$return,300);
 		}
 	}
 	else
 	{
-		Ajax('对不起，邮件配置不存在!',300);
+		Ajax('ขออภัย! ไม่มีการกำหนดค่าอีเมล์นี้อยู่',300);
 	}
 }
 ?>

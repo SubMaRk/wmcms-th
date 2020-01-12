@@ -18,9 +18,9 @@ class UserUser
 	function GetDisplay()
 	{
 		$arr = array(
-			'1'=>'正常',
-			'0'=>'永久封禁',
-			'2'=>'定时封禁',
+			'1'=>'ปกติ',
+			'0'=>'แบนถาวร',
+			'2'=>'แบนชั่วคราว',
 		);
 
 		return $arr;

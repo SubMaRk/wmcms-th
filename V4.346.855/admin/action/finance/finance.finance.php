@@ -15,16 +15,16 @@ if ( $type == 'del'  )
 {
 	$where['log_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了资金变更！' , 'finance' , 'delete' , $logTable , $where);
+	SetOpLog( 'ลบยอดรางวัล' , 'finance' , 'delete' , $logTable , $where);
 	wmsql::Delete($logTable , $where);
 	
-	Ajax('打赏记录批量删除成功!');
+	Ajax('ลบบันทึกรางวัลสำเร็จ!');
 }
 //清空数据记录
 else if ( $type == 'clear')
 {
-	SetOpLog( '清空了所有资金变更记录！' , 'finance' , 'delete' , $logTable);
+	SetOpLog( 'ล้างยอดรางวัล' , 'finance' , 'delete' , $logTable);
 	wmsql::Delete($logTable);
-	Ajax('资金变更全部清空成功！');
+	Ajax('ล้างยอดรางวัลทั้งหมดสำเร็จ!');
 }
 ?>

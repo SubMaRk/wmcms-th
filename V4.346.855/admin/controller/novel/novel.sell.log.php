@@ -24,7 +24,7 @@ $data['novel_name'] = str::DelHtml($data['novel_name']);
 $data['sign'] = $signMod->GetOne($data['novel_sign_id']);
 if( empty($data['sign']) )
 {
-	$data['sign']['sign_name'] = '暂未签约';
+	$data['sign']['sign_name'] = 'ไม่ได้ทำสัญญา';
 	$data['sign']['sign_divide'] = '10:0';
 }
 

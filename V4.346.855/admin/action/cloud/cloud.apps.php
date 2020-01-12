@@ -16,7 +16,7 @@ if ( $type == 'install' )
 	$id = Get('id');
 	if( $id == '' )
 	{
-		Ajax('需要安装的应用id不能为空！',300);
+		Ajax('ไอดีแอปฯ ที่ใช้ในการติดตั้งต้องไม่ว่าง!',300);
 	}
 	else
 	{
@@ -48,11 +48,11 @@ if ( $type == 'install' )
 			if ( $zip->extract(PCLZIP_OPT_PATH, $filePath) )
 			{
 				file::DelFile($localFile);
-				Ajax('应用下载成功，请手动安装！',200,array('id'=>$id));
+				Ajax('ดาวน์โหลดแอปฯ เสร็จแล้ว โปรดทำการติดตั้งมันด้วยตนเอง!',200,array('id'=>$id));
 			}
 			else
 			{
-				Ajax('应用解压失败，请手动解压。路径：'.$filePath,300);
+				Ajax('แตกไฟล์แอปฯ ล้มเหลว โปรดทำการแตกไฟล์ด้วยตนเอง '.$filePath,300);
 			}
 		}
 	}
@@ -64,7 +64,7 @@ else if ( $type == 'update' )
 	$ver = Get('ver');
 	if( empty($id) || empty($ver) )
 	{
-		Ajax('需要更新的应用id或者版本号不能为空！',300);
+		Ajax('ไอดีปลั๊กอินหรือหมายเลขเวอร์ชั่นที่ใช้อัปเดทต้องไม่ว่าง!',300);
 	}
 	else
 	{
@@ -112,11 +112,11 @@ else if ( $type == 'update' )
 						$pluginMod = NewModel('plugin.plugin');
 						$pluginMod->UpdateVersion($id,'V'.$rs['data']['version']);
 					}
-					Ajax('更新完成！');
+					Ajax('อัปเดทสำเร็จ!');
 				}
 				else
 				{
-					Ajax('应用解压失败，请手动解压覆盖。路径：'.$localFile,300);
+					Ajax('แยกไฟล์ปลั๊กอินล้มเหลว โปรดแยกไฟล์ด้วยตนเองแล้วแทนที่ : '.$localFile,300);
 				}
 			}
 		}

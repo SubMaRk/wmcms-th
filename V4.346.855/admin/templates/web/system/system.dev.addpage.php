@@ -56,42 +56,42 @@
         <td width="450">
         	<input name="url[url1]" type="text" size="45"/>
 	    </td>
-        <td>动态的url地址，格式：/index.php</td>
+        <td>ลิ้งก์แบบไดนามิก รูปแบบ : /index.php</td>
       </tr>
       <tr class="urlTr">
-        <td>传统伪静态url地址</td>
+        <td>ลิ้งก์แบบดั้งเดิม</td>
         <td width="350">
         	<input name="url[url2]" type="text" size="45"/>
 	    </td>
-        <td>伪静态后的url地址，格式：/index.html。可以和动态地址一样</td>
+        <td>ลิ้งก์แบบที่ตั้งคงที่ รูปแบบ : /index.html สามารถใช้แบบเดียวกันกับแบบไดนามิก</td>
       </tr>
       <tr class="urlTr">
-        <td>普通模式url地址</td>
+        <td>ลิ้งก์ปกติ</td>
         <td width="350">
         	<input name="url[url3]" type="text" size="45"/>
 	    </td>
-        <td>普通模式url地址，格式：/?module=novel&file=info&nid={nid}</td>
+        <td>ลิ้งก์ปกติ รูปแบบ : /?module=novel&file=info&nid={nid}</td>
       </tr>
       <tr class="urlTr">
-        <td>兼容模式url地址</td>
+        <td>ลิ้งก์แบบเข้ากันได้</td>
         <td width="350">
         	<input name="url[url4]" type="text" size="45"/>
 	    </td>
-        <td>兼容模式url地址，格式：/?path=/novel/info/nid/{nid}</td>
+        <td>ลิ้งก์แบบเข้ากันได้ รูปแบบ : /?path=/novel/info/nid/{nid}</td>
       </tr>
       <tr class="urlTr">
-        <td>PATHINFO模式url地址</td>
+        <td>ลิ้งก์แบบข้อมูลที่ตั้ง</td>
         <td width="350">
         	<input name="url[url5]" type="text" size="45"/>
 	    </td>
-        <td>PATHINFO模式url地址，格式：/index.php/novel/info/nid/{nid}</td>
+        <td>ลิ้งก์แบบข้อมูลที่ตั้ง รูปแบบ : /index.php/novel/info/nid/{nid}</td>
       </tr>
       <tr class="urlTr">
-        <td>REWRITE模式url地址</td>
+        <td>ลิ้งก์แบบเขียนใหม่</td>
         <td width="350">
         	<input name="url[url6]" type="text" size="45"/>
 	    </td>
-        <td>REWRITE模式url地址，格式：/novel/info/nid/{nid}</td>
+        <td>ลิ้งก์แบบเขียนใหม่ รูปแบบ : /novel/info/nid/{nid}</td>
       </tr>
     </table>
       

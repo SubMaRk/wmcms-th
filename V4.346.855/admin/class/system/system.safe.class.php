@@ -19,13 +19,13 @@ class SystemSafe
 		switch ($status)
 		{
 			case "1":
-				$status = '<span style="color:green">登录成功</span>';
+				$status = '<span style="color:green">เข้าสู่ระบบสำเร็จ</span>';
 				break;
 			case "2":
-				$status = '<span style="color:red">密码错误</span>';
+				$status = '<span style="color:red">รหัาผ่านไม่ถูกต้อง</span>';
 				break;
 			default:
-				$status = '<span style="color:red">登录失败</span>';
+				$status = '<span style="color:red">เข้าสู่ระบบล้มเหลว</span>';
 				break;
 		}
 		return $status;
@@ -40,8 +40,8 @@ class SystemSafe
 	function GetModuleName( $key )
 	{
 		$arr = GetModuleName();
-		$arr['system'] = '系统功能';
-		$arr['finance'] = '财务模块';
+		$arr['system'] = 'ฟังก์ชั่นระบบ';
+		$arr['finance'] = 'โมดูลการเงิน';
 		unset($arr['all']);
 	
 		return $arr[$key];
@@ -57,15 +57,15 @@ class SystemSafe
 		switch ( $type )
 		{
 			case "insert":
-				$type = '新增数据';
+				$type = 'เพิ่มข้อมูล';
 				break;
 				
 			case "update":
-				$type = '修改数据';
+				$type = 'แก้ไขข้อมูล';
 				break;
 				
 			case "delete":
-				$type = '删除数据';
+				$type = 'ลบข้อมูล';
 				break;
 		}
 		

@@ -22,15 +22,15 @@ if ( $type == 'sitemap' || $type == 'rss')
 
 	$html = $httpSer->GetUrl($domain.$url);
 	file::CreateFile(WMROOT.$path, $html , 1);
-	Ajax($page.'地图：'.$path.'生成成功！');
+	Ajax($page.'สร้างแผนผัง : '.$path.' สำเร็จ!');
 }
 //根据模块获取分类
 else if ( $type == 'gettype' )
 {
 	if( $module == '' )
 	{
-		$data[] = array('type_id'=>0,'type_topid'=>0,'type_pid'=>0,'type_name'=>'对不起，请选择模块');
-		Ajax('获取成功' , 200 , $data);
+		$data[] = array('type_id'=>0,'type_topid'=>0,'type_pid'=>0,'type_name'=>'ขออภัย! โปรดเลือกโมดูลก่อน');
+		Ajax('สำเร็จ!' , 200 , $data);
 	}
 	else
 	{
@@ -39,7 +39,7 @@ else if ( $type == 'gettype' )
 		$wheresql['order'] = 'type_order';
 		$data = wmsql::GetAll($wheresql);
 
-		Ajax('获取成功' , 200 , $data);
+		Ajax('สำเร็จ!' , 200 , $data);
 	}
 }
 //生成列表html初始化操作
@@ -47,7 +47,7 @@ else if( $type == 'list' && $step == 'init')
 {
 	if( $module == '' )
 	{
-		Ajax('请选择模块!' , 300);
+		Ajax('โปรดเลือกโมดูลก่อน!' , 300);
 	}
 	$child = Request('child');
 	$tTable = $tableSer->tableArr[$module.'type']['table'];
@@ -73,11 +73,11 @@ else if( $type == 'list' && $step == 'init')
 	$data = wmsql::GetAll($wheresql);
 	if( $data )
 	{
-		Ajax('初始化成功！' , 200 , $data , count($data));
+		Ajax('เตรียมการสำเร็จ!' , 200 , $data , count($data));
 	}
 	else
 	{
-		Ajax('没有需要生成的数据!' , 300);
+		Ajax('ไม่มีข้อมูลที่ต้องสร้าง!' , 300);
 	}
 }
 //生成列表html操作
@@ -85,7 +85,7 @@ else if( $type == 'list' && $step == 'create')
 {
 	if( $module == '' || $tid == '')
 	{
-		Ajax('参数错误!' , 300);
+		Ajax('พารามิเตอร์ไม่ถูกต้อง!' , 300);
 	}
 	else
 	{
@@ -95,7 +95,7 @@ else if( $type == 'list' && $step == 'create')
 
 		$html = $httpSer->GetUrl($domain.$url);
 		file::CreateFile(WMROOT.$htmlPath, $html , 1);
-		Ajax(GetModuleName($module).'，分类ID：'.$tid.'。'.$htmlPath.'生成成功！');
+		Ajax(GetModuleName($module).' ไอดีหมวดหมู่ : '.$tid.'。'.$htmlPath.' ถูกสร้างสำเร็จ!');
 	}
 }
 ?>

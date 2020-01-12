@@ -33,7 +33,7 @@ if ( $type == 'edit' || $type == "add"  )
 	//内容检查
 	if( $post['content'] == '' )
 	{
-		Ajax('对不起，章节内容不能为空！',300);
+		Ajax('ขออภัย! เนื้อหาบทต้องไม่ว่าง',300);
 	}
 	
 	//小说是否存在检查
@@ -43,7 +43,7 @@ if ( $type == 'edit' || $type == "add"  )
 	//不存在小说
 	if( empty($novelList) || count($novelList) == 0 )
 	{
-		Ajax('对不起，该小说不存在！',300);
+		Ajax('ขออภัย! ไม่มีนิยายเรื่องนี้อยู่',300);
 	}
 	//只有一条小说
 	else if( count($novelList) == 1 )
@@ -53,7 +53,7 @@ if ( $type == 'edit' || $type == "add"  )
 	//小说大于一本，并且作者为空
 	else if( count($novelList) > 1 && GetKey($post,'novel_author') == '' )
 	{
-		Ajax('对不起，存在同名小说，您必须同时输入小说作者才能添加分卷！',300);
+		Ajax('ขออภัย! มีนิยายที่ใช้ชื่อเดียวกันอยู่ คุณต้องกรอกชื่อผู้แต่งเพื่อเพิ่มเล่ม',300);
 	}
 	else
 	{
@@ -67,7 +67,7 @@ if ( $type == 'edit' || $type == "add"  )
 		}
 		if( empty($novelData) )
 		{
-			Ajax('对不起，当前小说不存在该作者，请检查是否输入错误！',300);
+			Ajax('ขออภัย! ไม่มีผู้แต่งในนิยายนี้ โปรดตรวจสอบว่าคุณกรอกถูกต้อง',300);
 		}
 	}
 	
@@ -99,7 +99,7 @@ if ( $type == 'edit' || $type == "add"  )
 			$novelReturnArr = AddNovel();
 			//删除当前的小说插入锁
 			Session(md5($post['novel']['novel_name']) , 'delete');
-			if($novelReturnArr['message'] == '对不起，该小说已经存在！' || $novelReturnArr['code'] == '200' )
+			if($novelReturnArr['message'] == 'ขออภัย! มีนิยายเรื่องนี้อยู่แล้ว' || $novelReturnArr['code'] == '200' )
 			{
 				$novelData = $novelReturnArr['data'];
 				$novelData['novel_wordnumber'] = 0;
@@ -111,7 +111,7 @@ if ( $type == 'edit' || $type == "add"  )
 		}
 		else
 		{
-			Ajax('对不起，该小说不存在！',300);
+			Ajax('ขออภัย! ไม่มีนิยายเรื่องนี้อยู่',300);
 		}
 	}
 	//一键发布结束
@@ -121,7 +121,7 @@ if ( $type == 'edit' || $type == "add"  )
 	//没有签约和上架
 	if( ($novelData['novel_copyright'] < '1' || $novelData['novel_sell'] < '1') && $data['chapter_ispay'] == '1' )
 	{
-		Ajax('对不起，该小说暂未签约并且未上架，不能设为收费章节！',300);
+		Ajax('ขออภัย! นิยายเรื่องนี้ยังไม่ได้รับการอนุมัติและไม่ได้อยู่ในชั้นหนังสือ จึงไม่สามารถกำหนดเป็นบทใช้เงินได้',300);
 	}
 
 	//章节名字和章节内容相似检查
@@ -143,14 +143,14 @@ if ( $type == 'edit' || $type == "add"  )
 				similar_text($content['content'],$post['content'], $percent);
 				if( round($percent) >= $novelConfig['chapter_compare_number'] )
 				{
-					Ajax('对不起，该章节已经存在！',300);
+					Ajax('ขออภัย! มีบททนี้อยู่แล้ว',300);
 				}
 			}
 		}
 		//不检测内容
 		else
 		{
-			Ajax('对不起，该章节已经存在！',300);
+			Ajax('ขออภัย! มีบททนี้อยู่แล้ว',300);
 		}
 	}
 	
@@ -172,11 +172,11 @@ if ( $type == 'edit' || $type == "add"  )
 		}
 		
 		$wordNumber = '0';
-		$info = '恭喜您，小说章节添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มบทนิยายสำเร็จ';
 		$where['chapter_id'] = wmsql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了小说章节'.$data['chapter_name'] , 'novel' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มบทนิยาย'.$data['chapter_name'] , 'novel' , 'insert' , $table , $where , $data );
 	}
 	//修改
 	else
@@ -187,14 +187,14 @@ if ( $type == 'edit' || $type == "add"  )
 		
 		if( !$chapterData )
 		{
-			Ajax('对不起，章节不存在',300);
+			Ajax('ขออภัย! ไม่มีบทนี้อยู่',300);
 		}
 		
-		$info = '恭喜您，小说章节修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขบทนิยายสำร็จ';
 		wmsql::Update($table, $data, $where);
 
 		//写入操作记录
-		SetOpLog( '修改了小说章节'.$data['chapter_name'] , 'novel' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขบทนิยาย'.$data['chapter_name'] , 'novel' , 'update' , $table , $where , $data );
 	}
 
 	//创建小说文章内容
@@ -240,8 +240,8 @@ else if ( $type == 'del' )
 	//删除文件
 	$chapterSer->DelChapterFile($novelData['type_id'],$novelData['novel_id'],$where['chapter_id']);
 	//写入操作记录
-	SetOpLog( '删除了小说章节' , 'novel' , 'delete' , $table , $where);
-	Ajax('小说章节删除成功!');
+	SetOpLog( 'ลบบทนิยาย' , 'novel' , 'delete' , $table , $where);
+	Ajax('ลบบทของนิยายเรื่องนี้สำเร็จ!');
 }
 //清空章节
 else if ( $type == 'clear' )
@@ -261,12 +261,12 @@ else if ( $type == 'clear' )
 		}
 		else
 		{
-			Ajax('对不起，该小说不存在！',300);
+			Ajax('ขออภัย! ไม่มีนิยายเรื่องนี้อยู่',300);
 		}
 	}
 	else
 	{
-		Ajax('请选择，需要清空章节的小说！',300);
+		Ajax('โปรดเลือกนิยายที่ต้องการล้างบท',300);
 	}
 
 	$delWhere['chapter_nid'] = $nid;
@@ -280,19 +280,19 @@ else if ( $type == 'clear' )
 	$novelSer->DelNovelFile($novelData['type_id'],$novelData['novel_id']);
 	
 	//写入操作记录
-	SetOpLog( '清空了小说章节' , 'novel' , 'delete');
-	Ajax('小说章节清空成功！');
+	SetOpLog( 'ล้างบทนิยาย' , 'novel' , 'delete');
+	Ajax('ล้างบทของนิยายเรื่องนี้สำเร็จ!');
 }
 //移动
 else if ( $type == 'order' )
 {
 	if( !str::Number($post['nid']) || !str::Number($post['cid']) )
 	{
-		Ajax('对不起，书籍id和章节id错误！',300);
+		Ajax('ขออภัย! ไอดีนิยายและไอดีบทไม่ถูกต้อง',300);
 	}
 	else if( !str::Number($post['order']) || !str::Number($post['localtion']) )
 	{
-		Ajax('对不起，移动位置参数错误！',300);
+		Ajax('ขออภัย! หมายเลขลำดับไม่ถูกต้อง',300);
 	}
 	else
 	{
@@ -317,8 +317,8 @@ else if ( $type == 'order' )
 		
 		
 		//写入操作记录
-		SetOpLog( '移动了小说章节位置' , 'novel' , 'update');
-		Ajax('移动了小说章节成功！');
+		SetOpLog( 'ย้ายบทนิยาย' , 'novel' , 'update');
+		Ajax('ย้ายตำแหน่งบทนิยายสำเร็จ!');
 	}
 }
 ?>

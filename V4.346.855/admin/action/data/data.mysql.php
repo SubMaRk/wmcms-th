@@ -14,17 +14,17 @@ if ( $type == 'runsql' )
 	$sql = stripslashes($post['sql']);
 	if( $sql == '' )
 	{
-		Ajax( '对不起，sql语句不能为空!' , 300);
+		Ajax( 'ขออภัย! คำสั่ง SQL ต้องไม่ว่าง' , 300);
 	}
 	else
 	{
 		if( wmsql::Query($sql , 'rs') === false )
 		{
-			Ajax( '对不起，请检查SQL是否正确!' , 300);
+			Ajax( 'ขออภัย! โปรดตรวจสอบว่า SQL ถูกต้อง' , 300);
 		}
 		else
 		{
-			Ajax( '恭喜您，SQL成功执行!');
+			Ajax( 'ยินดีด้วย! ดำเนินการคำสั่ง SQL สำเร็จ');
 		}
 	}
 }
@@ -35,7 +35,7 @@ else if ( $type == 'optimize' || $type == 'repair' )
 	
 	if( $table == '' || $type == '' )
 	{
-		Ajax( '对不起，操作的表或者操作类型不能为空!' , 300);
+		Ajax( 'ขออภัย! ประเภทของตารางหรือการดำเนินการของคำสั่งต้องไม่ว่าง' , 300);
 	}
 	else
 	{
@@ -43,19 +43,19 @@ else if ( $type == 'optimize' || $type == 'repair' )
 		{
 			//优化表
 			case "optimize":
-				$info = $table.'表优化成功';
+				$info = $table.' ถูกเพิ่มประสิทธิภาพแล้ว';
 				$sql = 'OPTIMIZE TABLE  `'.$table.'`';
 			
 			//修复表
 			case "repair":
-				$info = $table.'表修复成功';
+				$info = $table.' ถูกซ่อมแซมแล้ว';
 				$sql = 'REPAIR TABLE  `'.$table.'`';
 				break;
 		}
 		
 		if( wmsql::Query($sql , 'rs') === false )
 		{
-			Ajax( '对不起，请检查SQL是否正确!' , 300);
+			Ajax( 'ขออภัย! โปรดตรวจสอบว่า SQL ถูกต้อง' , 300);
 		}
 		else
 		{

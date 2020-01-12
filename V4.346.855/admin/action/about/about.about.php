@@ -20,11 +20,11 @@ if ( $type == 'edit' || $type == "add"  )
 
 	if ( $data['about_name'] == '' )
 	{
-		Ajax('对不起，信息标题必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อหัวเรื่องก่อน',300);
 	}
 	else if( !str::Number($data['type_id']) )
 	{
-		Ajax('对不起，信息分类必须选择！',300);
+		Ajax('ขออภัย! ต้องเลือกหมวดหมู่ก่อน',300);
 	}
 
 	//信息名字检查
@@ -33,26 +33,26 @@ if ( $type == 'edit' || $type == "add"  )
 	$wheresql['where']['about_name'] = $data['about_name'];
 	if ( wmsql::GetCount($wheresql) > 0 )
 	{
-		Ajax('对不起，该信息已经存在！',300);
+		Ajax('ขออภัย! มีข้อมูลนี้อยู่แล้ว',300);
 	}
 	
 	//新增数据
 	if( $type == 'add' )
 	{
-		$info = '恭喜您，信息添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มข้อมูลสำเร็จแล้ว';
 		$where['about_id'] = wmsql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了信息'.$data['about_name'] , 'about' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มข้อมูล'.$data['about_name'] , 'about' , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
-		$info = '恭喜您，信息修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขข้อมูลสำเร็จแล้ว';
 		wmsql::Update($table, $data, $where);
 		
 		//写入操作记录
-		SetOpLog( '修改了信息'.$data['about_name'] , 'about' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขข้อมูล'.$data['about_name'] , 'about' , 'update' , $table , $where , $data );
 	}
 
 	//写入自定义字段
@@ -74,10 +74,10 @@ else if ( $type == 'del' )
 {
 	$where['about_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了信息' , 'about' , 'delete' , $table , $where);
+	SetOpLog( 'ลบข้อมูล' , 'about' , 'delete' , $table , $where);
 	wmsql::Delete($table , $where);
 	
-	Ajax('信息删除成功!');
+	Ajax('ลบข้อมูลแล้ว!');
 }
 //移动数据
 else if ( $type == 'move' )
@@ -86,9 +86,9 @@ else if ( $type == 'move' )
 	$where['about_id'] = GetDelId();
 
 	//写入操作记录
-	SetOpLog( '移动了信息' , 'about' , 'update' , $table , $where);
+	SetOpLog( 'ย้ายข้อมูล' , 'about' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('信息移动成功!');
+	Ajax('ย้ายข้อมูลสำเร็จแล้ว!');
 }
 ?>
