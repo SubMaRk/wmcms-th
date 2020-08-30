@@ -1,0 +1,30 @@
+SQL
+- api_title -> 50
+- api_name -> 40
+- app_type type_name -> 40
+- article_type type_name -> 40
+- author_nickname -> 40
+- author_level level_name -> 40
+- sign_name -> 40
+- bbs_title -> 150
+- bbs_type type_name -> 40
+- config_title -> 60
+- fans_module_level level_name -> 40
+- chapter_name  -> 200
+- novel_name -> 200
+- novel_startcname  -> 100
+- novel_newcname  -> 100
+- novel_type type_name -> 40
+- novel_type type_cname  -> 20
+- volume_name 20 -> 60
+- volume_desc 100 -> 200
+- picture_type type_name -> 30
+- keys_pagename -> 30
+- urls_pagename -> 40
+- menu_title -> 60
+- retrieval_title -> 40
+- user_level level_name -> 40
+- zt_type type_name -> 40
+zt_name -> 40
+
+PHP
