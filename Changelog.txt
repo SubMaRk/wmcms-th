@@ -10,6 +10,10 @@ SQL
 - bbs_type type_name -> 40
 - config_title -> 60
 - fans_module_level level_name -> 40
+- link_name -> 30
+- link_cname ->15
+- link_info -> 150
+- link_type type_name -> 30
 - chapter_name  -> 200
 - novel_name -> 200
 - novel_startcname  -> 100
@@ -25,6 +29,6 @@ SQL
 - retrieval_title -> 40
 - user_level level_name -> 40
 - zt_type type_name -> 40
-zt_name -> 40
+- zt_name -> 40
 
 PHP
