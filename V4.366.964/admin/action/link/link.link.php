@@ -22,15 +22,15 @@ if ( $type == 'edit' || $type == "add"  )
 
 	if ( $data['link_name'] == '' || $data['link_url'] == '' )
 	{
-		Ajax('对不起，友链标题和回链地址必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อและลิ้งก์เพื่อนบ้านก่อน',300);
 	}
 	else if( !str::Number($data['type_id']) )
 	{
-		Ajax('对不起，友链分类必须选择！',300);
+		Ajax('ขออภัย! ต้องเลือกหมวดหมู่เพื่อนบ้านก่อน',300);
 	}
 	else if ( !str::IsUrl($data['link_url']) )
 	{
-		Ajax('对不起，回链格式错误！',300);
+		Ajax('ขออภัย! รูปแบบลิ้งก์ไม่ถูกต้อง',300);
 	}
 
 	//友链名字检查
@@ -39,26 +39,26 @@ if ( $type == 'edit' || $type == "add"  )
 	$wheresql['where']['link_name'] = $data['link_name'];
 	if ( wmsql::GetCount($wheresql) > 0 )
 	{
-		Ajax('对不起，该友链已经存在！',300);
+		Ajax('ขออภัย! มีข้อมูลเพื่อนบ้านนี้อยู่แล้ว',300);
 	}
 	
 	//新增数据
 	if( $type == 'add' )
 	{
-		$info = '恭喜您，友链添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มข้อมูลเพื่อนบ้านสำเร็จ';
 		$where['link_id'] = wmsql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了友链'.$data['link_name'] , 'link' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มข้อมูลเพื่อนล้าน'.$data['link_name'] , 'link' , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
-		$info = '恭喜您，友链修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขข้อมูลเพื่อนบ้านสำเร็จ';
 		wmsql::Update($table, $data, $where);
 		
 		//写入操作记录
-		SetOpLog( '修改了友链'.$data['link_name'] , 'link' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขข้อมูลเพื่อนบ้าน'.$data['link_name'] , 'link' , 'update' , $table , $where , $data );
 	}
 
 	//写入自定义字段
@@ -76,10 +76,10 @@ else if ( $type == 'del' )
 {
 	$where['link_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了友链' , 'link' , 'delete' , $table , $where);
+	SetOpLog( 'ลบข้อมูลเพื่อนบ้าน' , 'link' , 'delete' , $table , $where);
 	wmsql::Delete($table , $where);
 	
-	Ajax('友链删除成功!');
+	Ajax('ลบข้อมูลเพื่อนบ้านสำเร็จ!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -89,17 +89,17 @@ else if ( $type == 'status' )
 
 	if( Request('status') == '1')
 	{
-		$msg = '审核通过';
+		$msg = 'ตรวจสอบ';
 	}
 	else
 	{
-		$msg = '取消审核';
+		$msg = 'ละทิ้ง';
 	}
 	//写入操作记录
-	SetOpLog( $msg.'了友链' , 'link' , 'update' , $table , $where);
+	SetOpLog( $msg.'ข้อมูลเพื่อนบ้าน' , 'link' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('友链'.$msg.'成功!');
+	Ajax('ข้อมูลเพื่อนบ้านถูก'.$msg.'แล้ว!');
 }
 //移动数据
 else if ( $type == 'move' )
@@ -108,10 +108,10 @@ else if ( $type == 'move' )
 	$where['link_id'] = GetDelId();
 
 	//写入操作记录
-	SetOpLog( '移动了友链' , 'link' , 'update' , $table , $where);
+	SetOpLog( 'ย้ายข้อมูลเพื่อนบ้าน' , 'link' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('友链移动成功!');
+	Ajax('ย้ายข้อมูลเพื่อนบ้านสำเร็จ!');
 }
 //属性操作
 else if ( $type == 'attr' )
@@ -122,15 +122,15 @@ else if ( $type == 'attr' )
 	switch($post['attr'])
 	{
 		case "rec":
-			$msg = "推荐了友链！";
+			$msg = "เพื่อนบ้านแนะนำ";
 			break;
 			
 		case "show":
-			$msg = "设置显示成功！";
+			$msg = "แสดงเพื่อนบ้าน";
 			break;
 		  
 		case "fixed":
-			$msg = "固链了友链!";
+			$msg = "เพื่อนบ้านเหนียวแน่น";
 			break;
 	}
 
@@ -146,10 +146,10 @@ else if ( $type == 'checkseo' )
 	$httpSer = NewClass('http');
 	$domain = Request('domain');
 	
-	$html = $httpSer->GetUrl('http://seo.chinaz.com/?m=&host='.$domain);
+	/* Changed to support https */$html = $httpSer->GetUrl('https://seo.chinaz.com/?m=&host='.$domain);//Modified by SubMaRk
 
 	$data['domain'] = $domain;
-	$data['img'] = str::GetBetween('<span>百度权重：<\/span><a href="{a}src="{*}"', $html);
+	$data['img'] = str::GetBetween('<span>น้ำหนัก Baidu : <\/span><a href="{a}src="{*}"', $html);
 
 	Ajax( null , null , $data );
 }

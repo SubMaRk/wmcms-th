@@ -21,11 +21,11 @@ if ( $type == 'install' || $type == 'uninstall')
 	
 	if( $path == '' )
 	{
-		Ajax('需要安装的模版文件夹不能为空！',300);
+		Ajax('โฟลเดอร์เทมเพลตที่ต้องใช้ในการติดตั้งต้องไม่ว่าง',300);
 	}
 	else if ( !file_exists('../templates/'.$path.'/copyright.xml') )
 	{
-		Ajax('对不起，模版版权信息不存在！',300);
+		Ajax('ขออภัย! ไม่มีข้อมูลลิขสิทธิ์เทมเพลตอยู่',300);
 	}
 	else
 	{		
@@ -56,12 +56,12 @@ if ( $type == 'install' || $type == 'uninstall')
 				//查询模版信息是否正确
 				if ( count($copyData) != '9' || $copyData['name'] == '' || $copyData['author'] == '')
 				{
-					Ajax('对不起，模版版权信息错误！',300);
+					Ajax('ขออภัย! ข้อมูลลิขสิทธิ์เทมเพลตไม่ถูกต้อง',300);
 				}
 				//模版已经安装了
 				else if ( $tempArr )
 				{
-					Ajax('对不起，模版已经安装了！',300);
+					Ajax('ขออภัย! เทมเพลตนี้ถูกติดตั้งแล้ว',300);
 				}
 				else
 				{
@@ -71,10 +71,10 @@ if ( $type == 'install' || $type == 'uninstall')
 					wmsql::Insert($table, $data);
 					
 					//写入操作记录
-					SetOpLog( '安装了模版' , 'system' , 'update' );
+					SetOpLog( 'ติดตั้งเทมเพลต' , 'system' , 'update' );
 					//更新模版配置文件
 					UpTempConfig();
-					Ajax('模版安装成功，可以使用了！');
+					Ajax('ติดตั้งเทมเพลตสำเร็จ! สามารถใช้ได้เลย');
 				}
 			}
 		}
@@ -84,7 +84,7 @@ if ( $type == 'install' || $type == 'uninstall')
 			//模版没有安装
 			if ( !$tempArr )
 			{
-				Ajax('对不起，模版没有安装无法卸载！',300);
+				Ajax('ขออภัย! เทมเพลตยังไม่ถูกติดตั้ง ไม่สามารถถอนการติดตั้งได้',300);
 			}
 			else
 			{
@@ -94,9 +94,9 @@ if ( $type == 'install' || $type == 'uninstall')
 				UpTempConfig();
 
 				//写入操作记录
-				SetOpLog( '卸载了模版' , 'system' , 'update' );
+				SetOpLog( 'ถอนการติดตั้งเทมเพลต' , 'system' , 'update' );
 				
-				Ajax('模版卸载成功！');
+				Ajax('ถอนการติดตั้งเทมเพลตสำเร็จ!');
 			}
 		}
 	}
@@ -110,12 +110,12 @@ else
 		$configMod->UpdateToForm($post);
 
 		//写入操作记录
-		SetOpLog( '应用了默认模版' , 'system' , 'update' );
+		SetOpLog( 'ใช้งานเทมเพลต' , 'system' , 'update' );
 		
 		//更新配置文件
 		$manager->UpConfig('web');
 		
-		Ajax('默认模版更新成功！');
+		Ajax('ใช้งานเทมเพลตสำเร็จ!');
 	}	
 }
 

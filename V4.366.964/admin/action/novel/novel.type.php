@@ -21,15 +21,15 @@ if ( $type == 'edit' || $type == "add"  )
 	
 	if ( $data['type_name'] == '' )
 	{
-		Ajax('对不起，分类名字必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อหมวดหมู่ก่อน',300);
 	}
 	else if( !str::Number($data['type_order']) )
 	{
-		Ajax('对不起，分类排序必须为数字！',300);
+		Ajax('ขออภัย! ต้องกรอกหมายเลขลำดับก่อน',300);
 	}
 	else if( !str::Number($data['type_topid']) )
 	{
-		Ajax('对不起，所属分类必须选择！',300);
+		Ajax('ขออภัย! ต้องเลือกหมวดหมู่ก่อน',300);
 	}
 
 	//查询上级所有id
@@ -38,20 +38,20 @@ if ( $type == 'edit' || $type == "add"  )
 	//新增数据
 	if( $type == 'add' )
 	{
-		$info = '恭喜您，小说分类添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มหมวดหมู่นิยายสำเร็จ';
 		$where['type_id'] = wmsql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了小说分类'.$data['type_name'] , $curModule , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มหมวดหมู่นิยาย'.$data['type_name'] , $curModule , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
-		$info = '恭喜您，小说分类修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขหมวดหมู่นิยายสำเร็จ';
 		wmsql::Update($table, $data, $where);
 
 		//写入操作记录
-		SetOpLog( '修改了小说分类'.$data['type_name'] , $curModule , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขหมวดหมู่นิยาย'.$data['type_name'] , $curModule , 'update' , $table , $where , $data );
 	}
 
 	//写入自定义字段
@@ -78,7 +78,7 @@ else if ( $type == 'del' )
 
 	//写入操作记录
 	$where['type_id'] = GetDelId();
-	SetOpLog( '删除了小说分类' , $curModule , 'delete' , $table , $where);
-	Ajax('小说分类删除成功!');
+	SetOpLog( 'ลบหมวดหมู่นิยาย' , $curModule , 'delete' , $table , $where);
+	Ajax('ลบหมวดหมู่นิยายสำเร็จ!');
 }
 ?>

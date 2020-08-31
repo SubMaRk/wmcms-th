@@ -16,7 +16,7 @@ if ( $type == 'del' )
 	$where['operation_id'] = GetDelId();
 	
 	wmsql::Delete($table, $where);
-	Ajax('操作记录删除成功!');
+	Ajax('ลบบันทึกการดำเนินการสำเร็จ!');
 }
 //清空请求记录
 else if ( $type == 'clear' )
@@ -24,7 +24,7 @@ else if ( $type == 'clear' )
 	wmsql::Delete($table);
 	
 	//写入操作记录
-	SetOpLog( '清空了操作记录' , 'system' , 'delete');
-	Ajax('所有操作记录成功清空！');
+	SetOpLog( 'ล้างบันทึกการดำเนินการ' , 'system' , 'delete');
+	Ajax('ล้างบันทึกการดำเนินการสำเร็จ!');
 }
 ?>

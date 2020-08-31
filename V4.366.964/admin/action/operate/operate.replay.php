@@ -19,17 +19,17 @@ if ( $type == 'status' )
 
 	if( Request('status') == '1')
 	{
-		$msg = '审核通过';
+		$msg = 'ตรวจสอบ';
 	}
 	else
 	{
-		$msg = '取消审核';
+		$msg = 'ละทิ้ง';
 	}
 	//写入操作记录
-	SetOpLog( $msg.'了评论' , 'replay' , 'update' , $table , $where);
+	SetOpLog( $msg.'ความคิดเห็น' , 'replay' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('评论'.$msg.'成功!');
+	Ajax('ความคิดเห็นถูก'.$msg.'แล้ว!');
 }
 //删除请求记录
 else if ( $type == 'del' )
@@ -50,8 +50,8 @@ else if ( $type == 'del' )
 		}
 	}
 	
-	SetOpLog( '删除了评论记录' , 'replay' , 'delete' , $table , $where);
-	Ajax('评论删除成功!');
+	SetOpLog( 'ลบบันทึกความคิดเห็น' , 'replay' , 'delete' , $table , $where);
+	Ajax('ลบบันทึกความคิดเห็นสำเร็จ!');
 }
 //清空请求记录
 else if ( $type == 'clear' )
@@ -68,7 +68,7 @@ else if ( $type == 'clear' )
 	wmsql::Delete($table , $where);
 	
 	//写入操作记录
-	SetOpLog( '清空了评论记录' , 'replay' , 'delete');
-	Ajax('所有评论成功清空！');
+	SetOpLog( 'ล้างบันทึกความคิดเห็น' , 'replay' , 'delete');
+	Ajax('ล้างบันทึกความคิดเห็นสำเร็จ!');
 }
 ?>

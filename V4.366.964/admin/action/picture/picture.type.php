@@ -21,15 +21,15 @@ if ( $type == 'edit' || $type == "add"  )
 	
 	if ( $data['type_name'] == '' )
 	{
-		Ajax('对不起，分类名字必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อหมวดหมู่ก่อน',300);
 	}
 	else if( !str::Number($data['type_order']) )
 	{
-		Ajax('对不起，分类排序必须为数字！',300);
+		Ajax('ขออภัย! ต้องกรอกหมายเลขลำดับก่อน',300);
 	}
 	else if( !str::Number($data['type_topid']) )
 	{
-		Ajax('对不起，所属分类必须选择！',300);
+		Ajax('ขออภัย! ต้องเลือกหมวดหมู่ก่อน',300);
 	}
 
 	//分类名字检查
@@ -38,7 +38,7 @@ if ( $type == 'edit' || $type == "add"  )
 	$wheresql['where']['type_name'] = $data['type_name'];
 	if ( wmsql::GetCount($wheresql) > 0 )
 	{
-		Ajax('对不起，该分类名已经存在！',300);
+		Ajax('ขออภัย! มีหมวดหมู่ชื่อนี้อยู่แล้ว',300);
 	}
 	
 	
@@ -48,20 +48,20 @@ if ( $type == 'edit' || $type == "add"  )
 	//新增数据
 	if( $type == 'add' )
 	{
-		$info = '恭喜您，图集分类添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มหมวดหมู่อัลบั้มสำเร็จ';
 		$where['type_id'] = wmsql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了图集分类'.$data['type_name'] , 'picture' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มหมวดหมู่อัลบั้ม'.$data['type_name'] , 'picture' , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
-		$info = '恭喜您，图集分类修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขหมวดหมู่อัลบั้มสำเร็จ';
 		wmsql::Update($table, $data, $where);
 		
 		//写入操作记录
-		SetOpLog( '修改了图集分类'.$data['type_name'] , 'picture' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขหมวดหมู่อัลบั้ม'.$data['type_name'] , 'picture' , 'update' , $table , $where , $data );
 	}
 
 	//写入自定义字段
@@ -88,7 +88,7 @@ else if ( $type == 'del' )
 
 	//写入操作记录
 	$where['type_id'] = GetDelId();
-	SetOpLog( '删除了图集分类' , 'picture' , 'delete' , $table , $where);
-	Ajax('图集分类删除成功!');
+	SetOpLog( 'ลบหมวดหมู่อัลบั้ม' , 'picture' , 'delete' , $table , $where);
+	Ajax('ลบหมวดหมู่อัลบั้มสำเร็จ!');
 }
 ?>

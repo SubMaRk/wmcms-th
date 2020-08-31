@@ -23,18 +23,18 @@
 						<div style="clear: both"></div>
 						<div id="pbbs" class="pf_l">
 							<div><span class="th">{金币2名字}</span><span>{用户金币2数量} {金币2单位}</span></div>
-							<div><span class="th">提现手续费</span><span>{提现手续费} %</span></div>
-							<div><span class="th">预计可提现</span><span>{可提现金额} 元</span></div>
-							<div><span class="th">兑换比例</span><span>1({金币2名字}) = {兑换余额比例}(余额)</span></div>
+							<div><span class="th">ค่าธรรมเนียมการถอน</span><span>{提现手续费} %</span></div>
+							<div><span class="th">คาดว่าจะได้</span><span>{可提现金额} 元</span></div>
+							<div><span class="th">อัตราแลกเปลี่ยน</span><span>1({金币2名字}) = {兑换余额比例}(余额)</span></div>
 							{关闭提现}
 							<div class="textCenter">
-								<span>对不起，提现功能已经关闭</span>
+								<span>ขออภัย! ฟังก์ชั่นเงินถูกปิดใช้งานอยู่</span>
 							</div>
 							{/关闭提现}
 							{开启提现}
 							<div class="textCenter" style="width: 100%;">
-								<span><input class="pt" type="text" id="money" autocomplete="off" placeholder="单位元，最低提现{最低提现金额}元"> <button id="sub">立即提现</button>
-								&nbsp;&nbsp;实际到账 <b style="color:red" id="real">0</b> 元
+								<span><input class="pt" type="text" id="money" autocomplete="off" placeholder="สกุลบาท ถอนได้ต่ำสุด {最低提现金额} บาท"> <button id="sub">ทันที</button>
+								&nbsp;&nbsp;เข้าบัญชีจริง <b style="color:red" id="real">0</b> บาท
 							</div>
 							{/开启提现}
 						</div>
@@ -61,21 +61,21 @@ $(function(){
 		var money = $(this).val();
 		if( isPositiveNum(money) == false){
 			$(this).val('0');
-			easydialog_autoclose("对不起，请输入正整数！");
+			easydialog_autoclose("ขออภัย! โปรดกรอกจำนวนเต็มบวก");
 		}
 		$("#real").html(Math.floor($(this).val()*((100-{提现手续费})/100)*100)/100);
     });
 	$("#sub").click(function(){
 		var money = $("#money").val();
 		if(money < {最低提现金额}){
-			easydialog_autoclose("对不起，最低需要提现{最低提现金额}元！");
+			easydialog_autoclose("ขออภัย! ถอนได้ต่ำสุด {最低提现金额} บาท");
 		}if( !isPositiveNum(money) ){
 			$("#money").val('');
-			easydialog_autoclose("对不起，请输入正整数！");
+			easydialog_autoclose("ขออภัย! โปรดกรอกจำนวนเต็มบวก");
 		}else if(money > {可提现金额}){
-			easydialog_autoclose("对不起，提现金额不能超过您的余额！");
+			easydialog_autoclose("ขออภัย! จำนวนเงินที่กรอกต้องไม่เกินยอดคงเหลือในบัญชี");
 		}else if({是否开启提现} == 0 ){
-			easydialog_autoclose("对不起，提现功能已经关闭！");
+			easydialog_autoclose("ขออภัย! ฟังก์ชั่นเงินถูกปิดใช้งานอยู่");
 		}else{
 			//提现操作
 			$.ajax({

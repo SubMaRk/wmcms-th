@@ -17,7 +17,7 @@ if( $post )
 	$configMod->UpdateToForm($post);
 
 	//写入操作记录
-	SetOpLog( '修改专题模块设置' , 'zt' , 'update' );
+	SetOpLog( 'แก้ไขการตั้งค่าโมดูลกระทู้' , 'zt' , 'update' );
 	
 	//更新配置文件
 	$manager->UpConfig('zt');

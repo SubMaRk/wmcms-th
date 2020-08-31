@@ -7,10 +7,10 @@
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
 				<input type="hidden" name="open" value="<?php echo $open;?>">
-				<a href="index.php?c=about.type.edit&t=add" data-toggle="navtab" data-id="article-type-add" data-title="新增分类" data-width="350" data-height="330" class="btn btn-primary radius size-MINI"><i class="fa fa-plus"></i> 新增分类</a>
-				<a onclick="<?php echo $cFun?>setOpen(1)" class="btn btn-warning  radius"> 全部展开 </a>
-				<a onclick="<?php echo $cFun?>setOpen(0)" class="btn btn-secondary  radius"> 全部关闭 </a>
-				<a id="<?php echo $cFun?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+				<a href="index.php?c=about.type.edit&t=add" data-toggle="navtab" data-id="article-type-add" data-title="เพิ่มหมวดหมู่" data-width="350" data-height="330" class="btn btn-primary radius size-MINI"><i class="fa fa-plus"></i> เพิ่มหมวดหมู่</a>
+				<a onclick="<?php echo $cFun?>setOpen(1)" class="btn btn-warning  radius"> ขยายทั้งหมด </a>
+				<a onclick="<?php echo $cFun?>setOpen(0)" class="btn btn-secondary  radius"> ย่อทั้งหมด </a>
+				<a id="<?php echo $cFun?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
 			</form>
 		</div>
 	</div>
@@ -21,11 +21,11 @@
 		<table class="table table-border table-bordered table-hover table-bg table-sort">
 			<thead>
 				<tr class="text-c">
-					<th align="center" width="47">折叠</th>
-					<th align="center" width="50">ID</th>
-					<th align="center" width="50">排序</th>
-					<th style="text-align:left">栏目名称 </th>
-					<th align="center" width="120">操作</th>
+					<th align="center" width="47">ย่อ</th>
+					<th align="center" width="50">ไอดี</th>
+					<th align="center" width="50">ลำดับ</th>
+					<th style="text-align:left">ชื่อ </th>
+					<th align="center" width="120">ดำเนินการ</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -65,7 +65,7 @@ function <?php echo $cFun;?>delAjax(id)
 	ajaxData.id = id;
 	ajaxOptions['data'] = ajaxData;
 	ajaxOptions['url'] = "index.php?a=yes&c=about.type&t=del";
-	ajaxOptions['confirmMsg'] = "删除分类会删除分类下的所有子分类和信息，确定要删除分类吗？";
+	ajaxOptions['confirmMsg'] = "การลบหมวดหมู่จะลบข้อมูลในหมวดหมู่ย่อยที่อยู่ภายใต้หมวดหมู่นั้นด้วย คุณต้องการลบหมวดหมู่นี้หรือไม่?";
 	ajaxOptions['callback'] = "<?php echo $cFun;?>ajaxCallBack";
 	$(".btn-danger").bjuiajax('doAjax', ajaxOptions);
 }

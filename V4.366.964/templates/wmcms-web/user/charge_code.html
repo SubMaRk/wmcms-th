@@ -17,7 +17,7 @@
     <div class="main">
 		<div class="layout_top">
 			<ul class="clearfix">
-				<li style="width:100%"><a class="on">{支付方式}扫码支付</a></li>
+				<li style="width:100%"><a class="on">{支付方式} สแกนโค้ดเพื่อชำระ</a></li>
 			</ul>
 		</div>
 
@@ -25,19 +25,19 @@
         <div class="content pt25">
             <table class="conTable">
                 <tr class="account_box">
-                    <td><img src="/files/images/pay/{支付标识}.jpg" width="140"><br/>{支付方式}扫码支付</td>
+                    <td><img src="/files/images/pay/{支付标识}.jpg" width="140"><br/>{支付方式} สแกนโค้ดเพื่อชำระ</td>
                 </tr>
                 <tr class="account_box">
                     <td><img src="{二维码}"></td>
                 </tr>
                 <tr class="account_box">
-                    <td>请打开[{支付方式}扫一扫]扫描上方二维码完成支付</td>
+                    <td>โปรดเปิด [สแกน {支付方式}] สแกน QR โค้ดเพื่อเสร็จสิ้นการชำระเงิน</td>
                 </tr>
                 <tr class="account_box">
-                    <td><span class="money">{支付金额}</span>&nbsp;&nbsp;元</td>
+                    <td><span class="money">{支付金额}</span>&nbsp;&nbsp;บาท</td>
                 </tr>
                 <tr class="account_box">
-                    <td style="font-size: 12px;line-height:0;color:#bbbbbb;">订单号：{订单号}</td>
+                    <td style="font-size: 12px;line-height:0;color:#bbbbbb;">หมายเลขคำสั่ง : {订单号}</td>
                 </tr>
             </table>
         </div>
@@ -52,7 +52,7 @@ function CheckOrder(){
 		success:function(json){
 			if( json.code == 200 ){
 				if(json.data.charge_status == '1'){
-					easydialog_autoclose('充值成功！','success');
+					easydialog_autoclose('เติมเงินสำเร็จ!','success');
 					setTimeout(function(){window.close();},2000);
 				}
 			}else{

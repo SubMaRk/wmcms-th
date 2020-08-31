@@ -10,5 +10,5 @@
 */
 Session( 'admin_account' , 'delete' );
 
-echo "<script>/*alert('退出成功！');*/location='index.php?c=login';</script>";
+echo "<script>/*alert('ออกจากระบบแล้ว!');*/location='index.php?c=login';</script>";
 ?>

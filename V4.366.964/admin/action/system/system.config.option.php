@@ -21,25 +21,25 @@ if ( $type == 'edit' || $type == "add"  )
 	{
 		if( $data['config_id'] == '' )
 		{
-			Ajax('对不起，请选择所属配置！',300);	
+			Ajax('ขออภัย! โปรดเลือกการกำหนดค่าของคุณก่อน',300);	
 		}
 		
 		//插入记录
 		$where['option_id'] = WMSql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了网站配置选项'.$data['option_title'] , 'system' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มตัวเลือกการกำหนดค่าเว็บไซต์'.$data['option_title'] , 'system' , 'insert' , $table , $where , $data );
 		
-		Ajax('网站配置字段新增成功!');
+		Ajax('เพิ่มตัวเลือกการกำหนดค่าเว็บไซต์สำเร็จ!');
 	}
 	//如果是增加页面
 	else
 	{
 		//写入操作记录
-		SetOpLog( '修改网站配置选项' , 'system' , 'update' , $table  , $where , $data );
+		SetOpLog( 'แก้ไขตัวเลือกการกำหนดค่าเว็บไซต์' , 'system' , 'update' , $table  , $where , $data );
 		//修改数据
 		WMSql::Update($table, $data, $where);
-		Ajax('网站配置选项修改成功！');
+		Ajax('แก้ไขตัวเลือกการกำหนดค่าเว็บไซต์สำเร็จ!');
 	}
 }
 //删除网站配置
@@ -47,10 +47,10 @@ else if ( $type == 'del' )
 {
 	$where['option_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了网站配置选项' , 'system' , 'delete' , $table , $where);
+	SetOpLog( 'ลบตัวเลือกการกำหนดค่าเว็บไซต์' , 'system' , 'delete' , $table , $where);
 
 	wmsql::Delete($table, $where);
 	
-	Ajax('网站配置选项删除成功!');
+	Ajax('ลบตัวเลือกการกำหนดค่าเว็บไซต์สำเร็จ!');
 }
 ?>

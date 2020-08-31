@@ -15,10 +15,10 @@ $configMod = NewModel('system.config');
 $configMod->UpdateToForm($post);
 
 //写入操作记录
-SetOpLog( '修改网站logo' , 'system' , 'update' );
+SetOpLog( 'แก้ไขโลโก้เว็บไซต์' , 'system' , 'update' );
 
 //更新配置文件
 $manager->UpConfig('web');
 
-Ajax('网站logo修改成功');
+Ajax('แก้ไขโลโก้เว็บไซต์สำเร็จ!');
 ?>

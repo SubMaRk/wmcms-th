@@ -38,8 +38,8 @@ h2{font-size: 14px;}
 		<div class="bm">
 			<div class="bm_h" style="line-height: 33px;">
 				<div style="width: 155px;">
-					<h1 id="t2" class="mt folatright htitle">修改财务信息</h1>
-					<h1 id="t1" class="mt mar htitle htitlehover">修改个人资料</h1>
+					<h1 id="t2" class="mt folatright htitle">ข้อมูลการเงิน</h1>
+					<h1 id="t1" class="mt mar htitle htitlehover">ข้อมูลส่วนตัว</h1>
 				</div>
 			</div>
 			<div class="clear"></div>
@@ -49,20 +49,13 @@ h2{font-size: 14px;}
 				    <div class="pbm mbm bbda cl" style="position: relative;">
 						<div style="clear: both"></div>
 						<div id="pbbs" class="pf_l">
-							<div><span class="th">昵称</span><span><input type="text" class="px" name="nickname" maxlength="16" value="{用户昵称}" /></span> <span style="color: #acacac;">昵称只能为2-10个字符!</span></div>
-							
-							<div><span class="th">邮箱地址</span><span><input type="text" class="px" name="email" {邮箱已验证}readonly{/邮箱已验证} maxlength="30" value="{用户邮箱}" /> <span style="color: #acacac;">用于找回密码!已经验证的无法修改!</span></div>
-							
-							<div><span class="th">手　　机</span><span><input type="text" class="px" name="tel" maxlength="30" value="{用户手机}" /></div>
-							
-							<div><span class="th">q　　q</span><span><input type="text" class="px" name="qq" maxlength="30" value="{用户qq}" /></div>
-							
-							<div><span class="th">性　　别</span><span><input name="sex" type="radio" value="1" {eq:1:{用户性别码}}checked=""{/eq}>男 <input name="sex" type="radio" value="2" {eq:2:{用户性别码}}checked=""{/eq}>女</span></div>
-							
-							<div><span class="th">出生日期</span><span><input type="date" class="px" name="birthday" maxlength="30" value="{用户出生日期}" /></span></div>
-
-							<div><span class="th">个性签名</span><span><textarea cols="60" name="sign" class="px" style="height:70px">{用户签名}</textarea></span></div>
-							
+							<div><span class="th">นามแฝง</span><span><input type="text" class="px" name="nickname" maxlength="16" value="{用户昵称}" /></span> <span style="color: #acacac;">นามแฝงต้องยาว 2-10 ตัวอักษรเท่านั้น</span></div>
+							<div><span class="th">ที่อยู่อีเมล์</span><span><input type="text" class="px" name="email" {邮箱已验证}readonly{/邮箱已验证} maxlength="30" value="{用户邮箱}" /> <span style="color: #acacac;">ใช้เพื่อกู้รหัสผ่าน หากผ่านการยืนยันแล้วไม่สามารถแก้ไขได้!</span></div>
+							<div><span class="th">เบอร์มือถือ</span><span><input type="text" class="px" name="tel" maxlength="30" value="{用户手机}" /></div>
+							<div><span class="th">QQ</span><span><input type="text" class="px" name="qq" maxlength="30" value="{用户qq}" /></div>
+							<div><span class="th">เพศ</span><span><input name="sex" type="radio" value="1" {eq:1:{用户性别码}}checked=""{/eq}>ชาย <input name="sex" type="radio" value="2" {eq:2:{用户性别码}}checked=""{/eq}>หญิง</span></div>
+							<div><span class="th">วันเกิด</span><span><input type="date" class="px" name="birthday" maxlength="30" value="{用户出生日期}" /></span></div>
+							<div><span class="th">ลายเซ็นต์</span><span><textarea cols="60" name="sign" class="px" style="height:70px">{用户签名}</textarea></span></div>
 							<button type="submit" value="true" class="pn3"><img src="{templates}/static/images/home_save_btn.png"></button>
 						</div>
 					</div>
@@ -75,26 +68,26 @@ h2{font-size: 14px;}
 				    <div class="pbm mbm bbda cl" style="position: relative;">
 						<div style="clear: both"></div>
 						<div id="pbbs" class="pf_l">
-							<div><span class="th">真实姓名</span><span><input type="text" class="px" name="realname" value="{用户真实姓名}" /></span> <span style="color: #acacac;">和身份证上的姓名一致!</span></div>
-							
-							<div><span class="th">身 份 证</span><span><input size="40" type="text" class="px" name="cardid" value="{用户身份证}" /> <span style="color: #acacac;">身份证号码!</span></div>
-							
-							<div><span class="th">联系地址</span><span><input size="40" type="text" class="px" name="address" value="{用户联系地址}" /></div>
-							
-							<div><span class="th">邮　　编</span><span><input type="text" class="px" name="zipcode" value="{用户邮编}" /></div>
-							
-							<div><span class="th">支 付 宝</span><span><input size="40" type="text" class="px" name="alipay" value="{用户支付宝}" /> <span style="color: #acacac;">支付宝和银行卡只填其中一项即可!</span></div>
-							
+							<div><span class="th">ชื่อจริง</span><span><input type="text" class="px" name="realname" value="{用户真实姓名}" /></span> <span style="color: #acacac;">ชื่อจริงตามบัตรประชาชน!</span></div>
+
+							<div><span class="th">เลขบัตรประชาชน</span><span><input size="40" type="text" class="px" name="cardid" value="{用户身份证}" /> <span style="color: #acacac;">หมายเลขประจำตัวประชาชน!</span></div>
+
+							<div><span class="th">ที่อยู่</span><span><input size="40" type="text" class="px" name="address" value="{用户联系地址}" /></div>
+
+							<div><span class="th">รหัสไปรษณีย์</span><span><input type="text" class="px" name="zipcode" value="{用户邮编}" /></div>
+
+							<div><span class="th">Alipay</span><span><input size="40" type="text" class="px" name="alipay" value="{用户支付宝}" /> <span style="color: #acacac;">支付宝和银行卡只填其中一项即可!</span></div>
+
 							<div><span class="th">开 户 行</span><span><input size="30" type="text" class="px" name="bank" value="{用户开户行}" /></div>
-							
-							<div><span class="th">持 卡 人</span><span><input type="text" class="px" name="bankmaster" value="{用户持卡人}" /></div>
-							
-							<div><span class="th">银行卡号</span><span><input size="40" type="text" class="px" name="bankcard" value="{用户银行卡号}" /></div>
-							
-							<div><span class="th">开户行地址</span><span><input size="40" type="text" class="px" name="bankaddress" value="{用户开户行地址}" /></div>
-							
-							
-							<button type="submit" value="true" class="pn3"><img src="{templates}/static/images/home_save_btn.png"></button>
+
+							<div><span class="th">ผู้ถือบัตร</span><span><input type="text" class="px" name="bankmaster" value="{用户持卡人}" /></div>
+
+							<div><span class="th">หมายเลขบัตร</span><span><input size="40" type="text" class="px" name="bankcard" value="{用户银行卡号}" /></div>
+
+							<div><span class="th">ที่อยู่ธนาคาร</span><span><input size="40" type="text" class="px" name="bankaddress" value="{用户开户行地址}" /></div>
+
+
+							<button type="submit" value="true" class="pn3"><img src="{templates}/user/static/home_save_btn.png"></button>
 						</div>
 					</div>
 					</form>
@@ -131,10 +124,10 @@ $(document).ready(function(){
 
 function FinacneCheck(a){
 	if( $("[name=realname]").val() == '' || $("[name=cardid]").val() == '' || $("[name=address]").val() == '' || $("[name=zipcode]").val() == ''){
-		easydialog_alert("对不起，真实姓名、身份证、联系地址和邮编必须填写！");
+		easydialog_alert("ขออภัย! จำเป็นต้องกรอกนามแฝง เลขบัตรประชาชน ที่อยู่ และรหัสไปรษณีย์");
 	}else if($("[name=alipay]").val() == '' && ($("[name=bank]").val() == '' || $("[name=bankmaster]").val() == ''
 			|| $("[name=bankcard]").val() == '' || $("[name=bankaddress]").val() == '')){
-		easydialog_alert("对不起，银行和支付宝必须填写一项！");
+		easydialog_alert("ขออภัย! จำเป็นต้องกรอกธนาคารหรือ Alipay อย่างใดอย่างหนึ่งก่อน");
 	}else{
 		return true;
 	}

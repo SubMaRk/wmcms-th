@@ -26,7 +26,7 @@ if( $name != '' )
 }
 else
 {
-	$name = '站点名字';
+	$name = 'ชื่อเว็บไซต์';
 }
 //数据条数
 $total = $siteMod->SiteGetCount($where);

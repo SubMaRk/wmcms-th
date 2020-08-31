@@ -16,6 +16,6 @@ if( $type == 'install' )
 	$module = @array_values($_POST['module']);
 	$moduleMod = NewModel('system.module');
 	$moduleMod->Install($module);
-	Ajax( '恭喜您，模块安装成功！' , 200);
+	Ajax( 'ยินดีด้วย! ติดตั้งโมดูลสำเร็จ!' , 200);
 }
 ?>

@@ -20,7 +20,7 @@ if ( $type == 'edit' || $type == "add" )
 	{
 		if( $v == '' )
 		{
-			Ajax('对不起，所有项都不能为空！' , 300);
+			Ajax('ขออภัย! ฟิลด์ทั้งหมดต้องไม่ว่าง' , 300);
 		}
 	}
 	
@@ -29,7 +29,7 @@ if ( $type == 'edit' || $type == "add" )
 	$wheresql['product_domain'] = $data['product_domain'];
 	if( $siteMod->ProGetOne($wheresql) )
 	{
-		Ajax('对不起，该域名站点已经存在！' , 300);
+		Ajax('ขออภัย! มีชื่อโดเมนเว็บไซต์อยู่แล้ว' , 300);
 	}
 	//如果是新增
 	else if ( $type == 'add' )
@@ -37,17 +37,17 @@ if ( $type == 'edit' || $type == "add" )
 		//插入记录
 		$where['product_id'] = $siteMod->ProInsert($data);
 		//写入操作记录
-		SetOpLog( '新增了站外站点'.$data['product_title'] , 'system' , 'insert' , $table , $where , $data );
-		Ajax('站外站点新增成功!');
+		SetOpLog( 'เพิ่มเว็บไซต์ภายนอก'.$data['product_title'] , 'system' , 'insert' , $table , $where , $data );
+		Ajax('เพิ่มเว็บไซต์ภายนอกสำเร็จ!');
 	}
 	//如果是增加页面
 	else
 	{
 		//写入操作记录
-		SetOpLog( '修改站外站点' , 'system' , 'update' , $table  , $where , $data );
+		SetOpLog( 'แก้ไขเว็บไซต์ภายนอก' , 'system' , 'update' , $table  , $where , $data );
 		//修改数据
 		$siteMod->ProUpdate($data,$where);
-		Ajax('站外站点修改成功！');
+		Ajax('แก้ไขเว็บไซต์ภายนอกสำเร็จ!');
 	}
 }
 //测试站外站点通讯
@@ -58,24 +58,24 @@ else if ( $type == 'test' )
 	{
 		if( $v == '' )
 		{
-			Ajax('对不起，所有项都不能为空！' , 300);
+			Ajax('ขออภัย! ฟิลด์ทั้งหมดต้องไม่ว่าง' , 300);
 		}
 	}
 	$siteSer = AdminNewClass('system.site');
 	$rs = $siteSer->GetJson($data);
 	if( GetKey($rs,'statusCode') == '200' )
 	{
-		Ajax('恭喜您，后台通讯成功！');
+		Ajax('ยินดีด้วย! การเชื่อมต่อพื้นหลังสำเร็จ');
 	}
 	else
 	{
 		if(!is_array($rs) )
 		{
-			Ajax('通讯测试失败，错误原因：后台地址错误或者程序不是wmcms！' , 300);
+			Ajax('ทดสอบเชื่อมต่อล้มเหลว เหตุผลที่ผิดพลาด : ที่อยู่พื้นหลังผิดพลาดหรือไม่ได้ใช้ระบบ WMCMS' , 300);
 		}
 		else
 		{
-			Ajax('通讯测试失败，错误原因：'.$rs['message'] , 300);
+			Ajax('ทดสอบเชื่อมต่อล้มเหลว เหตุผลที่ผิดพลาด : '.$rs['message'] , 300);
 		}
 	}
 }
@@ -85,16 +85,16 @@ else if ( $type == 'del' )
 	$where['product_id'] = GetDelId();
 	$siteMod->ProDel($where);
 	//写入操作记录
-	SetOpLog( '删除了站外站点' , 'system' , 'delete' , $table , $where);
-	Ajax('站外站点删除成功!');
+	SetOpLog( 'ลบเว็บไซต์ภายนอก' , 'system' , 'delete' , $table , $where);
+	Ajax('ลบเว็บไซต์ภายนอกสำเร็จ!');
 }
 //清空站外站点
 else if ( $type == 'clear' )
 {
 	$siteMod->ProDel();
 	//写入操作记录
-	SetOpLog( '清空了站外站点' , 'system' , 'delete' , $table , $where);
-	Ajax('站外站点清空成功!');
+	SetOpLog( 'ล้างเว็บไซต์ภายนอก' , 'system' , 'delete' , $table , $where);
+	Ajax('ล้างเว็บไซต์ภายนอกสำเร็จ!');
 }
 //使用禁用站点
 else if ( $type == 'status' )
@@ -104,16 +104,16 @@ else if ( $type == 'status' )
 
 	if( Request('status') == '1')
 	{
-		$msg = '使用成功';
+		$msg = 'ใช้งาน';
 	}
 	else
 	{
-		$msg = '禁用成功';
+		$msg = 'เลิกใช้';
 	}
 	$siteMod->ProUpdate($data,$where);
 	
 	//写入操作记录
-	SetOpLog( '站点'.$msg , 'system' , 'update' , $table , $where);
-	Ajax('站点'.$msg);
+	SetOpLog( 'เว็บไซต์ถูก'.$msg , 'system' , 'update' , $table , $where);
+	Ajax('เว็บไซต์ถูก'.$msg'แล้ว');
 }
 ?>

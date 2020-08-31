@@ -22,11 +22,11 @@ if( $type == 'plugin_add'  )
 	if( $data['plugin_name'] == '' || $data['plugin_floder'] == '' || 
 		$data['plugin_author'] == '' || $data['plugin_version'] == '' )
 	{
-		Ajax('对不起，请填写完整插件信息！',300);
+		Ajax('ขออภัย! โปรดกรอกข้อมูลปลั๊ำกอินให้สมบูรณ์',300);
 	}
 	else if( $pluginMod->GetByFloder($data['plugin_floder']) || file_exists($pluginPath) )
 	{
-		Ajax('对不起，插件标识已被占用请更换！',300);
+		Ajax('ขออภัย! โลโก้ปลั๊กอินถูกใช้งานอยู่ โปรดแทนที่ด้วยโลโก้ใหม่',300);
 	}
 	else
 	{
@@ -55,12 +55,12 @@ if( $type == 'plugin_add'  )
 			file_put_contents($pluginPath.'/copyright.xml', $copyRight);
 
 			//写入操作记录
-			SetOpLog( '新增了插件'.$data['plugin_name'].'：'.$data['plugin_floder'] , 'system' , 'insert' );
+			SetOpLog( 'เพิ่มปลั๊กอิน'.$data['plugin_name'].'：'.$data['plugin_floder'] , 'system' , 'insert' );
 			Ajax();
 		}
 		else
 		{
-			Ajax('对不起，插件添加失败！',300);
+			Ajax('ขออภัย! ไม่สามารถเพิ่มปลั๊กอินได้',300);
 		}
 	}
 }
@@ -73,11 +73,11 @@ else if( $type == 'config_add' )
 	$pluginData = $pluginMod->GetById($pluginId);
 	if( !$pluginData )
 	{
-		Ajax('对不起，插件id错误！',300);
+		Ajax('ขออภัย! ไอดีปลั๊กอินไม่ถูกต้อง',300);
 	}
 	else if( $configKey == '' )
 	{
-		Ajax('对不起，请填写页面标识和页面名字！',300);
+		Ajax('ขออภัย! โปรดกรอกไอดีและชื่อของหน้าเว็บ',300);
 	}
 	else
 	{
@@ -85,12 +85,12 @@ else if( $type == 'config_add' )
 		if( Plugin::AddConfig($configKey, $configVal) )
 		{
 			//写入操作记录
-			SetOpLog( '添加了插件'.$pluginData['plugin_name'].'的配置'.$configKey , 'system' , 'insert' );
-			Ajax('插件配置添加成功！');
+			SetOpLog( 'เพิ่มการกำหนดค่าปลั๊กอิน '.$pluginData['plugin_name'].''.$configKey , 'system' , 'insert' );
+			Ajax('เพิ่มการกำหนดค่าปลั๊กอินแล้ว!');
 		}
 		else
 		{
-			Ajax('对不起，配置添加失败！',300);
+			Ajax('ขออภัย! เพิ่มการกำหนดค่าปลั๊กอินล้มเหลว',300);
 		}
 	}
 }
@@ -118,17 +118,17 @@ else if( $type == 'config_del' )
 		if( $pluginConfigMod->Delete($configPluginId,$configKey) )
 		{
 			//写入操作记录
-			SetOpLog( '删除了插件'.$pluginData['plugin_name'].'的配置'.$configKey , 'system' , 'insert' );
-			Ajax('插件配置删除成功！');
+			SetOpLog( 'ลบการกำหนดค่าปลั๊กอิน '.$pluginData['plugin_name'].''.$configKey , 'system' , 'insert' );
+			Ajax('ลบการกำหนดค่าปลั๊กอินแล้ว!');
 		}
 		else
 		{
-			Ajax('对不起，配置删除失败！',300);
+			Ajax('ขออภัย! ลบการกำหนดค่าปลั๊กอินล้มเหลว',300);
 		}
 	}
 	else
 	{
-		Ajax('对不起，插件id不存在',300);
+		Ajax('ขออภัย! ไม่พบไอดีปลั๊กอิน',300);
 	}
 }
 ?>

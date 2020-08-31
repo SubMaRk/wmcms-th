@@ -1,8 +1,8 @@
 <div class="bjui-pageHeader">
 	<div class="row cl pt-10 pb-10 pl-10">
 		<div class="f-l" style="margin-left:10px">
-			<a href="index.php?a=yes&c=user.punish&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
-			<a href="index.php?a=yes&c=user.punish&t=clear" data-toggle="doajax" data-confirm-msg="确定清空记录要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> 清空记录</a>
+			<a href="index.php?a=yes&c=user.punish&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="คุณต้องการลบรายการที่เลือกหรือไม่?" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
+			<a href="index.php?a=yes&c=user.punish&t=clear" data-toggle="doajax" data-confirm-msg="คุณต้องการล้างบันทึกหรือไม่?" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> ล้างบันทึก</a>
 		</div>
 		<div class="f-l">
 			<form id="pagerForm" name="<?php echo $cFun;?>Form"  data-toggle="ajaxsearch" data-loadingmask="true" action="index.php?c=user.punish.list" method="post">
@@ -10,7 +10,7 @@
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-				<a id="<?php echo $cFun;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+				<a id="<?php echo $cFun;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
 			</form>
 		</div>
 	</div>
@@ -20,14 +20,14 @@
 			<thead>
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
-				<th width="5%" data-order-field="punish_id">编号</th>
-				<th width="6%">处罚类型</th>
-				<th width="6%">处罚状态</th>
-				<th width="14%">处罚用户</th>
-				<th width="20%">处罚原因</th>
-				<th width="10%">处罚开始时间</th>
-				<th width="10%">处罚结束时间</th>
-	            <th width="8%">操作</th>
+				<th width="5%" data-order-field="punish_id">ไอดี</th>
+				<th width="6%">บทลงโทษ</th>
+				<th width="6%">สถานะ</th>
+				<th width="14%">ผู้ใช้</th>
+				<th width="20%">เหตุผล</th>
+				<th width="10%">เวลาเริ่ม</th>
+				<th width="10%">เวลาสิ้นสุด</th>
+	            <th width="8%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody>
@@ -41,11 +41,11 @@
 					$status = str::CheckElse( $v['punish_status'] , 0 , '<span style="color:#bfbfbf">'.$statusArr[0].'</span>' , '<span style="color:red">'.$statusArr[1].'</span>');
 					if( $v['punish_status'] == '0' )
 					{
-						$st = '<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['punish_id'].')">删除</a>';
+						$st = '<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['punish_id'].')">ลบ</a>';
 					}
 					else
 					{
-						$st = '<a class="btn btn-success radius" href="index.php?a=yes&c=user.punish&t=unpunish&st='.$v['punish_type'].'&uid='.$v['punish_uid'].'"  data-mask="true" data-toggle="doajax" data-confirm-msg="确定要解除处罚吗？")">解除处罚</a>';
+						$st = '<a class="btn btn-success radius" href="index.php?a=yes&c=user.punish&t=unpunish&st='.$v['punish_type'].'&uid='.$v['punish_uid'].'"  data-mask="true" data-toggle="doajax" data-confirm-msg="คุณต้องการยกโทษให้หรือไม่?")">ยกโทษ</a>';
 					}
 					echo '<tr class="'.$cur.'">
 							<td style="text-align: center;"><input type="checkbox" name="ids" data-toggle="icheck" value="'.$v['punish_id'].'"></td>
@@ -65,7 +65,7 @@
 			}
 			else
 			{
-				echo '<script type="text/javascript">$(document).ready(function(){$(this).alertmsg("info", "没有数据了!")});</script>';
+				echo '<script type="text/javascript">$(document).ready(function(){$(this).alertmsg("info", "ไม่มีข้อมูล!")});</script>';
 			}
 			?>
 			</tbody>
@@ -74,7 +74,7 @@
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -83,7 +83,7 @@
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp;รายการจากทั้งหมด <?php echo $total;?> รายการ</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>"></div>
 </div>
@@ -107,7 +107,7 @@ function <?php echo $cFun;?>delAjax(id)
 	ajaxData.id = id;
 	ajaxOptions['data'] = ajaxData;
 	ajaxOptions['url'] = "index.php?a=yes&c=user.punish&t=del";
-	ajaxOptions['confirmMsg'] = "是否永久删除当前记录？";
+	ajaxOptions['confirmMsg'] = "คุณต้องการลบบันทึกปัจจุบันทันทีหรือไม่?";
 	ajaxOptions['callback'] = "<?php echo $cFun;?>ajaxCallBack";
 	$(".btn-danger").bjuiajax('doAjax', ajaxOptions);
 }

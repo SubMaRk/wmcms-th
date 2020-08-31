@@ -20,19 +20,19 @@ if ( $type == 'edit' || $type == "add"  )
 	
 	if ( $data['type_name'] == '' )
 	{
-		Ajax('对不起，分类名字必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อหมวดหมู่ก่อน',300);
 	}
 	else if( !str::Number($data['type_order']) )
 	{
-		Ajax('对不起，分类排序必须为数字！',300);
+		Ajax('ขออภัย! ต้องกรอกหมายเลขลำดับก่อน',300);
 	}
 	else if( !str::Number($data['type_topid']) )
 	{
-		Ajax('对不起，所属分类必须选择！',300);
+		Ajax('ขออภัย! ต้องเลือกหมวดหมู่ก่อน',300);
 	}
 	else if( $typeMod->GetByName($data['type_module'] , $data['type_name'] , $where['type_id']) )
 	{
-		Ajax('对不起，当前分类已经存在！',300);
+		Ajax('ขออภัย! มีหมวดหมู่ในปัจจุบันอยู่แล้ว',300);
 	}
 
 	//查询上级所有id
@@ -41,20 +41,20 @@ if ( $type == 'edit' || $type == "add"  )
 	//新增数据
 	if( $type == 'add' )
 	{
-		$info = '恭喜您，道具分类添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มหมวดหมู่ไอเท็มสำเร็จ';
 		$where['type_id'] = wmsql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了道具分类'.$data['type_name'] , $curModule , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มหมวดหมู่ไอเท็ม'.$data['type_name'] , $curModule , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
-		$info = '恭喜您，道具分类修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขหมวดหมู่ไอเท็มสำเร็จ';
 		wmsql::Update($table, $data, $where);
 		
 		//写入操作记录
-		SetOpLog( '修改了道具分类'.$data['type_name'] , $curModule , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขหมวดหมู่ไอเท็ม'.$data['type_name'] , $curModule , 'update' , $table , $where , $data );
 	}
 	
 	Ajax($info);
@@ -65,9 +65,9 @@ else if ( $type == 'del' )
 	$where['type_id'] = GetDelId();
 
 	//写入操作记录
-	SetOpLog( '删除了道具分类' , $curModule , 'delete' , $table , $where);
+	SetOpLog( 'ลบหมวดหมู่ไอเท็ม' , $curModule , 'delete' , $table , $where);
 	//删除分类
 	wmsql::Delete($table, $where);
-	Ajax('道具分类删除成功!');
+	Ajax('ลบหมวดหมู่ไอเท็มสำเร็จ!');
 }
 ?>

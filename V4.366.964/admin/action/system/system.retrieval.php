@@ -22,7 +22,7 @@ if ( $type == 'edit' || $type == "add" )
 	{
 		if( $v == '' && $k != 'retrieval_value' )
 		{
-			Ajax(GetModuleName($module).'对不起，所有项都不能为空！' , 300);
+			Ajax(GetModuleName($module).'ขออภัย! ฟิลด์ทั้งหมดต้องไม่ว่าง' , 300);
 		}
 	}
 	
@@ -32,17 +32,17 @@ if ( $type == 'edit' || $type == "add" )
 		//插入记录
 		$where['retrieval_id'] = $reMod->Insert($data);
 		//写入操作记录
-		SetOpLog( '新增了'.GetModuleName($module).'的筛选条件'.$data['retrieval_title'] , 'system' , 'insert' , $table , $where , $data );
-		Ajax(GetModuleName($module).'的筛选条件新增成功!');
+		SetOpLog( 'เพิ่ม'.GetModuleName($module).'เงื่อนไขตัวกรอง'.$data['retrieval_title'] , 'system' , 'insert' , $table , $where , $data );
+		Ajax(GetModuleName($module).'เพิ่มเงื่อนไขตัวกรองสำเร็จ!');
 	}
 	//如果是增加页面
 	else
 	{
 		//写入操作记录
-		SetOpLog( '修改'.GetModuleName($module).'的筛选条件' , 'system' , 'update' , $table  , $where , $data );
+		SetOpLog( 'แก้ไข'.GetModuleName($module).'เงื่อนไขตัวกรอง' , 'system' , 'update' , $table  , $where , $data );
 		//修改数据
 		$reMod->Update($data,$where);
-		Ajax(GetModuleName($module).'的筛选条件修改成功！');
+		Ajax(GetModuleName($module).'แก้ไขเงื่อนไขตัวกรองสำเร็จ');
 	}
 }
 //删除条件删选
@@ -51,8 +51,8 @@ else if( $type == 'del' )
 	$where['retrieval_id'] = GetDelId();
 	$reMod->Del($where);
 	//写入操作记录
-	SetOpLog( '删除了'.GetModuleName($module).'的筛选条件' , 'system' , 'delete' , $table , $where);
-	Ajax(GetModuleName($module).'的筛选条件删除成功!');
+	SetOpLog( 'ลบ'.GetModuleName($module).'เงื่อนไขตัวกรอง' , 'system' , 'delete' , $table , $where);
+	Ajax(GetModuleName($module).'ลบเงื่อนไขตัวกรองสำเร็จ!');
 }
 //使用禁用条件
 else if( $type == 'status' )
@@ -62,17 +62,17 @@ else if( $type == 'status' )
 
 	if( Request('status') == '1')
 	{
-		$msg = '使用成功';
+		$msg = 'ใช้งาน';
 	}
 	else
 	{
-		$msg = '禁用成功';
+		$msg = 'เลิกใช้';
 	}
 	$reMod->Update($data,$where);
 	
 	//写入操作记录
-	SetOpLog( GetModuleName($module).'的筛选条件'.$msg , 'system' , 'update' , $table , $where);
-	Ajax(GetModuleName($module).'的筛选条件'.$msg);
+	SetOpLog( GetModuleName($module).'เงื่อนไขตัวกรอง'.$msg , 'system' , 'update' , $table , $where);
+	Ajax(GetModuleName($module).'เงื่อนไขตัวกรอง'.$msg'แล้ว');
 }
 
 //修改检索分类信息
@@ -85,9 +85,9 @@ else if($type == 'type')
 			$reMod->TypeUpdate($v['data'],$v['id']);
 		}
 		//写入操作记录
-		SetOpLog( '修改了'.GetModuleName($module).'检索分类！' , 'system' , 'update' , $table , $v['id'] , $v['data'] );
+		SetOpLog( 'แก้ไข'.GetModuleName($module).'หมวดหมู่ตัวกรอง' , 'system' , 'update' , $table , $v['id'] , $v['data'] );
 	}
-	Ajax(GetModuleName($module).'恭喜您，检索分类修改成功!');
+	Ajax(GetModuleName($module).'ยินดีด้วย! แก้ไขหมวดหมู่ตัวกรองสำเร็จ');
 }
 //使用禁用分类
 else if( $type == 'typestatus' )
@@ -97,16 +97,16 @@ else if( $type == 'typestatus' )
 
 	if( Request('status') == '1')
 	{
-		$msg = '使用成功';
+		$msg = 'ใช้งาน';
 	}
 	else
 	{
-		$msg = '禁用成功';
+		$msg = 'เลิกใช้';
 	}
 	$reMod->TypeUpdate($data,$where);
 	
 	//写入操作记录
-	SetOpLog( GetModuleName($module).'的筛选分类'.$msg , 'system' , 'update' , $table , $where);
-	Ajax(GetModuleName($module).'的筛选分类'.$msg);
+	SetOpLog( GetModuleName($module).'หมวดหมู่ตัวกรอง'.$msg , 'system' , 'update' , $table , $where);
+	Ajax(GetModuleName($module).'หมวดหมู่ตัวกรอง'.$msg'แล้ว');
 }
 ?>

@@ -18,16 +18,16 @@ if ( $type == 'del' )
 	$emailMod->LogDel($where);
 
 	//写入操作记录
-	SetOpLog( '删除了邮件发送日志' , 'system' , 'delete' , $table , $where);
+	SetOpLog( 'ลบบันทึกการส่งอีเมล์' , 'system' , 'delete' , $table , $where);
 	wmsql::Delete($table, $where);
-	Ajax('邮件发送日志删除成功!');
+	Ajax('ลบบันทึกการส่งอีเมล์สำเร็จ!');
 }
 //清空登录记录
 else if ( $type == 'clear' )
 {
 	$emailMod->LogDel();
 	//写入操作记录
-	SetOpLog( '清空了邮件发送日志' , 'system' , 'delete');
-	Ajax('所有邮件发送日志成功清空！');
+	SetOpLog( 'ล้างบันทึกการส่งอีเมล์' , 'system' , 'delete');
+	Ajax('ล้างบันทึกการส่งอีเมล์สำเร็จ!');
 }
 ?>

@@ -27,8 +27,8 @@ if ( $type == 'edit')
 //不存在就设置默认值
 else
 {
-	$data['account_token'] = '添加后系统自动生成';
-	$data['account_aeskey'] = '添加后系统自动生成';
+	$data['account_token'] = 'สร้างอัตโนมัติหลังจากเพิ่ม';
+	$data['account_aeskey'] = 'สร้างอัตโนมัติหลังจากเพิ่ม';
 	$data['account_access'] = $accountMod->access[0];
 }
 ?>

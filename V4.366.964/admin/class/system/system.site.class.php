@@ -11,9 +11,9 @@
 class SystemSite
 {
 	private $table = '@site_site';
-	public $status = array(0=>'禁用',1=>'正常');
-	public $domainType = array(1=>'单域名',2=>'泛解析');
-	public $type = array(1=>'数据独立',2=>'数据同步');
+	public $status = array(0=>'ปิดใช้',1=>'ปกติ');
+	public $domainType = array(1=>'ชื่อโดเมนเดียว',2=>'วิเคราะห์ทั่วไป');
+	public $type = array(1=>'อิสระทางข้อมูล',2=>'ซิงค์ข้อมูล');
 	
 	
 

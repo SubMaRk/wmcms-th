@@ -32,11 +32,11 @@ if ( $type == 'del' )
 			}
 		}
 		//写入操作记录
-		SetOpLog( '删除了小说上传封面' , 'system' , 'delete' , $table , $where);
+		SetOpLog( 'ลบปกนิยาย' , 'system' , 'delete' , $table , $where);
 		$applyMod->Delete($where);
 	}
-	
-	Ajax('小说封面申请删除成功!');
+
+	Ajax('ลบปกนิยายที่อัปโหลดสำเร็จแล้ว!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -72,17 +72,17 @@ else if ( $type == 'status' )
 		}
 
 		//写入操作记录
-		$msg = '取消审核';
+		$msg = 'ละทิ้ง';
 		if( Request('status') == '1')
 		{
-			$msg = '审核通过';
+			$msg = 'ตรวจสอบ';
 		}
-		SetOpLog( $msg.'了小说上传封面' , 'system' , 'update' , $table , $where);
-		Ajax('小说封面'.$msg.'成功!');
+		SetOpLog( $msg.'ปกนิยาย' , 'system' , 'update' , $table , $where);
+		Ajax('ปกนิยายถูก'.$msg.'แล้ว!');
 	}
 	else
 	{
-		Ajax('对不起，小说封面不存在！');
+		Ajax('ขออภัย! ไม่มีปกนิยาย');
 	}
 }
 ?>

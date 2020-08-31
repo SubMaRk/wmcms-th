@@ -37,3 +37,6 @@ SQL
 - zt_name -> 40
 
 PHP
+- /admin/action/author/author.author.php L30 -> 3,30
+- /admin/action/link/link.link.php L149 -> https://seo.chinaz.com/?m=&host='.$domain
+- /admin/template/web/index.php L197 -> https://support.microsoft.com/th-th/help/17621/internet-explorer-downloads

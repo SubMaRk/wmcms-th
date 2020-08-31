@@ -6,14 +6,14 @@
 	            <tbody>
 	                <tr>
 	                    <td colspan="5">
-	                        <b>用户id：</b>
+	                        <b>ไอดีผู้ใช้ : </b>
 	                        <input type="text" name="uid" value="<?php echo $uid?>" data-rule="required">
-	                        (0为发送给全部用户，多个用户用,分开)
+	                        (0 ส่งให้ผู้ใช้ทั้งหมด; ใช้ ',' แยกหากมีผู้ใช้หลายคน)
 	                    </td>
 	                </tr>
 	                <tr>
 	                   <td>
-	                        <b>消息内容：</b>
+	                        <b>เนื้อหาข้อความ : </b>
 							<?php echo Ueditor('height:200px' , 'content', '','editor.user_msg');?>
 	                   </td>
 	                </tr>
@@ -25,7 +25,7 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">จัดเก็บ</button></li>
     </ul>
 </div>

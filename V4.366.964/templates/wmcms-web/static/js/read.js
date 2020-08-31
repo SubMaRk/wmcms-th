@@ -18,7 +18,7 @@ $(document).ready(function(){
 				{
 					var msg =  data.msg;
 					if( data.code == 200 ){
-						msg = '恭喜您，反馈成功，请等待管理员查看并处理！';
+						msg = 'ยินดีด้วย! ส่งรายงานสำเร็จแล้ว โปรดรอให้ผู้ดูแลตรวจสอบเพื่อดำเนินการต่อ';
 					}
 					easyDialog.open({container : {content :msg},autoClose : 2000});
 				},

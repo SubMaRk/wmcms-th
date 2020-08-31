@@ -6,11 +6,11 @@
     <form action="index.php?a=yes&c=app.app&t=<?php echo $type;?>" data-reload="false" data-toggle="validate" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
 	<input name="id[app_id]" id="<?php echo $cFun.$type;?>_cid" type="hidden" class="input-text" value="<?php echo $id;?>">
 		<fieldset>
-			<legend>应用内容编辑</legend>
+			<legend>แก้ไขเนื้อหาแอปฯ</legend>
             <ul class="nav nav-tabs" role="tablist">
-            	<li class="active"><a href="#<?php echo $cFun.$type;?>base" role="tab" data-toggle="tab">基本信息</a></li>
-            	<li><a href="#<?php echo $cFun.$type;?>senior" id="<?php echo $cFun.$type;?>senior_tab" role="tab" data-toggle="tab">高级信息</a></li>
-            	<li><a href="#<?php echo $cFun.$type;?>field" id="<?php echo $cFun.$type;?>field_tab" role="tab" data-toggle="tab">自定义字段</a></li>
+            	<li class="active"><a href="#<?php echo $cFun.$type;?>base" role="tab" data-toggle="tab">ตั้งค่าทั่วไป</a></li>
+            	<li><a href="#<?php echo $cFun.$type;?>senior" id="<?php echo $cFun.$type;?>senior_tab" role="tab" data-toggle="tab">ตั้งค่าขั้นสูง</a></li>
+            	<li><a href="#<?php echo $cFun.$type;?>field" id="<?php echo $cFun.$type;?>field_tab" role="tab" data-toggle="tab">ฟิลด์ที่กำหนดเอง</a></li>
             </ul>
             <div class="tab-content">
             	<div class="tab-pane fade active in" id="<?php echo $cFun.$type;?>base">
@@ -18,7 +18,7 @@
 		            <tbody>
 		            	<tr>
 						  <td colspan="2">
-						  	<b>应 用 分 类：</b>
+						  	<b>หมวดหมู่ : </b>
 							<input id="<?php echo $cFun.$type;?>type_id" name="app[type_id]" type="hidden" value="<?php echo C('type_id',null,'data');?>">
 					      	<input type="text" id="<?php echo $cFun.$type;?>_ztree_input" data-toggle="selectztree" data-tree="#<?php echo $cFun.$type;?>_ztree_select" readonly value="<?php echo C('type_name',null,'data');?>">
                             <ul id="<?php echo $cFun.$type;?>_ztree_select" class="ztree hide" data-toggle="ztree" data-expand-all="true" data-check-enable="true" data-chk-style="radio" data-radio-type="all" data-on-check="<?php echo $cFun.$type;?>S_NodeCheck" data-on-click="<?php echo $cFun.$type;?>S_NodeClick">
@@ -34,67 +34,67 @@
 						</tr>
 		                <tr>
 		                    <td width="50%">
-		                        <b>应 用 标 题：</b>
+		                        <b>ชื่อเต็ม : </b>
 		                        <input type="text" name="app[app_name]" value="<?php echo C('app_name',null,'data');?>" data-rule="required">
 		                    </td>
 		                    <td>
-		                        <b>应用短标题：</b>
+		                        <b>ชื่อย่อ : </b>
 		                        <input type="text" name="app[app_cname]" value="<?php echo C('app_cname',null,'data');?>">
 		                    </td>
 		                </tr>
 		                <tr>
 		                    <td colspan="2">
-		                        <b>应 用 拼 音：</b>
+		                        <b>พินอิน : </b>
 		                        <input type="text" name="app[app_pinyin]" value="<?php echo C('app_pinyin',null,'data');?>">
 		                    </td>
 		                </tr>
 		                <tr>
 		                    <td colspan="2">
-		                        <b>应 用 状 态：</b>
+		                        <b>สถานะ : </b>
 		                        <select data-toggle="selectpicker" name="app[app_status]">
-                                    <option value="1" <?php if(C('app_status',null,'data') == '1'){ echo 'selected=""';}?>>已审核</option>
-                                    <option value="0" <?php if(C('app_status',null,'data') == '0'){ echo 'selected=""';}?>>待审核</option>
+                                    <option value="1" <?php if(C('app_status',null,'data') == '1'){ echo 'selected=""';}?>>ผ่าน</option>
+                                    <option value="0" <?php if(C('app_status',null,'data') == '0'){ echo 'selected=""';}?>>รอ</option>
                                 </select>
 		                        <b style="margin-left: 163px">是 否 推 荐：</b>
 		                        <select data-toggle="selectpicker" name="app[app_rec]">
-                                    <option value="1" <?php if(C('app_rec',null,'data') == '1'){ echo 'selected=""';}?>>已推荐</option>
-                                    <option value="0" <?php if(C('app_rec',null,'data') == '0'){ echo 'selected=""';}?>>未推荐</option>
+                                    <option value="1" <?php if(C('app_rec',null,'data') == '1'){ echo 'selected=""';}?>>แนะนำ</option>
+                                    <option value="0" <?php if(C('app_rec',null,'data') == '0'){ echo 'selected=""';}?>>ไม่แนะนำ</option>
                                 </select>
 		                    </td>
 		                </tr>
 		                <tr>
 		                   <td>
-		                        <b>应 用 封 面：</b>
+		                        <b>หน้าปก : </b>
 		                        <input type="text" id="app_simg" name="app[app_simg]" value="<?php echo C('app_simg',null,'data');?>" size="35">
 								<span class="upload" data-uploader="index.php?a=yes&c=upload&t=img" data-on-upload-success="<?php echo $cFun;?>upload_success" data-file-type-exts="*.jpg;*.png;*.gif;*.mpg" data-toggle="upload" data-icon="cloud-upload"></span>
-								<?php if( C('app_simg',null,'data') != '' ){ echo '<a target="_blank" href="'.C('app_simg',null,'data').'">点击查看图片</a>';}?>
+								<?php if( C('app_simg',null,'data') != '' ){ echo '<a target="_blank" href="'.C('app_simg',null,'data').'">คลิ๊กเพื่อดูรูปภาพ</a>';}?>
 		                    </td>
 		                   <td>
-		                        <b>应 用 图 标：</b>
+		                        <b>ไอคอน : </b>
 		                        <input type="text" id="app_ico" name="app[app_ico]" value="<?php echo C('app_ico',null,'data');?>" size="35">
 								<span class="upload" data-uploader="index.php?a=yes&c=upload&t=img" data-on-upload-success="<?php echo $cFun;?>upload_success" data-file-type-exts="*.jpg;*.png;*.gif;*.mpg" data-toggle="upload" data-icon="cloud-upload"></span>
-								<?php if( C('app_ico',null,'data') != '' ){ echo '<a target="_blank" href="'.C('app_ico',null,'data').'">点击查看图片</a>';}?>
+								<?php if( C('app_ico',null,'data') != '' ){ echo '<a target="_blank" href="'.C('app_ico',null,'data').'">คลิ๊กเพื่อดูรูปภาพ</a>';}?>
 		                    </td>
 		                </tr>     
 		                <tr>
 		                    <td>
-		                        <b>应用开发商：</b>
+		                        <b>ผู้พัฒนา : </b>
 		                        <input data-rule="required;" data-url="index.php?a=yes&c=app.firms&t=search&st=a&rt=key" data-toggle="autocomplete" name="firms[a]" type="text" class="input-text" value="<?php echo C('au_name',null,'data');?>">
 		                    </td>
 		                    <td>
-		                        <b>运 营 公 司：</b>
+		                        <b>ผู้ให้บริการ : </b>
 		                        <input data-url="index.php?a=yes&c=app.firms&t=search&st=o&rt=key" data-toggle="autocomplete" name="firms[o]" type="text" class="input-text" value="<?php echo C('pa_name',null,'data');?>">
 		                    </td>
 		                </tr>
 
 		                <tr>
 		                    <td colspan="2">
-		                        <b>汉 化 应 用：</b>
+		                        <b>รองรับภาษาไทย : </b>
 		                        <select data-toggle="selectpicker" name="app[app_tocn]">
-                                    <option value="0" <?php if(C('app_tocn',null,'data') == '0'){ echo 'selected=""';}?>>暂未汉化</option>
-                                    <option value="1" <?php if(C('app_tocn',null,'data') == '1'){ echo 'selected=""';}?>>已经汉化</option>
+                                    <option value="0" <?php if(C('app_tocn',null,'data') == '0'){ echo 'selected=""';}?>>ยังไม่รองรับ</option>
+                                    <option value="1" <?php if(C('app_tocn',null,'data') == '1'){ echo 'selected=""';}?>>รองรับ</option>
                                 </select>
-		                        <b style="margin-left: 150px">语 言 类 型：</b>
+		                        <b style="margin-left: 150px">รูปแบบภาษา : </b>
 								<input name="app[app_lid]" type="hidden" value="<?php echo C('app_lid',null,'data');?>">
 								<input name="app[app_lid_text]" type="hidden" value="<?php echo C('app_lid_text',null,'data');?>">
 		                        <select data-toggle="selectpicker" data-width="120" class="multiple" multiple data-name="app_lid">
@@ -110,7 +110,7 @@
 								    }
 								    ?>
                                 </select>
-		                        <b style="margin-left: 150px">应 用 资 费：</b>
+		                        <b style="margin-left: 150px">ค่าธรรมเนียม : </b>
 								<input name="app[app_cid]" type="hidden" value="<?php echo C('app_cid',null,'data');?>">
 								<input name="app[app_cid_text]" type="hidden" value="<?php echo C('app_cid_text',null,'data');?>">
 		                        <select data-toggle="selectpicker" data-width="120" class="multiple" multiple data-name="app_cid">
@@ -130,13 +130,13 @@
 		                </tr>
 		                <tr>
 		                   <td colspan="2">
-		                        <b>应 用 版 本：</b>
+		                        <b>เวอร์ชั่น : </b>
 		                        <input type="text" name="app[app_ver]" size="7" data-rule="required" value="<?php echo C('app_ver',null,'data');?>">
 		                    
-		                        <b style="margin-left: 150px">应 用 大 小：</b>
+		                        <b style="margin-left: 150px">ขนาด : </b>
 		                        <input type="text" name="app[app_size]" size="6" data-rule="required" value="<?php echo C('app_size',null,'data');?>"> M
 		                    
-		                        <b style="margin-left: 148px">运 行 平 台：</b>
+		                        <b style="margin-left: 148px">ระบบปฏิบัติการ : </b>
 								<input name="app[app_paid]" type="hidden" value="<?php echo C('app_paid',null,'data');?>">
 								<input name="app[app_paid_text]" type="hidden" value="<?php echo C('app_paid_text',null,'data');?>">
 		                        <select data-toggle="selectpicker" data-width="120" class="multiple" multiple data-name="app_paid">
@@ -153,31 +153,31 @@
 								    ?>
                                 </select>
                                 
-		                        <b style="margin-left: 150px">系 统 要 求：</b>
+		                        <b style="margin-left: 150px">ความต้องการระบบ : </b>
 		                        <input type="text" name="app[app_osver]" size="7" data-rule="required" value="<?php echo C('app_osver',null,'data');?>">
 		                    </td>
 		                </tr>   
 		                <tr>
 		                   <td colspan="2">
-		                        <b>应 用 标 签：</b>
+		                        <b>ป้ายกำกับ : </b>
 		                        <input type="text"  name="app[app_tags]" size="40" value="<?php echo C('app_tags',null,'data');?>">
 		                    </td>
 		                </tr>
 		                <tr>
 		                   <td colspan="2">
-		                        <b>简 介 点 评：</b>
+		                        <b>ข้อมูลโดยย่อ : </b>
 		                        <textarea cols="70" rows="1" name="app[app_info]" data-toggle="autoheight"><?php echo C('app_info',null,'data');?></textarea>
 		                    </td>
 		                </tr>
 		                <tr>
 		                   <td colspan="2">
-		                    <b>应 用 截 图：</b>
+		                    <b>ภาพหน้าจอ</b>
 							<div class="formControls">
 								<div class="uploader-list-container"> 
 									<div class="queueList">
 										<div id="<?php echo $cFun.$type;?>dndArea" class="placeholder <?php if($type == 'edit'){echo ' element-invisible';}?>">
 											<div id="<?php echo $cFun.$type;?>filePicker-2"></div>
-											<p>或将照片拖到这里，最多可上传30张</p>
+											<p>หรือลากรูปภาพมาที่นี่ อัปโหลดได้สูงสุด 30 รูป</p>
 										</div>
 										<?php
 										if($type == 'edit' && $picArr)
@@ -193,9 +193,9 @@
 														<p class="progress" style="display: none;"><span style="display: none; width: 0px;"></span></p>
 														<p class="alt">
 														<input type="hidden" value="'.$v['upload_img'].'" name="pic[src]['.$v['upload_id'].']">
-														<input type="text" size="16" class="form-control" placeholder="请填写注释" value="'.$v['upload_alt'].'" name="pic[alt]['.$v['upload_id'].']"></p>
+														<input type="text" size="16" class="form-control" placeholder="โปรดกรอกคำอธิบาย" value="'.$v['upload_alt'].'" name="pic[alt]['.$v['upload_id'].']"></p>
 														<span class="success"></span>
-		        										<div class="file-panel"><span class="cancel">删除</span><span class="rotateRight">向右旋转</span><span class="rotateLeft">向左旋转</span></div>
+		        										<div class="file-panel"><span class="cancel">ลบ</span><span class="rotateRight">หมุนขวา</span><span class="rotateLeft">หมุนซ้าย</span></div>
 		        										</li>';
 											}
 											echo '</ul>';
@@ -218,21 +218,21 @@
 		                
 		                <tr>
 		                   <td colspan="2">
-		                        <b>下载地址1：</b>
+		                        <b>แหล่งดาวน์โหลดที่ 1 : </b>
 		                        <input type="text"  name="app[app_down1]" size="40" value="<?php echo C('app_down1',null,'data');?>">
 								<span class="upload" data-file-type-exts="*" data-uploader="index.php?a=yes&c=upload&t=file" data-on-upload-success="<?php echo $cFun;?>upload_success" data-toggle="upload" data-icon="cloud-upload"></span>
 		                    </td>
 		                </tr>
 		                <tr>
 		                   <td colspan="2">
-		                        <b>下载地址2：</b>
+		                        <b>แหล่งดาวน์โหลดที่ 2 : </b>
 		                        <input type="text"  name="app[app_down2]" size="40" value="<?php echo C('app_down2',null,'data');?>">
 								<span class="upload" data-file-type-exts="*" data-uploader="index.php?a=yes&c=upload&t=file" data-on-upload-success="<?php echo $cFun;?>upload_success" data-toggle="upload" data-icon="cloud-upload"></span>
 		                    </td>
 		                </tr>
 		                <tr>
 		                   <td colspan="2">
-		                        <b>下载地址3：</b>
+		                        <b>แหล่งดาวน์โหลดที่ 3 : </b>
 		                        <input type="text"  name="app[app_down3]" size="40" value="<?php echo C('app_down3',null,'data');?>">
 								<span class="upload" data-file-type-exts="*" data-uploader="index.php?a=yes&c=upload&t=file" data-on-upload-success="<?php echo $cFun;?>upload_success" data-toggle="upload" data-icon="cloud-upload"></span>
 		                    </td>
@@ -240,7 +240,7 @@
 		                
 		                <tr>
 		                   <td colspan="2">
-		                        <b>应 用 内 容：</b>
+		                        <b>เนื้อหา : </b>
 		                        <div class="wm_form_content_box">
 									<?php echo Ueditor('width: 90%;height:300px' , 'app[app_content]' , C('app_content',null,'data') , 'editor.app');?>
 		                        </div>
@@ -254,32 +254,32 @@
 		       		<table class="table table-condensed table-hover" width="100%">
 		            <tbody>
 		            	<tr>
-						  <td><b>浏览次数 ：</b>
+						  <td><b>เข้าชม :</b>
 							<input size="7" name="app[app_read]" value="<?php echo C('app_read',null,'data');?>">
 					     </td>
-						  <td><b>评论数 ：</b>
+						  <td><b>ความคิดเห็น : </b>
 							<input size="7" name="app[app_replay]" value="<?php echo C('app_replay',null,'data');?>">
 					      </td>
-						  <td><b> 顶 ：</b>
+						  <td><b> ชอบ : </b>
 							<input size="7" name="app[app_ding]" value="<?php echo C('app_ding',null,'data');?>">
 					      </td>
-						  <td><b> 踩 ：</b>
+						  <td><b> ไม่ชอบ : </b>
 							<input size="7" name="app[app_cai]" value="<?php echo C('app_cai',null,'data');?>">
 					      </td>
-						  <td><b> 星 级 ：</b>
+						  <td><b> ระดับดาว : </b>
 							<input size="7" name="app[app_start]" value="<?php echo C('app_start',null,'data');?>">
 					      </td>
-						  <td><b> 评 分 ：</b>
+						  <td><b> คะแนน : </b>
 							<input size="7" name="app[app_score]" value="<?php echo C('app_score',null,'data');?>">
 					      </td>
 						</tr>
 		            	<tr>
-						  <td colspan="6"><b>下载次数 ：</b>
+						  <td colspan="6"><b>จำนวนดาวน์โหลด : </b>
 							<input size="7" name="app[app_downnum]" value="<?php echo C('app_downnum',null,'data');?>">
 					     </td>
 						</tr>
 		            	<tr>
-						  <td colspan="6"><b>发 布 时 间：</b>
+						  <td colspan="6"><b>วันที่เผยแพร่ : </b>
 							<input type="text" name="app[app_addtime]" value="<?php echo date('Y-m-d H:i:s',C('app_addtime',null,'data'));?>" data-toggle="datepicker" data-pattern="yyyy-MM-dd H:m:s" size="19">
 					     </td>
 						</tr>
@@ -298,8 +298,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">จัดเก็บ</button></li>
     </ul>
 </div>
 
@@ -369,7 +369,7 @@ function <?php echo $cFun.$type;?>getfield(json){
 			      '<td valign="top">'+option[i]['form']+'</td></tr>';
 		}
 	}else{
-		html ='<tr><td valign="top"><b>请先添加自定义字段</b></td></tr>';
+		html ='<tr><td valign="top"><b>โปรดเพิ่มฟิลด์ที่กำหนดเองก่อน!</b></td></tr>';
 	}
 	$("#<?php echo $cFun.$type;?>field table").html(html);
 	$("#<?php echo $cFun.$type;?>field table").trigger('bjui.initUI');
@@ -381,7 +381,7 @@ $("#<?php echo $cFun.$type;?>field_tab").click(function(){
 	var tid = $("#<?php echo $cFun.$type;?>type_id").val();
 
 	if( tid == '' ){
-		$(this).alertmsg('error', '对不起，请先选择分类');
+		$(this).alertmsg('error', 'ขออภัย! โปรดเลือกหมวหมู่ก่อน');
 		return false;
 	}else{
 		var op = new Array();
@@ -412,5 +412,5 @@ $(".multiple").change(function(){
 <script type="text/javascript" src="/files/js/webupload/webuploader.min.js"></script> 
 <script type="text/javascript" src="<?php echo $tempPath;?>/BJUI/js/webupload.js"></script> 
 <script>
-$(".info").html('共<?php echo count($picArr);?>张（<?php echo $size/1000;?>KB）');
+$(".info").html('ทั้งหมด <?php echo count($picArr);?> รูป （<?php echo $size/1000;?>KB）');
 </script>

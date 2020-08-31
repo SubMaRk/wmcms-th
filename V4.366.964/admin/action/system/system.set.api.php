@@ -39,7 +39,7 @@ if( $post )
 	}
 	
 	//写入操作记录
-	SetOpLog( '修改API接口的配置信息' , 'system' , 'update' );
+	SetOpLog( 'แก้ไขการกำหนดค่า API' , 'system' , 'update' );
 
 	
 	//生成配置文件

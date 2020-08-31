@@ -17,7 +17,7 @@ if ( $type == 'edit' )
 	$configMod->UpdateById(42,$post['tongji']['tongji']);
 
 	//写入操作记录
-	SetOpLog( '修改统计代码' , 'system' , 'update' );
+	SetOpLog( 'แก้ไขสถิติ' , 'system' , 'update' );
 	
 	//更新配置文件
 	$manager->UpConfig('web');

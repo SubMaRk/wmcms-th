@@ -19,7 +19,7 @@ if ( $type == 'edit' || $type == "add"  )
 	
 	if( $data['temp_name'] == '' || $data['temp_module'] == '' || $data['temp_key'] == '' || $data['temp_content'] == '' )
 	{
-		Ajax('对不起，所有选项必填！',300);	
+		Ajax('ขออภัย! จำเป้นต้องกรอกตัวเลือกทั้งหมด',300);	
 	}
 	
 	//如果是新增
@@ -27,22 +27,22 @@ if ( $type == 'edit' || $type == "add"  )
 	{
 		if( $msgMod->GetByKey($data['temp_key']) )
 		{
-			Ajax('对不起，当前模版消息标识已经存在！',300);	
+			Ajax('ขออภัย! ไอดีเทมเพลตข้อความปัจจุบันไม่มีอยู่',300);	
 		}
 		//插入记录
 		$where['temp_id'] = $msgMod->Insert($data);
 		//写入操作记录
-		SetOpLog( '新增了消息模版'.$data['temp_name'] , 'system' , 'insert' , $table , $where , $data );
-		Ajax('消息模版新增成功!');
+		SetOpLog( 'เพิ่มเทมเพลตข้อความ'.$data['temp_name'] , 'system' , 'insert' , $table , $where , $data );
+		Ajax('เพิ่มเทมเพลตข้อความแล้ว!');
 	}
 	//如果是增加页面
 	else
 	{
 		//写入操作记录
-		SetOpLog( '修改消息模版' , 'system' , 'update' , $table  , $where , $data );
+		SetOpLog( 'แก้ไขเทมเพลตข้อความ' , 'system' , 'update' , $table  , $where , $data );
 		//修改数据
 		$msgMod->Update($data,$where);
-		Ajax('消息模版修改成功！');
+		Ajax('แก้ไขเทมเพลตข้อความแล้ว!');
 	}
 }
 //删除消息模版
@@ -50,7 +50,7 @@ else if ( $type == 'del' )
 {
 	$where['temp_id'] = GetDelId();
 	$msgMod->Delete($where);
-	SetOpLog( '删除了消息模版' , 'system' , 'delete' , $table , $where);
-	Ajax('消息模版删除成功!');
+	SetOpLog( 'ลบเทมเพลตข้อความ' , 'system' , 'delete' , $table , $where);
+	Ajax('ลบเทมเพลตข้อความแล้ว!');
 }
 ?>

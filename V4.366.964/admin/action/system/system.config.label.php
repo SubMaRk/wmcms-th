@@ -19,7 +19,7 @@ if ( $type == 'edit' || $type == "add"  )
 	
 	if( $data['label_title'] == '' ||  $data['label_name'] == ''  ||  $data['label_value'] == '' )
 	{
-		Ajax('对不起，所有项不能为空',300);
+		Ajax('ขออภัย! ฟิลด์ทั้งหมดต้องไม่ว่าง',300);
 	}
 	
 	//标签名字检查
@@ -28,7 +28,7 @@ if ( $type == 'edit' || $type == "add"  )
 	$wheresql['where']['label_id'] = array('<>',$where['label_id']);
 	if ( wmsql::GetCount($wheresql) > 0 )
 	{
-		Ajax('对不起，该标签已经存在！',300);
+		Ajax('ขออภัย! มีป้ายกำกับนี้อยู่แล้ว',300);
 	}
 	
 	//如果是新增
@@ -38,18 +38,18 @@ if ( $type == 'edit' || $type == "add"  )
 		$where['label_id'] = WMSql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了自定义标签'.$data['label_title'] , 'system' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มป้ายกำกับที่กำหนดเอง'.$data['label_title'] , 'system' , 'insert' , $table , $where , $data );
 		
-		Ajax('自定义标签新增成功!');
+		Ajax('เพิ่มป้ายกำกับที่กำหนดเองสำเร็จ!');
 	}
 	//如果是增加页面
 	else
 	{
 		//写入操作记录
-		SetOpLog( '修改自定义标签' , 'system' , 'update' , $table  , $where , $data );
+		SetOpLog( 'แก้ไขป้ายกำกับที่กำหนดเอง' , 'system' , 'update' , $table  , $where , $data );
 		//修改数据
 		WMSql::Update($table, $data, $where);
-		Ajax('自定义标签修改成功！');
+		Ajax('แก้ไขป้ายกำกับที่กำหนดเองสำเร็จ!');
 	}
 }
 //删除网站配置
@@ -57,10 +57,10 @@ else if ( $type == 'del' )
 {
 	$where['label_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了自定义标签' , 'system' , 'delete' , $table , $where);
+	SetOpLog( 'ลบป้ายกำกับที่กำหนดเอง' , 'system' , 'delete' , $table , $where);
 
 	wmsql::Delete($table, $where);
 	
-	Ajax('自定义标签删除成功!');
+	Ajax('ลบป้ายกำกับที่กำหนดเองสำเร็จ!');
 }
 ?>

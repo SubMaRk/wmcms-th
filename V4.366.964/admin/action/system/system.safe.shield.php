@@ -27,7 +27,7 @@ if( $type == 'config'  )
 	$configMod->UpdateToForm($post);
 	
 	//写入操作记录
-	SetOpLog( '修改敏感词库' , 'system' , 'update' );
+	SetOpLog( 'แก้ไขคำห้ามใช้' , 'system' , 'update' );
 	
 	//更新配置文件
 	$manager->UpConfig('web');

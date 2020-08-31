@@ -19,15 +19,15 @@ class SystemTemplates
 	 */
 	function GetTempType( $module = '' , $val='')
 	{
-		$tempType['article'] = array('tindex'=>'分类首页','list'=>'列表页','content'=>'内容页');
-		$tempType['novel'] = array('list'=>'列表页','content'=>'信息页','meun'=>'目录页','read'=>'阅读页');
-		$tempType['picture'] = array('tindex'=>'分类首页','list'=>'列表页','content'=>'内容页');
-		$tempType['bbs'] = array('list'=>'列表页','content'=>'内容页','replay'=>'回帖页');
-		$tempType['link'] = array('list'=>'列表页','content'=>'内容页');
-		$tempType['app'] = array('list'=>'列表页','content'=>'内容页');
-		$tempType['about'] = array('list'=>'列表页','content'=>'内容页');
-		$tempType['zt'] = array('list'=>'列表页','content'=>'内容页');
-		$tempType['diy'] = array('content'=>'内容页');
+		$tempType['article'] = array('tindex'=>'หน้าหลักหมวดหมู่','list'=>'หน้ารายการ','content'=>'หน้าเนื้อหา');
+		$tempType['novel'] = array('list'=>'หน้ารายการ','content'=>'หน้าข้อมูล','meun'=>'หน้าสารบัญ','read'=>'หน้าอ่าน');
+		$tempType['picture'] = array('tindex'=>'หน้าหลักหมวดหมู่','list'=>'หน้ารายการ','content'=>'หน้าเนื้อหา');
+		$tempType['bbs'] = array('list'=>'หน้ารายการ','content'=>'หน้าเนื้อหา','replay'=>'หน้าตอบกลับ');
+		$tempType['link'] = array('list'=>'หน้ารายการ','content'=>'หน้าเนื้อหา');
+		$tempType['app'] = array('list'=>'หน้ารายการ','content'=>'หน้าเนื้อหา');
+		$tempType['about'] = array('list'=>'หน้ารายการ','content'=>'หน้าเนื้อหา');
+		$tempType['zt'] = array('list'=>'หน้ารายการ','content'=>'หน้าเนื้อหา');
+		$tempType['diy'] = array('content'=>'หน้าเนื้อหา');
 		
 		if ( $val != '' && $module != '')
 		{
@@ -120,8 +120,8 @@ class SystemTemplates
 	function GetTempAddress()
 	{
 		$arr = array(
-			'0'=>'主题路径',
-			'1'=>'上传路径',
+			'0'=>'ที่ตั้งเทมเพลต',
+			'1'=>'ที่ตั้งอัปโหลด',
 		);
 		
 		return $arr;

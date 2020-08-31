@@ -17,7 +17,7 @@ if ( $type == 'del' )
 	$where['fans_id'] = GetDelId();
 	$fansMod->Del($where);
 	//写入操作记录
-	SetOpLog( '删除了微信粉丝' , 'system' , 'delete' , $table , $where);
-	Ajax('微信粉丝删除成功!');
+	SetOpLog( 'ลบแฟนคลับบน WeChat' , 'system' , 'delete' , $table , $where);
+	Ajax('ลบแฟนคลับบน WeChat สำเร็จ!');
 }
 ?>

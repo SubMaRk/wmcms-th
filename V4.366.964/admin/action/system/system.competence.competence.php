@@ -14,7 +14,7 @@ if ( $type == 'edit' || $type == "add" )
 {
 	if ( $post['name'] == '' )
 	{
-		Ajax('对不起，必须权限名字不能为空！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อสิทธิ์ก่อน',300);
 	}
 	//设置where条件
 	$where['comp_id'] = $post['id'];
@@ -26,11 +26,11 @@ if ( $type == 'edit' || $type == "add" )
 
 	if( $data['comp_site'] == '' )
 	{
-		Ajax('对不起，请至少选择一个站点!',300);
+		Ajax('ขออภัย! ต้องเลือกเว็บไซต์ก่อน',300);
 	}
 	else if( $data['comp_content'] == '' )
 	{
-		Ajax('对不起，请至少选择一项权限!',300);
+		Ajax('ขออภัย! ต้องเลือกสิทธิ์ก่อน!',300);
 	}
 	
 	//新增菜单
@@ -40,18 +40,18 @@ if ( $type == 'edit' || $type == "add" )
 		$where['comp_id'] = WMSql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了权限'.$data['comp_name'] , 'system' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มสิทธิ์'.$data['comp_name'] , 'system' , 'insert' , $table , $where , $data );
 		
-		Ajax('权限新增成功!');
+		Ajax('เพิ่มสิทธิ์สำเร็จ!');
 	}
 	//修改菜单
 	else
 	{
 		//写入操作记录
-		SetOpLog( '修改了权限'.$data['comp_name'] , 'system' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขสิทธิ์'.$data['comp_name'] , 'system' , 'update' , $table , $where , $data );
 		
 		WMSql::Update($table, $data, $where);
-		Ajax('权限更新成功!');
+		Ajax('แก้ไขสิทธิ์สำเร็จ!');
 	}
 }
 else if ( $type == 'del' )
@@ -59,10 +59,10 @@ else if ( $type == 'del' )
 	$where['comp_id'] = $post['id'];
 	
 	//写入操作记录
-	SetOpLog( '删除了权限' , 'system' , 'delete' , $table , $where);
+	SetOpLog( 'ลบสิทธิ์' , 'system' , 'delete' , $table , $where);
 
 	wmsql::Delete($table, $where);
 	
-	Ajax('权限删除成功!');
+	Ajax('ลบสิทธิ์สำเร็จ!');
 }
 ?>

@@ -10,7 +10,7 @@ $(document).ready(function(){
 			<div id="frame1_left" style="width:200px" class="z column">
 				<div id="profile" class="block move-span">
 					<div class="blocktitle title">
-						<span>头像</span>
+						<span>รูปประจำตัว</span>
 					</div>
 					<div id="profile_content" class="dxb_bc">
 						<div>
@@ -22,15 +22,15 @@ $(document).ready(function(){
 					</div>
 				</div>
 				<div id="statistic" class="block move-span">
-					<div class="blocktitle title"><span>统计信息</span></div>
+					<div class="blocktitle title"><span>สถิติ</span></div>
 					<div id="statistic_content" class="dxb_bc">
 						<div>
-							<p class="mbm xw1">已有 <strong class="xi1">{用户人气}</strong> 人来访过</p>
+							<p class="mbm xw1">มี <strong class="xi1">{用户人气}</strong> คนเข้าชม</p>
 							<ul class="xl xl2 cl">
-								<li>等级: {用户等级}</li>
-								<li>经验: {用户经验}</li>
-								<li>{金币1名字}: {用户金币1数量}</li>
-								<li>{金币2名字}: {用户金币2数量}</li>
+								<li>ระดับ : {用户等级}</li>
+								<li>ประสบการณ์ : {用户经验}</li>
+								<li>{金币1名字} : {用户金币1数量}</li>
+								<li>{金币2名字} : {用户金币2数量}</li>
 							</ul>
 						</div>
 					</div>
@@ -39,18 +39,18 @@ $(document).ready(function(){
 
 			<div id="frame1_center" style="width:520px" class="z column">
 				<div id="personalinfo" class="block move-span">
-					<div class="blocktitle title"><span>个人资料</span></div>
+					<div class="blocktitle title"><span>ข้อมูลส่วนตัว</span></div>
 					<div id="personalinfo_content" class="dxb_bc">
 						<ul id="pprl" class="mbm pbm bbda cl">
-							<li><em>性别</em>{用户性别}</li>
-							<li><em>年龄</em>{用户年龄}</li>
+							<li><em>เพศ</em>{用户性别}</li>
+							<li><em>อายุ</em>{用户年龄}</li>
 						</ul>
 					</div>
 				</div>
 				<div id="personalinfo" class="block move-span">
 					<div class="blocktitle title">
-						<span>最新消息</span>
-						<span class="y xw0"><a href="{消息列表}">更多>></a></span>
+						<span>ข่าวล่าสุด</span>
+						<span class="y xw0"><a href="{消息列表}">เพิ่มเติม >></a></span>
 					</div>
 					<div id="personalinfo_content" class="dxb_bc">
 						<ul id="pprl" class="mbm pbm bbda cl">
@@ -66,7 +66,7 @@ $(document).ready(function(){
 			</div>
 
 			<div id="frame1_right" style="width:240px" class="z column">
-				<div id="visitor" class="block move-span"><div class="blocktitle title"><span>最近访客</span></div>
+				<div id="visitor" class="block move-span"><div class="blocktitle title"><span>ผู้เข้าชมล่าสุด</span></div>
 				<div id="visitor_content" class="dxb_bc">
 					<ul class="ml mls cl">
 						{访客列表:数量=6}

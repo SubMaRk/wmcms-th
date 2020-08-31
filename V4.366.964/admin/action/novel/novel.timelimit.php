@@ -24,15 +24,15 @@ if( $type == 'edit' || $type == "add" )
 	//检查参数
 	if( !str::Number($data['timelimit_order']) )
 	{
-		Ajax('对不起，小说排序只能为数字！',300);
+		Ajax('ขออภัย! ลำดับนิยายต้องเป็นตัวเลขเท่านั้น',300);
 	}
 	else if( !str::Number($data['timelimit_nid']) )
 	{
-		Ajax('对不起，小说id不能为空！',300);
+		Ajax('ขออภัย! ไอดีนิยายต้องไม่ว่าง',300);
 	}
 	else if( $data['timelimit_starttime']>$data['timelimit_endtime'] )
 	{
-		Ajax('对不起，开始时间不能大于结束时间！',300);
+		Ajax('ขออภัย! เวลาเริ่มต้นต้องไม่มากกว่าเวลาสิ้นสุด',300);
 	}
 	
 	//添加限时免费
@@ -41,22 +41,22 @@ if( $type == 'edit' || $type == "add" )
 		$limitData = $limitMod->GetByNid($data['timelimit_nid']);
 		if ( $limitData )
 		{
-			Ajax('对不起，该小说的已经设置了限时免费！',300);
+			Ajax('ขออภัย! นิยายเรื่องนี้ถูกกำหนดเวลาให้อ่านได้ฟรี',300);
 		}
 		else
 		{
 			$where['timelimit_id'] = $limitMod->Insert($data);
-			$info = '恭喜您，小说限时免费添加成功！';
+			$info = 'ยินดีด้วย! นิยายเรื่องนี้ถูกกำหนดเวลาให้อ่านได้ฟรีแล้ว';
 			//写入操作记录
-			SetOpLog( '添加了限时免费', $curModule , 'insert' , $table , $where , $data );
+			SetOpLog( 'กำหนดเวลาอ่านฟรี', $curModule , 'insert' , $table , $where , $data );
 		}
 	}
 	else
 	{
 		wmsql::Update($table, $data, $where);
-		$info = '恭喜您，小说限时免费修改成功！';
+		$info = 'ยินดีด้วย! นิยายเรื่องนี้ถูกแก้ไขเวลาให้อ่านได้ฟรีแล้ว';
 		//写入操作记录
-		SetOpLog( '修改了限时免费', $curModule , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขเวลาอ่านฟรี', $curModule , 'update' , $table , $where , $data );
 	}
 	
 	Ajax($info);
@@ -66,10 +66,10 @@ else if ( $type == 'del' )
 {
 	$where['timelimit_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了小说限时免费' , 'novel' , 'delete' , $table , $where);
+	SetOpLog( 'ลบเวลาอ่านฟรี' , 'novel' , 'delete' , $table , $where);
 	//删除分类
 	wmsql::Delete($table, $where);
 	
-	Ajax('小说限时免费删除成功!');
+	Ajax('นิยายเรื่องนี้ถูกลบเวลาให้อ่านได้ฟรีแล้ว!');
 }
 ?>

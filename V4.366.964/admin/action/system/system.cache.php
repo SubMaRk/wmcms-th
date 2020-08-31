@@ -20,7 +20,7 @@ if ( $type == 'config' )
 		$configMod->UpdateToForm($post);
 	
 		//写入操作记录
-		SetOpLog( '修改网站缓存设置' , 'system' , 'update' );
+		SetOpLog( 'แก้ไขการตั้งค่าแคชเว็บไซต์' , 'system' , 'update' );
 		
 		//更新配置文件
 		$manager->UpConfig('web');
@@ -33,7 +33,7 @@ else if ( $type == 'clear' )
 {
 	if($post['page'] == 0 && $post['block'] == 0 && $post['sql'] == 0 && $post['log'] == 0)
 	{
-		Ajax('对不起，至少请选择一种缓存机制!' , 300);
+		Ajax('ขออภัย! ต้องเลือกกลไกการแคชก่อน' , 300);
 	}
 	else
 	{
@@ -54,7 +54,7 @@ else if ( $type == 'clear' )
 			file::DelDir(WMROOT.$C['config']['web']['cache_path'].'/log');
 		}
 		file_put_contents(WMCACHE.'/basic.wm','');
-		Ajax('缓存清除成功');
+		Ajax('ล้างแคชสำเร็จ!');
 	}
 }
 ?>

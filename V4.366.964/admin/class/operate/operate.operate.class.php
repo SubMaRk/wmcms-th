@@ -19,9 +19,9 @@ class OperateOperate
 	function GetType( $k = '' )
 	{
 		$arr = array(
-			'ding'=>'顶互动',
-			'cai'=>'踩互动',
-			'score'=>'评分互动',
+			'ding'=>'อันดับ',
+			'cai'=>'ความนิยม',
+			'score'=>'คะแนน',
 		);
 	
 		if( $k != '' )

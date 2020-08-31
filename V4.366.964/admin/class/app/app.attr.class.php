@@ -36,9 +36,9 @@ class AppAttr
 	function GetType( $type = '' )
 	{
 		$arr = array(
-			'c'=>'资费',
-			'p'=>'平台',
-			'l'=>'语言',
+			'c'=>'ภาษี',
+			'p'=>'เพลตฟอร์ม',
+			'l'=>'ภาษา',
 		);
 		
 		if( $type != '' )

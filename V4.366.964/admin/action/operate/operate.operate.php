@@ -17,9 +17,9 @@ if ( $type == 'del' )
 	$where['operate_id'] = GetDelId();
 	
 	wmsql::Delete($table, $where);
-	SetOpLog( '删除了互动记录' , 'system' , 'delete' , $table , $where);
+	SetOpLog( 'ลบบันทึกกิจกรรม' , 'system' , 'delete' , $table , $where);
 	
-	Ajax('互动删除成功!');
+	Ajax('ลบบันทึกกิจกรรมสำเร็จ!');
 }
 //清空请求记录
 else if ( $type == 'clear' )
@@ -28,7 +28,7 @@ else if ( $type == 'clear' )
 	//判断
 	if( $delType == '' )
 	{
-		Ajax('对不起，请选择删除的互动类型!',300);
+		Ajax('ขออภัย! โปรดเลือกประเภทกิจกรรมที่ต้องการลบก่อน',300);
 	}
 	else
 	{
@@ -37,7 +37,7 @@ else if ( $type == 'clear' )
 	wmsql::Delete($table , $where);
 
 	//写入操作记录
-	SetOpLog( '清空了互动记录' , 'system' , 'delete');
-	Ajax('所有互动成功清空！');
+	SetOpLog( 'ล้างบันทึกกิจกรรม' , 'system' , 'delete');
+	Ajax('ล้างบันทึกกิจกรรมสำเร็จ!');
 }
 ?>

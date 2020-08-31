@@ -14,19 +14,19 @@ $(document).ready(function(){
 
 <div class="mainRight fl">
     <div class="crumbsWrap">
-    	<i class="before"><a href="{小说作品列表}"><span>小说管理</span></a></i><em class="same"></em>
+    	<i class="before"><a href="{小说作品列表}"><span>จัดการนิยาย</span></a></i><em class="same"></em>
 		<i class="current"><span>{名字}</span></i>
     </div>
     <div class="msgBoxTitle">
 	    {cur:vid>0}
-    	<a id="createVolumeIconBtn" class="button white" href="{小说新建分卷}">新建分卷</a>
+    	<a id="createVolumeIconBtn" class="button white" href="{小说新建分卷}">เพิ่มเล่มใหม่</a>
     	{/cur}
-    	<a class="create button" href="{小说新建草稿}"><em class="icon"></em>新建章节</a>
+    	<a class="create button" href="{小说新建草稿}"><em class="icon"></em>เพิ่มบทใหม่</a>
         <div class="tabSwitch cf">
-            <span><a href="{编辑小说}">编辑作品信息</a></span>
-            <span><a href="{小说草稿箱列表}">草稿箱</a></span>
-            <span class="act"><a href="{小说分卷列表}">分卷管理</a></span>
-            <span><a href="{小说章节列表}">章节管理</a></span>
+            <span><a href="{编辑小说}">แก้ไขข้อมูล</a></span>
+            <span><a href="{小说草稿箱列表}">แบบร่าง</a></span>
+            <span class="act"><a href="{小说分卷列表}">จัดการเล่ม</a></span>
+            <span><a href="{小说章节列表}">จัดการบท</a></span>
         </div>
     </div>
     
@@ -40,11 +40,11 @@ $(document).ready(function(){
                         	<div class="sectionBtnBox cf" style="width: 96%;">
 	                            <div class="titleBtn fr">
 	                            	{cur:vid>0}
-	                                <a id="delete" class="button white" href="{删除分卷}">删除</a>
+	                                <a id="delete" class="button white" href="{删除分卷}">ลบ</a>
 	                            	{/cur}
-                        			<a class="button save" id="save" data-type="update"><span class="icon"></span>保存</a>
+                        			<a class="button save" id="save" data-type="update"><span class="icon"></span>จัดเก็บ</a>
 	                            </div>
-	                            <em class="c999">编辑分卷信息</em>
+	                            <em class="c999">แก้ไขข้อมูล</em>
 	                        </div>
 						</div>
                         
@@ -53,16 +53,16 @@ $(document).ready(function(){
 						<div class="volumeForm">
 		                    <ul>
 		                        <li>
-		                            <em>分卷名称</em>
-		                            <input id="name" name="name" autocomplete="off" class="midInput" type="text" value="{分卷名字}" placeholder="分卷的名字。示例：“第一卷 横空出世”">
+		                            <em>ชื่อเล่ม</em>
+		                            <input id="name" name="name" autocomplete="off" class="midInput" type="text" value="{分卷名字}" placeholder="ชื่อของแต่ละเล่ม เช่น : เล่ม 1 เปิดเรื่อง">
 		                        </li>
 		                        <li>
-		                            <em>显示顺序</em>
-		                            <input id="order" name="order" autocomplete="off" class="midInput" type="text" value="{分卷顺序}" placeholder="分卷的顺序。越小越靠前">
+		                            <em>ลำดับที่แสดง</em>
+		                            <input id="order" name="order" autocomplete="off" class="midInput" type="text" value="{分卷顺序}" placeholder="ลำดับเล่ม">
 		                        </li>
 		                        <li>
-		                            <em>分卷介绍</em>
-		                            <textarea id="desc" name="desc" autocomplete="off" placeholder="分卷的简介。">{分卷简介}</textarea>
+		                            <em>บทนำเล่ม</em>
+		                            <textarea id="desc" name="desc" autocomplete="off" placeholder="บทนำของเล่มนี้">{分卷简介}</textarea>
 		                        </li>
 		                    </ul>
 		                </div>
@@ -81,9 +81,9 @@ $("#save").click(function(){
 	var desc = $("#desc").val();
 	
 	if( name == '' ){
-		easydialog_alert('对不起，分卷名字不能为空！','','','');
+		easydialog_alert('ขออภัย! ชื่อเล่มต้องไม่ว่าง','','','');
 	}else if( name == '' ){
-		easydialog_alert('对不起，显示顺序只能为数字！','','','');
+		easydialog_alert('ขออภัย! ลำดับเล่มต้องเป็นตัวเลขเท่านั้น','','','');
 	}else{
 		$.ajax({
 			type:"POST",

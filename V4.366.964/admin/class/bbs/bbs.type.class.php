@@ -24,17 +24,17 @@ class BbsType
 		//是否有版主
 		if( $v['moder'] == '' )
 		{
-			$moder = '暂无版主';
+			$moder = 'ไม่มีผู้จัดการ';
 		}
 		else
 		{
 			$moder = $v['moder'];
 		}
 		echo '<dt class="cf"><div class="btn-toolbar opt-btn cf">
-				版主：'.$moder.'&nbsp;&nbsp;
-				<a href="index.php?d=yes&c=bbs.moder.edit&t=edit&tid='.$v['type_id'].'&tname='.$v['type_name'].'" data-toggle="dialog" data-width="510" data-height="210" data-mask="true" data-title="编辑版块版主"><span class="btn btn-secondary size-MINI radius">版主管理</span></a>
-				<a href="index.php?d=yes&c=bbs.type.edit&t=edit&id='.$v['type_id'].'" data-toggle="navtab" data-id="bbs-type-edit" data-title="编辑论坛版块"><span class="btn btn-secondary size-MINI radius">编辑</span></a>
-				<a class="btn btn-danger radius" onclick="'.GetCFun().'delAjax('.$v['type_id'].')">删除</a>
+				ผู้จัดการ : '.$moder.'&nbsp;&nbsp;
+				<a href="index.php?d=yes&c=bbs.moder.edit&t=edit&tid='.$v['type_id'].'&tname='.$v['type_name'].'" data-toggle="dialog" data-width="510" data-height="210" data-mask="true" data-title="แก้ไขผู้จัดการบอร์ด"><span class="btn btn-secondary size-MINI radius">จัดการผู้จัดการ</span></a>
+				<a href="index.php?d=yes&c=bbs.type.edit&t=edit&id='.$v['type_id'].'" data-toggle="navtab" data-id="bbs-type-edit" data-title="แก้ไขบอร์ด"><span class="btn btn-secondary size-MINI radius">แก้ไข</span></a>
+				<a class="btn btn-danger radius" onclick="'.GetCFun().'delAjax('.$v['type_id'].')">ลบ</a>
 			</div>
 			<div class="fold"><i></i></div>
 			<div class="order">'.$v['type_id'].'</div>

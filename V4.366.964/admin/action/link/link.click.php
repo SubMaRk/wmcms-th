@@ -15,18 +15,18 @@ if ( $type == 'del' )
 {
 	$where['click_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了友链点击记录' , 'link' , 'delete' , $table , $where);
+	SetOpLog( 'ลบบันทึกการคลิ๊กลิ้งก์เพื่อนบ้าน' , 'link' , 'delete' , $table , $where);
 	wmsql::Delete($table , $where);
 	
-	Ajax('友链点击记录删除成功!');
+	Ajax('ลบบันทึกการคลิ๊กลิ้งก์เพื่อนบ้านสำเร็จ!');
 }
 //清空数据
 else if ( $type == 'clear' )
 {
 	//写入操作记录
-	SetOpLog( '清空了友链点击记录' , 'link' , 'delete' , $table );
+	SetOpLog( 'ล้างบันทึกการคลิ๊กลิ้งก์เพื่อนบ้าน' , 'link' , 'delete' , $table );
 	wmsql::Delete($table);
 	
-	Ajax('友链点击记录清空成功!');
+	Ajax('ล้างบันทึกการคลิ๊กลิ้งก์เพื่อนบ้านสำเร็จ!');
 }
 ?>

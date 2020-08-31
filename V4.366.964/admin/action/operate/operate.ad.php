@@ -21,7 +21,7 @@ if ( $type == 'edit' || $type == "add"  )
 	
 	if ( $data['ad_name'] == '')
 	{
-		Ajax('对不起，广告标题必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อโฆษณาก่อน',300);
 	}
 	$data['ad_start_time'] = strtotime($data['ad_start_time']);
 	$data['ad_end_time'] = strtotime($data['ad_end_time']);
@@ -30,20 +30,20 @@ if ( $type == 'edit' || $type == "add"  )
 	if( $type == 'add' )
 	{
 		$data['ad_time'] = time();
-		$info = '恭喜您，广告添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มโฆษณาแล้ว';
 		$where['ad_id'] = wmsql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了广告'.$data['ad_name'] , 'system' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มโฆษณา'.$data['ad_name'] , 'system' , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
-		$info = '恭喜您，广告修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขโฆษณาแล้ว';
 		wmsql::Update($table, $data, $where);
 		
 		//写入操作记录
-		SetOpLog( '修改了广告'.$data['ad_name'] , 'system' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขโฆษณา'.$data['ad_name'] , 'system' , 'update' , $table , $where , $data );
 	}
 	
 	//创建广告js文件
@@ -57,13 +57,13 @@ else if ( $type == 'del' )
 {
 	$where['ad_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了广告' , 'system' , 'delete' , $table , $where);
+	SetOpLog( 'ลบโฆษณา' , 'system' , 'delete' , $table , $where);
 	wmsql::Delete($table , $where);
 
 	//删除广告文件
 	$adSer->DelAdFile(GetDelId());
 	
-	Ajax('广告删除成功!');
+	Ajax('ลบโฆษณาสำเร็จ!');
 }
 //清空请求记录
 else if ( $type == 'clear' )
@@ -73,8 +73,8 @@ else if ( $type == 'clear' )
 	$adSer->DelAdDir();
 	
 	//写入操作记录
-	SetOpLog( '清空了广告' , 'system' , 'delete' , $table);
-	Ajax('所有广告成功清空！');
+	SetOpLog( 'ล้างโฆษณา' , 'system' , 'delete' , $table);
+	Ajax('ล้างโฆษณาสำเร็จ!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -84,16 +84,16 @@ else if ( $type == 'status' )
 
 	if( Request('status') == '1')
 	{
-		$msg = '通过审核';
+		$msg = 'ตรวจสอบ';
 	}
 	else
 	{
-		$msg = '取消审核';
+		$msg = 'ละทิ้ง';
 	}
 	//写入操作记录
-	SetOpLog( $msg.'了广告' , 'system' , 'update' , $table , $where);
+	SetOpLog( $msg.'โฆษณา' , 'system' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('广告'.$msg.'成功!');
+	Ajax('โฆษณาถูก'.$msg.'แล้ว!');
 }
 ?>

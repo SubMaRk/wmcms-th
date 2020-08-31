@@ -20,8 +20,8 @@ class OperateDiy
 	function GetStatus( $k = '' )
 	{
 		$arr = array(
-			'1'=>'显示',
-			'0'=>'隐藏',
+			'1'=>'แสดง',
+			'0'=>'ซ่อน',
 		);
 	
 		if( $k != '' )

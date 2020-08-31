@@ -11,11 +11,11 @@
 $code = 300;
 if( FormTokenCheck(true) == false )
 {
-	$tishi = '表单token错误！';
+	$tishi = 'โทเค็นแบบฟอร์มไม่ถูกต้อง!';
 }
 else if ( FormCodeCheck('code_admin_login' , true) == false )
 {
-	$tishi = '对不起，验证码错误！';
+	$tishi = 'ขออภัย! โค้ดยืนยันไม่ถูกต้อง';
 }
 else
 {
@@ -26,15 +26,15 @@ else
 	//账号密码检测
 	if( trim($userName) == '' || trim($passWord) == '' )
 	{
-		$tishi = '对不起，账号密码不能为空!';
+		$tishi = 'ขออภัย! ต้องกรอกรหัสผ่านก่อน';
 	}
 	else if( str::StrLen($imgCode) <> 4 && C('config.web.admin_login_code') =='1' )
 	{
-		$tishi = '对不起，验证码格式错误!';
+		$tishi = 'ขออภัย! รูปแบบโค้ดยืนยันไม่ถูกต้อง';
 	}
 	else if( $imgCode <> strtolower(Session('imgCode')) && C('config.web.admin_login_code') == '1' )
 	{
-		$tishi = '对不起，验证码错误!';
+		$tishi = 'ขออภัย! โค้ดยืนยันเกิดข้อผิดพลาด';
 	}
 	else
 	{
@@ -43,7 +43,7 @@ else
 		//检查是否达到最高错误次数
 		if( $loginCount >= C('config.web.admin_login_error_number') )
 		{
-			$tishi = '对不起，错误次数超过上限，请'.C('config.web.admin_login_error_time').'分钟后重试！';
+			$tishi = 'ขออภัย! เกิดข้อผิดพลาดเกินจำนวนที่จำกัดไว้ โปรด '.C('config.web.admin_login_error_time').'ลองใหม่ในภายหลัง';
 		}
 		else
 		{
@@ -52,7 +52,7 @@ else
 			$arr = wmsql::GetOne($wheresql);
 			if( !$arr )
 			{
-				$tishi = '管理员账号不存在！';
+				$tishi = 'ไม่มีบัญชีผู้ดูแลนี้อยู่!';
 				$loginSer->SetLog(0,0,$tishi);
 			}
 			else
@@ -61,22 +61,22 @@ else
 				//密码错误
 				if( $arr['manager_psw'] != str::E($passWord,$salt) )
 				{
-					$tishi = '密码错误！';
+					$tishi = 'รหัสผ่านผิด!';
 					//写入错误日志
 					$loginSer->SetLog($arr['manager_id'],2);
 				}
 				//封禁的账号
 				else if( $arr['manager_status'] == 0 )
 				{
-					$tishi="对不起,您的账号已经被禁用！如有疑问请联系超级管理员！";
+					$tishi="ขออภัย! บัญชีของคุณถูกพักการใช้งาน หากคุณมีคำถามใด ๆ โปรดติดต่อผู้ดูแลระบบ";
 					$loginSer->SetLog($arr['manager_id'],0,$tishi);
 				}
 				//账号密码正确
 				else if ( $arr['manager_psw'] == str::E($passWord,$salt) )
 				{
 					$code = 200;
-					$tishi="登录成功!";
-					
+					$tishi="เข้าสู่ระบบแล้ว!";
+
 					//检查网站的基本配置
 					CheckBasicConfig(true);
 					
@@ -126,7 +126,7 @@ else
 						else
 						{
 							$code = 300;
-							$tishi="对不起，站长关闭了站群模式，无法使用该帐号登录!";
+							$tishi="ขออภัย! ผู้ดูแลได้ปิดกลุ่มผู้ใช้นี้ไปแล้ว ไม่สามารถใช้เข้าสู่ระบบได้";
 							//写入错误日志
 							$loginSer->SetLog($arr['manager_id'],0,$tishi);
 						}

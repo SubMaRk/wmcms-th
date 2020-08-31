@@ -16,7 +16,7 @@ $delBom->checkdir($path);
 
 
 //写入操作记录
-SetOpLog( '删除了BOM头部' , 'system' , 'update');
+SetOpLog( 'ลบ BOM' , 'system' , 'update');
 
-Ajax('BOM头删除成功！');
+Ajax('ลบ BOM สำเร็จ!');
 ?>

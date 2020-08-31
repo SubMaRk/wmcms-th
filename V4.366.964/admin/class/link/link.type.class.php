@@ -21,8 +21,8 @@ class LinkType
 		}
 		echo '<dt class="cf">
 			<div class="btn-toolbar opt-btn cf">
-				<a href="index.php?d=yes&c=link.type.edit&t=edit&id='.$v['type_id'].'" data-toggle="navtab" data-id="link-type-edit" data-title="编辑友链分类"><span class="btn btn-secondary size-MINI radius">编辑</span></a>
-				<a class="btn btn-danger radius" onclick="'.GetCFun().'delAjax('.$v['type_id'].')">删除</a>
+				<a href="index.php?d=yes&c=link.type.edit&t=edit&id='.$v['type_id'].'" data-toggle="navtab" data-id="link-type-edit" data-title="แก้ไขหมวดหมู่ลิ้ง์เพื่อนบ้าน"><span class="btn btn-secondary size-MINI radius">แก้ไข</span></a>
+				<a class="btn btn-danger radius" onclick="'.GetCFun().'delAjax('.$v['type_id'].')">ลบ</a>
 			</div>
 			<div class="fold"><i></i></div>
 			<div class="order">'.$v['type_id'].'</div>
