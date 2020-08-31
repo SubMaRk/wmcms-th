@@ -6,8 +6,8 @@ rename('index.php',"index".md5(rand(0,99999).time()).".php");
 ?>
 <div class="main cc">
 	<div class="success_tip">
-		<a href="/index.php" class="f16 b">安装完成，点击进入</a>
-		<p>安装完成后请删除install文件夹。<span style="color:red">并且后台生成一次api配置接口。</span><br/>浏览器会自动跳转，无需人工干预</p>
+		<a href="/index.php" class="f16 b">ติดตั้งเสร็จสิ้น คลิ๊กเพื่อเข้าชม</a>
+		<p>หลังติดตั้งเสร็จสิ้นแล้ว โปรดลบโฟลเดอร์ install <span style="color:red">และสร้างการกำหนดค่าส่วนติดตั้ง API ในพื้นหลังแล้ว</span><br/>เบราว์เซอร์จะเปลี่ยนหน้าโดยอัตโนมัติ</p>
 	</div>
 </div>
 <script type="text/javascript">
