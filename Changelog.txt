@@ -1,6 +1,8 @@
 SQL
+- about_type type_name -> 20
 - api_title -> 50
 - api_name -> 40
+- api_type type_title -> 30
 - app_type type_name -> 40
 - article_type type_name -> 40
 - author_nickname -> 40
@@ -10,6 +12,8 @@ SQL
 - bbs_type type_name -> 40
 - config_title -> 60
 - fans_module_level level_name -> 40
+- flash_type -> 20
+- click_type -> 30
 - link_name -> 30
 - link_cname ->15
 - link_info -> 150
@@ -25,6 +29,7 @@ SQL
 - picture_type type_name -> 30
 - keys_pagename -> 30
 - urls_pagename -> 40
+- domain_title -> 30
 - menu_title -> 60
 - retrieval_title -> 40
 - user_level level_name -> 40
