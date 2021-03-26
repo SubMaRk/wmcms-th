@@ -18,16 +18,16 @@ $(document).ready(function(){
 
 <div class="mainRight fl">
     <div class="crumbsWrap">
-    	<i class="before"><a href="{小说作品列表}"><span>小说管理</span></a></i><em class="same"></em>
-		<i class="current"><span>{cur:id={id}}{名字}{/cur}{cur:id=0}创建小说{/cur}</span></i>
+    	<i class="before"><a href="{小说作品列表}"><span>จัดการนิยาย</span></a></i><em class="same"></em>
+		<i class="current"><span>{cur:id={id}}{名字}{/cur}{cur:id=0}เพิ่มเรื่องใหม่{/cur}</span></i>
     </div>
     <div class="msgBoxTitle">
         <div class="tabSwitch cf">
-            <span class="act"><a href="{编辑小说}">编辑作品信息</a></span>
+            <span class="act"><a href="{编辑小说}">แก้ไขข้อมูล</a></span>
             {cur:id>0}
-            <span><a href="{小说草稿箱列表}">草稿箱</a></span>
-            <span><a href="{小说分卷列表}">分卷管理</a></span>
-            <span><a href="{小说章节列表}">章节管理</a></span>
+            <span><a href="{小说草稿箱列表}">แบบร่าง</a></span>
+            <span><a href="{小说分卷列表}">จัดการเล่ม</a></span>
+            <span><a href="{小说章节列表}">จัดการบท</a></span>
             {/cur}      
         </div>
     </div>
@@ -39,41 +39,41 @@ $(document).ready(function(){
                <div class="fm">
                    <img src="{封面}" id="cover" width="114" height="152">
 				   {cur:{封面审核状态}=1}
-                   <span class="modify hidden" id="upload_button" style="display: inline;">上传新封面</span>
+                   <span class="modify hidden" id="upload_button" style="display: inline;">อัปโหลดภาพปกใหม่</span>
 					<input type="file" id="hide_button" class="hide_button" name="hide_button"/>
 					{/cur}
 				   {cur:{封面审核状态}=0}
-                   <span class="modify hidden" style="display: inline;">封面审核中</span>
+                   <span class="modify hidden" style="display: inline;">รอตรวจสอบ</span>
 					{/cur}
                </div>
             </div>
             
             <div class="workSetList fl">
                 <ul>
-                	<li><em>书号：</em><b>{id}</b></li>
+                	<li><em>ISBN : </em><b>{id}</b></li>
                     <li>
-                    	<em>作品名称：</em>
+                    	<em>ชื่อเรื่อง : </em>
                         <input id="name" name="name" autocomplete="off" class="midInput recTagInput" value="{名字}" type="text">
                     </li>
                     <li>
-                    	<em>作品进程：</em>
+                    	<em>กระบวนการ : </em>
                     	<b class="select-level">
 						<select class="modify hidden showselect valid" name="process" style="display: inline-block; visibility: visible;" {cur:id>0}disabled{/cur}>
 	                        {小说进程列表:}<option value="{小说进程id}" {eq:{process}:{小说进程id}}selected="selected"{/eq}>{小说进程名字}</option>{/小说进程列表}
 						</select></b>
                     </li>
                     <li>
-                    	<em>授权级别：</em>
+                    	<em>ระดับสิทธิ์ : </em>
                     	<b class="select-level">
 						<select class="modify hidden showselect valid" name="type" style="display: inline-block; visibility: visible;" {cur:id>0}disabled{/cur}>
                         	{小说类型列表:}<option value="{小说类型id}" {eq:{type}:{小说类型id}}selected="selected"{/eq}>{小说类型名字}</option>{/小说类型列表}
 						</select></b>
                     </li>
-                    <li><em>作品类型：</em>
+                    <li><em>ประเภทงาน : </em>
                         <b class="select-category" id="type_box" style="width: auto;">
                         	{cur:id=0}
 	                        <select name="tid" style="visibility: visible; display: inline-block;">
-	                        	<option>选择分类</option>
+	                        	<option>เลือกหมวดหมู่</option>
 	                        	{小说分类:父级分类=0}<option value="{小说分类id}">{小说分类名字}</option>{/小说分类}
 							</select>
 							{/cur}
@@ -89,17 +89,17 @@ $(document).ready(function(){
 				</ul>
                 <ul id="field" style="display:none"></ul>
 				<ul>
-                    <li><em>总点击：</em><b>{总点击}</b><cite>总收藏：</cite>{总收藏}</li>
-                    <li><em>总字数：</em><b>{字数}</b><cite>总评分：</cite>{评分}</li>
-                    <li><em>总顶量：</em><b>{顶}</b><cite>总踩量：</cite>{踩}</li>
-                    <li><em>作品介绍：</em>
+                    <li><em>เข้าชมทั้งหมด : </em><b>{总点击}</b><cite>ชอบทั้งหมด : </cite>{总收藏}</li>
+                    <li><em>อักษรทั้งหมด : </em><b>{字数}</b><cite>คะแนนทั้งหมด : </cite>{评分}</li>
+                    <li><em>ยอดทั้งหมด : </em><b>{顶}</b><cite>ยอดต่อบททั้งหมด : </cite>{踩}</li>
+                    <li><em>เรื่องย่อ : </em>
                         <textarea id="intro" name="intro" style="width:400px;height:300px;">{简介}</textarea>
-                        <p data-node="tip" class="f12 c999">20~2500个字，可自行修改</p>
+                        <p data-node="tip" class="f12 c999">ต้องมี 5-1,000 อักษร สามารถแก้ไขได้</p>
                     </li>
                 </ul>
 
                 <p class="dib-wrap confirm modify hidden" style="display: block;">
-                    <a class="button" id="sub" href="javascript:">提交</a>
+                    <a class="button" id="sub" href="javascript:">ส่ง</a>
             	</p>
             </div>
 		</form>
@@ -115,11 +115,11 @@ $("#sub").click(function(){
 	var intro = $("#intro").val();
 	var tid = $("[name=tid]").val();
 	if( name == '' ){
-		easydialog_alert('对不起，小说名字不能为空！','','','');
+		easydialog_alert('ขออภัย! ชื่อนิยายต้องไม่ว่าง','','','');
 	}else if( !isPositiveNum(tid) ){
-		easydialog_alert('对不起，请选择小说分类！','','','');
-	}else if( intro.length < 20 || intro.length > 2500  ){
-		easydialog_alert('对不起，描述只能在20-2500个字符之间！','','','');
+		easydialog_alert('ขออภัย! โปรดเลือกหมู่หมวดก่อน','','','');
+	}else if( intro.length < 5 || intro.length > 1000  ){
+		easydialog_alert('ขออภัย! คำอธิบายต้องมี 5-1000 อักษรเท่านั้น','','','');
 	}else{
 		$.ajax({
 			type:"POST",
@@ -141,7 +141,7 @@ $("#sub").click(function(){
 /*上传封面按妞*/
 $('#hide_button').live('change',function(){
 	//禁用按钮
-	$('#upload_button').val('上传中...');
+	$('#upload_button').val('กำลังอัปโหลด...');
     $.ajaxFileUpload
     ({
         url: '/wmcms/action/index.php?action=upload.novelcover', //用于文件上传的服务器端请求地址
@@ -161,9 +161,9 @@ $('#hide_button').live('change',function(){
 	        	$("[name=cover]").val(data.data.file);
 				//还原按钮
 				$('#hide_button').clone().val('');
-				$('#upload_button').val('上传新封面');
+				$('#upload_button').val('อัปโหลดปกใหม่');
 				
-				easydialog_alert(data.msg , '提示' , null, '');
+				easydialog_alert(data.msg , 'หน้าต่าง' , null, '');
         	}
         },
         error: function(e) {
@@ -186,7 +186,7 @@ $('#type_box select').live('change',function(){
 			if( data.code != 500 ){
 				if(data.code == 200){
 					obj = data.data;
-					html = objToHtml(data.data , '<option value="{type_id}">{type_name}</option>' , '<select name="tid" style="visibility: visible; display: inline-block;"><option value="'+thisObj.val()+'">选择分类</option>' , '</select>' );
+					html = objToHtml(data.data , '<option value="{type_id}">{type_name}</option>' , '<select name="tid" style="visibility: visible; display: inline-block;"><option value="'+thisObj.val()+'">เลือกหมวดหมู่</option>' , '</select>' );
 					$('#type_box').append(html);
 				}
 				if(typeof(data.field.content_field) != 'undefined' ){

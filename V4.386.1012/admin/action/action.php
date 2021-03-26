@@ -38,6 +38,6 @@ if ( file_exists('action/'.$cPath.'.php') )
 }
 else
 {
-	die('后台处理器文件：action/'.$cPath.'.php 不存在！');
+	die('ไฟล์ประมวลผลพื้นหลัง : action/'.$cPath.'.php ไม่มีอยู่!');
 }
 ?>

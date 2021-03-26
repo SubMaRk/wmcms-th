@@ -21,7 +21,7 @@ if ( $type == 'add' )
 	$accountData = $accountMod->GetById($data['media_account_id']);
 	if( !$accountData )
 	{
-		Ajax('对不起，请先选择公众号！',300);
+		Ajax('ขออภัย! โปรดเลือกหมายเลขสาธารณะก่อน',300);
 	}
 	else
 	{
@@ -31,11 +31,11 @@ if ( $type == 'add' )
 		
 		if ( $data['media_filepath'] == '' )
 		{
-			Ajax('对不起，请上传文件！',300);
+			Ajax('ขออภัย! โปรดอัปโหลดไฟล์ก่อน',300);
 		}
 		else if( !str::Number(GetKey($data,'media_account_id')) || !str::Number(GetKey($data,'media_islong')))
 		{
-			Ajax('对不起，所属公众号和有效期必须选择！',300);
+			Ajax('ขออภัย! ต้องเลือกหมายเลขสาธารณะและวันหมดอายุก่อน',300);
 		}
 		
 		//新增数据
@@ -66,8 +66,8 @@ if ( $type == 'add' )
 		}
 		
 		//写入操作记录
-		SetOpLog( '添加了微信素材' , 'system' , 'insert' , $table , $where);
-		Ajax('微信素材添加成功!');
+		SetOpLog( 'เพิ่มไฟล์บน WeChat' , 'system' , 'insert' , $table , $where);
+		Ajax('เพิ่มไฟล์บน WeChat สำเร็จ!');
 	}
 }
 //删除数据
@@ -76,7 +76,7 @@ else if ( $type == 'del' )
 	$where['media_id'] = GetDelId();
 	$mediaMod->Del($where);
 	//写入操作记录
-	SetOpLog( '删除了微信素材' , 'system' , 'delete' , $table , $where);
-	Ajax('微信素材删除成功!');
+	SetOpLog( 'ลบไฟล์บน WeChat' , 'system' , 'delete' , $table , $where);
+	Ajax('ลบไฟล์บน WeChat สำเร็จ!');
 }
 ?>

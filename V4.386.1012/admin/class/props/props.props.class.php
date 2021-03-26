@@ -15,8 +15,8 @@ class PropsProps
 	 */
 	function GetCost($type)
 	{
-		$arr[1] = '站内货币';
-		$arr[2] = '真实现金';
+		$arr[1] = 'เงินในเว็บ';
+		$arr[2] = 'เงินจริง';
 		
 		return $arr[$type];
 	}

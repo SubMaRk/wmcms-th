@@ -35,7 +35,7 @@ if ( $type == 'edit')
 		if( !$typeData )
 		{
 			$data['type_list']['type_id'] = '';
-			$data['type_list']['type_name'] = '对不起，当前模块没有分类';
+			$data['type_list']['type_name'] = 'ขออภัย! โมดูลปัจจุบันยังไม่ถูกจัดหมวดหมู่';
 		}
 		else
 		{
@@ -52,7 +52,7 @@ if ( $type == 'edit')
 		}
 		if( empty($data['type_name']) )
 		{
-			$data['type_name'] = '全部分类';
+			$data['type_name'] = 'หมวดหมู่ทั้งหมด';
 		}
 	}
 }

@@ -176,8 +176,8 @@ function getUrlParam(name) {
             // 禁掉全局的拖拽功能。这样不会出现图片拖进页面的时候，把图片打开。
             disableGlobalDnd: true,
             fileNumLimit: 30,
-            fileSizeLimit: 1000 * 1024 * 1024,    //上传总文件 1000 M
-            fileSingleSizeLimit: 20 * 1024 * 1024    //单个文件 20 M
+            fileSizeLimit: 20 * 1024 * 1024,    // 20 M
+            fileSingleSizeLimit: 2 * 1024 * 1024    // 2 M
         });
 
         // 拖拽时不接受 js, txt 文件。

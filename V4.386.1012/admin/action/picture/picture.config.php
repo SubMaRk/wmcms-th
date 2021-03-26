@@ -17,7 +17,7 @@ if( $post )
 	$configMod->UpdateToForm($post);
 
 	//写入操作记录
-	SetOpLog( '修改图集模块设置' , 'picture' , 'update' );
+	SetOpLog( 'แก้ไขการตั้งค่าโมดูลอัลบั้ม' , 'picture' , 'update' );
 	
 	//更新配置文件
 	$manager->UpConfig('picture');

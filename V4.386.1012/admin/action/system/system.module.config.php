@@ -42,6 +42,6 @@ if( $type == 'edit' )
 	
 	//写入文件内容
 	file_put_contents(WMMODULE.$moduleName.'/'.$moduleName.'.common.php', $content);
-	Ajax( '恭喜您，绑定模块成功' , 200);
+	Ajax( 'ยินดีด้วย! ผูกโมดูลสำเร็จ' , 200);
 }
 ?>

@@ -9,7 +9,7 @@
 *
 */
 $lvModule = array(
-	'novel'=>'小说模块',
-	'article'=>'文章模块',
+	'novel'=>'โมดูลนิยาย',
+	'article'=>'โมดูลบทความ',
 );
 ?>

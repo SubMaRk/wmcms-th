@@ -28,11 +28,11 @@ if ( $type == 'edit' || $type == "add"  )
 	
 	if ( $data['picture_name'] == '' )
 	{
-		Ajax('对不起，图集标题必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อของอัลบั้มก่อน',300);
 	}
 	else if( !str::Number($data['type_id']) )
 	{
-		Ajax('对不起，图集分类必须选择！',300);
+		Ajax('ขออภัย! ต้องเลือกหมวดหมู่อัลบั้มก่อน',300);
 	}
 
 	//图集名字检查
@@ -41,7 +41,7 @@ if ( $type == 'edit' || $type == "add"  )
 	$wheresql['where']['picture_name'] = $data['picture_name'];
 	if ( wmsql::GetCount($wheresql) > 0 )
 	{
-		Ajax('对不起，该图集已经存在！',300);
+		Ajax('ขออภัย! ไม่มีอัลบั้มนี้อยู่',300);
 	}
 	
 	//新增数据
@@ -51,20 +51,20 @@ if ( $type == 'edit' || $type == "add"  )
 		$mangerSer = AdminNewClass('manager');
 		$mangerSer->SetTags('picture' , $data['picture_tags']);
 		
-		$info = '恭喜您，图集添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มอัลบั้มสำเร็จ';
 		$where['picture_id'] = wmsql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了图集'.$data['picture_name'] , 'picture' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มอัลบั้ม'.$data['picture_name'] , 'picture' , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
-		$info = '恭喜您，图集修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขอัลบั้มสำเร็จ';
 		wmsql::Update($table, $data, $where);
 
 		//写入操作记录
-		SetOpLog( '修改了图集'.$data['picture_name'] , 'picture' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขอัลบั้ม'.$data['picture_name'] , 'picture' , 'update' , $table , $where , $data );
 	}
 
 	//写入自定义字段
@@ -105,8 +105,8 @@ else if ( $type == 'del' )
 		}
 	}
 
-	SetOpLog( '删除了图集' , 'picture' , 'delete' , $table , $where['where']);
-	Ajax('图集删除成功!');
+	SetOpLog( 'ลบอัลบั้ม' , 'picture' , 'delete' , $table , $where['where']);
+	Ajax('ลบอัลบั้มสำเร็จ!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -116,17 +116,17 @@ else if ( $type == 'status' )
 
 	if( Request('status') == '1')
 	{
-		$msg = '审核通过';
+		$msg = 'ตรวจสอบ';
 	}
 	else
 	{
-		$msg = '取消审核';
+		$msg = 'ละทิ้ง';
 	}
 	//写入操作记录
-	SetOpLog( $msg.'了图集' , 'picture' , 'update' , $table , $where);
+	SetOpLog( $msg.'อัลบั้ม' , 'picture' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('图集'.$msg.'成功!');
+	Ajax('อัลบั้มถูก'.$msg.'แล้ว!');
 }
 //移动数据
 else if ( $type == 'move' )
@@ -135,10 +135,10 @@ else if ( $type == 'move' )
 	$where['picture_id'] = GetDelId();
 
 	//写入操作记录
-	SetOpLog( '移动了图集' , 'picture' , 'update' , $table , $where);
+	SetOpLog( 'ย้ายอัลบั้ม' , 'picture' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('图集移动成功!');
+	Ajax('ย้ายอัลบั้มวำเร็จ!');
 }
 //属性操作
 else if ( $type == 'attr' )
@@ -149,14 +149,14 @@ else if ( $type == 'attr' )
 	switch($post['attr'])
 	{
 		case "rec":
-			$msg = "推荐";
+			$msg = "แนะนำ";
 			break;
 	}
 
 	//写入操作记录
-	SetOpLog( $msg.'了图集' , 'picture' , 'update' , $table , $where);
+	SetOpLog( $msg.'อัลบั้ม' , 'picture' , 'update' , $table , $where);
 
 	wmsql::Update($table, $data, $where);
-	Ajax($msg.'了图集!');
+	Ajax($msg.'อัลบั้มแล้ว!');
 }
 ?>

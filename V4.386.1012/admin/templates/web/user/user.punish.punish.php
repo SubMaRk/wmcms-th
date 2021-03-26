@@ -2,13 +2,13 @@
 <form action="index.php?a=yes&c=user.punish&t=punish" data-reload="false" data-toggle="validate" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
 <table class="table table-border table-bordered table-bg table-sort">
 	<tr>
-      <td valign="top" width="120"><b>处罚用户id：</b></td>
+      <td valign="top" width="120"><b>ไอดีผู้ใช : </b></td>
       <td valign="top">
 			<input type="text" name="punish[punish_uid]" value="<?php echo $uid?>" data-rule="required">
 		</td>
 	</tr>
     <tr>
-      <td valign="top" width="120"><b>处罚类型：</b></td>
+      <td valign="top" width="120"><b>บทลงโทษ : </b></td>
       <td valign="top">
       	<select data-toggle="selectpicker" name="punish[punish_type]" id="<?php echo $cFun;?>settype">
 		<?php
@@ -22,11 +22,11 @@
       </td>
 	</tr>
     <tr>
-      <td valign="top" width="120"><b>处罚原因：</b></td>
-      <td valign="top" colspan="3"><input name="punish[punish_remark]" type="text" class="input-text" value="系统处罚"></td>
+      <td valign="top" width="120"><b>เหตุผล : </b></td>
+      <td valign="top" colspan="3"><input name="punish[punish_remark]" type="text" class="input-text" value="บทลงโทษจากระบบ"></td>
 	</tr>
     <tr>
-		<td valign="top" width="120"><b>处罚结束时间：</b></td>
+		<td valign="top" width="120"><b>เวลาสิ้นสุด : </b></td>
 		<td valign="top">
 		<input type="text" name="punish[punish_endtime]" value="<?php echo $endTime;?>" data-toggle="datepicker" data-pattern="yyyy-MM-dd H:m:s" size="19">
 	  </td>

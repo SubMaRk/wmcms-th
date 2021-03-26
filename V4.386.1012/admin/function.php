@@ -135,7 +135,7 @@ function CheckLogin($c='')
 	{
 		if ( IsAjax() && $c != 'login')
 		{
-			Ajax('登录超时！',301);
+			Ajax('หมดเวลาเข้าสู่ระบบ!',301);
 		}
 		else
 		{
@@ -217,7 +217,7 @@ function Competence( $a , $c ,$t )
 			//不存在权限
 			if( !$data )
 			{
-				Ajax('对不起，您的操作权限不足！',300);
+				Ajax('ขออภัย! สิทธิ์การใช้งานไม่เพียงพอ',300);
 			}
 		}
 	}
@@ -232,7 +232,7 @@ function Competence( $a , $c ,$t )
  * @param 参数3，选填，返回的数据。
  * @param 参数4，选填，共有多少条数据。
  */
-function Ajax( $msg = '操作成功！' , $code = 200 , $data = '' , $total = '')
+function Ajax( $msg = 'ดำเนินการสำเร็จ!' , $code = 200 , $data = '' , $total = '')
 {
 	//操作成功
 	$res['statusCode'] = $code;

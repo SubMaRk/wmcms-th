@@ -28,7 +28,7 @@ if ( $type == 'edit' || $type == "add"  )
 		
 		if ( wmsql::GetCount($wheresql) > 0 )
 		{
-			Ajax('对不起，当前分组已经存在同名配置' , 300);
+			Ajax('ขออภัย! การกำหนดค่ากลุ่มปัจจุบันมีอยู่แล้ว' , 300);
 		}
 		else
 		{
@@ -36,19 +36,19 @@ if ( $type == 'edit' || $type == "add"  )
 			$where['config_id'] = WMSql::Insert($table, $data);
 			
 			//写入操作记录
-			SetOpLog( '新增了网站配置字段'.$data['config_title'] , 'system' , 'insert' , $table , $where , $data );
+			SetOpLog( 'เพิ่มฟิลด์กำหนดค่าเว็บไซต์'.$data['config_title'] , 'system' , 'insert' , $table , $where , $data );
 			
-			Ajax('网站配置字段新增成功!');
+			Ajax('เพิ่มฟิลด์กำหนดค่าเว็บไซต์สำเร็จ!');
 		}
 	}
 	//如果是增加页面
 	else
 	{
 		//写入操作记录
-		SetOpLog( '修改网站配置字段' , 'system' , 'update' , $table  , $where , $data );
+		SetOpLog( 'แก้ไขฟิลด์กำหนดค่าเว็บไซต์' , 'system' , 'update' , $table  , $where , $data );
 		//修改数据
 		WMSql::Update($table, $data, $where);
-		Ajax('网站配置字段修改成功！');
+		Ajax('แก้ไขฟิลด์กำหนดค่าเว็บไซต์สำเร็จ!');
 	}
 }
 //删除网站配置
@@ -56,11 +56,11 @@ else if ( $type == 'del' )
 {
 	$where['config_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了网站配置项' , 'system' , 'delete' , $table , $where);
+	SetOpLog( 'ลบฟิลด์กำหนดค่าเว็บไซต์' , 'system' , 'delete' , $table , $where);
 
 	wmsql::Delete($table, $where);
 	
-	Ajax('网站配置项删除成功!');
+	Ajax('ลบฟิลด์กำหนดค่าเว็บไซต์สำเร็จ!');
 }
 //根据传入的配置分组id查询当前分组id下面的所有配置
 if( $type == 'getconfig' )
@@ -100,6 +100,6 @@ if( $type == 'update' )
 	$seoSer = AdminNewClass('system.seo');
 	$seoSer->UpConfig();
 	
-	Ajax('配置生成成功！');
+	Ajax('สร้างการกำหนดค่าสำเร็จ!');
 }
 ?>

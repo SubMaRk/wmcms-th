@@ -43,6 +43,6 @@ if ( file_exists('controller/'.$cPath.'.php') )
 }
 else if(DEBUG && ERR)
 {
-	die('后台控制器文件：controller/'.$cPath.'.php 不存在！');
+	die('ไฟล์ควบคุมพื้นหลัง : controller/'.$cPath.'.php ไม่มีอยู่!');
 }
 ?>

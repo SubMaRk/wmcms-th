@@ -16,33 +16,33 @@ if ( $type == 'add' )
 	
 	if( $data['plan_name'] == '' || $data['plan_url'] == '' || $data['plan_path'] == '' )
 	{
-		Ajax('对不起，字段填写不完整!',300);
+		Ajax('ขออภัย! ต้องกรอกฟิลด์ทั้งหมดก่อน',300);
 	}
 	else if( !str::CheckUrl($data['plan_url']) )
 	{
-		Ajax('url格式不正确，请填写完整的url，如：http://www.weimengcms.com!',300);
+		Ajax('รูปแบบลิ้งก์ไม่ถูกต้อง! โปรดกรอกลิ้งก์แบบเต็ม ตัวอย่าง ：http://www.weimengcms.com',300);
 	}
 	//保存文件格式检测
 	else if( count(explode('.', $data['plan_path'])) < 2 )
 	{
-		Ajax('对不起，保存格式错误，必须写入文件后缀。',300);
+		Ajax('ขออภัย! รูปแบบการจัดเก็บไม่ถูกต้อง ต้องกรอกชื่อต่อท้ายด้วย',300);
 	}
 	//保存路径重复检测
 	else if( $planMod->GetOne(array('plan_path'=>$data['plan_path'])) )
 	{
-		Ajax('对不起，该保存路径已经存在！',300);
+		Ajax('ขออภัย! มีที่ตั้งในการจัดเก็บแล้ว',300);
 	}
 	//计划名字重复检测
 	else if( $planMod->GetOne(array('plan_name'=>$data['plan_name'])) )
 	{
-		Ajax('对不起，该静态计划名字已经存在！',300);
+		Ajax('ขออภัย! มีชื่อแผนแบบคงที่อยู่แล้ว',300);
 	}
 	else
 	{
 		$planMod->Insert($data);
 		//写入操作记录
-		SetOpLog( '添加了静态计划'.$data['plan_name'] , 'system' , 'insert');
-		Ajax('静态计划添加成功！');
+		SetOpLog( 'เพิ่มแผนแบบคงที่'.$data['plan_name'] , 'system' , 'insert');
+		Ajax('เพิ่มแผนแบบคงที่สำเร็จ!');
 	}
 }
 //删除计划
@@ -50,8 +50,8 @@ else if ( $type == 'del' )
 {
 	$planMod->Delete(GetDelId());
 	//写入操作记录
-	SetOpLog( '删除了静态计划' , 'system' , 'delete');
-	Ajax('静态计划删除成功！');
+	SetOpLog( 'ลบแผนแบบคงที่' , 'system' , 'delete');
+	Ajax('ลบแผนแบบคงที่สำเร็จ!');
 }
 //运行静态计划
 else if( $type == 'run' )
@@ -60,7 +60,7 @@ else if( $type == 'run' )
 	$data = $planMod->GetById($id);
 	if( !$data )
 	{
-		Ajax('对不起，该计划不存在！',300);
+		Ajax('ขออภัย! ไม่มีแผนนี้อยู่',300);
 	}
 	else
 	{
@@ -72,8 +72,8 @@ else if( $type == 'run' )
 		$planMod->UpLastTime($id);
 		
 		//写入操作记录
-		SetOpLog( '运行了静态计划'.$data['plan_path'] , 'system' , 'insert');
-		Ajax('成功运行静态，文件保存到'.$data['plan_path'].'');
+		SetOpLog( 'แผนแบบคงที่'.$data['plan_path'] , 'system' , 'insert');
+		Ajax('แผนทำงานอัตโนมัติถูกจัดเก็บไว้ที่ '.$data['plan_path'].' สำเร็จ!');
 	}
 }
 ?>

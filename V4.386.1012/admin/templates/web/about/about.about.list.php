@@ -12,9 +12,9 @@ thead th {
 <div class="bjui-pageHeader">
 	<div class="row cl pt-10 pl-10">
 		<div class="list-tool pl-15">
-            <span >快捷操作：</span>
-			<a href="javascript:;" onClick="<?php echo $cFun?>MoveDiv()" class="btn btn-warning  radius"> 批量移动</a>
-			<a href="index.php?a=yes&c=about.about&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
+            <span >ดำเนินการด่วน : </span>
+			<a href="javascript:;" onClick="<?php echo $cFun?>MoveDiv()" class="btn btn-warning  radius"> ย้ายหลายรายการ</a>
+			<a href="index.php?a=yes&c=about.about&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="คุณต้องการลบรายการที่เลือหรือไม่?" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
 		</div>
 		<div class="list-tool">
 			<form id="pagerForm" name="<?php echo $cFun;?>Form" data-toggle="ajaxsearch" data-loadingmask="true" action="<?php echo $url;?>" method="post">
@@ -22,12 +22,12 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                <span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
+                <span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน : </span>
                 
 				<input name="tid" type="hidden" value="<?php echo $tid;?>">
 		      	<input name="tname" type="text" data-toggle="selectztree" data-tree="#<?php echo $cFun;?>_ztree_select" readonly value="<?php echo $tname;?>">
 	             <ul id="<?php echo $cFun;?>_ztree_select" class="ztree hide" data-toggle="ztree" data-expand-all="true" data-check-enable="true" data-chk-style="radio" data-radio-type="all" data-on-check="<?php echo $cFun;?>S_NodeCheck" data-on-click="<?php echo $cFun;?>S_NodeClick" style="width:120px">
-	             <li data-id="">全部分类</li>
+	             <li data-id="">หมวดหมู่ทั้งหมด</li>
 	             <?php 
 	             if( $typeArr )
 	             {
@@ -41,8 +41,8 @@ thead th {
 	             </ul>
 				
                 <input type="text" placeholder="<?php echo $name;?>" name="name" size="15">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+				<button type="submit" class="btn btn-warning radius" data-icon="search">ดึงข้อมูล</button>
+				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
 			</form>
 		</div>
 	</div>
@@ -53,12 +53,12 @@ thead th {
 			<thead>
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
-				<th width="8%" data-order-field="about_id">ID</th>
-				<th width="10%" data-order-field="a.type_id">信息分类</th>
-				<th data-order-field="about_name">信息标题</th>
-				<th width="10%" data-order-field="about_pinyin">信息拼音</th>
-	            <th width="15%" data-order-field="about_time">发布时间</th>
-	            <th width="10%">操作</th>
+				<th width="8%" data-order-field="about_id">ไอดี</th>
+				<th width="10%" data-order-field="a.type_id">หมวดหมู่</th>
+				<th data-order-field="about_name">ชื่อ</th>
+				<th width="10%" data-order-field="about_pinyin">พินอิน</th>
+	            <th width="15%" data-order-field="about_time">วันที่เผยแพร่</th>
+	            <th width="10%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody id="<?php echo $cFun?>List">
@@ -77,8 +77,8 @@ thead th {
 							<td style="text-align: center;">'.$v['about_pinyin'].'</td>
 							<td style="text-align: center;">'.date( 'Y-m-d H:i:s' , $v['about_time']).'</td>
 							<td style="text-align: center;" data-noedit="true">
-				            	<a class="btn btn-secondary radius size-MINI" data-toggle="navtab" data-id="about-about-edit" data-title="编辑信息内容" href="index.php?d=yes&c=about.about.edit&t=edit&id='.$v['about_id'].'">编辑</a> 
-								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['about_id'].')">删除</a>
+				            	<a class="btn btn-secondary radius size-MINI" data-toggle="navtab" data-id="about-about-edit" data-title="แก้ไขเนื้อหา" href="index.php?d=yes&c=about.about.edit&t=edit&id='.$v['about_id'].'">แก้ไข</a> 
+								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['about_id'].')">ลบ</a>
 				            </td>
 						</tr>';
 					$i++;
@@ -86,7 +86,7 @@ thead th {
 			}
 			else
 			{
-				echo '<script type="text/javascript">$(document).ready(function(){$(this).alertmsg("info", "没有数据了!")});</script>';
+				echo '<script type="text/javascript">$(document).ready(function(){$(this).alertmsg("info", "ไม่มีข้อมูล!")});</script>';
 			}
 			?>
 			</tbody>
@@ -95,7 +95,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -104,7 +104,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp;รายการ, จากทั้งหมด <?php echo $total;?> รายการ</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>
@@ -114,7 +114,7 @@ thead th {
 <!-- 批量移动操作层 -->
 <div id="<?php echo $cFun;?>MoveDiv" data-noinit="true" class="hide" align="center">
 	<input name="move_tid" id="<?php echo $cFun;?>move_tid" type="hidden">
-	批量移动到：
+	ย้ายหลายรายการไปยัง : 
 	<input type="text" data-toggle="selectztree" data-tree="#<?php echo $cFun;?>_move_ztree_select" readonly value="<?php echo $tname;?>">
 	<ul id="<?php echo $cFun;?>_move_ztree_select" class="ztree hide" data-toggle="ztree" data-expand-all="true" data-check-enable="true" data-chk-style="radio" data-radio-type="all" data-on-check="<?php echo $cFun;?>S_NodeCheck" data-on-click="<?php echo $cFun;?>S_NodeClick" style="width:120px">
 	    <?php 
@@ -128,8 +128,8 @@ thead th {
 	    ?>
     </ul>
     <div class="pt-10" style="margin-left: 80px">
-		<button onClick="<?php echo $cFun;?>MoveAjax()" type="button" class="btn-green" data-icon="location-arrow">移动</button>
-		<button type="button" class="btn-close" data-icon="close">关闭</button>
+		<button onClick="<?php echo $cFun;?>MoveAjax()" type="button" class="btn-green" data-icon="location-arrow">ย้าย</button>
+		<button type="button" class="btn-close" data-icon="close">ยกเลิก</button>
 	</div>
 </div>
 
@@ -160,7 +160,7 @@ function <?php echo $cFun;?>MoveDiv()
 	var ajaxOptions=new Array();
 	
 	ajaxOptions['target'] = "#<?php echo $cFun;?>MoveDiv";
-	ajaxOptions['title'] = "批量移动";
+	ajaxOptions['title'] = "ย้ายหลายรายการ";
 	ajaxOptions['width'] = "300";
 	ajaxOptions['height'] = "100";
 	ajaxOptions['mask'] = "true";
@@ -171,14 +171,14 @@ function <?php echo $cFun;?>MoveAjax()
 {
 	var tid = $("#<?php echo $cFun;?>move_tid").val();
 	if( tid == ''){
-		$(this).alertmsg('error', '对不起请先选择要移动到分类!')
+		$(this).alertmsg('error', 'ขออภัย! โปรดเลือกหมวดหมู่ที่จะย้ายก่อน')
 	}else{
 		var ajaxOptions=new Array();
 		ajaxOptions['url'] = "index.php?a=yes&c=about.about&t=move&tid="+tid;
 		ajaxOptions['idName'] = "ids";
 		ajaxOptions['group'] = "ids";
 		ajaxOptions['isNavtab'] = true;
-		ajaxOptions['confirmMsg'] = "确定要批量移动选中项吗？";
+		ajaxOptions['confirmMsg'] = "คุณต้องการย้ายรายการที่เลือกหรือไม่?";
 		ajaxOptions['callback'] = "<?php echo $cFun;?>ajaxCallBack";
 		$(this).bjuiajax('doAjaxChecked', ajaxOptions);
 	}
@@ -193,7 +193,7 @@ function <?php echo $cFun;?>delAjax(id)
 	ajaxData.id = id;
 	ajaxOptions['data'] = ajaxData;
 	ajaxOptions['url'] = "index.php?a=yes&c=about.about&t=del";
-	ajaxOptions['confirmMsg'] = "确定要删除所选的信息吗？";
+	ajaxOptions['confirmMsg'] = "คุณต้องการลบรายการที่เลือกหรือไม่";
 	ajaxOptions['callback'] = "<?php echo $cFun;?>ajaxCallBack";
 	$(".btn-danger").bjuiajax('doAjax', ajaxOptions);
 }
@@ -210,26 +210,26 @@ function <?php echo $cFun;?>AttrAjax(attr,val,id)
 	switch(attr)
 	{
 		case "rec":
-			msg = "推荐";
+			msg = "แนะนำ";
 	  		break;
 	  		
 		case "head":
-			msg = "头条";
+			msg = "พาดหัว";
 	  		break;
 	  		
 		case "strong":
-			msg = "加粗";
+			msg = "ตัวหนา";
 	  		break;
 	}
 	//操作类型设置
 	switch(val)
 	{
 		case 0:
-			type = "取消";
+			type = "ยกเลิก";
 	  		break;
 	  		
 		default:
-			type = "设置";
+			type = "กำหนด";
 	  		break;
 	}
 	
@@ -238,7 +238,7 @@ function <?php echo $cFun;?>AttrAjax(attr,val,id)
 	ajaxData.val = val;
 	ajaxOptions['data'] = ajaxData;
 	ajaxOptions['url'] = "index.php?a=yes&c=about.about&t=attr";
-	ajaxOptions['confirmMsg'] = "确定要"+type+"信息的"+msg+"属性吗？";
+	ajaxOptions['confirmMsg'] = "คุณต้องการ"+type+"การเป็น"+msg+"หรือไม่?";
 	ajaxOptions['callback'] = "<?php echo $cFun;?>ajaxCallBack";
 	$(".btn-danger").bjuiajax('doAjax', ajaxOptions);
 }
@@ -254,11 +254,11 @@ function <?php echo $cFun;?>StatusAjax(status,id)
 	switch(status)
 	{
 		case 0:
-			type = "取消审核";
+			type = "ละทิ้ง";
 	  		break;
 	  		
 		default:
-			type = "通过审核";
+			type = "ตรวจสอบ";
 	  		break;
 	}
 	
@@ -266,7 +266,7 @@ function <?php echo $cFun;?>StatusAjax(status,id)
 	ajaxData.status = status;
 	ajaxOptions['data'] = ajaxData;
 	ajaxOptions['url'] = "index.php?a=yes&c=about.about&t=status";
-	ajaxOptions['confirmMsg'] = "确定要"+type+"信息吗？";
+	ajaxOptions['confirmMsg'] = "คุณต้องการ"+type+"หรือไม่?";
 	ajaxOptions['callback'] = "<?php echo $cFun;?>ajaxCallBack";
 	$(".btn-danger").bjuiajax('doAjax', ajaxOptions);
 }

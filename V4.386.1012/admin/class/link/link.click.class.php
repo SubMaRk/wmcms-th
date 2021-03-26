@@ -19,11 +19,11 @@ class LinkClick
 		switch ($type)
 		{
 			case "out":
-				return '点出';
+				return 'จุดออก';
 				break;
 				
 			default:
-				return '点入';
+				return 'จุดเข้า';
 				break;
 		}
 	}

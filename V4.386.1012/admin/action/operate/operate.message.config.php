@@ -17,7 +17,7 @@ if( $post )
 	$configMod->UpdateToForm($post);
 
 	//写入操作记录
-	SetOpLog( '修改留言模块设置' , 'message' , 'update' );
+	SetOpLog( 'แก้ไขการตั้งค่าโมดูลข้อความ' , 'message' , 'update' );
 	
 	//更新配置文件
 	$manager->UpConfig('message');

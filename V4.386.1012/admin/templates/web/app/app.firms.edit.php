@@ -2,13 +2,13 @@
     <form action="index.php?a=yes&c=app.firms&t=<?php echo $type;?>" data-reload="false" data-toggle="validate" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
 	<input name="id[firms_id]" type="hidden" class="input-text" value="<?php echo $id;?>">
 		<fieldset>
-			<legend>厂商信息编辑</legend>
+			<legend>แก้ไขข้อมูลผู้จำหน่าย</legend>
             	<div class="tab-pane fade active in" id="<?php echo $cFun.$type;?>base">
 		        	<table class="table table-condensed table-hover" width="100%">
 		            <tbody>
 		                <tr>
 		                    <td colspan="2">
-		                        <b>厂商类型：</b>
+		                        <b>ประเภท : </b>
 		                        <select data-toggle="selectpicker" name="firms[firms_type]">
 			                        <?php 
 								    foreach ($typeArr as $k=>$v)
@@ -22,37 +22,37 @@
 		                </tr>
 		                <tr>
 		                    <td width="50%">
-		                        <b>厂商名字：</b>
+		                        <b>ชื่อเต็ม : </b>
 		                        <input type="text" name="firms[firms_name]" value="<?php echo C('firms_name',null,'data');?>" data-rule="required">
 		                    </td>
 		                    <td>
-		                        <b>厂商简称：</b>
+		                        <b>ชื่อย่อ : </b>
 		                        <input type="text" name="firms[firms_cname]" value="<?php echo C('firms_cname',null,'data');?>">
 		                    </td>
 		                </tr>  
 		                <tr>
 		                   <td>
-		                        <b>官方网站：</b>
+		                        <b>เว็บไซต์ทางการ : </b>
 		                        <input type="text" name="firms[firms_url]"  value="<?php echo C('firms_url',null,'data');?>">
 		                    </td>
 		                   <td>
-		                        <b>联系地址：</b>
+		                        <b>ที่อยู่ : </b>
 		                        <input type="text" name="firms[firms_adress]" value="<?php echo C('firms_adress',null,'data');?>">
 		                    </td>
 		                </tr>
 		                <tr>
 		                   <td>
-		                        <b>联系电话：</b>
+		                        <b>หมายเลขโทรศัพท์ : </b>
 		                        <input type="text"  name="firms[firms_phone]" value="<?php echo C('firms_phone',null,'data');?>">
 		                    </td>
 		                   <td>
-		                        <b>联系邮箱：</b>
+		                        <b>อีเมล์ : </b>
 		                        <input type="text"  name="firms[firms_email]" value="<?php echo C('firms_email',null,'data');?>">
 		                    </td>
 		                </tr>
 		                <tr>
 		                   <td colspan="2">
-		                        <b>厂商介绍：</b>
+		                        <b>รายละเอียดผู้จำหน่าย : </b>
 		                        <div style="display:inline-block; vertical-align: middle;">
 									<?php echo Ueditor('width: 90%;height:300px' , 'firms[firms_content]' , C('firms_content',null,'data') , 'editor.app_firms');?>
 		                        </div>
@@ -68,8 +68,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ปิด</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">จัดเก็บ</button></li>
     </ul>
 </div>
 

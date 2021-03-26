@@ -17,7 +17,7 @@ if( $post )
 	$configMod->UpdateToForm($post);
 	
 	//写入操作记录
-	SetOpLog( '修改财务模块设置' , 'finance' , 'update' );
+	SetOpLog( 'แก้ไขการตั้งค่าโมดูลการเงิน' , 'finance' , 'update' );
 	
 	//更新配置文件
 	$manager->UpConfig('finance' , true);

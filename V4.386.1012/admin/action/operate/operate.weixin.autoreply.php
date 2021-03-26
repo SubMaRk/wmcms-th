@@ -20,18 +20,18 @@ if ( $type == 'edit' || $type == "add"  )
 	
 	if ( $data['autoreply_name'] == '' || $data['autoreply_key'] == '' || $data['autoreply_content'] == '')
 	{
-		Ajax('对不起，自动回复名字、匹配关键字和回复内容必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อบ็อทโต้ตอบ คำหลักที่ตรงกัน และการตอบสนองก่อน',300);
 	}
 	else if( !str::Number(GetKey($data,'autoreply_account_id')) )
 	{
-		Ajax('对不起，所属公众号必须选择！',300);
+		Ajax('ขออภัย! ต้องเลือกหมายเลขสาธารณะก่อน',300);
 	}
 	else if( $data['autoreply_default'] > 0 && $replyMod->CheckExists(array(
 			'autoreply_account_id'=>$data['autoreply_account_id'],
 			'autoreply_default'=>$data['autoreply_default']
 			) , $where['autoreply_id']) )
 	{
-		Ajax('对不起，同一公众号的自动回复和默认回复同时只能存在一个，如需更换请先取消现在的设置！',300);
+		Ajax('ขออภัย! บ็อทโต้ตอบสามารถกำหนดกับหมายเลขสาธารณะเพียงหมายเลขเดียวเท่านั้น หากคุณต้องการแทนที่ โปรดยกเลิกการตั้งค่าปัจจุบันก่อน',300);
 	}
 	
 	//获取模版内容
@@ -48,14 +48,14 @@ if ( $type == 'edit' || $type == "add"  )
 	if( $type == 'add' )
 	{
 		$opType = 'insert';
-		$info = '新增了自动回复'.$data['autoreply_name'];
+		$info = 'เพิ่มบ็อทโต้ตอบ'.$data['autoreply_name'];
 		$where['autoreply_id'] = $replyMod->Insert($data);
 	}
 	//修改分类
 	else
 	{
 		$opType = 'update';
-		$info = '修改了自动回复'.$data['autoreply_name'];
+		$info = 'แก้ไขบ็อทโต้ตอบ'.$data['autoreply_name'];
 		$replyMod->Update($data,$where['autoreply_id']);
 	}
 	//写入操作记录
@@ -68,8 +68,8 @@ else if ( $type == 'del' )
 	$where['autoreply_id'] = GetDelId();
 	$replyMod->Del($where);
 	//写入操作记录
-	SetOpLog( '删除了自动回复' , 'system' , 'delete' , $table , $where);
-	Ajax('自动回复删除成功!');
+	SetOpLog( 'ลบบ็อทโต้ตอบ' , 'system' , 'delete' , $table , $where);
+	Ajax('ลบบ็อทโต้ตอบสำเร็จ!');
 }
 //复制
 else if ( $type == 'copy' )
@@ -79,20 +79,20 @@ else if ( $type == 'copy' )
 	$data = $replyMod->GetById($rid);
 	if( $data  && $data['autoreply_type'] != '1' )
 	{
-		Ajax('非文字回复不能复制!',300);
+		Ajax('ไม่สามารถคัดลอกคำตอบที่ไม่ใช่ข้อความได้!',300);
 	}
 	else if( $data )
 	{
 		$saveData['autoreply_status'] = $data['autoreply_status'];
 		$saveData['autoreply_account_id'] = $aid;
-		$saveData['autoreply_name'] = '复制-'.$data['autoreply_name'];
+		$saveData['autoreply_name'] = 'คัดลอก - '.$data['autoreply_name'];
 		$saveData['autoreply_key'] = $data['autoreply_key'];
 		$saveData['autoreply_match'] = $data['autoreply_match'];
 		$saveData['autoreply_content'] = $data['autoreply_content'];
 		$saveData['autoreply_type'] = $data['autoreply_type'];
 		$where['autoreply_id'] = $replyMod->Insert($saveData);
-		SetOpLog( '复制了自动回复' , 'system' , 'insert' , $table , $where);
+		SetOpLog( 'คัดลอกบ็อท' , 'system' , 'insert' , $table , $where);
 	}
-	Ajax('自动回复复制成功!');
+	Ajax('คัดลอกบ็อทสำเร็จ!');
 }
 ?>

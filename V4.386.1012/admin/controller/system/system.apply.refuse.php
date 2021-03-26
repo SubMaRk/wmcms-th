@@ -15,7 +15,7 @@ $cid = Request('cid');
 $id = Request('id');
 if( $module == '' || $type == '' || $mt == '' || !str::Number($uid) || !str::Number($cid) )
 {
-	Ajax('对不起，参数错误',300);
+	Ajax('ขออภัย! พารามิเตอร์ไม่ถูกต้อง',300);
 }
 else
 {

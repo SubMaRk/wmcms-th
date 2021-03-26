@@ -31,23 +31,23 @@ if ( $type == "apply"  )
 	
 	if( !$novelData )
 	{
-		Ajax('对不起，小说不存在！',300);
+		Ajax('ขออภัย! ไม่มีนิยายเรื่องนี้อยู่',300);
 	}
 	else if( $novelData['novel_copyright'] < 1 || $novelData['novel_sell'] < 1 )
 	{
-		Ajax('对不起，请先签约上架小说！',300);
+		Ajax('ขออภัย! โปรดเซ็นสัญญาก่อน',300);
 	}
 	else if($real != $total+$bonusGold2-$deductGold2 )
 	{
-		Ajax('结算金额出错！',300);
+		Ajax('จำนวนเงินที่เรียกเก็บไม่ถูกต้อง!',300);
 	}
 	else if( $applyData && $applyData['apply_status'] == 0 )
 	{
-		Ajax('此月的结算申请正在处理中，请等待财务审核！',300);
+		Ajax('คำร้องทางการเงินกำลังดำเนินการอยู่ โปรดรอผู้ดูแลตรวจสอบอีกครั้ง!',300);
 	}
 	else if( $applyData && $applyData['apply_status'] == 1 )
 	{
-		Ajax('此月已经结算过了，无需重复申请！',300);
+		Ajax('การชำระของเดือนนี้ถูกดำเนินการแล้ว ไม่จำเป็นต้องทำเรื่องซ้ำ',300);
 	}
 	else
 	{
@@ -67,14 +67,14 @@ if ( $type == "apply"  )
 		$data['apply_deduct'] = $deductGold2;
 		$data['apply_deduct_remark'] = $deductRemark;
 		$data['apply_bonus'] = $bonusGold2;
-		$data['apply_remark'] = '小说《'.$novelData['novel_name'].'》 '.$year.'-'.$month.' 的财务结算申请！';
+		$data['apply_remark'] = 'นิยายเรื่อง 《'.$novelData['novel_name'].'》 '.$year.'-'.$month.' คำร้องทางการเงิน';
 		$data['apply_to_user_id'] = $tUid;
 		$data['apply_real'] = $real;
 		$applyMod->Insert($data);
 		
 		//写入操作记录
-		SetOpLog( '申请了小说结算' , 'finance' , 'insert' , '@finance_apply' , $where , $data );
-		Ajax('结算申请成功！');
+		SetOpLog( 'กำหนดการชำระเงินนิยาย' , 'finance' , 'insert' , '@finance_apply' , $where , $data );
+		Ajax('คำร้องทางการเงินถูกดำเนินการแล้ว!');
 	}
 }
 ?>

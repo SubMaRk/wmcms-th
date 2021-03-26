@@ -17,7 +17,7 @@ if ( $type == 'del' )
 	$where['msg_id'] = GetDelId();
 	$msgMod->Del($where);
 	//写入操作记录
-	SetOpLog( '删除了微信消息' , 'system' , 'delete' , $table , $where);
-	Ajax('微信消息删除成功!');
+	SetOpLog( 'ลบข้อความบน WeChat' , 'system' , 'delete' , $table , $where);
+	Ajax('ลบข้อความบน WeChat สำเร็จ!');
 }
 ?>

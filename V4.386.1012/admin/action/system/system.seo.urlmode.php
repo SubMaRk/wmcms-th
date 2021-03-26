@@ -33,7 +33,7 @@ if( $post && $type == 'config' )
 	//修改配置
 	$configMod->UpdateToForm($post);
 	//写入操作记录
-	SetOpLog( '修改URL模式设置' , 'system' , 'update' );
+	SetOpLog( 'แก้ไขการตั้งค่าลิ้งก์' , 'system' , 'update' );
 	//更新配置文件
 	$manager->UpConfig('web');
 	//更新路由配置文件

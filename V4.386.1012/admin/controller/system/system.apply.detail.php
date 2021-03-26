@@ -15,7 +15,7 @@ $t = Request('t');
 $data = $newData = array();
 if( $module == '' || $mt == '' || $t == '' || !str::Number($id) )
 {
-	Ajax('对不起，参数错误',300);
+	Ajax('ขออภัย! พารามิเตอร์ไม่ถูกต้อง',300);
 }
 else
 {
@@ -41,9 +41,9 @@ else
 			$lang = GetModuleLang('novel');
 			//设置字段的名字
 			$keyTitle=array(
-				'novel_process'=>'书籍进程','novel_type'=>'小说类型','type_id'=>'小说分类','novel_info'=>'小说描述',
-				'novel_name'=>'小说名字','novel_pinyin'=>'小说拼音','novel_author'=>'作者笔名','author_id'=>'作者id',
-				'novel_createtime'=>'创建时间','novel_uptime'=>'更新时间','novel_tags'=>'小说标签','novel_status'=>'小说状态',
+				'novel_process'=>'กระบวนการ','novel_type'=>'ประเภท','type_id'=>'หมวดหมู่','novel_info'=>'รายละเอียด',
+				'novel_name'=>'ชื่อ','novel_pinyin'=>'พินอิน','novel_author'=>'นามแฝงผู้แต่ง','author_id'=>'ไอดีผู้แต่ง',
+				'novel_createtime'=>'วันที่เริ่มแต่ง','novel_uptime'=>'วันที่อัปเดท','novel_tags'=>'ป้ายกำกับ','novel_status'=>'สถานะ',
 			);
 		}
 		else if($module == 'author' && $mt == 'novel_editchapter')
@@ -61,9 +61,9 @@ else
 			$lang = GetModuleLang('novel');
 			//设置字段的名字
 			$keyTitle=array(
-				'chapter_number'=>'章节字数','chapter_name'=>'章节标题','content'=>'章节内容',
-				'chapter_ispay'=>'是否需要购买','chapter_nid'=>'书籍id','chapter_vid'=>'分卷id','chapter_cid'=>'章节id',
-				'chapter_order'=>'章节排序','chapter_time'=>'创建时间',
+				'chapter_number'=>'จำนวนคำ','chapter_name'=>'ชื่อ','content'=>'เนื้อหา',
+				'chapter_ispay'=>'VIP','chapter_nid'=>'ไอดีเรื่อง','chapter_vid'=>'ไอดีเล่ม','chapter_cid'=>'ไอดีบท',
+				'chapter_order'=>'ลำดับ','chapter_time'=>'วันที่แต่ง',
 			);
 		}
 		//获得旧的数据、文章
@@ -76,8 +76,8 @@ else
 			$lang = GetModuleLang('novel');
 			//设置字段的名字
 			$keyTitle=array(
-				'article_simg'=>'文章封面','article_name'=>'文章标题','article_cname'=>'文章短标题','type_id'=>'文章分类',
-				'article_source'=>'文章来源','article_tags'=>'文章标签','article_info'=>'文章简介','article_content'=>'文章内容',
+				'article_simg'=>'หน้าปก','article_name'=>'ชื่อเต็ม','article_cname'=>'ชื่อย่อ','type_id'=>'หมวดหมู่',
+				'article_source'=>'แหล่งที่มา','article_tags'=>'ป้ายกำกับ','article_info'=>'สรุปย่อ','article_content'=>'เนื้อหา',
 			);
 		}
 		

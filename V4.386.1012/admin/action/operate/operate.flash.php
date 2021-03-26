@@ -18,31 +18,31 @@ if ( $type == 'edit' || $type == "add"  )
 	
 	if ( $data['flash_title'] == '' || $data['flash_url'] == '' )
 	{
-		Ajax('对不起，幻灯片标题和url必须填写！',300);
+		Ajax('ขออภัย! ชื่อสไลด์และลิ้งก์ต้องไม่ว่าง',300);
 	}
 	else if( !str::Number(GetKey($data,'type_id')) )
 	{
-		Ajax('对不起，幻灯片分类必须选择！',300);
+		Ajax('ขออภัย! ต้องเลือกหมวดหมู่สไลด์ก่อน',300);
 	}
 	
 	//新增数据
 	if( $type == 'add' )
 	{
 		$data['flash_time'] = time();
-		$info = '恭喜您，幻灯片添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มสไลด์สาเร็จ';
 		$where['flash_id'] = wmsql::Insert($table, $data);
 		
 		//写入操作记录
-		SetOpLog( '新增了幻灯片'.$data['flash_title'] , 'system' , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มสไลด์'.$data['flash_title'] , 'system' , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
-		$info = '恭喜您，幻灯片修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขสไลด์สาเร็จ';
 		wmsql::Update($table, $data, $where);
 		
 		//写入操作记录
-		SetOpLog( '修改了幻灯片'.$data['flash_title'] , 'system' , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขสไลด์'.$data['flash_title'] , 'system' , 'update' , $table , $where , $data );
 	}
 	
 	Ajax($info);
@@ -52,10 +52,10 @@ else if ( $type == 'del' )
 {
 	$where['flash_id'] = GetDelId();
 	//写入操作记录
-	SetOpLog( '删除了幻灯片' , 'system' , 'delete' , $table , $where);
+	SetOpLog( 'ลบสไลด์' , 'system' , 'delete' , $table , $where);
 	wmsql::Delete($table , $where);
 		
-	Ajax('幻灯片删除成功!');
+	Ajax('ลบสไลด์สำเร็จ!');
 }
 //清空请求记录
 else if ( $type == 'clear' )
@@ -63,8 +63,8 @@ else if ( $type == 'clear' )
 	wmsql::Delete($table);
 
 	//写入操作记录
-	SetOpLog( '清空了幻灯片' , 'system' , 'delete' , $table);
-	Ajax('所有幻灯片成功清空！');
+	SetOpLog( 'ล้างสไลด์' , 'system' , 'delete' , $table);
+	Ajax('ล้างสไลด์สำเร็จ!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -74,16 +74,16 @@ else if ( $type == 'status' )
 
 	if( Request('status') == '1')
 	{
-		$msg = '显示';
+		$msg = 'แสดง';
 	}
 	else
 	{
-		$msg = '隐藏';
+		$msg = 'ซ่อน';
 	}
 	//写入操作记录
-	SetOpLog( $msg.'了幻灯片' , 'system' , 'update' , $table , $where);
+	SetOpLog( $msg.'สไลด์' , 'system' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('幻灯片'.$msg.'成功!');
+	Ajax('สไลด์ถูก'.$msg.'แล้ว!');
 }
 ?>

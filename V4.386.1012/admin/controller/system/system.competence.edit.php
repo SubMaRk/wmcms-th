@@ -56,7 +56,7 @@ if ( $type == 'edit')
 		{
 			if($v=='0')
 			{
-				$siteStr .= '主站【'.$_SERVER['SERVER_NAME'].'】,';
+				$siteStr .= 'เว็บหลัก 【'.$_SERVER['SERVER_NAME'].'】,';
 			}
 		}
 		//其他站点信息

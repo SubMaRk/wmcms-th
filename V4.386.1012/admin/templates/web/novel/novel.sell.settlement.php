@@ -90,14 +90,7 @@ else
 				        		{
 				        			if( $finishNowNumer == 0 && $finishNowGold2 == 0 )
 				        			{
-										if( isset($finishLowGold2) )
-										{
-											echo '没有满足最低字数 '.$finishLowNumer.' 字，无法得到最低完本奖励 '.$finishLowGold2.' '.$goldName;
-										}
-										else
-										{
-											echo '暂未设置小说更新福利';
-										}
+				        				echo '没有满足最低字数 '.$finishLowNumer.' 字，无法得到最低完本奖励 '.$finishLowGold2.' '.$goldName;
 				        			}
 				        			else
 				        			{
@@ -119,14 +112,7 @@ else
 					        	<?php 
 					        		if( $updateNowNumber == 0 && $updateNowGold2 == 0 )
 				        			{
-										if( isset($updateLowGold2) )
-										{
-											echo '没有满足最低更新字数 '.$updateLowDay.' 字，无法得到最低更新奖励 '.$updateLowGold2.' '.$goldName;
-										}
-										else
-										{
-											echo '暂未设置小说更新福利';
-										}
+				        				echo '没有满足最低更新字数 '.$updateLowDay.' 字，无法得到最低更新奖励 '.$updateLowGold2.' '.$goldName;
 				        			}
 				        			else
 				        			{
@@ -143,14 +129,7 @@ else
 					        	<?php 
 					        		if( $fullNowDay == 0 && $fullNowGold2 == 0 )
 				        			{
-										if( isset($fullLowGold2) )
-										{
-											echo '没有满足最低考勤天数 '.$fullLowDay.' 天，无法得到最低考勤奖励 '.$fullLowGold2.' '.$goldName;
-										}
-										else
-										{
-											echo '暂未设置小说更新福利';
-										}
+				        				echo '没有满足最低考勤天数 '.$fullLowDay.' 天，无法得到最低考勤奖励 '.$fullLowGold2.' '.$goldName;
 				        			}
 				        			else
 				        			{

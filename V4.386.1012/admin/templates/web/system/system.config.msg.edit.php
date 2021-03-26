@@ -9,13 +9,13 @@
 	<form action="index.php?a=yes&c=system.config.msg&t=<?php echo $type;?>" class="form form-horizontal" data-reload="false" data-toggle="ajaxform" method="post" <?php if($type=='edit') { echo 'data-callback="'.$cFun.'"';}?>>
     	<input type="hidden" name="id[temp_id]" value="<?php echo $id;?>"/>
 	    <div class="row cl">
-			<label class="form-label col-md-3">模版名字：</label>
+			<label class="form-label col-md-3">ชื่อเทมเพลต : </label>
 	    	<div class="formControls col-md-8">
 	        	<input type="text" class="form-control"  name="data[temp_name]" data-rule="required" size="30" value="<?php echo C('temp_name',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">所属模块：</label>
+			<label class="form-label col-md-3">โมดูลที่ใช้ : </label>
 			<div class="formControls col-md-8">
 		      	<select data-toggle="selectpicker" name="data[temp_module]" data-rule="required" >
 		        <?php
@@ -29,13 +29,13 @@
 			</div>
 		</div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">模版标识：</label>
+			<label class="form-label col-md-3">ไอดีเทมเพลต : </label>
 	    	<div class="formControls col-md-8">
 	    		<input type="text" class="form-control" name="data[temp_key]" data-rule="required" size="30" value="<?php echo C('temp_key',null,'data');?>" <?php if($type=='edit' && !DEVELOPER){echo 'readonly';}?>>
 	    	</div>
 	    </div>
 	    <div class="row cl smtp">
-			<label class="form-label col-md-3">模版消息内容：</label>
+			<label class="form-label col-md-3">เนื้อหาเทมเพลตข้อความ : </label>
 	    	<div class="formControls col-md-8">
 	        <?php echo Ueditor('height:150px;width:500px' , 'data[temp_content]',C('temp_content',null,'data'), 'editor.msg');?>
 	    	</div>
@@ -44,8 +44,8 @@
 	</form>
 	<div class="bjui-pageFooter">
 	    <ul>
-	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 保存</button></li>
+	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> จัดเก็บ</button></li>
 	    </ul>
 	</div>
 </div>

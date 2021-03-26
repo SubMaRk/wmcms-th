@@ -17,7 +17,7 @@ if( $post )
 	$configMod->UpdateToForm($post);
 
 	//写入操作记录
-	SetOpLog( '修改友链模块设置' , 'link' , 'update' );
+	SetOpLog( 'แก้ไขการตั้งค่าโมดูลลิ้งก์เพื่อนบ้าน' , 'link' , 'update' );
 	
 	//更新配置文件
 	$manager->UpConfig('link');

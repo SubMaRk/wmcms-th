@@ -1,7 +1,7 @@
 <?php
 if( !is_array($data) )
 {
-	echo '<script type="text/javascript">$(document).ready(function(){$(this).alertmsg("info", "对不起，该数据已经被处理或者数据不存在，无法进行查看！");$(this).dialog("closeCurrent");});</script>';
+	echo '<script type="text/javascript">$(document).ready(function(){$(this).alertmsg("info", "ขออภัย! ข้อมูลถูกประมวลผลไปแล้วหรือไม่มีข้อมูลอยู่และไม่สามารถเข้าถึงได้");$(this).dialog("closeCurrent");});</script>';
 	exit;
 }
 ?>

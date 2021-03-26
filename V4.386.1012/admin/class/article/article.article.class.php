@@ -18,9 +18,9 @@ class ArticleArticle
 	function GetAttr()
 	{
 		$arr = array(
-			'rec'=>'推荐',
-			'head'=>'头条',
-			'strong'=>'加粗',
+			'rec'=>'แนะนำ',
+			'head'=>'พาดหัว',
+			'strong'=>'ตัวหนา',
 		);
 		
 		return $arr;
@@ -34,9 +34,9 @@ class ArticleArticle
 	function GetAuthor( $k = '')
 	{
 		$arr = array(
-			'a'=>'作者',
-			's'=>'来源',
-			'e'=>'编辑',
+			'a'=>'ผู้เขียน',
+			's'=>'แหล่งที่มา',
+			'e'=>'แก้ไข',
 		);
 		
 		if( $k != '' )

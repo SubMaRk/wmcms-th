@@ -22,40 +22,40 @@ if ( $type == 'edit' || $type == "add"  )
 	$data['props_option'] = serialize($post['option']);
 	if ( $data['props_name'] == '' )
 	{
-		Ajax('对不起，道具名字必须填写！',300);
+		Ajax('ขออภัย! ต้องกรอกชื่อไอเท็มก่อน',300);
 	}
 	else if( !str::Number($data['props_type_id']) )
 	{
-		Ajax('对不起，道具分类必须选择！',300);
+		Ajax('ขออภัย! ต้องเลือกหมวดหมู่ไอเท็มก่อน',300);
 	}
 	else if( !is_numeric($data['props_gold1']) || !is_numeric($data['props_gold2']) || !is_numeric($data['props_money']) )
 	{
-		Ajax('对不起，出售价格只能为数字！',300);
+		Ajax('ขออภัย! ราคาที่ขายต้องเป็นตัวเลขเท่านั้น',300);
 	}
 	else if( $data['props_gold1'] == 0 && $data['props_gold2'] == 0 && $data['props_money'] == 0 )
 	{
-		Ajax('对不起，出售价格不能全部为0！',300);
+		Ajax('ขออภัย! ราคาที่ขายทั้งหมดต้องไม่เท่ากับ 0',300);
 	}
 	
 	
 	//新增数据
 	if( $type == 'add' )
 	{
-		$info = '恭喜您，道具添加成功！';
+		$info = 'ยินดีด้วย! เพิ่มไอเท็มสำเร็จ';
 		$where['props_id'] = wmsql::Insert($table, $data);
 		//修改最后上传的图片数据
-		$uploadSer->UpLast( 'author', 'props' , $where['props_id'] , '道具封面图');
+		$uploadSer->UpLast( 'author', 'props' , $where['props_id'] , 'รูปภาพไอเท็ม');
 		//写入操作记录
-		SetOpLog( '新增了道具'.$data['props_name'] , $curModule , 'insert' , $table , $where , $data );
+		SetOpLog( 'เพิ่มไอเท็ม'.$data['props_name'] , $curModule , 'insert' , $table , $where , $data );
 	}
 	//修改分类
 	else
 	{
-		$info = '恭喜您，道具修改成功！';
+		$info = 'ยินดีด้วย! แก้ไขไอเท็มสำเร็จ';
 		wmsql::Update($table, $data, $where);
 		
 		//写入操作记录
-		SetOpLog( '修改了道具'.$data['props_name'] , $curModule , 'update' , $table , $where , $data );
+		SetOpLog( 'แก้ไขไอเท็ม'.$data['props_name'] , $curModule , 'update' , $table , $where , $data );
 	}
 	Ajax($info);
 }
@@ -75,9 +75,9 @@ else if ( $type == 'del' )
 			$uploadSer->DelUpload('props',$v['props_id']);
 		}
 		//写入操作记录
-		SetOpLog( '删除了道具' , $curModule , 'delete' , $table , $where);
+		SetOpLog( 'ลบไอเท็ม' , $curModule , 'delete' , $table , $where);
 	}
-	Ajax('道具删除成功!');
+	Ajax('ลบไอเท็มสำเร็จ!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -87,16 +87,16 @@ else if ( $type == 'status' )
 
 	if( Request('status') == '1')
 	{
-		$msg = '上架';
+		$msg = 'บนชั้น';
 	}
 	else
 	{
-		$msg = '下架';
+		$msg = 'ได้รับ';
 	}
 	//写入操作记录
-	SetOpLog( $msg.'了道具' , $curModule , 'update' , $table , $where);
+	SetOpLog( $msg.'ไอเท็ม' , $curModule , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('道具'.$msg.'成功!');
+	Ajax('ไอเท็ม'.$msg.'แล้ว!');
 }
 ?>

@@ -14,7 +14,7 @@ $pluginData = array();
 
 if( !str::Number($id) )
 {
-	$errInfo = '对不起，插件id错误！';
+	$errInfo = 'ขออภัย! ไอดีปลั๊กอินไม่ถูกต้อง';
 }
 else
 {

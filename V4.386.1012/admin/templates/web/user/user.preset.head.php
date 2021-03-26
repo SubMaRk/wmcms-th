@@ -13,10 +13,10 @@ thead th {
 	<div class="row cl pt-10 pl-10">
 		<form name="<?php echo $cFun;?>Form" action="index.php?a=yes&c=user.head&t=add" data-reload="false" data-toggle="validate" method="post" data-callback="<?php echo $cFun;?>ajaxCallBack">
 		<div class="list-tool pl-15">
-            <span >上传头像：</span>
+            <span >อัปโหลดรูปโปรไฟล์ : </span>
 			<input type="text" id="head_src" name="head_src" size="30">
 			<span class="upload" data-uploader="index.php?a=yes&c=upload&t=img" data-on-upload-success="<?php echo $cFun;?>upload_success" data-file-type-exts="*.jpg;*.png;*.gif;*.mpg" data-toggle="upload" data-icon="cloud-upload"></span>
-			<button type="submit" class="btn-green" data-icon="save">保存</button>
+			<button type="submit" class="btn-green" data-icon="save">จัดเก็บ</button>
 		</div>
 		</form>
 	</div>
@@ -73,7 +73,7 @@ function <?php echo $cFun;?>delAjax(id)
 	ajaxData.id = id;
 	ajaxOptions['data'] = ajaxData;
 	ajaxOptions['url'] = "index.php?a=yes&c=user.head&t=del";
-	ajaxOptions['confirmMsg'] = "确定要删除所选的头像吗？";
+	ajaxOptions['confirmMsg'] = "คุณต้องการลบรูปโปรไฟล์ที่เลือกหรือไม่?";
 	ajaxOptions['callback'] = "<?php echo $cFun;?>ajaxCallBack";
 	$(this).bjuiajax('doAjax', ajaxOptions);
 }

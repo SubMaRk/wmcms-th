@@ -18,7 +18,7 @@ if( $orderField == '' )
 {
 	$where['order'] = 'author_id desc';
 }
-$typeArr = array('aid'=>"作者id",'aname'=>"作者笔名",'uid'=>"用户id",'uname'=>"用户昵称");
+$typeArr = array('aid'=>"ไอดีผู้แต่ง",'aname'=>"นามแฝง",'uid'=>"ไอดีผู้ใช้",'uname'=>"ชื่อผู้ใช้");
 //判断是否搜索标题
 if( $name != '' )
 {
@@ -44,7 +44,7 @@ if( $name != '' )
 }
 else
 {
-	$name = '请输入标题关键字';
+	$name = 'โปรดกรอกคำค้น';
 }
 
 

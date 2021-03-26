@@ -32,8 +32,8 @@ class PropsType
 		}
 		echo '<dt class="cf">
 			<div class="btn-toolbar opt-btn cf">
-				<a href="index.php?d=yes&c=props.type.edit&t=typeedit&id='.$v['type_id'].'" data-toggle="navtab" data-id="article-type-edit" data-title="编辑道具分类"><span class="btn btn-secondary size-MINI radius">编辑</span></a>
-				<a class="btn btn-danger radius" onclick="'.GetCFun().'delAjax('.$v['type_id'].')">删除</a>
+				<a href="index.php?d=yes&c=props.type.edit&t=typeedit&id='.$v['type_id'].'" data-toggle="navtab" data-id="article-type-edit" data-title="แก้ไขหมวดหมู่ไอเท็ม"><span class="btn btn-secondary size-MINI radius">แก้ไข</span></a>
+				<a class="btn btn-danger radius" onclick="'.GetCFun().'delAjax('.$v['type_id'].')">ลบ</a>
 			</div>
 			<div class="fold"><i></i></div>
 			<div class="order" style="width:90px">'.GetModuleName($v['type_module']).'</div>
@@ -49,8 +49,8 @@ class PropsType
 	function GetStatus( $k = '')
 	{
 		$arr = array(
-			'0'=>'隐藏',
-			'1'=>'显示',
+			'0'=>'ซ่อน',
+			'1'=>'แสดง',
 		);
 
 
@@ -71,7 +71,7 @@ class PropsType
 	function GetModule()
 	{
 		$moduleArr = array(
-			'novel'=>'小说模块',
+			'novel'=>'โมดูลนิยาย',
 		);
 		
 		return $moduleArr;

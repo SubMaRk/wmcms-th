@@ -15,11 +15,11 @@ $pluginData = array();
 
 if( !str::Number($id) )
 {
-	$errInfo = '对不起，插件id错误！';
+	$errInfo = 'ขออภัย! ไอดีปลั๊กอินไม่ถูกต้อง';
 }
 else if( $action == '' )
 {
-	die('对不起，action不能为空！');
+	die('ขออภัย! ไฟล์ action ต้องไม่ว่าง');
 }
 else
 {
@@ -28,7 +28,7 @@ else
 	$pluginData = $pluginMod->GetById($id);
 	if( !$pluginData )
 	{
-		die('对不起，插件不存在！');
+		die('ขออภัย! ไม่มีปลั๊กอินอย่');
 	}
 	else
 	{
