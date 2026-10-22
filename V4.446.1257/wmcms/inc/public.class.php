@@ -989,6 +989,147 @@ class common{
 
 	/**
 	 * 模版运算标签
+	 * 只接受数字和 + - * / % ( )，不再把表达式交给 eval()。
+	 */
+	static function Calc( $exp )
+	{
+		$exp = trim((string)$exp);
+		if( $exp === '' || strlen($exp) > 200 )
+		{
+			return null;
+		}
+		//白名单：只留数字、小数点、运算符、括号和空白
+		if( preg_match('/[^0-9.+\-*\/%() \t]/', $exp) )
+		{
+			return null;
+		}
+		$tokens = array();
+		preg_match_all('/\s*(?:([0-9]*\.?[0-9]+)|([-+*\/%()]))/', $exp, $m, PREG_SET_ORDER);
+		foreach ($m as $tk)
+		{
+			if( isset($tk[1]) && $tk[1] !== '' )
+			{
+				$tokens[] = array('num', (float)$tk[1]);
+			}
+			else if( isset($tk[2]) && $tk[2] !== '' )
+			{
+				$tokens[] = array('op', $tk[2]);
+			}
+		}
+		$pos = 0;
+		$res = self::CalcExpr($tokens, $pos);
+		//必须把 token 用完，否则表达式里有解析不了的部分
+		if( $res === null || $pos != count($tokens) )
+		{
+			return null;
+		}
+		return $res;
+	}
+
+	/**
+	 * 加减法
+	 */
+	private static function CalcExpr( &$tokens , &$pos )
+	{
+		$left = self::CalcTerm($tokens, $pos);
+		if( $left === null )
+		{
+			return null;
+		}
+		while ( isset($tokens[$pos]) && $tokens[$pos][0] == 'op' && ($tokens[$pos][1] == '+' || $tokens[$pos][1] == '-') )
+		{
+			$op = $tokens[$pos][1];
+			$pos++;
+			$right = self::CalcTerm($tokens, $pos);
+			if( $right === null )
+			{
+				return null;
+			}
+			$left = ($op == '+') ? $left + $right : $left - $right;
+		}
+		return $left;
+	}
+
+	/**
+	 * 乘除法
+	 */
+	private static function CalcTerm( &$tokens , &$pos )
+	{
+		$left = self::CalcFactor($tokens, $pos);
+		if( $left === null )
+		{
+			return null;
+		}
+		while ( isset($tokens[$pos]) && $tokens[$pos][0] == 'op' && ($tokens[$pos][1] == '*' || $tokens[$pos][1] == '/' || $tokens[$pos][1] == '%') )
+		{
+			$op = $tokens[$pos][1];
+			$pos++;
+			$right = self::CalcFactor($tokens, $pos);
+			if( $right === null )
+			{
+				return null;
+			}
+			if( ($op == '/' || $op == '%') && $right == 0 )
+			{
+				return null;
+			}
+			if( $op == '*' )
+			{
+				$left = $left * $right;
+			}
+			else if( $op == '/' )
+			{
+				$left = $left / $right;
+			}
+			else
+			{
+				$left = fmod($left, $right);
+			}
+		}
+		return $left;
+	}
+
+	/**
+	 * 括号、正负号和数字
+	 */
+	private static function CalcFactor( &$tokens , &$pos )
+	{
+		if( !isset($tokens[$pos]) )
+		{
+			return null;
+		}
+		$tk = $tokens[$pos];
+		if( $tk[0] == 'num' )
+		{
+			$pos++;
+			return $tk[1];
+		}
+		if( $tk[0] == 'op' && ($tk[1] == '+' || $tk[1] == '-') )
+		{
+			$pos++;
+			$val = self::CalcFactor($tokens, $pos);
+			if( $val === null )
+			{
+				return null;
+			}
+			return ($tk[1] == '-') ? -$val : $val;
+		}
+		if( $tk[0] == 'op' && $tk[1] == '(' )
+		{
+			$pos++;
+			$val = self::CalcExpr($tokens, $pos);
+			if( $val === null || !isset($tokens[$pos]) || $tokens[$pos][1] != ')' )
+			{
+				return null;
+			}
+			$pos++;
+			return $val;
+		}
+		return null;
+	}
+
+	/**
+	 * 模版运算标签
 	 */
 	private function Arithmetic()
 	{
@@ -999,10 +1140,11 @@ class common{
 		{
 			foreach ($tagArr[1] as $k=>$v)
 			{
-				$artStr = '$val = @('.$v.');';
-				if( @eval($artStr) === false)
+				//解析不了就原样保留，不再执行任何字符串
+				$val = self::Calc($v);
+				if( $val === null )
 				{
-					
+					continue;
 				}
 				$arr[$tagArr[0][$k]] = $val;
 			}
