@@ -238,22 +238,8 @@ class Uploader
             return;
         }
 
-        preg_match('/(^https*:\/\/[^:\/]+)/', $imgUrl, $matches);
-        $host_with_protocol = count($matches) > 1 ? $matches[1] : '';
-
-        // 判断是否是合法 url
-        if (!filter_var($host_with_protocol, FILTER_VALIDATE_URL)) {
-            $this->stateInfo = $this->getStateInfo("INVALID_URL");
-            return;
-        }
-
-        preg_match('/^https*:\/\/(.+)/', $host_with_protocol, $matches);
-        $host_without_protocol = count($matches) > 1 ? $matches[1] : '';
-
-        // 此时提取出来的可能是 ip 也有可能是域名，先获取 ip
-        $ip = gethostbyname($host_without_protocol);
-        // 判断是否是私有 ip
-        if(!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE)) {
+        //地址必须是公网 http/https：内网、回环、169.254 和保留地址一律拒绝
+        if (!IsPublicHttpUrl($imgUrl)) {
             $this->stateInfo = $this->getStateInfo("INVALID_IP");
             return;
         }

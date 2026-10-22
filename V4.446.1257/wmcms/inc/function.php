@@ -1317,6 +1317,59 @@ function IsSpider()
 }
 
 /**
+ * 判断一个远程地址是不是可以安全抓取
+ * 只允许 http/https，并且解析出来的 IP 不能是内网、回环、链路本地或保留地址，
+ * 否则「抓取远程图片」这类功能就能被用来打内网服务。
+ * @param 参数1，必须，完整 URL。
+ */
+function IsPublicHttpUrl( $url )
+{
+	$url = trim((string)$url);
+	if( $url == '' || !preg_match('#^https?://#i', $url) )
+	{
+		return false;
+	}
+	$partArr = @parse_url($url);
+	if( !is_array($partArr) || !isset($partArr['host']) || $partArr['host'] == '' )
+	{
+		return false;
+	}
+	//带用户名密码的地址一律拒绝
+	if( isset($partArr['user']) || isset($partArr['pass']) )
+	{
+		return false;
+	}
+	$host = $partArr['host'];
+	//先看是不是直接写的 IP
+	$ipArr = array();
+	if( filter_var($host, FILTER_VALIDATE_IP) )
+	{
+		$ipArr[] = $host;
+	}
+	else
+	{
+		$resolved = @gethostbynamel($host);
+		if( is_array($resolved) )
+		{
+			$ipArr = $resolved;
+		}
+	}
+	if( empty($ipArr) )
+	{
+		return false;
+	}
+	foreach ($ipArr as $ip)
+	{
+		//私网、回环、链路本地(169.254)、保留地址都不允许
+		if( !filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) )
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+/**
  * 给 curl 找一份 CA 证书包
  * php.ini 里没配 curl.cainfo / openssl.cafile 时，curl 无法验证任何 https 证书。
  * 这里按常见位置找一份，找不到就返回空字符串（此时调用方会明确失败，而不是静默降级）。
