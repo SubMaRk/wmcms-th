@@ -46,6 +46,8 @@ class common{
 		$this->Arithmetic();
 		//格式化标签
 		$this->Format();
+		//字数简写标签
+		$this->NumberShort();
 		//插件功能
 		$this->Plugin();
 		//判断两个字符串相等的标签
@@ -72,8 +74,6 @@ class common{
 		
 		//字符分割标签替换
 		$this->WMExplode();
-		//php标签替换
-		$this->WMPhp();
 		//php标签替换
 		$this->NativePhp('{php}','{/php}');
 		//php原生写法替换，目前只对后台管理员生效
@@ -278,36 +278,15 @@ class common{
 	}
 
 	/**
-	 * 执行模版中的PHP标签
-	 * 注意：目前不能使用echo，需要把所有结果集合，然后return。
-	 **/
-	static function WMPhp()
-	{
-		$phpArr = self::SaltedBlocks('{wmphp}','{/wmphp}');
-		for ($i = 0 ; $i < count($phpArr[0]) ; $i++ )
-		{
-			$funName = 'WMCMSPHP'.md5($phpArr[1][$i]);
-			$str = 'function '.$funName.'(){$html="";'.$phpArr[1][$i].' return $html;}$html = '.$funName.'();';
-			//是否开启了debug
-			if( DEBUG )
-			{
-				eval($str);
-			}
-			else
-			{
-				if( @eval($str) === false )
-				{
-					tpl::ErrInfo('对不起wmphp标签语法错误，如需查看详情请开启debug模式！<br/>错误代码：'.$phpArr[1][$i]);
-				}
-			}
-			tpl::Rep( array($phpArr[0][$i]=>$html) , null , 2 );
-		}
-	}
-	/**
 	 * 执行原生PHP标签
 	 **/
 	static function NativePhp( $open = '{php}' , $close = '{/php}' )
 	{
+		//未明确允许时，模版里的 PHP 标签不执行，原样输出
+		if( !defined('TPL_PHP_ALLOW') || TPL_PHP_ALLOW !== true )
+		{
+			return false;
+		}
 		$phpArr = self::SaltedBlocks($open,$close);
 		for ($nativePhpI = 0 ; $nativePhpI < count($phpArr[0]) ; $nativePhpI++ )
 		{
@@ -1204,6 +1183,50 @@ class common{
 	}
 
 	
+	/**
+	 * 字数简写标签
+	 * {字数简写:1500} => 2千
+	 * @param 参数1，必须，数字。
+	 */
+	private function NumberShort()
+	{
+		preg_match_all('/\{字数简写:([0-9]+)\}/', tpl::$tempCode, $tagArr);
+		$arr = array();
+		if( !empty($tagArr[0]) )
+		{
+			foreach ($tagArr[1] as $k=>$v)
+			{
+				$n = (float)$v;
+				if( $n <= 0 )
+				{
+					$label = '暂未写作';
+				}
+				else if( $n < 1000 )
+				{
+					$label = $n.'字';
+				}
+				else if( $n < 10000 )
+				{
+					$label = round($n/1000).'千';
+				}
+				else if( $n < 100000 )
+				{
+					$label = round($n/10000).'万';
+				}
+				else if( $n < 1000000 )
+				{
+					$label = round($n/100000).'十万';
+				}
+				else
+				{
+					$label = round($n/1000000).'百万';
+				}
+				$arr[$tagArr[0][$k]] = $label;
+			}
+			tpl::Rep( $arr , null , 2 );
+		}
+	}
+
 	/**
 	* 替换自定义sql
 	**/

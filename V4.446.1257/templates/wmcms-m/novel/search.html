@@ -48,26 +48,7 @@
                                                     <p class="x-book__info--name">{小说名字}</p>
                                                     <div class="book-info-status">
                                                         <span class="book-status">{小说进程}</span>
-                                                        <span class="book-wordcount">{php}
-	                            if('{小说字数}'==0){
-	                                echo '暂未写作';
-	                            };
-	                            if('{小说字数}'<999 && '{小说字数}'>0){
-	                                echo '{小说字数}字';
-	                            };
-	                            if('{小说字数}'>999 && '{小说字数}'<9999){
-	                                echo '{运算:{小说字数}/1000}千字	';
-	                            };
-	                            if('{小说字数}'>9999 && '{小说字数}'<99999){
-	                                echo round('{运算:{小说字数}/10000}',0).'万字';
-	                            };
-	                            if('{小说字数}'>99999 && '{小说字数}'<999999){
-	                                echo round('{运算:{小说字数}/100000}',0).'十万字';
-	                            };
-	                            if('{小说字数}'>999999){
-	                                echo round('{运算:{小说字数}/1000000}',0).'百万字';
-	                            };
-                            {/php}</span>
+                                                        <span class="book-wordcount">{字数简写:{小说字数}}</span>
                                                     </div>
                                                     <p class="x-book__intro">{小说简介:30}</p>
                                                 </div>

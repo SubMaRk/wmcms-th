@@ -29,11 +29,18 @@ define('WMDB',str_ireplace('/inc/', '/db/', WMINC));
 //专题、单页静态资源路径
 define('WMSTATIC',str_ireplace('/wmcms/inc/', '/files/static/', WMINC));
 //不使用的module
-define('NOTMODULE','');
+define('NOTMODULE','about,app,article,author,bbs,diy,down,editor,link,message,picture,replay,search,user,zt');
 //版本号、版本类型、发布时间
 define('WMVER','4.446.1257');
 define('WMVER_TYPE','0');
 define('WMVER_TIME','20231230');
+//是否允许模版里的 {php} 标签执行原生 PHP。
+//模版文件等同于服务器上的代码，只有在你确实需要时才打开：
+//默认关闭，模版里写了 {php} 也只会按文本显示，不会执行。
+if( !defined('TPL_PHP_ALLOW') )
+{
+	define('TPL_PHP_ALLOW', false);
+}
 //程序包名
 define('WMCMS','WMCMS');
 //主域名
