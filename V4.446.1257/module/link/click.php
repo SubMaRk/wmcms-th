@@ -20,6 +20,14 @@ $url = Get('url');
 //如果是普通出站,无需http
 if( $t == 'out' && $url != '' )
 {
+	//只接受 http/https 的绝对地址。原实现直接把 url 参数塞进 Location 头，
+	//可以被当作开放重定向跳板（钓鱼链接挂在可信域名下）。
+	$urlScheme = strtolower((string)parse_url($url, PHP_URL_SCHEME));
+	$urlHost = (string)parse_url($url, PHP_URL_HOST);
+	if( ($urlScheme != 'http' && $urlScheme != 'https') || $urlHost == '' )
+	{
+		$url = DOMAIN;
+	}
 	if ( $linkConfig['click_type'] == 0 )
 	{
 		header("Location: ".$url);

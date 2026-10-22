@@ -48,6 +48,8 @@ define('WMLABEL','http://label.'.WMDOMAIN);
 define('WMHELP','http://help.'.WMDOMAIN);
 //程序服务地址
 define('WMSERVER','http://server.'.WMDOMAIN);
+//是否位于可信反向代理之后（启用后才采信 X-Forwarded-For，默认关闭）
+define('TRUST_PROXY',false);
 //开启运行日志文件记录
 define('RUNLOG',true);
 //开启debug模式

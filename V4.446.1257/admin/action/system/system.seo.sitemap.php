@@ -13,7 +13,8 @@ $domain = DOMAIN;
 $step = Request('step');
 $module = Request('module');
 $page = Request('page');
-$tid = Request('tid');
+//tid 会拼进 SQL 的字符串条件，强制转成整数
+$tid = str::Int( Request('tid') );
 //生成首页
 if ( $type == 'sitemap' || $type == 'rss')
 {

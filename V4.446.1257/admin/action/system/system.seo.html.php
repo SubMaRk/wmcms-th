@@ -13,12 +13,13 @@ $domain = DOMAIN;
 $step = Request('step');
 $module = Request('module');
 $pagetype = Request('pagetype');
-$tid = Request('tid');
+//tid 会拼进 SQL 的字符串条件，强制转成整数
+$tid = str::Int( Request('tid') );
 $tpinyin = Request('tpinyin');
 $where = Request('where');
 $page = Request('page');
-$startid = Request('startid');
-$endid = Request('endid');
+$startid = str::Int( Request('startid') );
+$endid = str::Int( Request('endid') );
 $starttime = Request('starttime');
 $endtime = Request('endtime');
 $id = Request('id');

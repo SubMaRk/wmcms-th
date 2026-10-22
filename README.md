@@ -69,6 +69,28 @@
 - **รองรับ PHP 8** — เปลี่ยน `$str{0}` เป็น `$str[0]` สองจุดที่เหลือ (`weibologin/saetv2.ex.class.php`, `oss/scs/class/SCS.php`) ทำให้ lint ผ่านทั้ง PHP 7.2 และ 8.3
 - **ยกระดับการเก็บรหัสผ่านเป็น bcrypt** — เพิ่ม `str::PswHash()`, `str::PswCheck()`, `str::PswIsLegacy()` ทุกจุดที่เขียนรหัสผ่านใช้ bcrypt และล้างค่า salt ระบบตรวจรหัสผ่านแบบเก่า `sha1(md5())` ได้และจะเปลี่ยนเป็น bcrypt ให้ทันทีเมื่อเข้าสู่ระบบสำเร็จ ขยายคอลัมน์ `*_psw` เป็น `VARCHAR(255)` ใน `install/sql.sql` และมีไฟล์ `upgrade/V4.446.1257-CustomPatch.sql` สำหรับเว็บที่ติดตั้งไปแล้ว
 
+## รายการแก้ไขรอบที่สอง (จากการไล่ทดสอบจริง)
+
+### วิกฤต
+- **CSRF ทั้งหลังบ้าน → RCE** — ทุกคำขอ `a=yes` ไม่มี token และไม่ตรวจแหล่งที่มา จึงมีเพียง cookie ของแอดมินก็ยิงคำสั่งได้ (ทดสอบแล้ว: สร้าง `upload/_csrf.php` ผ่าน `data.file&t=create` แล้วเรียกไฟล์นั้นได้) เพิ่ม `AdminCsrfCheck()` ใน `admin/index.php` ตรวจ `Origin`/`Referer` ให้ตรงกับโฮสต์ปัจจุบัน ถ้าไม่มีทั้งคู่หรือไม่ตรงจะปฏิเสธทันที (ข้อยกเว้นเดียวคือ CLI)
+- **ตัวจัดการไฟล์เขียนไฟล์ PHP ได้** — `data.file&t=create|edit` ปฏิเสธนามสกุล `php/php3/php4/php5/phtml/phar/pht/inc/htaccess/htpasswd` และไฟล์ที่ขึ้นต้นด้วยจุด
+
+### สูง
+- **SQL injection ที่ `novel.sell.settlement`** — `year`/`month` ถูกต่อเข้าเงื่อนไข `array('string',...)` ตรง ๆ (ทดสอบ: `month=01 OR 1` เปลี่ยนจำนวนบทที่แสดงจริง) เปลี่ยนเป็น `str::Int()` และจำกัดเดือน 1–12
+- **SQL injection แฝงที่ตัวสร้าง HTML/sitemap** — `tid`, `startid`, `endid` ใน `system.seo.html` / `system.seo.sitemap` ถูกต่อเข้า `FIND_IN_SET()` ตรง ๆ ปัจจุบันถูกบล็อกเพราะยังไม่เปิด static HTML แต่จะกลายเป็นช่องทันทีที่เปิด เปลี่ยนเป็น `str::Int()` แล้ว
+- **Path traversal ที่ `data.file&t=rename`** — `oldname`/`newname` ไม่ถูกตรวจเลย (ทดสอบ: `../` ย้ายไฟล์ออกนอก `upload/` ได้จริง) เปลี่ยนเป็น `basename()` + `ClearPath()`
+
+### กลาง
+- **`GetIp()` ปลอมได้** — เดิมเชื่อ `HTTP_CLIENT_IP` และ `HTTP_X_FORWARDED_FOR` ก่อน `REMOTE_ADDR` ทำให้หมุน header หนีการจำกัดจำนวนครั้งล็อกอิน 5 ครั้ง/วัน และหลบการแบนได้ เปลี่ยนให้ใช้ `REMOTE_ADDR` เป็นหลัก, ตรวจรูปแบบ IP, และใช้ proxy header เฉพาะเมื่อ `define('TRUST_PROXY', true)` เท่านั้น
+- **คุกกี้/เซสชันไม่มีการป้องกัน** — `setcookie()` และ session cookie ไม่มี `HttpOnly`/`SameSite` เพิ่ม `HttpOnly` + `SameSite=Lax` (และ `Secure` เมื่อเป็น HTTPS) ผ่าน `CookieOptions()` และ `session_set_cookie_params()`
+
+### แก้บั๊กที่เกิดจากการแก้รอบแรก
+- `wmcms/action/index.php` และ `wmcms/ajax/index.php` เป็น entry point ที่หน้าเว็บเรียกจริง (เช่น `?action=replay.add`) ไม่ใช่ไฟล์ include — การเติม guard ในรอบแรกทำให้โพสต์คอมเมนต์พังทั้งเว็บ ถอน guard ออกแล้ว
+
+### ข้อจำกัดที่ยังเหลือ (โดยเจตนา)
+- `module/link/click.php` ยังยอมให้ redirect ไป URL `http/https` ภายนอกได้ เพราะเป็นฟังก์ชันของโมดูลลิงก์เอง (ตัวนับคลิกออก) แต่ตัด `javascript:` และ `//host` ที่ใช้เป็นช่องทางหลอกได้แล้ว
+- เปิด `AllowOverride` ให้ `.htaccess` ทำงาน ถ้าต้องการให้กฎปฏิเสธไฟล์ `*.sql/*.ini/*.log` มีผล (Laragon ค่าเริ่มต้นคือ `None`)
+
 ## หมายเหตุการติดตั้ง
 - PHP ที่รองรับ: 7.2 ขึ้นไป (ทดสอบ 7.2.34) และ lint ผ่านบน 8.3
 - ถ้าเคยติดตั้ง 4.446.1257 มาก่อน ให้รัน `upgrade/V4.446.1257-CustomPatch.sql` หนึ่งครั้ง

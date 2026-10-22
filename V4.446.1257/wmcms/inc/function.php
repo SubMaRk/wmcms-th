@@ -877,11 +877,64 @@ function Cookie( $key , $val = '' , $time = '' , $path = '/' ,  $server = '' )
 			$val = serialize($oldArr);
 		}
 
-		$value = setcookie( $key , $val , $time , $path , $server );
+		if( PHP_VERSION_ID >= 70300 )
+		{
+			$value = setcookie( $key , $val , CookieOptions($time,$path,$server) );
+		}
+		else
+		{
+			$opt = CookieOptions($time,$path,$server);
+			$value = setcookie( $key , $val , $opt['expires'] , $opt['path'] , $opt['domain'] , $opt['secure'] , $opt['httponly'] );
+		}
 	}
 	return InputConversion($key,$value,$con);
 }
 
+
+/**
+ * 当前请求是否使用 HTTPS
+ */
+function IsHttpsRequest()
+{
+	if( !empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) != 'off' )
+	{
+		return true;
+	}
+	if( GetKey($_SERVER,'HTTP_X_FORWARDED_PROTO') == 'https' )
+	{
+		return true;
+	}
+	if( GetKey($_SERVER,'SERVER_PORT') == '443' )
+	{
+		return true;
+	}
+	return false;
+}
+
+/**
+ * 统一的 cookie 参数：HttpOnly 防脚本读取，SameSite=Lax 防跨站携带
+ * @param 参数1，必须，过期时间
+ * @param 参数2，必须，路径
+ * @param 参数3，必须，域名
+ */
+function CookieOptions( $time , $path , $server )
+{
+	$secure = IsHttpsRequest();
+	if( PHP_VERSION_ID >= 70300 )
+	{
+		return array(
+			'expires'	=>	$time,
+			'path'		=>	$path,
+			'domain'	=>	$server,
+			'secure'	=>	$secure,
+			'httponly'	=>	true,
+			'samesite'	=>	'Lax',
+		);
+	}
+	//7.3 之前 setcookie 没有 samesite 参数，用 path 后缀的兼容写法
+	$path = $path == '' ? '/' : $path;
+	return array('expires'=>$time,'path'=>$path.'; samesite=Lax','domain'=>$server,'secure'=>$secure,'httponly'=>true);
+}
 
 /**
  * 获得cook和session的保存服务器地址
@@ -1546,24 +1599,29 @@ function ReturnData( $msg = '操作成功！' , $ajax = '' , $code = 500 , $data
 //获得ip
 function GetIp()
 {
-	if ( getenv("HTTP_CLIENT_IP") )
-	{
-		$ip = getenv("HTTP_CLIENT_IP");
-	}
-	else if( getenv("HTTP_X_FORWARDED_FOR") )
-	{
-		$ip = getenv("HTTP_X_FORWARDED_FOR");
-	}
-	//兼容php7.1和7.2，cgi模式下getenv会停止运行
-	else if( isset($_SERVER['REMOTE_ADDR']) || getenv("REMOTE_ADDR") )
+	//客户端的真实地址只认 REMOTE_ADDR。
+	//原实现优先使用 HTTP_CLIENT_IP / HTTP_X_FORWARDED_FOR，这两个头完全由请求方
+	//自己填写，攻击者每次换一个值就能绕过登录次数限制、封禁和各类按 IP 的配额。
+	if( !empty($_SERVER['REMOTE_ADDR']) )
 	{
 		$ip = $_SERVER['REMOTE_ADDR'];
 	}
+	//仅当部署明确位于可信反向代理之后时才采信代理头
+	else if( TRUST_PROXY && GetKey($_SERVER,'HTTP_X_FORWARDED_FOR') != '' )
+	{
+		$proxyArr = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+		$ip = trim($proxyArr[0]);
+	}
 	else
 	{
-		$ip = "0.0.0.0";
+		$ip = '0.0.0.0';
 	}
-	
+
+	//只返回合法的 IP，其他一律当作未知
+	if( filter_var($ip, FILTER_VALIDATE_IP) === false )
+	{
+		$ip = '0.0.0.0';
+	}
 	return $ip;
 }
 

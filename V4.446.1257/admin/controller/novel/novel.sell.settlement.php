@@ -21,9 +21,10 @@ $goldName = $userConfig['gold'.$novelConfig['buy_gold_type'].'_name'];
 
 //接受数据
 $nid = intval(Get('nid'));
-$year = Get('year');
-$month = Get('month');
-if( $year=='' || $month == '' )
+//年月会拼进 SQL 的字符串条件里，必须是纯数字
+$year = str::Int( Get('year') );
+$month = str::Int( Get('month') );
+if( $year == 0 || $month == 0 || $month > 12 )
 {
 	$year = date('Y');
 	$month = date('n');

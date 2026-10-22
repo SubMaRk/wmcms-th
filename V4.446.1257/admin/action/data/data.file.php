@@ -12,8 +12,9 @@
 if ( $type == 'rename' )
 {
 	$path = str::ClearPath($post['path'],true);
-	$oldName = $post['oldname'];
-	$newName = $post['newname'];
+	//文件名只允许是纯文件名，避免用 ../ 把文件挪出当前目录
+	$oldName = str::ClearPath(basename($post['oldname']));
+	$newName = str::ClearPath(basename($post['newname']));
 	
 	if( $oldName == '' || $newName == '' )
 	{
@@ -128,8 +129,10 @@ else if( $type == 'movefile' )
 else if( $type == "create" || $type == "edit" )
 {
 	$path = str::ClearPath(Request('path'),true);
-	$fileName = str::ClearPath(Request('filename'));
+	//文件名只允许是纯文件名，并且不能是可执行脚本
+	$fileName = str::ClearPath(basename(Request('filename')));
 	$fileContent = stripslashes($_POST['content']);
+	$banExt = array('php','php3','php4','php5','phtml','phar','pht','inc','htaccess','htpasswd');
 	//如果保存的目录是以/开头，就替换掉
 	if( substr( $path, 0, 1 ) == '/' )
 	{
@@ -139,6 +142,10 @@ else if( $type == "create" || $type == "edit" )
 	if( $fileName == '' )
 	{
 		Ajax( 'ขออภัย! ชื่อต้องไม่ว่าง' , 300);
+	}
+	else if( in_array(strtolower(pathinfo($fileName, PATHINFO_EXTENSION)) , $banExt) || strpos($fileName,'.') === 0 )
+	{
+		Ajax( 'ขออภัย! ไม่สามารถสร้างหรือแก้ไขไฟล์ชนิดนี้ได้' , 300);
 	}
 	else if( str_replace('../', '', $path) != $path )
 	{

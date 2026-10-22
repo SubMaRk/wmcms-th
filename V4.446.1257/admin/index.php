@@ -46,6 +46,12 @@ CheckDomainAccess();
 //检查管理员登录情况
 $cPath = CheckLogin($c);
 
+//后台所有操作请求都要校验来源，防止跨站请求伪造
+if ( $a === true )
+{
+	AdminCsrfCheck();
+}
+
 //检查记录管理员的请求
 RequestLog();
 //如果不是超级管理员权限检测

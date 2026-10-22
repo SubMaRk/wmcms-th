@@ -50,6 +50,64 @@ function RequestLog()
 
 
 /**
+ * 后台跨站请求伪造防护
+ *
+ * 模板里所有 a=yes 的请求都不带任何 token，也没有校验来源，因此第三方页面
+ * 可以借管理员已登录的 cookie 提交后台请求（实测可用文件管理接口写出 php 文件）。
+ * 这里要求 Origin 或 Referer 与当前站点同源，否则直接拒绝。
+ */
+function AdminCsrfCheck()
+{
+	//命令行调用没有浏览器语义，不参与检查
+	if( php_sapi_name() == 'cli' )
+	{
+		return true;
+	}
+
+	$host = strtolower(GetKey($_SERVER,'HTTP_HOST'));
+	//同源请求优先看 Origin，GET 的 XHR 通常只有 Referer
+	if( GetKey($_SERVER,'HTTP_ORIGIN') != '' )
+	{
+		$source = $_SERVER['HTTP_ORIGIN'];
+	}
+	else
+	{
+		$source = GetKey($_SERVER,'HTTP_REFERER');
+	}
+
+	//两个都没有：不是浏览器同源发起的请求
+	if( $source == '' )
+	{
+		AdminCsrfFail();
+	}
+
+	$sourceHost = strtolower((string)parse_url($source, PHP_URL_HOST));
+	$sourcePort = parse_url($source, PHP_URL_PORT);
+	if( $sourcePort != '' )
+	{
+		$sourceHost .= ':'.$sourcePort;
+	}
+	if( $sourceHost == '' || $sourceHost !== $host )
+	{
+		AdminCsrfFail();
+	}
+	return true;
+}
+
+/**
+ * 来源校验失败的处理
+ */
+function AdminCsrfFail()
+{
+	$info = 'การตรวจสอบแหล่งที่มาของคำขอไม่ผ่าน กรุณาเปิดหน้าใหม่แล้วทำรายการอีกครั้ง';
+	if( IsAjax() )
+	{
+		Ajax($info,300);
+	}
+	die($info);
+}
+
+/**
  * 检查管理员登录情况
  * @param 参数1，选填，控制器名字
  */
