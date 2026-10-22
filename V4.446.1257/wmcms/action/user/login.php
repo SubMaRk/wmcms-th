@@ -65,6 +65,12 @@ else
     $where['user_name'] = $name;
 }
 $data = $userMod->GetOne($where);
+//同一个账号连续失败也要封锁，避免换 IP 绕过
+if( is_array($data) && $logMod->GetUserCount($data['user_id']) >= $C['config']['web']['user_login_error_number'] )
+{
+	$info = tpl::Rep( array('封锁时间'=>$C['config']['web']['user_login_error_time']) ,$lang['user']['login_err'] );
+	ReturnData( $info );
+}
 //设置用户的数据
 user::$user = $data;
 

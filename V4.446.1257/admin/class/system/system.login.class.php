@@ -43,6 +43,20 @@ class SystemLogin
 	
 	
 	//获得当前ip在指定时间内的登录的错误次数
+	/**
+	 * 同一个管理员在指定时间内的登录失败次数
+	 * @param 参数1，必须，管理员id
+	 */
+	function GetNameCount( $managerId )
+	{
+		$s = time() - C('config.web.admin_login_error_time')*60;
+		$where['table'] = $this->table;
+		$where['where']['login_status'] = array('<>','1');
+		$where['where']['manager_id'] = (int)$managerId;
+		$where['where']['login_time'] = array('>',$s);
+		return wmsql::GetCount($where);
+	}
+
 	function GetCount()
 	{
 		//当前时间减去错误等待的时间（分钟），所以乘以60

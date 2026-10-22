@@ -57,6 +57,21 @@ class LogModel
 
 
 	//获得当前ip在指定时间内的登录的错误次数
+	/**
+	 * 同一个账号在指定时间内的登录失败次数
+	 * IP 限制挡不住换 IP 撞库，账号维度必须单独计数。
+	 * @param 参数1，必须，用户id
+	 */
+	function GetUserCount( $uid )
+	{
+		$s = time() - C('config.web.user_login_error_time')*60;
+		$where['table'] = $this->table;
+		$where['where']['login_status'] = array('<>','1');
+		$where['where']['user_id'] = (int)$uid;
+		$where['where']['login_time'] = array('>',$s);
+		return wmsql::GetCount($where,'login_id');
+	}
+
 	function GetCount()
 	{
 		//当前时间减去错误等待的时间（分钟），所以乘以60

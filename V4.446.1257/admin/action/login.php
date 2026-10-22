@@ -58,6 +58,13 @@ else
 			}
 			else
 			{
+				//同一个管理员连续失败也要封锁，避免换 IP 绕过
+				if( $loginSer->GetNameCount($arr['manager_id']) >= C('config.web.admin_login_error_number') )
+				{
+					$tishi = '对不起，错误次数超过上限，请'.C('config.web.admin_login_error_time').'分钟后重试！';
+					$code = 300;
+					Ajax($tishi,$code);
+				}
 				$salt = $arr['manager_salt'];
 				//密码错误
 				$pswOk = str::PswCheck($passWord, $arr['manager_psw'], $salt);
