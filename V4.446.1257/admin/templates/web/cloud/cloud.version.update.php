@@ -67,11 +67,8 @@ function <?php echo $cFun;?>NextAjaxCallBack(json){
 		$("#<?php echo $cFun;?>VerBox").addClass('alert-danger');
 		$("#<?php echo $cFun;?>newText").html('当前服务器有最新版可以升级！');
 
-		if(data.version_down == 1){
-			set = '<a class="btn btn-secondary radius size-MINI" href="javascript:<?php echo $cFun;?>update()">升级</a>';
-		}else{
-			set = '对不起，该版本不支持在线升级，请到官网下载离线升级补丁！';
-		}
+		//在线升级已关闭：补丁必须手动上传，避免执行来自明文 http 的未签名代码
+		set = '本分支已关闭在线升级，请手动上传补丁包并运行其中的 update.php。';
 		html += '<tr class=""><td style="text-align: center;">'+data['version_id']+'</td>'+
 			'<td style="text-align: center;">'+data['version_number']+'</td>'+
 			'<td style="text-align: center;">'+data['version_type']+'</td>'+
@@ -85,23 +82,4 @@ function <?php echo $cFun;?>NextAjaxCallBack(json){
 	}
 }
 
-function <?php echo $cFun;?>update(){
-	$('#<?php echo $cFun;?>Update').html('更新升级包中...');
-
-	//开始升级操作
-	$.ajax({
-		type:"GET",
-		timeout : 100000,
-		url:"index.php?a=yes&c=cloud.version&t=update",
-		dataType:"json",
-		success:function(json){
-			if(json.statusCode == 200 ){
-				$("#<?php echo $cFun;?>Update").html(json.message);
-			}else{
-				$('#<?php echo $cFun;?>Update').html(set);
-			}
-			$(this).bjuiajax("ajaxDone",json);// 显示处理结果
-		},
-	});
-}
 </script>

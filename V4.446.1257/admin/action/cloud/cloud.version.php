@@ -26,120 +26,12 @@ else if ( $type == 'getnew' )
 else if ( $type == 'update' )
 {
 	/*
-	安全策略说明：
-	自动升级会从 http://server.weimengcms.com 下载 zip，解压后再 require 包内的
-	update.php。整条链路是明文 http，而且包没有签名校验，任何能劫持这段连接的人
-	都可以让程序执行任意 PHP（和原来 CheckBasicConfig 里的 eval 是同一类问题）。
-	官方 4.446.1257 是最新版本且已停止维护，因此这里直接关闭自动升级，
-	改为手动上传补丁包再运行 update.php。
+	安全策略：自动升级会从 http://server.weimengcms.com 下载 zip，解压后
+	require 包内的 update.php。整条链路是明文 http，包也没有签名校验，
+	任何能劫持这段连接的人都能让站点执行任意 PHP。
+	官方 4.446.1257 已是最后一个版本，因此移除在线升级的实现，
+	需要打补丁时手动上传补丁包并运行其中的 update.php。
 	*/
-	Ajax('ขออภัย! ปิดการอัปเกรดอัตโนมัติเพื่อความปลอดภัย โปรดดาวน์โหลดชุดแพ็คอัปเดตเองแล้วรัน update.php ด้วยมือ',300);
-
-	$adminPath = $C['config']['web']['admin_path'];
-	
-	if( $adminPath == '' )
-	{
-		Ajax('ขออภัย! โปรดตั้งไดเร็กทอรี่พื้นหลังในจัดการระบบ > ตั้งค่าเว็บไซต์ > ตั้งค่าทั่วไป มิเช่นนั้นจะไม่สามารถอัปเกรดได้',300);
-	}
-	else if( !is_dir(WMROOT.$adminPath) )
-	{
-		Ajax('ขออภัย! ไม่พบไดเร็กทอรี่พื้นหลังในการตั้งค่าระบบ ไม่สามารถอัปเกรดได้',300);
-	}
-	else
-	{
-		$rs = $cloudSer->GetVersionNext(1);
-		if( isset($rs['data']) )
-		{
-			if( $rs['data']['version_down'] == '0' )
-			{
-				Ajax('ขออภัย! เวอร์ชั่นนี้ไม่รองรับการอัปเกรดผ่านพื้นหลัง โปรดไปที่เว็บไซต์ทางการเพื่อดาวน์โหลดอัปเดทด้วยตนเอง',300);
-			}
-			//总大小
-			Session('update_size' , $rs['data']['version_size']);
-			if( $rs['data']['version_down'] == 1 )
-			{
-				//获得文件的名字
-				$file = str::GetLast($rs['data']['version_downurl'],'/');
-				list($fileName,$fileExt) = explode('.', $file);
-				$zipFilePath = WMROOT.'upload/update/'.$fileName;
-				
-				//检查是否下载过文件了,下载过就删除文件。
-				if( file_exists($zipFilePath.'.'.$fileExt) )
-				{
-					file::DelFile($zipFilePath.'.'.$fileExt);
-				}
-				//下载服务器升级补丁
-				Session('update_downLen' , $rs['data']['version_size']);
-				file::DownloadFile($rs['data']['version_downurl'],2,WMROOT.'upload/update','update');
-				
-				$zip = NewClass('pclzip',$zipFilePath.'.'.$fileExt);
-				//解压缩到当前id文件夹下面
-				if ( $zip->extract(PCLZIP_OPT_PATH, $zipFilePath) )
-				{
-					//如果升级文件存在就执行sql。
-					if( file_exists($zipFilePath.'/update.php') )
-					{
-						require_once $zipFilePath.'/update.php';
-					}
-					//列出code里面的文件并且移动
-					file::FileAll($zipFilePath.'/code');
-					foreach(file::$fileList as $k=>$v)
-					{
-						$mpath = str_replace($zipFilePath.'/code','',$v['path']);
-						//如果是后台文件,并且当前文件夹不等于后台文件夹
-						if( $adminPath != 'admin' && substr($mpath,0,6) == '/admin')
-						{
-							$mpath = str_replace('/admin',$adminPath,$mpath);
-						}
-						file::CopyFile($v['path'] , WMROOT.$mpath , $v['file']);
-					}
-					//修改版本
-					SetVersion($rs['data']['version_number'],date('Ymd', strtotime($rs['data']['version_addtime'])));
-				}
-	
-				$cloudSer->SetUpdateLog(WMVER,$rs['data']['version_number']);
-
-				//写入操作记录
-				SetOpLog( 'อัปเกรดระบบ' , 'system' , 'update' );
-				Ajax('ยินดีด้วย! อัปเกรดระบบสำเร็จ โปรดออกจากระบบแล้วเข้าสู่ระบบใหม่อีกครั้งเพื่อสัมผัสประสบการณ์ของเวอร์ชั่นล่าสุด',200,$zipFilePath);
-
-			}
-			else
-			{
-				Ajax('ขออภัย! เวอร์ชั่นปัจจุบันไม่ต้องอัปเกรด',300);
-			}
-		}
-		else
-		{
-			Ajax('ขออภัย! ไม่พบเวอร์ชั่นใหม่',300);
-		}
-	}
-}
-//升级进度查询
-else if ( $type == 'getbarline' )
-{
-	//总大小
-	$size = Session('update_size');
-	$downSize = Session('update_downLen');
-	
-	if($size > 0 )
-	{
-		Session('update_size',0);
-		Session('update_downLen',0);
-		
-		$data['success'] = 0;
-		$data['barline'] = round($downSize/$size,2)*100;
-		
-		if( $downSize == $size)
-		{
-			$data['success'] = 1;
-			Ajax('กำลังดาวน์โหลด...' , 201 , $data);
-		}
-		Ajax('กำลังดาวน์โหลด...' , 200 , $data);
-	}
-	else
-	{
-		Ajax('ดาวน์โหลดล้มเหลว!',300);
-	}
+	Ajax('ขออภัย! ปิดการอัปเกรดอัตโนมัติเพื่อความปลอดภัย โปรดอัปโหลดชุดแพ็คอัปเดตเองแล้วรัน update.php ด้วยมือ',300);
 }
 ?>
