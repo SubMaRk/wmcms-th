@@ -1,0 +1,15 @@
+# ไฟล์แนบ/รูปที่ระบบเก็บไว้ ไม่ควรมีสคริปต์ใด ๆ ถูกเรียกใช้จากที่นี่
+<IfModule mod_authz_core.c>
+	<FilesMatch "\.(php[0-9]?|phtml|pht|phar|inc|cgi|pl|py|sh|asp|aspx|jsp|htaccess|htpasswd)$">
+		Require all denied
+	</FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+	<FilesMatch "\.(php[0-9]?|phtml|pht|phar|inc|cgi|pl|py|sh|asp|aspx|jsp|htaccess|htpasswd)$">
+		Order allow,deny
+		Deny from all
+	</FilesMatch>
+</IfModule>
+Options -ExecCGI -Indexes
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .phar .inc
+RemoveType .php .phtml .php3 .php4 .php5 .php7 .phar .inc

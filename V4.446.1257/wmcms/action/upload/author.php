@@ -25,6 +25,11 @@ if ( in_array($type, $typeArr) )
 	{
 		$filePath = $upPath.'files';
 	}
+//浏览器上报的 MIME 可以伪造，再按真实内容确认一次
+if( !str::IsRealImg($_FILES[$fileBtnName]['tmp_name']) )
+{
+	ReturnData('ไฟล์รูปภาพไม่ถูกต้อง' , $ajax);
+}
 }
 else
 {

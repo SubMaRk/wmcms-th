@@ -455,6 +455,14 @@ class upload {
 		{
 			return $result;
 		}
+		//扩展名是图片时，文件内容也必须是图片（防止把 php 改名成 jpg 上传）
+		if( in_array(strtolower($this->extention), array('jpg','jpeg','png','gif','bmp','ico','webp')) )
+		{
+			if( !str::IsRealImg($this->upfile) )
+			{
+				return $this->showerror("ไฟล์รูปภาพไม่ถูกต้อง");
+			}
+		}
 		//检测文件大小是否超限;
 		$result = $this->check_size();
 		if ( $result !== true )

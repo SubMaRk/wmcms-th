@@ -408,6 +408,26 @@ class str{
 	 * 图片检查
 	 * @param 参数1，选填。后缀名，如果为空则返回图片数组
 	 */
+	/**
+	 * 按文件内容判断是不是图片
+	 * 浏览器给的 MIME 可以随便伪造成 image/jpeg，只有读到真实字节才可信。
+	 * @param 参数1，必须，上传后的临时文件路径。
+	 */
+	static function IsRealImg( $tmpFile )
+	{
+		if( $tmpFile == '' || !is_file($tmpFile) )
+		{
+			return false;
+		}
+		$info = @getimagesize($tmpFile);
+		if( !is_array($info) || !isset($info[2]) )
+		{
+			return false;
+		}
+		$allow = array(IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_GIF, IMAGETYPE_BMP, IMAGETYPE_ICO, IMAGETYPE_WEBP);
+		return in_array($info[2], $allow);
+	}
+
 	static function IsImg( $ext = '' )
 	{
 		$ext = strtolower($ext);
