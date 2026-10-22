@@ -1,3 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto# keep the CA bundle and other PEM files byte-exact
 *.pem -text
+# PHPMailer 上游文件保持原样
+V4.446.1257/wmcms/class/Mailer/src/** -text
