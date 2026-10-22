@@ -643,7 +643,8 @@ class novellabel extends novel
 		{
 			$signMod = NewModel('author.sign');
 			$signData = $signMod->GetOne($v['novel_sign_id']);
-			$signName = $signData['sign_name'];
+			//签约等级不存在时 GetOne 返回 false，直接取下标会在 8.x 报错
+			$signName = is_array($signData) && isset($signData['sign_name']) ? $signData['sign_name'] : '';
 		}
 		else if( $v['novel_copyright'] == 2)
 		{

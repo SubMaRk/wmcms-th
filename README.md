@@ -91,8 +91,43 @@
 - `module/link/click.php` ยังยอมให้ redirect ไป URL `http/https` ภายนอกได้ เพราะเป็นฟังก์ชันของโมดูลลิงก์เอง (ตัวนับคลิกออก) แต่ตัด `javascript:` และ `//host` ที่ใช้เป็นช่องทางหลอกได้แล้ว
 - เปิด `AllowOverride` ให้ `.htaccess` ทำงาน ถ้าต้องการให้กฎปฏิเสธไฟล์ `*.sql/*.ini/*.log` มีผล (Laragon ค่าเริ่มต้นคือ `None`)
 
+## รองรับ PHP 8.3 / 8.4 / 8.5
+
+ทดสอบจริงบน PHP 8.3.33, 8.4.14 และ 8.5.6 (MySQL 8.4.3) โดยติดตั้งใหม่ทั้งชุดแล้วไล่ยิง **116 หน้า** ต่อเวอร์ชัน ครอบคลุมหน้าเว็บ หน้า AJAX และหน้า/คำสั่งหลังบ้าน
+
+| เวอร์ชัน | หน้ามีปัญหา | deprecation ที่บันทึก |
+|---|---|---|
+| 8.3 | 0 | 0 |
+| 8.4 | 0 | 0 |
+| 8.5 | 0 | 0 |
+
+### สิ่งที่แก้เพื่อให้รันได้บน 8.x
+
+- **ตัวจัดการข้อผิดพลาดเดิมทำให้หน้าขาว** — `WMException::ErrorHandler()` เรียก `die()` กับทุก error level รวมถึง `E_DEPRECATED` (8192) ซึ่ง 8.x ฟ้องตลอดเวลา เพิ่ม `$softCode` ให้ DEPRECATED/NOTICE/STRICT ถูกเขียนลง `cache/log/soft/` แทนการหยุด request พร้อมเติมชื่อระดับที่ขาด (`DEPRECATED`, `RECOVERABLE_ERROR`, `USER_DEPRECATED`)
+- **ส่ง `null` ให้ฟังก์ชันที่ต้องการ string** — จุดที่ร้อนที่สุดคือ `C()` (`trim()`), `tpl::Rep()` (`str_replace()`) และ `str::Escape()` (`strtr()`) เติม `(string)` ที่ต้นทาง ลด deprecation จาก ~1,700 ครั้งต่อรอบเหลือ 0
+- **dynamic property (8.2+)** — ประกาศ property ที่เดิมสร้างตอนรัน: `cache::$queueCacheTime/$queuePath/$sqlPath`, `cloud::$apikey/$secret`, `ChapterModel::$novelMp3Save/$chapterMp3Save`, `ReadModel::$moduleTable`
+- **`$str{0}` string offset** — แก้เป็น `$str[0]` (แก้ไปแล้วรอบก่อน, ยืนยันบน 8.5)
+- **`ereg()` ที่ถูกถอดใน PHP 7** — แทนด้วย `preg_match()` ใน `pclzip.class.php`
+- **`strftime()` (deprecated 8.1)** — เปลี่ยนเป็น `date()` ใน SDK Alipay
+- **implicit nullable parameter (deprecated 8.4)** — `?Zone $z = null` ใน SDK Qiniu
+- **non-canonical cast (deprecated 8.5)** — `(integer)`/`(boolean)`/`(double)` → `(int)`/`(bool)`/`(float)`
+- **`curl_close()` (deprecated 8.5)** — เรียกเฉพาะ PHP < 8.0
+- **`array_key_exists(null, …)` (deprecated 8.5)** — cast เป็น string ก่อน
+- **`case 'x';` (deprecated 8.5)** — เปลี่ยนเป็น `case 'x':` ใน `manager.class.php`
+- **`false` แล้วเอาตัวแปรไปใช้เป็น array** — `data.chart.class.php`, `chapter.model.php`, `novel.label.php` เติม `is_array()` guard
+- **`ob_end_clean()` โดยไม่มี buffer** — ตรวจ `ob_get_level()` ก่อน
+- **`file::GetFile()` อ่านโฟลเดอร์** — `file_exists()` เป็นจริงกับ directory ด้วย เติม `!is_dir()`
+- **installer ปฏิเสธ PHP > 7.2** — เปลี่ยนเป็นยอมรับ 7.2–8.5
+
+### MySQL รุ่นใหม่
+
+`wmsql` ตั้ง `SET SESSION sql_mode='NO_ENGINE_SUBSTITUTION'` ต่อการเชื่อมต่อ เพราะโค้ดชุดนี้เขียนตาม sql_mode แบบหลวมของ MySQL 5.6 (เช่น insert ค่าว่างลงคอลัมน์ NOT NULL) ถ้าใช้ `STRICT_TRANS_TABLES` ของ 5.7+ จะพังทันที และหน้า `system.config.option.list` เปลี่ยนจาก `group by` เป็น `distinct` เพราะ `ONLY_FULL_GROUP_BY` ไม่ยอมรับ `SELECT c.*,g.*` คู่กับ `GROUP BY c.config_id`
+
 ## หมายเหตุการติดตั้ง
-- PHP ที่รองรับ: 7.2 ขึ้นไป (ทดสอบ 7.2.34) และ lint ผ่านบน 8.3
+- PHP ที่รองรับ: **7.2 – 8.5** — ติดตั้งและใช้งานได้จริงบน 7.2.34, 8.3.33, 8.4.14 และ 8.5.6,
+  และ `php -l` ผ่านทุกไฟล์บนทั้ง 7.2 / 8.3 / 8.4 / 8.5
+- MySQL: ต้องมี `sql_mode` ที่ไม่ใช่ strict — ตัวโปรแกรมตั้ง `SET SESSION sql_mode='NO_ENGINE_SUBSTITUTION'`
+  ให้เองทุกครั้งที่เชื่อมต่อ จึงใช้ MySQL 5.7/8.x ได้โดยไม่ต้องแก้ `my.ini`
 - ถ้าเคยติดตั้ง 4.446.1257 มาก่อน ให้รัน `upgrade/V4.446.1257-CustomPatch.sql` หนึ่งครั้ง
 - หลังติดตั้งเสร็จให้ลบโฟลเดอร์ `install` ด้วย (ไฟล์ `sql.sql` ถูกลบอัตโนมัติแล้ว)
 

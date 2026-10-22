@@ -19,11 +19,13 @@ $name = Request('name');
 
 
 //获取列表条件
-$where['field'] = 'c.*,g.*';
+//原实现用 group by c.config_id 去重，但 wm_config_config 的主键是联合主键，
+//MySQL 5.7.5+ 默认开启的 ONLY_FULL_GROUP_BY 不能确定依赖关系，会直接报 1055。
+//这里改用 distinct 去重，对任何 sql_mode 都成立。
+$where['field'] = 'distinct c.*,g.group_id,g.group_remark';
 $where['table'] = '@config_option as o';
 $where['left']['@config_config as c'] = array('inner','o.config_id=c.config_id');
 $where['left']['@config_group as g'] = array('left','c.group_id=g.group_id');
-$where['group'] = 'c.config_id';
 
 
 if( $orderField == '' )
@@ -50,7 +52,8 @@ else
 }
 
 //数据条数
-$total = wmsql::GetCount($where);
+//已经改用 distinct，计数也要对应地去重
+$total = wmsql::GetCount($where, 'distinct c.config_id');
 
 //当前页的数据
 $where = array_merge($where , GetListWhere($where));

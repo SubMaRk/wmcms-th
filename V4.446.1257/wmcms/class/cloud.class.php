@@ -12,6 +12,8 @@ class cloud{
 	private $httpSer;
 	private $email;
 	private $appid;
+	private $apikey;
+	private $secret;
 	private $domain;
 	
 	/**

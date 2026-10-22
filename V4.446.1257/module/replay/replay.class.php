@@ -63,7 +63,7 @@ class replay
 			'picture'=>'picture',
 		);
 
-		if ( array_key_exists( self::$module , $moduleArr ) )
+		if ( array_key_exists( (string)self::$module , $moduleArr ) )
 		{
 			$whereLabel = 'replay_module='.self::$module.';';
 			if( self::$cid > 0 )

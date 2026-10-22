@@ -22,6 +22,9 @@ class ChapterModel
 	//保存路径
 	private $novelSave;
 	private $chapterSave;
+	//语音合成保存路径
+	private $novelMp3Save;
+	private $chapterMp3Save;
 	//加密字符串
 	private $enStr;
 	//网站api信息
@@ -41,7 +44,7 @@ class ChapterModel
 		//保存路径
 		$this->novelSave = WMROOT.$this->novelConfig['novel_save'];
 		$this->chapterSave = WMROOT.$this->novelConfig['chapter_save'];
-		//语音合成保存路径
+		//语音合成保存路径（声明属性，避免 PHP 8.2+ 动态属性废弃）
 		$this->novelMp3Save = WMROOT.$this->novelConfig['novel_mp3_save'];
 		$this->chapterMp3Save = WMROOT.$this->novelConfig['chapter_mp3_save'];
 		//自定义加密字符串
@@ -388,7 +391,8 @@ class ChapterModel
 				$contentWhere['table'] = $this->contentTable;
 				$contentWhere['where']['content_id'] = $data['chapter_cid'];
 				$contentData = wmsql::GetOne($contentWhere);
-				$data['content'] = $contentData['content'];
+				//内容行不存在时 GetOne 返回 false
+				$data['content'] = is_array($contentData) && isset($contentData['content']) ? $contentData['content'] : '';
 			}
 		}
 		
@@ -580,6 +584,11 @@ class ChapterModel
 	    if( $type=='2' )
 	    {
 	        $data = $this->GetById($data);
+	        //章节不存在时返回错误码，不要拿空数组继续往下用
+	        if( !is_array($data) )
+	        {
+	            return 404;
+	        }
 	        $data['is_sub'] = 1;
 	    }
 		$authorData = array();
@@ -641,7 +650,8 @@ class ChapterModel
 		
 		if($data['content'] == '' && (!isset($data['is_sub']) || (isset($data['is_sub']) && $data['is_sub'] !=0) ) )
 		{
-			if( $data['chapter_path'] != '' && file_exists(WMROOT.$data['chapter_path']) )
+			//章节记录可能没有 chapter_path 字段
+			if( !empty($data['chapter_path']) && file_exists(WMROOT.$data['chapter_path']) )
 			{
 				$data['content'] = str::ToHtml(file::GetFile(WMROOT.$data['chapter_path']));
 			}

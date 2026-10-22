@@ -63,6 +63,10 @@ class cache{
 	public $queueName;
 	//缓存文件队列分类
 	protected $QueueExp = "\r\n";
+	//以下三个在构造函数里赋值，声明出来避免 PHP 8.2+ 的动态属性废弃
+	protected $queueCacheTime = '300';
+	protected $queuePath;
+	protected $sqlPath;
 
 	//redis的ip、端口
 	private $redisHost = '127.0.0.1';

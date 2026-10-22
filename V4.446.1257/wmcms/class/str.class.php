@@ -23,7 +23,7 @@ class str{
 	static function Int($number , $str = '' , $val = 0)
 	{
 		//当不为正整数时
-		if(preg_match("/^[0-9]*[1-9][0-9]*$/",$number) !=1 && $number != '0')
+		if(preg_match("/^[0-9]*[1-9][0-9]*$/",(string)$number) !=1 && $number != '0')
 		{
 			//如果提示信息为空则转为数字返回
 			if( $str != '')
@@ -1246,32 +1246,32 @@ class str{
 										foreach ($v2 as $k3=>$v3)
 										{
 											//如果v1的值为数组就取出第一个键的值
-											$str[$k][$k1][$k2][$k3] = strtr($v3,$array);
+											$str[$k][$k1][$k2][$k3] = strtr((string)$v3,$array);
 										}
 									}
 									else
 									{
 										//如果v1的值为数组就取出第一个键的值
-										$str[$k][$k1][$k2] = strtr($v2,$array);
+										$str[$k][$k1][$k2] = strtr((string)$v2,$array);
 									}
 								}
 							}
 							else
 							{
-								$str[$k][$k1] = strtr($v1,$array);
+								$str[$k][$k1] = strtr((string)$v1,$array);
 							}
 						}
 					}
 					else
 					{
-						$str[$k] = strtr($v,$array);
+						$str[$k] = strtr((string)$v,$array);
 					}
 				}
 				return $str;
 			}
 			else
 			{
-				return strtr($str,$array);
+				return strtr((string)$str,$array);
 			}
 		}
 		else

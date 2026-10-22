@@ -216,12 +216,12 @@ class tpl{
 					//标签替换
 					if( $rep_type == '1' )
 					{
-						$str=str_replace('{'.$k.'}',$v,$str);
+						$str=str_replace('{'.$k.'}',(string)$v,(string)$str);
 					}
 					//普通字符串替换
 					else if( $rep_type == '2' )
 					{
-						$str=str_replace($k,$v,$str);
+						$str=str_replace((string)$k,(string)$v,(string)$str);
 					}
 					//正则替换
 					else if( $rep_type == '3' )
@@ -1378,7 +1378,7 @@ class tpl{
 			C('page.tempid' , 'reset');
 			$tpath = C('ua.site_path').$dtemp;
 		}
-		else if( trim($tempid) == '' || $tempid == '0' || $tempid == 'reset')
+		else if( trim((string)$tempid) == '' || $tempid == '0' || $tempid == 'reset')
 		{
 			$tpath = $dtemp;
 		}

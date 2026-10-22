@@ -109,6 +109,11 @@ class DataChart
 				break;
 		}
 		$arr = wmsql::GetAll($where);
+		//GetAll 失败时会返回 false，先转成数组再下标赋值
+		if( !is_array($arr) )
+		{
+			$arr = array();
+		}
 		if( !$arr && !is_array($fieldObj))
 		{
 			$arr[0] = array('month'=>0,'count'=>0);

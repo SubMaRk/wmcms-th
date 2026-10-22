@@ -74,7 +74,7 @@ thead th {
 							<td style="text-align: center;"><input type="checkbox" name="ids" data-toggle="icheck" value="'.$v['replay_id'].'"></td>
 							<td style="text-align: center;">'.$v['replay_id'].'</td>
 							<td style="text-align: center;">'.$status.'</td>
-							<td style="text-align: center;">'.GetModuleName($v['replay_module']).'</td>
+							<td style="text-align: center;">'.($v['replay_module'] == '' ? '-' : GetModuleName($v['replay_module'])).'</td>
 							<td style="text-align: center;">'.$nickname.'</td>
 							<td style="text-align: center;">'.$v['replay_content'].'</td>
 							<td style="text-align: center;">'.$v['replay_ding'].'</td>

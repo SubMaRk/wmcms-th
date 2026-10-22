@@ -142,21 +142,21 @@ class manager{
 
 		switch ( $val['config_formtype'] )
 		{
-			case 'select';
+			case 'select':
 				$form = '<select id="'.$val['config_name'].'" name="'.$formName.'" data-toggle="selectpicker">
 						'.$this->GetConfigOption($formName, $val['config_value'] , 'select' , $option).'
 						</select>';
 				break;
 		
-			case 'textarea';
+			case 'textarea':
 				$form = '<textarea id="'.$val['config_name'].'" name="'.$formName.'">'.$val['config_value'].'</textarea>';
 				break;
 
-			case 'radio';
+			case 'radio':
 				$form = $this->GetConfigOption($formName, $val['config_value'] , $val['config_formtype'] , $option );
 				break;
 
-			case 'check';
+			case 'check':
 				$form = $this->GetConfigOption($formName, $val['config_value'] , $val['config_formtype'] , $option );
 				break;
 		

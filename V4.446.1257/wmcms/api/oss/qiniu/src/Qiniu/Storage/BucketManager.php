@@ -17,7 +17,7 @@ final class BucketManager
     private $auth;
     private $zone;
 
-    public function __construct(Auth $auth, Zone $zone = null)
+    public function __construct(Auth $auth, ?Zone $zone = null)
     {
         $this->auth = $auth;
         if ($zone === null) {

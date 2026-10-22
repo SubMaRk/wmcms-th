@@ -24,7 +24,7 @@ class retrievalLabel extends retrieval
 	function __construct()
 	{
 		//当前页面的url
-		self::$url = str_replace('{page}', C('page.page'), C('page.list_url'));
+		self::$url = str_replace('{page}', (string)C('page.page'), (string)C('page.list_url'));
 		//当前参数
 		self::$urlPar = UrlFormat();
 		

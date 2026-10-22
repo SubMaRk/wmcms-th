@@ -197,8 +197,12 @@ class http
 			$this->nowRetry = $this->nowRetry+1;
 			$this->GetUrl($url , $data);
 		}
-		curl_close($ch);
-		
+		//8.0 开始 curl_close() 已无作用，8.5 起会报废弃
+		if( PHP_VERSION_ID < 80000 )
+		{
+			curl_close($ch);
+		}
+
 		return $output;
 	}
 }

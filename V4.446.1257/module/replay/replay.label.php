@@ -181,7 +181,7 @@ class replaylabel extends replay
 	{
 		$count = parent::$count;
 		$limit = parent::$limit;
-		if ( str_replace(',','',$limit) != $limit )
+		if ( str_replace(',','',(string)$limit) != $limit )
 		{
 			list($page,$limit) = explode( ',' , $limit );
 		}

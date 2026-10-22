@@ -17,6 +17,8 @@ class ReadModel
 	public $chapterTable = '@novel_chapter';
 	//当前模块
 	public $module;
+	//模块对应的表信息（声明属性，避免 PHP 8.2+ 动态属性废弃）
+	public $moduleTable;
 	
 	/**
 	 * 构造函数

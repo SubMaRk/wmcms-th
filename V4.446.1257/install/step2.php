@@ -4,12 +4,11 @@
 $next=true;
 $os=PHP_OS;
 $phpver=floatval(PHP_VERSION);
-if($phpver>=5.3){
-	if($phpver>=5.4 && $phpver<=7.2){
-		$phps='correct';
-	}else{
-		$phps='error';
-	}
+//PHP 7.2 到 8.5 都测试过，不再限制在 7.2
+if( version_compare(PHP_VERSION, '7.2', '>=') && version_compare(PHP_VERSION, '8.6', '<') ){
+	$phps='correct';
+}else if( version_compare(PHP_VERSION, '5.3', '>=') ){
+	$phps='error';
 }else{
 	$next=false;
 	$phps='error';
@@ -114,7 +113,7 @@ if( @$_SERVER['DOCUMENT_ROOT'] != '' ){
 	<tr>
 		<td>เวอร์ชั่น PHP</td>
 		<td><span class="<?php echo $phps;?>_span">&radic;</span><?php echo $phpver;?></td>
-		<td><= 7.2</td>
+		<td>7.2 ~ 8.5</td>
 		<td>5.3</td>
 	</tr>
 	<tr>

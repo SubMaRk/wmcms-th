@@ -503,7 +503,7 @@ function C( $key , $val = '' , $default = '',$isEscape = false){
 		$nodes = explode('.', $key);
 	
 		//如果没有值就读取数组
-		if( !is_object($val) && !is_array($val) && trim( $val ) == '' )
+		if( !is_object($val) && !is_array($val) && trim( (string)$val ) == '' )
 		{
 			foreach ($nodes as $node)
 			{

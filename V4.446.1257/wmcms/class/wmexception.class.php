@@ -32,8 +32,14 @@ class WMException
 			512=>'USER_WARNING',
 			1024=>'USER_NOTICE',
 			2047=>'ALL',
-			2048=>'STRICT'
+			2048=>'STRICT',
+			4096=>'RECOVERABLE_ERROR',
+			8192=>'DEPRECATED',
+			16384=>'USER_DEPRECATED'
 	);
+	//这些级别只记录，不中断请求。PHP 8 会把大量旧写法报成 DEPRECATED，
+	//原实现一律 die()，等于 8.x 上任何一个废弃提示都会让页面白屏。
+	private static $softCode = array(2048, 8192, 16384, 1024, 8);
 	
 	//初始化异常
 	static function __init()
@@ -78,6 +84,13 @@ class WMException
 	 */
 	static function ErrorHandler($code, $msg, $fileName, $line, $param=array())
 	{
+		//废弃/提示类错误只写日志，不终止请求
+		if( in_array($code, self::$softCode) )
+		{
+			self::SoftLog($code, $msg, $fileName, $line);
+			return true;
+		}
+
 		self::$noErr = false;
 
 		//生成错误字符串
@@ -97,6 +110,26 @@ class WMException
 			'file'=>self::ClearPath($fileName),
 		);
 		die();
+	}
+
+	/**
+	 * 记录非致命的废弃/提示信息
+	 * @param 参数1，错误代码
+	 * @param 参数2，错误信息
+	 * @param 参数3，错误文件
+	 * @param 参数4，错误行数
+	 */
+	static function SoftLog($code, $msg, $fileName, $line)
+	{
+		$state = isset(self::$codeArr[$code]) ? self::$codeArr[$code] : 'NOTICE';
+		$line = sprintf("[%s] %s: %s at %s(line:%s)\r\n",
+			date('Y-m-d H:i:s'),
+			$state,
+			$msg,
+			self::ClearPath($fileName),
+			$line
+		);
+		self::CreateFile(WMCACHE.'log/soft/'.date('Y-m').'/'.date('d').'.log', $line);
 	}
 
 	/**
@@ -248,7 +281,10 @@ class WMException
 		else
 		{
 			//清空已经输出的内容。
-			ob_end_clean();
+			if( ob_get_level() > 0 )
+			{
+				ob_end_clean();
+			}
 			//如果是ajax请求
 			if( IsAjax() )
 			{

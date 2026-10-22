@@ -15,6 +15,8 @@ $timeType = $dataSer->GetTimeType();
 $timeArr = $dataSer->GetTime($type);
 
 //当前查询的是什么时间数据
+//未传类型时沿用默认标题，避免 Undefined variable
+$nowTitle = '';
 if($type == 'week')
 {
 	$nowTitle = 'สัปดาห์';

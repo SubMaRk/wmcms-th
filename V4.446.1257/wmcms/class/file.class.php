@@ -273,7 +273,8 @@ class file{
 	*/
 	static function GetFile($patch,$tohtml = false)
 	{
-		if(file_exists($patch))
+		//目录也会通过 file_exists，但不能当文件读，否则 8.x 下直接报错
+		if(file_exists($patch) && !is_dir($patch))
 		{
 			$content = file_get_contents($patch);
 			

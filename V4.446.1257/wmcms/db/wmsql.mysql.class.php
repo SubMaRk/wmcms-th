@@ -113,6 +113,14 @@ class WMSql
             self::$db = new PDO($dsn,  self::$dbUname, self::$dbUPsw);
             //转换数据库编码
             self::$db->exec('SET NAMES '.self::$dbCode);
+            //兼容模式：这套代码是按 MySQL 5.6 的宽松 sql_mode 写的，
+            //MySQL 5.7+ 默认的 STRICT_TRANS_TABLES / ONLY_FULL_GROUP_BY 会让旧语句直接报错。
+            //这里只调整本连接的会话级别 sql_mode，不影响服务器上的其他应用。
+            try {
+                self::$db->exec("SET SESSION sql_mode='NO_ENGINE_SUBSTITUTION'");
+            } catch (PDOException $e) {
+                //旧版本 MySQL 不支持该语句时忽略即可
+            }
             //显示错误信息
         	self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         	self::$openDB['db'.$id] = self::$db;
