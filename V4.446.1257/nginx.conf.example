@@ -12,9 +12,25 @@ server {
     index index.php;
 
     # 1) ไฟล์ภายในห้ามเข้าถึง
+    #    /wmcms/ 下只有 4 个入口是给浏览器和第三方调用的，
+    #    notify（支付回调，不放行订单永远不会变成已支付）、action、ajax、inc/imgcode.php
     location ^~ /wmcms/ {
-        # 但要放行支付回调，否则支付宝/微信通知会被挡掉，订单永远不会变成已支付
         location ^~ /wmcms/notify/ {
+            include fastcgi_params;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            fastcgi_pass unix:/run/php/php-fpm.sock;
+        }
+        location ^~ /wmcms/action/ {
+            include fastcgi_params;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            fastcgi_pass unix:/run/php/php-fpm.sock;
+        }
+        location ^~ /wmcms/ajax/ {
+            include fastcgi_params;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            fastcgi_pass unix:/run/php/php-fpm.sock;
+        }
+        location = /wmcms/inc/imgcode.php {
             include fastcgi_params;
             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
             fastcgi_pass unix:/run/php/php-fpm.sock;

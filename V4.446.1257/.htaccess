@@ -17,8 +17,13 @@
 </IfModule>
 <IfModule mod_rewrite.c>
 	RewriteEngine On
-	#支付平台的异步/同步回调必须能从外网访问，先放行再统一拦截
+	#/wmcms/ 下只有这几个入口是给浏览器/第三方调用的，其余（类、配置、模型、数据库）一律拦截
+	#1 支付回调（支付宝/微信异步通知）
 	RewriteRule ^wmcms/notify/ - [L]
+	#2 前台 AJAX 与 action
+	RewriteRule ^wmcms/(action|ajax)/ - [L]
+	#3 图形验证码
+	RewriteRule ^wmcms/inc/imgcode\.php$ - [L]
 	RewriteRule ^(wmcms|cache)/ - [F,L]
 </IfModule>
 #####安全加固结束#####
