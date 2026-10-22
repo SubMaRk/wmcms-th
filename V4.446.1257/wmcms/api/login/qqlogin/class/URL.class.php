@@ -49,7 +49,7 @@ class URL{
             $response = file_get_contents($url);
         }else{
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, TRUE);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
             curl_setopt($ch, CURLOPT_URL, $url);
             $response =  curl_exec($ch);
@@ -87,7 +87,7 @@ class URL{
     public function post($url, $keysArr, $flag = 0){
 
         $ch = curl_init();
-        if(! $flag) curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        if(! $flag) curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, TRUE);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
         curl_setopt($ch, CURLOPT_POST, TRUE); 
         curl_setopt($ch, CURLOPT_POSTFIELDS, $keysArr); 

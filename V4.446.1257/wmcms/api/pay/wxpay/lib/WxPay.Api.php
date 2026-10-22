@@ -544,8 +544,8 @@ class WxPayApi
 		if(stripos($url,"https://")!==FALSE){
 			//CURL_SSLVERSION_TLSv1
 			curl_setopt($ch, CURLOPT_SSLVERSION, 1);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, TRUE);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 		}
 		else
 		{

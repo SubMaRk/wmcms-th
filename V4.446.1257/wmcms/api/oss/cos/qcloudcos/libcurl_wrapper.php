@@ -167,8 +167,8 @@ class LibcurlWrapper {
             curl_setopt($handler, CURLOPT_HTTPHEADER, array());
             curl_setopt($handler, CURLOPT_POSTFIELDS, array());
             curl_setopt($handler, CURLOPT_TIMEOUT, 0);
-            curl_setopt($handler, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($handler, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($handler, CURLOPT_SSL_VERIFYPEER, true);
+            curl_setopt($handler, CURLOPT_SSL_VERIFYHOST, 2);
         }
     }
 }

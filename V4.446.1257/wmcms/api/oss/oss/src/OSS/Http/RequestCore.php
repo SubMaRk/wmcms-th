@@ -619,8 +619,8 @@ class RequestCore
             curl_setopt($curl_handle, CURLOPT_SSL_VERIFYPEER, true);
             curl_setopt($curl_handle, CURLOPT_SSL_VERIFYHOST, 2);
         } else {
-            curl_setopt($curl_handle, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($curl_handle, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($curl_handle, CURLOPT_SSL_VERIFYPEER, true);
+            curl_setopt($curl_handle, CURLOPT_SSL_VERIFYHOST, 2);
         }
 
         // chmod the file as 0755

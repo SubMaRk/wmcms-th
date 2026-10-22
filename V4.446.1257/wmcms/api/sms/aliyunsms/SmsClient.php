@@ -84,8 +84,8 @@ class SmsClient extends SmsConfig
         ));
 
         if(substr($url, 0,5) == 'https') {
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
         }
 
         $rtn = curl_exec($ch);

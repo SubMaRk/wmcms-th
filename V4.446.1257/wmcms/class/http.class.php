@@ -147,8 +147,14 @@ class http
 		curl_setopt($ch, CURLOPT_TIMEOUT,$this->timeout);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		//https请求支持
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+		//php.ini 没配 CA 时补一份，避免所有 https 直接失败
+		$caFile = CurlCaFile();
+		if( $caFile != '' )
+		{
+			curl_setopt($ch, CURLOPT_CAINFO, $caFile);
+		}
 		curl_setopt($ch, CURLOPT_SSLVERSION, 1);
 		
 		//设置curl是否保存或者发送cookie过去

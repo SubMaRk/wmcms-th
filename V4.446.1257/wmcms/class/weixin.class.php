@@ -53,8 +53,8 @@ class WeiXin {
 		//设置超时
 		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,FALSE);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,FALSE);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,TRUE);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,2);
 		curl_setopt($ch, CURLOPT_HEADER, FALSE);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 		if( is_array($data) || $data != '' )

@@ -123,7 +123,7 @@ class BaiduUtils
 		);
 
 		if (stripos($url, 'https://') === 0) {
-			$curl_opts[CURLOPT_SSL_VERIFYPEER] = false;
+			$curl_opts[CURLOPT_SSL_VERIFYPEER] = true;
 		}
 		
 		if (strtoupper($httpMethod) === 'GET') {

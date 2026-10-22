@@ -7,8 +7,8 @@ function my_curl_reset($handler) {
     curl_setopt($handler, CURLOPT_HTTPHEADER, array());
     curl_setopt($handler, CURLOPT_POSTFIELDS, array());
     curl_setopt($handler, CURLOPT_TIMEOUT, 0);
-    curl_setopt($handler, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($handler, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($handler, CURLOPT_SSL_VERIFYPEER, true);
+    curl_setopt($handler, CURLOPT_SSL_VERIFYHOST, 2);
 }
 
 class HttpClient {
@@ -88,8 +88,8 @@ class HttpClient {
                 curl_setopt(self::$curlHandler, CURLOPT_SSLVERSION, 4);
             }
         }else if( $ssl ){
-            curl_setopt(self::$curlHandler, CURLOPT_SSL_VERIFYPEER,false);   //true any ca
-            curl_setopt(self::$curlHandler, CURLOPT_SSL_VERIFYHOST,1);       //check only host
+            curl_setopt(self::$curlHandler, CURLOPT_SSL_VERIFYPEER,true);   //verify the CA
+            curl_setopt(self::$curlHandler, CURLOPT_SSL_VERIFYHOST,2);      //verify the host
             if (isset($request['ssl_version'])) {
                 curl_setopt(self::$curlHandler, CURLOPT_SSLVERSION, $request['ssl_version']);
             } else {

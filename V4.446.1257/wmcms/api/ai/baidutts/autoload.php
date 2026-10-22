@@ -41,8 +41,8 @@ class Ai
         curl_setopt($ch, CURLOPT_URL, $auth_url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); //信任任何证书
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0); // 检查证书中是否设置域名,0不验证
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true); //校验证书
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 检查证书域名
         curl_setopt($ch, CURLOPT_VERBOSE, false);
         $res = curl_exec($ch);
         curl_close($ch);

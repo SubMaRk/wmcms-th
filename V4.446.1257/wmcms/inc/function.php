@@ -1317,6 +1317,44 @@ function IsSpider()
 }
 
 /**
+ * 给 curl 找一份 CA 证书包
+ * php.ini 里没配 curl.cainfo / openssl.cafile 时，curl 无法验证任何 https 证书。
+ * 这里按常见位置找一份，找不到就返回空字符串（此时调用方会明确失败，而不是静默降级）。
+ */
+function CurlCaFile()
+{
+	static $caFile = null;
+	if( $caFile !== null )
+	{
+		return $caFile;
+	}
+	$caFile = '';
+	$iniFile = ini_get('curl.cainfo');
+	if( $iniFile == '' )
+	{
+		$iniFile = ini_get('openssl.cafile');
+	}
+	if( $iniFile != '' && is_file($iniFile) )
+	{
+		return $caFile = $iniFile;
+	}
+	$tryArr = array(
+		WMROOT.'wmcms/config/cacert.pem',
+		'/etc/ssl/certs/ca-certificates.crt',
+		'/etc/pki/tls/certs/ca-bundle.crt',
+		'/usr/local/etc/openssl/cert.pem',
+	);
+	foreach ($tryArr as $file)
+	{
+		if( is_file($file) )
+		{
+			return $caFile = $file;
+		}
+	}
+	return $caFile;
+}
+
+/**
  * 安全反序列化：只允许还原标量和数组，绝不实例化对象
  * @param 参数1，必须，序列化字符串。
  * @return 数组或标量，失败返回 false

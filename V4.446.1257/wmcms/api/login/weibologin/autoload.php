@@ -74,7 +74,7 @@ class SaeTOAuthV2 {
 	 *
 	 * @ignore
 	 */
-	public $ssl_verifypeer = FALSE;
+	public $ssl_verifypeer = TRUE;
 	/**
 	 * Respons format.
 	 *
