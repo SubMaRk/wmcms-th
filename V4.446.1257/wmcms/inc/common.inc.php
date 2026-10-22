@@ -68,6 +68,8 @@ require_once WMINC.'moduletable.class.php';
 require_once WMCLASS.'cache.class.php';
 //载入系统类和函数等
 require_once WMINC.'function.php';
+//基础安全响应头（前台、后台、ajax、notify 都经过这里）
+SendSecurityHeaders();
 //会话 cookie 加固：禁止 JS 读取、禁止跨站携带。
 //session 在第一次调用 Session() 时才启动，这里设置还来得及。
 if( session_status() == PHP_SESSION_NONE )

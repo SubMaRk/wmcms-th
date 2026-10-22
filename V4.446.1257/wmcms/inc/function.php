@@ -1317,6 +1317,31 @@ function IsSpider()
 }
 
 /**
+ * 输出基础安全响应头
+ * 放在 common.inc.php 里调用，所有入口（前台、后台、ajax、notify）都会经过。
+ */
+function SendSecurityHeaders()
+{
+	if( headers_sent() )
+	{
+		return false;
+	}
+	//不允许浏览器猜类型：上传目录里的文件不会因为内容被当成脚本
+	header('X-Content-Type-Options: nosniff');
+	//不允许被别的站点套 iframe（后台自己用同源 iframe，仍然可用）
+	header('X-Frame-Options: SAMEORIGIN');
+	header('Referrer-Policy: strict-origin-when-cross-origin');
+	header('Permissions-Policy: geolocation=(), microphone=(), camera=()');
+	//不锁死 script-src（老模版大量内联脚本），但禁掉 object/base 劫持和跨站 frame
+	header("Content-Security-Policy: object-src 'none'; base-uri 'self'; frame-ancestors 'self'");
+	if( IsHttpsRequest() )
+	{
+		header('Strict-Transport-Security: max-age=15552000');
+	}
+	return true;
+}
+
+/**
  * 判断一个远程地址是不是可以安全抓取
  * 只允许 http/https，并且解析出来的 IP 不能是内网、回环、链路本地或保留地址，
  * 否则「抓取远程图片」这类功能就能被用来打内网服务。
