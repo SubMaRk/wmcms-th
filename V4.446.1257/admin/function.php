@@ -56,12 +56,64 @@ function RequestLog()
  * 可以借管理员已登录的 cookie 提交后台请求（实测可用文件管理接口写出 php 文件）。
  * 这里要求 Origin 或 Referer 与当前站点同源，否则直接拒绝。
  */
+/**
+ * 取得（或创建）当前后台会话的 CSRF token
+ */
+function AdminCsrfToken()
+{
+	$token = Session('admin_form_token');
+	if( !is_string($token) || strlen($token) != 32 )
+	{
+		$token = bin2hex(random_bytes(16));
+		Session('admin_form_token' , $token);
+	}
+	return $token;
+}
+
+/**
+ * 把 token 注入每个后台页面的尾部，并让 jQuery 自动带上请求头
+ * 后台页面是逐个独立的视图文件，没有统一的 layout，所以在这里统一追加。
+ */
+function AdminInjectToken( $html )
+{
+	if( !is_string($html) || $html == '' )
+	{
+		return $html;
+	}
+	$token = AdminCsrfToken();
+	$script = '<script>(function(){window.WMCSRF='.json_encode($token).';'
+		. 'if(window.jQuery){jQuery.ajaxSetup({beforeSend:function(x){x.setRequestHeader("X-WM-Token",window.WMCSRF);}});'
+		. 'jQuery(document).on("submit","form",function(){var f=jQuery(this);'
+		. 'if(!f.find("input[name=_wmtoken]").length){f.append("<input type=\"hidden\" name=\"_wmtoken\" value=\""+window.WMCSRF+"\">");}});}'
+		. '})();</script>';
+	if( stripos($html, '</body>') !== false )
+	{
+		return str_ireplace('</body>', $script.'</body>', $html);
+	}
+	return $html.$script;
+}
+
 function AdminCsrfCheck()
 {
 	//命令行调用没有浏览器语义，不参与检查
 	if( php_sapi_name() == 'cli' )
 	{
 		return true;
+	}
+
+	//POST 请求必须带上本会话的 token（同站 XSS 之外的 CSRF 场景由它兜底）
+	if( strtoupper(GetKey($_SERVER,'REQUEST_METHOD')) == 'POST' )
+	{
+		$sessionToken = Session('admin_form_token');
+		$postToken = GetKey($_SERVER,'HTTP_X_WM_TOKEN');
+		if( $postToken == '' )
+		{
+			$postToken = isset($_POST['_wmtoken']) ? $_POST['_wmtoken'] : '';
+		}
+		if( !is_string($sessionToken) || $sessionToken == '' || !hash_equals($sessionToken, (string)$postToken) )
+		{
+			AdminCsrfFail();
+		}
 	}
 
 	$host = strtolower(GetKey($_SERVER,'HTTP_HOST'));

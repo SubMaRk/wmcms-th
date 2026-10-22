@@ -62,8 +62,8 @@ if ( C('admin_cid') != 0 )
 
 //加载分页参数处理
 require 'page.php';
-//开启缓冲区
-ob_start();
+//开启缓冲区，并在输出末尾注入 CSRF token
+ob_start('AdminInjectToken');
 //处理器加载
 if ( $a === true )
 {
