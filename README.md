@@ -123,9 +123,60 @@
 
 `wmsql` ตั้ง `SET SESSION sql_mode='NO_ENGINE_SUBSTITUTION'` ต่อการเชื่อมต่อ เพราะโค้ดชุดนี้เขียนตาม sql_mode แบบหลวมของ MySQL 5.6 (เช่น insert ค่าว่างลงคอลัมน์ NOT NULL) ถ้าใช้ `STRICT_TRANS_TABLES` ของ 5.7+ จะพังทันที และหน้า `system.config.option.list` เปลี่ยนจาก `group by` เป็น `distinct` เพราะ `ONLY_FULL_GROUP_BY` ไม่ยอมรับ `SELECT c.*,g.*` คู่กับ `GROUP BY c.config_id`
 
+## รายการแก้ไขรอบที่สาม (ช่องโหว่ความปลอดภัย)
+
+รอบนี้ตรวจทั้งโค้ดด้วยการอ่านและยิงทดสอบจริงบนเว็บที่ติดตั้งใหม่ (Apache 2.4 + PHP 8.3/8.4/8.5 + MySQL 8.4) ทุกข้อด้านล่างมี commit แยกของตัวเอง
+
+### วิกฤต
+
+- **ยึดเซิร์ฟเวอร์ผ่านแท็กในเทมเพลต** — `{php}`, `{wmphp}`, `{运算:}`, `{wmsql:}` ถูกประมวลผลบนเนื้อหาที่ผ่านการแทนที่ข้อมูลจากฐานข้อมูลแล้ว ชื่อนิยายที่ตั้งว่า `ProbeB{php}echo "PWNED";{/php}End` จึงถูก **execute จริง** โดยไม่ต้องล็อกอิน (ทดสอบแล้วได้ `PWNED`) และ `ProbeA{运算:7*7}End` กลายเป็น `ProbeA49End`
+  - เทมเพลต源码ถูก "ใส่เกลือ" (salt สุ่มต่อ request) ก่อนแทนที่ข้อมูล แล้วทุกรอบประมวลผลค้นหาแท็กที่ใส่เกลือแล้วเท่านั้น ข้อมูลจาก DB จึงไม่มีทางกลายเป็นแท็ก
+  - `{wmphp}` ถูกลบทั้งแท็ก; `{php}` ต้องเปิด `TPL_PHP_ALLOW` เอง (ค่าเริ่มต้นปิด)
+  - `{运算:}` เลิกใช้ `eval()` เปลี่ยนเป็น parser ที่รับเฉพาะตัวเลขกับ `+ - * / % ( )` (ทดสอบ: `7*7`=49, `phpinfo()`/`system("id")` ถูกปฏิเสธ)
+- **Object injection จากคุกกี้/เซสชัน** — `Session()` และ `Cookie()` เอา `$_COOKIE` ไป `unserialize()` ตรง ๆ เพิ่ม `SafeUnserialize()` ที่บังคับ `allowed_classes=false` และตรวจซ้ำว่าไม่มี object หลงเหลือ (payload แบบ object, nested object, string ขาด ถูกปฏิเสธทั้งหมด)
+- **แจกเครดิตโดยไม่ตรวจยอดเงิน** — `OrderFinish()` รับแค่เลขออเดอร์ เดิมจ่ายจริง 0.01 ก็เติมเต็มจำนวนได้ ตอนนี้เทียบ `total_amount` (alipay), `total_fee` (wxpay, หน่วยสตางค์), `mc_gross` (paypal) กับ `charge_money` ±1 สตางค์, ตรวจ `app_id`/`appid` กับค่าที่ตั้งไว้, และเปลี่ยนสถานะด้วย `UPDATE ... WHERE charge_status='0'` แล้วเครดิตเฉพาะเมื่อมีแถวถูกแก้ 1 แถว (ยิงซ้ำ/ยิงพร้อมกันไม่เติมซ้ำ) — ทดสอบแล้ว: ยอดถูกเติมครั้งเดียว, ยิงซ้ำไม่เติม, 0.01 ถูกปฏิเสธ, ไม่มียอดถูกปฏิเสธ, appid ปลอมถูกปฏิเสธ
+
+### สูง
+
+- **ติดตั้งระบบโดยไม่มีการตรวจค่า** — `install/step4.php` ต่อค่าจาก POST เข้า `UPDATE` และเข้าไฟล์ config ตรง ๆ (ตั้งชื่อฐานข้อมูล/รหัสผ่านให้มี quote ก็ Inject ได้) ตอนนี้ตรวจรูปแบบทุกค่าและใช้ prepared statement ทั้งหมด, เขียน config ด้วย `var_export()`, และ `step5` เปลี่ยนชื่อโฟลเดอร์ install ทั้งโฟลเดอร์ (ถ้าเปลี่ยนไม่ได้จะเปลี่ยนชื่อไฟล์ .php เป็น `.removed` + ใส่ `.htaccess` ปฏิเสธทั้งหมด)
+- **อัปโหลดเชื่อ MIME จากเบราว์เซอร์** — เดิม改名 `shell.php` เป็น `.jpg` แล้วส่ง `type=image/jpeg` ผ่านได้ ตอนนี้ตรวจเนื้อไฟล์จริงด้วย `getimagesize()` (`str::IsRealImg()`) และมี `upload/.htaccess` + `files/.htaccess` ที่ปิดการ execute สคริปต์ทุกชนิด
+- **เขียนไฟล์ config ด้วยการต่อสตริง** — `domain.config.php` เดิมต่อค่าจาก DB ใน single quote (มี `'` ตัวเดียวก็ Inject โค้ดได้) ตอนนี้ใช้ `var_export()` และรับเฉพาะชื่อโฮสต์ที่ถูกรูปแบบ, ชื่อโมดูลที่ใช้สร้าง path ต้องเป็นโมดูลที่มีอยู่จริง
+- **ปิดการตรวจใบรับรอง TLS ทั้งระบบ** — 11 ไฟล์ตั้ง `CURLOPT_SSL_VERIFYPEER=false` (รวม Alipay SDK, SMS, OSS ทั้งชุด) ตอนนี้เปิดหมด, `CurlCaFile()` หา CA bundle ให้เอง (bundled `wmcms/config/cacert.pem`) ทดสอบ: `example.com` ผ่าน, self-signed และ expired ถูกปฏิเสธ
+- **SSRF ผ่านการดึงรูปจาก URL** — เดิมเช็คแค่ `NO_PRIV_RANGE` (ไม่ครอบ 127.0.0.1, 169.254.169.254, `file://`, `user:pass@host`) ตอนนี้ `IsPublicHttpUrl()` บังคับ http/https, resolve ทุก A record และปฏิเสธ private/reserved ทั้งหมด
+- **`session_id` จาก query string** — `imgcode.php` รับ `session_id` แล้ว `session_id()` ก่อน `session_start()` โดยไม่ตรวจรูปแบบ (fixation + เขียน captcha ลง session ที่รู้ค่า) ตอนนี้บังคับรูปแบบ 22–64 ตัวอักษรและไม่สลับเมื่อมี session อยู่แล้ว
+- **CSRF หลังบ้านด้วย Origin/Referer อย่างเดียว** — เพิ่ม token ต่อ session (`X-WM-Token` / `_wmtoken`) ตรวจด้วย `hash_equals()` สำหรับทุก POST; token ถูกฉีดอัตโนมัติผ่าน buffer + `jQuery.ajaxSetup`
+- **Token เดาได้** — `FormTokenCreate()` เดิมใช้ `md5(apikey|wmcms|time())` และรหัสยืนยันใช้ `rand()` ตอนนี้ใช้ `random_bytes(16)` / `random_int()` และเทียบด้วย `hash_equals()`
+
+### กลาง
+
+- **`display_errors` เปิดถาวร + `DEBUG=true`** — หน้าเว็บโชว์ path, SQL และ internals ทั้งหมด ตอนนี้ `display_errors` ผูกกับ `DEBUG` (ปิดเป็นค่าเริ่มต้น) และ error ยังลง log ตามปกติ
+- **`unserialize()` จาก DB/cache อีก 34 ไฟล์** — ทั้งหมดเปลี่ยนไปใช้ `SafeUnserialize()`
+- **รหัสผ่านผู้ใช้ 6–16 ตัวและจำกัดแค่ `[a-zA-Z0-9_.]`** — ตัวอักษรพิเศษ/ช่องว่าง/ภาษาไทยใช้ไม่ได้ ตอนนี้ `str::CheckPsw()` บังคับ 8–72 ไบต์ (ขอบเขตจริงของ bcrypt) และไม่จำกัดชนิดตัวอักษร; ตอน login ตรวจแค่ขอบเขต 72 เพื่อให้บัญชีเก่ายังเข้าได้
+- **ล็อกอินล็อกที่ IP อย่างเดียว** — เปลี่ยน IP ก็ยิงรหัสต่อได้ ตอนนี้มีตัวนับต่อบัญชี (`GetUserCount`, `GetNameCount`) ล็อกเมื่อผิดครบจำนวนแม้รหัสจะถูก
+- **ไม่มีการยืนยันตัวตนสองขั้นตอน** — เพิ่ม TOTP (RFC 6238) สำหรับแอดมิน: หน้าตั้งค่าความปลอดภัยมีปุ่มสร้างคีย์/เปิด/ปิด, เก็บ secret ใน `@manager_2fa` (สร้างตารางให้เอง), ล็อกอินต้องใส่รหัส 6 หลักเมื่อเปิดใช้, และ `session_regenerate_id(true)` ทั้ง login ผู้ใช้และแอดมิน
+- **ไม่มี audit log ของการกระทำสำคัญ** — เพิ่ม `AuditLog()` เขียน `cache/log/audit/YYYY-MM/DD.log` (เวลา, uid, IP, การกระทำ) ครอบการเขียน/ลบไฟล์ผ่านตัวจัดการไฟล์, เปลี่ยน/รีเซ็ตรหัสผ่าน, และการเติมเงินสำเร็จ
+- **ไม่มีการป้องกัน clickjacking / MIME sniffing** — เพิ่ม `SendSecurityHeaders()`: `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, CSP (`object-src 'none'; base-uri 'self'; frame-ancestors 'self'`) และ HSTS เมื่อเป็น HTTPS
+- **`.htaccess` เดิมบล็อก `/wmcms/` ทั้งโฟลเดอร์** — ทำให้ AJAX หน้าเว็บ, action (`/wmcms/action/index.php`) และภาพ captcha (`/wmcms/inc/imgcode.php`) โดน 403 ทั้งหมด (ผู้ใช้ล็อกอินไม่ได้) ตอนนี้เปิดเฉพาะ 4 ทางเข้า: `notify/`, `action/`, `ajax/`, `inc/imgcode.php` ที่เหลือยังปฏิเสธ (ทดสอบบน Apache จริง: ทางเข้า 200, `class/`, `config/`, `cache/`, `install/sql.sql` 403)
+
+### นำออก
+
+- โมดูล cloud ทั้งชุด (`admin/{action,controller,templates/web}/cloud`, `wmcms/class/cloud.class.php`) — ตัวเดียวที่ทำให้ระบบเชื่อมต่อไป `http://server.weimengcms.com` แบบ明文 และส่ง appid/apikey/secret/domain ออกไป; installer ไม่ขอ credential จากเซิร์ฟเวอร์แล้ว (สร้างในเครื่องด้วย `random_bytes`)
+- `wmcms/notify/pay_test.php` (ปลายทางทดสอบการจ่ายเงิน), `wmcms/class/snoopy.class.php` (ไม่ถูกใช้ + `exec curl -k`), `weibologin/saetv2.ex.class.php`, `plugin/apps/demo/`
+- PHPMailer 2009 (`class.phpmailer.php` รุ่น `$Id: 447 2009`) → **PHPMailer 6.9.3** พร้อม alias ชื่อคลาสเดิมให้ปลั๊กอินเก่ายังใช้ได้ (ทดสอบส่งเมลจริงผ่าน SMTP: ส่งสำเร็จและจดหมายถึงผู้รับ)
+
+### ยังต้องทำเอง (ระบบทำให้ไม่ได้)
+
+- **อัปเดต SDK จ่ายเงิน/คลาวด์ที่ vendor ให้มา** — Alipay, WxPay, OSS/COS/Qiniu ยังเป็นชุดที่ vendor แจกในแพ็ค ต้องขอรุ่นใหม่จากผู้ให้บริการและทดสอบด้วยบัญชีจริง (ผมเปิด TLS verify ให้แล้ว แต่ไม่ได้แทนที่ SDK)
+- เปิด `code_admin_login` (captcha หลังบ้าน) ในหน้าความปลอดภัยถ้าไม่ต้องการพึ่ง 2FA อย่างเดียว — ค่าเริ่มต้นในแพ็คคือปิด
+- ตั้ง `TRUST_PROXY` เป็น true **เฉพาะ**เมื่ออยู่หลัง reverse proxy ที่คุณควบคุม (ใช้ตัดสิน IP สำหรับ rate limit)
+
 ## หมายเหตุการติดตั้ง
 - PHP ที่รองรับ: **7.2 – 8.5** — ติดตั้งและใช้งานได้จริงบน 7.2.34, 8.3.33, 8.4.14 และ 8.5.6,
   และ `php -l` ผ่านทุกไฟล์บนทั้ง 7.2 / 8.3 / 8.4 / 8.5
+- ต้องมี extension: `pdo_mysql`, `mbstring`, `curl`, `gd`, `openssl`, `fileinfo`, `zip`
+- ต้องตั้ง `AllowOverride All` ให้ `.htaccess` (Apache) หรือใช้ `nginx.conf.example` (nginx)
+  ไม่งั้นไฟล์ `wmcms/config/*`, `cache/*`, `install/sql.sql` จะถูกดาวน์โหลดได้
+- ถ้าใช้ Apache ต้องมี `mod_rewrite` + `mod_authz_core` ตามไฟล์ `.htaccess`
 - MySQL: ต้องมี `sql_mode` ที่ไม่ใช่ strict — ตัวโปรแกรมตั้ง `SET SESSION sql_mode='NO_ENGINE_SUBSTITUTION'`
   ให้เองทุกครั้งที่เชื่อมต่อ จึงใช้ MySQL 5.7/8.x ได้โดยไม่ต้องแก้ `my.ini`
 - ถ้าเคยติดตั้ง 4.446.1257 มาก่อน ให้รัน `upgrade/V4.446.1257-CustomPatch.sql` หนึ่งครั้ง
