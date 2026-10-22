@@ -1,0 +1,1 @@
+<?php $C["config"]["route"]=array('urlmode_route' => '','urlmode_par_cptb' => 'path','urlmode_par_odnr2' => 'file','urlmode_par_odnr1' => 'module','urlmode_suffix' => '.html','urlmode_exp' => '/','ishtml' => '0','url_type' => '1',);?>
