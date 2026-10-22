@@ -1,0 +1,1 @@
+<?php $linkConfig=array('link_url_outtype' => '1','in_jump' => '','admin_status' => '1','join_status' => '0','getadress_open' => '0','getip_open' => '1','click_log' => '1','check_oneip' => '1','check_ua' => '1','ref_time' => '3600','click_type' => '0','join' => '1','par_link' => '0',);?>
