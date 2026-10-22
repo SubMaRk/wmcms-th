@@ -20,20 +20,15 @@ try{
 	$db = null;
 
 	//通过测试
-	//获得appid和key等信息
-	$cloudSer = NewClass('cloud');
-	$apiArr = $cloudSer->Install();
-	$appid = @$apiArr['data']['appid'];
-	$apikey = @$apiArr['data']['apikey'];
-	$secret = @$apiArr['data']['secret'];
-	if($apiArr['code'] != '200')
+	//安装时不再向官方服务器申请 appid/apikey/secret：那条链路是 http 明文，
+	//而且会把域名和凭据一起发出去。这里直接在本地生成，功能完全够用
+	//（它只用于本站内部接口签名和 cookie 加密）。
+	$appid = 'wm'.substr(md5(uniqid('', true)), 0, 10);
+	$apikey = bin2hex(random_bytes(16));
+	$secret = bin2hex(random_bytes(16));
+	if($appid == '' || $apikey == '' || $secret == '' )
 	{
-		die($apiArr['msg']);
-		return false;
-	}
-	else if($appid == '' || $apikey == '' || $secret == '' )
-	{
-		die('ไม่สามารถรับไอดีแอปฯ และไม่สามารถติดตั้งให้สมบูรณ์ได้');
+		die('ไม่สามารถสร้างไอดีแอปฯ และไม่สามารถติดตั้งให้สมบูรณ์ได้');
 	}
 	else
 	{

@@ -40,6 +40,11 @@ class cloud{
 	 */
 	function Request($url , $data = array())
 	{
+		//官方通道默认关闭，见 define.config.php 的 CLOUD_ENABLE
+		if( !defined('CLOUD_ENABLE') || CLOUD_ENABLE !== true )
+		{
+			return array('code'=>'503','msg'=>'cloud disabled','data'=>array());
+		}
 		$data['appid'] = $this->appid;
 		$data['apikey'] = $this->apikey;
 		$data['secret'] = $this->secret;

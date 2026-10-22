@@ -34,6 +34,12 @@ define('NOTMODULE','about,app,article,author,bbs,diy,down,editor,link,message,pi
 define('WMVER','4.446.1257');
 define('WMVER_TYPE','0');
 define('WMVER_TIME','20231230');
+//是否允许程序连回官方服务器（版本检查、应用商店、BUG 上报、安装统计）。
+//默认关闭：官方通道走 http 明文，会把 appid / apikey / secret 和域名一起发出去。
+if( !defined('CLOUD_ENABLE') )
+{
+	define('CLOUD_ENABLE', false);
+}
 //是否允许模版里的 {php} 标签执行原生 PHP。
 //模版文件等同于服务器上的代码，只有在你确实需要时才打开：
 //默认关闭，模版里写了 {php} 也只会按文本显示，不会执行。
