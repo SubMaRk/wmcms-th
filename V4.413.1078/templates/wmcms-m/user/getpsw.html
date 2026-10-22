@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>{title}</title>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="{templates}/static/user/css/style.css">
+    <script type="text/javascript" src="{templates}/static/user/js/flexible.min.js"></script>
+</head>
+<body>
+	<div class="app_meskSection"></div>
+	<div class="container">
+		<div class="app_header_section2  app_scrollerHeader" id="header">
+			<div class="app_header_detail2">
+				<div class="app_header_back"></div>
+				<div class="app_header_h1">
+					找回密码
+					<i class="moreIco"></i>
+				</div>
+			</div>
+			<div class="app_header_second" style="display: none;">
+				<ul>
+					<li class="icon1">
+						<a href="/">首页</a>
+					</li>
+					<li class="icon2">
+						<a href="{全部小说}">书库</a>
+					</li>
+					<li class="icon3">
+						<a href="{我的书架}">书架</a>
+					</li>
+					<li class="icon4">
+						<a href="{用户中心}">账户</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="app_body">
+			<div class="app_bindPhoneBlock">
+				<div class="app_bindPhoneBlock_header">
+					<span class="app_header">
+						<img src="{templates}/static/user/images/userlogin.png"></span>
+				</div>
+				<div class="app_lisLoinSpan">
+					<ul>
+						{表单锁}
+						<li class="username">
+							<input id="code" type="text" name="name" placeholder="登录账号">
+						</li>
+						<li class="email">
+							<input id="code" type="email" name="email" placeholder="绑定的邮箱地址">
+						</li>
+						{找回密码验证码开启}
+						<li class="code">
+							<input id="code" type="text" name="code" placeholder="请输入验证码">
+						</li>
+						<li style="display: flex;align-items: center;border: none;padding: 0;">
+							{找回密码验证码}
+						</li>
+						{/找回密码验证码开启}
+					</ul>
+				</div>
+				<div class="app_listBlockButton" style="padding-top: 0.36rem">
+					<button id="loginbtn" ajax-post='app_lisLoinSpan' url="{找回密码提交地址}&ajax=yes">立即找回</button>
+				</div>
+				<div class="app_registerList">
+					<span class="public_AddFloatLeft">
+						<a href="{:url('user/user/reg')}">我要注册</a>
+					</span>
+					<span class="public_AddFloatRight">
+						<a href="{:url('user/user/forgetpwd')}">忘记密码</a>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="{templates}/static/user/js/jquery.min.js"></script>
+	<script type="text/javascript" src="{templates}/static/js/layer.js"></script>
+	<script type="text/javascript" src="{templates}/static/user/js/ajax.js"></script>
+	<script type="text/javascript" src="{templates}/static/user/js/user.js"></script>
+</body>
+</html>
