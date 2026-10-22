@@ -80,6 +80,12 @@ function AdminInjectToken( $html )
 	{
 		return $html;
 	}
+	//Ajax 返回的是 JSON，往后面贴 <script> 会让客户端解析失败
+	$trim = ltrim($html);
+	if( $trim != '' && ($trim[0] == '{' || $trim[0] == '[') )
+	{
+		return $html;
+	}
 	$token = AdminCsrfToken();
 	$script = '<script>(function(){window.WMCSRF='.json_encode($token).';'
 		. 'if(window.jQuery){jQuery.ajaxSetup({beforeSend:function(x){x.setRequestHeader("X-WM-Token",window.WMCSRF);}});'

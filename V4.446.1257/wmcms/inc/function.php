@@ -1317,6 +1317,96 @@ function IsSpider()
 }
 
 /**
+ * base32 解码（TOTP 密钥用 base32 表示）
+ * @param 参数1，必须，base32 字符串
+ */
+function Base32Decode( $data )
+{
+	$map = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+	$data = strtoupper(preg_replace('/[^A-Z2-7]/i', '', (string)$data));
+	$bits = '';
+	$out = '';
+	for ($i = 0 ; $i < strlen($data) ; $i++)
+	{
+		$bits .= str_pad(decbin(strpos($map, $data[$i])), 5, '0', STR_PAD_LEFT);
+	}
+	for ($i = 0 ; $i + 8 <= strlen($bits) ; $i += 8)
+	{
+		$out .= chr(bindec(substr($bits, $i, 8)));
+	}
+	return $out;
+}
+
+/**
+ * 生成一个 TOTP 密钥（base32）
+ */
+function TotpSecret()
+{
+	$map = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+	$raw = random_bytes(20);
+	$bits = '';
+	$out = '';
+	foreach (str_split($raw) as $ch)
+	{
+		$bits .= str_pad(decbin(ord($ch)), 8, '0', STR_PAD_LEFT);
+	}
+	for ($i = 0 ; $i < strlen($bits) ; $i += 5)
+	{
+		$chunk = substr($bits, $i, 5);
+		if( strlen($chunk) < 5 )
+		{
+			break;
+		}
+		$out .= $map[bindec($chunk)];
+	}
+	return $out;
+}
+
+/**
+ * 计算某个时间片的 TOTP 验证码
+ * @param 参数1，必须，base32 密钥
+ * @param 参数2，选填，时间片偏移，0 表示当前
+ */
+function TotpCode( $secret , $slice = 0 )
+{
+	$key = Base32Decode($secret);
+	if( $key == '' )
+	{
+		return '';
+	}
+	$timeSlice = (int)floor(time() / 30) + (int)$slice;
+	$bin = pack('N*', 0).pack('N*', $timeSlice);
+	$hash = hash_hmac('sha1', $bin, $key, true);
+	$offset = ord(substr($hash, -1)) & 0x0F;
+	$part = substr($hash, $offset, 4);
+	$value = unpack('N', $part);
+	$value = $value[1] & 0x7FFFFFFF;
+	return str_pad((string)($value % 1000000), 6, '0', STR_PAD_LEFT);
+}
+
+/**
+ * 校验 TOTP 验证码，允许前后各一个时间片的时钟差
+ * @param 参数1，必须，base32 密钥
+ * @param 参数2，必须，用户输入的 6 位数字
+ */
+function TotpVerify( $secret , $code )
+{
+	$code = preg_replace('/[^0-9]/', '', (string)$code);
+	if( strlen($code) != 6 || $secret == '' )
+	{
+		return false;
+	}
+	foreach (array(-1,0,1) as $slice)
+	{
+		if( hash_equals(TotpCode($secret, $slice), $code) )
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
  * 输出基础安全响应头
  * 放在 common.inc.php 里调用，所有入口（前台、后台、ajax、notify）都会经过。
  */

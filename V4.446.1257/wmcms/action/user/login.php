@@ -107,6 +107,12 @@ if ( $data && str::PswCheck($psw, $data['user_psw'], $data['user_salt']) )
 		}
 	}
 	
+	//登录状态变化时换一个 session id，避免会话固定攻击
+	if( session_status() == PHP_SESSION_ACTIVE )
+	{
+		session_regenerate_id(true);
+	}
+
 	//如果是接口登录就绑定账号
 	if( is_array($apiUser) )
 	{

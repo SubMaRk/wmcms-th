@@ -9,6 +9,7 @@
 *
 */
 $code = 300;
+$loginOk = false;
 if( FormTokenCheck(true) == false )
 {
 	$tishi = '表单token错误！';
@@ -73,7 +74,20 @@ else
 					$loginSer->SetLog($arr['manager_id'],0,$tishi);
 				}
 				//账号密码正确
-				else if ( $pswOk )
+				else
+				{
+					$loginOk = true;
+					//两步验证：开了就必须带对验证码，否则按登录失败处理
+					$twofaMod = NewModel('system.twofa');
+					$twofaSecret = $twofaMod->GetSecret($arr['manager_id']);
+					if( $twofaSecret != '' && !TotpVerify($twofaSecret, Request('totp')) )
+					{
+						$tishi = '驗證碼ไม่ถูกต้อง';
+						$loginSer->SetLog($arr['manager_id'],2,$tishi);
+						$loginOk = false;
+					}
+				}
+				if ( $loginOk )
 				{
 					$code = 200;
 					$tishi="登录成功!";
@@ -101,6 +115,11 @@ else
 					$where['manager_id'] = $arr['manager_id'];
 					wmsql::Update('@manager_manager', $data, $where);
 					
+					//登录状态变化时换一个 session id，避免会话固定
+					if( session_status() == PHP_SESSION_ACTIVE )
+					{
+						session_regenerate_id(true);
+					}
 					//写入session信息
 					Session( 'admin_id' , $arr['manager_id'] );
 					Session( 'admin_cid' , $arr['manager_cid'] );

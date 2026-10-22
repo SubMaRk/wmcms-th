@@ -6,6 +6,38 @@
 	<form name="form1" action="index.php?a=yes&c=system.safe.code&t=config" method="post" data-toggle="validate">
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
       <thead><tr><th colspan="6" style="text-align:left;"><b>验证码基本设置</b></th></tr></thead>
+      <thead><tr><th colspan="6" style="text-align:left;"><b>การยืนยันตัวตนสองขั้นตอน (TOTP)</b></th></tr></thead>
+      <tr>
+        <td width="140">แอป Authenticator</td>
+        <td colspan="5">
+          <button type="button" class="btn btn-green" onclick="wmTwofaStart()">สร้างคีย์ใหม่</button>
+          <input type="text" id="wmTwofaCode" size="8" placeholder="รหัส 6 หลัก" style="width:120px;">
+          <button type="button" class="btn btn-blue" onclick="wmTwofaEnable()">เปิดใช้งาน</button>
+          <button type="button" class="btn btn-red" onclick="wmTwofaDisable()">ปิดใช้งาน</button>
+          <div id="wmTwofaInfo" style="margin-top:6px;color:#666;"></div>
+        </td>
+      </tr>
+      <script>
+      function wmTwofaAjax(t, code){
+        jQuery.post('index.php?a=yes&c=system.safe.twofa&t='+t, {code: code||''}, function(res){
+          var info = document.getElementById('wmTwofaInfo');
+          if(res.statusCode == 200){
+            if(res.data && res.data.uri){
+              info.innerHTML = 'เพิ่มในแอปด้วยคีย์นี้: <b>'+res.data.secret+'</b><br>หรือลิงก์: <span style="word-break:break-all">'+res.data.uri+'</span>';
+            }else{
+              info.innerHTML = res.message;
+            }
+          }else{
+            info.innerHTML = res.message;
+            alert(res.message);
+          }
+        }, 'json');
+      }
+      function wmTwofaStart(){ wmTwofaAjax('start'); }
+      function wmTwofaEnable(){ wmTwofaAjax('enable', document.getElementById('wmTwofaCode').value); }
+      function wmTwofaDisable(){ wmTwofaAjax('disable', document.getElementById('wmTwofaCode').value); }
+      </script>
+
       <tr>
         <td width="140">后台登录验证码</td>
         <td width="300"><?php echo $manager->GetForm('code' , 'code_admin_login');?></td>

@@ -48,6 +48,12 @@
                 	}
 				?>
 
+                <div class="uinArea">
+					<label class="input-tips" for="t">2FA : </label>
+					<div class="inputOuter">
+						<input type="text" name="totp" class="inputstyle" inputmode="numeric" autocomplete="one-time-code" placeholder="เว้นว่างได้ถ้าไม่ได้เปิดใช้">
+					</div>
+                </div>
                 <div style="padding-left:50px;"><input type="submit" value="เข้าสู่ระบบ" style="width:150px;" class="button_blue"></div>
               </form>
            </div>
