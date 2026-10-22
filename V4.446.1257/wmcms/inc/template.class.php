@@ -56,6 +56,8 @@ class tpl{
 	public static $labelFun;
 	//前置方法是否使用过了
 	public static $beForeUse = false;
+	//模版源码标签的随机盐：只有模版文件里写下的标签才会被执行
+	public static $tagSalt = '';
 
 	//需要替换的中文标签
 	public static $cnLabel = array();
@@ -162,6 +164,8 @@ class tpl{
 			$this->IncTemp('header');
 			//替换头部公共文件
 			$this->IncTemp('footer');
+			//给模版源码里的可执行标签加盐：之后替换进来的数据不可能变成标签
+			self::$tempCode = self::SaltTagSource(self::$tempCode);
 			//替换标题、关键词、描述的标签
 			self::rep(array('title'=>$title,'key'=>$key,'desc'=>$desc));
 
@@ -726,6 +730,8 @@ class tpl{
 		}
 		//检查网站基本配置
 		CheckBasicConfig();
+		//没有执行到的标签还原成原文，不能执行就按文本显示
+		self::$tempContent = self::UnsaltTagSource(self::$tempContent);
 		
 		//输出模版
 		if ( DEVELOPER )
@@ -780,6 +786,70 @@ class tpl{
 		$str = self::rep(array('\[d\]'=>'(\d*)','\[s\]'=>'(.*?)','\[a\]'=>'([\s\S]*?)'),$str,2);
 		$str = self::rep(array('/'=>'\/','[d]'=>'(\d*)','[s]'=>'(.*?)','[a]'=>'([\s\S]*?)'),$str,2);
 		return $str;
+	}
+
+	/**
+	 * 取得本次请求的标签盐
+	 * 模版文件里的标签会被加上这个随机串；数据库里的内容猜不到它，
+	 * 所以用户写入的内容即使长得像 {php}、{运算:}、{wmsql:} 也不会被当成标签执行。
+	 */
+	static public function TagSalt()
+	{
+		if( self::$tagSalt == '' )
+		{
+			self::$tagSalt = substr(md5(uniqid('', true).mt_rand()), 0, 12);
+		}
+		return self::$tagSalt;
+	}
+
+	/**
+	 * 给模版源码里的可执行标签加盐
+	 * @param 参数1，必须，模版源码字符串。
+	 */
+	static public function SaltTagSource( $str )
+	{
+		if( !is_string($str) || $str == '' )
+		{
+			return $str;
+		}
+		$s = self::TagSalt();
+		$map = array(
+			'{php}'     => '{Z'.$s.'php}',
+			'{/php}'    => '{/Z'.$s.'php}',
+			'{wmphp}'   => '{Z'.$s.'wmphp}',
+			'{/wmphp}'  => '{/Z'.$s.'wmphp}',
+			'{运算:'    => '{Z'.$s.'运算:',
+			'{wmsql:'   => '{Z'.$s.'wmsql:',
+			'{/wmsql}'  => '{/Z'.$s.'wmsql}',
+			'<?php'     => '<?Z'.$s.'php',
+			'?>'        => '?Z'.$s.'>',
+		);
+		return strtr($str, $map);
+	}
+
+	/**
+	 * 没有执行到的标签还原成原文（不能执行就按文本显示）
+	 * @param 参数1，必须，渲染后的字符串。
+	 */
+	static public function UnsaltTagSource( $str )
+	{
+		if( !is_string($str) || $str == '' || self::$tagSalt == '' )
+		{
+			return $str;
+		}
+		$s = self::$tagSalt;
+		$map = array(
+			'{Z'.$s.'php}'    => '{php}',
+			'{/Z'.$s.'php}'   => '{/php}',
+			'{Z'.$s.'wmphp}'  => '{wmphp}',
+			'{/Z'.$s.'wmphp}' => '{/wmphp}',
+			'{Z'.$s.'运算:'   => '{运算:',
+			'{Z'.$s.'wmsql:'  => '{wmsql:',
+			'{/Z'.$s.'wmsql}' => '{/wmsql}',
+			'<?Z'.$s.'php'    => '<?php',
+			'?Z'.$s.'>'       => '?>',
+		);
+		return strtr($str, $map);
 	}
 	
 

@@ -75,11 +75,11 @@ class common{
 		//php标签替换
 		$this->WMPhp();
 		//php标签替换
-		$this->NativePhp('{php}[a]{/php}');
+		$this->NativePhp('{php}','{/php}');
 		//php原生写法替换，目前只对后台管理员生效
 		if( WMMANAGER )
 		{
-			$this->NativePhp('<\?php[a]\?>',false);
+			$this->NativePhp('<?php','?>');
 		}
 		//上传图片
 		$this->Screenshot();
@@ -262,12 +262,28 @@ class common{
 
 	
 	/**
+	 * 在模版内容里查找成对的标签块
+	 * 只有模版源码里的标签会被加盐，所以这里永远匹配不到用户数据里伪造的标签。
+	 * @param 参数1，必须，开始标签，例如 {php}。
+	 * @param 参数2，必须，结束标签，例如 {/php}。
+	 * @return 数组 [0]=整段, [1..]=子匹配
+	 **/
+	static function SaltedBlocks( $open , $close )
+	{
+		$open = tpl::SaltTagSource($open);
+		$close = tpl::SaltTagSource($close);
+		$reg = '/'.preg_quote($open,'/').'([\s\S]*?)'.preg_quote($close,'/').'/';
+		preg_match_all($reg, tpl::$tempCode, $m);
+		return $m;
+	}
+
+	/**
 	 * 执行模版中的PHP标签
 	 * 注意：目前不能使用echo，需要把所有结果集合，然后return。
 	 **/
 	static function WMPhp()
 	{
-		$phpArr = tpl::Tag('{wmphp}[a]{/wmphp}');
+		$phpArr = self::SaltedBlocks('{wmphp}','{/wmphp}');
 		for ($i = 0 ; $i < count($phpArr[0]) ; $i++ )
 		{
 			$funName = 'WMCMSPHP'.md5($phpArr[1][$i]);
@@ -290,9 +306,9 @@ class common{
 	/**
 	 * 执行原生PHP标签
 	 **/
-	static function NativePhp($str='{php}[a]{/php}',$z=true)
+	static function NativePhp( $open = '{php}' , $close = '{/php}' )
 	{
-		$phpArr = tpl::Tag($str,'',$z);
+		$phpArr = self::SaltedBlocks($open,$close);
 		for ($nativePhpI = 0 ; $nativePhpI < count($phpArr[0]) ; $nativePhpI++ )
 		{
 			$phpContent = $phpArr[1][$nativePhpI];
@@ -976,7 +992,8 @@ class common{
 	 */
 	private function Arithmetic()
 	{
-		$tagArr = tpl::Tag('{运算:[s]}');
+		$open = tpl::SaltTagSource('{运算:');
+		preg_match_all('/'.preg_quote($open,'/').'([^{}]*)\}/', tpl::$tempCode, $tagArr);
 		$arr = [];
 		if( !empty($tagArr[0]) )
 		{
@@ -1050,11 +1067,15 @@ class common{
 	**/
 	function DiySql()
 	{
-		$labelArr = tpl::tag('{wmsql:[s]}[a]{/wmsql}');
+		$open = tpl::SaltTagSource('{wmsql:');
+		$close = tpl::SaltTagSource('{/wmsql}');
+		$reg = '/'.preg_quote($open,'/').'([^{}]*)\}([\s\S]*?)'.preg_quote($close,'/').'/';
+		preg_match_all($reg, tpl::$tempCode, $labelArr);
 		$labelCount = count($labelArr[0]);
 		for ( $i = 0 ; $i < $labelCount ; $i++ )
 		{
 			$str = '';
+			$whole = $labelArr[0][$i];
 			$sql = $labelArr[1][$i];
 			$lcode = $labelArr[2][$i];
 
@@ -1062,7 +1083,7 @@ class common{
 
 			if ( !$reslut )
 			{
-				tpl::rep( array('wmsql:'.$sql.'}'.$lcode.'{/wmsql'=>'') );
+				tpl::rep( array($whole=>'') , null , 2 );
 			}
 			else
 			{
@@ -1080,7 +1101,7 @@ class common{
 					
 					$str.= tpl::rep( $arr , $labelCode );
 				}
-				tpl::rep(array('wmsql:'.$sql.'}'.$lcode.'{/wmsql'=>$str));
+				tpl::rep(array($whole=>$str),null,2);
 			}
 		}
 	}
