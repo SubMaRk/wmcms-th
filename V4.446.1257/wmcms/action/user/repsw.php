@@ -36,6 +36,7 @@ if( $data )
 	$userMod->psw = str::PswHash($psw);
 	$userMod->salt = '';
 	$result = $userMod->SavePsw($data['user_id']);
+	AuditLog('user.password.reset', 'user_id='.$data['user_id']);
 	//清空重置密码key
 	$userMod->DelGetPswKey($key);
 	//密码重置成功

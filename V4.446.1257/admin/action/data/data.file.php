@@ -33,6 +33,8 @@ if ( $type == 'rename' )
 		else
 		{
 			rename(WMROOT.$path.str::EnCoding($oldName,'gb2312'),WMROOT.$path.$newName);
+			//改名是能挪动任意文件的敏感操作，必须留痕
+			SetOpLog( 'เปลี่ยนชื่อไฟล์: '.$path.$oldName.' -> '.$newName , 'system' , 'rename' );
 			Ajax( 'ยินดีด้วย! เปลี่ยนชื่อไฟล์หรือโฟลเดอร์สำเร็จ!');
 		}
 	}
@@ -54,12 +56,14 @@ else if( $type == 'del' )
 		{
 			$path = str::ClearPath($path,true);
 			file::DelDir(WMROOT.$path);
+			SetOpLog( 'ลบโฟลเดอร์: '.$path , 'system' , 'delete' );
 			Ajax( 'ยินดีด้วย! ลบโฟลเดอร์สำเร็จ');
 		}
 		//删除文件
 		else
 		{
 			file::DelFile(WMROOT.$path);
+			SetOpLog( 'ลบไฟล์: '.$path , 'system' , 'delete' );
 			Ajax( 'ยินดีด้วย! ลบไฟล์สำเร็จ');
 		}
 	}
@@ -164,12 +168,15 @@ else if( $type == "create" || $type == "edit" )
 		if( $type == 'create' )
 		{
 			file::CreateFile(WMROOT.$path.$fileName, $fileContent);
+			//写入文件等于写入代码，必须留痕
+			SetOpLog( 'สร้างไฟล์: '.$path.$fileName , 'system' , 'create' );
 			Ajax( 'ยินดีด้วย! สร้างไฟล์สำเร็จ' );
 		}
 		else
 		{
 			file::CreateFile(WMROOT.$path.$fileName, $fileContent , '1');
-			Ajax( 'ยินดีด้่วย! แก้ไขไฟล์สำเร็จ' );
+			SetOpLog( 'แก้ไขไฟล์: '.$path.$fileName , 'system' , 'update' );
+			Ajax( 'ยินดีด้วย! แก้ไขไฟล์สำเร็จ' );
 		}
 	}
 }

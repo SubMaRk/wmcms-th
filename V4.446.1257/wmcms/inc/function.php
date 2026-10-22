@@ -1317,6 +1317,31 @@ function IsSpider()
 }
 
 /**
+ * 记录敏感操作（改密码、改文件、充值完成等）
+ * 只写文件，不依赖数据库，数据库出错时也能留下痕迹。
+ * @param 参数1，必须，动作名
+ * @param 参数2，选填，补充说明
+ */
+function AuditLog( $action , $detail = '' )
+{
+	$dir = WMCACHE.'log/audit/'.date('Y-m').'/';
+	$uid = 0;
+	if( isset($_SESSION['admin_id']) && $_SESSION['admin_id'] != '' )
+	{
+		$uid = 'admin:'.$_SESSION['admin_id'];
+	}
+	else if( class_exists('user') && method_exists('user','GetUid') )
+	{
+		$uid = 'user:'.user::GetUid();
+	}
+	$line = date('Y-m-d H:i:s')."	".$uid."	".GetIp()."	".$action."	".str_replace(array("","
+","	"), ' ', (string)$detail);
+	file::CreateFile($dir.date('d').'.log', $line."
+");
+	return true;
+}
+
+/**
  * base32 解码（TOTP 密钥用 base32 表示）
  * @param 参数1，必须，base32 字符串
  */

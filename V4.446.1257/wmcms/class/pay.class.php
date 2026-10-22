@@ -367,6 +367,8 @@ class pay
 			{
 				return false;
 			}
+			//充值是资金动作，单独留一份审计记录
+			AuditLog('finance.charge.paid', 'sn='.$sn.' paytype='.$payType.' money='.$orderData['charge_money'].' paysn='.$paySn);
 		
 			//用户id
 			$uid = $orderData['charge_user_id'];

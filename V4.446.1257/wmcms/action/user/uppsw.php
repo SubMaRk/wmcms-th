@@ -43,6 +43,7 @@ if( str::PswCheck($oldpsw, $data['user_psw'], $data['user_salt']) )
 {
 	//修改密码
 	$result = $userMod->Save(array('user_psw'=>$newpsw,'user_salt'=>$salt));
+	AuditLog('user.password.change');
 	
 	//退出账号
 	Cookie('user_account','delete');
