@@ -16,7 +16,9 @@ if (version_compare("5.3", PHP_VERSION, ">") ) {
 * 定义全局变量$_G
 * 记录程序开始运行时间
 **/
-ini_set('display_errors','on');
+//错误只写日志，不显示给访问者；DEBUG 打开时才直接在页面上显示
+ini_set('display_errors','off');
+ini_set('log_errors','on');
 $C['startTime'] = microtime(true);
 //设置默认时区
 date_default_timezone_set('PRC');
@@ -42,6 +44,8 @@ define('WMMANAGER', $isManager);
  * 引入站点基本配置
  **/
 require_once WMCONFIG.'define.config.php';
+//DEBUG 决定是否把错误显示到页面上（生产环境保持 off，错误仍然写入日志）
+ini_set('display_errors', DEBUG ? 'on' : 'off');
 require_once WMCONFIG.'data.config.php';
 require_once WMCONFIG.'api.config.php';
 require_once WMCONFIG.'web.config.php';

@@ -66,7 +66,8 @@ define('TRUST_PROXY',false);
 //开启运行日志文件记录
 define('RUNLOG',true);
 //开启debug模式
-define('DEBUG',true);
+//只有调试时才打开：打开后页面会显示错误位置、SQL 语句和模版内容
+define('DEBUG',false);
 //开发者模式
 define('DEVELOPER',false);
 //错误级别，TRUE为全部报错停止，FALSE为警告提示
