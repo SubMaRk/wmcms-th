@@ -9,7 +9,6 @@
 * @uptime         2016年11月17日 21:27 weimeng
 *
 */
-if(!defined('WMINC')){ exit("dont alone open!"); }
 //载入基本类文件
 $C['module']['inc']['class'] = array('str','page','file');
 $C['module']['inc']['module'] = array('user');
