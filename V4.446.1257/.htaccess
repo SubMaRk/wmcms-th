@@ -17,6 +17,8 @@
 </IfModule>
 <IfModule mod_rewrite.c>
 	RewriteEngine On
+	#支付平台的异步/同步回调必须能从外网访问，先放行再统一拦截
+	RewriteRule ^wmcms/notify/ - [L]
 	RewriteRule ^(wmcms|cache)/ - [F,L]
 </IfModule>
 #####安全加固结束#####
