@@ -349,32 +349,18 @@ function UpTempConfig()
  * 黑名单式的 CheckSql 只能挡住 sleep/benchmark 之类的少数函数，
  * char()、if()、ascii()、substring() 等照样能用，属于可用型 SQL 注入。
  *
- * 这里只接受「标识符」：可选的一个点号分隔的字段名，多个字段用逗号分开，
- * 每个字段允许空格加 asc/desc。其他任何字符（括号、引号、运算符、分号）
- * 都会被丢弃，因此无法拼出表达式。
+ * 这里只接受单个字段名（可带表别名），其他任何字符都会被判为非法并返回空串，
+ * 调用方因此退回默认排序。方向统一由 SafeOrderDirection() 提供，
+ * 所以字段里不允许再写 asc/desc，也不接受逗号分隔的多字段。
  * @param 参数1，必须，待过滤的排序字段
  */
 function SafeOrderField( $field )
 {
-	$order = array();
-	foreach ( explode(',', (string)$field) as $item)
+	if( preg_match('/^\s*([A-Za-z_][A-Za-z0-9_]*)(?:\s*\.\s*([A-Za-z_][A-Za-z0-9_]*))?\s*$/' , (string)$field , $match) )
 	{
-		//字段名，可带表别名，后面可选 asc/desc
-		if( preg_match('/^\s*([A-Za-z_][A-Za-z0-9_]*)(?:\s*\.\s*([A-Za-z_][A-Za-z0-9_]*))?(?:\s+(asc|desc))?\s*$/i' , $item , $match) )
-		{
-			$one = $match[1];
-			if( isset($match[2]) && $match[2] != '' )
-			{
-				$one .= '.'.$match[2];
-			}
-			if( isset($match[3]) && $match[3] != '' )
-			{
-				$one .= ' '.strtolower($match[3]);
-			}
-			$order[] = $one;
-		}
+		return isset($match[2]) && $match[2] != '' ? $match[1].'.'.$match[2] : $match[1];
 	}
-	return implode(',', $order);
+	return '';
 }
 
 /**
