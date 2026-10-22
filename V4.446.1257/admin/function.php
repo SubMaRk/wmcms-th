@@ -245,8 +245,8 @@ function Ajax( $msg = '操作成功！' , $code = 200 , $data = '' , $total = ''
 	$res['forwardConfirm'] = '';
 	$res['pageSize'] = Request('pageSize');
 	$res['pageCurrent'] = Request('pageCurrent');
-	$res['orderField'] = Request('orderField');
-	$res['orderDirection'] = Request('orderDirection');
+	$res['orderField'] = SafeOrderField(Request('orderField'));
+	$res['orderDirection'] = SafeOrderDirection(Request('orderDirection'));
 
 	exit( json_encode( $res ) );
 }
@@ -342,6 +342,52 @@ function UpTempConfig()
 
 
 /**
+ * 过滤分页排序的字段名
+ *
+ * 排序字段来自 URL（orderField / orderDirection），会被直接拼进 SQL 的
+ * order by 里。原实现只把它原样拼接，相当于把 order by 交给请求者控制，
+ * 黑名单式的 CheckSql 只能挡住 sleep/benchmark 之类的少数函数，
+ * char()、if()、ascii()、substring() 等照样能用，属于可用型 SQL 注入。
+ *
+ * 这里只接受「标识符」：可选的一个点号分隔的字段名，多个字段用逗号分开，
+ * 每个字段允许空格加 asc/desc。其他任何字符（括号、引号、运算符、分号）
+ * 都会被丢弃，因此无法拼出表达式。
+ * @param 参数1，必须，待过滤的排序字段
+ */
+function SafeOrderField( $field )
+{
+	$order = array();
+	foreach ( explode(',', (string)$field) as $item)
+	{
+		//字段名，可带表别名，后面可选 asc/desc
+		if( preg_match('/^\s*([A-Za-z_][A-Za-z0-9_]*)(?:\s*\.\s*([A-Za-z_][A-Za-z0-9_]*))?(?:\s+(asc|desc))?\s*$/i' , $item , $match) )
+		{
+			$one = $match[1];
+			if( isset($match[2]) && $match[2] != '' )
+			{
+				$one .= '.'.$match[2];
+			}
+			if( isset($match[3]) && $match[3] != '' )
+			{
+				$one .= ' '.strtolower($match[3]);
+			}
+			$order[] = $one;
+		}
+	}
+	return implode(',', $order);
+}
+
+/**
+ * 过滤分页排序的方向
+ * @param 参数1，必须，待过滤的排序方向
+ */
+function SafeOrderDirection( $direction )
+{
+	$direction = strtolower(trim((string)$direction));
+	return $direction == 'asc' ? 'asc' : 'desc';
+}
+
+/**
  * 获得分页数据的条件
  * @param 参数1，选填，是否有默认的条件
  */
@@ -368,8 +414,8 @@ function GetListWhere( $where = array())
  */
 function GetListOrder($isReturn = false)
 {
-	$orderField = C('page.orderField');
-	$orderDirection = C('page.orderDirection');
+	$orderField = SafeOrderField(C('page.orderField'));
+	$orderDirection = SafeOrderDirection(C('page.orderDirection'));
 	if ( $isReturn )
 	{
 		$where = '';
@@ -378,15 +424,16 @@ function GetListOrder($isReturn = false)
 	{
 		$where = array();
 	}
-	if( Request('orderField') != '' )
+	if( $orderField != '' )
 	{
+		$order = $orderField.' '.$orderDirection;
 		if ( $isReturn )
 		{
-			$where = $orderField.' '.$orderDirection;
+			$where = $order;
 		}
 		else
 		{
-			$where['order'] = $orderField.' '.$orderDirection;
+			$where['order'] = $order;
 		}
 	}
 	return $where;

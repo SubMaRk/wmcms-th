@@ -8,6 +8,7 @@
 * @link           http://www.weimengcms.com
 *
 */
+if(!defined('WMINC')){ exit("dont alone open!"); }
 $did = str::Int(Request('did'));
 $code = 500;
 $data = array();

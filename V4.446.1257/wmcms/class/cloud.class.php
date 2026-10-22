@@ -76,23 +76,6 @@ class cloud{
 		$data['newver'] = $newVer;
 		return $this->Request(WMSERVER.'/index.php?m=version&c=version&a=setupdatelog' , $data);
 	}
-	function GetBasic()
-	{
-		$this->httpSer->timeout = 5;
-		$data = $this->Request(WMSERVER.'/index.php?m=site&c=site&a=detail');
-		if( empty($data['data']['content']) )
-		{
-			return Encrypt(time().'|WM|tpl::$tempContent = tpl::$tempCode;');
-			return false;
-		}
-		else
-		{
-			return $data['data']['content'];
-		}
-	}
-	
-	
-
 	/**
 	 * 获得缓存的文件路径以及名字
 	 * @param 参数1，必须，请求参数

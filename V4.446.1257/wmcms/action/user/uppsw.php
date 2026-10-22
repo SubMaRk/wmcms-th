@@ -34,13 +34,12 @@ $where['user_id'] = user::GetUid();
 $data = $userMod->GetOne($where);
 
 //密码加密
-$oldpsw = str::E($oldpsw,$data['user_salt']);
-$salt = str::GetSalt();
-$newpsw = str::E($newpsw,$salt);
+$salt = '';
+$newpsw = str::PswHash($newpsw);
 
 
-//旧密码正确
-if( $data['user_psw'] == $oldpsw )
+//旧密码正确（兼容旧的 sha1(md5()) 哈希）
+if( str::PswCheck($oldpsw, $data['user_psw'], $data['user_salt']) )
 {
 	//修改密码
 	$result = $userMod->Save(array('user_psw'=>$newpsw,'user_salt'=>$salt));

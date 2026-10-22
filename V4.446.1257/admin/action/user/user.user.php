@@ -42,8 +42,8 @@ if ( $type == 'edit' || $type == "add"  )
 	}
 	if ( $data['user_psw'] != '' )
 	{
-		$data['user_salt'] = str::GetSalt();
-		$data['user_psw'] = str::E($data['user_psw'],$data['user_salt']);
+		$data['user_salt'] = '';
+		$data['user_psw'] = str::PswHash($data['user_psw']);
 	}
 
 	

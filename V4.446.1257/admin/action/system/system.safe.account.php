@@ -31,10 +31,10 @@ if ( $type == 'uppsw' )
 	$where['where']['manager_id'] = Session('admin_id');
 	$data = wmsql::GetOne( $where );
 	
-	if ( $data['manager_psw'] == str::E($post['bpsw'],$data['manager_salt']) )
+	if ( str::PswCheck($post['bpsw'], $data['manager_psw'], $data['manager_salt']) )
 	{
-		$data['manager_salt'] = str::GetSalt();
-		$data['manager_psw'] = str::E($post['psw'],$data['manager_salt']);
+		$data['manager_salt'] = '';
+		$data['manager_psw'] = str::PswHash($post['psw']);
 		wmsql::Update($table, $data, $where['where']);
 
 		//写入操作记录

@@ -70,7 +70,7 @@ $data = $userMod->GetOne($where);
 user::$user = $data;
 
 //账号存在，密码正确
-if ( $data && $data['user_psw'] == str::E($psw,$data['user_salt']) )
+if ( $data && str::PswCheck($psw, $data['user_psw'], $data['user_salt']) )
 {
 	//手机号未认证
 	if( isset($where['user_tel']) && $data['user_teltrue'] == '0' )
@@ -142,16 +142,16 @@ if ( $data && $data['user_psw'] == str::E($psw,$data['user_salt']) )
 	{
 		$logMod->Insert(1,1,$data['user_id']);
 	}
-	//检查是否需要更新密码盐
-	if( empty($data['user_salt']) )
+	//旧哈希就在登录成功时升级成 bcrypt
+	if( str::PswIsLegacy($data['user_psw']) )
 	{
-		$salt = str::GetSalt();
-		$psw = str::E($psw,$salt);
-		$userMod->Save(array('user_psw'=>$psw,'user_salt'=>$salt),$data['user_id']);
+		$psw = str::PswHash($psw);
+		$userMod->Save(array('user_psw'=>$psw,'user_salt'=>''),$data['user_id']);
 	}
 	else
 	{
-		$psw = str::E($psw,$data['user_salt']);
+		//cookie 里保存的是数据库中的密码哈希
+		$psw = $data['user_psw'];
 	}
 	
 	//是否记住登录

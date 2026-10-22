@@ -48,9 +48,9 @@ if ( $type == 'edit' || $type == "add" )
 			Ajax('ขออภัย! ต้องกรอกรหัสผ่านก่อน',300);
 		}
 		
-		//加密密码
-		$post['manager_salt'] = str::GetSalt();
-		$post['manager_psw'] = str::E($post['manager_psw'],$post['manager_salt']);
+		//加密密码（bcrypt，salt 字段保留为空以兼容旧结构）
+		$post['manager_salt'] = '';
+		$post['manager_psw'] = str::PswHash($post['manager_psw']);
 		//删除重复密码
 		unset($post['manager_cpsw']);
 		
@@ -80,8 +80,8 @@ if ( $type == 'edit' || $type == "add" )
 		//需要修改密码
 		else if( $post['manager_psw'] != '' )
 		{
-			$post['manager_salt'] = str::GetSalt();
-			$post['manager_psw'] = str::E($post['manager_psw'],$post['manager_salt']);
+			$post['manager_salt'] = '';
+			$post['manager_psw'] = str::PswHash($post['manager_psw']);
 		}
 		//否则删除密码
 		else

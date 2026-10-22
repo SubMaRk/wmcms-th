@@ -35,7 +35,7 @@ $total = 0;
 $orderField = '';
 if( Request('orderField') != '')
 {
-	$orderField = Request('orderField');
+	$orderField = SafeOrderField(Request('orderField'));
 }
 C('page.orderField',$orderField);
 
@@ -44,7 +44,7 @@ C('page.orderField',$orderField);
 $orderDirection = '';
 if( Request('orderDirection') != '')
 {
-	$orderDirection = Request('orderDirection');
+	$orderDirection = SafeOrderDirection(Request('orderDirection'));
 }
 C('page.orderDirection',$orderDirection);
 ?>

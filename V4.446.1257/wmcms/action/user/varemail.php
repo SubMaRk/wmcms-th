@@ -8,6 +8,7 @@
 * @link           http://www.weimengcms.com
 *
 */
+if(!defined('WMINC')){ exit("dont alone open!"); }
 $email = user::GetEmail();
 $name = user::GetName();
 //参数验证

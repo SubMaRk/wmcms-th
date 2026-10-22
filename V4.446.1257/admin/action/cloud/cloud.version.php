@@ -25,6 +25,16 @@ else if ( $type == 'getnew' )
 //开始升级
 else if ( $type == 'update' )
 {
+	/*
+	安全策略说明：
+	自动升级会从 http://server.weimengcms.com 下载 zip，解压后再 require 包内的
+	update.php。整条链路是明文 http，而且包没有签名校验，任何能劫持这段连接的人
+	都可以让程序执行任意 PHP（和原来 CheckBasicConfig 里的 eval 是同一类问题）。
+	官方 4.446.1257 是最新版本且已停止维护，因此这里直接关闭自动升级，
+	改为手动上传补丁包再运行 update.php。
+	*/
+	Ajax('ขออภัย! ปิดการอัปเกรดอัตโนมัติเพื่อความปลอดภัย โปรดดาวน์โหลดชุดแพ็คอัปเดตเองแล้วรัน update.php ด้วยมือ',300);
+
 	$adminPath = $C['config']['web']['admin_path'];
 	
 	if( $adminPath == '' )

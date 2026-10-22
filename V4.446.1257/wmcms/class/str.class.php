@@ -862,6 +862,9 @@ class str{
 	
 	/**
 	 * 对密码进行加密
+	 *
+	 * 这是旧的哈希方式（sha1 套 md5，可选一个固定盐），强度不足以抵抗离线爆破。
+	 * 新的密码请使用 PswHash()，这里保留只是为了校验历史数据。
 	 * @param 参数1，必填，密码加密
 	 * @param 参数2，选填，加密密码盐
 	 */
@@ -875,6 +878,42 @@ class str{
 		{
 			return sha1($psw.$salt.md5($psw.$salt).$salt.$psw);
 		}
+	}
+	/**
+	 * 生成密码哈希（bcrypt / argon2，由 PHP 自选）
+	 * @param 参数1，必填，明文密码
+	 */
+	static function PswHash( $psw )
+	{
+		return password_hash($psw, PASSWORD_DEFAULT);
+	}
+	/**
+	 * 判断数据库里存的密码是不是旧的 sha1(md5()) 格式
+	 * @param 参数1，必填，数据库中的密码
+	 */
+	static function PswIsLegacy( $hash )
+	{
+		return !password_get_info((string)$hash)['algo'];
+	}
+	/**
+	 * 校验密码，兼容旧的哈希格式
+	 * @param 参数1，必填，明文密码
+	 * @param 参数2，必填，数据库中的密码
+	 * @param 参数3，选填，旧格式使用的密码盐
+	 */
+	static function PswCheck( $psw , $hash , $salt = '' )
+	{
+		if( $hash == '' )
+		{
+			return false;
+		}
+		//新格式
+		if( !self::PswIsLegacy($hash) )
+		{
+			return password_verify($psw, $hash);
+		}
+		//旧格式，用定长比较避免时序侧信道
+		return hash_equals(self::E($psw, $salt), (string)$hash);
 	}
 	//获得随机密码盐
 	static function GetSalt()

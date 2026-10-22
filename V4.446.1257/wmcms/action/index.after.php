@@ -8,6 +8,7 @@
 * @link           http://www.weimengcms.com
 *
 */
+if(!defined('WMINC')){ exit("dont alone open!"); }
 //是否存在后置文件
 if( file_exists('plugin/'.$actionPath.'/'.$actionFile.'.after.php') )
 {

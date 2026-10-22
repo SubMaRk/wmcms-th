@@ -7,7 +7,7 @@ $dbpw=$_POST['dbpw'];
 $dbname=$_POST['dbname'];
 $adminuser=$_POST['adminuser'];
 $adminemail=$_POST['adminemail'];
-$adminpsw = str::E(($_POST['adminpsw']));
+$adminpsw = str::PswHash(($_POST['adminpsw']));
 $pre=$_POST['pre'];
 
 try{

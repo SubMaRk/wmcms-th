@@ -33,9 +33,8 @@ $data = $userMod->GetOne($where);
 if( $data )
 {
 	//设置密码并且修改密码
-	$salt = str::GetSalt();
-	$userMod->psw = str::E($psw,$salt);
-	$userMod->salt = $salt;
+	$userMod->psw = str::PswHash($psw);
+	$userMod->salt = '';
 	$result = $userMod->SavePsw($data['user_id']);
 	//清空重置密码key
 	$userMod->DelGetPswKey($key);

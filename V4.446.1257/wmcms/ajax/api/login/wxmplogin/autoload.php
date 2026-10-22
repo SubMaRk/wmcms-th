@@ -1,4 +1,5 @@
 <?php
+if(!defined('WMINC')){ exit("dont alone open!"); }
 require_once(WMCLASS.'weixin_account.class.php');
 //wmcms整合登录类
 class OtherLogin extends WeiXin_Account

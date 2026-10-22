@@ -1,6 +1,26 @@
 # Helicon ISAPI_Rewrite configuration file
 # Version 3.1.0.102
 
+#####安全加固：禁止直接访问敏感文件#####
+# install/sql.sql 会在安装后继续暴露整份 schema（含管理员 hash 与 salt），
+# 而 /wmcms/ 下的所有类、配置文件本来只应被 include，不应该能通过 HTTP 直接取。
+<IfModule mod_authz_core.c>
+	<FilesMatch "\.(sql|ini|log|md|bak|lock|project)$">
+		Require all denied
+	</FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+	<FilesMatch "\.(sql|ini|log|md|bak|lock|project)$">
+		Order allow,deny
+		Deny from all
+	</FilesMatch>
+</IfModule>
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteRule ^(wmcms|cache)/ - [F,L]
+</IfModule>
+#####安全加固结束#####
+
 RewriteEngine On
 RewriteBase /
 

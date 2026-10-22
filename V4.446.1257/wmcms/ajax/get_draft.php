@@ -8,6 +8,7 @@
 * @link           http://www.weimengcms.com
 *
 */
+if(!defined('WMINC')){ exit("dont alone open!"); }
 $did = str::Int(Request('did'));
 $cid = str::Int(Request('cid'));
 $module = str::IsEmpty( Request('module') , $lang['system']['par']['module_err'] );

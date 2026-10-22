@@ -8,6 +8,7 @@
 * @link           http://www.weimengcms.com
 *
 */
+if(!defined('WMINC')){ exit("dont alone open!"); }
 //邮箱验证码
 $dvarcode = str::IsEmpty( Get('dvarcode') , $lang['user']['dvarcode_no']);
 $deCode = str::Encrypt( $dvarcode , 'D' , C('config.api.system.api_apikey'));

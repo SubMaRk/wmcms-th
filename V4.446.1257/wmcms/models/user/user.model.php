@@ -68,8 +68,8 @@ class UserModel
 		//插入数据
 		$name = $data['name'];
 		$nickName = str::IsEmpty(GetKey($data,'nickname'),'',$name);
-		$salt = str::GetSalt();
-		$psw = str::E($data['psw'],$salt);
+		$salt = '';
+		$psw = str::PswHash($data['psw']);
 		$email = GetKey($data,'email');
 		$emailtrue = GetKey($data,'emailtrue');
 		$tel = GetKey($data,'tel');
@@ -97,6 +97,8 @@ class UserModel
 		$addData['user_nickname'] = $nickName;
 		$addData['user_psw'] = $psw;
 		$addData['user_salt'] = $salt;
+		//供调用方（注册后自动登录的 cookie）读取同一份哈希
+		$this->psw = $psw;
 		$addData['user_status'] = $userConfig['reg_status'];
 		$addData['user_email'] = $email;
 		$addData['user_emailtrue'] = $emailtrue=='1'?1:0;

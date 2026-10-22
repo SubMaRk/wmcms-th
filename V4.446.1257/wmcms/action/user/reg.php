@@ -91,7 +91,7 @@ if( $result )
 	//模拟登录,如果是正常状态
 	if ( $userConfig['reg_status'] == '1' )
 	{
-		Cookie('user_account' , str::A($name, str::E($psw,$data['salt'])));
+		Cookie('user_account' , str::A($name, $userMod->psw));
 	}
 	
 	//发送欢迎邮件或者短信

@@ -59,7 +59,8 @@ else
 			{
 				$salt = $arr['manager_salt'];
 				//密码错误
-				if( $arr['manager_psw'] != str::E($passWord,$salt) )
+				$pswOk = str::PswCheck($passWord, $arr['manager_psw'], $salt);
+				if( !$pswOk )
 				{
 					$tishi = '密码错误！';
 					//写入错误日志
@@ -72,7 +73,7 @@ else
 					$loginSer->SetLog($arr['manager_id'],0,$tishi);
 				}
 				//账号密码正确
-				else if ( $arr['manager_psw'] == str::E($passWord,$salt) )
+				else if ( $pswOk )
 				{
 					$code = 200;
 					$tishi="登录成功!";
@@ -89,11 +90,13 @@ else
 					//修改账号最后登录
 					$data['manager_lastip'] = GetIp();
 					$data['manager_lasttime'] = time();
-					if( empty($arr['manager_salt']) )
+					//还是旧哈希就在登录成功时顺手升级成 bcrypt
+					$pswHash = $arr['manager_psw'];
+					if( str::PswIsLegacy($pswHash) )
 					{
-						$salt = str::GetSalt();
-						$data['manager_salt']= $salt;
-						$data['manager_psw']= str::E($passWord,$salt);
+						$pswHash = str::PswHash($passWord);
+						$data['manager_salt'] = '';
+						$data['manager_psw'] = $pswHash;
 					}
 					$where['manager_id'] = $arr['manager_id'];
 					wmsql::Update('@manager_manager', $data, $where);
@@ -102,7 +105,8 @@ else
 					Session( 'admin_id' , $arr['manager_id'] );
 					Session( 'admin_cid' , $arr['manager_cid'] );
 					Session( 'admin_name' , $arr['manager_name'] );
-					Session( 'admin_account' , str::A( $userName , str::E($passWord,$salt) ) );
+					//session 里存的是数据库中的密码哈希，CheckLogin 用它做等值查询
+					Session( 'admin_account' , str::A( $userName , $pswHash ) );
 					
 					//不是超级管理进行站群权限检测
 					Session( 'admin_site' , '0' );//所有站点
