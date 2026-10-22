@@ -163,7 +163,8 @@ class Msg
 	 */
 	private function GetCode()
 	{
-		return rand(100000,999999);
+		//用密码学随机数生成验证码，rand()/mt_rand() 的状态可以被推算
+		return random_int(100000,999999);
 	}
 	/**
 	 * 替换邮件验证码参数

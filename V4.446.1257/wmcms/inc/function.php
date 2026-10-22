@@ -2586,8 +2586,10 @@ function FormTokenCreate($isReturn = false)
 {
 	$newToken = array();
 	$sessionToken = Session('form_token/a');
+	//随机 token，不再用「密钥+时间」这种可以推算的值
+	$token = bin2hex(random_bytes(16));
+	//同一个页面一个 token 槽位，键里混入站点密钥避免和其他站点串号
 	$apikey = C('config.api.system.api_apikey');
-	$token = md5($apikey.'|wmcms|' .time());
 	$url = md5($apikey.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 	if( is_array($sessionToken) )
 	{
@@ -2630,7 +2632,7 @@ function FormTokenCheck($isReturn = false)
 		{
 			$lang = 'token_err';
 			$isPast = false;
-			if( $v == $formToken )
+			if( is_string($v) && hash_equals($v, (string)$formToken) )
 			{
 				Session('form_token_key' , $k);
 				$isPast = true;
