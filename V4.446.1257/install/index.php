@@ -32,7 +32,8 @@ else if( str_replace('/','',str_replace('index.php','',$_SERVER['PHP_SELF'])) !=
 {
 	$file = 'second_dir.php';
 }
-else if(!file_exists('sql.sql') )
+//step4 会立刻删掉 sql.sql（schema 不再对外暴露），所以 step5 不能再检查它
+else if(!file_exists('sql.sql') && $a != 'step5' )
 {
 	$file = 'sql.php';
 }

@@ -1,14 +1,48 @@
 <?php if(!defined('WMINC'))die();?>
 <?php
-$dbhost=$_POST['dbhost'];
-$dbport=$_POST['dbport'];
-$dbuser=$_POST['dbuser'];
-$dbpw=$_POST['dbpw'];
-$dbname=$_POST['dbname'];
-$adminuser=$_POST['adminuser'];
-$adminemail=$_POST['adminemail'];
-$adminpsw = str::PswHash(($_POST['adminpsw']));
-$pre=$_POST['pre'];
+/**
+ * 安装参数校验
+ * 这些值会被写进 SQL、写进 data.config.php 和 api.config.php，
+ * 不校验就等于让第一个访问安装页的人决定服务器上执行什么代码。
+ */
+function InstallValue($key , $default = '')
+{
+	return isset($_POST[$key]) ? trim($_POST[$key]) : $default;
+}
+
+$dbhost=InstallValue('dbhost' , 'localhost');
+$dbport=InstallValue('dbport' , '3306');
+$dbuser=InstallValue('dbuser');
+$dbpw=InstallValue('dbpw');
+$dbname=InstallValue('dbname');
+$adminuser=InstallValue('adminuser');
+$adminemail=InstallValue('adminemail');
+$adminpsw = str::PswHash(InstallValue('adminpsw'));
+$pre=InstallValue('pre' , 'wm_');
+
+//数据库名和表前缀只能是标识符
+if( !preg_match('/^[A-Za-z0-9_]{1,64}$/', $dbname) )
+{
+	die('ชื่อฐานข้อมูลไม่ถูกต้อง (ใช้ได้เฉพาะ a-z A-Z 0-9 _)');
+}
+if( $pre != '' && !preg_match('/^[A-Za-z0-9_]{1,32}$/', $pre) )
+{
+	die('คำนำหน้าตารางไม่ถูกต้อง (ใช้ได้เฉพาะ a-z A-Z 0-9 _)');
+}
+//管理员账号和邮箱
+if( !preg_match('/^[A-Za-z0-9_.\-@]{3,32}$/', $adminuser) )
+{
+	die('ชื่อผู้ดูแลระบบไม่ถูกต้อง');
+}
+if( $adminemail != '' && !filter_var($adminemail, FILTER_VALIDATE_EMAIL) )
+{
+	die('อีเมลผู้ดูแลระบบไม่ถูกต้อง');
+}
+//端口只能是数字
+if( !preg_match('/^[0-9]{1,5}$/', $dbport) )
+{
+	die('พอร์ตฐานข้อมูลไม่ถูกต้อง');
+}
 
 try{
 	//判断数据库信息
@@ -54,35 +88,41 @@ try{
 			@unlink($filepatch);
 		}
 	
-		//修改管理员账号信息
-		$db->exec("update `wm_manager_manager` set `manager_name`='{$adminuser}',`manager_psw`='{$adminpsw}',`manager_salt`='' where `manager_id`=1");
+		//修改管理员账号信息（使用预处理，不再拼接字符串）
+		$st = $db->prepare("update `wm_manager_manager` set `manager_name`=?,`manager_psw`=?,`manager_salt`='' where `manager_id`=1");
+		$st->execute(array($adminuser,$adminpsw));
 		//修改域名，修改管理员邮箱
 		$domain = @$_SERVER['HTTP_HOST'];
-		$db->exec("update `wm_config_config` set `config_value`='{$domain}' where `config_id`=2");
-		$db->exec("update `wm_config_config` set `config_value`='".HTTP_TYPE."' where `config_id`=396");
-		$db->exec("update `wm_config_config` set `config_value`='{$adminemail}' where `config_id`=3");
+		$st = $db->prepare("update `wm_config_config` set `config_value`=? where `config_id`=2");
+		$st->execute(array($domain));
+		$st = $db->prepare("update `wm_config_config` set `config_value`=? where `config_id`=396");
+		$st->execute(array(HTTP_TYPE));
+		$st = $db->prepare("update `wm_config_config` set `config_value`=? where `config_id`=3");
+		$st->execute(array($adminemail));
 
 		//修改网站的API接口配置
-		$db->exec("update `wm_api_api` set `api_appid`='".$appid."',`api_apikey`='".$apikey."',`api_secretkey`='".$secret."' where `api_id`=1");
+		$st = $db->prepare("update `wm_api_api` set `api_appid`=?,`api_apikey`=?,`api_secretkey`=? where `api_id`=1");
+		$st->execute(array($appid,$apikey,$secret));
 		$apiContent=file_get_contents("../wmcms/config/api.config.php");
-		$apiContent=preg_replace("/'system' => array\('api_type'=>'1','api_title'=>'สถานีทั่วไป','api_ctitle'=>'','api_open'=>'1','api_appid'=>'(.*?)','api_apikey'=>'(.*?)','api_secretkey'=>'(.*?)',/", "'system' => array('api_type'=>'1','api_title'=>'สถานีทั่วไป','api_ctitle'=>'','api_open'=>'1','api_appid'=>'{$appid}','api_apikey'=>'{$apikey}','api_secretkey'=>'{$secret}',", $apiContent);
+		$apiContent=preg_replace_callback(
+			"/'api_appid'=>'(.*?)','api_apikey'=>'(.*?)','api_secretkey'=>'(.*?)',/",
+			function($m) use ($appid,$apikey,$secret)
+			{
+				//用 var_export 生成 PHP 字面量，值里的引号不会变成代码
+				return "'api_appid'=>".var_export($appid,true).",'api_apikey'=>".var_export($apikey,true).",'api_secretkey'=>".var_export($secret,true).",";
+			},
+			$apiContent, 1);
 		file_put_contents("../wmcms/config/api.config.php",$apiContent);
 		
 		
 		//更改配置文件
 		$TxtContent=file_get_contents("../wmcms/config/data.config.php");
-		//数据库IP
-		$TxtContent=preg_replace("/'host'	=>	'(.*?)'/", "'host'	=>	'$dbhost'", $TxtContent);
-		//数据库端口
-		$TxtContent=preg_replace("/'port'	=>	'(.*?)'/", "'port'	=>	'$dbport'", $TxtContent);
-		//数据库用户名
-		$TxtContent=preg_replace("/'uname'	=>	'(.*?)'/", "'uname'	=>	'$dbuser'", $TxtContent);
-		//数据库密码
-		$TxtContent=preg_replace("/'upsw'	=>	'(.*?)'/", "'upsw'	=>	'$dbpw'", $TxtContent);
-		//数据库名
-		$TxtContent=preg_replace("/'name'	=>	'(.*?)'/", "'name'	=>	'$dbname'", $TxtContent);
-		//数据库表前缀
-		$TxtContent=preg_replace("/'prefix'	=>	'(.*?)'/", "'prefix'	=>	'$pre'", $TxtContent);
+		//每一项都用 var_export 生成字面量：即使密码里有引号也不会变成代码
+		$dbMap = array('host'=>$dbhost,'port'=>$dbport,'uname'=>$dbuser,'upsw'=>$dbpw,'name'=>$dbname,'prefix'=>$pre);
+		foreach ($dbMap as $dbKey=>$dbVal)
+		{
+			$TxtContent=preg_replace("/'".$dbKey."'	=>	'(.*?)'/", "'".$dbKey."'	=>	".var_export($dbVal,true), $TxtContent, 1);
+		}
 		//转换编码并且保存
 		file_put_contents("../wmcms/config/data.config.php",$TxtContent);
 		
@@ -102,13 +142,15 @@ try{
 				{
 					$installModule[] = $v['file'];
 					//显示菜单
-					$db->exec("update `wm_system_menu` set `menu_status`='1' where `menu_id`={$moduleArr['id']}");
+					$st = $db->prepare("update `wm_system_menu` set `menu_status`='1' where `menu_id`=?");
+					$st->execute(array((int)$moduleArr['id']));
 				}
 				else
 				{
 					$unInstallModule[] = $v['file'];
 					//隐藏菜单
-					$db->exec("update `wm_system_menu` set `menu_status`='0' where `menu_id`={$moduleArr['id']}");
+					$st = $db->prepare("update `wm_system_menu` set `menu_status`='0' where `menu_id`=?");
+					$st->execute(array((int)$moduleArr['id']));
 				}
 			}
 			//如果是全部模块
@@ -139,7 +181,8 @@ try{
 		@file_put_contents('../wmcms/config/install.lock.txt', time());
 		//第三步 修改表前缀。
 		if( $pre != 'wm_'){
-			$rs = $db->query("SELECT CONCAT( 'ALTER TABLE ', table_name, ' RENAME TO ', REPLACE(table_name,'wm_','{$pre}'),';')  as newpre FROM information_schema.tables WHERE TABLE_SCHEMA = '{$dbname}';");
+			$rs = $db->prepare("SELECT CONCAT( 'ALTER TABLE ', table_name, ' RENAME TO ', REPLACE(table_name,'wm_',?),';') as newpre FROM information_schema.tables WHERE TABLE_SCHEMA = ?");
+			$rs->execute(array($pre,$dbname));
 			//只取列名
 			$rs->setFetchMode(PDO::FETCH_ASSOC);
 			$row = $rs->fetchAll();

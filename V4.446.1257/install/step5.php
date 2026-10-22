@@ -8,6 +8,28 @@ if( file_exists('sql.sql') )
 {
 	@unlink('sql.sql');
 }
+//整个安装目录改名，安装器连同 listen.txt 等辅助文件都不会再被访问到。
+//改名失败（例如主机不允许重命名目录）时至少把入口文件改掉，并提示手动删除。
+$installGone = false;
+$newName = 'install_'.substr(md5(uniqid('', true)),0,8);
+if( @rename(__DIR__, dirname(__DIR__).'/'.$newName) === true )
+{
+	$installGone = true;
+}
+else
+{
+	foreach (glob(__DIR__.'/*.php') as $installFile)
+	{
+		if( basename($installFile) != basename(__FILE__) )
+		{
+			@rename($installFile, $installFile.'.removed');
+		}
+	}
+	//目录不能改名时，至少让 Apache 拒绝访问整个安装目录
+	$deny = "<IfModule mod_authz_core.c>\r\n\tRequire all denied\r\n</IfModule>\r\n"
+	      . "<IfModule !mod_authz_core.c>\r\n\tOrder allow,deny\r\n\tDeny from all\r\n</IfModule>\r\n";
+	@file_put_contents(__DIR__.'/.htaccess', $deny);
+}
 //rename(WMROOT.'/install',WMROOT.'/install'.md5(rand(0,99999).time()));
 ?>
 <div class="main cc">
