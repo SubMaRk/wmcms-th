@@ -1,0 +1,48 @@
+# WMCMS + nginx ตัวอย่างการตั้งค่า
+#
+# .htaccess / httpd.ini ใช้ได้เฉพาะ Apache / IIS เท่านั้น ถ้า deploy บน nginx
+# ต้องใส่กฎต่อไปนี้เอง ไม่งั้นไฟล์ภายใน (schema, config, log, cache) จะถูกดาวน์โหลดได้
+#
+# 使用方法：把 server { ... } 这段放进 sites-available，改 root 和 fastcgi_pass 后 reload。
+
+server {
+    listen 80;
+    server_name example.com;
+    root /var/www/wmcms;
+    index index.php;
+
+    # 1) ไฟล์ภายในห้ามเข้าถึง
+    location ^~ /wmcms/ {
+        # 但要放行支付回调，否则支付宝/微信通知会被挡掉，订单永远不会变成已支付
+        location ^~ /wmcms/notify/ {
+            include fastcgi_params;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            fastcgi_pass unix:/run/php/php-fpm.sock;
+        }
+        deny all;
+    }
+    location ^~ /cache/  { deny all; }
+    location ^~ /install/ { deny all; }
+
+    # 2) 敏感后缀
+    location ~* \.(sql|ini|log|bak|md|lock|project|pem)$ { deny all; }
+
+    # 3) 上传目录禁止执行脚本
+    location ^~ /upload/ {
+        location ~* \.(php[0-9]?|phtml|pht|phar|inc|pl|py|sh|cgi)$ { deny all; }
+    }
+    location ^~ /files/ {
+        location ~* \.(php[0-9]?|phtml|pht|phar|inc|pl|py|sh|cgi)$ { deny all; }
+    }
+
+    # 4) 静态文件直接返回，其余交给 PHP
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_pass unix:/run/php/php-fpm.sock;
+    }
+}
