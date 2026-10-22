@@ -85,25 +85,4 @@
         </div>
     </div>
 </div>
-<script>
-$(document).ready(function(){
-	var op = new Array();
-	op['type'] = 'GET';
-	op['reload'] = 'false';
-	op['url'] = "index.php?a=yes&c=cloud.version&t=getnew";
-	op['callback'] = "<?php echo $cFun;?>ajaxCallBack";
-	$(this).bjuiajax("doAjax",op);// 显示处理结果
-});
-function <?php echo $cFun;?>ajaxCallBack(json){
-	var data = json.data.data;
-	if(data){
-		if( '<?php echo WMVER?>' != data['version_number'] )
-		{
-			$(this).alertmsg("ok", "พบเวอร์ชั่นใหม่บนเซิร์ฟเวอร์ที่สามารถอัปเดทได้!");
-		}
-		$("#version_new").html('V'+data['version_number']);
-		$("#version_time").html(data['version_addtime']);
-		$("#version_remark").html(data['version_remark']);
-	}
-}
-</script>
+<!-- 版本检查已移除：不再向官方服务器请求 -->

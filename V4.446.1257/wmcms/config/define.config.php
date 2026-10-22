@@ -60,6 +60,7 @@ define('WMLABEL','http://label.'.WMDOMAIN);
 //帮助中心
 define('WMHELP','http://help.'.WMDOMAIN);
 //程序服务地址
+//cloud 通道已移除，用户端只剩这个常量，保留是为了兼容旧插件
 define('WMSERVER','http://server.'.WMDOMAIN);
 //是否位于可信反向代理之后（启用后才采信 X-Forwarded-For，默认关闭）
 define('TRUST_PROXY',false);

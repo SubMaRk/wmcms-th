@@ -299,8 +299,8 @@ function Competence( $a , $c ,$t )
 	//不检测的控制器
 	$noCheck = array('','login','logout','upload','upload.upload','linkage','index','index_main','system.menu.menu',
 				'system.menu.search');
-	//最新版本的权限不检查
-	if( ($c=='cloud.version' && $t=='getnew') || ($c=='system.site.site' && $t=='getsite') )
+	//站点信息检查不走权限表（cloud 版本检查已移除）
+	if( $c=='system.site.site' && $t=='getsite' )
 	{
 	}
 	else

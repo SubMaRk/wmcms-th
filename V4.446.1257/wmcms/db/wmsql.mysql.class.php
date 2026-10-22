@@ -1632,12 +1632,7 @@ class WMSql
 					$sql = "INSERT into ".$table."(".$fields.") VALUES(".$values.")";
 					self::$db->exec( $sql );
 				}
-				//是否开启了自动上传错误
-				if( $autoUpload == '1')
-				{
-					$cloudSer = NewClass('cloud');
-					$cloudSer->ErrlogAdd($data);
-				}
+				//错误只写本地日志，不再上传到官方服务器
 				
 				if ( !DEBUG )
 				{

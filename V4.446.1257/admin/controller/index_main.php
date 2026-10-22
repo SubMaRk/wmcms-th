@@ -8,9 +8,8 @@
 * @link           http://www.weimengcms.com
 *
 */
-$cloudSer = NewClass('cloud');
-$rs = $cloudSer->GetNewVer();
-$newVerData = $rs['data'];
+//不再向官方服务器查询版本（cloud 通道已默认关闭）
+$newVerData = array();
 
 
 //留言数据

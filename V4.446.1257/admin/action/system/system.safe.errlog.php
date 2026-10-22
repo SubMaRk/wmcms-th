@@ -44,31 +44,7 @@ else if ( $type == 'autoupload' )
 //上传错误日志
 else if ( $type == 'upload' )
 {
-	$where['table'] = $table;
-	$where['where']['errlog_id'] = str::Int(Request('id'));
-	$data = wmsql::GetOne($where);
-	if( $data && $data['errlog_status'] == '1' )
-	{
-		Ajax('对不起，该错误日志已经上传过了！', 300);
-	}
-	else if( $data )
-	{
-		$cloudSer = NewClass('cloud');
-		$rs = $cloudSer->ErrlogAdd($data);
-		if( $rs['code'] == 200 )
-		{
-			//修改为已经上传状态
-			wmsql::Update($table, array('errlog_status'=>1), array('errlog_id'=>$id));
-			Ajax('错误日志上传成功！');
-		}
-		else
-		{
-			Ajax($rs['msg'], 300);
-		}
-	}
-	else
-	{
-		Ajax('对不起，该错误日志不存在！' , 300);
-	}
+	//上传到官方服务器的功能已移除，错误日志只保留在本机
+	Ajax('ไม่รองรับการอัปโหลดบันทึกข้อผิดพลาดแล้ว กรุณาดูไฟล์ใน cache/log/' , 300);
 }
 ?>

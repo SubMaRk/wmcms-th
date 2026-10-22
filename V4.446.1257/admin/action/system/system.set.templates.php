@@ -8,7 +8,6 @@
 * @link           http://www.weimengcms.com
 *
 */
-$cloudSer = NewClass('cloud');
 $manager = AdminNewClass('manager');
 
 //设置本处理器的表
@@ -39,44 +38,32 @@ if ( $type == 'install' || $type == 'uninstall')
 		//安装模版操作
 		if( $type == 'install' )
 		{
-			//应用信息校正
-			$rs = $cloudSer->APPInstall($path);
-			if( $rs['code'] != '200' )
-			{
-				Ajax($rs['msg'],300);
-			}
-			else
-			{
-				//校正appid
-				if( $rs['data']['online'] == '1' )
-				{
-					$copyData['appid'] = $rs['data']['appid'];
-				}
-				
-				//查询模版信息是否正确
-				if ( count($copyData) != '9' || $copyData['name'] == '' || $copyData['author'] == '')
-				{
-					Ajax('ขออภัย! ข้อมูลลิขสิทธิ์เทมเพลตไม่ถูกต้อง',300);
-				}
-				//模版已经安装了
-				else if ( $tempArr )
-				{
-					Ajax('ขออภัย! เทมเพลตนี้ถูกติดตั้งแล้ว',300);
-				}
-				else
-				{
-					$data['templates_path'] = $path;
-					$data['templates_name'] = $copyData['name'];
-					$data['templates_appid'] = $copyData['appid'];
-					wmsql::Insert($table, $data);
-					
-					//写入操作记录
-					SetOpLog( 'ติดตั้งเทมเพลต' , 'system' , 'update' );
-					//更新模版配置文件
-					UpTempConfig();
-					Ajax('ติดตั้งเทมเพลตสำเร็จ! สามารถใช้ได้เลย');
-				}
-			}
+			//模版只在本机安装，不再向官方服务器登记
+
+		//查询模版信息是否正确
+		if ( count($copyData) != '9' || $copyData['name'] == '' || $copyData['author'] == '')
+		{
+			Ajax('ขออภัย! ข้อมูลลิขสิทธิ์เทมเพลตไม่ถูกต้อง',300);
+		}
+		//模版已经安装了
+		else if ( $tempArr )
+		{
+			Ajax('ขออภัย! เทมเพลตนี้ถูกติดตั้งแล้ว',300);
+		}
+		else
+		{
+			$data['templates_path'] = $path;
+			$data['templates_name'] = $copyData['name'];
+			$data['templates_appid'] = $copyData['appid'];
+			wmsql::Insert($table, $data);
+			
+			//写入操作记录
+			SetOpLog( 'ติดตั้งเทมเพลต' , 'system' , 'update' );
+			//更新模版配置文件
+			UpTempConfig();
+			Ajax('ติดตั้งเทมเพลตสำเร็จ! สามารถใช้ได้เลย');
+		}
+	
 		}
 		//卸载模版操作
 		else if( $type == 'uninstall' )
