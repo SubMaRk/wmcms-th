@@ -63,6 +63,7 @@ if( $post )
 
 	
 	//模块域名绑定
+	if( isset($post['domain']) && is_array($post['domain']) )
 	foreach ($post['domain'] as $k=>$v)
 	{
 		$where = array();
@@ -73,13 +74,25 @@ if( $post )
 	}
 	
 	//更新域名配置文件
+	//这里原来是把库里的值直接拼进 PHP 源码，值里带一个单引号就能写进任意代码。
+	//现在先用 var_export 生成字面量，并且只接受合法主机名。
 	$domainWhere['table'] = '@system_domain';
 	$domainArr = wmsql::GetAll($domainWhere);
 	$config = '';
 	foreach ($domainArr as $v)
 	{
-		$v = str::Escape($v , 'e');
-		$config .="'{$v['domain_name']}' => array('domain'=>'{$v['domain_domain']}','index'=>'{$v['domain_index']}'),";
+		$name = (string)$v['domain_name'];
+		$host = (string)$v['domain_domain'];
+		//域名/主机名白名单：字母数字、点、减号、冒号（端口），不能有引号或反斜杠
+		if( $name === '' || !preg_match('/^[A-Za-z0-9.\-:]{1,190}$/', $name) )
+		{
+			continue;
+		}
+		if( $host !== '' && !preg_match('/^[A-Za-z0-9.\-:]{1,190}$/', $host) )
+		{
+			continue;
+		}
+		$config .= var_export($name,true)." => array('domain'=>".var_export($host,true).",'index'=>".var_export((string)$v['domain_index'],true)."),";
 	}
 	file_put_contents( WMCONFIG."domain.config.php" , '<?php $C["config"]["domain"]=array('.$config.');?>');
 	

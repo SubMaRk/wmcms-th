@@ -16,6 +16,11 @@ if( $type == 'edit' )
 	$modlueStr = '';
 	$moduleName = Get('module');
 	$moduleArr = $post['module'];
+	//模块名会拼进文件路径，只允许存在的模块目录，避免路径穿越
+	if( !preg_match('/^[a-zA-Z0-9_]{1,32}$/', (string)$moduleName) || !is_dir(WMMODULE.$moduleName) )
+	{
+		Ajax('ไม่พบโมดูลนี้' , 300);
+	}
 	
 	foreach ($moduleArr as $k=>$v)
 	{
