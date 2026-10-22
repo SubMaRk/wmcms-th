@@ -1,0 +1,1 @@
+<?php $messageConfig=array('message_count' => '3','message_open' => '1',);?>
