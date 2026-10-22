@@ -728,10 +728,10 @@ function Session( $key , $val = '' )
 		//二位就还原序列化
 		if( IsSerialize($value) )
 		{
-			$value = unserialize($value);
-			if( count($keyArr) > 1)
+			$value = SafeUnserialize($value);
+			if( count($keyArr) > 1 )
 			{
-				$value = $value[$key][$keyArr[1]];
+				$value = is_array($value) && isset($value[$key]) && is_array($value[$key]) && isset($value[$key][$keyArr[1]]) ? $value[$key][$keyArr[1]] : '';
 			}
 		}
 	}
@@ -743,9 +743,14 @@ function Session( $key , $val = '' )
 	else
 	{
 		//如果是二位数组就设置新的值
-		if( !empty($_COOKIE[$key]) && count($keyArr) > 1)
+		//旧值只从 session 取：cookie 完全由客户端控制，反序列化它等于把对象注入交给攻击者
+		if( !empty($_SESSION[$key]) && count($keyArr) > 1)
 		{
-			$oldArr = unserialize($_COOKIE[$key]);
+			$oldArr = SafeUnserialize($_SESSION[$key]);
+			if( !is_array($oldArr) )
+			{
+				$oldArr = array();
+			}
 		}
 		if( count($keyArr) > 1)
 		{
@@ -845,10 +850,10 @@ function Cookie( $key , $val = '' , $time = '' , $path = '/' ,  $server = '' )
 		//二位就还原序列化
 		if( IsSerialize($value) )
 		{
-			$value = unserialize($value);
-			if( count($keyArr) > 1)
+			$value = SafeUnserialize($value);
+			if( count($keyArr) > 1 )
 			{
-				$value = $value[$key][$keyArr[1]];
+				$value = is_array($value) && isset($value[$key]) && is_array($value[$key]) && isset($value[$key][$keyArr[1]]) ? $value[$key][$keyArr[1]] : '';
 			}
 		}
 	}
@@ -869,7 +874,11 @@ function Cookie( $key , $val = '' , $time = '' , $path = '/' ,  $server = '' )
 		//如果是二位数组就设置新的值
 		if( !empty($_COOKIE[$key]) && count($keyArr) > 1)
 		{
-			$oldArr = unserialize($_COOKIE[$key]);
+			$oldArr = SafeUnserialize($_COOKIE[$key]);
+			if( !is_array($oldArr) )
+			{
+				$oldArr = array();
+			}
 		}
 		if( count($keyArr) > 1)
 		{
@@ -1301,6 +1310,53 @@ function IsSpider()
 			if (strpos($userAgent,$k) !== false)
 			{
 				return GetSpider(2,$k);
+			}
+		}
+	}
+	return false;
+}
+
+/**
+ * 安全反序列化：只允许还原标量和数组，绝不实例化对象
+ * @param 参数1，必须，序列化字符串。
+ * @return 数组或标量，失败返回 false
+ */
+function SafeUnserialize( $str )
+{
+	if( !is_string($str) || $str === '' || !IsSerialize($str) )
+	{
+		return false;
+	}
+	$data = @unserialize( $str , array('allowed_classes' => false) );
+	if( $data === false && trim($str) !== 'b:0;' )
+	{
+		return false;
+	}
+	//allowed_classes 只是不还原成真类，嵌套对象仍会变成 __PHP_Incomplete_Class，直接判为非法
+	if( ContainsObject($data) )
+	{
+		return false;
+	}
+	return $data;
+}
+
+/**
+ * 递归检查数据里是否含有对象
+ * @param 参数1，必须，任意值。
+ */
+function ContainsObject( $data )
+{
+	if( is_object($data) )
+	{
+		return true;
+	}
+	if( is_array($data) )
+	{
+		foreach ($data as $v)
+		{
+			if( ContainsObject($v) )
+			{
+				return true;
 			}
 		}
 	}
