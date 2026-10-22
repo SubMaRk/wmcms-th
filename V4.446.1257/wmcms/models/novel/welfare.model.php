@@ -96,10 +96,10 @@ class WelfareModel
 	 */
 	function UnSerData($data)
 	{
-		$data['welfare_type'] = unserialize($data['welfare_type']);
-		$data['welfare_finish'] = unserialize($data['welfare_finish']);
-		$data['welfare_update'] = unserialize($data['welfare_update']);
-		$data['welfare_full'] = unserialize($data['welfare_full']);
+		$data['welfare_type'] = SafeUnserialize($data['welfare_type']);
+		$data['welfare_finish'] = SafeUnserialize($data['welfare_finish']);
+		$data['welfare_update'] = SafeUnserialize($data['welfare_update']);
+		$data['welfare_full'] = SafeUnserialize($data['welfare_full']);
 		if( $data['welfare_number'] == '0.00' )
 		{
 			$data['welfare_number'] = '';

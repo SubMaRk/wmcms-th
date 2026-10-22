@@ -31,7 +31,7 @@ else
 if ( $type == 'edit')
 {
 	$data = $propsMod->GetById($id);
-	$option = unserialize($data['props_option']);
+	$option = SafeUnserialize($data['props_option']);
 	if( $data )
 	{
 		//上级分类的名字

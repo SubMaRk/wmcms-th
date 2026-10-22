@@ -47,7 +47,7 @@ if( $cid > 0 && $nid>0 )
             $applyData = $applyMod->GetOne($applyWhere);
             if( $applyData )
             {
-                $applyData = unserialize($applyData['apply_option']);
+                $applyData = SafeUnserialize($applyData['apply_option']);
                 $data['content'] = $applyData['content'];
                 $data['chapter_name'] = $applyData['chapter_name'];
             }

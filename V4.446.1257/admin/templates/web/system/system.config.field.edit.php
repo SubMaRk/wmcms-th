@@ -93,7 +93,7 @@
 			        else
 			        {
 			        	$i=1;
-			        	$optionArr = unserialize($data['field_option']);
+			        	$optionArr = SafeUnserialize($data['field_option']);
 			        	foreach ($optionArr as $key=>$val)
 			        	{
 			        		echo '<li style="margin-bottom: 7px;"><select data-toggle="selectpicker" name="option[formtype][]" data-width="80">';

@@ -725,7 +725,7 @@ class authorlabel extends author
 		self::NovelPublicChapterTypeLabel();
 		
 		$data = C('page.data');
-		$option = unserialize(GetKey($data,'draft_option'));
+		$option = SafeUnserialize(GetKey($data,'draft_option'));
 		if( !isset($option['pay']) )
 		{
 			$option['pay'] = $data['novel_sell'];
@@ -1056,7 +1056,7 @@ class authorlabel extends author
 
 		$v = C('page.data');
 		$did = C('page.did');
-		$option = unserialize(GetKey($v,'draft_option'));
+		$option = SafeUnserialize(GetKey($v,'draft_option'));
 		if( $did == 0 )
 		{
 			$sourceMod = NewModel('article.source');

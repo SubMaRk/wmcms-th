@@ -37,7 +37,7 @@ else
 	}
 	else
 	{
-		$data['draft_option'] = unserialize($data['draft_option']);
+		$data['draft_option'] = SafeUnserialize($data['draft_option']);
 	}
 	$info = $lang['system']['operate']['success'];
 }

@@ -168,7 +168,7 @@ class WorksModel
 		$data = wmsql::GetOne($wheresql);
 		if( $data )
 		{
-		    $data['apply_option'] = unserialize($data['apply_option']);
+		    $data['apply_option'] = SafeUnserialize($data['apply_option']);
 		}
 		return $data;
 	}

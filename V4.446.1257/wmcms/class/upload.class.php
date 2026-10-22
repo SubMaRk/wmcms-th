@@ -56,7 +56,7 @@ class upload {
 		if( $this->saveType != '0' )
 		{
 			$this->api = $C['config']['api'][$this->saveType];
-			$this->api['api_option'] = unserialize(str::ToHtml(str::Escape($this->api['api_option'],'d'),true));
+			$this->api['api_option'] = SafeUnserialize(str::ToHtml(str::Escape($this->api['api_option'],'d'),true));
 		}
 		$error = '0';
 		if( isset($file['error']) )

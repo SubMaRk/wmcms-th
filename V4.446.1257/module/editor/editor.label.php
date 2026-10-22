@@ -260,7 +260,7 @@ class editorlabel extends editor
 			'编辑小说申请id'=>$v['apply_id'],
 			'编辑小说编辑组'=>$v['group_name'],
 			'编辑小说申请状态码'=>$v['apply_status'],
-			'编辑小说申请数据'=>json_encode(unserialize($v['apply_option'])),
+			'编辑小说申请数据'=>json_encode(SafeUnserialize($v['apply_option'])),
 			'编辑小说申请状态'=>parent::GetApplyStatus($v['apply_status']),
 			'编辑小说申请时间戳'=>$v['apply_createtime'],
 			'编辑小说处理时间戳'=>$updateTime,
@@ -320,20 +320,22 @@ class editorlabel extends editor
 	        $updateTime = '---';
 	        $updateTimeFormat = '------';
 	    }
+		$coverOption = SafeUnserialize($v['apply_option']);
+		$newCover = is_array($coverOption) && isset($coverOption['file']) ? $coverOption['file'] : '';
 		$arr = array(
 			'id'=>$v['apply_id'],
 			'编辑小说封面url'=>tpl::url( 'novel_info' , array('nid'=>$v['novel_id'],'tid'=>$v['type_id']) ,1).'&editor=1',
 			'编辑小说封面申请id'=>$v['apply_id'],
 			'编辑小说封面编辑组'=>$v['group_name'],
 			'编辑小说封面申请状态码'=>$v['apply_status'],
-			'编辑小说封面申请数据'=>json_encode(unserialize($v['apply_option'])),
+			'编辑小说封面申请数据'=>json_encode(SafeUnserialize($v['apply_option'])),
 			'编辑小说封面申请状态'=>parent::GetApplyStatus($v['apply_status']),
 			'编辑小说封面申请时间戳'=>$v['apply_createtime'],
 			'编辑小说封面处理时间戳'=>$updateTime,
 			'编辑小说封面申请时间'=>date("Y-m-d H:i:s",$v['apply_createtime']),
 			'编辑小说封面处理时间'=>$updateTimeFormat,
 			'编辑小说封面旧地址'=>$v['novel_cover'],
-			'编辑小说封面新地址'=>unserialize($v['apply_option'])['file'],
+			'编辑小说封面新地址'=>$newCover,
 		);
 		return $arr;
 	}
@@ -387,7 +389,7 @@ class editorlabel extends editor
 	        $updateTime = '---';
 	        $updateTimeFormat = '------';
 	    }
-	    $option = unserialize($v['apply_option']);
+	    $option = SafeUnserialize($v['apply_option']);
 		$arr = array(
 			'id'=>$v['apply_id'],
 			'编辑小说url'=>tpl::url( 'novel_info' , array('nid'=>$v['novel_id'],'tid'=>$v['type_id']) ,1).'&editor=1',

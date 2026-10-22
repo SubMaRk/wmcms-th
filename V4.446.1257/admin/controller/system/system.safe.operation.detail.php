@@ -28,13 +28,13 @@ if ( str::Number($id) )
 	{
 		$data['operation_module'] = $safeSer->GetModuleName( $data['operation_module'] );
 		$data['operation_type'] = $safeSer->GetOperaName( $data['operation_type'] );
-		$data['operation_where'] = unserialize($data['operation_where']);
-		$data['operation_data'] = unserialize($data['operation_data']);
+		$data['operation_where'] = SafeUnserialize($data['operation_where']);
+		$data['operation_data'] = SafeUnserialize($data['operation_data']);
 
 		//如果镜像数据不为空则进行范序列化
 		if( $data['operation_backdata'] != '' )
 		{
-			$data['operation_backdata'] = unserialize($data['operation_backdata']);
+			$data['operation_backdata'] = SafeUnserialize($data['operation_backdata']);
 		}
 		
 

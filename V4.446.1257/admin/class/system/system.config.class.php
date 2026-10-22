@@ -183,11 +183,11 @@ class SystemConfig
 		
 		if( $data )
 		{
-			$newData = unserialize($data['field_option']);
+			$newData = SafeUnserialize($data['field_option']);
 			$valueData = $this->GetFieldValueData($arr);
 			if( GetKey($valueData,'value_option') != '' )
 			{
-				$valueData['value_option'] = unserialize($valueData['value_option']);
+				$valueData['value_option'] = SafeUnserialize($valueData['value_option']);
 				foreach ($newData as $k=>$v)
 				{
 					$newData[$k]['value'] = GetKey($valueData,'value_option,'.$k);

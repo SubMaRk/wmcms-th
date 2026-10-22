@@ -277,7 +277,7 @@ else if( $type == 'list' && $step == 'create')
 	else
 	{
 		//获得需要生成的分类信息
-		$cacheData = unserialize(file_get_contents(WMCACHE.'createhtml/'.$module.'_type.txt'));
+		$cacheData = SafeUnserialize(file_get_contents(WMCACHE.'createhtml/'.$module.'_type.txt'));
 		//url类型
 		$urlType = $module.'_type';
 		if( empty($cacheData['data']) )
@@ -462,7 +462,7 @@ else if( $type == 'content' && $step == 'create')
 	else
 	{
 		//获得需要生成的分类信息
-		$cacheData = unserialize(file_get_contents(WMCACHE.'createhtml/'.$module.'_content.txt'));
+		$cacheData = SafeUnserialize(file_get_contents(WMCACHE.'createhtml/'.$module.'_content.txt'));
 		//url类型
 		$urlType = $module.'_'.$module;
 		if( empty($cacheData['data']) )
@@ -739,7 +739,7 @@ else if( $type == 'menu' && $step == 'create')
 	else
 	{
 		//获得需要生成的分类信息
-		$cacheData = unserialize(file_get_contents(WMCACHE.'createhtml/'.$module.'_menu.txt'));
+		$cacheData = SafeUnserialize(file_get_contents(WMCACHE.'createhtml/'.$module.'_menu.txt'));
 		//url类型
 		$urlType = $module.'_menu';
 		if( empty($cacheData['data']) )

@@ -435,7 +435,7 @@ class Msg
     		//需要发送的内容
 		    $extParams = $this->GetWebHookParams($extParams);
     		$content = strtr($tempData['temp_content'],$extParams);
-    		$option = unserialize(str::ToHtml(C('config.api.'.$receive.'.api_option'),true));
+    		$option = SafeUnserialize(str::ToHtml(C('config.api.'.$receive.'.api_option'),true));
     		$data = array(
     		    'msgtype'=>'text',
     		    'text'=>array(

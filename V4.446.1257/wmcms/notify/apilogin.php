@@ -85,7 +85,7 @@ else if( Session('api_login_userinfo') == '' )
 //存在保存的用户数据
 else if( Session('api_login_userinfo') <> '' )
 {
-	$userInfo = unserialize(str::Encrypt(Session('api_login_userinfo'),'D'));
+	$userInfo = SafeUnserialize(str::Encrypt(Session('api_login_userinfo'),'D'));
 }
 $userInfo['api'] = $apiLoginType;
 Session('api_login_userinfo',str::Encrypt(serialize($userInfo)));

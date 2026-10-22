@@ -85,7 +85,7 @@ thead th {
 							$chapterType='新增文章';
 							break;
 					}
-					$option = unserialize($v['apply_option']);
+					$option = SafeUnserialize($v['apply_option']);
 					if( $option['article_name'] == '' )
 					{
 						$v['article_name'] = '<span style="color:#A09E9E">该数据已经处理无法查看！</span>';

@@ -12,7 +12,7 @@
 if(!defined('WMINC')){ exit("dont alone open!"); }
 
 //不存在api登录数据判断提交的用户数据是否正确
-$apiUser = unserialize(str::Encrypt(Post('apiuser'),'D'));
+$apiUser = SafeUnserialize(str::Encrypt(Post('apiuser'),'D'));
 if( !is_array($apiUser) )
 {
 	FormTokenCheck();

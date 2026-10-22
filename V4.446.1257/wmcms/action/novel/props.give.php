@@ -57,7 +57,7 @@ switch ($propsData)
 		ReturnData( $msg , $ajax );
 		break;
 	default:
-		$option = unserialize($propsData['props_option']);
+		$option = SafeUnserialize($propsData['props_option']);
 
 		//小说的资金属性变更
 		$data['gold1'] = $propsData['props_gold1']*$number;

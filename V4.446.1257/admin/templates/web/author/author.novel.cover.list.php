@@ -60,7 +60,7 @@ thead th {
 				$i = 1;
 				foreach ($dataArr as $k=>$v)
 				{
-					$option = unserialize($v['apply_option']);
+					$option = SafeUnserialize($v['apply_option']);
 					$option['file'] = isset($option['file'])?$option['file']:'';
 					$set = '';
 					$cur = str::CheckElse( $i%2 , 0 , '' , 'even_index_row');

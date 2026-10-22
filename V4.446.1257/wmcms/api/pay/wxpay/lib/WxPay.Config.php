@@ -71,7 +71,7 @@ class WxPayConfig
 	function __construct($payType)
 	{
 		self::$payType = $payType;
-		$option = unserialize(C('config.api.'.$payType.'.api_option',null,null,true));
+		$option = SafeUnserialize(C('config.api.'.$payType.'.api_option',null,null,true));
 		self::$appid = C('config.api.'.$payType.'.api_appid');
 		self::$mchid = $option['mchid']['value'];
 		self::$key = C('config.api.'.$payType.'.api_apikey');

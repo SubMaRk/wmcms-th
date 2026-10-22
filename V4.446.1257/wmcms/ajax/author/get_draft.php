@@ -32,7 +32,7 @@ else
 	}
 	else
 	{
-		$data['draft_option'] = unserialize($data['draft_option']);
+		$data['draft_option'] = SafeUnserialize($data['draft_option']);
 		$data['draft_content'] = str::EditorFormat($data['draft_content'],true);
 	}
 	$info = $lang['system']['operate']['success'];

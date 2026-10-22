@@ -45,7 +45,7 @@ if( $cid > 0 )
 				$where['apply_type'] = array('or','novel_editchapter');
 				$where['apply_cid'] = $cid;
 				$applyData = $applyMod->GetOne($where);
-				$applyData = unserialize($applyData['apply_option']);
+				$applyData = SafeUnserialize($applyData['apply_option']);
 				$chapter['content'] = $applyData['content'];
 			}
 		}

@@ -64,7 +64,7 @@ thead th {
 				foreach ($dataArr as $k=>$v)
 				{
 					$cur = str::CheckElse( $i%2 , 0 , '' , 'even_index_row');
-					$option = unserialize($v['apply_option']);
+					$option = SafeUnserialize($v['apply_option']);
 					if( !isset($option['chapter_name']) )
 					{
 						$option['chapter_name'] = '';

@@ -22,8 +22,8 @@ if ( str::Number($id) )
 	
 	/*if ( $data )
 	{
-		$data['request_get'] = unserialize( $data['request_get'] );
-		$data['request_post'] = unserialize( $data['request_post'] );
+		$data['request_get'] = SafeUnserialize( $data['request_get'] );
+		$data['request_post'] = SafeUnserialize( $data['request_post'] );
 	}*/
 }
 ?>

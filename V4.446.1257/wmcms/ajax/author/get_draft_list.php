@@ -32,7 +32,7 @@ else
 	{
 		foreach($data as &$v)
 		{
-			$v['draft_option'] = unserialize($v['draft_option']);
+			$v['draft_option'] = SafeUnserialize($v['draft_option']);
 		}
 	}
 	$info = $lang['system']['operate']['success'];

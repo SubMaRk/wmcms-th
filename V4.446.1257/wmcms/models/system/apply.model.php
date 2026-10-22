@@ -47,7 +47,7 @@ class ApplyModel
 		{
 			if( str::IsSerialized($data['apply_option']) )
 			{
-				$data['apply_option'] = unserialize($data['apply_option']);
+				$data['apply_option'] = SafeUnserialize($data['apply_option']);
 			}
 			else
 			{

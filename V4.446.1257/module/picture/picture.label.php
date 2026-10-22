@@ -420,7 +420,7 @@ class picturelabel extends picture
 			//如果页数大于0就按limit查询
 			if( $limit != $count )
 			{
-				$data = unserialize(C('page.data.picture_imgs'));
+				$data = SafeUnserialize(C('page.data.picture_imgs'));
 				$data['src'] = array_values($data['src']);
 				$data['alt'] = array_values($data['alt']);
 				$start = ($page-1)*$limit;
@@ -431,7 +431,7 @@ class picturelabel extends picture
 			tpl::Label('{图片:[s]}[a]{/图片}',$data,null, $repFun['a']);
 		}
 		
-		tpl::Label('{图片列表:[s]}[a]{/图片列表}',unserialize(C('page.data.picture_imgs')),null, $repFun['a']);
+		tpl::Label('{图片列表:[s]}[a]{/图片列表}',SafeUnserialize(C('page.data.picture_imgs')),null, $repFun['a']);
 	}
 	
 	//上下一篇文章替换

@@ -80,11 +80,11 @@ class FieldModel
 			
 			if( $typeData['field_option'] != '' )
 			{
-				$typeData['field_option'] = unserialize($typeData['field_option']);
+				$typeData['field_option'] = SafeUnserialize($typeData['field_option']);
 			}
 			if( $typeData['value_option'] != '' )
 			{
-				$typeData['value_option'] = unserialize($typeData['value_option']);
+				$typeData['value_option'] = SafeUnserialize($typeData['value_option']);
 			}
 			//循环替换分类和内容的自定义字段
 			foreach ($typeData['field_option'] as $k=>$v)
@@ -116,11 +116,11 @@ class FieldModel
 			
 			if( $contentData['field_option'] != '' )
 			{
-				$contentData['field_option'] = unserialize($contentData['field_option']);
+				$contentData['field_option'] = SafeUnserialize($contentData['field_option']);
 			}
 			if( $contentData['value_option'] != '' )
 			{
-				$contentData['value_option'] = unserialize($contentData['value_option']);
+				$contentData['value_option'] = SafeUnserialize($contentData['value_option']);
 			}
 			
 			//循环替换分类和内容的自定义字段

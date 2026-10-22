@@ -26,7 +26,7 @@ if( $post )
 			$wheresql['field'] = 'api_option';
 			$wheresql['where'] = $where;
 			$apiData = wmsql::GetOne($wheresql);
-			$option = unserialize($apiData['api_option']);
+			$option = SafeUnserialize($apiData['api_option']);
 			foreach ($option as $key=>$val)
 			{
 				$option[$key]['value'] = $v['api_option'][$key];

@@ -1670,7 +1670,7 @@ function ReturnData( $msg = '操作成功！' , $ajax = '' , $code = 500 , $data
 			$res[$k] = $v;
 			if( IsSerialize($v) )
 			{
-				$res[$k] = unserialize($v);
+				$res[$k] = SafeUnserialize($v);
 			}
 		}
 	}
@@ -2361,11 +2361,11 @@ function RepField($arr2 , $arr1 = array() , $value=array() , $type = '1' , $labe
 	{
 		if( $v['field'] != '' )
 		{
-			$fieldOption = unserialize($v['field']);
+			$fieldOption = SafeUnserialize($v['field']);
 			$valueOption = array();
 			if( $v['value'] != '' )
 			{
-				$valueOption = unserialize($v['value']);
+				$valueOption = SafeUnserialize($v['value']);
 			}
 
 			if( $fieldOption )

@@ -33,7 +33,7 @@ str::NEQ( $psw, $repsw , $lang['user']['psw_repsw'] );
 //查询账号是否被注册
 user::CheckName( $name , $lang['user']['name_exist'] );
 
-$apiUser = unserialize(str::Encrypt(Post('apiuser'),'D'));
+$apiUser = SafeUnserialize(str::Encrypt(Post('apiuser'),'D'));
 $apiReg = 1;
 if( !is_array($apiUser) )
 {

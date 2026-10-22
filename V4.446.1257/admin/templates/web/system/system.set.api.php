@@ -54,7 +54,7 @@
                 			$optionStr = $option = '';
                 			if( $val['api_option'] != '' )
                 			{
-                				$option = unserialize($val['api_option']);
+                				$option = SafeUnserialize($val['api_option']);
                 				foreach ($option as $opKey=>$opVal)
                 				{
                 					$optionStr .= '<tr>
@@ -63,7 +63,7 @@
                 						</tr>';
                 				}
                 			}
-                			$base = unserialize($val['api_base']);
+                			$base = SafeUnserialize($val['api_base']);
                 			$idTitle = 'apiid';
                 			$keyTitle = 'apikey';
                 			$scTitle = 'secretkey';

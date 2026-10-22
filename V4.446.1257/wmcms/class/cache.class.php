@@ -441,7 +441,7 @@ class cache{
 		}
 
 		//存在数据就返回数据
-		return unserialize($data);
+		return SafeUnserialize($data);
 	}
 	
 	
@@ -586,7 +586,7 @@ class cache{
 					if( $i <= $number )
 					{
 						//加入新的数组并且移出队列
-						$data[] = unserialize(array_shift($queueArr));
+						$data[] = SafeUnserialize(array_shift($queueArr));
 					}
 					else
 					{
@@ -602,7 +602,7 @@ class cache{
 			case "redis":
 				for( $i=1 ; $i <= $number ; $i++ )
 				{
-					$data[] = unserialize($cache->cache->lpop($name));
+					$data[] = SafeUnserialize($cache->cache->lpop($name));
 				}
 				break;
 	
