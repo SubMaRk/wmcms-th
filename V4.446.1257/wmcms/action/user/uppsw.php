@@ -21,8 +21,8 @@ $renewpsw = str::IsEmpty( Post('renewpsw') , $lang['user']['repsw_no']);
 
 
 //密码长度和密码格式
-str::CheckLen( $newpsw , '6,16' , $lang['user']['psw_len']  );
-str::NCN( $newpsw, $lang['user']['psw_err'] );
+//新密码：8 到 72 字节，不限制字符种类
+str::CheckPsw( $newpsw , 8 , $lang['user']['psw_len'] );
 //两次密码是否相等
 str::NEQ( $newpsw, $renewpsw , $lang['user']['psw_repsw'] );
 //新旧密码是否相等

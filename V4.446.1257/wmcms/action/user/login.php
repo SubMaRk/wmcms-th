@@ -32,9 +32,8 @@ $time = str::Int( Post('time') , '' ,2592000);
 //账号长度和账号格式
 str::CheckLen( $name , '4,50' , $lang['user']['name_len']  );
 //str::LN( $name, $lang['user']['name_err'] );
-//密码长度和密码格式
-str::CheckLen( $psw , '6,16' , $lang['user']['psw_len']  );
-str::NCN( $psw, $lang['user']['psw_err'] );
+//密码只做长度上限检查：bcrypt 只用前 72 字节，旧账号的短密码仍然可以登录
+str::CheckPsw( $psw , 1 , $lang['user']['psw_len'] );
 
 
 

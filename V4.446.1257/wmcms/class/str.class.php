@@ -461,6 +461,28 @@ class str{
 	 * @param 参数2，必填，字符串的长度范围
 	 * @param 参数3，必填，字符串不符合长度的时候给出的提示
 	 */
+	/**
+	 * 检查新密码的强度
+	 * bcrypt 只使用前 72 字节，超过的部分会被静默丢弃，所以上限就是 72。
+	 * 不限制字符种类：符号、空格、中文都应该被允许，长度才是强度来源。
+	 * @param 参数1，必须，明文密码
+	 * @param 参数2，选填，最少字节数，默认 8
+	 * @param 参数3，选填，提示文字
+	 */
+	static function CheckPsw( $str , $min = 8 , $info = '' )
+	{
+		$len = strlen((string)$str);
+		if( $len < $min || $len > 72 )
+		{
+			if( $info == '' )
+			{
+				return false;
+			}
+			return tpl::ErrInfo($info);
+		}
+		return true;
+	}
+
 	static function CheckLen( $str , $len = '6,16' , $info = '')
 	{
 		list($start , $end) = explode( ',' , $len );

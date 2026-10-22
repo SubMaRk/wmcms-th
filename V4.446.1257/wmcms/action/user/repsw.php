@@ -21,8 +21,8 @@ if( $userName === false )
 }
 
 //密码长度和密码格式
-str::CheckLen( $psw , '6,16' , $lang['user']['psw_len']  );
-str::NCN( $psw, $lang['user']['psw_err'] );
+//新密码：8 到 72 字节，不限制字符种类
+str::CheckPsw( $psw , 8 , $lang['user']['psw_len'] );
 //两次密码是否相等
 str::NEQ( $psw, $repsw , $lang['user']['psw_repsw'] );
 
