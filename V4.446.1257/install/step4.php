@@ -53,6 +53,10 @@ try{
 					$db->exec($arrsql[$i]);
 				}
 			}
+			//数据已经导入，立刻删掉安装包里的 sql.sql。
+			//这份文件里包含完整的表结构和默认管理员 hash，安装完成后继续留在
+			///install/sql.sql 上等于把整份 schema 公开，所以不等 step5 就删。
+			@unlink($filepatch);
 		}
 	
 		//修改管理员账号信息
