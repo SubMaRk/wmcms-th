@@ -783,6 +783,17 @@ function GetSessionId()
  */
 function SetSessionId($id)
 {
+	//只接受框架自己生成的 session id 形式；否则等于把 session 固定交给调用者
+	$id = (string)$id;
+	if( !preg_match('/^[A-Za-z0-9,\-]{22,64}$/', $id) )
+	{
+		return false;
+	}
+	//已经有会话在用就不再切换，避免把当前会话换成别人指定的 id
+	if( IsSessionStarted() || session_status() == PHP_SESSION_ACTIVE )
+	{
+		return false;
+	}
 	session_id($id);
 	session_start();
 	return true;
