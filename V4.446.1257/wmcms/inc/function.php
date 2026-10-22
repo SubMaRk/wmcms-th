@@ -2486,8 +2486,20 @@ function FormCodeCreate($id)
 			//数学公式验证码
 			case '2':
 				$sp = array('+','-','*');
-				$num1 = rand(1, 9);$num2 = rand(1, 9);$spStr = $sp[rand(0,2)];
-				eval('$number = '.$num1.$spStr.$num2.';');
+				$num1 = rand(1, 9);$num2 = rand(1, 9);$spKey = rand(0,2);$spStr = $sp[$spKey];
+				//原本用 eval('$number = '.$num1.$spStr.$num2.';')，这里直接算，避免任何字符串求值
+				if( $spKey == 0 )
+				{
+					$number = $num1 + $num2;
+				}
+				else if( $spKey == 1 )
+				{
+					$number = $num1 - $num2;
+				}
+				else
+				{
+					$number = $num1 * $num2;
+				}
 				$code = $number;
 				$html = str_replace('{问题}',$num1.$spStr.$num2,$html);
 				break;
