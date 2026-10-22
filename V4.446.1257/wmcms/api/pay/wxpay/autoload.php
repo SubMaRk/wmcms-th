@@ -169,11 +169,14 @@ class UnifiedPay{
 			Log::DEBUG($inputData);
 		
 			//将XML转为array
-			//禁止引用外部xml实体
-			libxml_disable_entity_loader(true);
+			//PHP 8 起外部实体默认就禁止了，libxml_disable_entity_loader 已废弃，不再调用
 			$inputData = json_decode(json_encode(simplexml_load_string($inputData, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
-			$data['out_trade_no'] = $inputData['out_trade_no'];
-			$data['trade_no'] = $inputData['transaction_id'];
+			$data['out_trade_no'] = GetKey($inputData,'out_trade_no');
+			$data['trade_no'] = GetKey($inputData,'transaction_id');
+			//实付金额（单位分）和收款方，用于和站内订单逐笔核对
+			$data['total_fee'] = GetKey($inputData,'total_fee');
+			$data['appid'] = GetKey($inputData,'appid');
+			$data['mch_id'] = GetKey($inputData,'mch_id');
 			return $data;
 		}
 		else

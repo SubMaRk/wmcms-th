@@ -294,8 +294,8 @@ class pay
 			}
 			else
 			{
-				//完成订单
-				return $this->OrderFinish($payType,$result['out_trade_no'],$result['trade_no']);
+				//完成订单（把实付金额一起带下去核对）
+				return $this->OrderFinish($payType,$result['out_trade_no'],$result['trade_no'],$result);
 			}
 		}
 	}
@@ -320,8 +320,8 @@ class pay
 			//验证成功。
 			if( $result['code'] == '0' )
 			{
-				//完成订单
-				$this->OrderFinish($payType,$result['out_trade_no'],$result['trade_no']);
+				//完成订单（把实付金额一起带下去核对）
+				$this->OrderFinish($payType,$result['out_trade_no'],$result['trade_no'],$result);
 			}
 			return $result;
 		}
@@ -334,7 +334,7 @@ class pay
 	 * @param 参数2，必须，站内订单号
 	 * @param 参数3，选填，第三方订单号
 	 */
-	function OrderFinish($payType,$sn,$paySn='0000000000000000000000')
+	function OrderFinish($payType,$sn,$paySn='0000000000000000000000',$notify=array())
 	{
 		$orderMod = NewModel('finance.finance_order');
 		$orderData = $orderMod->GetChargeOrderBySn($sn);
@@ -343,13 +343,30 @@ class pay
 		{
 			return false;
 		}
+		//实付金额和订单金额必须一致，否则不受理
+		else if( !$this->CheckNotifyMoney($payType,$orderData,$notify) )
+		{
+			$this->NotifyLog($sn , '金额不符：订单 '.$orderData['charge_money'].' / 通知 '.json_encode($notify));
+			return false;
+		}
+		//收款 appid 必须和本站配置的一致
+		else if( !$this->CheckNotifyApp($payType,$notify) )
+		{
+			$this->NotifyLog($sn , 'appid 不符：'.$payType.' / '.json_encode($notify));
+			return false;
+		}
 		else
 		{
 			//订单修改为已经支付完成状态。
 			$data['charge_paysn'] = $paySn;
 			$data['charge_status'] = '1';
 			$data['charge_paytime'] = time();
-			$orderMod->UpdateChargeOrder($data,$sn);
+			//只有仍然是待支付的那一条会被更新，并发或重复通知只能有一个人改到
+			$orderMod->UpdateChargeOrder($data,array('charge_sn'=>$sn,'charge_status'=>'0'));
+			if( wmsql::$lastCount != 1 )
+			{
+				return false;
+			}
 		
 			//用户id
 			$uid = $orderData['charge_user_id'];
@@ -401,6 +418,77 @@ class pay
 			
 			return true;
 		}
+	}
+
+	/**
+	 * 核对回调里的实付金额和站内订单金额
+	 * 没有金额字段的通单一律拒绝：官方 alipay / wxpay 回调一定会带
+	 * @param 参数1，必须，支付方式
+	 * @param 参数2，必须，站内订单
+	 * @param 参数3，必须，回调数据
+	 */
+	function CheckNotifyMoney($payType,$orderData,$notify)
+	{
+		if( !is_array($notify) )
+		{
+			return false;
+		}
+		$money = null;
+		//支付宝是元
+		if( isset($notify['total_amount']) && $notify['total_amount'] !== '' )
+		{
+			$money = (float)$notify['total_amount'];
+		}
+		//微信是分
+		else if( isset($notify['total_fee']) && $notify['total_fee'] !== '' )
+		{
+			$money = ((float)$notify['total_fee']) / 100;
+		}
+		//paypal
+		else if( isset($notify['mc_gross']) && $notify['mc_gross'] !== '' )
+		{
+			$money = (float)$notify['mc_gross'];
+		}
+		if( $money === null )
+		{
+			return false;
+		}
+		return abs($money - (float)$orderData['charge_money']) < 0.01;
+	}
+
+	/**
+	 * 核对回调里的收款方 appid
+	 * @param 参数1，必须，支付方式
+	 * @param 参数2，必须，回调数据
+	 */
+	function CheckNotifyApp($payType,$notify)
+	{
+		$appid = C('config.api.'.$payType.'.api_appid');
+		//站点没有配置 appid 就没有可比的值，交给签名验证保证来源
+		if( $appid == '' )
+		{
+			return true;
+		}
+		if( isset($notify['app_id']) && $notify['app_id'] !== '' && $notify['app_id'] != $appid )
+		{
+			return false;
+		}
+		if( isset($notify['appid']) && $notify['appid'] !== '' && $notify['appid'] != $appid )
+		{
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * 记录支付回调的拒绝原因，方便对账
+	 * @param 参数1，必须，站内订单号
+	 * @param 参数2，必须，原因
+	 */
+	function NotifyLog($sn , $msg)
+	{
+		$dir = WMCACHE.'log/pay/'.date('Y-m').'/';
+		file::CreateFile($dir.'notify_'.date('Y-m-d').'.txt', date('Y-m-d H:i:s').'  '.$sn.'  '.$msg."\r\n");
 	}
 }
 ?>

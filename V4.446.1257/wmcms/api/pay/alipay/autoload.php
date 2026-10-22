@@ -77,6 +77,10 @@ class UnifiedPay{
 			$data['out_trade_no'] = $_POST['out_trade_no'];
 			//支付宝交易号
 			$data['trade_no'] = $_POST['trade_no'];
+			//实付金额和收款方，用于和站内订单逐笔核对
+			$data['total_amount'] = GetKey($_POST,'total_amount');
+			$data['app_id'] = GetKey($_POST,'app_id');
+			$data['seller_id'] = GetKey($_POST,'seller_id');
 			
 			//写入成功日志
 			$this->tradeSer->writeLog(var_export($_POST,true),'success');
