@@ -3028,7 +3028,7 @@ function GetModuleTypeParent($model,$data)
 	if( $data['type_id'] == '0' )
 	{
 		$parent['top_id'] = 0;
-		$parent['top_name'] = '全部分类';
+		$parent['top_name'] = 'ทั้งหมด';
 		$parent['top_pinyin'] = 'all';
 	}
 	else

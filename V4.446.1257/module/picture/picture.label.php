@@ -254,7 +254,7 @@ class picturelabel extends picture
 		if( $data['type_id'] == '0' )
 		{
 			$topId = 0;
-			$topName = '全部分类';
+			$topName = 'ทั้งหมด';
 		}
 		else
 		{

@@ -151,7 +151,7 @@ class tpl{
     			if( !file_exists( $this->tempFile ) )
     			{
     				$tempFile = str_replace(WMROOT, '/', $this->tempFile);
-    				self::ErrInfo('<b style="color:red;">ไม่พบไฟล์เทมเพลต"'.$tempFile.'"不存在！</b>',null,null,'system','templates.html');
+    				self::ErrInfo('<b style="color:red;">ไม่พบไฟล์เทมเพลต "'.$tempFile.'"</b>',null,null,'system','templates.html');
     			}
     			else
     			{

@@ -62,7 +62,7 @@ class zt
 		if( $type == 'type' && ( GetKey($where,'t.type_id') == '0' || GetKey($where,'t.type_pinyin') == 'all') )
 		{
 			$data[0] = array(
-				'type_name'=>'全部分类',
+				'type_name'=>'ทั้งหมด',
 				'type_cname'=>'ทั้งหมด',
 				'type_id'=>'0',
 				'type_pid'=>'0',

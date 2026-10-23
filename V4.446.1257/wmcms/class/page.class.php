@@ -158,8 +158,8 @@ class page{
 		//第一页和上一页的配置
 		if( 1 >= $page['page'] )
 		{
-			$index = 'javascript:alert(\'已经是第一页了\');';
-			$pre = 'javascript:alert(\'已经是第一页了\');';
+			$index = 'javascript:alert(\'นี่คือหน้าแรกแล้ว\');';
+			$pre = 'javascript:alert(\'นี่คือหน้าแรกแล้ว\');';
 		}
 		else
 		{
@@ -170,8 +170,8 @@ class page{
 		//下一页和最后页的配置
 		if( $page['page'] >= $page['sumpage'] )
 		{
-			$next = 'javascript:alert(\'没有更多了\');';
-			$last = 'javascript:alert(\'没有更多了\');';
+			$next = 'javascript:alert(\'ไม่มีข้อมูลเพิ่มเติมแล้ว\');';
+			$last = 'javascript:alert(\'ไม่มีข้อมูลเพิ่มเติมแล้ว\');';
 		}
 		else
 		{

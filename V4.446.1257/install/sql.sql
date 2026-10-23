@@ -1058,7 +1058,7 @@ CREATE TABLE `wm_novel_type` (
   `type_id` int NOT NULL AUTO_INCREMENT,
   `type_topid` int NOT NULL DEFAULT '0' COMMENT 'id ระดับเหนือขึ้นไป',
   `type_pid` varchar(20) NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
-  `type_name` varchar(10) NOT NULL COMMENT 'ชื่อหมวดหมู่',
+  `type_name` varchar(40) NOT NULL COMMENT 'ชื่อหมวดหมู่',
   `type_cname` varchar(40) DEFAULT NULL COMMENT 'ชื่อย่อของประเภท',
   `type_pinyin` varchar(50) DEFAULT NULL COMMENT 'พินอินของประเภท',
   `type_order` int NOT NULL COMMENT 'เรียงลำดับ',
@@ -1453,7 +1453,7 @@ CREATE TABLE `wm_system_email_temp` (
   `temp_status` tinyint(1) DEFAULT '1' COMMENT '0=ปิดใช้งาน 1=เปิดใช้งาน',
   `temp_name` varchar(60) DEFAULT NULL COMMENT 'หัวข้อเทมเพลต',
   `temp_desc` varchar(200) DEFAULT NULL COMMENT 'คำอธิบายเทมเพลต',
-  `temp_title` varchar(120) NOT NULL COMMENT 'หัวข้อจดหมาย',
+  `temp_title` varchar(200) NOT NULL COMMENT 'หัวข้อจดหมาย',
   `temp_content` mediumtext NOT NULL COMMENT 'เนื้อหาจดหมาย',
   PRIMARY KEY (`temp_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางเทมเพลตอีเมล';
