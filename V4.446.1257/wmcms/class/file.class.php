@@ -284,11 +284,15 @@ class file{
 			$content = file_get_contents($patch);
 			
 			$enCode = 'utf-8';
-			$strEncode = mb_detect_encoding($content, array("ASCII",'UTF-8',"GB2312","GBK",'BIG5'));
-			if( $strEncode != $enCode )
+			//只在开头 4KB 上判断编码：整章文本传给 mb_detect_encoding 会再复制一份，
+			//章节越长内存翻倍越明显，而编码在文件开头就已经能判断出来
+			$head = ( strlen($content) > 4096 ) ? substr($content, 0, 4096) : $content;
+			$strEncode = mb_detect_encoding($head, array("ASCII",'UTF-8',"GB2312","GBK",'BIG5'));
+			if( $strEncode != $enCode && $strEncode != '' )
 			{
 				$content = mb_convert_encoding( $content , $enCode , $strEncode );
 			}
+			unset($head);
 			//$content = mb_convert_encoding( $content , 'utf-8' , 'gb2312' );
 			
 			if( $tohtml != false)

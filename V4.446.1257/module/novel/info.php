@@ -55,11 +55,16 @@ C('page' ,  array(
 tpl::GetSeo();
 
 
-//点击量自增
+//点击量自增：写进队列，几秒后合并成一次 UPDATE，避免每次访问都写主表
 $novelMod = NewModel('novel.novel');
-$arr = $novelMod->GetIncArr( $data['novel_clicktime'] , 'click');
-//更新点击
-wmsql::Update( '`@novel_novel`' , $arr , 'novel_id='.$data['novel_id']);
+$counterSer = NewClass('counter');
+if( $counterSer )
+{
+	$counterSer->Bump('novel_novel' , $data['novel_id'] , 'click' , 1);
+}
+//页面显示的数字立刻 +1：page.data 是上面已经写入的副本，要一起更新
+$data = $novelMod->IncForDisplay( $data , 'click' , 1 );
+C('page.data' , $data);
 
 
 //创建模版并且输出

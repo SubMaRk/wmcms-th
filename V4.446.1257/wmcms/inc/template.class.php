@@ -748,7 +748,8 @@ class tpl{
 
 		$cacheSer = $this->GetCacheSer();
 		//开启了页面缓存
-		if(	$cacheSer->siteOpen && $cacheSer->mechanism == 'page' )
+		//登录用户和后台请求不写页面缓存，避免把个人页面存成公共缓存
+		if(	$cacheSer->siteOpen && $cacheSer->mechanism == 'page' && empty($GLOBALS['wmSkipPageCache']) )
 		{
 			$cacheSer->SetSite(GetUrlPath('3' , 1) , $this->RepTempCode(self::$tempContent) , $cacheSer->cacheTime);
 		}

@@ -64,8 +64,15 @@ define('WMHELP','http://help.'.WMDOMAIN);
 define('WMSERVER','http://server.'.WMDOMAIN);
 //是否位于可信反向代理之后（启用后才采信 X-Forwarded-For，默认关闭）
 define('TRUST_PROXY',false);
+//提前释放 session 文件锁（默认关闭）
+//前台页面渲染时 PHP 会一直持有 session 文件锁，同一访客的并发请求（例如首页里的
+//user.getinfo 轮询）只能排队。改成 true 可以在页面内容生成后立即释放锁，
+//代价是这一次请求之后写 session 的操作会失效，所以只适合本来就只读的站点。
+//根治办法是把 session 放到 Redis（session.save_handler=redis）。
+define('SESSION_EARLY_CLOSE',false);
 //开启运行日志文件记录
-define('RUNLOG',true);
+//默认关闭：每个请求都会写一行日志和当时的 SQL，排查问题时才打开
+define('RUNLOG',false);
 //开启debug模式
 //只有调试时才打开：打开后页面会显示错误位置、SQL 语句和模版内容
 define('DEBUG',false);

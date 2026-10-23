@@ -92,9 +92,20 @@ if( session_status() == PHP_SESSION_NONE )
 }
 //网站当前的访问http类型
 define('HTTP_TYPE',GetHttpType());
+//可选：页面缓存命中之后立刻释放 session 文件锁（见 define.config.php 的说明）
+if( defined('SESSION_EARLY_CLOSE') && SESSION_EARLY_CLOSE === true && session_status() == PHP_SESSION_ACTIVE )
+{
+	session_write_close();
+}
 
 //new一个缓存对象
 $cacheSer = new cache();
+//顺带按概率清理过期的缓存文件（约 1% 的请求，每次最多看 200 个文件）
+if( method_exists($cacheSer,'Gc') && empty($GLOBALS['wm_gc_done']) )
+{
+	$GLOBALS['wm_gc_done'] = true;
+	$cacheSer->Gc();
+}
 //没有开启缓存，并且缓存机制为page
 if ( isset($siteCache) && $siteCache == false )
 {
@@ -106,8 +117,10 @@ if ( isset($siteCache) && $siteCache == false )
 	$cacheSer->sqlOpen = false;
 	$cacheSer->queueOpen = false;
 }
-//不是管理员并且开启了缓存，缓存机制为页面缓存
-if ( !WMMANAGER && $cacheSer->siteOpen == '1' && $cacheSer->siteType == 'file' )
+//不是管理员、没有登录、也没有提交过表单时才用页面缓存
+//登录用户看到的菜单、收藏、金币都和游客不同，缓存给他们会串号
+$wmIsGuest = empty($_COOKIE['user_account']);
+if ( !WMMANAGER && $wmIsGuest && $cacheSer->siteOpen == '1' && $cacheSer->siteType == 'file' )
 {
 	$cacheContent = $cacheSer->GetSite(GetUrlPath('3' , 1));
 	//判断是否有缓存内容
@@ -115,6 +128,11 @@ if ( !WMMANAGER && $cacheSer->siteOpen == '1' && $cacheSer->siteType == 'file' )
 	{
 		die($cacheContent);
 	}
+}
+else
+{
+	//登录用户或不走页面缓存时，页面缓存不能写，否则会把个人页面存成公共缓存
+	$GLOBALS['wmSkipPageCache'] = true;
 }
 
 /**

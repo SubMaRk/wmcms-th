@@ -53,6 +53,10 @@ class WMSql
 	static public $dataPrepare;
 	//当前操作的表名
 	static public $tableName;
+	//同一次请求内相同查询的结果缓存：配置表这类数据在每个页面都会被反复读取
+	static public $memo = array();
+	//结果缓存条目上限，避免单次请求占用过多内存
+	static public $memoLimit = 300;
 
     //用外部定义的变量初始类，并链接数据库
     function __construct()
@@ -1071,6 +1075,60 @@ class WMSql
 		self::$wherePrepare = array();
 		self::$checkSql = true;
     }
+
+    /**
+     * 记录一次查询结果到本次请求的缓存
+     * 同一页面里配置表、字段表会被反复读，同一份结果只查一次就够
+     * @param 参数1，必须，缓存键
+     * @param 参数2，必须，查询结果
+     */
+    static function MemoSet( $key , $data )
+    {
+        //超过上限就不再增长，宁可少缓存也不要吃内存
+        if( count(self::$memo) >= self::$memoLimit )
+        {
+            return false;
+        }
+        self::$memo[$key] = $data;
+        return true;
+    }
+
+    /**
+     * 写操作之后清理受影响表的 sql 缓存目录
+     * @param 参数1，必须，刚执行的写语句
+     */
+    static function PurgeTableCache( $sql )
+    {
+        $cacheSer = self::GetCacheSer();
+        if( !$cacheSer->sqlOpen )
+        {
+            return false;
+        }
+        $tableArr = array();
+        if( preg_match('/^\s*update\s+`?([\w]+)`?/i', $sql, $m) )
+        {
+            $tableArr[] = $m[1];
+        }
+        else if( preg_match('/^\s*insert\s+(?:into\s+)?`?([\w]+)`?/i', $sql, $m) )
+        {
+            $tableArr[] = $m[1];
+        }
+        else if( preg_match('/^\s*delete\s+from\s+`?([\w]+)`?/i', $sql, $m) )
+        {
+            $tableArr[] = $m[1];
+        }
+        //解析不出表名就清整个 sql 目录，保证读到的是新数据
+        if( empty($tableArr) )
+        {
+            $cacheSer->DelSql('/' , '' , true);
+            return true;
+        }
+        foreach ($tableArr as $table)
+        {
+            $cacheSer->DelSql('/'.WmCacheKey($table) , '' , true);
+        }
+        return true;
+    }
     
     
     /**
@@ -1102,24 +1160,44 @@ class WMSql
 			self::$tableName = 'sql';
 		}
 
+		//同一次请求内，完全相同（含绑定值）的 select 只查一次
+		$memoKey = '';
+		if( stripos(ltrim($sql),'select') === 0 && $attr != 'rs' )
+		{
+			$memoKey = $attr.'|'.$sql.'|'.implode(',', self::$wherePrepare ? self::$wherePrepare : array());
+			if( isset(self::$memo[$memoKey]) )
+			{
+				self::Clear();
+				return self::$memo[$memoKey];
+			}
+		}
+
 		//开启了缓存
 		if( $cacheSer->sqlOpen && !WMMANAGER )
 		{
 			//缓存名字
-			$cacheName = '/'.md5(Encrypt(self::$tableName)).'/'.md5(Encrypt(self::$lastSql));
+			$cacheName = '/'.WmCacheKey(self::$tableName).'/'.WmCacheKey(self::$lastSql);
 			$cacheContent = $cacheSer->GetSql($cacheName);
 			//如果不是后台管理,且有缓存内容
 			if( $cacheContent && !WMMANAGER)
 			{
 				//清空当前表和表数据
 				self::Clear();
+				if( $memoKey != '' )
+				{
+					self::MemoSet($memoKey,$cacheContent);
+				}
 				return $cacheContent;
 			}
 		}
 		
 
-		//sql运行开始时间
-		$sqlList['start'] = GetMicroTime();
+		//只有 DEBUG 或运行日志开启时才记录每条 sql，平时既不占内存也不耗时
+		$logSql = ( defined('DEBUG') && DEBUG ) || ( defined('RUNLOG') && RUNLOG );
+		if( $logSql )
+		{
+			$sqlList['start'] = GetMicroTime();
+		}
 		//?相当于操作索引数组，是按所引顺序找的点位符
 		$stmt = self::$db->prepare($sql);
 		try
@@ -1133,12 +1211,15 @@ class WMSql
 			{
 				$rs = $stmt->execute();
 			}
-			//sql运行结束时间
-			$sqlList['end'] = GetMicroTime();
-			//记录到sql列表
-			$sqlList['sql'] = self::$lastSql;
-			//记录到sql列表
-			self::$sqlList[] = $sqlList;
+			if( $logSql )
+			{
+				//sql运行结束时间
+				$sqlList['end'] = GetMicroTime();
+				//记录到sql列表
+				$sqlList['sql'] = self::$lastSql;
+				//记录到sql列表
+				self::$sqlList[] = $sqlList;
+			}
 			
 			//清空当前表和表数据
 			self::Clear();
@@ -1208,10 +1289,20 @@ class WMSql
     				{
     					$cacheSer->SetSql($cacheName , $arr , $cacheSer->sqlCacheTime);
     				}
+    				if( $memoKey != '' )
+    				{
+    					self::MemoSet($memoKey,$arr);
+    				}
     				return $arr;
     			}
     			else
     			{
+    				//空结果也要记进本次请求的缓存：配置字段这类表在没有数据时会被
+    				//同一个页面反复查询，不记住就会一路返回 false 反复打到数据库
+    				if( $memoKey != '' )
+    				{
+    					self::MemoSet($memoKey,false);
+    				}
     				return false;
     			}
     		}
@@ -1283,8 +1374,12 @@ class WMSql
 			}
 		}
 		
-		//sql运行开始时间
-		$sqlList['start'] = GetMicroTime();
+		//只有 DEBUG 或运行日志开启时才记录每条 sql，平时既不占内存也不耗时
+		$logSql = ( defined('DEBUG') && DEBUG ) || ( defined('RUNLOG') && RUNLOG );
+		if( $logSql )
+		{
+			$sqlList['start'] = GetMicroTime();
+		}
 		//?相当于操作索引数组，是按所引顺序找的点位符
 		$stmt = self::$db->prepare($sql);
         try
@@ -1298,15 +1393,24 @@ class WMSql
 			{
 				$result = $stmt->execute();
 			}
-			//sql运行结束时间
-			$sqlList['end'] = GetMicroTime();
-			//记录到sql列表
-			$sqlList['sql'] = self::$lastSql;
-			//记录到sql列表
-			self::$sqlList[] = $sqlList;
+			if( $logSql )
+			{
+				//sql运行结束时间
+				$sqlList['end'] = GetMicroTime();
+				//记录到sql列表
+				$sqlList['sql'] = self::$lastSql;
+				//记录到sql列表
+				self::$sqlList[] = $sqlList;
+			}
 			
 			//影响的行数
 			self::$lastCount = $stmt->rowCount();
+			//写操作之后，本请求的读缓存立刻失效，同时清掉该表对应的 sql 缓存
+			self::$memo = array();
+			if( self::$lastCount > 0 )
+			{
+				self::PurgeTableCache($sql);
+			}
 			//预处理数据置空
 			self::Clear();
 			

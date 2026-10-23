@@ -56,6 +56,24 @@ if(get_extension_funcs('openssl')){
 }else{
 	$openssl='<span class="error_span">×</span>ไม่พร้อมใช้';
 }
+//OPcache：不装也能跑，但每个请求都要重新编译 PHP 文件
+if( function_exists('opcache_get_status') )
+{
+	$opStatus = @opcache_get_status(false);
+	if( is_array($opStatus) && !empty($opStatus['opcache_enabled']) )
+	{
+		$opcache='<span class="correct_span">&radic;</span>เปิดใช้งานแล้ว';
+	}
+	else
+	{
+		$opcache='<span class="error_span">!</span>ติดตั้งแล้วแต่ยังไม่เปิด';
+	}
+}
+else
+{
+	$opcache='<span class="error_span">!</span>ยังไม่ได้ติดตั้ง';
+}
+
 //sockets库
 if(get_extension_funcs('sockets')){
 	$sockets='<span class="correct_span">&radic;</span>พร้อมใช้';
@@ -170,6 +188,11 @@ if( @$_SERVER['DOCUMENT_ROOT'] != '' ){
 		<td>ไฟล์ไลบลารีบีบอัด ZIP</td>
 		<td><?=$zips?></td>
 		<td>แนะนำให้เปิด จำเป็นต้องใช้ในการอัปเดทออนไลน์</td>
+	</tr>
+	<tr>
+		<td>OPcache</td>
+		<td><?=$opcache?></td>
+		<td>แนะนำให้เปิด (opcache.enable=1) เพื่อลดเวลาเริ่มต้นของทุกหน้า</td>
 	</tr>
 	</table>
 	

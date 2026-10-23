@@ -2286,7 +2286,15 @@ function GetUrlPath($returnType = 0 , $returnFileName = false)
 		
 		if( $returnFileName == true )
 		{
-			$path = $path.md5(Encrypt($fileName.$_SERVER['QUERY_STRING']));
+			//页面缓存的键：路径 + 完整 query string + 后台标记 + 设备 + 域名
+			//只能用读缓存时就已确定的值：C('ua.pt') 要等 ua.class 载入后才有，
+			//读写两侧会拿到不同的键，缓存就永远不会命中
+			$ptCookie = isset($_COOKIE['pt']) ? preg_replace('/[^a-z0-9]/i','',$_COOKIE['pt']) : '';
+			$pageKey = $fileName.'?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '')
+				.'|'.(defined('WMMANAGER') && WMMANAGER ? 'm' : 'p')
+				.'|'.$ptCookie
+				.'|'.(isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '');
+			$path = $path.WmCacheKey($pageKey);
 		}
 		else if( $returnType == '2')
 		{
@@ -2441,10 +2449,13 @@ function GetFieldData($data , $module , $type )
 		if( $type != 'type' )
 		{
 			global $tableSer;
+			//明确列出要用的列：这两列都是长文本，用 * 会顺带读出用不到的选项
 			$contentWhere['table'] = '@config_field_value';
+			$contentWhere['field'] = 'value_content_id,field_option,value_option';
 			$contentWhere['where']['value_field_module'] = $module;
 			$contentWhere['where']['value_field_type'] = '2';
-			$contentWhere['where']['value_content_id'] = array('lin',str::ArrToStr($data,',',null,null,$tableSer->tableArr[$module]['id']));
+			//用真正的 IN()：原来用 FIND_IN_SET 逐值比较，条件列用不到索引
+			$contentWhere['where']['value_content_id'] = array('in-id',str::ArrToStr($data,',',null,null,$tableSer->tableArr[$module]['id']));
 			$contentFieldList = wmsql::GetAll($contentWhere);
 			if( $contentFieldList )
 			{
@@ -2662,6 +2673,18 @@ function CheckBasicConfig($isM=false)
  * @param 参数2：字符串类型，加密解密方式，D为解密，E为加密。
  * @param 参数3：字符串类型，加解密混淆的字符串。
  **/
+/**
+ * 生成缓存文件名用的键
+ * 原来用 md5(Encrypt(...))：Encrypt 是纯 PHP 写的 RC4，每次调用都要跑 256 轮初始化，
+ * 而缓存文件名只需要一个稳定且不会碰撞的字符串，不需要能解回原文。
+ * @param 参数1，必须，参与哈希的字符串
+ */
+function WmCacheKey( $str )
+{
+	return md5((string)$str);
+}
+
+
 function Encrypt($string,$operation='E',$key='')
 {
 	//默认为系统密匙混淆

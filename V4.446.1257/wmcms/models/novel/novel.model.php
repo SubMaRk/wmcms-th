@@ -158,24 +158,8 @@ class NovelModel
 		$data = wmsql::GetOne($wheresql);
 		if( $data )
 		{
-            $clickUpdata = $this->GetIncArr( $data['novel_clicktime'] , 'click' ,0 ,false);
-            if( count($clickUpdata) > 1 )
-            {
-                $this->Update($clickUpdata,$data['novel_id']);
-                $data = array_merge($data,$clickUpdata);
-            }
-            $recUpdata = $this->GetIncArr( $data['novel_rectime'] , 'rec' ,0 ,false);
-            if( count($recUpdata) > 1 )
-            {
-                $this->Update($recUpdata,$data['novel_id']);
-                $data = array_merge($data,$recUpdata);
-            }
-            $collUpdata = $this->GetIncArr( $data['novel_colltime'] , 'coll' ,0 ,false);
-            if( count($collUpdata) > 1 )
-            {
-                $this->Update($collUpdata,$data['novel_id']);
-                $data = array_merge($data,$collUpdata);
-            }
+            //这里不写库：GetOne 在很多地方被调用，按“读一次算一次点击”会重复计数。
+            //真正的 +1 在详情页 module/novel/info.php 里入队，合并由 counter 类负责。
 		}
 		return $data;
 	}
@@ -347,6 +331,42 @@ class NovelModel
 	 * @param 参数3，选填，增加的票数。
 	 * @param 参数4，选填，是否返回需要更新的数组。
 	 */
+	/**
+	 * 只用于显示的增量：不写库，把页面要显示的计数加上本次增量
+	 * 周期翻页时直接显示本次增量，否则原值 + 增量
+	 * @param 参数1，必须，小说数据
+	 * @param 参数2，选填，计数器类型 click / rec / coll
+	 * @param 参数3，选填，增量
+	 */
+	function IncForDisplay( $data , $field = 'click' , $number = 1 )
+	{
+		$nowTime = time();
+		$setTime = isset($data['novel_'.$field.'time']) ? (int)$data['novel_'.$field.'time'] : 0;
+		$periodArr = array(
+			'today' => date('Y-m-d'),
+			'week' => date('o-W'),
+			'month' => date('Y-m'),
+			'year' => date('Y'),
+		);
+		$setArr = array(
+			'today' => date('Y-m-d', $setTime),
+			'week' => date('o-W', $setTime),
+			'month' => date('Y-m', $setTime),
+			'year' => date('Y', $setTime),
+		);
+		foreach ($periodArr as $period=>$nowVal)
+		{
+			$key = 'novel_'.$period.$field;
+			$isNew = ( $setTime <= 0 || $setArr[$period] !== $nowVal );
+			$cur = isset($data[$key]) ? (int)$data[$key] : 0;
+			$data[$key] = $isNew ? $number : $cur + $number;
+		}
+		$key = 'novel_all'.$field;
+		$data[$key] = ( isset($data[$key]) ? (int)$data[$key] : 0 ) + $number;
+		$data['novel_'.$field.'time'] = $nowTime;
+		return $data;
+	}
+
 	function GetIncArr( $setTime , $field = 'click' , $number=1,$returnUpdata=true)
 	{
 		$nowTime = time();

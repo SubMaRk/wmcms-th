@@ -72,6 +72,8 @@ class cache{
 	private $redisHost = '127.0.0.1';
 	private $redisPort = '6379';
 
+	//实际使用的 memcache 扩展类名（Memcached 或 Memcache）
+	protected $memCacheName = '';
 	//memcached的ip和端口
 	private $memcachedHost = '127.0.0.1';
 	private $memcachedPort = '11211';
@@ -159,10 +161,18 @@ class cache{
 		//memCache缓存
 		else if( $this->siteOpen && $this->siteType == 'memcached' || $this->queueOpen && $this->queueType == 'memcached'  || $this->sqlOpen && $this->sqlType == 'memcached' )
 		{
-			if( class_exists('memcache') )
+			//扩展有 memcache 和 memcached 两个版本，类名不同，这里两个都接受
+			if( class_exists('Memcached') )
+			{
+				$this->memCache = new Memcached();
+				$this->memCache->addServer($this->memcachedHost,$this->memcachedPort);
+				$this->memCacheName = 'Memcached';
+			}
+			else if( class_exists('Memcache') )
 			{
 				$this->memCache = new Memcache();
 				$this->memCache->connect($this->memcachedHost,$this->memcachedPort);
+				$this->memCacheName = 'Memcache';
 			}
 			else
 			{
@@ -323,6 +333,108 @@ class cache{
 			}
 		}
 	}
+
+	/**
+	 * 原子写入缓存文件
+	 * 直接 file_put_contents 时，另一个进程可能读到只写了一半的文件，
+	 * 反序列化就会失败。先写临时文件再 rename，rename 在同一分区上是原子的。
+	 * @param 参数1，必须，目标文件
+	 * @param 参数2，必须，内容
+	 */
+	protected function WriteFile( $file , $content )
+	{
+		$tmp = $file.'.'.getmypid().'.tmp';
+		if( @file_put_contents($tmp , $content) === false )
+		{
+			return false;
+		}
+		//先尝试 rename，Windows 上目标存在会失败，失败就退回加锁覆盖写
+		if( @rename($tmp , $file) === true )
+		{
+			return true;
+		}
+		$ok = @file_put_contents($file , $content , LOCK_EX);
+		@unlink($tmp);
+		return $ok !== false;
+	}
+
+	/**
+	 * 清理过期的缓存文件
+	 * 以前只在被再次读取时才删除，没人再请求的页面会一直占着磁盘。
+	 * @param 参数1，选填，每次最多检查多少个文件，默认 200
+	 * @param 参数2，选填，强制跑一次（cron 用）
+	 */
+	function Gc( $max = 200 , $force = false )
+	{
+		//普通请求里按概率触发，避免每个页面都扫目录
+		if( $force == false && mt_rand(1,100) > 1 )
+		{
+			return 0;
+		}
+		$base = $this->cachePath;
+		if( !is_dir($base) )
+		{
+			return 0;
+		}
+		$deleted = 0;
+		$checked = 0;
+		$now = time();
+		$queue = array($base);
+		while ( $queue && $checked < $max )
+		{
+			$dir = array_pop($queue);
+			$list = @scandir($dir);
+			if( !$list )
+			{
+				continue;
+			}
+			foreach ($list as $name)
+			{
+				if( $name == '.' || $name == '..' )
+				{
+					continue;
+				}
+				$path = $dir.'/'.$name;
+				if( is_dir($path) )
+				{
+					$queue[] = $path;
+					continue;
+				}
+				$checked++;
+				//按后缀长度比较，别用固定偏移：.cache 是 6 个字符，.sql 是 4 个
+				$isCache = ( strlen($name) > strlen($this->fileExt) && substr($name, -strlen($this->fileExt)) == $this->fileExt );
+				$isSql = ( strlen($name) > strlen($this->sqlExt) && substr($name, -strlen($this->sqlExt)) == $this->sqlExt );
+				if( !$isCache && !$isSql )
+				{
+					continue;
+				}
+				//先看文件的修改时间，只有确实旧了才去读头部
+				$mtime = @filemtime($path);
+				if( $mtime === false || $now - $mtime < 60 )
+				{
+					continue;
+				}
+				$head = @file_get_contents($path, false, null, 0, 64);
+				if( $head === false )
+				{
+					continue;
+				}
+				$part = explode($this->fileExp, $head, 3);
+				$life = isset($part[1]) ? (int)$part[1] : 0;
+				//没写有效期的是持久缓存，不删
+				if( $life > 0 && isset($part[0]) && $now - (int)$part[0] > $life )
+				{
+					@unlink($path);
+					$deleted++;
+				}
+				if( $checked >= $max )
+				{
+					break;
+				}
+			}
+		}
+		return $deleted;
+	}
 	
 
 	/**
@@ -348,7 +460,7 @@ class cache{
 			//文件缓存
 			case "file":
 				$content = time().$this->fileExp.$time.$this->fileExp.$data;
-				file_put_contents($this->GetFileName($name, $type ,true), $content);
+				$this->WriteFile($this->GetFileName($name, $type ,true) , $content);
 				break;
 				
 			//如果是redis缓存
@@ -365,13 +477,20 @@ class cache{
 				
 			//如果是memcached缓存
 			case "memcached":
-				if( !class_exists('memcached') )
+				if( $this->memCacheName == '' )
 				{
 					return false;
 				}
 				else
 				{
-					$this->cache->set($name,$data,false,$time);
+					if( $this->memCacheName == 'Memcached' )
+					{
+						$this->cache->set($name,$data,$time);
+					}
+					else
+					{
+						$this->cache->set($name,$data,false,$time);
+					}
 				}
 				break;
 		}
@@ -397,21 +516,28 @@ class cache{
 		{
 			//文件缓存
 			case "file":
-				$content = '';
-				if( file_exists($this->GetFileName($name,$type)) )
+				$file = $this->GetFileName($name,$type);
+				if( !is_file($file) )
 				{
-					$content = file_get_contents($this->GetFileName($name,$type));
+					return false;
 				}
+				$content = file_get_contents($file);
 				//如果存在值
 				if( $content > 1 )
 				{
-					$data = explode($this->fileExp, $content);
-					//如果设置的保存时间大于0，并且超过了缓存时间就删除缓存
-					if( $data[1] > 0 && time()-$data[0] > $data[1] )
+					//只切出头部，内容不参与解析
+					$data = explode($this->fileExp, $content, 3);
+					//过期就删掉并当作未命中
+					if( isset($data[1]) && $data[1] > 0 && time()-$data[0] > $data[1] )
 					{
-						unlink($this->GetFileName($name,$type));
+						@unlink($file);
+						return false;
 					}
-					$data = $data[2];
+					$data = isset($data[2]) ? $data[2] : '';
+				}
+				else
+				{
+					return false;
 				}
 				break;
 
@@ -429,13 +555,17 @@ class cache{
 				
 			//如果是memcached缓存
 			case "memcached":
-				if( !class_exists('memcached') )
+				if( $this->memCacheName == '' )
 				{
 					return false;
 				}
 				else
 				{
 					$data = $this->cache->get($name);
+					if( $data === false )
+					{
+						return false;
+					}
 				}
 				break;
 		}
@@ -473,7 +603,11 @@ class cache{
 				}
 				else
 				{
-					unlink($this->GetFileName($name,$type));
+					$delFile = $this->GetFileName($name,$type);
+					if( is_file($delFile) )
+					{
+						@unlink($delFile);
+					}
 				}
 				break;
 

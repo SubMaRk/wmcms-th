@@ -22,7 +22,8 @@ C('page.pageCurrent',$pageCurrent);
 $pageSize = 20;
 if( Request('pageSize') != '')
 {
-	$pageSize = Request('pageSize');
+	//上限 200：pageSize 直接来自请求，不设上限时一个人就能让列表把整张表读进内存
+	$pageSize = min(200 , max(1 , (int)Request('pageSize')));
 }
 C('page.pageSize',$pageSize);
 
