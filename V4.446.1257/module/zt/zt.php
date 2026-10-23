@@ -14,6 +14,10 @@ $ModuleArr = array('all');
 require_once 'zt.common.php';
 
 
+//模块配置：专题页参数检测开关来自配置表，缺省时按关闭处理
+$ztConfig = GetModuleConfig('zt');
+$ztConfig['par_zt'] = isset($ztConfig['par_zt']) ? $ztConfig['par_zt'] : '1';
+
 //当前页面的参数检测
 if( $ztConfig['par_zt'] == '1' )
 {

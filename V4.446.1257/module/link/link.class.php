@@ -125,7 +125,7 @@ class link
 			'总点出' =>'a.link_outsum desc',
 				
 			'是' =>'1',
-			'ไม่' =>'0',
+			'否' =>'0',
 		);
 
 		return tpl::GetWhere($where,$arr);

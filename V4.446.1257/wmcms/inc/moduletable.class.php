@@ -248,7 +248,7 @@ class ModuleTable {
 	{
 		if( $id == '' )
 		{
-			return '模块数据ID为空！';
+			return 'ID ข้อมูลของโมดูลว่างเปล่า!';
 		}
 		else
 		{
@@ -275,7 +275,7 @@ class ModuleTable {
 			}
 			else
 			{
-				return '此模块数据不存在！';
+				return 'ไม่พบข้อมูลของโมดูลนี้!';
 			}
 		}
 	}
@@ -300,7 +300,7 @@ class ModuleTable {
 	{
 		if( $id == '' )
 		{
-			return '模块数据ID为空！';
+			return 'ID ข้อมูลของโมดูลว่างเปล่า!';
 		}
 		else
 		{
@@ -317,7 +317,7 @@ class ModuleTable {
 			}
 			else
 			{
-				return '此模块数据不存在！';
+				return 'ไม่พบข้อมูลของโมดูลนี้!';
 			}
 		}
 	}

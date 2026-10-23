@@ -109,11 +109,11 @@ class finance
 				break;
 				
 			case '2':
-				return '已拒绝';
+				return 'ถูกปฏิเสธ';
 				break;
 				
 			default:
-				return '处理中';
+				return 'กำลังดำเนินการ';
 				break;
 		}
 	}

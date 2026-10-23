@@ -340,7 +340,7 @@ class articlelabel extends article
 			'标题颜色'=>$v['article_color'],
 			'来源'=>$v['article_source'],
 			'作者'=>$v['article_author'],
-			'บรรณาธิการ'=>$v['article_editor'],
+			'编辑'=>$v['article_editor'],
 			'权重'=>$v['article_weight'],
 			'标签'=>$v['article_tags'],
 			'简介'=>$v['article_info'],

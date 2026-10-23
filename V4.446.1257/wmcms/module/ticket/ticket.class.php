@@ -120,7 +120,7 @@ class ticket
 		//设置需要替换的字段
 		$arr = array(
 			'模块' =>'log_module',
-			'นิยาย' =>'novel',
+			'小说' =>'novel',
 			'贡献类型' =>'order',
 			'贡献时间' =>'log_time',
 			'排名时间' =>'log_time',

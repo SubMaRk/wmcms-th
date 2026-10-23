@@ -180,7 +180,7 @@ function Inc( $path , $name = ''){
 		}
 		else
 		{
-			echo '警告：'.$path.'不存在<br/><br/>';
+			echo 'คำเตือน: '.$path.'不存在<br/><br/>';
 		}
 	}
 }
@@ -231,7 +231,7 @@ function NewClass( $name , $data = '' , $path = WMCLASS , $type = 'class' )
 		}
 		else
 		{
-			echo '警告：类文件'.$file.'不存在<br/><br/>';
+			echo 'คำเตือน: ไฟล์คลาส '.$file.'不存在<br/><br/>';
 		}
 	}
 }
@@ -455,7 +455,7 @@ function GetModuleName( $name = '' , $filter = true)
 function GetModuleId( $name = '')
 {
 	$arr = array(
-		'นิยาย'=>'novel',
+		'小说'=>'novel',
 		'应用'=>'app',
 		'文章'=>'article',
 		'图集'=>'picture',

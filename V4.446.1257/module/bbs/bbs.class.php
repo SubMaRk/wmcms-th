@@ -168,7 +168,7 @@ class bbs
 			'有图片' =>'[null->is not]',
 			'无图片' =>'[null->is]',
 			'是' =>'1',
-			'ไม่' =>'0',
+			'否' =>'0',
 		);
 
 		return tpl::GetWhere($where,$arr);

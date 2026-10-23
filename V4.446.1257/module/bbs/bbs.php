@@ -34,11 +34,10 @@ $data = bbs::GetData( 'bbs' , $where );
 
 //new一个模型
 $bbsMod = NewModel('bbs.bbs');
-//是否是版主
-$isModer = $bbsMod->CheckModerator($data['type_id']);
+//是否是版主；没有内容时为 false，避免对 null 取下标
+$isModer = $data ? $bbsMod->CheckModerator($data['type_id']) : false;
 
-
-//么有内容就提示
+//么有内容就提示。数据为空时后面所有字段访问都会告警，所以先判断
 if ( !$data )
 {
 	tpl::ErrInfo( $lang['system']['content']['no'] );
@@ -47,7 +46,7 @@ if ( !$data )
 else if( $data['bbs_status'] == '0' )
 {
 	//不是管理员、作者不是自己并且作者是自己但是关闭了作者查看
-	if ( $isModer == false && $data['user_id'] != user::GetUid() && ( $data['user_id'] == user::GetUid() && $bbsConfig['author_look'] == 0 ))
+	if ( $isModer === false && $data['user_id'] != user::GetUid() && ( $data['user_id'] == user::GetUid() && $bbsConfig['author_look'] == 0 ))
 	{
 		tpl::ErrInfo( $lang['bbs']['bbs_status_0'] );
 	}

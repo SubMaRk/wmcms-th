@@ -68,7 +68,7 @@ class file{
 				//判断文件是否存在并且下载
 				if(strpos($imageData,'/404/'))
 				{
-					return '远程图片不存在';
+					return 'ไม่พบรูปภาพต้นทาง';
 				}
 				else
 				{
@@ -302,7 +302,7 @@ class file{
 		}
 		else
 		{
-			$content='文件'.$patch.'不存在';
+			$content='ไม่พบไฟล์ '.$patch;
 		}
 		
 		return $content;

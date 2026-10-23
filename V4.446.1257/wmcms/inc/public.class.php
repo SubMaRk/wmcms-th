@@ -1279,10 +1279,10 @@ class common{
 	{
 		$arr = array(
 			'查询'=>'select * from ',
-			'ผู้ใช้'=>'@@user_user ',
+			'用户'=>'@@user_user ',
 			'文章'=>'@@article_article ',
 			'应用'=>'@@app_app ',
-			'นิยาย'=>'@@novel_novel' ,
+			'小说'=>'@@novel_novel' ,
 			'条件'=>'where ',
 			'随机'=>'order by rand()',
 			'排序'=>'order by ',

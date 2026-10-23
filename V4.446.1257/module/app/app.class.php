@@ -128,7 +128,7 @@ class app
 			'语言'=>'l',
 				
 			'是'=>'1',
-			'ไม่'=>'0',
+			'否'=>'0',
 		);
 
 		return tpl::GetWhere($where,$arr);

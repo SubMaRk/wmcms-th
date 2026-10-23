@@ -681,12 +681,12 @@ class bbslabel extends bbs
 		 $content=tohtml($row['content']);
 		 //判断是否需要登录、回复才能浏览。
 		 if(($row['islogin']=='1' && $user['id']=='' && $row['uid']<>$user['id']) || ($row['isreplay']=='1' && $user['id']=='' && $row['uid']<>$user['id'])){
-			 $content='您需要<a href="{登录}">登录</a>/<a href="{注册}">注册</a>后才能浏览内容！';
+			 $content='คุณต้อง<a href="{登录}">เข้าสู่ระบบ</a>/<a href="{注册}">สมัครสมาชิก</a>ก่อนจึงจะดูเนื้อหาได้!';
 			 $isrepfile='0';//不读取
 		 }else if($row['isreplay']=='1' && $row['uid']<>$user['id']){
 			 $rrs=$db->query("SELECT id FROM `wm_replay_content` where `type`='bbs' and `nid`='".$cid."' and `uid`='".$user['id']."'");
 			 if($rrs->rowCount() < 1){
-				 $content='您需要回复后才能浏览内容！';
+				 $content='คุณต้องแสดงความคิดเห็นก่อนจึงจะดูเนื้อหาได้!';
 				 $isrepfile='0';//不读取
 			 }
 		 }else if($row['ispay']=='1' && $row['uid']<>$user['id']){

@@ -239,7 +239,7 @@ class novellabel extends novel
 				'小说作者生日'=>GetKey($v, 'user_birthday'),
 				'小说作者签名'=>GetKey($v, 'user_sign'),
 				'小说作者头像'=>GetKey($v, 'user_head'),
-				'ปกนิยาย'=>$v['novel_cover'],
+				'小说封面'=>$v['novel_cover'],
 				'小说点评'=>$v['novel_comment'],
 				'小说简介'=>$v['novel_info'],
 				'小说标签'=>$v['novel_tags'],
@@ -968,7 +968,7 @@ class novellabel extends novel
 		}
 		if( $data['is_sub'] == 0 )
 		{
-			$content = '对不起，您还没订阅本章！';
+			$content = 'ขออภัย คุณยังไม่ได้สมัครรับบทนี้!';
 		}
 		//获得作者的话
 		$saidMod = NewModel('novel.said');

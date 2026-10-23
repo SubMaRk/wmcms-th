@@ -35,7 +35,7 @@ class email{
 	{
 		$nickName = 'admin';
 		$title = '邮件发送测试！';
-		$content = '这是一封测试邮件，如果您收到此邮件说明你的邮件配置完全正确可以使用了！';
+		$content = 'นี่คืออีเมลทดสอบ หากคุณได้รับอีเมลนี้ แสดงว่าการตั้งค่าอีเมลถูกต้องและใช้งานได้แล้ว';
 		return $this->SendEmail($this->name,$nickName , $title , $content);
 	}
 

@@ -221,7 +221,7 @@ if( !empty( $moduleClass ) )
 				}
 				else
 				{
-					echo '警告：'.$langPath.'不存在<br/><br/>';
+					echo 'คำเตือน: '.$langPath.'不存在<br/><br/>';
 				}
 			}
 		}

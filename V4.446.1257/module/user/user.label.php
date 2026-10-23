@@ -811,7 +811,7 @@ class userlabel extends user
 	static function ReadCallBackLabel($v)
 	{
 		$arr=array(
-			'ปกนิยาย'=>GetKey($v,'novel_cover'),
+			'小说封面'=>GetKey($v,'novel_cover'),
 			'阅读标题'=>$v['read_title'],
 			'首次阅读时间'=>date("Y-m-d H:i:s",$v['read_time']),
 			'最后阅读时间'=>date("Y-m-d H:i:s",$v['read_lasttime']),
@@ -1097,8 +1097,8 @@ class userlabel extends user
 			'最低提现金额'=>$financeConfig['cash_lowest'],
 			'可提现金额'=>$cashMoney,
 			'是否开启提现'=>$financeConfig['cash_open'],
-			'เมิ่งเป่า兑换余额数量'=>$financeConfig['gold2_to_money']*user::GetGold2(),
-			'是否开启เมิ่งเป่า兑换余额'=>$financeConfig['gold2_to_money_open'],
+			'梦宝兑换余额数量'=>$financeConfig['gold2_to_money']*user::GetGold2(),
+			'是否开启梦宝兑换余额'=>$financeConfig['gold2_to_money_open'],
 		);
 		tpl::Rep($arr);
 

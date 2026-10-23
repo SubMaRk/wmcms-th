@@ -8,7 +8,7 @@ SET NAMES utf8mb4;
 
 ALTER TABLE `wm_about_about`
 	MODIFY `type_id` int NOT NULL DEFAULT 1 COMMENT 'id หมวดหมู่ข้อมูล',
-	MODIFY `about_name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'หัวข้อบทความ',
+	MODIFY `about_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'หัวข้อบทความ',
 	MODIFY `about_pinyin` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'พินอินของข้อมูล',
 	MODIFY `about_content` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'เนื้อหา',
 	MODIFY `about_order` int NULL DEFAULT 0 COMMENT 'ลำดับของข้อมูล',
@@ -21,8 +21,8 @@ ALTER TABLE `wm_about_about`
 ALTER TABLE `wm_about_type`
 	MODIFY `type_topid` int NULL DEFAULT 0 COMMENT 'id ระดับเหนือขึ้นไป',
 	MODIFY `type_pid` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'id ของรายการแม่',
-	MODIFY `type_name` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
-	MODIFY `type_cname` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อของประเภท',
+	MODIFY `type_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
+	MODIFY `type_cname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อของประเภท',
 	MODIFY `type_pinyin` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'พินอินของประเภท',
 	MODIFY `type_order` int NOT NULL DEFAULT 0 COMMENT 'เรียงลำดับ',
 	MODIFY `type_info` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'คำอธิบายหมวดหมู่',
@@ -37,7 +37,7 @@ ALTER TABLE `wm_ad_ad`
 	MODIFY `ad_pt` tinyint(1) NULL DEFAULT 4 COMMENT 'โฆษณาอยู่บนแพลตฟอร์มใด, 1=แบบย่อ, 2=แบบสี, 3=แบบสัมผัส, 4=คอมพิวเตอร์',
 	MODIFY `ad_status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0=ไม่แสดง 1=ปกติ',
 	MODIFY `ad_type` int NOT NULL DEFAULT 1 COMMENT '1=ข้อความ 2=ข้อความพร้อมรูป 3=js',
-	MODIFY `ad_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อตำแหน่งโฆษณา',
+	MODIFY `ad_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อตำแหน่งโฆษณา',
 	MODIFY `ad_title` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หัวข้อโฆษณา',
 	MODIFY `ad_url` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ลิงก์ของโฆษณา',
 	MODIFY `ad_img` varchar(250) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ที่อยู่โฆษณารูปภาพ',
@@ -51,7 +51,7 @@ ALTER TABLE `wm_ad_ad`
 	MODIFY `ad_time` int NOT NULL DEFAULT 0 COMMENT 'เวลาที่เพิ่มโฆษณา';
 
 ALTER TABLE `wm_ad_type`
-	MODIFY `type_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่โฆษณา',
+	MODIFY `type_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่โฆษณา',
 	MODIFY `type_info` varchar(1000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'คำอธิบายหมวดหมู่โฆษณา';
 
 ALTER TABLE `wm_api_api`
@@ -59,7 +59,7 @@ ALTER TABLE `wm_api_api`
 	MODIFY `api_open` tinyint(1) NULL DEFAULT 1 COMMENT 'อินเทอร์เฟซเปิดหรือไม่, 1=เปิด, 0=ปิด',
 	MODIFY `api_title` varchar(80) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่ออินเทอร์เฟซ',
 	MODIFY `api_ctitle` varchar(80) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่ออินเทอร์เฟซ',
-	MODIFY `api_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ตัวระบุอินเทอร์เฟซ',
+	MODIFY `api_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ตัวระบุอินเทอร์เฟซ',
 	MODIFY `api_appid` varchar(120) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ID ผู้พัฒนา',
 	MODIFY `api_base` varchar(2000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'พารามิเตอร์ตั้งค่าอินเทอร์เฟซพื้นฐาน',
 	MODIFY `api_info` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'คำอธิบายอินเทอร์เฟซ',
@@ -75,7 +75,7 @@ ALTER TABLE `wm_api_tts_voicet`
 
 ALTER TABLE `wm_api_type`
 	MODIFY `type_title` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อประเภทอินเทอร์เฟซ',
-	MODIFY `type_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ตัวระบุประเภทอินเทอร์เฟซ',
+	MODIFY `type_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ตัวระบุประเภทอินเทอร์เฟซ',
 	MODIFY `type_order` int NULL COMMENT 'เรียงลำดับ';
 
 ALTER TABLE `wm_app_app`
@@ -85,8 +85,8 @@ ALTER TABLE `wm_app_app`
 	MODIFY `app_ico` varchar(120) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ไอคอนแอป',
 	MODIFY `app_simg` varchar(120) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'รูปย่อที่อ้างอิง',
 	MODIFY `app_pinyin` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'พินอินแอป',
-	MODIFY `app_name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'หัวข้อแอป',
-	MODIFY `app_cname` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อแอป',
+	MODIFY `app_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'หัวข้อแอป',
+	MODIFY `app_cname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อแอป',
 	MODIFY `app_lid` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '0' COMMENT 'id ภาษา',
 	MODIFY `app_lid_text` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ข้อความภาษา',
 	MODIFY `app_cid` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '0' COMMENT 'id ค่าใช้จ่าย',
@@ -94,7 +94,7 @@ ALTER TABLE `wm_app_app`
 	MODIFY `app_tocn` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0=ไม่ใช่ 1=ใช่ แอปที่แปลภาษาแล้ว',
 	MODIFY `app_ver` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '0' COMMENT 'เวอร์ชัน',
 	MODIFY `app_size` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '0' COMMENT 'ขนาด',
-	MODIFY `app_tags` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'แท็กแอป',
+	MODIFY `app_tags` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'แท็กแอป',
 	MODIFY `app_aid` int NULL DEFAULT 0 COMMENT 'ผู้พัฒนา',
 	MODIFY `app_oid` int NULL DEFAULT 0 COMMENT 'บริษัทผู้ให้บริการ',
 	MODIFY `app_info` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'รีวิว, ตัวอย่าง',
@@ -116,12 +116,12 @@ ALTER TABLE `wm_app_app`
 
 ALTER TABLE `wm_app_attr`
 	MODIFY `attr_type` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'c=ค่าใช้จ่าย p=แพลตฟอร์ม l=ภาษา',
-	MODIFY `attr_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อแอตทริบิวต์';
+	MODIFY `attr_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อแอตทริบิวต์';
 
 ALTER TABLE `wm_app_firms`
 	MODIFY `firms_type` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'a=ผู้พัฒนาระบบ o=ผู้ให้บริการ s=พัฒนาและขายเอง',
-	MODIFY `firms_name` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อผู้พัฒนา',
-	MODIFY `firms_cname` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อผู้พัฒนา',
+	MODIFY `firms_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อผู้พัฒนา',
+	MODIFY `firms_cname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อผู้พัฒนา',
 	MODIFY `firms_url` varchar(120) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'เว็บไซต์ทางการ',
 	MODIFY `firms_adress` varchar(120) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ที่อยู่ติดต่อ',
 	MODIFY `firms_phone` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'โทรศัพท์ผู้พัฒนา',
@@ -132,8 +132,8 @@ ALTER TABLE `wm_app_firms`
 ALTER TABLE `wm_app_type`
 	MODIFY `type_topid` int NOT NULL DEFAULT 0 COMMENT 'id ระดับเหนือขึ้นไป',
 	MODIFY `type_pid` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
-	MODIFY `type_name` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
-	MODIFY `type_cname` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อของประเภท',
+	MODIFY `type_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
+	MODIFY `type_cname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อของประเภท',
 	MODIFY `type_pinyin` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'พินอินของประเภท',
 	MODIFY `type_order` int NOT NULL DEFAULT 0 COMMENT 'เรียงลำดับ',
 	MODIFY `type_ico` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ไอคอนประเภท',
@@ -152,14 +152,14 @@ ALTER TABLE `wm_article_article`
 	MODIFY `article_rec` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'แนะนำหรือไม่',
 	MODIFY `article_head` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'เป็นข่าวพาดหัวหรือไม่',
 	MODIFY `article_strong` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'ทำตัวหนาหรือไม่',
-	MODIFY `article_name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'หัวข้อบทความ',
-	MODIFY `article_cname` varchar(35) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อบทความ',
+	MODIFY `article_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'หัวข้อบทความ',
+	MODIFY `article_cname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อบทความ',
 	MODIFY `article_color` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'สีหัวข้อ',
 	MODIFY `article_simg` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'รูปย่อ',
 	MODIFY `article_source` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'แหล่งที่มาบทความ',
-	MODIFY `article_tags` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'แท็ก',
+	MODIFY `article_tags` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'แท็ก',
 	MODIFY `article_url` varchar(120) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'เปลี่ยนเส้นทางหรือไม่',
-	MODIFY `article_author` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT 'admin' COMMENT 'ผู้แต่ง',
+	MODIFY `article_author` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT 'admin' COMMENT 'ผู้แต่ง',
 	MODIFY `article_author_id` int NULL DEFAULT 0 COMMENT 'ผู้แต่งบทความ',
 	MODIFY `article_editor` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT 'admin' COMMENT 'บรรณาธิการ',
 	MODIFY `article_editor_id` int NULL DEFAULT 1 COMMENT 'id ของบรรณาธิการ',
@@ -177,7 +177,7 @@ ALTER TABLE `wm_article_article`
 
 ALTER TABLE `wm_article_author`
 	MODIFY `author_type` varchar(2) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT 'a' COMMENT 'เป็นผู้แต่งหรือแหล่งที่มา, a=ผู้แต่ง, s=แหล่งที่มา',
-	MODIFY `author_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อผู้แต่งหรือแหล่งที่มา',
+	MODIFY `author_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อผู้แต่งหรือแหล่งที่มา',
 	MODIFY `author_default` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'เป็นข้อมูลเริ่มต้นหรือไม่',
 	MODIFY `author_data` int NULL DEFAULT 0 COMMENT 'จำนวนรายการข้อมูลที่จับคู่กับแอตทริบิวต์ปัจจุบัน';
 
@@ -185,8 +185,8 @@ ALTER TABLE `wm_article_type`
 	MODIFY `type_status` tinyint(1) NULL DEFAULT 1 COMMENT 'แสดงหรือไม่',
 	MODIFY `type_topid` int NOT NULL DEFAULT 0 COMMENT 'id ระดับเหนือขึ้นไป',
 	MODIFY `type_pid` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
-	MODIFY `type_name` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
-	MODIFY `type_cname` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อหมวดหมู่',
+	MODIFY `type_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
+	MODIFY `type_cname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อหมวดหมู่',
 	MODIFY `type_pinyin` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'พินอินหมวดหมู่',
 	MODIFY `type_order` int NOT NULL DEFAULT 0 COMMENT 'เรียงลำดับ',
 	MODIFY `type_ico` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ไอคอน',
@@ -202,7 +202,7 @@ ALTER TABLE `wm_article_type`
 ALTER TABLE `wm_author_author`
 	MODIFY `user_id` int NOT NULL DEFAULT 0 COMMENT 'id ผู้ใช้',
 	MODIFY `author_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0=รอตรวจสอบ 1=ปกติ 2=ไม่ผ่าน',
-	MODIFY `author_nickname` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'นามปากกาผู้แต่ง ห้ามแก้ไข',
+	MODIFY `author_nickname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'นามปากกาผู้แต่ง ห้ามแก้ไข',
 	MODIFY `author_info` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'เรื่องย่อผู้แต่ง',
 	MODIFY `author_notice` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ประกาศจากผู้แต่ง',
 	MODIFY `author_time` int NOT NULL DEFAULT 0 COMMENT 'เวลาที่เปิดใช้งาน',
@@ -232,7 +232,7 @@ ALTER TABLE `wm_author_exp`
 
 ALTER TABLE `wm_author_level`
 	MODIFY `level_module` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'โมดูลระดับ',
-	MODIFY `level_name` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อระดับ',
+	MODIFY `level_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อระดับ',
 	MODIFY `level_start` int NOT NULL DEFAULT 0 COMMENT 'ประสบการณ์เริ่มต้น',
 	MODIFY `level_end` int NOT NULL DEFAULT 0 COMMENT 'ประสบการณ์สิ้นสุด',
 	MODIFY `level_order` int NOT NULL DEFAULT 0 COMMENT 'ตำแหน่งที่แสดง';
@@ -248,7 +248,7 @@ ALTER TABLE `wm_author_module_income`
 
 ALTER TABLE `wm_author_sign`
 	MODIFY `sign_module` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'โมดูล',
-	MODIFY `sign_name` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อระดับการเซ็นสัญญา',
+	MODIFY `sign_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อระดับการเซ็นสัญญา',
 	MODIFY `sign_divide` varchar(5) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '7:3' COMMENT 'อัตราส่วนแบ่งรายได้จากการให้รางวัลด้วยไอเทม',
 	MODIFY `sign_gold1` decimal(5,2) NOT NULL DEFAULT 0.00 COMMENT 'เหรียญ 1 ต่อพันคำ',
 	MODIFY `sign_gold2` decimal(5,2) NOT NULL DEFAULT 0.00 COMMENT 'เหรียญ 2 ต่อพันคำ',
@@ -271,16 +271,16 @@ ALTER TABLE `wm_bbs_bbs`
 	MODIFY `bbs_es` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'คัดสรร',
 	MODIFY `bbs_top` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1=ปักหมุดทั้งเว็บไซต์ 2=ปักหมุดในหมวดหมู่ 3=ปักหมุดปัจจุบัน',
 	MODIFY `bbs_simg` varchar(120) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'รูปย่อ',
-	MODIFY `bbs_title` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'หัวข้อโพสต์',
+	MODIFY `bbs_title` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'หัวข้อโพสต์',
 	MODIFY `bbs_content` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'เนื้อหาโพสต์',
 	MODIFY `user_id` int NOT NULL DEFAULT 0 COMMENT 'ผู้ใช้ที่โพสต์',
 	MODIFY `bbs_time` int NOT NULL DEFAULT 0 COMMENT 'เวลาโพสต์',
 	MODIFY `bbs_replay_time` int NOT NULL DEFAULT 0 COMMENT 'เวลาตอบกลับล่าสุด',
-	MODIFY `bbs_replay_nickname` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อเล่นผู้ใช้ที่ตอบโพสต์',
+	MODIFY `bbs_replay_nickname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อเล่นผู้ใช้ที่ตอบโพสต์',
 	MODIFY `bbs_replay_uid` int NOT NULL DEFAULT 0 COMMENT 'id ผู้ใช้ที่ตอบโพสต์',
 	MODIFY `bbs_read` int NOT NULL DEFAULT 0 COMMENT 'ยอดเข้าชม',
 	MODIFY `bbs_replay` int NOT NULL DEFAULT 0 COMMENT 'จำนวนตอบกลับ',
-	MODIFY `bbs_tags` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'แท็ก',
+	MODIFY `bbs_tags` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'แท็ก',
 	MODIFY `bbs_ding` int NOT NULL DEFAULT 0 COMMENT 'กดชอบ',
 	MODIFY `bbs_cai` int NOT NULL DEFAULT 0 COMMENT 'กดไม่ชอบ',
 	MODIFY `bbs_score` decimal(5,2) NOT NULL DEFAULT 0.00 COMMENT 'คะแนน';
@@ -294,8 +294,8 @@ ALTER TABLE `wm_bbs_type`
 	MODIFY `type_replay_open` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1=เปิด',
 	MODIFY `type_topid` int NOT NULL DEFAULT 0 COMMENT 'id ระดับเหนือขึ้นไป',
 	MODIFY `type_pid` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
-	MODIFY `type_name` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
-	MODIFY `type_cname` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อย่อของประเภท',
+	MODIFY `type_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
+	MODIFY `type_cname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อย่อของประเภท',
 	MODIFY `type_pinyin` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'พินอินของประเภท',
 	MODIFY `type_order` int NOT NULL DEFAULT 50 COMMENT 'เรียงลำดับ',
 	MODIFY `type_info` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'เรื่องย่อ',
@@ -328,7 +328,7 @@ ALTER TABLE `wm_config_config`
 	MODIFY `config_order` int NULL COMMENT 'ลำดับการแสดงของการตั้งค่า';
 
 ALTER TABLE `wm_config_field`
-	MODIFY `field_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อฟิลด์',
+	MODIFY `field_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อฟิลด์',
 	MODIFY `field_module` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'โมดูลที่สังกัด',
 	MODIFY `field_type` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1=ฟิลด์หมวดหมู่ 2=ฟิลด์เนื้อหา',
 	MODIFY `field_type_id` int NOT NULL COMMENT 'ID ของหมวดหมู่ที่สังกัด',
@@ -345,12 +345,12 @@ ALTER TABLE `wm_config_field_value`
 	MODIFY `value_option` varchar(2000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ค่าของตัวเลือก';
 
 ALTER TABLE `wm_config_group`
-	MODIFY `group_name` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อกลุ่ม',
-	MODIFY `group_remark` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ข้อมูลหมายเหตุกลุ่ม';
+	MODIFY `group_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อกลุ่ม',
+	MODIFY `group_remark` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ข้อมูลหมายเหตุกลุ่ม';
 
 ALTER TABLE `wm_config_label`
-	MODIFY `label_title` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หัวข้อแท็ก',
-	MODIFY `label_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อแท็ก',
+	MODIFY `label_title` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หัวข้อแท็ก',
+	MODIFY `label_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อแท็ก',
 	MODIFY `label_value` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ค่าของแท็ก';
 
 ALTER TABLE `wm_config_option`
@@ -362,7 +362,7 @@ ALTER TABLE `wm_config_option`
 ALTER TABLE `wm_diy_diy`
 	MODIFY `diy_status` tinyint(1) NULL DEFAULT 1 COMMENT 'สถานะของหน้าเพจที่กำหนดเอง',
 	MODIFY `diy_read` int NULL DEFAULT 0 COMMENT 'ยอดอ่าน',
-	MODIFY `diy_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหน้าเพจที่กำหนดเอง',
+	MODIFY `diy_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหน้าเพจที่กำหนดเอง',
 	MODIFY `diy_pinyin` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'พินอิน',
 	MODIFY `diy_title` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หัวข้อ',
 	MODIFY `diy_key` varchar(120) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'คำค้นหา',
@@ -374,7 +374,7 @@ ALTER TABLE `wm_diy_diy`
 ALTER TABLE `wm_editor`
 	MODIFY `editor_status` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'เปิดใช้งานหรือไม่: 1=ใช่, 0=ไม่ใช่',
 	MODIFY `editor_uid` int NOT NULL COMMENT 'id ผู้ใช้',
-	MODIFY `editor_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อบรรณาธิการ',
+	MODIFY `editor_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อบรรณาธิการ',
 	MODIFY `editor_realname` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อ-นามสกุลจริงของบรรณาธิการ',
 	MODIFY `editor_desc` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'เรื่องย่อของบรรณาธิการ',
 	MODIFY `editor_qq` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'qq ของบรรณาธิการ',
@@ -392,7 +392,7 @@ ALTER TABLE `wm_editor_bind`
 ALTER TABLE `wm_editor_group`
 	MODIFY `group_id` int NOT NULL auto_increment COMMENT 'id กลุ่ม',
 	MODIFY `group_module` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT 'novel' COMMENT 'โมดูลกลุ่ม',
-	MODIFY `group_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อกลุ่ม',
+	MODIFY `group_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อกลุ่ม',
 	MODIFY `group_desc` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'คำอธิบายกลุ่ม',
 	MODIFY `group_order` tinyint NOT NULL DEFAULT 9 COMMENT 'ลำดับกลุ่ม',
 	MODIFY `group_time` int NOT NULL COMMENT 'เวลาที่เพิ่ม';
@@ -426,7 +426,7 @@ ALTER TABLE `wm_fans_module_consume`
 ALTER TABLE `wm_fans_module_level`
 	MODIFY `level_module` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'โมดูลของระดับ',
 	MODIFY `level_cid` int NOT NULL DEFAULT 0 COMMENT '0=เนื้อหาทั้งหมด ค่าอื่น=ระดับแฟนที่กำหนดเอง',
-	MODIFY `level_name` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อระดับ',
+	MODIFY `level_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อระดับ',
 	MODIFY `level_start` int NOT NULL DEFAULT 0 COMMENT 'ประสบการณ์เริ่มต้นของระดับ',
 	MODIFY `level_end` int NOT NULL DEFAULT 0 COMMENT 'ประสบการณ์สิ้นสุดของระดับ',
 	MODIFY `level_order` int NOT NULL DEFAULT 0 COMMENT 'การเรียงลำดับระดับ';
@@ -440,15 +440,15 @@ ALTER TABLE `wm_finance_apply`
 	MODIFY `apply_manager_id` int NOT NULL COMMENT 'ผู้ยื่นคำขอชำระบัญชี',
 	MODIFY `apply_total` decimal(10,2) NOT NULL COMMENT 'ยอดรวมของคำขอชำระบัญชี',
 	MODIFY `apply_bonus` decimal(10,2) NULL COMMENT 'จำนวนเงินรางวัล',
-	MODIFY `apply_bonus_remark` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หมายเหตุรางวัล',
+	MODIFY `apply_bonus_remark` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หมายเหตุรางวัล',
 	MODIFY `apply_deduct` decimal(10,2) NULL COMMENT 'หมายเหตุการลงโทษ',
-	MODIFY `apply_deduct_remark` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หมายเหตุการลงโทษ',
+	MODIFY `apply_deduct_remark` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หมายเหตุการลงโทษ',
 	MODIFY `apply_real` decimal(10,2) NOT NULL COMMENT 'จำนวนเงินที่เข้าบัญชีจริง',
 	MODIFY `apply_real_money` decimal(10,2) NULL DEFAULT 0.00 COMMENT 'ยอดเงินหยวนที่เข้าจริง 0=โหมด 1',
-	MODIFY `apply_remark` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หมายเหตุคำขอชำระบัญชี',
+	MODIFY `apply_remark` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หมายเหตุคำขอชำระบัญชี',
 	MODIFY `apply_to_user_id` int NOT NULL DEFAULT 0 COMMENT 'ผู้ใช้ที่ได้รับคำขอชำระบัญชี',
 	MODIFY `apply_handle_manager_id` int NOT NULL DEFAULT 0 COMMENT 'id ผู้ดูแลระบบที่พิจารณาคำขอ',
-	MODIFY `apply_handle_remark` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หมายเหตุการพิจารณาคำขอ',
+	MODIFY `apply_handle_remark` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หมายเหตุการพิจารณาคำขอ',
 	MODIFY `apply_handle_time` int NOT NULL DEFAULT 0 COMMENT 'เวลาพิจารณาคำขอ';
 
 ALTER TABLE `wm_finance_level`
@@ -511,7 +511,7 @@ ALTER TABLE `wm_flash_flash`
 	MODIFY `flash_order` int NOT NULL COMMENT 'เรียงลำดับ',
 	MODIFY `flash_module` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'อยู่ในโมดูลใด',
 	MODIFY `flash_pid` int NOT NULL COMMENT 'id หน้าเพจ',
-	MODIFY `flash_title` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'หัวข้อ',
+	MODIFY `flash_title` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'หัวข้อ',
 	MODIFY `flash_info` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'เรื่องย่อ',
 	MODIFY `flash_desc` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'คำอธิบาย',
 	MODIFY `flash_url` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ที่อยู่ปลายทาง',
@@ -521,7 +521,7 @@ ALTER TABLE `wm_flash_flash`
 ALTER TABLE `wm_flash_type`
 	MODIFY `type_topid` int NOT NULL DEFAULT 0 COMMENT 'id ระดับเหนือขึ้นไป',
 	MODIFY `type_pid` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
-	MODIFY `type_name` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
+	MODIFY `type_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
 	MODIFY `type_pinyin` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'พินอินของประเภท',
 	MODIFY `type_order` int NOT NULL DEFAULT 0 COMMENT 'ลำดับหมวดหมู่',
 	MODIFY `type_info` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หมายเหตุหมวดหมู่';
@@ -540,7 +540,7 @@ ALTER TABLE `wm_link_click`
 ALTER TABLE `wm_link_link`
 	MODIFY `type_id` int NOT NULL COMMENT 'id หมวดหมู่',
 	MODIFY `link_name` varchar(80) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อลิงก์เพื่อน',
-	MODIFY `link_cname` varchar(5) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อลิงก์เพื่อน',
+	MODIFY `link_cname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อลิงก์เพื่อน',
 	MODIFY `link_pinyin` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'พินอิน',
 	MODIFY `link_ico` varchar(120) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ไอคอน',
 	MODIFY `link_order` int NOT NULL DEFAULT 99 COMMENT 'เรียงลำดับ',
@@ -551,7 +551,7 @@ ALTER TABLE `wm_link_link`
 	MODIFY `link_rec` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'แนะนำหรือไม่',
 	MODIFY `link_jointime` int NOT NULL DEFAULT 0 COMMENT 'เวลาเข้าร่วม',
 	MODIFY `link_in_jump` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ลิงก์เปลี่ยนเส้นทางเมื่อเข้าลิงก์เพื่อน',
-	MODIFY `link_info` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'เรื่องย่อลิงก์เพื่อน',
+	MODIFY `link_info` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'เรื่องย่อลิงก์เพื่อน',
 	MODIFY `link_qq` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'QQ ติดต่อ',
 	MODIFY `link_read` int NOT NULL DEFAULT 0 COMMENT 'ยอดอ่าน',
 	MODIFY `link_ding` int NOT NULL DEFAULT 0 COMMENT 'กดชอบ',
@@ -573,8 +573,8 @@ ALTER TABLE `wm_link_type`
 	MODIFY `type_topid` int NOT NULL DEFAULT 0 COMMENT 'id ระดับเหนือขึ้นไป',
 	MODIFY `type_pid` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
 	MODIFY `type_rec` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'แนะนำหมวดหมู่หรือไม่',
-	MODIFY `type_name` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
-	MODIFY `type_cname` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อของประเภท',
+	MODIFY `type_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
+	MODIFY `type_cname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อของประเภท',
 	MODIFY `type_pinyin` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'พินอินของประเภท',
 	MODIFY `type_order` int NOT NULL COMMENT 'เรียงลำดับ',
 	MODIFY `type_ico` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ไอคอนหมวดหมู่',
@@ -674,7 +674,7 @@ ALTER TABLE `wm_novel_novel`
 	MODIFY `novel_process` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1=กำลังเขียน 2=จบแล้ว 3=หยุดอัปเดต',
 	MODIFY `novel_type` int NOT NULL DEFAULT 1 COMMENT '1=ต้นฉบับลงก่อน 2=ลงที่เว็บอื่นก่อน',
 	MODIFY `type_id` int NOT NULL COMMENT 'id ประเภท',
-	MODIFY `novel_author` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ผู้แต่ง',
+	MODIFY `novel_author` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ผู้แต่ง',
 	MODIFY `novel_cover` varchar(250) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ปก',
 	MODIFY `novel_comment` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'รีวิวของบรรณาธิการ',
 	MODIFY `novel_info` varchar(2000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'เรื่องย่อนิยาย',
@@ -776,8 +776,8 @@ ALTER TABLE `wm_novel_timelimit`
 ALTER TABLE `wm_novel_type`
 	MODIFY `type_topid` int NOT NULL DEFAULT 0 COMMENT 'id ระดับเหนือขึ้นไป',
 	MODIFY `type_pid` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
-	MODIFY `type_name` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
-	MODIFY `type_cname` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อของประเภท',
+	MODIFY `type_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
+	MODIFY `type_cname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อของประเภท',
 	MODIFY `type_pinyin` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'พินอินของประเภท',
 	MODIFY `type_order` int NOT NULL COMMENT 'เรียงลำดับ',
 	MODIFY `type_ico` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ไอคอนหมวดหมู่',
@@ -792,7 +792,7 @@ ALTER TABLE `wm_novel_type`
 	MODIFY `type_desc` varchar(120) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'คำอธิบายหมวดหมู่';
 
 ALTER TABLE `wm_novel_volume`
-	MODIFY `volume_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อเล่ม',
+	MODIFY `volume_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อเล่ม',
 	MODIFY `volume_nid` int NOT NULL DEFAULT 0 COMMENT 'id หนังสือ 0=เล่มเริ่มต้น',
 	MODIFY `volume_desc` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'คำอธิบายเล่ม',
 	MODIFY `volume_order` int NOT NULL DEFAULT 0 COMMENT 'เรียงลำดับ',
@@ -826,9 +826,9 @@ ALTER TABLE `wm_picture_picture`
 	MODIFY `picture_status` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'ต้องตรวจสอบหรือไม่',
 	MODIFY `picture_rec` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'แนะนำหรือไม่',
 	MODIFY `picture_simg` varchar(120) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'รูปย่อ',
-	MODIFY `picture_name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'หัวข้อชุดรูปภาพ',
-	MODIFY `picture_cname` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หัวข้อตอนของชุดรูปภาพ',
-	MODIFY `picture_tags` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'แท็กชุดรูปภาพ',
+	MODIFY `picture_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'หัวข้อชุดรูปภาพ',
+	MODIFY `picture_cname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หัวข้อตอนของชุดรูปภาพ',
+	MODIFY `picture_tags` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'แท็กชุดรูปภาพ',
 	MODIFY `picture_info` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'รีวิว, ตัวอย่าง',
 	MODIFY `picture_imgs` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'อาร์เรย์ซีเรียลไลซ์ของรูปภาพ',
 	MODIFY `picture_count` int NOT NULL DEFAULT 0 COMMENT 'จำนวนรูปภาพ',
@@ -844,8 +844,8 @@ ALTER TABLE `wm_picture_picture`
 ALTER TABLE `wm_picture_type`
 	MODIFY `type_topid` int NOT NULL DEFAULT 0 COMMENT 'id ระดับเหนือขึ้นไป',
 	MODIFY `type_pid` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
-	MODIFY `type_name` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
-	MODIFY `type_cname` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อของประเภท',
+	MODIFY `type_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
+	MODIFY `type_cname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อของประเภท',
 	MODIFY `type_pinyin` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'พินอินของประเภท',
 	MODIFY `type_order` int NOT NULL DEFAULT 0 COMMENT 'เรียงลำดับ',
 	MODIFY `type_simg` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'รูปย่อหมวดหมู่',
@@ -871,7 +871,7 @@ ALTER TABLE `wm_plugin_config`
 	MODIFY `config_val` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ค่าปลั๊กอิน';
 
 ALTER TABLE `wm_plugin_demo_apply`
-	MODIFY `message_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ผู้ใช้ที่สมัคร',
+	MODIFY `message_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ผู้ใช้ที่สมัคร',
 	MODIFY `message_phone` varchar(11) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'โทรศัพท์ที่ใช้สมัคร',
 	MODIFY `message_time` int NOT NULL COMMENT 'เวลาสมัคร';
 
@@ -907,8 +907,8 @@ ALTER TABLE `wm_props_type`
 	MODIFY `type_module` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'โมดูลที่หมวดหมู่อยู่',
 	MODIFY `type_topid` int NULL DEFAULT 0 COMMENT 'id ระดับเหนือขึ้นไป',
 	MODIFY `type_pid` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
-	MODIFY `type_name` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อหมวดหมู่',
-	MODIFY `type_cname` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อหมวดหมู่',
+	MODIFY `type_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อหมวดหมู่',
+	MODIFY `type_cname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อหมวดหมู่',
 	MODIFY `type_order` int NULL COMMENT 'ลำดับหมวดหมู่';
 
 ALTER TABLE `wm_replay_replay`
@@ -921,7 +921,7 @@ ALTER TABLE `wm_replay_replay`
 	MODIFY `replay_subset_id` int NULL DEFAULT 0 COMMENT 'id ชุดย่อยเนื้อหา',
 	MODIFY `replay_segment_id` int NULL DEFAULT 0 COMMENT 'id ตอนย่อยของชุดย่อยเนื้อหา',
 	MODIFY `replay_uid` int NULL DEFAULT 0 COMMENT 'id ผู้ใช้',
-	MODIFY `replay_nickname` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อ-นามสกุล',
+	MODIFY `replay_nickname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อ-นามสกุล',
 	MODIFY `replay_ruid` int NULL DEFAULT 0 COMMENT 'id ผู้ใช้ที่ตอบกลับ',
 	MODIFY `replay_rnickname` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อเล่นผู้ใช้ที่ตอบกลับ',
 	MODIFY `replay_content` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'เนื้อหา',
@@ -952,7 +952,7 @@ ALTER TABLE `wm_seo_html`
 	MODIFY `html_path4` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'พาธไฟล์ static ของเว็บ';
 
 ALTER TABLE `wm_seo_html_plan`
-	MODIFY `plan_name` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อภารกิจ',
+	MODIFY `plan_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อภารกิจ',
 	MODIFY `plan_url` varchar(250) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ลิงก์ url',
 	MODIFY `plan_data` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'พารามิเตอร์ post',
 	MODIFY `plan_path` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'พาธที่บันทึก',
@@ -969,9 +969,9 @@ ALTER TABLE `wm_seo_keys`
 
 ALTER TABLE `wm_seo_spider`
 	MODIFY `spider_group` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'กลุ่มของสไปเดอร์',
-	MODIFY `spider_group_name` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อกลุ่มของสไปเดอร์',
-	MODIFY `spider_name` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อของสไปเดอร์',
-	MODIFY `spider_title` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ตัวระบุของสไปเดอร์',
+	MODIFY `spider_group_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อกลุ่มของสไปเดอร์',
+	MODIFY `spider_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อของสไปเดอร์',
+	MODIFY `spider_title` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ตัวระบุของสไปเดอร์',
 	MODIFY `spider_url` varchar(1000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'url ที่สไปเดอร์เข้าถึง',
 	MODIFY `spider_ua` varchar(1000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ua ของสไปเดอร์',
 	MODIFY `spider_time` int NULL COMMENT 'เวลาที่สไปเดอร์เข้าถึง';
@@ -989,17 +989,17 @@ ALTER TABLE `wm_seo_urls`
 
 ALTER TABLE `wm_site_product`
 	MODIFY `product_status` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'ใช้งานได้หรือไม่',
-	MODIFY `product_title` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อเว็บไซต์',
+	MODIFY `product_title` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อเว็บไซต์',
 	MODIFY `product_domain` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'โดเมน',
 	MODIFY `product_admin` varchar(80) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'โฟลเดอร์หลังบ้าน',
-	MODIFY `product_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'บัญชีเข้าสู่ระบบหลังบ้าน',
+	MODIFY `product_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'บัญชีเข้าสู่ระบบหลังบ้าน',
 	MODIFY `product_psw` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'รหัสผ่านเข้าสู่ระบบหลังบ้าน',
 	MODIFY `product_order` int NOT NULL DEFAULT 99 COMMENT 'การเรียงลำดับที่แสดง, ค่าน้อยอยู่ก่อน',
 	MODIFY `product_time` int NOT NULL COMMENT 'เวลาสร้าง';
 
 ALTER TABLE `wm_site_site`
 	MODIFY `site_status` tinyint(1) NULL DEFAULT 1 COMMENT 'ใช้งานได้หรือไม่',
-	MODIFY `site_title` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อเว็บไซต์',
+	MODIFY `site_title` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อเว็บไซต์',
 	MODIFY `site_domain` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'โดเมนเว็บไซต์',
 	MODIFY `site_domain_type` tinyint(1) NULL DEFAULT 1 COMMENT 'ประเภทโดเมน 1=โดเมนเดี่ยว 2=ไวลด์การ์ด',
 	MODIFY `site_type` tinyint(1) NULL DEFAULT 1 COMMENT 'ประเภทเว็บไซต์ 1 คือเครือข่ายเว็บไซต์ที่แยกข้อมูล 2 คือเครือข่ายเว็บไซต์ที่ใช้ข้อมูลร่วมกัน (เมื่อใช้ไวลด์การ์ด DNS ต้องเป็น 2)',
@@ -1022,13 +1022,13 @@ ALTER TABLE `wm_system_apply`
 	MODIFY `apply_option` mediumtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ข้อมูลพิเศษ';
 
 ALTER TABLE `wm_system_competence`
-	MODIFY `comp_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อสิทธิ์',
+	MODIFY `comp_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อสิทธิ์',
 	MODIFY `comp_site` varchar(5000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '0' COMMENT 'สิทธิ์จัดการเว็บไซต์ของบัญชี 0 คือทุกเว็บไซต์',
 	MODIFY `comp_content` varchar(5000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'เนื้อหาสิทธิ์';
 
 ALTER TABLE `wm_system_domain`
-	MODIFY `domain_title` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'หัวข้อโมดูล',
-	MODIFY `domain_name` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อโมดูล',
+	MODIFY `domain_title` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'หัวข้อโมดูล',
+	MODIFY `domain_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อโมดูล',
 	MODIFY `domain_domain` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'โดเมนที่ผูกกับโมดูล',
 	MODIFY `domain_index` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หน้าแรกโมดูล',
 	MODIFY `domain_order` int NULL DEFAULT 9 COMMENT 'ลำดับโดเมน';
@@ -1038,7 +1038,7 @@ ALTER TABLE `wm_system_email`
 	MODIFY `email_type` tinyint(1) NULL DEFAULT 1 COMMENT 'ประเภทอีเมล 1 คือ smtp 2 คือ sendmail,3 คือฟังก์ชัน php smtp',
 	MODIFY `email_smtp` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'เซิร์ฟเวอร์ smtp',
 	MODIFY `email_port` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'พอร์ต smtp',
-	MODIFY `email_name` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'บัญชีเข้าสู่ระบบอีเมล',
+	MODIFY `email_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'บัญชีเข้าสู่ระบบอีเมล',
 	MODIFY `email_psw` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'รหัสผ่านเข้าสู่ระบบอีเมล',
 	MODIFY `email_send` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'บัญชีผู้ส่ง';
 
@@ -1076,7 +1076,7 @@ ALTER TABLE `wm_system_errlog`
 ALTER TABLE `wm_system_menu`
 	MODIFY `menu_status` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'สถานะการแสดงของเมนู 0 คือซ่อน 1 คือแสดง',
 	MODIFY `menu_title` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'หัวข้อสารบัญ',
-	MODIFY `menu_name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อสารบัญ หากเป็นเมนูสิทธิ์ ค่านี้จะเป็นประเภท t',
+	MODIFY `menu_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อสารบัญ หากเป็นเมนูสิทธิ์ ค่านี้จะเป็นประเภท t',
 	MODIFY `menu_pid` int NOT NULL DEFAULT 0 COMMENT 'id ของรายการแม่',
 	MODIFY `menu_group` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0=สารบัญปกติ 1=สารบัญกลุ่ม 2=เมนูตามสิทธิ์',
 	MODIFY `menu_order` int NULL DEFAULT 10 COMMENT 'ลำดับการแสดง',
@@ -1113,7 +1113,7 @@ ALTER TABLE `wm_system_retrieval`
 	MODIFY `retrieval_status` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'สถานะการใช้งาน 0=ปิดใช้งาน 1=ใช้งาน',
 	MODIFY `retrieval_module` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'โมดูลที่สังกัด',
 	MODIFY `retrieval_type_id` int NOT NULL DEFAULT 0 COMMENT 'ID ประเภทเงื่อนไขการค้นหา',
-	MODIFY `retrieval_title` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อเงื่อนไขการค้นหา',
+	MODIFY `retrieval_title` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อเงื่อนไขการค้นหา',
 	MODIFY `retrieval_field` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ฟิลด์ของเงื่อนไขการค้นหา',
 	MODIFY `retrieval_type` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'ประเภทการค้นหา, -1=ย้อนกลับ, 0=ตามลำดับ, 1=เท่ากับ, 2=น้อยกว่า, 3=มากกว่า, 4=ช่วง, 5=อักษรแรก, 6=คล้ายกัน, 7=ขึ้นต้นด้วยตัวเลข',
 	MODIFY `retrieval_value` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ค่าที่ค้นหา',
@@ -1123,15 +1123,15 @@ ALTER TABLE `wm_system_retrieval_type`
 	MODIFY `type_status` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'สถานะหมวดหมู่ 0=ซ่อน 1=แสดง',
 	MODIFY `type_module` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'โมดูลที่หมวดหมู่อยู่',
 	MODIFY `type_type` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1=เงื่อนไข 2=การเรียงลำดับ',
-	MODIFY `type_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
+	MODIFY `type_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
 	MODIFY `type_par` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อพารามิเตอร์ของหมวดหมู่',
 	MODIFY `type_order` int NOT NULL DEFAULT 99 COMMENT 'ลำดับหมวดหมู่';
 
 ALTER TABLE `wm_system_sms`
 	MODIFY `sms_status` tinyint(1) NULL DEFAULT 1 COMMENT 'สถานะ:1=ใช้งาน,0=ปิดใช้งาน',
-	MODIFY `sms_api_name` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL COMMENT 'อินเทอร์เฟซ SMS',
+	MODIFY `sms_api_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL COMMENT 'อินเทอร์เฟซ SMS',
 	MODIFY `sms_type` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL COMMENT 'ประเภทเทมเพลต',
-	MODIFY `sms_sign` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NULL COMMENT 'ลายเซ็นเทมเพลตของบุคคลที่สาม',
+	MODIFY `sms_sign` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NULL COMMENT 'ลายเซ็นเทมเพลตของบุคคลที่สาม',
 	MODIFY `sms_tempcode` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NULL COMMENT 'โค้ดเทมเพลตของบุคคลที่สาม',
 	MODIFY `sms_params` varchar(1000) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NULL COMMENT 'พารามิเตอร์แทนที่',
 	MODIFY `sms_time` int NOT NULL DEFAULT 0 COMMENT 'เวลาสร้าง';
@@ -1151,7 +1151,7 @@ ALTER TABLE `wm_system_tags`
 	MODIFY `tags_type_id` int NOT NULL DEFAULT 1 COMMENT 'หมวดหมู่ที่สังกัด',
 	MODIFY `tags_module` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'โมดูลที่แท็กสังกัด',
 	MODIFY `tags_author_rec` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'แนะนำให้จัดแสดงหรือไม่',
-	MODIFY `tags_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อแท็ก',
+	MODIFY `tags_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อแท็ก',
 	MODIFY `tags_pinyin` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'พินอินแท็ก',
 	MODIFY `tags_data` int NOT NULL DEFAULT 1 COMMENT 'จำนวนข้อมูลของแท็ก',
 	MODIFY `tags_search` int NULL DEFAULT 0 COMMENT 'จำนวนครั้งที่ค้นหาแท็ก',
@@ -1159,21 +1159,21 @@ ALTER TABLE `wm_system_tags`
 
 ALTER TABLE `wm_system_tags_type`
 	MODIFY `type_module` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'โมดูลหมวดหมู่',
-	MODIFY `type_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
+	MODIFY `type_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
 	MODIFY `type_desc` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'คำอธิบายหมวดหมู่',
 	MODIFY `type_order` int NOT NULL DEFAULT 9 COMMENT 'ลำดับหมวดหมู่ ยิ่งน้อยยิ่งอยู่หน้า';
 
 ALTER TABLE `wm_system_templates`
 	MODIFY `temp_module` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'โมดูลที่เทมเพลตสังกัด',
 	MODIFY `temp_type` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ประเภทของเทมเพลต',
-	MODIFY `temp_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อเทมเพลต',
+	MODIFY `temp_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อเทมเพลต',
 	MODIFY `temp_temp4` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'เทมเพลตเวอร์ชันคอมพิวเตอร์',
 	MODIFY `temp_temp3` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'หน้าจอสัมผัส',
 	MODIFY `temp_address` tinyint(1) NULL DEFAULT 0 COMMENT 'พาธที่เทมเพลตอยู่ 0=ปัจจุบัน, 1=คำนวณจากไดเรกทอรีราก.';
 
 ALTER TABLE `wm_templates_templates`
 	MODIFY `templates_path` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'โฟลเดอร์เทมเพลต',
-	MODIFY `templates_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อเทมเพลต',
+	MODIFY `templates_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อเทมเพลต',
 	MODIFY `templates_appid` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'appid เทมเพลต';
 
 ALTER TABLE `wm_upload`
@@ -1255,7 +1255,7 @@ ALTER TABLE `wm_user_head`
 ALTER TABLE `wm_user_level`
 	MODIFY `level_start` int NOT NULL COMMENT 'ประสบการณ์เริ่มต้นของระดับ',
 	MODIFY `level_end` int NOT NULL COMMENT 'ประสบการณ์สิ้นสุดของระดับ',
-	MODIFY `level_name` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อระดับ',
+	MODIFY `level_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อระดับ',
 	MODIFY `level_order` int NULL COMMENT 'การเรียงลำดับระดับ',
 	MODIFY `level_coll` int NOT NULL DEFAULT 0 COMMENT 'จำนวนรายการโปรดของระดับ',
 	MODIFY `level_shelf` int NOT NULL DEFAULT 0 COMMENT 'จำนวนชั้นหนังสือรวมของระดับ',
@@ -1283,7 +1283,7 @@ ALTER TABLE `wm_user_punish`
 	MODIFY `punish_status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0=ใช้ไม่ได้ 1=ปกติ',
 	MODIFY `punish_uid` int NOT NULL DEFAULT 0 COMMENT 'id ผู้ใช้',
 	MODIFY `punish_type` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'login=ห้ามเข้าสู่ระบบ talk=ห้ามแสดงความคิดเห็น',
-	MODIFY `punish_remark` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หมายเหตุ',
+	MODIFY `punish_remark` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หมายเหตุ',
 	MODIFY `punish_starttime` int NOT NULL DEFAULT 0 COMMENT 'เวลาเริ่มลงโทษ',
 	MODIFY `punish_endtime` int NOT NULL DEFAULT 0 COMMENT 'เวลาสิ้นสุดการลงโทษ',
 	MODIFY `punish_createtime` int NOT NULL DEFAULT 0 COMMENT 'เวลาสร้างการลงโทษ';
@@ -1292,7 +1292,7 @@ ALTER TABLE `wm_user_read`
 	MODIFY `read_module` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT 'novel' COMMENT 'โมดูลการอ่าน',
 	MODIFY `read_cid` int NOT NULL DEFAULT 0 COMMENT 'id เนื้อหา',
 	MODIFY `read_nid` int NULL DEFAULT 0 COMMENT 'id เนื้อหาแม่',
-	MODIFY `read_title` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หัวข้อ',
+	MODIFY `read_title` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หัวข้อ',
 	MODIFY `read_uid` int NOT NULL DEFAULT 0 COMMENT 'id ผู้ใช้',
 	MODIFY `read_time` int NOT NULL DEFAULT 0 COMMENT 'เวลาอ่านครั้งแรก',
 	MODIFY `read_lasttime` int NOT NULL DEFAULT 0 COMMENT 'เวลาอ่านครั้งล่าสุด';
@@ -1301,7 +1301,7 @@ ALTER TABLE `wm_user_read_log`
 	MODIFY `read_module` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT 'novel' COMMENT 'โมดูลการอ่าน',
 	MODIFY `read_cid` int NOT NULL DEFAULT 0 COMMENT 'id เนื้อหา',
 	MODIFY `read_nid` int NULL DEFAULT 0 COMMENT 'id เนื้อหาแม่',
-	MODIFY `read_title` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หัวข้อ',
+	MODIFY `read_title` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หัวข้อ',
 	MODIFY `read_uid` int NOT NULL DEFAULT 0 COMMENT 'id ผู้ใช้',
 	MODIFY `read_time` int NOT NULL DEFAULT 0 COMMENT 'เวลาอ่าน';
 
@@ -1348,7 +1348,7 @@ ALTER TABLE `wm_user_user`
 	MODIFY `user_psw` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'รหัสผ่าน',
 	MODIFY `user_status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1=ปกติ 0=รอตรวจสอบ',
 	MODIFY `user_display` tinyint(1) NULL DEFAULT 1 COMMENT '0=แบนถาวร 1=ปกติ 2=แบนตามกำหนดเวลา',
-	MODIFY `user_nickname` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อเล่น',
+	MODIFY `user_nickname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อเล่น',
 	MODIFY `user_email` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'อีเมล',
 	MODIFY `user_emailtrue` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1=ยืนยันแล้ว 0=ยังไม่ยืนยัน',
 	MODIFY `user_qq` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'หมายเลข QQ ของผู้ใช้',
@@ -1380,7 +1380,7 @@ ALTER TABLE `wm_user_vist`
 
 ALTER TABLE `wm_weixin_account`
 	MODIFY `account_status` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'ค่าบูลีน, ใช้งานหรือไม่',
-	MODIFY `account_name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อบัญชีทางการ',
+	MODIFY `account_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อบัญชีทางการ',
 	MODIFY `account_account` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'บัญชีเข้าสู่ระบบของบัญชีทางการ',
 	MODIFY `account_gid` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'id ตั้งต้นของบัญชีทางการ',
 	MODIFY `account_type` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1=บัญชีสมัครสมาชิก 2=บัญชีบริการ',
@@ -1402,7 +1402,7 @@ ALTER TABLE `wm_weixin_autoreply`
 	MODIFY `autoreply_status` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'สถานะการใช้งาน เป็นค่าบูลีน',
 	MODIFY `autoreply_default` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0=ไม่ตั้งค่า 1=ตอบกลับผู้ติดตาม 2=ตอบกลับอัตโนมัติ',
 	MODIFY `autoreply_account_id` int NOT NULL DEFAULT 0 COMMENT 'บัญชีทางการที่ใช้',
-	MODIFY `autoreply_name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อการตอบกลับอัตโนมัติ',
+	MODIFY `autoreply_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อการตอบกลับอัตโนมัติ',
 	MODIFY `autoreply_key` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'คำค้นที่การตอบกลับอัตโนมัติรับไว้',
 	MODIFY `autoreply_match` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1=ตรงทั้งหมด 2=ค้นหาคลุมเครือทั้งข้อความ 3=ตรงต้นข้อความ 4=ตรงท้ายข้อความ',
 	MODIFY `autoreply_content` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'เนื้อหาตอบกลับ',
@@ -1416,7 +1416,7 @@ ALTER TABLE `wm_weixin_fans`
 	MODIFY `fans_openid` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ตัวระบุของผู้ใช้ ซึ่งไม่ซ้ำกันภายในบัญชีทางการปัจจุบัน',
 	MODIFY `fans_unionid` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ฟิลด์นี้มีเฉพาะเมื่อผูกบัญชีทางการกับบัญชี WeChat Open Platform แล้ว',
 	MODIFY `fans_subscribe` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'สถานะการติดตามบัญชีทางการของผู้ใช้ ค่า 0 หมายถึงผู้ใช้ยังไม่ได้ติดตามบัญชีทางการนี้ จึงดึงข้อมูลอื่นไม่ได้',
-	MODIFY `fans_nickname` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อเล่นของผู้ใช้',
+	MODIFY `fans_nickname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อเล่นของผู้ใช้',
 	MODIFY `fans_headimgurl` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'รูปโปรไฟล์ของผู้ใช้',
 	MODIFY `fans_sex` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'เพศของผู้ใช้ ค่า 1 คือชาย ค่า 2 คือหญิง ค่า 0 คือไม่ทราบ',
 	MODIFY `fans_country` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '\tประเทศของผู้ใช้',
@@ -1442,7 +1442,7 @@ ALTER TABLE `wm_weixin_media`
 ALTER TABLE `wm_weixin_menu`
 	MODIFY `menu_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'ค่าบูลีน, สถานะการใช้งาน',
 	MODIFY `menu_account_id` int NOT NULL COMMENT 'ID บัญชีทางการที่สังกัด',
-	MODIFY `menu_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมายเหตุของเมนู',
+	MODIFY `menu_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมายเหตุของเมนู',
 	MODIFY `menu_data` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ข้อมูล json ของเมนู',
 	MODIFY `menu_addtime` int NOT NULL DEFAULT 0 COMMENT 'เวลาที่เพิ่ม',
 	MODIFY `menu_updatetime` int NOT NULL DEFAULT 0 COMMENT 'เวลาอัปเดตล่าสุด',
@@ -1465,7 +1465,7 @@ ALTER TABLE `wm_weixin_msg`
 
 ALTER TABLE `wm_zt_node`
 	MODIFY `node_zt_id` int NOT NULL DEFAULT 0 COMMENT 'ID ของหัวข้อพิเศษที่สังกัด',
-	MODIFY `node_name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อโหนด',
+	MODIFY `node_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อโหนด',
 	MODIFY `node_pinyin` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ตัวระบุหัวข้อพิเศษ',
 	MODIFY `node_type` tinyint(1) NULL DEFAULT 2 COMMENT '1=รูปภาพ 2=แสดงเนื้อหาปกติ 3=แท็กวนซ้ำ',
 	MODIFY `node_img` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ที่อยู่รูปภาพ',
@@ -1477,8 +1477,8 @@ ALTER TABLE `wm_zt_type`
 	MODIFY `type_topid` int NOT NULL DEFAULT 0 COMMENT 'id ระดับเหนือขึ้นไป',
 	MODIFY `type_pid` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
 	MODIFY `type_rec` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'แนะนำหมวดหมู่หรือไม่',
-	MODIFY `type_name` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
-	MODIFY `type_cname` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อของประเภท',
+	MODIFY `type_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหมวดหมู่',
+	MODIFY `type_cname` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ชื่อย่อของประเภท',
 	MODIFY `type_pinyin` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'พินอินของประเภท',
 	MODIFY `type_order` int NOT NULL COMMENT 'เรียงลำดับ',
 	MODIFY `type_ico` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'ไอคอนหมวดหมู่',
@@ -1492,7 +1492,7 @@ ALTER TABLE `wm_zt_type`
 ALTER TABLE `wm_zt_zt`
 	MODIFY `type_id` int NOT NULL DEFAULT 0 COMMENT 'id หมวดหมู่หัวข้อพิเศษ',
 	MODIFY `zt_status` tinyint(1) NULL DEFAULT 1 COMMENT 'สถานะการตรวจสอบ',
-	MODIFY `zt_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหัวข้อพิเศษ',
+	MODIFY `zt_name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อหัวข้อพิเศษ',
 	MODIFY `zt_pinyin` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'พินอินหัวข้อพิเศษ',
 	MODIFY `zt_info` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'บทนำ',
 	MODIFY `zt_banner` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL COMMENT 'แบนเนอร์หัวข้อพิเศษ',

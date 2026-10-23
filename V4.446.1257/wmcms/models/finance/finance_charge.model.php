@@ -27,14 +27,14 @@ class Finance_ChargeModel
 					$arr[$key] = $val['api_title'];
 				}
 			}
-			$arr['card'] = '卡密支付';
+			$arr['card'] = 'ชำระด้วยรหัสบัตร';
 			return $arr;
 	    }
 	    else
 	    {
     		if( $type == 'card' )
     		{
-    			return '卡密支付';
+    			return 'ชำระด้วยรหัสบัตร';
     		}
     		else
     		{

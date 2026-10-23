@@ -2,8 +2,8 @@
 /*
 $zip = new PclZip("archive.zip");
 $v_list = $zip->create($_SERVER['DOCUMENT_ROOT'] ,PCLZIP_OPT_REMOVE_PATH,$_SERVER['DOCUMENT_ROOT']);
-if($v_list == 0){ echo '异常：'.$z->errorInfo(true); }
-else { echo '备份成功'; }
+if($v_list == 0){ echo 'ข้อผิดพลาด: '.$z->errorInfo(true); }
+else { echo 'สำรองข้อมูลสำเร็จ'; }
 
 其他使用方法：
 $list = $archive->extract(PCLZIP_OPT_PATH, "extract/folder/"); 

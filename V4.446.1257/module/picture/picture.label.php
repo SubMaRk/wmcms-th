@@ -268,7 +268,8 @@ class picturelabel extends picture
 				list($topId) = explode(',',$data['type_pid']);
 				$typeMod = NewModel('picture.type');
 				$typeData = $typeMod->GetById($topId);
-				$topName = $typeData['type_name'];
+				//父级分类可能已被删除，取不到数据时不能直接取下标
+				$topName = is_array($typeData) && isset($typeData['type_name']) ? $typeData['type_name'] : '';
 			}
 		}
 		$arr2 = array(

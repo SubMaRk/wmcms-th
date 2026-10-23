@@ -76,7 +76,7 @@ class WMSql
     	}
     	else if( C('config.db'.$id.'.host') == '' )
     	{
-    		echo '错误信息:<b style="color:red;">对不起，请检查【数据库'.$id.'】是否配置了！</b><br/>';
+    		echo '错误信息:<b style="color:red;">ขออภัย กรุณาตรวจสอบ【ฐานข้อมูล'.$id.'】是否配置了！</b><br/>';
     		exit();
     	}
     	else
@@ -130,7 +130,7 @@ class WMSql
         	self::$openDB['db'.$id] = self::$db;
         } catch (PDOException $e) {
             //返回错误信息
-            echo '错误信息:<b style="color:red;">对不起，请检查数据库配置信息是否正确！</b><br/>';
+            echo '错误信息:<b style="color:red;">ขออภัย กรุณาตรวจสอบว่าการตั้งค่าฐานข้อมูลถูกต้องหรือไม่!</b><br/>';
             echo "错误详情：" . $e->getMessage() . "";
             self::$db = null;
             exit();
@@ -1676,7 +1676,7 @@ class WMSql
 			$row = $rs->fetchAll();
 			if( count($row) == 0 )
 			{
-	            echo '对不起,数据库表不完整！';
+	            echo 'ขออภัย ตารางฐานข้อมูลไม่ครบถ้วน!';
 				exit;
 			}
 			if( $e['file'] <> '' )
