@@ -6,19 +6,19 @@
 <div class="bjui-pageContent">
 	<form name="form1" action="index.php?a=yes&c=system.dev.addpage&t=add" method="post" data-toggle="validate">
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-      <thead><tr><th colspan="4" style="text-align:left;"><b>新增页面</b></th></tr></thead>
+      <thead><tr><th colspan="4" style="text-align:left;"><b>เพิ่มหน้า</b></th></tr></thead>
       <tr>
-        <td width="200">文件名</td>
+        <td width="200">ชื่อไฟล์</td>
         <td width="350">
         	<input name="filename" type="text" value=""  />.php
 	    </td>
-        <td>文件名字，无需加.php后缀</td>
+        <td>ชื่อไฟล์ ไม่ต้องใส่ .php ต่อท้าย</td>
       </tr>
       <tr>
-        <td>所属模块</td>
+        <td>โมดูลที่สังกัด</td>
         <td width="350">
         	<select data-toggle="selectpicker" name="module">
-	        	<option value="all">首页控制器</option>
+	        	<option value="all">คอนโทรลเลอร์หน้าแรก</option>
 	        	<?php 
 	        	foreach ($moduleList as $k=>$v)
 	        	{
@@ -27,22 +27,22 @@
 	        	?>
         	</select>
 	    </td>
-	    <td>文件所属模块</td>
+	    <td>โมดูลของไฟล์</td>
       </tr>
       
       <tr class="create">
-        <td>页面标识</td>
+        <td>ตัวระบุหน้า</td>
         <td width="350">
         	<input name="page" type="text"/>
 	    </td>
-        <td>只能填写英文，无需加模块前缀;如 novel_，系统会自动添加</td>
+        <td>กรอกเป็นภาษาอังกฤษเท่านั้น ไม่ต้องใส่คำนำหน้าโมดูล เช่น novel_ ระบบจะเพิ่มให้เอง</td>
       </tr>
       <tr class="create">
-        <td>页面名字</td>
+        <td>ชื่อหน้า</td>
         <td width="350">
         	<input name="name" type="text"/>
 	    </td>
-        <td>页面的中文名</td>
+        <td>ชื่อภาษาจีนของหน้า</td>
       </tr>
     </table>
       
@@ -52,7 +52,7 @@
       		<input name="urlOpen" type="radio" data-toggle="icheck" data-label="创建URL" value="1"/>
       </b></th></tr></thead>
       <tr class="urlTr">
-        <td width="200">动态url地址</td>
+        <td width="200">ที่อยู่ URL แบบไดนามิก</td>
         <td width="450">
         	<input name="url[url1]" type="text" size="45"/>
 	    </td>
@@ -102,25 +102,25 @@
       		<input name="seoOpen" type="radio" data-toggle="icheck" data-label="创建SEO" value="1"/>
       </b></th></tr></thead>
       <tr class="seoTr">
-        <td width="200">标题</td>
+        <td width="200">หัวข้อ</td>
         <td width="450">
         	<input name="seo[title]" type="text" size="45"/>
 	    </td>
-        <td>网页的title信息</td>
+        <td>ข้อมูล title ของหน้าเว็บ</td>
       </tr>
       <tr class="seoTr">
-        <td>关键词</td>
+        <td>คำสำคัญ</td>
         <td width="350">
         	<input name="seo[key]" type="text" size="45"/>
 	    </td>
-        <td>网页的keywords信息</td>
+        <td>ข้อมูล keywords ของหน้าเว็บ</td>
       </tr>
       <tr class="seoTr">
-        <td>描述</td>
+        <td>คำอธิบาย</td>
         <td width="350">
         	<input name="seo[desc]" type="text" size="45"/>
 	    </td>
-        <td>网页的description的信息</td>
+        <td>ข้อมูล description ของหน้าเว็บ</td>
       </tr>
     </table>
     
@@ -130,8 +130,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 

@@ -11,7 +11,7 @@ class Weixin_FansModel
 {
 	public $table = '@weixin_fans';
 	public $accountTable = '@weixin_account';
-	public $sex = array(0=>'未知',1=>'男',2=>'女');
+	public $sex = array(0=>'未知',1=>'ชาย',2=>'女');
 	public $subscribe = array(0=>'未关注',1=>'已关注');
 
 	/**

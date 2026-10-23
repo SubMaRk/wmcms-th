@@ -14,9 +14,9 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                <span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
+                <span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
 				<select data-toggle="selectpicker" id="<?php echo $cFun;?>module" name="module" data-width="100">
-                	<option value="">全部模块</option>
+                	<option value="">ทุกโมดูล</option>
                 	<?php
                 	foreach ($moduleArr as $k=>$v)
                 	{
@@ -26,10 +26,10 @@ thead th {
                 	?>
                 </select>
                 <input type="text" placeholder="<?php echo $name;?>" name="name" size="10">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
-				<div class="alert alert-danger search-inline"><i class="fa fa-info-circle"></i> 修改完成后请点击生成缓存文件，否则不会生效</div>
-				<a href="index.php?a=yes&c=system.seo.keys&t=config" data-reload="false" data-toggle="doajax" data-confirm-msg="确定要生成新的缓存吗？" class="btn btn-danger  radius"> 生成缓存</a>
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
+				<div class="alert alert-danger search-inline"><i class="fa fa-info-circle"></i> หลังแก้ไขเสร็จกรุณาคลิกสร้างไฟล์แคช มิฉะนั้นจะไม่มีผล</div>
+				<a href="index.php?a=yes&c=system.seo.keys&t=config" data-reload="false" data-toggle="doajax" data-confirm-msg="ยืนยัน要生成新的缓存吗？" class="btn btn-danger  radius"> สร้างแคช</a>
 			</form>
 		</div>
 	</div>
@@ -39,12 +39,12 @@ thead th {
 		<table class="table table-border table-bordered table-hover table-bg table-sort">
 			<thead>
 				<tr>
-				<th width="6%" data-order-field="keys_module">所属模块</th>
-				<th width="10%">页面作用</th>
-	            <th width="20%">标题</th>
-	            <th width="26%">关键词</th>
-	            <th width="33%">描述</th>
-	            <th width="5%">操作</th>
+				<th width="6%" data-order-field="keys_module">โมดูลที่สังกัด</th>
+				<th width="10%">หน้าที่ใช้งาน</th>
+	            <th width="20%">หัวข้อ</th>
+	            <th width="26%">คำสำคัญ</th>
+	            <th width="33%">คำอธิบาย</th>
+	            <th width="5%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody>
@@ -62,7 +62,7 @@ thead th {
 							<td>'.$v['keys_key'].'</td>
 							<td>'.$v['keys_desc'].'</td>
 							<td style="text-align: center;">
-				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" data-on-close="onClose" href="index.php?d=yes&c=system.seo.keys.edit&t=edit&id='.$v['keys_id'].'"  data-toggle="dialog" data-title="修改页面seo信息" data-width="640" data-height="370" >编辑</a> 
+				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" data-on-close="onClose" href="index.php?d=yes&c=system.seo.keys.edit&t=edit&id='.$v['keys_id'].'"  data-toggle="dialog" data-title="修改页面seo信息" data-width="640" data-height="370" >แก้ไข</a> 
 				            </td>
 						</tr>';
 					$i++;
@@ -79,7 +79,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -88,7 +88,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div id="asd" class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>

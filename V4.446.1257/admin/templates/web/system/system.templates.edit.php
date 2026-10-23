@@ -4,10 +4,10 @@
 
 <table class="table table-border table-bordered table-bg table-sort" id="<?php echo $cFun;?>Table">
     <tr>
-      <td valign="top" width="150"><b>所属模块：</b></td>
+      <td valign="top" width="150"><b>โมดูลที่สังกัด:</b></td>
       <td valign="top">
-        <select data-toggle="selectpicker" id="<?php echo $cFun.$module;?>temp_module" name="temp[temp_module]" data-rule="required" data-msg-required="请选择" data-nextselect="#<?php echo $cFun.$module;?>temp_type" data-refurl="index.php?a=yes&c=system.templates.templates&t=gettype&val={value}">
-        <option value="">请选择模块</option>
+        <select data-toggle="selectpicker" id="<?php echo $cFun.$module;?>temp_module" name="temp[temp_module]" data-rule="required" data-msg-required="กรุณาเลือก" data-nextselect="#<?php echo $cFun.$module;?>temp_type" data-refurl="index.php?a=yes&c=system.templates.templates&t=gettype&val={value}">
+        <option value="">กรุณาเลือกโมดูล</option>
         <?php
 			foreach ($moduleArr as $k=>$v)
 			{
@@ -19,10 +19,10 @@
       </td>
 	</tr>
     <tr>
-      <td valign="top"><b>模版页面：</b></td>
+      <td valign="top"><b>หน้าเทมเพลต:</b></td>
       <td valign="top">
-       <select data-toggle="selectpicker" name="temp[temp_type]" id="<?php echo $cFun.$module;?>temp_type" data-rule="required" data-msg-required="请选择">
-        <option value="">请选择页面</option>
+       <select data-toggle="selectpicker" name="temp[temp_type]" id="<?php echo $cFun.$module;?>temp_type" data-rule="required" data-msg-required="กรุณาเลือก">
+        <option value="">กรุณาเลือกหน้า</option>
         <?php
         if( $module != '' || $type == "edit" )
         {
@@ -37,10 +37,10 @@
       </td>
 	</tr>
     <tr>
-      <td valign="top"><b>模版位置：</b></td>
+      <td valign="top"><b>ตำแหน่งเทมเพลต:</b></td>
       <td valign="top">
-       <select data-toggle="selectpicker" name="temp[temp_address]" id="<?php echo $cFun.$module;?>temp_address" data-rule="required" data-msg-required="请选择">
-        <option value="">请选择</option>
+       <select data-toggle="selectpicker" name="temp[temp_address]" id="<?php echo $cFun.$module;?>temp_address" data-rule="required" data-msg-required="กรุณาเลือก">
+        <option value="">กรุณาเลือก</option>
         <?php
 		foreach ($tempAddressArr as $k=>$v)
 		{
@@ -52,39 +52,39 @@
       </td>
 	</tr>
     <tr>
-      <td valign="top"><b>模版名字：</b></td>
+      <td valign="top"><b>ชื่อเทมเพลต:</b></td>
       <td valign="top"><input name="temp[temp_name]" data-rule="required" type="text" class="input-text" value="<?php echo C('temp_name',null,'data');?>"></td>
 	</tr>
     <tr>
-      <td valign="top"><b>电脑版路径：</b></td>
+      <td valign="top"><b>พาธเวอร์ชันคอมพิวเตอร์:</b></td>
       <td valign="top">
       	<input name="temp[temp_temp4]" type="text" class="input-text address" value="<?php echo C('temp_temp4',null,'data');?>">
       	<span class="upload" data-uploader="index.php?a=yes&c=upload&t=templates" data-on-upload-success="<?php echo $cFun;?>upload_success" data-file-type-exts="*.html" data-toggle="upload" data-icon="cloud-upload"></span>
       </td>
 	</tr>
     <tr>
-      <td valign="top"><b>触屏版路径：</b></td>
+      <td valign="top"><b>พาธเวอร์ชันทัวช์สกรีน:</b></td>
       <td valign="top">
       	<input name="temp[temp_temp3]" type="text" class="input-text address" value="<?php echo C('temp_temp3',null,'data');?>">
         <span class="upload" data-uploader="index.php?a=yes&c=upload&t=templates" data-on-upload-success="<?php echo $cFun;?>upload_success" data-file-type-exts="*.html" data-toggle="upload" data-icon="cloud-upload"></span>
       </td>
 	</tr>
     <tr>
-      <td valign="top"><b>3G版路径：</b></td>
+      <td valign="top"><b>พาธเวอร์ชัน 3G：</b></td>
       <td valign="top">
       	<input name="temp[temp_temp2]" type="text" class="input-text address" value="<?php echo C('temp_temp2',null,'data');?>">
       	<span class="upload" data-uploader="index.php?a=yes&c=upload&t=templates" data-on-upload-success="<?php echo $cFun;?>upload_success" data-file-type-exts="*.html" data-toggle="upload" data-icon="cloud-upload"></span>
       </td>
 	</tr>
     <tr>
-      <td valign="top"><b>简洁版路径：</b></td>
+      <td valign="top"><b>พาธเวอร์ชันเรียบง่าย:</b></td>
       <td valign="top">
       	<input name="temp[temp_temp1]" type="text" class="input-text address" value="<?php echo C('temp_temp1',null,'data');?>">
       	<span class="upload" data-uploader="index.php?a=yes&c=upload&t=templates" data-on-upload-success="<?php echo $cFun;?>upload_success" data-file-type-exts="*.html" data-toggle="upload" data-icon="cloud-upload"></span>
       </td>
 	</tr>
     <tr>
-      <td valign="top" colspan="2"><button type="submit" class="btn-green" data-icon="save">提交</button></td>
+      <td valign="top" colspan="2"><button type="submit" class="btn-green" data-icon="save">ส่งข้อมูล</button></td>
 	</tr>
 </table>
 </form>
@@ -93,8 +93,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 

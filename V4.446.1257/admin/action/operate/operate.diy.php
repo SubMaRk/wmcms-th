@@ -32,7 +32,7 @@ if ( $type == 'edit' || $type == "add"  )
 	
 	if ( $data['diy_name'] == '' || GetKey($data,'diy_content') == '' )
 	{
-		Ajax('对不起，单页标题和内容不能为空！',300);
+		Ajax('หัวข้อและเนื้อหาของหน้าเดียวห้ามว่าง!',300);
 	}
 	
 	//新增数据
@@ -68,7 +68,7 @@ else if ( $type == 'del' )
 	SetOpLog( '删除了单页' , 'diy' , 'delete' , $table , $where);
 	wmsql::Delete($table , $where);
 		
-	Ajax('单页删除成功!');
+	Ajax('ลบหน้าเดียวสำเร็จ!');
 }
 //清空请求记录
 else if ( $type == 'clear' )
@@ -77,7 +77,7 @@ else if ( $type == 'clear' )
 
 	//写入操作记录
 	SetOpLog( '清空了单页' , 'diy' , 'delete');
-	Ajax('所有单页成功清空！');
+	Ajax('ล้างข้อมูลหน้าเดียวทั้งหมดสำเร็จ!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -97,6 +97,6 @@ else if ( $type == 'status' )
 	SetOpLog( $msg.'了单页' , 'diy' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('单页'.$msg.'成功!');
+	Ajax('หน้าเดียว'.$msg.'สำเร็จ!');
 }
 ?>

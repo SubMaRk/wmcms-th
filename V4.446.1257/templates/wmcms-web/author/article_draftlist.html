@@ -15,20 +15,20 @@ $(document).ready(function(){
 
 <div class="mainRight fl">
     <div class="crumbsWrap">
-    	<i class="before"><a href="{文章投稿列表}"><span>投稿管理</span></a></i><em class="same"></em>
-		<i class="current"><span>文章草稿列表</span></i>
+    	<i class="before"><a href="{文章投稿列表}"><span>จัดการผลงานที่ส่ง</span></a></i><em class="same"></em>
+		<i class="current"><span>รายการร่างบทความ</span></i>
     </div>
     <div class="msgBoxTitle">
-    	<a class="create button" href="{文章投稿}"><em class="icon"></em>立即投稿</a>
+    	<a class="create button" href="{文章投稿}"><em class="icon"></em>ส่งผลงานเลย</a>
         <div class="tabSwitch cf">
-            <span class="act"><a>草稿箱</a></span>
+            <span class="act"><a>ฉบับร่าง</a></span>
         </div>
     </div>
     
     <div class="managerWrap cf">
         <div class="mLeftList fl" style="width: 100%;">
 			<div id="draftListWrap" class="leftListWrap">
-                <div class="titleBox"><p>共有 {总数据} 篇草稿</p></div>
+                <div class="titleBox"><p>มีร่างทั้งหมด {总数据} ฉบับ</p></div>
                 <div class="sectionManage">
                     <div class="slimScrollDiv">
                     	<div class="sectionList">
@@ -39,7 +39,7 @@ $(document).ready(function(){
 	                            	<a href="{url}">
 		                            	<div class="sectionBox">
 		                            		<p><em>{草稿标题}</em></p>
-		                            		<p class="f12"><i>{草稿创建时间}  </i>共{草稿字数}字 </p>
+		                            		<p class="f12"><i>{草稿创建时间}  </i>รวม {草稿字数} คำ </p>
 		                            	</div>
 	                            	</a>
 	                            </li>
@@ -65,7 +65,7 @@ $(document).ready(function(){
 	$("#delete").click(function(){
 		var did = $("#did").val();
 	 	if( !isPositiveNum(did) ){
-	 		easydialog_alert('对不起，草稿id错误！','','','');
+	 		easydialog_alert('ขออภัย id ของฉบับร่างไม่ถูกต้อง!','','','');
 	 	}else{
 	 		$.ajax({
 	 			type:"POST",

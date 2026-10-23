@@ -111,7 +111,7 @@ thead th {
 </div>
 
 
-<!-- 批量移动操作层 -->
+<!-- ย้ายหลายรายการ操作层 -->
 <div id="<?php echo $cFun;?>MoveDiv" data-noinit="true" class="hide" align="center">
 	<input name="move_tid" id="<?php echo $cFun;?>move_tid" type="hidden">
 	ย้ายหลายรายการไปยัง : 
@@ -153,7 +153,7 @@ function getChecked() {
 	});
 	return records;
 }
-//批量移动窗口打开
+//ย้ายหลายรายการ窗口打开
 function <?php echo $cFun;?>MoveDiv()
 {
 	<?php echo $cFun;?>ZtreeInputName = 'move_tid';
@@ -166,7 +166,7 @@ function <?php echo $cFun;?>MoveDiv()
 	ajaxOptions['mask'] = "true";
 	$(this).dialog(ajaxOptions);
 }
-//批量移动操作请求
+//ย้ายหลายรายการ操作请求
 function <?php echo $cFun;?>MoveAjax()
 {
 	var tid = $("#<?php echo $cFun;?>move_tid").val();

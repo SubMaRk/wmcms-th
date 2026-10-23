@@ -302,7 +302,7 @@ class common{
 			//是否开启了debug
 			if( !DEBUG && $rs == false )
 			{
-				tpl::ErrInfo('对不起php标签语法错误，如需查看详情请开启debug模式！<br/>错误代码：'.$phpArr[1][$i]);
+				tpl::ErrInfo('แท็ก php มีไวยากรณ์ผิดพลาด หากต้องการดูรายละเอียดกรุณาเปิดโหมด debug!<br/>รหัสข้อผิดพลาด:'.$phpArr[1][$i]);
 			}
 			tpl::Rep( array($phpArr[0][$nativePhpI]=>$html) , null , 2 );
 		}
@@ -1279,10 +1279,10 @@ class common{
 	{
 		$arr = array(
 			'查询'=>'select * from ',
-			'用户'=>'@@user_user ',
+			'ผู้ใช้'=>'@@user_user ',
 			'文章'=>'@@article_article ',
 			'应用'=>'@@app_app ',
-			'小说'=>'@@novel_novel' ,
+			'นิยาย'=>'@@novel_novel' ,
 			'条件'=>'where ',
 			'随机'=>'order by rand()',
 			'排序'=>'order by ',

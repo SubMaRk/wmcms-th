@@ -151,7 +151,7 @@ class tpl{
     			if( !file_exists( $this->tempFile ) )
     			{
     				$tempFile = str_replace(WMROOT, '/', $this->tempFile);
-    				self::ErrInfo('<b style="color:red;">对不起,模版文件"'.$tempFile.'"不存在！</b>',null,null,'system','templates.html');
+    				self::ErrInfo('<b style="color:red;">ไม่พบไฟล์เทมเพลต"'.$tempFile.'"不存在！</b>',null,null,'system','templates.html');
     			}
     			else
     			{
@@ -353,13 +353,13 @@ class tpl{
 			{
 				if ( ERR )
 				{
-					self::ErrInfo('在模版文件夹【'. self::$path .'】未找到引用文件【'.$fileName.'】',null,null,'system','templates.html');
+					self::ErrInfo('ไม่พบไฟล์ที่อ้างถึง【'.$fileName.'】ในโฟลเดอร์เทมเพลต【'. self::$path .'】',null,null,'system','templates.html');
 				}
 				else
 				{
 					if( DEBUG )
 					{
-						$inctemp = '警告：在模版文件夹【'. self::$path .'】未找到引用文件【'.$fileName.'】';
+						$inctemp = 'คำเตือน: ไม่พบไฟล์ที่อ้างถึง【'.$fileName.'】ในโฟลเดอร์เทมเพลต【'. self::$path .'】';
 					}
 					else
 					{
@@ -1705,7 +1705,7 @@ class tpl{
 				{
 					if (preg_match("/[\x7f-\xff]/", $k))
 					{
-						tpl::ErrInfo('对不起，没有“'.$k.'”条件，请检查标签【'.$str.'】!');die();
+						tpl::ErrInfo('ไม่พบเงื่อนไข “'.$k.'” กรุณาตรวจสอบแท็ก【'.$str.'】!');die();
 					}
 				}
 			}

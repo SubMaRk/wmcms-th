@@ -15,12 +15,12 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                <span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
-                <input type="text" placeholder="请输入字段标题" name="name" size="15">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a> &nbsp;
-            	<a class="btn btn-secondary radius size-MINI" data-toggle="dialog" data-mask="true" data-title="添加字段" href="index.php?d=yes&c=system.config.field.edit&t=add" data-width="700" data-height="380" ><i class="fa fa-plus"></i> 添加字段</a> &nbsp;
-            	<a href="index.php?a=yes&c=system.config.field&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
+                <span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
+                <input type="text" placeholder="请输入คำ段หัวข้อ" name="name" size="15">
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a> &nbsp;
+            	<a class="btn btn-secondary radius size-MINI" data-toggle="dialog" data-mask="true" data-title="เพิ่มฟิลด์" href="index.php?d=yes&c=system.config.field.edit&t=add" data-width="700" data-height="380" ><i class="fa fa-plus"></i> เพิ่มฟิลด์</a> &nbsp;
+            	<a href="index.php?a=yes&c=system.config.field&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
 			</form>
 		</div>
 	</div>
@@ -32,12 +32,12 @@ thead th {
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="5%" data-order-field="field_id">ID</th>
-	            <th width="15%">字段类型</th>
-				<th width="25%">字段名字</th>
-				<th width="15%">所属模块</th>
-				<th width="15%">所属分类</th>
-				<th width="10%">子分类有效</th>
-	            <th width="12%">操作</th>
+	            <th width="15%">ประเภทฟิลด์</th>
+				<th width="25%">ชื่อฟิลด์</th>
+				<th width="15%">โมดูลที่สังกัด</th>
+				<th width="15%">หมวดหมู่ที่สังกัด</th>
+				<th width="10%">หมวดหมู่ย่อยใช้งานได้</th>
+	            <th width="12%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody>
@@ -47,10 +47,10 @@ thead th {
 				$i = 1;
 				foreach ($fieldArr as $k=>$v)
 				{
-					$fieldType = str::CheckElse( $v['field_type'] , 1 , '分类字段' , '内容字段');
+					$fieldType = str::CheckElse( $v['field_type'] , 1 , 'ฟิลด์หมวดหมู่' , 'ฟิลด์เนื้อหา');
 					$cur = str::CheckElse( $i%2 , 0 , '' , 'even_index_row');
-					$isChild = str::CheckElse( $v['field_type_child'] , 1 , '是' , '否');
-					$typeName = '全部分类';
+					$isChild = str::CheckElse( $v['field_type_child'] , 1 , '是' , 'ไม่');
+					$typeName = 'ทุกหมวดหมู่';
 					if( $v['field_type_id'] != '0' )
 					{
 						$typeName = $tableSer->GetTypeName($v['field_module'] , $v['field_type_id']);
@@ -64,8 +64,8 @@ thead th {
 							<td>'.$typeName.'</td>
 							<td>'.$isChild.'</td>
 							<td style="text-align: center;">
-				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" href="index.php?d=yes&c=system.config.field.edit&t=edit&id='.$v['field_id'].'&d=yes"  data-toggle="dialog" data-title="修改标签信息" data-width="700" data-height="380" >编辑</a> 
-				            	<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['field_id'].')">删除</a>
+				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" href="index.php?d=yes&c=system.config.field.edit&t=edit&id='.$v['field_id'].'&d=yes"  data-toggle="dialog" data-title="แก้ไขแท็ก信息" data-width="700" data-height="380" >แก้ไข</a> 
+				            	<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['field_id'].')">ลบ</a>
                 			</td>
 						</tr>';
 					$i++;
@@ -82,7 +82,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -91,7 +91,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div id="asd" class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>

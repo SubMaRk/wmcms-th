@@ -5,10 +5,10 @@
     <table class="table table-bordered table-hover table-striped table-top">
     		<thead>
     			<tr>
-    			<td align="right"><label class="label-control">选项所属配置：</label></td>
+    			<td align="right"><label class="label-control">การตั้งค่าที่ตัวเลือกสังกัด:</label></td>
                 <td>
                 	<select data-toggle="selectpicker" data-nextselect="#<?php echo $cFun?>_config_select" data-refurl="index.php?a=yes&c=system.config.config&t=getconfig&id={value}" <?php if($type=='edit' && !DEVELOPER){echo 'readonly disabled';}?>>
-                		<option value="">--所属配置--</option>
+                		<option value="">--การตั้งค่าที่เกี่ยวข้อง--</option>
                 		<?php
                 		foreach ($groupArr as $k=>$v)
                 		{
@@ -18,19 +18,19 @@
                 		?>
                     </select>
                     <select data-rule="required" id="<?php echo $cFun;?>_config_select" data-toggle="selectpicker" <?php if($type=='edit' && !DEVELOPER){echo 'readonly disabled';}?> data-width="150">
-                    <option>请先选择左边</option>
+                    <option>โปรดเลือกด้านซ้ายก่อน</option>
                     </select>
                  </td>
-                 <td style="color:red">选择了左边才能添加</td>
+                 <td style="color:red">ต้องเลือกด้านซ้ายก่อนจึงจะเพิ่มได้</td>
                 </tr>
              </thead>
 	</table>
 		
 	<div class="bjui-searchBar">
-    	<div class="alert alert-info search-inline"><i class="fa fa-info-circle"></i> 双击行可编辑</div>&nbsp;
+    	<div class="alert alert-info search-inline"><i class="fa fa-info-circle"></i> ดับเบิลคลิกแถวเพื่อแก้ไข</div>&nbsp;
         <button type="button" <?php if($type=='add'){echo 'readonly disabled';}?> class="btn-green <?php echo $cFun;?>addrow" id="<?php echo $cFun;?>addrow_toggle" data-toggle="tableditadd" data-target="#<?php echo $cFun?>tableedit" data-num="1" data-icon="plus">添加一项</button>&nbsp;
         <button type="button" <?php if($type=='add'){echo 'readonly disabled';}?> class="btn-green <?php echo $cFun;?>addrow" onclick="$(this).tabledit('add', $('#<?php echo $cFun?>tableedit'), 2)">添加两项</button> &nbsp;
-		<div class="alert alert-danger search-inline"><i class="fa fa-info-circle"></i> 对于未知的选项请不要修改。</div>
+		<div class="alert alert-danger search-inline"><i class="fa fa-info-circle"></i> อย่าแก้ไขตัวเลือกที่ไม่รู้จัก</div>
     </div>
 </div>
 <div class="bjui-pageContent tableContent ">
@@ -39,12 +39,12 @@
             <thead <?php if($type=='add'){echo 'style="display: none"';}?>>
                 <tr data-idname="id[option_id]">
                 	<input type="hidden" class="<?php echo $cFun;?>config_id" name="data[config_id]" value="<?php echo $id;?>">
-                    <th title="选项标题"><input type="text" name="data[option_title]" data-rule="required" size="15"></th>
+                    <th title="หัวข้อตัวเลือก"><input type="text" name="data[option_title]" data-rule="required" size="15"></th>
                     <th title="选项值"><input type="text" name="data[option_value]" data-rule="required" size="5"></th>
-                    <th title="显示顺序"><input type="text" name="data[option_order]" data-rule="digits" value="5" size="5"></th>
-                    <th title="操作" width="100">
+                    <th title="ลำดับการแสดง"><input type="text" name="data[option_order]" data-rule="digits" value="5" size="5"></th>
+                    <th title="ดำเนินการ" width="100">
                         <a href="javascript:<?php echo $cFun;?>SetVal();" class="btn btn-green" data-toggle="dosave">保存</a>
-                        <a href="javascript:<?php echo $cFun;?>DelTd();" class="btn btn-red row-del" data-confirm-msg="确定要删除该行信息吗？">删除</a>
+                        <a href="javascript:<?php echo $cFun;?>DelTd();" class="btn btn-red row-del" data-confirm-msg="ยืนยัน要ลบ该行信息吗？">删除</a>
                     </th>
                 </tr>
             </thead>
@@ -61,8 +61,8 @@
 							<td width="20%">'.$v['option_value'].'</td>
 							<td width="20%">'.$v['option_order'].'</td>
 							<td style="text-align: center;" width="25%" data-noedit="true">
-        						<button type="button" class="btn-green" data-toggle="doedit">编辑</button>
-                        		<a class="btn btn-red row-del" href="index.php?a=yes&c=system.config.option&t=del&id='.$v['option_id'].'" data-toggle="doAjax" data-callback="<?php echo $cFun;?>DelTd" data-confirm-msg="确定要删除该行信息吗？">删除</a> 
+        						<button type="button" class="btn-green" data-toggle="doedit">แก้ไข</button>
+                        		<a class="btn btn-red row-del" href="index.php?a=yes&c=system.config.option&t=del&id='.$v['option_id'].'" data-toggle="doAjax" data-callback="<?php echo $cFun;?>DelTd" data-confirm-msg="ยืนยันการลบข้อมูลแถวนี้หรือไม่?">ลบ</a> 
                 			</td>
 						</tr>';
 					$i++;

@@ -5,10 +5,10 @@
 <!--书本信息--><section class="wapcomment">
 <div class="container">
 <p class="here">
-<a href="/module/novel/info.php?pt={pt}&tid={分类id}&nid={id}" title="">{名字}</a><b> &gt; 评论 </b></p>
+<a href="/module/novel/info.php?pt={pt}&tid={分类id}&nid={id}" title="">{名字}</a><b> &gt; ความคิดเห็น </b></p>
 <h2>
-<b data-href="" class="bclickurl active">全部评论</b>
-<a href="javascript:;" class="publish fr">发表评论</a>
+<b data-href="" class="bclickurl active">ความคิดเห็นทั้งหมด</b>
+<a href="javascript:;" class="publish fr">แสดงความคิดเห็น</a>
 </h2>
 <ul>{评论:数量=10;排序=时间}  
 <li><h3 class="clearfix">
@@ -28,22 +28,22 @@
 </a>
 </li>{/评论}
 </ul>
-<div class="com_total page">全部{总数据}条评论 
-            <a href="{下一页}" class="fr">下一页</a>
+<div class="com_total page">ความคิดเห็นทั้งหมด {总数据} รายการ 
+            <a href="{下一页}" class="fr">ถัดไป</a>
 			<a class="fr"> {当前页}/{总页数} </a>
-			<a href="{上一页}" class="fr ">上一页</a></div></div></section><!--猜你喜欢 end-->
+			<a href="{上一页}" class="fr ">ก่อนหน้า</a></div></div></section><!--猜你喜欢 end-->
 <!--评论 end--><!--内容区 end-->
 <section class="com_alert "><section class="container"><div class="downs"><div class="contxt bd3 "><a href="javascript:" class="close"></a>
 	<form name="re" action="{评论提交地址}" method="post">{表单锁}{评论隐藏表单}
 
 <div class="puss">
-<textarea name="content" rows="2" class="bd3" placeholder="你的评论可以一针见血" style="width:100%"></textarea>
+<textarea name="content" rows="2" class="bd3" placeholder="ความคิดเห็นของคุณคมคายได้" style="width:100%"></textarea>
 
 
 <input type="submit" name="go" class="com_push bd3" id="submit" value="发表评论">
 <h6></h6></div></form><!--评论成功--><h5><b></b></h5><!--评论成功 end--></div></div></section></section>
 
-<section class="footer clearfix"><section class="container"><p class="clearfix"><a href="{首页}">首页</a><a href="{全部小说}">书库</a><a href="{作者中心}">写作</a><a href="{充值}">充值</a><a href="{电脑版}">电脑站</a></p></section></section><script>var _hmt = _hmt || [];
+<section class="footer clearfix"><section class="container"><p class="clearfix"><a href="{首页}">หน้าแรก</a><a href="{全部小说}">คลังหนังสือ</a><a href="{作者中心}">เขียน</a><a href="{充值}">เติมเงิน</a><a href="{电脑版}">เว็บไซต์คอมพิวเตอร์</a></p></section></section><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "//hm.baidu.com/hm.js?c158910b8e1b7e2ad1b6e43238e9d898";
@@ -101,10 +101,10 @@ if(is_weixn()){
     $('.com_alert .com_push').on('click',function(){
         var  com_alertZhi = $('.com_alert .contxt textarea').val(); 
         if(com_alertZhi.length == 0 || com_alertZhi.match(/^\s+$/g)){
-            $('.com_alert .contxt h6').show().html('啥东西没？休想提交！');return false;
+            $('.com_alert .contxt h6').show().html('ไม่มีอะไรเลย? อย่าหวังว่าจะส่งได้!');return false;
         }
         if(com_alertZhi.length < 5){
-            $('.com_alert .contxt h6').show().html('评论字数太少！');return false;
+            $('.com_alert .contxt h6').show().html('จำนวนคำในความคิดเห็นน้อยเกินไป!');return false;
         }
         var book_id = "39360";
         var pid = '0';
@@ -120,7 +120,7 @@ if(is_weixn()){
                     contxtPuss.hide();
                     $('.com_alert .container').css({'bottom':'50%'}); 
                     com_alertH5.show();
-                    com_alertH5.find('b').html('评论成功!');  /*如果不成功：评论失败!*/
+                    com_alertH5.find('b').html('แสดงความคิดเห็นสำเร็จ!');  /*如果不成功：评论失败!*/
                     //2秒后关闭弹框
                     setTimeout(function(){
                         $('.com_alert').hide();
@@ -142,13 +142,13 @@ if(is_weixn()){
                             window.location.href=login_url;
                         break;
                         case 'no_content':
-                            $('.com_alert .contxt h6').show().html('评论字数太少！');
+                            $('.com_alert .contxt h6').show().html('จำนวนคำในความคิดเห็นน้อยเกินไป!');
                         break;
-                        case 'suspect':$('.com_alert .contxt h6').show().html('内容涉及涉嫌词！');break;
-                        case 'timeout':$('.com_alert .contxt h6').show().html('评论太快了！');break;
-                        case 'user_comment_ban':$('.com_alert .contxt h6').show().html('用户被禁言');break;
-                        case 'comment_ban':$('.com_alert .contxt h6').show().html('用户被禁言');break;
-                        case 'repeat':$('.com_alert .contxt h6').show().html('评论内容重复');break;
+                        case 'suspect':$('.com_alert .contxt h6').show().html('เนื้อหามีคำต้องห้าม!');break;
+                        case 'timeout':$('.com_alert .contxt h6').show().html('แสดงความคิดเห็นเร็วเกินไป!');break;
+                        case 'user_comment_ban':$('.com_alert .contxt h6').show().html('ผู้ใช้ถูกระงับการแสดงความคิดเห็น');break;
+                        case 'comment_ban':$('.com_alert .contxt h6').show().html('ผู้ใช้ถูกระงับการแสดงความคิดเห็น');break;
+                        case 'repeat':$('.com_alert .contxt h6').show().html('เนื้อหาความคิดเห็นซ้ำกัน');break;
                     }
                 }
             }

@@ -17,11 +17,11 @@ $applyMod = NewModel('system.apply',$module);
 $applyData = $applyMod->GetById($id);
 if( $module == '' || $type == '' || $mt == '' || !str::Number($uid) || !str::Number($cid) )
 {
-	Ajax('对不起，参数错误',300);
+	Ajax('พารามิเตอร์ไม่ถูกต้อง',300);
 }
 else if( !$applyData || $applyData['apply_cid']!=$cid )
 {
-	Ajax('对不起，参数错误',300);
+	Ajax('พารามิเตอร์ไม่ถูกต้อง',300);
 }
 else
 {

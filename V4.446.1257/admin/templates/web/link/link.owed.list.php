@@ -22,14 +22,14 @@ thead th {
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="5%" data-order-field="link_id">ID</th>
-				<th width="7%" data-order-field="l.type_id">友链分类</th>
-				<th data-order-field="link_name">友链名字</th>
-				<th width="5%" data-order-field="link_insum">总点入</th>
-				<th width="5%" data-order-field="link_outsum">总点出</th>
-				<th width="7%">欠量率</th>
-				<th width="15%" data-order-field="link_lastintime">最后点入时间</th>
-				<th width="15%" data-order-field="link_lastouttime">最后点出时间</th>
-	            <th width="10%">操作</th>
+				<th width="7%" data-order-field="l.type_id">หมวดหมู่ลิงก์เพื่อน</th>
+				<th data-order-field="link_name">ชื่อลิงก์เพื่อน</th>
+				<th width="5%" data-order-field="link_insum">คลิกเข้ารวม</th>
+				<th width="5%" data-order-field="link_outsum">คลิกออกรวม</th>
+				<th width="7%">อัตราการขาด</th>
+				<th width="15%" data-order-field="link_lastintime">เวลาคลิกเข้าล่าสุด</th>
+				<th width="15%" data-order-field="link_lastouttime">เวลาคลิกออกล่าสุด</th>
+	            <th width="10%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody id="<?php echo $cFun?>List">
@@ -51,8 +51,8 @@ thead th {
 							<td style="text-align: center;">'.date( 'Y-m-d H:i:s' , $v['link_lastintime']).'</td>
 							<td style="text-align: center;">'.date( 'Y-m-d H:i:s' , $v['link_lastouttime']).'</td>
 							<td style="text-align: center;" data-noedit="true">
-				            	<a class="btn btn-secondary radius size-MINI" data-toggle="navtab" data-id="link-link-edit" data-title="编辑友链内容" href="index.php?c=link.link.edit&t=edit&id='.$v['link_id'].'">编辑</a> 
-								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['link_id'].')">删除</a>
+				            	<a class="btn btn-secondary radius size-MINI" data-toggle="navtab" data-id="link-link-edit" data-title="บรรณาธิการ友链เนื้อหา" href="index.php?c=link.link.edit&t=edit&id='.$v['link_id'].'">แก้ไข</a> 
+								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['link_id'].')">ลบ</a>
 				            </td>
 						</tr>';
 					$i++;
@@ -69,7 +69,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -78,7 +78,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>

@@ -21,7 +21,7 @@ if ( $type == 'edit' || $type == "add" )
 	{
 		if( $v == '' )
 		{
-			Ajax('对不起，所有项都不能为空！' , 300);
+			Ajax('ทุกช่องห้ามว่าง!' , 300);
 		}
 	}
 	
@@ -32,7 +32,7 @@ if ( $type == 'edit' || $type == "add" )
 		$where['group_id'] = $groupMod->Insert($data);
 		//写入操作记录
 		SetOpLog( '新增了编辑分组'.$data['group_name'] , 'editor' , 'insert' , $table , $where , $data );
-		Ajax('编辑分组新增成功!');
+		Ajax('เพิ่มกลุ่มบรรณาธิการสำเร็จ!');
 	}
 	//如果是增加页面
 	else
@@ -41,7 +41,7 @@ if ( $type == 'edit' || $type == "add" )
 		SetOpLog( '修改编辑分组' , 'editor' , 'update' , $table  , $where , $data );
 		//修改数据
 		$groupMod->Update($data,$where);
-		Ajax('编辑分组修改成功！');
+		Ajax('แก้ไขกลุ่มบรรณาธิการสำเร็จ!');
 	}
 }
 //删除
@@ -51,6 +51,6 @@ else if( $type == 'del' )
 	$groupMod->Del($where);
 	//写入操作记录
 	SetOpLog( '删除了编辑分组' , 'editor' , 'delete' , $table , $where);
-	Ajax('编辑分组删除成功!');
+	Ajax('ลบกลุ่มบรรณาธิการสำเร็จ!');
 }
 ?>

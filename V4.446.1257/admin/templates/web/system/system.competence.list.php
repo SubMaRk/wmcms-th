@@ -6,7 +6,7 @@
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
 			</form>
 		</div>
 	</div>
@@ -16,11 +16,11 @@
 		<table class="table table-border table-bordered table-hover table-bg table-sort">
 			<thead>
 				<tr>
-				<th width="5%" data-order-field="comp_id">编号</th>
-				<th width="15%">权限名字</th>
-				<th width="20%">管理站点</th>
-				<th>管理菜单</th>
-	            <th width="12%">操作</th>
+				<th width="5%" data-order-field="comp_id">รหัส</th>
+				<th width="15%">ชื่อสิทธิ์</th>
+				<th width="20%">จัดการเว็บไซต์</th>
+				<th>จัดการเมนู</th>
+	            <th width="12%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody>
@@ -38,7 +38,7 @@
 							<td>'.$v['comp_menu'].'</td>
 							<td style="text-align: center;" data-noedit="true">
 				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" href="index.php?d=yes&c=system.competence.edit&t=edit&id='.$v['comp_id'].'"  data-toggle="dialog" data-title="修改权限信息" data-width="700" data-height="580" >修改</a> 
-				        		<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['comp_id'].')">删除</a>    
+				        		<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['comp_id'].')">ลบ</a>    
 							</td>
 						</tr>';
 					$i++;
@@ -55,7 +55,7 @@
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -64,7 +64,7 @@
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div id="asd" class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>

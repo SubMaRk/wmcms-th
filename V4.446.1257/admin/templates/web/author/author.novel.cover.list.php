@@ -12,9 +12,9 @@ thead th {
 <div class="bjui-pageHeader">
 	<div class="row cl pt-10 pl-10">
 		<div class="list-tool pl-15">
-            <span >快捷操作：</span>
-			<a href="index.php?a=yes&c=author.novel.cover&t=status&status=1" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要审核选中项吗？" data-callback="<?php echo $cFun;?>ajaxCallBack" class="btn btn-warning radius"> 批量审核</a>
-			<a href="index.php?a=yes&c=author.novel.cover&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
+            <span >การดำเนินการด่วน:</span>
+			<a href="index.php?a=yes&c=author.novel.cover&t=status&status=1" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要审核选中项吗？" data-callback="<?php echo $cFun;?>ajaxCallBack" class="btn btn-warning radius"> ตรวจสอบหลายรายการ</a>
+			<a href="index.php?a=yes&c=author.novel.cover&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
 		</div>
 		<div class="list-tool">
 			<form id="pagerForm" name="<?php echo $cFun;?>Form" data-toggle="ajaxsearch" data-loadingmask="true" action="<?php echo $url;?>" method="post">
@@ -22,16 +22,16 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                <span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
+                <span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
                
 				<select data-toggle="selectpicker" name="type" data-width="100">
-                	<option value="1" <?php echo str::CheckElse( $st , 1 , 'selected=""' );?>>搜书名</option>
-                	<option value="2" <?php echo str::CheckElse( $st , 2 , 'selected=""' );?>>搜作者</option>
-                	<option value="3" <?php echo str::CheckElse( $st , 3 , 'selected=""' );?>>搜书号</option>
+                	<option value="1" <?php echo str::CheckElse( $st , 1 , 'selected=""' );?>>ค้นชื่อหนังสือ</option>
+                	<option value="2" <?php echo str::CheckElse( $st , 2 , 'selected=""' );?>>ค้นผู้แต่ง</option>
+                	<option value="3" <?php echo str::CheckElse( $st , 3 , 'selected=""' );?>>ค้นรหัสหนังสือ</option>
                 </select>
                 <input type="text" placeholder="<?php echo $name;?>" name="name" size="15">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
 			</form>
 		</div>
 	</div>
@@ -43,14 +43,14 @@ thead th {
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="5%" data-order-field="apply_id">ID</th>
-				<th width="5%" data-order-field="novel_id">小说id</th>
-				<th data-order-field="user_id">小说名字</th>
-				<th width="5%" data-order-field="apply_status">是否审核</th>
-				<th width="20%" data-order-field="novel_author">作者笔名</th>
-				<th width="10%" data-order-field="apply_manager_id">审核管理</th>
-				<th width="10%" data-order-field="apply_editor_id">审核编辑</th>
-				<th width="15%" data-order-field="apply_createtime">申请时间</th>
-	            <th width="18%">操作</th>
+				<th width="5%" data-order-field="novel_id">id นิยาย</th>
+				<th data-order-field="user_id">ชื่อนิยาย</th>
+				<th width="5%" data-order-field="apply_status">ตรวจสอบหรือไม่</th>
+				<th width="20%" data-order-field="novel_author">นามปากกาผู้แต่ง</th>
+				<th width="10%" data-order-field="apply_manager_id">จัดการการตรวจสอบ</th>
+				<th width="10%" data-order-field="apply_editor_id">แก้ไขการตรวจสอบ</th>
+				<th width="15%" data-order-field="apply_createtime">เวลายื่นคำขอ</th>
+	            <th width="18%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody id="<?php echo $cFun?>List">
@@ -80,10 +80,10 @@ thead th {
 							if( $v['apply_cid'] > 0 )
 							{
 								$status = '<a href="javascript:;" onClick="'.$cFun.'StatusAjax(1,'.$v['apply_id'].')"><span style="color:red">未审核</span></a>';
-								$set = '<button type="button" class="btn btn-warning radius" data-toggle="dropdown">操作<span class="caret"></span></button>
+								$set = '<button type="button" class="btn btn-warning radius" data-toggle="dropdown">ดำเนินการ<span class="caret"></span></button>
 									<ul class="dropdown-menu" style="width:90px">
 								      <li><a href="javascript:;" onClick="'.$cFun.'StatusAjax(1,'.$v['apply_id'].')">通过审核</a></li>
-									  <li><a href="index.php?d=yes&c=system.apply.refuse&t=refuse_author_novel_cover&id='.$v['apply_id'].'&module=author&type=novel_cover&uid='.$v['apply_uid'].'&cid='.$v['apply_cid'].'" data-mask="true" data-toggle="dialog" data-title="拒绝封面审核" data-width="630" data-height="510">拒绝通过</a></li>
+									  <li><a href="index.php?d=yes&c=system.apply.refuse&t=refuse_author_novel_cover&id='.$v['apply_id'].'&module=author&type=novel_cover&uid='.$v['apply_uid'].'&cid='.$v['apply_cid'].'" data-mask="true" data-toggle="dialog" data-title="拒绝บล็อก面审核" data-width="630" data-height="510">拒绝通过</a></li>
 									</ul>
 					            	<a class="btn btn-secondary  radius" href="'.$option['file'].'" target="_blank"> 查看原图 </a>
 					            	';
@@ -94,7 +94,7 @@ thead th {
 							}
 							break;
 						case '1':
-							$status = '<span style="color:green">已审核</span>';
+							$status = '<span style="color:green">ตรวจสอบแล้ว</span>';
         					if( $v['apply_manager_id'] == 0 && $v['apply_editor_id'] == 0 )
         					{
         					    $managerInfo = $editorInfo = '系统自动审核';
@@ -115,7 +115,7 @@ thead th {
 							<td style="text-align: center;">'.$managerInfo.'</td>
 							<td style="text-align: center;">'.$editorInfo.'</td>
 							<td style="text-align: center;">'.date( 'Y-m-d H:i:s' , $v['apply_createtime']).'</td>
-							<td style="text-align: center;" data-noedit="true">'.$set.'<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['apply_id'].')">删除</a></td>
+							<td style="text-align: center;" data-noedit="true">'.$set.'<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['apply_id'].')">ลบ</a></td>
 						</tr>';
 					$i++;
 				}
@@ -131,7 +131,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -140,7 +140,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>
@@ -155,7 +155,7 @@ function <?php echo $cFun;?>GetOp(){
 	op['data'] = $("[name=<?php echo $cFun;?>Form]").serializeArray();
 	return op;
 }
-//删除封面
+//删除บล็อก面
 function <?php echo $cFun;?>delAjax(id)
 {
 	var ajaxOptions=new Array();
@@ -165,11 +165,11 @@ function <?php echo $cFun;?>delAjax(id)
 	ajaxData.id = id;
 	ajaxOptions['data'] = ajaxData;
 	ajaxOptions['url'] = "index.php?a=yes&c=author.novel.cover&t=del";
-	ajaxOptions['confirmMsg'] = "确定要删除所选的封面吗？";
+	ajaxOptions['confirmMsg'] = "确定要删除所选的บล็อก面吗？";
 	ajaxOptions['callback'] = "<?php echo $cFun;?>ajaxCallBack";
 	$(".btn-danger").bjuiajax('doAjax', ajaxOptions);
 }
-//审核封面
+//审核บล็อก面
 function <?php echo $cFun;?>StatusAjax(status,id)
 {
 	var type;
@@ -177,7 +177,7 @@ function <?php echo $cFun;?>StatusAjax(status,id)
 	var ajaxData=new Object();
 	ajaxOptions = <?php echo $cFun;?>GetOp();
 
-	//封面操作类型
+	//บล็อก面操作类型
 	switch(status)
 	{
 		case 0:
@@ -193,7 +193,7 @@ function <?php echo $cFun;?>StatusAjax(status,id)
 	ajaxData.status = status;
 	ajaxOptions['data'] = ajaxData;
 	ajaxOptions['url'] = "index.php?a=yes&c=author.novel.cover&t=status";
-	ajaxOptions['confirmMsg'] = "确定要"+type+"封面吗？";
+	ajaxOptions['confirmMsg'] = "确定要"+type+"บล็อก面吗？";
 	ajaxOptions['callback'] = "<?php echo $cFun;?>ajaxCallBack";
 	$(".btn-danger").bjuiajax('doAjax', ajaxOptions);
 }

@@ -15,12 +15,12 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                <span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
-                <input type="text" placeholder="请输入标签标题" name="name" size="15">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a> &nbsp;
-            	<a class="btn btn-secondary radius size-MINI" data-toggle="dialog" data-mask="true" data-title="添加标签" href="index.php?d=yes&c=system.config.label.edit&t=add" data-width="470" data-height="300" ><i class="fa fa-plus"></i> 添加标签</a> &nbsp;
-            	<a href="index.php?a=yes&c=system.config.label&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
+                <span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
+                <input type="text" placeholder="请输入หัวข้อแท็ก" name="name" size="15">
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a> &nbsp;
+            	<a class="btn btn-secondary radius size-MINI" data-toggle="dialog" data-mask="true" data-title="เพิ่มแท็ก" href="index.php?d=yes&c=system.config.label.edit&t=add" data-width="470" data-height="300" ><i class="fa fa-plus"></i> เพิ่มแท็ก</a> &nbsp;
+            	<a href="index.php?a=yes&c=system.config.label&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
 			</form>
 		</div>
 	</div>
@@ -32,10 +32,10 @@ thead th {
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="5%" data-order-field="label_id">ID</th>
-				<th width="15%">标签标题</th>
-				<th width="15%">标签名</th>
-	            <th>标签值</th>
-	            <th width="12%">操作</th>
+				<th width="15%">หัวข้อแท็ก</th>
+				<th width="15%">ชื่อแท็ก</th>
+	            <th>ค่าแท็ก</th>
+	            <th width="12%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			
@@ -54,8 +54,8 @@ thead th {
 							<td>'.$v['label_name'].'</td>
 							<td>'.$v['label_value'].'</td>
 							<td style="text-align: center;">
-				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" href="index.php?d=yes&c=system.config.label.edit&t=edit&id='.$v['label_id'].'"  data-toggle="dialog" data-title="修改标签信息" data-width="470" data-height="300" >编辑</a> 
-				            	<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['label_id'].')">删除</a>
+				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" href="index.php?d=yes&c=system.config.label.edit&t=edit&id='.$v['label_id'].'"  data-toggle="dialog" data-title="แก้ไขแท็ก信息" data-width="470" data-height="300" >แก้ไข</a> 
+				            	<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['label_id'].')">ลบ</a>
                 			</td>
 						</tr>';
 					$i++;
@@ -72,7 +72,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -81,7 +81,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div id="asd" class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>

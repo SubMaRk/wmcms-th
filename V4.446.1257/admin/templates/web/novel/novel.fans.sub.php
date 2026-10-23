@@ -12,9 +12,9 @@ thead th {
 <div class="bjui-pageHeader">
 	<div class="row cl pt-10 pl-10">
 		<div class="list-tool pl-15">
-            <span >快捷操作：</span>
-			<a href="index.php?a=yes&c=novel.fans&t=delsub" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="订阅记录删除后用户必须要重新订阅才能阅读，确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
-			<a href="index.php?a=yes&c=novel.fans&t=clearsub" data-toggle="doajax" data-confirm-msg="订阅记录删除后用户必须要重新订阅才能阅读，确定清空记录要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> 清空记录</a>
+            <span >การดำเนินการด่วน:</span>
+			<a href="index.php?a=yes&c=novel.fans&t=delsub" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ประวัติการติดตามลบ后ผู้ใช้必须要重新订阅才能阅读，ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
+			<a href="index.php?a=yes&c=novel.fans&t=clearsub" data-toggle="doajax" data-confirm-msg="ประวัติการติดตามลบ后ผู้ใช้必须要重新订阅才能阅读，ยืนยันล้างบันทึก要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> ล้างบันทึก</a>
 		</div>
 		<div class="list-tool">
 			<form id="pagerForm" name="<?php echo $cFun;?>Form" data-toggle="ajaxsearch" data-loadingmask="true" action="<?php echo $url;?>" method="post">
@@ -33,13 +33,13 @@ thead th {
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="7%" data-order-field="log_id">ID</th>
-				<th width="10%" data-order-field="log_rec">订阅类型</th>
-				<th width="15%" data-order-field="log_user_id">订阅用户</th>
-				<th>小说名字</th>
-				<th>小说章节</th>
+				<th width="10%" data-order-field="log_rec">ประเภทการสมัครรับ</th>
+				<th width="15%" data-order-field="log_user_id">ผู้ใช้ที่สมัครรับ</th>
+				<th>ชื่อนิยาย</th>
+				<th>ตอนนิยาย</th>
 				<th width="10%" data-order-field="log_gold1"><?php echo $config['gold1_name']?></th>
 	            <th width="10%" data-order-field="log_gold2"><?php echo $config['gold2_name']?></th>
-	            <th width="15%" data-order-field="log_time">打赏时间</th>
+	            <th width="15%" data-order-field="log_time">เวลาให้รางวัล</th>
 	            </tr>
 			</thead>
 			<tbody id="<?php echo $cFun?>List">
@@ -75,7 +75,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -84,7 +84,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>

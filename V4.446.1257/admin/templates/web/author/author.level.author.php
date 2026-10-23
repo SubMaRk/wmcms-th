@@ -1,6 +1,6 @@
 <div class="bjui-pageHeader">
 	<div class="bjui-searchBar">
-   		<button type="button" class="btn-green" data-toggle="dialog" data-id="<?php echo $cFun;?>add" data-mask="true" data-url="index.php?c=author.level.author.edit&t=add" data-width="480" data-height="320" data-title="添加作者等级" data-icon="plus">添加作者等级</button>&nbsp;
+   		<button type="button" class="btn-green" data-toggle="dialog" data-id="<?php echo $cFun;?>add" data-mask="true" data-url="index.php?c=author.level.author.edit&t=add" data-width="480" data-height="320" data-title="เพิ่มระดับผู้แต่ง" data-icon="plus">添加作者等级</button>&nbsp;
     </div>
 </div>
 
@@ -20,11 +20,11 @@
   			<div class="tab-pane fade <?php if($i==1){echo 'active in';}?>" id="<?php echo $cFun.$type.$key;?>">
             	<table class="table table-border table-bordered table-bg table-sort">
 				    <tr>
-				      <td>等级名字</td>
-				      <td width="240">等级开始经验</td>
-				      <td width="240">等级结束经验</td>
-				      <td width="200">等级排序</td>
-				      <td width="150">操作</td>
+				      <td>ชื่อระดับ</td>
+				      <td width="240">ค่าประสบการณ์เริ่มต้นระดับ</td>
+				      <td width="240">ค่าประสบการณ์สิ้นสุดระดับ</td>
+				      <td width="200">การเรียงระดับ</td>
+				      <td width="150">ดำเนินการ</td>
 				    </tr>
 				    <?php 
 				    foreach ($val as $k=>$v)
@@ -37,7 +37,7 @@
 					      <td><input name="level['.$v['level_id'].'][data][level_order]"  value="'.$v['level_order'].'"  type="text" size="10"/></td>
 					     <td>
 	  						<a class="btn btn-secondary radius size-MINI '.$cFun.'updateAjax">修改</a>
-	  						<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['level_id'].')">删除</a></td>
+	  						<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['level_id'].')">ลบ</a></td>
 					    </tr>';
 				    }
 				    ?>
@@ -53,8 +53,8 @@
 			  
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 全部更改</button></li>
+        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> เปลี่ยนทั้งหมด</button></li>
     </ul>
 </div>
 

@@ -55,7 +55,7 @@
                                     <option value="1" <?php if(C('app_status',null,'data') == '1'){ echo 'selected=""';}?>>ผ่าน</option>
                                     <option value="0" <?php if(C('app_status',null,'data') == '0'){ echo 'selected=""';}?>>รอ</option>
                                 </select>
-		                        <b style="margin-left: 163px">是 否 推 荐：</b>
+		                        <b style="margin-left: 163px">แนะนำหรือไม่:</b>
 		                        <select data-toggle="selectpicker" name="app[app_rec]">
                                     <option value="1" <?php if(C('app_rec',null,'data') == '1'){ echo 'selected=""';}?>>แนะนำ</option>
                                     <option value="0" <?php if(C('app_rec',null,'data') == '0'){ echo 'selected=""';}?>>ไม่แนะนำ</option>
@@ -314,7 +314,7 @@ function <?php echo $cFun;?>GetOp(){
 	op['data'] = $("[name=<?php echo $cFun;?>Form]").serializeArray();
 	return op;
 }
-//上传封面
+//上传บล็อก面
 function <?php echo $cFun;?>upload_success(file,json,$element){
 	json = $.parseJSON(json);
 	if ( json.statusCode == 300){

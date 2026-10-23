@@ -27,7 +27,7 @@ if ( $type == 'del' )
 		$applyMod->Delete($where);
 	}
 	
-	Ajax('文章修改申请删除成功!');
+	Ajax('ลบคำขอแก้ไขบทความสำเร็จ!');
 }
 //清空记录
 else if ( $type == 'clear' )
@@ -37,7 +37,7 @@ else if ( $type == 'clear' )
 	$applyMod->Delete($where);
 	//写入操作记录
 	SetOpLog( '清空了文章申请记录' , 'system' , 'delete');
-	Ajax('所有文章申请记录成功清空！');
+	Ajax('ล้างข้อมูลคำขอบทความทั้งหมดสำเร็จ!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -45,7 +45,7 @@ else if ( $type == 'status' )
 	$status = Request('status/i');
 	if( $status == 0)
 	{
-		Ajax('对不起，不能变更为未审核状态！');
+		Ajax('ไม่สามารถเปลี่ยนเป็นสถานะยังไม่ตรวจสอบได้!');
 	}
 	else if( $status == 1)
 	{
@@ -57,7 +57,7 @@ else if ( $type == 'status' )
 			$msg = '审核通过';
 		}
 		SetOpLog( $msg.'了文章修改申请' , 'system' , 'update' , $table , array('apply_id'=>GetDelId()));
-		Ajax('文章修改申请'.$msg.'成功!');
+		Ajax('คำขอแก้ไขบทความ'.$msg.'สำเร็จ!');
 	}
 }
 ?>

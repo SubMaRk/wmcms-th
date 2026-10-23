@@ -89,7 +89,7 @@ else
 					$twofaSecret = $twofaMod->GetSecret($arr['manager_id']);
 					if( $twofaSecret != '' && !TotpVerify($twofaSecret, Request('totp')) )
 					{
-						$tishi = '驗證碼ไม่ถูกต้อง';
+						$tishi = 'รหัสยืนยันไม่ถูกต้อง';
 						$loginSer->SetLog($arr['manager_id'],2,$tishi);
 						$loginOk = false;
 					}

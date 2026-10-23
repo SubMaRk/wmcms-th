@@ -215,7 +215,7 @@ class novel
 		{
 			$data[0] = array(
 				'type_name'=>'全部分类',
-				'type_cname'=>'全部',
+				'type_cname'=>'ทั้งหมด',
 				'type_id'=>'0',
 				'type_pid'=>'0',
 				'type_topid'=>'0',
@@ -296,7 +296,7 @@ class novel
 			'总推荐' =>'novel_allrec desc',
 
 			'是' =>'1',
-			'否' =>'0',
+			'ไม่' =>'0',
 
 			'小说进程' =>'novel_process',
 			'连载中' =>'1',

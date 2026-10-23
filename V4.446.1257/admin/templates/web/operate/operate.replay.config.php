@@ -6,96 +6,96 @@
 <div class="bjui-pageContent">
 	<form name="form1" action="index.php?a=yes&c=operate.replay.config&t=edit" method="post" data-toggle="validate">
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-      <thead><tr><th colspan="6" style="text-align:left;"><b>模块基本设置</b></th></tr></thead>
+      <thead><tr><th colspan="6" style="text-align:left;"><b>ตั้งค่าพื้นฐานโมดูล</b></th></tr></thead>
       <tr>
-        <td width="200">开启评论：</td>
+        <td width="200">เปิดความคิดเห็น:</td>
         <td><?php echo $manager->GetForm('replay' , 'replay_open');?></td>
-        <td>评论总模块设置：</td>
+        <td>ตั้งค่าโมดูลความคิดเห็นรวม:</td>
         <td><?php echo $manager->GetForm('replay' , 'unify');?></td>
-        <td>评论是否需要登录：</td>
+        <td>ความคิดเห็นต้องเข้าสู่ระบบหรือไม่:</td>
         <td><?php echo $manager->GetForm('replay' , 'replay_login');?></td>
       </tr>
       <tr>
-        <td>默认评论状态：</td>
+        <td>สถานะความคิดเห็นเริ่มต้น:</td>
         <td><?php echo $manager->GetForm('replay' , 'status');?></td>
-        <td>两次评论的间隔：</td>
+        <td>ช่วงเวลาระหว่างสองความคิดเห็น：</td>
         <td><?php echo $manager->GetForm('replay' , 'top_time');?></td>
-        <td>每天限制评论条数：</td>
+        <td>จำกัดจำนวนความคิดเห็นต่อวัน:</td>
         <td><?php echo $manager->GetForm('replay' , 'everyday_count');?></td>
       </tr>
       <tr>
-        <td>评论顶踩：</td>
+        <td>โหวตความคิดเห็น:</td>
         <td><?php echo $manager->GetForm('replay' , 'dingcai_open');?></td>
-        <td>顶踩是否需要登录：</td>
+        <td>โหวตต้องเข้าสู่ระบบหรือไม่:</td>
         <td><?php echo $manager->GetForm('replay' , 'dingcai_login');?></td>
-        <td>同一评论每日顶踩次数：</td>
+        <td>จำนวนโหวตขึ้น/ลงต่อความคิดเห็นต่อวัน:</td>
         <td><?php echo $manager->GetForm('replay' , 'dingcai_count');?></td>
       </tr>
       <tr>
-        <td width="200">默认用户昵称：</td>
+        <td width="200">ชื่อเล่นผู้ใช้เริ่มต้น:</td>
         <td colspan="5"><?php echo $manager->GetForm('replay' , 'nickname');?></td>
       </tr>
       <tr>
-        <td width="200">楼层名：</td>
+        <td width="200">ชื่อชั้น:</td>
         <td><?php echo $manager->GetForm('replay' , 'replay_floor_name');?></td>
-        <td width="200">楼层昵称：</td>
+        <td width="200">ชื่อเล่นชั้น:</td>
         <td><?php echo $manager->GetForm('replay' , 'replay_floor_nickname');?></td>
-        <td colspan="2">默认楼层的昵称，每行一个，不限楼层数量，超出的以楼层名显示。</td>
+        <td colspan="2">ชื่อเล่นชั้นเริ่มต้น บรรทัดละหนึ่งชื่อ ไม่จำกัดจำนวนชั้น ที่เกินจะแสดงด้วยชื่อชั้น</td>
       </tr>
     </table>
 
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table" >
-      <thead><tr><th colspan="6" style="text-align:left;"><b>评论奖励设置</b></th></tr></thead>
+      <thead><tr><th colspan="6" style="text-align:left;"><b>ตั้งค่ารางวัลความคิดเห็น</b></th></tr></thead>
       <tr>
-        <td width="200">每天前几次有奖励：</td>
+        <td width="200">จำนวนครั้งแรกที่มีรางวัลต่อวัน:</td>
         <td colspan="5"><?php echo $manager->GetForm('replay' , 'reward_count');?></td>
       </tr>
       <tr>
-        <td>奖励<?php echo $configArr['gold1_name'];?>：</td>
+        <td>รางวัล<?php echo $configArr['gold1_name'];?>：</td>
         <td><?php echo $manager->GetForm('replay' , 'replay_gold1');?></td>
-        <td>奖励<?php echo $configArr['gold2_name'];?>：</td>
+        <td>รางวัล<?php echo $configArr['gold2_name'];?>：</td>
         <td><?php echo $manager->GetForm('replay' , 'replay_gold2');?></td>
-        <td>奖励<?php echo $configArr['exp_name'];?>：</td>
+        <td>รางวัล<?php echo $configArr['exp_name'];?>：</td>
         <td><?php echo $manager->GetForm('replay' , 'replay_exp');?></td>
       </tr>
     </table>
 	
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-      <thead><tr><th colspan="6" style="text-align:left;"><b>JS/普通评论设置</b></th></tr></thead>
+      <thead><tr><th colspan="6" style="text-align:left;"><b>ตั้งค่าความคิดเห็นทั่วไป JS/</b></th></tr></thead>
       <tr>
-        <td width="200">评论框标题：</td>
+        <td width="200">หัวข้อกล่องความคิดเห็น:</td>
         <td><?php echo $manager->GetForm('replay' , 'boxname');?></td>
-        <td>无数据提示：</td>
+        <td>ข้อความเมื่อไม่มีข้อมูล:</td>
         <td><?php echo $manager->GetForm('replay' , 'no_data');?></td>
-        <td>输入框提示：</td>
+        <td>คำแนะนำช่องกรอก:</td>
         <td><?php echo $manager->GetForm('replay' , 'input');?></td>
       </tr>
       <tr>
-		<td>评论列表显示模式：</td>
+		<td>โหมดแสดงรายการความคิดเห็น:</td>
         <td><?php echo $manager->GetForm('replay' , 'replay_type');?></td>
-        <td>是否显示热门评论：</td>
+        <td>แสดงความคิดเห็นยอดนิยมหรือไม่:</td>
         <td><?php echo $manager->GetForm('replay' , 'hot');?></td>
-        <td>多少顶成为热门评论：</td>
+        <td>โหวตขึ้นกี่ครั้งจึงเป็นความคิดเห็นยอดนิยม:</td>
         <td><?php echo $manager->GetForm('replay' , 'hot_display');?></td>
       </tr>
       <tr>
-        <td>显示多少条热门：</td>
+        <td>แสดงความคิดเห็นยอดนิยมกี่รายการ:</td>
         <td><?php echo $manager->GetForm('replay' , 'hot_count');?></td>
-        <td>每页显示多少条：</td>
+        <td>แสดงกี่รายการต่อหน้า:</td>
         <td><?php echo $manager->GetForm('replay' , 'list_limit');?></td>
-        <td>显示数字分页个数：</td>
+        <td>จำนวนเลขหน้าแบ่งหน้าที่แสดง:</td>
         <td><?php echo $manager->GetForm('replay' , 'page_count');?></td>
       </tr>
     </table>
 	
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-      <thead><tr><th colspan="6" style="text-align:left;"><b>JS/普通评论回复设置[题主模式生效]</b></th></tr></thead>
+      <thead><tr><th colspan="6" style="text-align:left;"><b>ตั้งค่าตอบกลับความคิดเห็นทั่วไป JS/[มีผลในโหมดเจ้าของกระทู้]</b></th></tr></thead>
       <tr>
-        <td width="200">每条评论的回复显示几条：</td>
+        <td width="200">แสดงตอบกลับกี่รายการต่อความคิดเห็น:</td>
         <td><?php echo $manager->GetForm('replay' , 'replay_replay_number');?></td>
-        <td>每页显示多少条回复：</td>
+        <td>แสดงตอบกลับกี่รายการต่อหน้า:</td>
         <td><?php echo $manager->GetForm('replay' , 'replay_replay_page');?></td>
-        <td>评论回复排序方式：</td>
+        <td>วิธีเรียงตอบกลับความคิดเห็น:</td>
         <td><?php echo $manager->GetForm('replay' , 'replay_replay_order');?></td>
       </tr>
     </table>
@@ -106,8 +106,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 

@@ -5,21 +5,21 @@
 <div class="bjui-pageContent">
 	<form name="form1" action="index.php?a=yes&c=user.config&t=edit" method="post" data-toggle="validate">
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-      <thead><tr><th colspan="6" style="text-align:left;"><b>模块基本设置</b></th></tr></thead>
+      <thead><tr><th colspan="6" style="text-align:left;"><b>ตั้งค่าพื้นฐานโมดูล</b></th></tr></thead>
       <tr>
-        <td width="200">登陆功能：</td>
+        <td width="200">ฟังก์ชันเข้าสู่ระบบ:</td>
         <td><?php echo $manager->GetForm('user' , 'login_open');?></td>
-        <td>登录成功后页面跳转：</td>
+        <td>หน้าที่ไปหลังเข้าสู่ระบบสำเร็จ:</td>
         <td><?php echo $manager->GetForm('user' , 'ajax_login');?></td>
-        <td>登录日志：</td>
+        <td>บันทึกเข้าสู่ระบบ:</td>
         <td><?php echo $manager->GetForm('user' , 'login_log');?></td>
       </tr>
       <tr>
-        <td>注册功能：</td>
+        <td>ฟังก์ชันสมัครสมาชิก:</td>
         <td><?php echo $manager->GetForm('user' , 'reg_open');?></td>
-        <td width="200">默认注册的状态：</td>
+        <td width="200">สถานะสมัครสมาชิกเริ่มต้น:</td>
         <td><?php echo $manager->GetForm('user' , 'reg_status');?></td>
-        <td width="200">第三方登录账号绑定：</td>
+        <td width="200">ผูกบัญชีเข้าสู่ระบบบุคคลที่สาม:</td>
         <td><?php echo $manager->GetForm('user' , 'api_login_bind');?></td>
       </tr>
       <tr>
@@ -27,7 +27,7 @@
         <td><?php echo $manager->GetForm('user' , 'reg_gold1');?></td>
         <td>默认注册赠送的<?php echo $configArr['gold2_name'];?>：</td>
         <td><?php echo $manager->GetForm('user' , 'reg_gold2');?></td>
-        <td>默认注册赠送的经验：</td>
+        <td>ค่าประสบการณ์แถมสมัครสมาชิกเริ่มต้น:</td>
         <td><?php echo $manager->GetForm('user' , 'reg_exp');?></td>
       </tr>
       <tr>
@@ -37,79 +37,79 @@
         <td><?php echo $manager->GetForm('user' , 'reg_month');?></td>
       </tr>
       <tr>
-      	<td width="200">默认头像宽高：</td>
+      	<td width="200">กว้างสูงรูปโปรไฟล์เริ่มต้น:</td>
         <td><?php echo $manager->GetForm('user' , 'head_width');?>*<?php echo $manager->GetForm('user' , 'head_height');?></td>
-        <td>默认头像类型：</td>
+        <td>ประเภทอวาตาร์เริ่มต้น:</td>
         <td><?php echo $manager->GetForm('user' , 'user_head');?></td>
-        <td>默认头像：<a target="_blank" href="<?php echo $configArr['default_head']?>">点击查看</a></td>
+        <td>รูปโปรไฟล์เริ่มต้น:<a target="_blank" href="<?php echo $configArr['default_head']?>">点击查看</a></td>
         <td>
         	<?php echo $manager->GetForm('user' , 'default_head');?>
 			<span class="upload" data-id="default_head" data-uploader="index.php?a=yes&c=upload&t=img" data-on-upload-success="<?php echo $cFun;?>upload_success" data-file-type-exts="*.jpg;*.png;*.gif;*.mpg" data-toggle="upload" data-icon="cloud-upload"></span>
 		</td>
       </tr>
       <tr>
-        <td>系统头像：<a target="_blank" href="<?php echo $configArr['msg_head']?>">点击查看</a></td>
+        <td>รูปโปรไฟล์ระบบ:<a target="_blank" href="<?php echo $configArr['msg_head']?>">点击查看</a></td>
         <td colspan="3">
         	<?php echo $manager->GetForm('user' , 'msg_head');?>
 			<span class="upload" data-id="msg_head" data-uploader="index.php?a=yes&c=upload&t=img" data-on-upload-success="<?php echo $cFun;?>upload_success" data-file-type-exts="*.jpg;*.png;*.gif;*.mpg" data-toggle="upload" data-icon="cloud-upload"></span>
 		</td>
       </tr>
       <tr>
-        <td>默认用户签名：</td>
+        <td>ลายเซ็นผู้ใช้เริ่มต้น:</td>
         <td colspan="5"><?php echo $manager->GetForm('user' , 'reg_sign');?></td>
       </tr>
     </table>
 
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table" id="<?php echo $cFun?>bscicTable">
-      <thead><tr><th colspan="6" style="text-align:left;"><b>基本属性设置</b></th></tr></thead>
+      <thead><tr><th colspan="6" style="text-align:left;"><b>ตั้งค่าคุณสมบัติพื้นฐาน</b></th></tr></thead>
       <tr>
-        <td width="200">经验名字：</td>
+        <td width="200">ชื่อค่าประสบการณ์:</td>
         <td><?php echo $manager->GetForm('user' , 'exp_name');?></td>
-        <td width="200">余额名字：</td>
+        <td width="200">ชื่อยอดเงิน：</td>
         <td colspan="3"><?php echo $manager->GetForm('user' , 'money_name');?></td>
       </tr>
       <tr>
-        <td>金币1名字：</td>
+        <td>ชื่อเหรียญ 1:</td>
         <td><?php echo $manager->GetForm('user' , 'gold1_name');?></td>
-        <td>金币1单位：</td>
+        <td>หน่วยเหรียญ 1:</td>
         <td colspan="3"><?php echo $manager->GetForm('user' , 'gold1_unit');?></td>
       </tr>
       <tr>
-        <td>金币2名字：</td>
+        <td>ชื่อเหรียญ 2:</td>
         <td><?php echo $manager->GetForm('user' , 'gold2_name');?></td>
-        <td>金币2单位：</td>
+        <td>หน่วยเหรียญ 2:</td>
         <td colspan="3"><?php echo $manager->GetForm('user' , 'gold2_unit');?></td>
       </tr>
       <tr>
-        <td>推荐票名字：</td>
+        <td>ชื่อโหวตแนะนำ:</td>
         <td><?php echo $manager->GetForm('user' , 'ticket_rec');?></td>
-        <td>月票名字：</td>
+        <td>ชื่อโหวตรายเดือน:</td>
         <td colspan="3"><?php echo $manager->GetForm('user' , 'ticket_month');?></td>
       </tr>
       <tr>
-        <td>每日登录赠送<?php echo $configArr['gold1_name'];?>：</td>
+        <td>ของแถมเข้าสู่ระบบรายวัน<?php echo $configArr['gold1_name'];?>：</td>
         <td><?php echo $manager->GetForm('user' , 'login_gold1');?></td>
-        <td>每日登录赠送<?php echo $configArr['gold2_name'];?>：</td>
+        <td>ของแถมเข้าสู่ระบบรายวัน<?php echo $configArr['gold2_name'];?>：</td>
         <td><?php echo $manager->GetForm('user' , 'login_gold2');?></td>
-        <td>每日登录赠送经验：</td>
+        <td>ค่าประสบการณ์แถมเข้าสู่ระบบรายวัน:</td>
         <td><?php echo $manager->GetForm('user' , 'login_exp');?></td>
       </tr>
       <tr>
-        <td>每日登录清空推荐票：</td>
+        <td>ล้างโหวตแนะนำเมื่อเข้าสู่ระบบทุกวัน:</td>
         <td><?php echo $manager->GetForm('user' , 'login_clear_ticket');?></td>
-        <td>每日登录赠送<?php echo $configArr['ticket_rec'];?>：</td>
+        <td>ของแถมเข้าสู่ระบบรายวัน<?php echo $configArr['ticket_rec'];?>：</td>
         <td><?php echo $manager->GetForm('user' , 'login_rec');?></td>
-        <td>每日登录赠送<?php echo $configArr['ticket_month'];?>：</td>
+        <td>ของแถมเข้าสู่ระบบรายวัน<?php echo $configArr['ticket_month'];?>：</td>
         <td><?php echo $manager->GetForm('user' , 'login_month');?></td>
       </tr>
     </table>
 	
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table" id="<?php echo $cFun?>operateTable">
-      <thead><tr><th colspan="6" style="text-align:left;"><b>签到功能设置</b></th></tr></thead>
+      <thead><tr><th colspan="6" style="text-align:left;"><b>ตั้งค่าฟังก์ชันเช็กอิน</b></th></tr></thead>
       <tr>
-        <td width="200">签到功能：</td>
+        <td width="200">ฟังก์ชันเช็กอิน:</td>
         <td width="200"><?php echo $manager->GetForm('user' , 'sign_open');?></td>
-        <td width="200">签到奖励功能：</td>
+        <td width="200">ฟังก์ชันรางวัลเช็กอิน:</td>
         <td colspan="3"><?php echo $manager->GetForm('user' , 'sign_reward');?></td>
       </tr>
       <tr>
@@ -117,7 +117,7 @@
         <td><?php echo $manager->GetForm('user' , 'sign_gold1');?></td>
         <td>签到赠送<?php echo $configArr['gold2_name'];?>：</td>
         <td width="200"><?php echo $manager->GetForm('user' , 'sign_gold2');?></td>
-        <td width="200">签到赠送经验：</td>
+        <td width="200">ค่าประสบการณ์แถมเช็กอิน:</td>
         <td><?php echo $manager->GetForm('user' , 'sign_exp');?></td>
       </tr>
       <tr>
@@ -134,8 +134,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 

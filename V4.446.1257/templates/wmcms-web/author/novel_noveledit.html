@@ -35,12 +35,12 @@ $(document).ready(function(){
 
 <div class="mainRight fl">
     <div class="crumbsWrap">
-    	<i class="before"><a href="{小说作品列表}"><span>小说管理</span></a></i><em class="same"></em>
-		<i class="current"><span>{cur:id={id}}{名字}{/cur}{cur:id=0}创建小说{/cur}</span></i>
+    	<i class="before"><a href="{小说作品列表}"><span>จัดการนิยาย</span></a></i><em class="same"></em>
+		<i class="current"><span>{cur:id={id}}{名字}{/cur}{cur:id=0}สร้างนิยาย{/cur}</span></i>
     </div>
     <div class="msgBoxTitle">
         <div class="tabSwitch cf">
-            <span class="act"><a href="{编辑小说}">编辑作品信息</a></span>
+            <span class="act"><a href="{编辑小说}">แก้ไขข้อมูลผลงาน</a></span>
         </div>
     </div>
     <div class="workStateWrap cf">
@@ -52,49 +52,49 @@ $(document).ready(function(){
                <div class="fm">
                    <img src="{封面}" id="cover" width="114" height="152">
 				   {cur:{封面审核状态}=1}
-                   <span class="modify hidden" id="upload_button" style="display: inline;">上传新封面</span>
+                   <span class="modify hidden" id="upload_button" style="display: inline;">อัปโหลดปกใหม่</span>
 					<input type="file" id="hide_button" class="hide_button" name="hide_button"/>
 					{/cur}
 				   {cur:{封面审核状态}=0}
-                   <span class="modify hidden" style="display: inline;">封面审核中</span>
+                   <span class="modify hidden" style="display: inline;">กำลังตรวจสอบปก</span>
 					{/cur}
                </div>
             </div>
             
             <div class="tag_select_box" style="display:none">
-                <div class="loading">加载中</div>
+                <div class="loading">กำลังโหลด</div>
             </div>
             <div class="workSetList fl">
                 <ul>
-                	<li><em>书号：</em><b>{id}</b></li>
+                	<li><em>รหัสหนังสือ:</em><b>{id}</b></li>
                     <li>
-                    	<em>作品名称：</em>
+                    	<em>ชื่อผลงาน:</em>
                         <input id="name" name="name" autocomplete="off" class="midInput recTagInput" value="{名字}" type="text">
                     </li>
                     <li>
-                    	<em>作品标签：</em>
+                    	<em>แท็กผลงาน:</em>
                         <input id="tags" name="tags" type="hidden">
                         <div id="tag_box" style="border: 1px solid #dddddd;height: 30px;width: 350px;cursor: pointer;"></div>
                     </li>
                     <li>
-                    	<em>作品进程：</em>
+                    	<em>ความคืบหน้าผลงาน:</em>
                     	<b class="select-level">
 						<select class="modify hidden showselect valid" name="process" style="display: inline-block; visibility: visible;opacity: 1;font-size: small;" {cur:id>0}disabled{/cur}>
 	                        {小说进程列表:}<option value="{小说进程id}" {eq:{process}:{小说进程id}}selected="selected"{/eq}>{小说进程名字}</option>{/小说进程列表}
 						</select></b>
                     </li>
                     <li>
-                    	<em>授权级别：</em>
+                    	<em>ระดับสิทธิ์:</em>
                     	<b class="select-level">
 						<select class="modify hidden showselect valid" name="type" style="display: inline-block; visibility: visible;opacity: 1;font-size: small;" {cur:id>0}disabled{/cur}>
                         	{小说类型列表:}<option value="{小说类型id}" {eq:{type}:{小说类型id}}selected="selected"{/eq}>{小说类型名字}</option>{/小说类型列表}
 						</select></b>
                     </li>
-                    <li><em>作品类型：</em>
+                    <li><em>ประเภทผลงาน:</em>
                         <b class="select-category" id="type_box" style="width: auto;">
                         	{cur:id=0}
 	                        <select name="tid" style="visibility: visible; display: inline-block;opacity: 1;font-size: small;">
-	                        	<option>选择分类</option>
+	                        	<option>เลือกหมวดหมู่</option>
 	                        	{小说分类:父级分类=0}<option value="{小说分类id}">{小说分类名字}</option>{/小说分类}
 							</select>
 							{/cur}
@@ -108,22 +108,22 @@ $(document).ready(function(){
 						</b>
                     </li>
                     {cur:id=0}<li>
-                        <em>编辑组：</em><b class="cur_group">请选择编辑组</b><a class="bc-cg-operate change_group" href="javascript:">更换</a>
+                        <em>ทีมบรรณาธิการ:</em><b class="cur_group">กรุณาเลือกทีมบรรณาธิการ</b><a class="bc-cg-operate change_group" href="javascript:">เปลี่ยน</a>
 					</li>{/cur}
 				</ul>
                 <ul id="field" style="display:none"></ul>
 				<ul>
-                    <li><em>总点击：</em><b>{总点击}</b><cite>总收藏：</cite>{总收藏}</li>
-                    <li><em>总字数：</em><b>{字数}</b><cite>总评分：</cite>{评分}</li>
-                    <li><em>总顶量：</em><b>{顶}</b><cite>总踩量：</cite>{踩}</li>
-                    <li><em>作品介绍：</em>
+                    <li><em>ยอดคลิกรวม:</em><b>{总点击}</b><cite>รายการโปรดรวม:</cite>{总收藏}</li>
+                    <li><em>จำนวนคำรวม:</em><b>{字数}</b><cite>คะแนนรวม:</cite>{评分}</li>
+                    <li><em>ยอดกดชอบรวม:</em><b>{顶}</b><cite>ยอดกดไม่ชอบรวม:</cite>{踩}</li>
+                    <li><em>แนะนำผลงาน:</em>
                         <textarea id="intro" name="intro" style="width:400px;height:300px;">{简介}</textarea>
-                        <p data-node="tip" class="f12 c999">20~2500个字，可自行修改</p>
+                        <p data-node="tip" class="f12 c999">20~2500 คำ แก้ไขได้เอง</p>
                     </li>
                 </ul>
 
                 <p class="dib-wrap confirm modify hidden" style="display: block;">
-                    <a class="button" id="sub" href="javascript:">提交</a>
+                    <a class="button" id="sub" href="javascript:">ส่งข้อมูล</a>
             	</p>
             </div>
 		</form>
@@ -131,14 +131,14 @@ $(document).ready(function(){
  </div>
  
 <dialog class="ui-dialog-container" style="z-index: 20; display:none;">
-    <div class="dialog-loading"><div style="text-align: center;margin-top: 328px;">加载中...</div></div>
+    <div class="dialog-loading"><div style="text-align: center;margin-top: 328px;">กำลังโหลด...</div></div>
     <div class="ui-dialog editor-select-body" style="width: 660px;display:none">
         <a href="javascript:" class="ui-dialog-close ESC" role="button" style="font-size: 17px;top: 25px;right: 15px;"><em class="icon-font icon-close">X</em></a>
-        <div class="ui-dialog-title">当前可选的编辑组有<span class="sub-title">发布审核通过后编辑组将无法修改，请谨慎选择</span></div>
+        <div class="ui-dialog-title">ทีมบรรณาธิการที่เลือกได้ในขณะนี้มี<span class="sub-title">เมื่อผ่านการตรวจสอบและเผยแพร่แล้ว ทีมบรรณาธิการจะไม่สามารถแก้ไขได้ กรุณาเลือกอย่างรอบคอบ</span></div>
         <div class="ui-dialog-body"><div class="bc-editor-con j-select"><ul class="bc-ec-ul cf"></ul></div></div>
         <div class="ui-dialog-footer" style="text-align: center;">
-            <a href="javascript:" id="sure" class="ui-button ui-button-primary">选择</a>
-            <a href="javascript:" id="close" class="ui-button icon-close">关闭</a>
+            <a href="javascript:" id="sure" class="ui-button ui-button-primary">เลือก</a>
+            <a href="javascript:" id="close" class="ui-button icon-close">ปิด</a>
         </div>
     </div>
 </dialog>
@@ -174,7 +174,7 @@ $(".change_group").click(function(){
                     });
 				}else{
                     $("#close").click();
-					easydialog_alert('编辑组不存在，请联系管理员后台添加','','','');
+					easydialog_alert('ไม่พบกลุ่มผู้แก้ไข กรุณาติดต่อผู้ดูแลระบบเพื่อเพิ่มในหลังบ้าน','','','');
 				}
 			},
 		});
@@ -203,13 +203,13 @@ $("#sub").click(function(){
 	var tid = $("[name=tid]").val();
 	var groupId = $("[name=group_id]").val();
 	if( name == '' ){
-		easydialog_alert('对不起，小说名字不能为空！','','','');
+		easydialog_alert('ขออภัย ชื่อนิยายห้ามว่าง!','','','');
 	}else if( !isPositiveNum(tid) ){
-		easydialog_alert('对不起，请选择小说分类！','','','');
+		easydialog_alert('ขออภัย กรุณาเลือกหมวดหมู่นิยาย!','','','');
 	}else if( intro.length < 20 || intro.length > 2500  ){
-		easydialog_alert('对不起，描述只能在20-2500个字符之间！','','','');
+		easydialog_alert('ขออภัย คำอธิบายต้องอยู่ระหว่าง 20-2500 ตัวอักษร!','','','');
 	}else if( {id}==0 && groupId<=0 ){
-		easydialog_alert('对不起，请选择编辑组！','','','');
+		easydialog_alert('ขออภัย กรุณาเลือกกลุ่มผู้แก้ไข!','','','');
 	}else{
 		$.ajax({
 			type:"POST",
@@ -231,7 +231,7 @@ $("#sub").click(function(){
 /*上传封面按妞*/
 $('#hide_button').live('change',function(){
 	//禁用按钮
-	$('#upload_button').val('上传中...');
+	$('#upload_button').val('กำลังอัปโหลด...');
     $.ajaxFileUpload
     ({
         url: '/wmcms/action/index.php?action=upload.novelcover', //用于文件上传的服务器端请求地址
@@ -251,9 +251,9 @@ $('#hide_button').live('change',function(){
 	        	$("[name=cover_id]").val(data.data.file_id);
 				//还原按钮
 				$('#hide_button').clone().val('');
-				$('#upload_button').val('上传新封面');
+				$('#upload_button').val('อัปโหลดปกใหม่');
 				
-				easydialog_alert(data.msg , '提示' , null, '');
+				easydialog_alert(data.msg , 'คำแนะนำ' , null, '');
         	}
         },
         error: function(e) {
@@ -331,7 +331,7 @@ $(document).ready(function(){
         		    $('.tags_type li').css('width',350/$('.tags_type li').length-12);
         		    UpdateTagId();
     		    }else{
-        		    $('.tag_select_box .loading').html('暂无推荐标签,请联系管理员添加');
+        		    $('.tag_select_box .loading').html('ยังไม่มีแท็กแนะนำ กรุณาติดต่อผู้ดูแลระบบเพื่อเพิ่ม');
     		    }
     		}
     	},
@@ -362,7 +362,7 @@ $('.tag_select_box .tag_list').live('click',function(){
         $(this).removeClass('cur');
     }else{
         if( $('.tag_select_box .cur').length >= 5 ){
-			easydialog_autoclose('不能超过五个标签' , 'warning');
+			easydialog_autoclose('เพิ่มได้ไม่เกินห้าแท็ก' , 'warning');
     	    return false;
         }else{
             $(this).addClass('cur');

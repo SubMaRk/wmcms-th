@@ -6,40 +6,40 @@
 	<form name="form1" action="index.php?a=yes&c=operate.zt.config&t=config_edit" method="post" data-toggle="validate">
 	
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-      <thead><tr><th colspan="4" style="text-align:left;"><b>模块基本设置</b></th></tr></thead>
+      <thead><tr><th colspan="4" style="text-align:left;"><b>ตั้งค่าพื้นฐานโมดูล</b></th></tr></thead>
       <tr>
-        <td width="200">专题页检查参数：</td>
+        <td width="200">พารามิเตอร์ตรวจสอบหน้าหัวข้อพิเศษ：</td>
         <td colspan="3"><?php echo $manager->GetForm('zt' , 'par_zt');?></td>
       </tr>
       <tr>
-        <td width="200">评论页检查参数：</td>
+        <td width="200">พารามิเตอร์ตรวจสอบหน้าความคิดเห็น:</td>
         <td colspan="3"><?php echo $manager->GetForm('zt' , 'par_replay');?></td>
       </tr>
     </table>
     
 
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-      <thead><tr><th colspan="6" style="text-align:left;"><b>模块互动设置</b></th></tr></thead>
+      <thead><tr><th colspan="6" style="text-align:left;"><b>ตั้งค่าการโต้ตอบโมดูล</b></th></tr></thead>
        <tr>
-        <td width="200">专题顶踩功能：</td>
+        <td width="200">ฟังก์ชันโหวตชอบ/ไม่ชอบหัวข้อพิเศษ：</td>
         <td><?php echo $manager->GetForm('zt' , 'dingcai_open');?></td>
-        <td width="200">顶踩是需要否登录：</td>
+        <td width="200">โหวตต้องเข้าสู่ระบบหรือไม่:</td>
         <td><?php echo $manager->GetForm('zt' , 'dingcai_login');?></td>
-        <td width="200">每日每篇专题顶踩次数：</td>
+        <td width="200">จำนวนโหวตต่อหัวข้อพิเศษต่อวัน:</td>
         <td><?php echo $manager->GetForm('zt' , 'dingcai_count');?></td>
       </tr>
       <tr>
-        <td>专题评分功能：</td>
+        <td>ฟังก์ชันให้คะแนนหัวข้อพิเศษ：</td>
         <td><?php echo $manager->GetForm('zt' , 'score_open');?></td>
-        <td>评分是否需要登录：</td>
+        <td>ให้คะแนนต้องเข้าสู่ระบบหรือไม่:</td>
         <td><?php echo $manager->GetForm('zt' , 'score_login');?></td>
-        <td>每日每篇专题评分次数：</td>
+        <td>จำนวนให้คะแนนต่อหัวข้อพิเศษต่อวัน:</td>
         <td><?php echo $manager->GetForm('zt' , 'score_count');?></td>
       </tr>
       <tr>
-        <td>专题评论功能：</td>
+        <td>ฟังก์ชันความคิดเห็นหัวข้อพิเศษ：</td>
         <td><?php echo $manager->GetForm('zt' , 'replay_open');?></td>
-        <td>评论是否需要登录：</td>
+        <td>ความคิดเห็นต้องเข้าสู่ระบบหรือไม่:</td>
         <td colspan="3"><?php echo $manager->GetForm('zt' , 'replay_login');?></td>
       </tr>
     </table>
@@ -50,8 +50,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 <script>

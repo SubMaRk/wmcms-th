@@ -6,7 +6,7 @@
     <form action="index.php?a=yes&c=picture.picture&t=<?php echo $type;?>" data-reload="false" data-toggle="validate" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
 	<input name="id[picture_id]" id="<?php echo $cFun.$type;?>_cid" type="hidden" class="input-text" value="<?php echo $id;?>">
 		<fieldset>
-			<legend>图集内容编辑</legend>
+			<legend>แก้ไขเนื้อหาอัลบั้ม</legend>
             <ul class="nav nav-tabs" role="tablist">
             	<li class="active"><a href="#<?php echo $cFun.$type;?>base" role="tab" data-toggle="tab">基本信息</a></li>
             	<li><a href="#<?php echo $cFun.$type;?>senior" id="<?php echo $cFun.$type;?>senior_tab" role="tab" data-toggle="tab">高级信息</a></li>
@@ -18,7 +18,7 @@
 		            <tbody>
 		            	<tr>
 						  <td colspan="3">
-						  	<b>图 集 分 类：</b>
+						  	<b>หมวดหมู่อัลบั้ม:</b>
 							<input id="<?php echo $cFun.$type;?>type_id" name="picture[type_id]" type="hidden" value="<?php echo C('type_id',null,'data');?>">
 					      	<input type="text" id="<?php echo $cFun.$type;?>_ztree_input" data-toggle="selectztree" data-tree="#<?php echo $cFun.$type;?>_ztree_select" readonly value="<?php echo C('type_name',null,'data');?>">
                             <ul id="<?php echo $cFun.$type;?>_ztree_select" class="ztree hide" data-toggle="ztree" data-expand-all="true" data-check-enable="true" data-chk-style="radio" data-radio-type="all" data-on-check="<?php echo $cFun.$type;?>S_NodeCheck" data-on-click="<?php echo $cFun.$type;?>S_NodeClick">
@@ -37,24 +37,24 @@
 						</tr>
 		                <tr>
 		                    <td width="50%">
-		                        <b>图 集 标 题：</b>
+		                        <b>หัวข้ออัลบั้ม:</b>
 		                        <input type="text" name="picture[picture_name]" value="<?php echo C('picture_name',null,'data');?>" data-rule="required">
 		                    </td>
 		                    <td>
-		                        <b>图集短标题：</b>
+		                        <b>หัวข้อย่ออัลบั้ม:</b>
 		                        <input type="text" name="picture[picture_cname]" value="<?php echo C('picture_cname',null,'data');?>">
 		                    </td>
 		                </tr>
 		                <tr>
 		                    <td>
-		                        <b>图 集 状 态：</b>
+		                        <b>สถานะอัลบั้ม:</b>
 		                        <select data-toggle="selectpicker" name="picture[picture_status]">
                                     <option value="1" <?php if(C('picture_status',null,'data') == '1'){ echo 'selected=""';}?>>已审核</option>
                                     <option value="0" <?php if(C('picture_status',null,'data') == '0'){ echo 'selected=""';}?>>待审核</option>
                                 </select>
 		                    </td>
 		                    <td>
-		                        <b>是 否 推 荐：</b>
+		                        <b>แนะนำหรือไม่:</b>
 		                        <select data-toggle="selectpicker" name="picture[picture_rec]">
                                     <option value="1" <?php if(C('picture_rec',null,'data') == '1'){ echo 'selected=""';}?>>已推荐</option>
                                     <option value="0" <?php if(C('picture_rec',null,'data') == '0'){ echo 'selected=""';}?>>未推荐</option>
@@ -63,7 +63,7 @@
 		                </tr>
 		                <tr>
 		                   <td colspan="3">
-		                        <b>图 集 封 面：</b>
+		                        <b>ปกอัลบั้ม:</b>
 		                        <input type="text" id="picture_simg" name="picture[picture_simg]" value="<?php echo C('picture_simg',null,'data');?>" size="40">
 								<span class="upload" data-uploader="index.php?a=yes&c=upload&t=img" data-on-upload-success="<?php echo $cFun;?>upload_success" data-file-type-exts="*.jpg;*.png;*.gif;*.mpg" data-toggle="upload" data-icon="cloud-upload"></span>
 								<?php if( C('picture_simg',null,'data') != '' ){ echo '<a target="_blank" href="'.C('picture_simg',null,'data').'">点击查看图片</a>';}?>
@@ -71,13 +71,13 @@
 		                </tr>
 		                <tr>
 		                   <td colspan="3">
-		                        <b>图 集 标 签：</b>
+		                        <b>แท็กอัลบั้ม:</b>
 		                        <input type="text" data-tags="546" data-tagsArr="123" id="picture_tags" name="picture[picture_tags]" size="40" value="<?php echo C('picture_tags',null,'data');?>">
 		                    </td>
 		                </tr>
 		                <tr>
 		                   <td colspan="3">
-		                        <b>图 集 简 介：</b>
+		                        <b>เรื่องย่ออัลบั้ม:</b>
 		                        <textarea cols="70" rows="1" name="picture[picture_info]" data-toggle="autoheight"><?php echo C('picture_info',null,'data');?></textarea>
 		                    </td>
 		                </tr>
@@ -88,7 +88,7 @@
 									<div class="queueList">
 										<div id="<?php echo $cFun.$type;?>dndArea" class="placeholder <?php if($type == 'edit'){echo ' element-invisible';}?>">
 											<div id="<?php echo $cFun.$type;?>filePicker-2"></div>
-											<p>或将照片拖到这里，最多可上传30张</p>
+											<p>หรือลากรูปมาที่นี่ อัปโหลดได้สูงสุด 30 รูป</p>
 										</div>
 										<?php
 										if($type == 'edit' && $picArr)
@@ -106,7 +106,7 @@
 														<input type="hidden" value="'.$v['upload_img'].'" name="pic[src]['.$v['upload_id'].']">
 														<input type="text" size="16" class="form-control" placeholder="请填写注释" value="'.$v['upload_alt'].'" name="pic[alt]['.$v['upload_id'].']"></p>
 														<span class="success"></span>
-		        										<div class="file-panel"><span class="cancel">删除</span><span class="rotateRight">向右旋转</span><span class="rotateLeft">向左旋转</span></div>
+		        										<div class="file-panel"><span class="cancel">ลบ</span><span class="rotateRight">向右旋转</span><span class="rotateLeft">向左旋转</span></div>
 		        										</li>';
 											}
 											echo '</ul>';
@@ -128,7 +128,7 @@
 		                </tr>
 		                <tr>
 		                   <td colspan="3">
-		                        <b>图 集 内 容：</b>
+		                        <b>เนื้อหาอัลบั้ม:</b>
 		                        <div class="wm_form_content_box">
 									<?php echo Ueditor('width: 90%;height:300px' , 'picture[picture_content]' , C('picture_content',null,'data'), 'editor.picture');?>
 		                        </div>
@@ -142,27 +142,27 @@
 		       		<table class="table table-condensed table-hover" width="100%">
 		            <tbody>
 		            	<tr>
-						  <td><b> 阅读量 ：</b>
+						  <td><b> ยอดเข้าชม :</b>
 							<input size="7" name="picture[picture_read]" value="<?php echo C('picture_read',null,'data');?>">
 					     </td>
-						  <td><b> 评论数 ：</b>
+						  <td><b> จำนวนความคิดเห็น :</b>
 							<input size="7" name="picture[picture_replay]" value="<?php echo C('picture_replay',null,'data');?>">
 					      </td>
-						  <td><b> 顶 ：</b>
+						  <td><b> โหวตขึ้น :</b>
 							<input size="7" name="picture[picture_ding]" value="<?php echo C('picture_ding',null,'data');?>">
 					      </td>
-						  <td><b> 踩 ：</b>
+						  <td><b> โหวตลง :</b>
 							<input size="7" name="picture[picture_cai]" value="<?php echo C('picture_cai',null,'data');?>">
 					      </td>
-						  <td><b> 星 级 ：</b>
+						  <td><b> ระดับดาว:</b>
 							<input size="7" name="picture[picture_start]" value="<?php echo C('picture_start',null,'data');?>">
 					      </td>
-						  <td><b> 评 分 ：</b>
+						  <td><b> คะแนน :</b>
 							<input size="7" name="picture[picture_score]" value="<?php echo C('picture_score',null,'data');?>">
 					      </td>
 						</tr>
 		            	<tr>
-						  <td colspan="6"><b>发 布 时 间：</b>
+						  <td colspan="6"><b>เวลาเผยแพร่:</b>
 							<input type="text" name="picture[picture_time]" value="<?php echo date('Y-m-d H:i:s',C('picture_time',null,'data'));?>" data-toggle="datepicker" data-pattern="yyyy-MM-dd H:m:s" size="19">
 					     </td>
 						</tr>
@@ -181,8 +181,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 
@@ -197,7 +197,7 @@ function <?php echo $cFun;?>GetOp(){
 	op['data'] = $("[name=<?php echo $cFun;?>Form]").serializeArray();
 	return op;
 }
-//上传封面
+//上传บล็อก面
 function <?php echo $cFun;?>upload_success(file,json,$element){
 	json = $.parseJSON(json);
 	if ( json.statusCode == 300){

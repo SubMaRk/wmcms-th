@@ -8,7 +8,7 @@
 	<form action="index.php?a=yes&c=system.seo.rewrite&t=<?php echo $type;?>" class="form form-horizontal" data-reload="false" data-toggle="ajaxform" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
     <input type="hidden" name="urls_id" value="<?php echo $id;?>"/>
 	    <div class="row cl">
-			<label class="form-label col-md-3">所属模块：</label>
+			<label class="form-label col-md-3">โมดูลที่สังกัด:</label>
 			<div class="formControls col-md-8">
 		      	<select data-toggle="selectpicker" readonly disabled>
 		        <?php
@@ -22,43 +22,43 @@
 			</div>
 		</div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">页面作用：</label>
+			<label class="form-label col-md-3">หน้าที่ใช้งาน:</label>
 	    	<div class="formControls col-md-8">
 	    		<input type="text" class="form-control" readonly disabled size="25" value="<?php echo C('urls_pagename',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">传统动态地址：</label>
+			<label class="form-label col-md-3">ที่อยู่ไดนามิกแบบเดิม：</label>
 	    	<div class="formControls col-md-8">
 	    		<input type="text" class="form-control" readonly disabled size="40" value="<?php echo C('urls_url1',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">传统伪静态地址：</label>
+			<label class="form-label col-md-3">ที่อยู่ pseudo-static แบบเดิม：</label>
 	    	<div class="formControls col-md-8">
 	        	<input type="text" class="form-control" name="urls_url2" size="40" value="<?php echo C('urls_url2',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">普通模式地址：</label>
+			<label class="form-label col-md-3">ที่อยู่โหมดปกติ:</label>
 	    	<div class="formControls col-md-8">
 	        	<input type="text" class="form-control" name="urls_url3" size="40" value="<?php echo C('urls_url3',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">兼容模式地址：</label>
+			<label class="form-label col-md-3">ที่อยู่โหมดเข้ากันได้：</label>
 	    	<div class="formControls col-md-8">
 	        	<input type="text" class="form-control" name="urls_url4" size="40" value="<?php echo C('urls_url4',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">PATHINFO模式：</label>
+			<label class="form-label col-md-3">โหมด PATHINFO：</label>
 	    	<div class="formControls col-md-8">
 	        	<input type="text" class="form-control" name="urls_url5" size="40" value="<?php echo C('urls_url5',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">REWRITE模式：</label>
+			<label class="form-label col-md-3">โหมด REWRITE：</label>
 	    	<div class="formControls col-md-8">
 	        	<input type="text" class="form-control" name="urls_url6" size="40" value="<?php echo C('urls_url6',null,'data');?>">
 	    	</div>
@@ -67,8 +67,8 @@
 	</form>
 	<div class="bjui-pageFooter">
 	    <ul>
-	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 保存</button></li>
+	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> บันทึก</button></li>
 	    </ul>
 	</div>
 </div>

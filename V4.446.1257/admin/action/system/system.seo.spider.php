@@ -18,7 +18,7 @@ if ( $type == 'del' )
 	//写入操作记录
 	SetOpLog( '删除了蜘蛛爬行记录' , 'system' , 'delete' , $table , $where);
 	wmsql::Delete($table, $where);
-	Ajax('蜘蛛爬行记录删除成功!');
+	Ajax('ลบบันทึกการ crawl ของบอตสำเร็จ!');
 }
 //清空登录记录
 else if ( $type == 'clear' )
@@ -26,6 +26,6 @@ else if ( $type == 'clear' )
 	wmsql::Exec('TRUNCATE TABLE `@'.$table.'`');
 	//写入操作记录
 	SetOpLog( '清空了蜘蛛爬行记录' , 'system' , 'delete');
-	Ajax('所有蜘蛛爬行记录成功清空！');
+	Ajax('ล้างข้อมูลบันทึกการ crawl ของบอตทั้งหมดสำเร็จ!');
 }
 ?>

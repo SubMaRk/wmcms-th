@@ -10,16 +10,16 @@
 	<form action="index.php?a=yes&c=system.seo.html_plan&t=add" data-reload="true" data-toggle="validate" method="post">
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>from">
     	<tr>
-	     	<td width="100">页面标题：</td>
-		    <td width="400"><input type="text" class="form-control" name="data[plan_name]" size="15" placeholder="计划的名字" data-rule="required"></td>
-		    <td width="100">保存路径：</td>
+	     	<td width="100">หัวข้อหน้า:</td>
+		    <td width="400"><input type="text" class="form-control" name="data[plan_name]" size="15" placeholder="计划的名คำ" data-rule="required"></td>
+		    <td width="100">พาธบันทึก：</td>
 		    <td width="350"><input type="text" class="form-control" name="data[plan_path]" size="20" placeholder="如：/html/idnex.html" data-rule="required"></td>
-		    <td width="100" rowspan="2"><button type="submit" class="btn-green" data-icon="save">添加</button></td>
+		    <td width="100" rowspan="2"><button type="submit" class="btn-green" data-icon="save">เพิ่ม</button></td>
 		</tr>
 		<tr>
-	     	<td>目标URL：</td>
+	     	<td>URL เป้าหมาย:</td>
 		    <td><input type="text" class="form-control" name="data[plan_url]" size="45" placeholder="如：http://www.weimengcms.com" data-rule="required"></td>
-		    <td>POST参数：</td>
+		    <td>พารามิเตอร์ POST：</td>
 		    <td><input type="text" class="form-control" name="data[plan_data]" size="35" placeholder='{"name":"user_name","psw":"user_psw"}'></td>
 		</tr>
     </table>
@@ -39,12 +39,12 @@
 			<tr>
 			<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 			<th width="5%" data-order-field="plan_id">ID</th>
-			<th width="12%">任务名字</th>
-            <th width="15%">保存路径</th>
-			<th>URL地址</th>
-            <th width="14%" data-order-field="plan_addtime">添加时间</th>
-            <th width="14%" data-order-field="plan_lasttime">最后执行</th>
-            <th width="11%">操作</th>
+			<th width="12%">ชื่องาน</th>
+            <th width="15%">พาธบันทึก</th>
+			<th>ที่อยู่ URL</th>
+            <th width="14%" data-order-field="plan_addtime">เวลาเพิ่ม</th>
+            <th width="14%" data-order-field="plan_lasttime">รันล่าสุด</th>
+            <th width="11%">ดำเนินการ</th>
             </tr>
 		</thead>
 		<tbody>
@@ -65,7 +65,7 @@
 						<td>'.date('Y-m-d H:i:s',$v['plan_lasttime']).'</td>
 						<td style="text-align: center;">
     						<a class="btn btn-success radius" onclick="'.$cFun.'runAjax('.$v['plan_id'].')">执行</a> 
-		    				&nbsp;&nbsp;<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['plan_id'].')">删除</a> 
+		    				&nbsp;&nbsp;<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['plan_id'].')">ลบ</a> 
 			            </td>
 					</tr>';
 				$i++;
@@ -82,7 +82,7 @@
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -91,7 +91,7 @@
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div id="asd" class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>

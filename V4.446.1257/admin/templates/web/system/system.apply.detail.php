@@ -8,9 +8,9 @@ if( !is_array($data) )
 <div class="bjui-pageContent">
 <table class="table table-border table-bordered table-bg table-sort">
     <tr>
-      <td valign="top" width="10%"><b>字段名：</b></td>
-      <td valign="top" width="45%">旧的数据</td>
-      <td valign="top" width="45%">新的数据</td>
+      <td valign="top" width="10%"><b>ชื่อฟิลด์:</b></td>
+      <td valign="top" width="45%">ข้อมูลเดิม</td>
+      <td valign="top" width="45%">ข้อมูลใหม่</td>
 	</tr>
 	<?php 
 	foreach ($data as $k=>$v)
@@ -19,17 +19,17 @@ if( !is_array($data) )
 		{
 			?>
 		    <tr>
-		      <td valign="top"><b>差异化统计</b></td>
+		      <td valign="top"><b>สถิติความแตกต่าง</b></td>
 		      <td valign="top" colspan="2" id="content_total">
-                <p style="background-color: #FD8;"><strong>0</strong>处修改</p>
-	            <p style="background-color: #9E9;"><strong>0</strong>处新增</p>
-	            <p style="background-color: #E99"><strong>0</strong>处删除</p>
+                <p style="background-color: #FD8;"><strong>0</strong>แก้ไขที่</p>
+	            <p style="background-color: #9E9;"><strong>0</strong>เพิ่มที่</p>
+	            <p style="background-color: #E99"><strong>0</strong>ลบที่</p>
             	</td>
 			</tr>
 		    <tr>
 		      <td valign="top" style="vertical-align: unset;"><b><?php echo GetKey($v,'title').'</b><br/>['.$k.']';?></td>
-		      <td valign="top" style="vertical-align: unset;"><pre id="old_<?php echo $k;?>"><code class="">差异对比中....</code></pre></td>
-		      <td valign="top" style="vertical-align: unset;"><pre id="new_<?php echo $k;?>"><code class="">差异对比中....</code></pre></td>
+		      <td valign="top" style="vertical-align: unset;"><pre id="old_<?php echo $k;?>"><code class="">กำลังเปรียบเทียบความแตกต่าง....</code></pre></td>
+		      <td valign="top" style="vertical-align: unset;"><pre id="new_<?php echo $k;?>"><code class="">กำลังเปรียบเทียบความแตกต่าง....</code></pre></td>
 			</tr>
 			
 		    <tr style="display:none">
@@ -64,7 +64,7 @@ if( !is_array($data) )
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ปิด</button></li>
     </ul>
 </div>
 <style>

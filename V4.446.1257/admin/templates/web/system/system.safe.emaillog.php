@@ -1,8 +1,8 @@
 <div class="bjui-pageHeader">
 	<div class="row cl pt-10 pb-10 pl-10">
 		<div class="f-l" style="margin-left:10px">
-			<a href="index.php?a=yes&c=system.safe.emaillog&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
-			<a href="index.php?a=yes&c=system.safe.emaillog&t=clear" data-toggle="doajax" data-confirm-msg="确定清空记录要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> 清空记录</a>
+			<a href="index.php?a=yes&c=system.safe.emaillog&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
+			<a href="index.php?a=yes&c=system.safe.emaillog&t=clear" data-toggle="doajax" data-confirm-msg="ยืนยันล้างบันทึก要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> ล้างบันทึก</a>
 		</div>
 		<div class="f-l">
 			<form id="pagerForm" name="<?php echo $cFun;?>Form"  data-toggle="ajaxsearch" data-loadingmask="true" action="index.php?c=system.safe.emaillog" method="post">
@@ -10,11 +10,11 @@
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-				<span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
-				<span class="" style="float:left;margin:5px 0 0 15px;">收件人：</span>
+				<span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
+				<span class="" style="float:left;margin:5px 0 0 15px;">ผู้รับ:</span>
 				<input type="text" class="input-text size-MINI radius form-control" name="log_receive" value="<?php echo $logReceive;?>" size="15">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $cFun;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+				<a id="<?php echo $cFun;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
 			</form>
 		</div>
 	</div>
@@ -25,13 +25,13 @@
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="5%" data-order-field="log_id">ID</th>
-				<th width="5%" data-order-field="log_status">发送状态</th>
-				<th width="10%">发信账户</th>
-				<th width="10%">收信账户</th>
-				<th width="10%">邮件主题</th>
-				<th width="12%">备注</th>
-				<th width="12%">发送时间</th>
-	            <th width="10%">操作</th>
+				<th width="5%" data-order-field="log_status">สถานะการส่ง</th>
+				<th width="10%">บัญชีผู้ส่ง</th>
+				<th width="10%">บัญชีผู้รับ</th>
+				<th width="10%">หัวข้ออีเมล</th>
+				<th width="12%">หมายเหตุ</th>
+				<th width="12%">เวลาส่ง</th>
+	            <th width="10%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody>
@@ -65,8 +65,8 @@
 							<td style="text-align: center;">'.$v['log_remark'].'</td>
 							<td style="text-align: center;">'.date("Y-m-d H:i:s" , $v['log_time']).'</td>
 							<td style="text-align: center;" data-noedit="true">
-								<a class="btn btn-secondary radius size-MINI" href="index.php?c=system.safe.emaillog.detail&id='.$v['log_id'].'" data-mask="true" data-toggle="dialog" data-title="查看日志的详细信息" data-width="600" data-height="550" >详情</a>
-								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['log_id'].')">删除</a>
+								<a class="btn btn-secondary radius size-MINI" href="index.php?c=system.safe.emaillog.detail&id='.$v['log_id'].'" data-mask="true" data-toggle="dialog" data-title="ดู日志的详细信息" data-width="600" data-height="550" >详情</a>
+								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['log_id'].')">ลบ</a>
 				            </td>
 						</tr>';
 					$i++;
@@ -83,7 +83,7 @@
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -92,7 +92,7 @@
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>"></div>
 </div>

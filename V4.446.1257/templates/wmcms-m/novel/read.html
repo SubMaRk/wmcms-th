@@ -11,47 +11,47 @@
     </head>
     <body class="skin-default">
     	<aside id="asideChapter" class="aside" data-is-bind-scroll="true">
-		    <i id="asideOverlay" class="aside-overlay" role="button" title="点击关闭浮层"></i>
+		    <i id="asideOverlay" class="aside-overlay" role="button" title="คลิกเพื่อปิดหน้าต่างลอย"></i>
 		    <div id="asideChapterContent" class="aside-content"></div>
 			</aside>
 	    <div id="pageRead" class="page-read">
 	    	<content id="readContent" class="page-read-content">
 	    		<div id="readLoadPrev" class="read-load-prev">
 		            <a class="read-load-icon btn-any loading"></a>
-		            <p class="read-load-p">下拉阅读上一章</p>
+		            <p class="read-load-p">เลื่อนลงเพื่ออ่านตอนก่อนหน้า</p>
 		        </div>
 	    		<article id="chapterContent" class="read-article">
 	    			<section class="read-section jsChapterWrapper" data-chapter-id="{章节id}">
-	    			    加载中...
+	    			    กำลังโหลด...
 	    			</section>
 	    		</article>
 	    		<div id="readLoadNext" class="read-load-next">
-	    			<a id="btnLoadNextChapter" href="javascript:" class="btn-normal red" data-size="14" role="button">加载下一章</a>
-	    			<a id="aGotoBookEnd" href="#" class="btn-blank blue" style="display:none">已经是最后一章了 »</a>
+	    			<a id="btnLoadNextChapter" href="javascript:" class="btn-normal red" data-size="14" role="button">โหลดตอนถัดไป</a>
+	    			<a id="aGotoBookEnd" href="#" class="btn-blank blue" style="display:none">นี่คือตอนสุดท้ายแล้ว »</a>
 		    	</div>
 		    </content>
 		    <div class="page-read-top">
 		    	<h1 id="chapterTitle" class="read-book-name">{章节名字}</h1>
 		    </div>
-		    <mark id="readPageMark" class="read-page-mark">你刚刚阅读到这里</mark>
+		    <mark id="readPageMark" class="read-page-mark">คุณอ่านมาถึงตรงนี้แล้ว</mark>
 		    <p id="pageNum" class="read-page-num"></p>
 	    </div>
 			
 	    <div id="pageReadOpt" class="page-read-opt" data-settings-str="" data-book-publish="0" data-sale-modes="1" data-has-sub="0">
 	    	<header class="header read-opt-header">
 	    		<a href="javascript:history.back();" class="header-back jsBack">
-	    			<i class="iconfont icon-previewleft"><title>返回</title></i>
+	    			<i class="iconfont icon-previewleft"><title>กลับ</title></i>
 	    		</a>
 	    		<div class="header-operate">
-	    			<!-- <a id="btnPledgeTrigger" href="javascript:" class="iconfont icon-wodetuijianzhuanhongbao" title="打赏" role="button">
+	    			<!-- <a id="btnPledgeTrigger" href="javascript:" class="iconfont icon-wodetuijianzhuanhongbao" title="ให้ทิป" role="button">
 	    			</a> -->
-	    			<a id="readBtnMore" href="javascript:" class="iconfont icon-dotshorizontal jsLayerTrigger" title="更多操作" data-rel="readMoreX" role="menu" aria-expanded="false">
+	    			<a id="readBtnMore" href="javascript:" class="iconfont icon-dotshorizontal jsLayerTrigger" title="ตัวเลือกเพิ่มเติม" data-rel="readMoreX" role="menu" aria-expanded="false">
 	    			</a>
 	    		</div>
 	    	</header>
-	    	{未书架}<a href="javascript:location.href='{加入书架}'" id="readJoinSJ" class="read-join-sj" role="button">加入书架</a>{/未书架}
-	    	{已书架}<a class="read-join-sj" role="button">已在书架</a>{/已书架}
-	    	<a href="javascript:" id="voiceBtn" class="read-join-sj" role="button" style="top: 6.5rem;" data-type="voice">A I 听书</a>
+	    	{未书架}<a href="javascript:location.href='{加入书架}'" id="readJoinSJ" class="read-join-sj" role="button">เพิ่มเข้าชั้นหนังสือ</a>{/未书架}
+	    	{已书架}<a class="read-join-sj" role="button">อยู่ในชั้นหนังสือแล้ว</a>{/已书架}
+	    	<a href="javascript:" id="voiceBtn" class="read-join-sj" role="button" style="top: 6.5rem;" data-type="voice">A I ฟังนิยาย</a>
 	    	
             <!-- start 听书模式 -->
             <div class="mask hidden" id="voiceMask" style="z-index:98"></div>
@@ -60,35 +60,35 @@
                     <div class="guide-popup tip-popup">
                         <div class="guide-img" >
                             <div class="voice-playerBtn" style="height: 46px;line-height: 46px;">
-                                <a class="btn" id="j_playerInit" style="background: green;" href="javascript:">开始听书</a>
+                                <a class="btn" id="j_playerInit" style="background: green;" href="javascript:">เริ่มฟังเสียงอ่าน</a>
                             </div>
                             <div class="voice-playerLoading hidden">
-                                <a class="red-btn" id="j_playerInit" href="javascript:">播放器初始化中...</a>
+                                <a class="red-btn" id="j_playerInit" href="javascript:">กำลังเริ่มต้นเครื่องเล่น...</a>
                             </div>
                             <div class="voice-player hidden">
-                                <div class="vioce-prvenext vioce-prve" style="width: 8%;" title="上一章">&lt;</div>
+                                <div class="vioce-prvenext vioce-prve" style="width: 8%;" title="ตอนก่อนหน้า">&lt;</div>
                                 <div id="player" class="aplayer" style="width: 84%;"></div>
-                                <div class="vioce-prvenext vioce-next" style="width: 8%;" title="下一章">&gt;</div>
+                                <div class="vioce-prvenext vioce-next" style="width: 8%;" title="ตอนถัดไป">&gt;</div>
                                 <div style="clear:both"></div>
                             </div>
                             <div class="voice-set">
-                                <li class="voice-channel-box"><i>发音人渠道</i></li>
-                                <li class="voice-voicet-box"><i>发音人</i><span><select style="font-size: small;"></select></span></li>
+                                <li class="voice-channel-box"><i>แหล่งเสียงบรรยาย</i></li>
+                                <li class="voice-voicet-box"><i>ผู้บรรยายเสียง</i><span><select style="font-size: small;"></select></span></li>
                                 <li class="voice-speed-box">
-                                    <i>语速</i>
-                                    <span data-val="-2" class="voice-speed">最慢</span>
-                                    <span data-val="-1" class="voice-speed">慢</span>
-                                    <span data-val="0" class="voice-speed act">正常</span>
-                                    <span data-val="1" class="voice-speed">快</span>
-                                    <span data-val="2" class="voice-speed">最快</span>
+                                    <i>ความเร็วเสียง</i>
+                                    <span data-val="-2" class="voice-speed">ช้าที่สุด</span>
+                                    <span data-val="-1" class="voice-speed">ช้า</span>
+                                    <span data-val="0" class="voice-speed act">ปกติ</span>
+                                    <span data-val="1" class="voice-speed">เร็ว</span>
+                                    <span data-val="2" class="voice-speed">เร็วที่สุด</span>
                                 </li>
                                 <li class="voice-auto-box">
-                                <i>自动播放下一章</i><cite class="auto-switch"><em class="on" id="j-voiceAutoNextBtn"><a class="lang " id="j-voiceAutoNextSwitch" title="自动播放下一章" href="javascript:">开启</a></em></cite>
+                                <i>เล่นตอนถัดไปอัตโนมัติ</i><cite class="auto-switch"><em class="on" id="j-voiceAutoNextBtn"><a class="lang " id="j-voiceAutoNextSwitch" title="เล่นตอนถัดไปอัตโนมัติ" href="javascript:">เปิด</a></em></cite>
                                 </li>
                             </div>
                         </div>
                         <div class="voice-close">
-                            <a class="btn" style="background:red" id="j_closeVoice" href="javascript:">关闭</a>
+                            <a class="btn" style="background:red" id="j_closeVoice" href="javascript:">ปิด</a>
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
 	    	<div id="readMoreX" class="read-opt-more">
 	    		<a href="{首页}" class="read-opt-a">
 	    			<i class="iconfont icon-zhuye1"></i>
-	    			<h4>返回首页</h4>
+	    			<h4>กลับหน้าแรก</h4>
 	    		</a>
 	    		<!-- <a href="javascript:" id="btnDownloadFreeChapters" class="read-opt-a">
 	    			<i class="iconfont icon-lixianxiazai"></i>
@@ -107,21 +107,21 @@
 	    		</a> -->
 	    		<a href="{内容链接}" class="read-opt-a">
 	    			<i class="iconfont icon-SU"></i>
-	    			书籍详情
+	    			รายละเอียดหนังสือ
 	    		</a>
 	    		<a href="{我的书架}" class="read-opt-a">
 	    			<i class="iconfont icon-books"></i>
-	    			返回我的书架
+	    			กลับไปที่ชั้นหนังสือของฉัน
 	    		</a>
 		    </div>
 		    <div id="readOptProg" class="read-opt-bot read-opt-prog">
 		    	<div class="read-prog-info">
 		    		<a href="javascript:" id="readProgPrev" class="read-prog-prev">
 		    			<i class="iconfont icon-back" aria-hidden="true"></i>
-		    			上一章
+		    			ตอนก่อนหน้า
 		    		</a>
 		    		<a href="javascript:" id="readProgNext" class="read-prog-next">
-		    			下一章
+		    			ตอนถัดไป
 		    			<i class="iconfont icon-you" aria-hidden="true"></i>
 		    		</a>
 		    		<div id="readProgVal" class="read-prog-val">
@@ -137,11 +137,11 @@
 		    	<div class="read-set-font">
 		    		<a href="javascript:" id="readFontDown" class="read-font-down" data-index="0" role="button">
 		    			<i class="iconfont icon-yueduye_zitijianxiao"></i>
-		    			<aria>字号变小</aria>
+		    			<aria>ลดขนาดตัวอักษร</aria>
 		    		</a>
 		    		<a href="javascript:" id="readFontUp" class="read-font-up" data-index="1" role="button">
 		    			<i class="iconfont icon-yueduye_zitizengda"></i>
-		    			<aria>字号变大</aria>
+		    			<aria>เพิ่มขนาดตัวอักษร</aria>
 		    		</a>
 		    		<div class="read-font-bar">
 		    			<div class="range">
@@ -155,26 +155,26 @@
 		    	<div id="readSetSkin" class="read-set-skin">
 		    		<ul class="btn-group" role="radiogroup">
 		    			<li class="btn-group-cell read-set-cell">
-		    				<input type="radio" id="skinDefault" name="skin" value="default" data-index="0" title="默认皮肤">	    
-		    				<label class="read-skin-default" for="skinDefault" title="默认皮肤">
+		    				<input type="radio" id="skinDefault" name="skin" value="default" data-index="0" title="ธีมค่าเริ่มต้น">	    
+		    				<label class="read-skin-default" for="skinDefault" title="ธีมค่าเริ่มต้น">
 		    					<i class="iconfont icon-ok center"></i>
 		    				</label>
 		    			</li>
 		    			<li class="btn-group-cell read-set-cell">
-		    				<input type="radio" id="skinBlue" name="skin" value="blue" data-index="1" title="蓝色皮肤">	    
-		    				<label class="read-skin-blue" for="skinBlue" title="蓝色皮肤">
+		    				<input type="radio" id="skinBlue" name="skin" value="blue" data-index="1" title="ธีมสีฟ้า">	    
+		    				<label class="read-skin-blue" for="skinBlue" title="ธีมสีฟ้า">
 		    					<i class="iconfont icon-ok center"></i>
 		    				</label>
 		    			</li>
 		    			<li class="btn-group-cell read-set-cell">
-		    				<input type="radio" id="skinGreen" name="skin" value="green" data-index="2" title="绿色皮肤">	    
-		    				<label class="read-skin-green" for="skinGreen" title="绿色皮肤">
+		    				<input type="radio" id="skinGreen" name="skin" value="green" data-index="2" title="ธีมสีเขียว">	    
+		    				<label class="read-skin-green" for="skinGreen" title="ธีมสีเขียว">
 		    					<i class="iconfont icon-ok center"></i>
 		    				</label>
 		    			</li>
 		    			<li class="btn-group-cell read-set-cell">
-		    				<input type="radio" id="skinLight" name="skin" value="light" data-index="3" title="浅色皮肤">	    
-		    				<label class="read-skin-light" for="skinLight" title="浅色皮肤">
+		    				<input type="radio" id="skinLight" name="skin" value="light" data-index="3" title="ธีมสีอ่อน">	    
+		    				<label class="read-skin-light" for="skinLight" title="ธีมสีอ่อน">
 		    					<i class="iconfont icon-ok center"></i>
 		    				</label>
 		    			</li>
@@ -184,11 +184,11 @@
 		    		<ul class="btn-group">
 		    			<li class="btn-group-cell read-set-cell">
 		    				<input type="radio" id="layoutV" name="layout" value="v">	    
-		    				<label class="read-btn-layout" for="layoutV">上下滑动</label>
+		    				<label class="read-btn-layout" for="layoutV">ปัดขึ้นลง</label>
 		    			</li>
 		    			<li class="btn-group-cell read-set-cell">
 		    				<input type="radio" id="layoutH" name="layout" value="h">	    
-		    				<label class="read-btn-layout" for="layoutH">左右滑动</label>
+		    				<label class="read-btn-layout" for="layoutH">ปัดซ้ายขวา</label>
 		    			</li>
 		    		</ul>
 		    	</div>
@@ -197,24 +197,24 @@
 		    	<div class="btn-group">
 		    		<a href="#&amp;asideChapter" id="readBtnChapter" class="btn-group-cell" data-rel="asideChapter" role="button" aria-haspopup="true">
 		    			<i class="iconfont icon-mulu"></i>
-		    			<h4 class="read-opt-footer-h">目录</h4>
+		    			<h4 class="read-opt-footer-h">สารบัญ</h4>
 		    		</a>
 		    		<a href="javascript:" id="readBtnProg" class="btn-group-cell jsLayerTrigger" data-rel="readOptProg" role="menuitem">
 		    			<i class="iconfont icon-jindutiao"></i>
-		    			<h4 class="read-opt-footer-h">进度</h4>
+		    			<h4 class="read-opt-footer-h">ความคืบหน้า</h4>
 		    		</a>
 		    		<a href="javascript:" id="readBtnSet" class="btn-group-cell jsLayerTrigger" data-rel="readOptSet" role="menuitem">
 		    			<i class="iconfont icon-shezhi"></i>
-		    			<h4 class="read-opt-footer-h">设置</h4>
+		    			<h4 class="read-opt-footer-h">ตั้งค่า</h4>
 		    		</a>
 
-		    		<a href="javascript:" id="readBtnMode" class="btn-group-cell" role="checkbox" title="日间夜间模式切换">
+		    		<a href="javascript:" id="readBtnMode" class="btn-group-cell" role="checkbox" title="สลับโหมดกลางวันและกลางคืน">
 		    			<i class="iconfont icon-yueliang"></i>
 		    			<h4 class="read-opt-footer-h"></h4>
 		    		</a>
 		    		<a href="{内容链接}" class="btn-group-cell">
 		    			<i class="iconfont icon-pinglun"></i>
-		    			<h4 class="read-opt-footer-h">评论</h4>
+		    			<h4 class="read-opt-footer-h">ความคิดเห็น</h4>
 		    		</a>
 		    	</div>
 		    </footer>

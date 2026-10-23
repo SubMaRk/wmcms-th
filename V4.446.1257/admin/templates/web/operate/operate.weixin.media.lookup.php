@@ -6,9 +6,9 @@
 	<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
 	<input type="hidden" name="st" value="<?php echo $st;?>">
         <div class="bjui-searchBar">
-            <label>素材名字：</label><input type="text" placeholder="<?php echo $key;?>" name="key" size="15" />&nbsp;
-            <button type="submit" class="btn-default" data-icon="search">查询</button>&nbsp;
-            <a class="btn btn-orange" href="javascript:;" data-icon="undo">清空查询</a>&nbsp;
+            <label>ชื่อสื่อ:</label><input type="text" placeholder="<?php echo $key;?>" name="key" size="15" />&nbsp;
+            <button type="submit" class="btn-default" data-icon="search">สืบค้น</button>&nbsp;
+            <a class="btn btn-orange" href="javascript:;" data-icon="undo">ล้างการสืบค้น</a>&nbsp;
         </div>
     </form>
 </div>
@@ -18,10 +18,10 @@
 		<thead>
 			<tr>
 			<th width="8%" data-order-field="author_id">ID</th>
-			<th width="15%">公众号</th>
-			<th width="10%">类型</th>
-			<th width="30%">素材名字</th>
-            <th width="25%" style="text-align: center;">操作</th>
+			<th width="15%">บัญชีทางการ</th>
+			<th width="10%">ประเภท</th>
+			<th width="30%">ชื่อสื่อ</th>
+            <th width="25%" style="text-align: center;">ดำเนินการ</th>
             </tr>
 		</thead>
 		<tbody>
@@ -57,7 +57,7 @@
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -66,7 +66,7 @@
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>"></div>
 </div>

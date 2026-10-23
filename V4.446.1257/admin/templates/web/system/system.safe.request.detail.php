@@ -8,11 +8,11 @@ if( !is_array($data) )
 <div class="bjui-pageContent">
 <table class="table table-border table-bordered table-bg table-sort">
     <tr>
-      <td valign="top" width="150"><b>请求ID：</b></td>
+      <td valign="top" width="150"><b>ID คำขอ:</b></td>
       <td valign="top"><?php echo $data['request_id']?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>管理员：</b></td>
+      <td valign="top" width="150"><b>ผู้ดูแลระบบ:</b></td>
       <td valign="top"><?php echo $data['manager_name']?></td>
 	</tr>
     <tr>
@@ -20,15 +20,15 @@ if( !is_array($data) )
       <td valign="top"><?php echo $data['request_file']?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>请求类型：</b></td>
+      <td valign="top" width="150"><b>ประเภทคำขอ:</b></td>
       <td valign="top"><?php echo $data['request_type']?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>请求ip：</b></td>
+      <td valign="top" width="150"><b>ip คำขอ:</b></td>
       <td valign="top"><?php echo $data['request_ip']?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>Get参数：</b></td>
+      <td valign="top" width="150"><b>พารามิเตอร์ Get：</b></td>
       <td valign="top">
 	      <?php
 	      if( $data['request_get'] )
@@ -42,7 +42,7 @@ if( !is_array($data) )
       </td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>Post参数：</b></td>
+      <td valign="top" width="150"><b>พารามิเตอร์ Post：</b></td>
       <td valign="top">
 	      <?php
 	      if( $data['request_post'] )
@@ -56,7 +56,7 @@ if( !is_array($data) )
      </td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>请求时间：</b></td>
+      <td valign="top" width="150"><b>เวลาคำขอ:</b></td>
       <td valign="top"><?php echo date("Y-m-d H:i:s" , $data['request_time'])?></td>
 	</tr>
 </table>
@@ -65,6 +65,6 @@ if( !is_array($data) )
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ปิด</button></li>
     </ul>
 </div>

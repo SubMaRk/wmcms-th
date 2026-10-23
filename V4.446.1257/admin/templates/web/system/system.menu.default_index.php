@@ -3,14 +3,14 @@
 		<form action="index.php?a=yes&c=system.menu.menu&t=default_index" data-reload="false" data-toggle="validate" method="post">
 			<div style="text-align:center;">
 			    <div class="pt-20">
-					控制器名：<input type="text" name="index" value="<?php echo $defaultIndex;?>">
+					ชื่อคอนโทรลเลอร์:<input type="text" name="index" value="<?php echo $defaultIndex;?>">
 				</div>
 			    <div class="pt-20">
-					注意：设置时请确保当前账户拥有该控制器的权限。
+					หมายเหตุ: โปรดตรวจสอบว่าบัญชีปัจจุบันมีสิทธิ์ของคอนโทรลเลอร์นี้เมื่อตั้งค่า
 				</div>
 			    <div class="pt-20">
-					<button type="submit" class="btn-green" data-icon="location-arrow">确定</button>
-					<button type="button" class="btn-close" data-icon="close">取消</button>
+					<button type="submit" class="btn-green" data-icon="location-arrow">ยืนยัน</button>
+					<button type="button" class="btn-close" data-icon="close">ยกเลิก</button>
 				</div>
 			</div>
 		</form>

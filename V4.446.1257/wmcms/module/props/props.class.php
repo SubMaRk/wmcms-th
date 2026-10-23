@@ -102,7 +102,7 @@ class props
 			'分类倒序' =>'type_order desc',
 			'父级分类' =>'type_topid',
 			'模块' =>'type_module',
-			'小说' =>'novel',
+			'นิยาย' =>'novel',
 
 			'顺序' =>'props_order',
 			'道具' =>'props_order desc',

@@ -18,7 +18,7 @@ function ZtreeClick(event, treeId, treeNode) {
 
 	 if( typeof(treeNode.id) == 'undefined' ){
 		$('#j_ztree_menus2').val('')
-	 	$('#button').text('新增菜单')
+	 	$('#button').text('เพิ่มเมนู')
 	}else{
 	 	$('#j_ztree_menus2').val(pname)
  	 	$('#button').text('更新菜单')
@@ -230,7 +230,7 @@ function S_NodeClick(event, treeId, treeNode) {
 
 <div class="bjui-pageContent">
 	<fieldset>
-	<legend>后台首页菜单目录修改</legend>
+	<legend>แก้ไขสารบัญเมนูหน้าแรกหลังบ้าน</legend>
     <div style="padding:20px;">
         <div class="clearfix">
             <div style="float:left; width:300px; height:500px; overflow:auto;    border:1px solid #C3CED5;">
@@ -254,46 +254,46 @@ function S_NodeClick(event, treeId, treeNode) {
             <div id="ztree-detail" style="margin-left:320px;">
             	<table class="table table-border table-bordered table-bg table-sort">
 		      	<tr>
-	        		<td width="220px"><b>菜单ID：</b></td>
+	        		<td width="220px"><b>ID เมนู:</b></td>
 	                <td>
-	                	<input type="text" class="form-control" name="menu_title" id="menu_id" readonly placeholder="菜单ID"/>
+	                	<input type="text" class="form-control" name="menu_title" id="menu_id" readonly placeholder="ID เมนู"/>
 	                </td>
 	            </tr>
 		      	<tr>
-	        		<td><b>菜单名称：</b></td>
+	        		<td><b>ชื่อเมนู:</b></td>
 	                <td>
-	                	<input type="text" class="form-control validate[required] required" name="menu_title" id="menu_title" placeholder="菜单名称，中文" />
+	                	<input type="text" class="form-control validate[required] required" name="menu_title" id="menu_title" placeholder="菜单ชื่อ，中文" />
 	                </td>
 	            </tr>
 		      	<tr>
-	        		<td><b>菜单标识：</b><br/>
-	        		权限菜单的时候此项参数为方法选择器	        		
+	        		<td><b>ตัวระบุเมนู:</b><br/>
+	        		เมื่อเป็นเมนูสิทธิ์ พารามิเตอร์นี้คือตัวเลือกเมธอด	        		
 	        		</td>
 	                <td>
-	                	<input type="text" class="form-control validate[required] required" name="menu_name" id="menu_name" placeholder="菜单标识，英文" />
+	                	<input type="text" class="form-control validate[required] required" name="menu_name" id="menu_name" placeholder="ตัวระบุเมนู，英文" />
 	                </td>
 	            </tr>
 		      	<tr>
-	        		<td><b>菜单状态：</b></td>
+	        		<td><b>สถานะเมนู:</b></td>
 	                <td>
 	                	<select data-toggle="selectpicker" name="menu_status" id="menu_status">
-	                        <option value="1">显示菜单</option>
-	                        <option value="0">隐藏菜单</option>
+	                        <option value="1">แสดงเมนู</option>
+	                        <option value="0">ซ่อนเมนู</option>
 	                    </select>
 	                </td>
 	            </tr>
 		      	<tr>
-	        		<td><b>菜单类型：</b></td>
+	        		<td><b>ประเภทเมนู:</b></td>
 	                <td>
 	                	<select data-toggle="selectpicker" name="menu_group" id="menu_group">
-	                        <option value="0">普通菜单</option>
-	                        <option value="1">分组菜单</option>
-	                        <option value="2">权限菜单</option>
+	                        <option value="0">เมนูปกติ</option>
+	                        <option value="1">เมนูกลุ่ม</option>
+	                        <option value="2">เมนูสิทธิ์</option>
 	                    </select>
 	                </td>
 	            </tr>
 		      	<tr>
-	        		<td><b>所属菜单：</b></td>
+	        		<td><b>เมนูที่สังกัด:</b></td>
 	                <td>
 	                	<input type="hidden" name="menu_pid" id="menu_pid" value="0">
 	                	<input type="text" id="j_ztree_menus2" data-toggle="selectztree" size="18" data-tree="#j_select_tree2" readonly>
@@ -308,22 +308,22 @@ function S_NodeClick(event, treeId, treeNode) {
 	                </td>
 	            </tr>
 		      	<tr>
-	        		<td><b>显示顺序：</b></td>
-	                <td><input type="text" class="form-control validate[required] required" name="menu_order" id="menu_order" placeholder="当前分组排序，越小越靠前" /></td>
+	        		<td><b>ลำดับการแสดง:</b></td>
+	                <td><input type="text" class="form-control validate[required] required" name="menu_order" id="menu_order" placeholder="当前กลุ่มเรียงลำดับ，ยิ่งน้อยยิ่งอยู่หน้า" /></td>
 	            </tr>
 		      	<tr>
-	        		<td><b>控制器名字：</b></td>
+	        		<td><b>ชื่อคอนโทรลเลอร์:</b></td>
 	                <td>
-	                	<input type="text" class="form-control" name="menu_file" id="menu_file" placeholder="控制器的名字" />
+	                	<input type="text" class="form-control" name="menu_file" id="menu_file" placeholder="控制器的名คำ" />
 	                </td>
 	            </tr>
 		      	<tr>
-	        		<td colspan="2"><button id="button" class="btn btn-green" onclick="M_Ts_Menu();">增加菜单</button></td>
+	        		<td colspan="2"><button id="button" class="btn btn-green" onclick="M_Ts_Menu();">เพิ่มเมนู</button></td>
 	            </tr>
 	            </table>
             </div>
             <div style="margin-left:320px;border:1px solid #C3CED5;margin-top:10px;padding:5px;">
-				注意：菜单类型为权限菜单的时候请勿修改任何数据。
+				หมายเหตุ: ห้ามแก้ไขข้อมูลใดๆ เมื่อประเภทเมนูเป็นเมนูสิทธิ์
             </div>
         </div>
     </div>

@@ -2,14 +2,14 @@
 	<form action="index.php?a=yes&c=operate.ad&t=<?php echo $type;?>" data-reload="false" data-toggle="validate" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
 	<input name="id[ad_id]" type="hidden" class="input-text" value="<?php echo $id;?>">
 		<fieldset>
-			<legend>广告编辑</legend>
+			<legend>แก้ไขโฆษณา</legend>
         	<table class="table table-condensed table-hover" width="100%">
             <tbody>
                 <tr>
                     <td>
-                        <b>广告分类：</b>
+                        <b>หมวดหมู่โฆษณา:</b>
                         <select data-toggle="selectpicker" name="ad[ad_type_id]">
-                        <option value="0">请选择分类</option>
+                        <option value="0">กรุณาเลือกหมวดหมู่</option>
                        	<?php 
                        	if($typeIdArr)
                        	{
@@ -25,13 +25,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <b>广告位名：</b>
+                        <b>ชื่อตำแหน่งโฆษณา:</b>
                         <input type="text" name="ad[ad_name]" value="<?php echo C('ad_name',null,'data');?>" data-rule="required">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <b>投放时间：</b>
+                        <b>เวลาแสดงโฆษณา:</b>
                        	<input type="radio" name="ad[ad_time_type]" value="0" data-toggle="icheck" data-label="不限时间" <?php echo str::CheckElse('0', C('ad_time_type',null,'data') , 'checked');?>>
                        	<input type="radio" name="ad[ad_time_type]" value="1" data-toggle="icheck" data-label="限时投放" <?php echo str::CheckElse('1', C('ad_time_type',null,'data') , 'checked');?>>
                        	<span id="<?php echo $type.$cFun;?>adTime" <?php if(C('ad_time_type',null,'data') != '1'){ echo 'style="display:none"';}?>>
@@ -42,7 +42,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <b>广告状态：</b>
+                        <b>สถานะโฆษณา:</b>
                         <select data-toggle="selectpicker" name="ad[ad_status]">
                        	<?php 
                        	foreach ($statusArr as $k=>$v)
@@ -56,7 +56,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <b>广告平台：</b>
+                        <b>แพลตฟอร์มโฆษณา:</b>
                        	<?php 
                        	foreach ($ptArr as $k=>$v)
                        	{
@@ -68,13 +68,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <b>广告单价：</b>
+                        <b>ราคาต่อหน่วยโฆษณา:</b>
                         <input type="text" name="ad[ad_price]" value="<?php echo C('ad_price',null,'data');?>" size="10">(单位:元)
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <b>广告类型：</b>
+                        <b>ประเภทโฆษณา:</b>
                         <select data-toggle="selectpicker" id="<?php echo $type?>ad_type" name="ad[ad_type]">
                        	<?php 
                        	foreach ($adArr as $k=>$v)
@@ -89,19 +89,19 @@
                 
                 <tr class="<?php echo $type;?>ad_txt_tr" <?php if(C('ad_type',null,'data') != '1'){ echo 'style="display:none"';}?>>
                     <td>
-                        <b>广告标题：</b>
+                        <b>หัวข้อโฆษณา:</b>
                         <input type="text" name="ad[ad_title]" value="<?php echo C('ad_title',null,'data');?>" size="40">
                     </td>
                 </tr>
                 <tr class="<?php echo $type;?>ad_txt_img_url" <?php if(C('ad_type',null,'data') == '3'){ echo 'style="display:none"';}?>>
                     <td>
-                        <b>广告链接：</b>
+                        <b>ลิงก์โฆษณา:</b>
                         <input type="text" name="ad[ad_url]" value="<?php echo C('ad_url',null,'data');?>" size="40">
                     </td>
                 </tr>
                 <tr class="<?php echo $type;?>ad_img_tr" <?php if(C('ad_type',null,'data') != '2'){ echo 'style="display:none"';}?>>
                    <td>
-                        <b>广告图片：</b>
+                        <b>รูปโฆษณา:</b>
                         <input type="text" name="ad[ad_img]" value="<?php echo C('ad_img',null,'data');?>" id="<?php echo $type?>ad_simg" size="40">
 						<span class="upload" data-uploader="index.php?a=yes&c=upload&t=img" data-on-upload-success="<?php echo $cFun;?>upload_success" data-file-type-exts="*.jpg;*.png;*.gif;*.mpg" data-toggle="upload" data-icon="cloud-upload"></span>
 						<?php if( C('ad_img',null,'data') != '' ){ echo '<a target="_blank" href="'.C('ad_img',null,'data').'">点击查看图片</a>';}?>
@@ -109,7 +109,7 @@
                 </tr>
                 <tr class="<?php echo $type;?>ad_img_tr" <?php if(C('ad_type',null,'data') != '2'){ echo 'style="display:none"';}?>>
                     <td>
-                        <b>图片尺寸：</b>
+                        <b>ขนาดรูปภาพ:</b>
                         <input type="text" name="ad[ad_img_width]" value="<?php echo C('ad_img_width',null,'data');?>" size="10"> *
                         <input type="text" name="ad[ad_img_height]" value="<?php echo C('ad_img_height',null,'data');?>" size="10">
                     </td>
@@ -117,7 +117,7 @@
                 
 	            <tr class="<?php echo $type;?>ad_js_tr" <?php if(C('ad_type',null,'data') != '3'){ echo 'style="display:none"';}?>>
                     <td>
-                        <b>J S代码：</b>
+                        <b>โค้ด J S：</b>
                         <textarea name="ad[ad_js]" id="<?php echo $type;?>ad_js"><?php echo C('ad_js',null,'data');?></textarea>
                     </td>
                 </tr>
@@ -129,8 +129,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 
@@ -146,7 +146,7 @@ function <?php echo $cFun;?>(json){
     $(this).navtab("reload",op);	// 刷新Tab页面
     $(this).navtab("switchTab",tabid);	// 切换Tab页面
 }
-//上传封面
+//上传บล็อก面
 function <?php echo $cFun;?>upload_success(file,json,$element){
 	json = $.parseJSON(json);
 	if ( json.statusCode == 300){

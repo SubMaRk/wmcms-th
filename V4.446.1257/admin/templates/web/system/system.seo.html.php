@@ -9,13 +9,13 @@
 <div class="bjui-pageContent">
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
       <thead><tr><th colspan="4" style="text-align:left;">
-      <b style="color:red;font-size:16px;">提示:如果您设置了分类的HTML保存路径，生成HTML的时候提示“当前分类没有设置HTML保存路径!”，请先在SEO设置里面重新生成缓存！</b><br/><br/>
-      <b>提示:建议所有的html文件都放在统一的文件，这样方便对文件进行管理！</b>
+      <b style="color:red;font-size:16px;">คำแนะนำ: หากตั้งพาธบันทึก HTML ของหมวดหมู่ไว้ แล้วตอนสร้าง HTML ขึ้นว่า "หมวดหมู่นี้ยังไม่ได้ตั้งพาธบันทึก HTML!" ให้สร้างแคชใหม่ในตั้งค่า SEO ก่อน!</b><br/><br/>
+      <b>คำแนะนำ: ควรเก็บไฟล์ html ทั้งหมดไว้ในโฟลเดอร์เดียวกัน จะจัดการไฟล์ได้ง่าย!</b>
       </th></tr></thead>
     </table>
     
     <fieldset>
-		<legend>生成HTML文件</legend>
+		<legend>สร้างไฟล์ HTML</legend>
 		<ul class="nav nav-tabs" role="tablist">
 			<li class="active"><a href="#<?php echo $cFun;?>check" role="tab" data-toggle="tab">第一步：选择版本</a></li>
 			<li><a href="#<?php echo $cFun;?>html_index" role="tab" data-toggle="tab" id="<?php echo $cFun;?>html_index_tab">第二步：① 生成首页/单页</a></li>
@@ -29,7 +29,7 @@
 			<div class="tab-pane fade active in" id="<?php echo $cFun;?>check">
 				选择需要生成HTML的版本：
 			   <select data-toggle="selectpicker" id="<?php echo $cFun;?>tp" name="tp" data-width="100">
-	            	<option value="4">电脑版</option>
+	            	<option value="4">เวอร์ชันคอมพิวเตอร์</option>
 	            	<!-- <option value="3">触屏版</option>
 	            	<option value="2">3G版</option>
 	            	<option value="1">简洁版</option> -->
@@ -40,17 +40,17 @@
 			<div class="tab-pane fade in" id="<?php echo $cFun;?>html_index">
 				<table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
 			      <thead>
-			      <tr><th colspan="4" style="text-align:left;color: #F16B0A"><b>备注：如果不填写保存路径，首页/单页的html文件命名方式是根据伪静态的首页地址来保存命名</b></th></tr></thead>
+			      <tr><th colspan="4" style="text-align:left;color: #F16B0A"><b>หมายเหตุ: หากไม่กรอกพาธบันทึก ไฟล์ html ของหน้าแรก/หน้าเดียวจะตั้งชื่อตามที่อยู่หน้าแรกแบบสแตติก</b></th></tr></thead>
 			      </thead>
 			    </table>
 			    <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
 			      <thead>
-			      <tr><th colspan="4" style="text-align:left;"><b>首页生成</b></th></tr></thead>
+			      <tr><th colspan="4" style="text-align:left;"><b>สร้างหน้าแรก</b></th></tr></thead>
 			      <tr>
-			      	<td width="150">需要生成的模块</td>
+			      	<td width="150">โมดูลที่ต้องสร้าง</td>
 			        <td>
 			        	<select data-toggle="selectpicker" data-width="130" id="<?php echo $cFun?>index_module">
-			            	<option value="index">全站首页</option>
+			            	<option value="index">หน้าแรกทั้งเว็บไซต์</option>
 			            	<?php 
 			            	foreach ($moduleArr as $k=>$v)
 			            	{
@@ -60,15 +60,15 @@
 			         	</select>
 			      </td></tr>
 			      <tr>
-			      	<td width="150">保存路径</td>
+			      	<td width="150">พาธบันทึก</td>
 			        <td><input type="text" id="<?php echo $cFun;?>index_path" class="form-control" value="/index.html"></td></tr>
 			      <tr>
-			        <td colspan="2"><a class="btn btn-success radius size-MINI" onClick="createIndex()">生成首页</a></td>
+			        <td colspan="2"><a class="btn btn-success radius size-MINI" onClick="createIndex()">สร้างหน้าแรก</a></td>
 			      </tr>
 			      <tr id="<?php echo $cFun?>index_barline_box" style="display:none"><td colspan="2">
 			      		<!-- 进度条 -->
 						<div class="barline"><div class="barline_text_box" id="<?php echo $cFun?>index_text_box"><span id="<?php echo $cFun?>index_text">0</span>%</div></div>
-						<div class="barline_perc">进度<span id="<?php echo $cFun?>index_now">0</span>/<span id="<?php echo $cFun?>index_sum">1</span></div>
+						<div class="barline_perc">ความคืบหน้า<span id="<?php echo $cFun?>index_now">0</span>/<span id="<?php echo $cFun?>index_sum">1</span></div>
 						<div class="barline_msg" id="<?php echo $cFun?>index_msg"></div>
 					</td></tr>
 			    </table>
@@ -77,13 +77,13 @@
 		    <!-- 分类列表生成 -->
 			<div class="tab-pane fade in" id="<?php echo $cFun;?>html_list">
 			    <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-			      <thead><tr><th colspan="4" style="text-align:left;"><b>列表/目录页HTML生成</b></th></tr></thead>
+			      <thead><tr><th colspan="4" style="text-align:left;"><b>สร้าง HTML หน้ารายการ/สารบัญ</b></th></tr></thead>
 			      <tr>
-			      	<td width="150">需要生成的模块</td>
+			      	<td width="150">โมดูลที่ต้องสร้าง</td>
 			        <td>
 			        	<input class="nowtab" type="hidden" value="list">
 			        	<select data-toggle="selectpicker" name="<?php echo $cFun;?>module" data-width="130">
-			            	<option value="">请选择模块</option>
+			            	<option value="">กรุณาเลือกโมดูล</option>
 			            	<?php 
 			            	foreach ($moduleArr as $k=>$v)
 			            	{
@@ -93,39 +93,39 @@
 			         	</select>
 			      </td></tr>
 			      <tr>
-			      	<td>需要生成的分类</td>
+			      	<td>หมวดหมู่ที่ต้องสร้าง</td>
 			      	<td>
 			      	<input id="<?php echo $cFun;?>list_type" class="hidden_input" type="hidden">
 			      	<div class="formControls" id="<?php echo $cFun;?>list_ztree_select_box">
-	        			<div style="margin-top: 8px;font-size: 14px;">--请先选择模块--</div>
+	        			<div style="margin-top: 8px;font-size: 14px;">--กรุณาเลือกโมดูลก่อน--</div>
 	        		</div>
 		          </td></tr>
 			      <tr>
-			      	<td>下级栏目是否生成</td><td><input type="checkbox" value="1" id="<?php echo $cFun;?>list_child" data-toggle="icheck" data-label="是"></td></tr>
+			      	<td>สร้างหมวดหมู่ย่อยหรือไม่</td><td><input type="checkbox" value="1" id="<?php echo $cFun;?>list_child" data-toggle="icheck" data-label="是"></td></tr>
 			      <tr>
-			      	<td>聚合列表生成</td><td><input type="checkbox" value="1" id="<?php echo $cFun;?>list_all" data-toggle="icheck" data-label="是"></td></tr>
+			      	<td>สร้างรายการรวม</td><td><input type="checkbox" value="1" id="<?php echo $cFun;?>list_all" data-toggle="icheck" data-label="是"></td></tr>
 			      <tr>
-			        <td>生成最大页数</td><td><input type="text" id="<?php echo $cFun;?>list_page" class="form-control" size="5" value="0">&nbsp;&nbsp;&nbsp;0为不限制页数</td>
+			        <td>สร้างจำนวนหน้าสูงสุด</td><td><input type="text" id="<?php echo $cFun;?>list_page" class="form-control" size="5" value="0">&nbsp;&nbsp;&nbsp;0为不限制页数</td>
 			      </tr>
-			      <tr><td colspan="2"><a class="btn btn-success radius size-MINI" onClick="createList()">生成分类列表</a></td></tr>
+			      <tr><td colspan="2"><a class="btn btn-success radius size-MINI" onClick="createList()">สร้างรายการหมวดหมู่</a></td></tr>
 			     <tr id="<?php echo $cFun?>list_barline_box" style="display:none"><td colspan="2">
 		      		<!-- 生成界面 -->
 					<iframe style="width: 100%;height:80px;border:none;"></iframe>
 				</td></tr>
-				<tr id="<?php echo $cFun?>list_loading" style="display:none"><td colspan="2"><img src="/files/images/loading.gif">请稍候,初始化数据中....</td></tr>
+				<tr id="<?php echo $cFun?>list_loading" style="display:none"><td colspan="2"><img src="/files/images/loading.gif">กรุณารอสักครู่ กำลังเริ่มต้นข้อมูล....</td></tr>
 			    </table>
 		    </div>
 		    
 		    <!-- 内容页生成 -->
 			<div class="tab-pane fade in" id="<?php echo $cFun;?>html_content">
 			    <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-			      <thead><tr><th colspan="4" style="text-align:left;"><b>内容页HTML生成</b></th></tr></thead>
+			      <thead><tr><th colspan="4" style="text-align:left;"><b>สร้าง HTML หน้าคอนเทนต์</b></th></tr></thead>
 			      <tr>
-			      	<td width="150">需要生成的模块</td>
+			      	<td width="150">โมดูลที่ต้องสร้าง</td>
 			        <td>
 			        	<input class="nowtab" type="hidden" value="content">
 			        	<select data-toggle="selectpicker" name="<?php echo $cFun;?>module" data-width="130">
-			            	<option value="">请选择模块</option>
+			            	<option value="">กรุณาเลือกโมดูล</option>
 			            	<?php 
 			            	foreach ($moduleArr as $k=>$v)
 			            	{
@@ -135,24 +135,24 @@
 			         	</select>
 			      </td></tr>
 			      <tr>
-			      	<td>需要生成的分类</td>
+			      	<td>หมวดหมู่ที่ต้องสร้าง</td>
 			      	<td>
 			      	<input id="<?php echo $cFun;?>content_type" class="hidden_input" type="hidden">
 			      	<div class="formControls" id="<?php echo $cFun;?>content_ztree_select_box">
-	        			<div style="margin-top: 8px;font-size: 14px;">--请先选择模块--</div>
+	        			<div style="margin-top: 8px;font-size: 14px;">--กรุณาเลือกโมดูลก่อน--</div>
 	        		</div>
 		          </td></tr>
 			      <tr>
-			      	<td>下级栏目是否生成</td><td><input type="checkbox" value="1" id="<?php echo $cFun;?>content_child" data-toggle="icheck" data-label="是"></td></tr>
+			      	<td>สร้างหมวดหมู่ย่อยหรือไม่</td><td><input type="checkbox" value="1" id="<?php echo $cFun;?>content_child" data-toggle="icheck" data-label="是"></td></tr>
 			      <tr>
-			      	<td>查询的条件</td>
+			      	<td>เงื่อนไขการสืบค้น</td>
 			        <td>
 			        	<div style="float:left;margin-right:15px;">
 			        		<select data-toggle="selectpicker" id="<?php echo $cFun;?>content_where" data-width="100">
-				            	<option value="">请选择条件</option>
-				            	<option value="all">全部</option>
-				            	<option value="id">内容ID区间</option>
-				            	<option value="time">时间选择</option>
+				            	<option value="">กรุณาเลือกเงื่อนไข</option>
+				            	<option value="all">ทั้งหมด</option>
+				            	<option value="id">ช่วง ID เนื้อหา</option>
+				            	<option value="time">เลือกเวลา</option>
 				         	</select>
 			         	</div>
 			         	<div id="<?php echo $cFun;?>content_id_box" style="display:none">
@@ -167,35 +167,35 @@
 			         </td>
 			      </tr>
 			       <tr>
-			      	<td width="150">需要生成的页面类型</td>
+			      	<td width="150">ประเภทหน้าที่ต้องสร้าง</td>
 			        <td>
 			        	<select data-toggle="selectpicker" id="<?php echo $cFun;?>content_pagetype" data-width="130">
-			            	<option value="content">内容页面</option>
-			            	<option value="read">阅读页面</option>
+			            	<option value="content">หน้าคอนเทนต์</option>
+			            	<option value="read">หน้าอ่าน</option>
 			         	</select>
 			      </td></tr>
 			       <tr>
-			      	<td width="150" style="color:red">提示</td>
-			        <td style="color:red">如果一次性生成数据过多(5万-50万不等，看服务器配置)可能会造成服务器卡死，您可以设置查询条件为ID区间分批次生成（1万-10万不等，看服务器配置）</td></tr>
-			      <tr><td colspan="2"><a class="btn btn-success radius size-MINI" onClick="createContent()">生成内容</a></td></tr>
+			      	<td width="150" style="color:red">คำแนะนำ</td>
+			        <td style="color:red">หากสร้างข้อมูลครั้งละมากเกินไป (5 หมื่น-5 แสน ตามการตั้งค่าเซิร์ฟเวอร์) เซิร์ฟเวอร์อาจค้างได้ คุณสามารถตั้งเงื่อนไขเป็นช่วง ID เพื่อสร้างทีละชุด (1 หมื่น-1 แสน)</td></tr>
+			      <tr><td colspan="2"><a class="btn btn-success radius size-MINI" onClick="createContent()">สร้างเนื้อหา</a></td></tr>
 			      <tr id="<?php echo $cFun?>content_barline_box" style="display:none"><td colspan="2">
 			      		<!-- 进度条 -->
 						<iframe style="width: 100%;height:80px;border:none;"></iframe>
 					</td></tr>
-					<tr id="<?php echo $cFun?>content_loading" style="display:none"><td colspan="2"><img src="/files/images/loading.gif">请稍候,初始化数据中....</td></tr>
+					<tr id="<?php echo $cFun?>content_loading" style="display:none"><td colspan="2"><img src="/files/images/loading.gif">กรุณารอสักครู่ กำลังเริ่มต้นข้อมูล....</td></tr>
 			    </table>
 			</div>
 			
 			<!-- 分类首页 -->
 			<div class="tab-pane fade in" id="<?php echo $cFun;?>html_tindex">
 			    <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-			      <thead><tr><th colspan="4" style="text-align:left;"><b>分类首页HTML生成</b></th></tr></thead>
+			      <thead><tr><th colspan="4" style="text-align:left;"><b>สร้าง HTML หน้าแรกหมวดหมู่</b></th></tr></thead>
 			      <tr>
-			      	<td width="150">需要生成的模块</td>
+			      	<td width="150">โมดูลที่ต้องสร้าง</td>
 			        <td>
 			        	<input class="nowtab" type="hidden" value="tindex">
 			        	<select data-toggle="selectpicker" name="<?php echo $cFun;?>module" data-width="130">
-			            	<option value="">请选择模块</option>
+			            	<option value="">กรุณาเลือกโมดูล</option>
 			            	<?php 
 			            	foreach ($moduleArr as $k=>$v)
 			            	{
@@ -205,23 +205,23 @@
 			         	</select>
 			      </td></tr>
 			      <tr>
-			      	<td>需要生成的分类</td>
+			      	<td>หมวดหมู่ที่ต้องสร้าง</td>
 			      	<td>
 			      	<input id="<?php echo $cFun;?>tindex_type" class="hidden_input" type="hidden">
 			      	<div class="formControls" id="<?php echo $cFun;?>tindex_ztree_select_box">
-	        			<div style="margin-top: 8px;font-size: 14px;">--请先选择模块--</div>
+	        			<div style="margin-top: 8px;font-size: 14px;">--กรุณาเลือกโมดูลก่อน--</div>
 	        		</div>
 		          </td></tr>
 			      <tr>
-			      	<td>下级栏目是否生成</td><td><input type="checkbox" value="1" id="<?php echo $cFun;?>tindex_child" data-toggle="icheck" data-label="是"></td></tr>
-			      <tr><td colspan="2"><a class="btn btn-success radius size-MINI" onClick="createTIndex()">生成分类首页</a></td></tr>
+			      	<td>สร้างหมวดหมู่ย่อยหรือไม่</td><td><input type="checkbox" value="1" id="<?php echo $cFun;?>tindex_child" data-toggle="icheck" data-label="是"></td></tr>
+			      <tr><td colspan="2"><a class="btn btn-success radius size-MINI" onClick="createTIndex()">สร้างหน้าแรกหมวดหมู่</a></td></tr>
 			     <tr id="<?php echo $cFun?>tindex_barline_box" style="display:none"><td colspan="2">
 		      		<!-- 进度条 -->
 					<div class="barline"><div class="barline_text_box" id="<?php echo $cFun?>tindex_text_box"><span id="<?php echo $cFun?>tindex_text">0</span>%</div></div>
-					<div class="barline_perc">总进度<span id="<?php echo $cFun?>tindex_now">0</span>/<span id="<?php echo $cFun?>tindex_sum">1</span></div>
+					<div class="barline_perc">ความคืบหน้ารวม<span id="<?php echo $cFun?>tindex_now">0</span>/<span id="<?php echo $cFun?>tindex_sum">1</span></div>
 					<div class="barline_msg" id="<?php echo $cFun?>tindex_msg"></div>
 				</td></tr>
-				<tr id="<?php echo $cFun?>tindex_loading" style="display:none"><td colspan="2"><img src="/files/images/loading.gif">请稍候,初始化数据中....</td></tr>
+				<tr id="<?php echo $cFun?>tindex_loading" style="display:none"><td colspan="2"><img src="/files/images/loading.gif">กรุณารอสักครู่ กำลังเริ่มต้นข้อมูล....</td></tr>
 			    </table>
 		    </div>
 		    
@@ -229,32 +229,32 @@
 		    <!-- 分类目录生成 -->
 			<div class="tab-pane fade in" id="<?php echo $cFun;?>html_menu">
 			    <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-			      <thead><tr><th colspan="4" style="text-align:left;"><b>目录页HTML生成</b></th></tr></thead>
+			      <thead><tr><th colspan="4" style="text-align:left;"><b>สร้างสารบัญ HTML</b></th></tr></thead>
 			      <tr>
-			      	<td width="150">需要生成的模块</td>
+			      	<td width="150">โมดูลที่ต้องสร้าง</td>
 			        <td>
 			        	<input class="nowtab" type="hidden" value="menu">
 			        	<select data-toggle="selectpicker" name="<?php echo $cFun;?>module" data-width="130">
-			            	<option value="">请选择模块</option>
-			            	<option value="novel">小说模块</option>
+			            	<option value="">กรุณาเลือกโมดูล</option>
+			            	<option value="novel">โมดูลนิยาย</option>
 			         	</select>
 			      </td></tr>
 			      <tr>
-			      	<td>需要生成的分类</td>
+			      	<td>หมวดหมู่ที่ต้องสร้าง</td>
 			      	<td>
 			      	<input id="<?php echo $cFun;?>menu_type" class="hidden_input" type="hidden">
 			      	<div class="formControls" id="<?php echo $cFun;?>menu_ztree_select_box">
-	        			<div style="margin-top: 8px;font-size: 14px;">--请先选择模块--</div>
+	        			<div style="margin-top: 8px;font-size: 14px;">--กรุณาเลือกโมดูลก่อน--</div>
 	        		</div>
 		          </td></tr>
 			      <tr>
-			      	<td>下级栏目是否生成</td><td><input type="checkbox" value="1" id="<?php echo $cFun;?>menu_child" data-toggle="icheck" data-label="是"></td></tr>
-			      <tr><td colspan="2"><a class="btn btn-success radius size-MINI" onClick="createMenu()">生成目录列表</a></td></tr>
+			      	<td>สร้างหมวดหมู่ย่อยหรือไม่</td><td><input type="checkbox" value="1" id="<?php echo $cFun;?>menu_child" data-toggle="icheck" data-label="是"></td></tr>
+			      <tr><td colspan="2"><a class="btn btn-success radius size-MINI" onClick="createMenu()">สร้างรายการสารบัญ</a></td></tr>
 			     <tr id="<?php echo $cFun?>menu_barline_box" style="display:none"><td colspan="2">
 		      		<!-- 进度条 -->
 					<iframe style="width: 100%;height:80px;border:none;"></iframe>
 				</td></tr>
-				<tr id="<?php echo $cFun?>list_loading" style="display:none"><td colspan="2"><img src="/files/images/loading.gif">请稍候,初始化数据中....</td></tr>
+				<tr id="<?php echo $cFun?>list_loading" style="display:none"><td colspan="2"><img src="/files/images/loading.gif">กรุณารอสักครู่ กำลังเริ่มต้นข้อมูล....</td></tr>
 			    </table>
 		    </div>
 		    
@@ -336,7 +336,7 @@ function createList(){
 	}
 	var page = $("#<?php echo $cFun?>list_page").val();
 	if(nowModule == ''){
-		$(this).alertmsg('error', '请选择模块!');
+		$(this).alertmsg('error', 'กรุณาเลือกโมดูล!');
 	}else if(type == ''){
 		$(this).alertmsg('error', '请选择分类!');
 	}else{
@@ -384,7 +384,7 @@ function createContent(){
 	var startid = endid = starttime = endtime = '';
 	
 	if(nowModule == ''){
-		$(this).alertmsg('error', '请选择模块!');
+		$(this).alertmsg('error', 'กรุณาเลือกโมดูล!');
 		return false;
 	}else if(type == ''){
 		$(this).alertmsg('error', '请选择分类!');
@@ -452,7 +452,7 @@ function createTIndex(){
 		child = $("#<?php echo $cFun?>tindex_child").val();
 	}
 	if(nowModule == ''){
-		$(this).alertmsg('error', '请选择模块!');
+		$(this).alertmsg('error', 'กรุณาเลือกโมดูล!');
 	}else if(type == ''){
 		$(this).alertmsg('error', '请选择分类!');
 	}else{
@@ -513,7 +513,7 @@ function createMenu(){
 		child = $("#<?php echo $cFun?>menu_child").val();
 	}
 	if(nowModule == ''){
-		$(this).alertmsg('error', '请选择模块!');
+		$(this).alertmsg('error', 'กรุณาเลือกโมดูล!');
 	}else if(type == ''){
 		$(this).alertmsg('error', '请选择分类!');
 	}else{

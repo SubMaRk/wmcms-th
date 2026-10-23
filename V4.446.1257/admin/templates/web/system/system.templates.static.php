@@ -1,7 +1,7 @@
 <div class="bjui-pageContent">
 <table class="table table-border table-bordered table-bg table-sort">
     <tr>
-      <td width="150"><b>电脑版静态资源：</b></td>
+      <td width="150"><b>ทรัพยากรสแตติกคอมพิวเตอร์:</b></td>
       <td>
       	<?php
       	if($staticTemp4){echo '<span style="color:green">存在资源</span> <a class="btn btn-danger radius" onclick="'.$cFun.'delAjax(this,\'web\')">删除资源</a> ';}else{echo '<span style="color:red">暂无资源</span>';}
@@ -10,7 +10,7 @@
       </td>
 	</tr>
     <tr>
-      <td><b>触屏版静态资源：</b></td>
+      <td><b>ทรัพยากรสแตติกทัชสกรีน:</b></td>
       <td>
       	<?php
       	if($staticTemp3){echo '<span style="color:green">存在资源</span> <a class="btn btn-danger radius" onclick="'.$cFun.'delAjax(this,\'m\')">删除资源</a> ';}else{echo '<span style="color:red">暂无资源</span>';}
@@ -19,7 +19,7 @@
       </td>
 	</tr>
     <tr>
-      <td><b>3G版静态资源：</b></td>
+      <td><b>ไฟล์สแตติกเวอร์ชัน 3G：</b></td>
       <td>
       	<?php
       	if($staticTemp2){echo '<span style="color:green">存在资源</span> <a class="btn btn-danger radius" onclick="'.$cFun.'delAjax(this,\'3g\')">删除资源</a> ';}else{echo '<span style="color:red">暂无资源</span>';}
@@ -28,7 +28,7 @@
       </td>
 	</tr>
     <tr>
-      <td><b>简洁版静态资源：</b></td>
+      <td><b>ทรัพยากรสแตติกเวอร์ชันเรียบง่าย:</b></td>
       <td>
       	<?php
       	if($staticTemp1){echo '<span style="color:green">存在资源</span> <a class="btn btn-danger radius" onclick="'.$cFun.'delAjax(this,\'wap\')">删除资源</a> ';}else{echo '<span style="color:red">暂无资源</span>';}
@@ -42,7 +42,7 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ปิด</button></li>
     </ul>
 </div>
 

@@ -18,7 +18,7 @@ if ( $type == 'del')
 	SetOpLog( '删除了用户签到记录' , 'user' , 'delete' , $table , $where);
 	wmsql::Delete($table , $where);
 	
-	Ajax('用户签到记录删除成功!');
+	Ajax('ลบบันทึกการเช็คอินของผู้ใช้สำเร็จ!');
 }
 //清空请求记录
 else if ( $type == 'clear' )
@@ -27,6 +27,6 @@ else if ( $type == 'clear' )
 
 	//写入操作记录
 	SetOpLog( '清空了签到记录' , 'user' , 'delete');
-	Ajax('所有签到记录成功清空！');
+	Ajax('ล้างข้อมูลบันทึกการเช็คอินทั้งหมดสำเร็จ!');
 }
 ?>

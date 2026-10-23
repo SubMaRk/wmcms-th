@@ -692,7 +692,7 @@ class cache{
 	
 			//如果是memcached缓存
 			case "memcached":
-				die('没有memcached队列操作！');
+				die('ไม่มีการดำเนินการคิว memcached!');
 				break;
 		}
 	}
@@ -742,7 +742,7 @@ class cache{
 	
 				//如果是memcached缓存
 			case "memcached":
-				die('没有memcached队列操作');
+				die('ไม่มีการดำเนินการคิว memcached');
 				break;
 		}
 

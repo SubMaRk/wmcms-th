@@ -1,11 +1,11 @@
 <!--调用全局顶部-->
 {header:header.html} 
 <nav class="New-nav">
-<a class=""  href="{首页}">首页</a>
-<a class=""  href="/module/novel/topindex.php">排行</a>
-<a class=""  href="/module/novel/index.php">分类</a>
-<a class=""  href="{我的收藏}">收藏</a>
-<a class="active"  href="{签到中心}">签到</a>
+<a class=""  href="{首页}">หน้าแรก</a>
+<a class=""  href="/module/novel/topindex.php">อันดับ</a>
+<a class=""  href="/module/novel/index.php">หมวดหมู่</a>
+<a class=""  href="{我的收藏}">รายการโปรด</a>
+<a class="active"  href="{签到中心}">เช็คอิน</a>
 </nav>
 <body class="bg">
 <div id="upfile"></div>
@@ -403,60 +403,60 @@ table.common{
 <div style="position: absolute;padding:2px 5px; border-radius: 6px; text-align:center; top:40px;left:96px;color:#FFFFFF;height:20px;line-height: 20px;">
 {用户昵称}</div>
 <div style="position: absolute;padding:2px 5px; border-radius: 6px; text-align:center; top:80px;left:96px;color:#FFFFFF;background: rgba(0,0,0,.5);height:20px;line-height: 20px; font-size:10px;">
-                	签到等级&nbsp;{用户等级}&nbsp;</div>
+                	ระดับเช็คอิน&nbsp;{用户等级}&nbsp;</div>
 <div class="info">
 
 <div class="item">
 <div style="font-weight: bold;height: 20px;line-height: 20px;">
-连续签到
+เช็คอินต่อเนื่อง
 </div>
 <div style="height: 20px;line-height: 20px">{连续签到天数}
-天
+วัน
 </div>
 </div>
 <div class="item" style="border-right: none;">
 <div style="font-weight: bold;height: 20px;line-height: 20px;">
-累计签到
+เช็คอินสะสม
 </div>
 <div style="height: 20px;line-height: 20px">{总共签到天数}
-天
+วัน
 </div>
 </div>
 </div>
 </div>
  {未签到} 
-<a href="{签到}" class="btn" style="background-color:;">签到</a>{/未签到}
-{已签到}<a class="btn" style="background-color:;">已签到</a>{/已签到}
+<a href="{签到}" class="btn" style="background-color:;">เช็คอิน</a>{/未签到}
+{已签到}<a class="btn" style="background-color:;">เช็คอินแล้ว</a>{/已签到}
 <div class="body_content">
     <div class="lineC cl">
         <div class="lineC_left">
             <div class="left_tit">
                 <ul class="paihang J_phbtn cl" id="rankselect">
-                    <li class="active" data-type="day"> 今日排行</li>
-                    <li data-type="month" class=""> 本月排行 </li>
-                    <li data-type="total" class=""> 总排行 </li>
-                    <li data-type="reward" class=""> 奖励排行 </li>
+                    <li class="active" data-type="day"> อันดับวันนี้</li>
+                    <li data-type="month" class=""> อันดับเดือนนี้ </li>
+                    <li data-type="total" class=""> อันดับรวม </li>
+                    <li data-type="reward" class=""> อันดับรางวัล </li>
                 </ul>
             </div>
             <div id="rankshow"><div id="rankshowday"><div class="arr_detail dis">
     <table>
         <tbody>
             <tr>
-                <th width="120" style="text-align:center;">用户名</th>
-                <th width="80" style="text-align:center;">排名</th>
-                <th width="150" style="text-align:center;">签到时间</th>
-				 <th width="60" style="text-align:center;">连续签到</th>
+                <th width="120" style="text-align:center;">ชื่อผู้ใช้</th>
+                <th width="80" style="text-align:center;">อันดับ</th>
+                <th width="150" style="text-align:center;">เวลาเช็คอิน</th>
+				 <th width="60" style="text-align:center;">เช็คอินต่อเนื่อง</th>
             </tr>
  {签到列表:数量=10;排序=签到时间;}
                         <tr>
                 <td width="100" style="text-align:center;">
                     <div><a href="#">{签到用户昵称}</a></div>
                 </td>
-                <td style="text-align:center;">第<b>{i}</b>名</td>
+                <td style="text-align:center;">ที่<b>{i}</b>ชื่อ</td>
 
 
                 <td style="text-align:center;">{用户签到时间}</td>
-<td style="text-align:center;">{用户连续签到}天</td>
+<td style="text-align:center;">{用户连续签到}วัน</td>
             </tr>
      {/签到列表}         
                     </tbody>
@@ -494,5 +494,5 @@ jQuery(window).scroll(function(){
 });
 });
 </script>
-<div class="btBox"><div class="bt2"><a href="javascript:history.go(-1);">返回上页</a><a href="{首页}">返回首页</a></div></div>	
+<div class="btBox"><div class="bt2"><a href="javascript:history.go(-1);">กลับหน้าก่อนหน้า</a><a href="{首页}">กลับหน้าแรก</a></div></div>	
 {footer:footer.html}

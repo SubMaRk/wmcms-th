@@ -18,10 +18,10 @@ thead th {
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
 				
-				<a href="index.php?a=yes&c=operate.message&t=status&status=1" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要审核选中项吗？" data-callback="<?php echo $type.$cFun;?>ajaxCallBack" class="btn btn-warning radius"> 批量审核</a>
-				<a href="index.php?a=yes&c=operate.message&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $type.$cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
-				<a href="index.php?a=yes&c=operate.message&t=clear" data-toggle="doajax" data-confirm-msg="此操作不可撤回确定要清空吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> 清空记录</a>
-				<a id="<?php echo $type.$cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+				<a href="index.php?a=yes&c=operate.message&t=status&status=1" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要审核选中项吗？" data-callback="<?php echo $type.$cFun;?>ajaxCallBack" class="btn btn-warning radius"> ตรวจสอบหลายรายการ</a>
+				<a href="index.php?a=yes&c=operate.message&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $type.$cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
+				<a href="index.php?a=yes&c=operate.message&t=clear" data-toggle="doajax" data-confirm-msg="此ดำเนินการ不可撤回ยืนยัน要清空吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> ล้างบันทึก</a>
+				<a id="<?php echo $type.$cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
 			</form>
 		</div>
 	</div>
@@ -34,11 +34,11 @@ thead th {
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="5%" data-order-field="message_id">ID</th>
-				<th width="5%" data-order-field="flash_status">是否审核</th>
-				<th>留言内容</th>
-				<th width="8%" data-order-field="message_ip">留言IP</th>
-	            <th width="15%" data-order-field="message_time">添加时间</th>
-	            <th width="10%">操作</th>
+				<th width="5%" data-order-field="flash_status">ตรวจสอบหรือไม่</th>
+				<th>เนื้อหาข้อความ</th>
+				<th width="8%" data-order-field="message_ip">IP ข้อความ</th>
+	            <th width="15%" data-order-field="message_time">เวลาเพิ่ม</th>
+	            <th width="10%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody id="<?php echo $type.$cFun?>List">
@@ -49,7 +49,7 @@ thead th {
 				foreach ($dataArr as $k=>$v)
 				{
 					$cur = str::CheckElse( $i%2 , 0 , '' , 'even_index_row');
-					$status = str::CheckElse( $v['message_status'] , 0 , '<a href="javascript:;" onClick="'.$type.$cFun.'StatusAjax(1,'.$v['message_id'].')"><span style="color:red">待审核</span></a>' , '<a href="javascript:;" onClick="'.$type.$cFun.'StatusAjax(0,'.$v['message_id'].')"><span style="color:green">已审核</span></a>');
+					$status = str::CheckElse( $v['message_status'] , 0 , '<a href="javascript:;" onClick="'.$type.$cFun.'StatusAjax(1,'.$v['message_id'].')"><span style="color:red">รอตรวจสอบ</span></a>' , '<a href="javascript:;" onClick="'.$type.$cFun.'StatusAjax(0,'.$v['message_id'].')"><span style="color:green">ตรวจสอบแล้ว</span></a>');
 					echo '<tr class="'.$cur.'">
 							<td style="text-align: center;"><input type="checkbox" name="ids" data-toggle="icheck" value="'.$v['message_id'].'"></td>
 							<td style="text-align: center;">'.$v['message_id'].'</td>
@@ -58,7 +58,7 @@ thead th {
 							<td style="text-align: center;">'.$v['message_ip'].'</td>
 							<td style="text-align: center;">'.date( 'Y-m-d H:i:s' , $v['message_time']).'</td>
 							<td style="text-align: center;" data-noedit="true">
-								<a class="btn btn-danger radius" onclick="'.$type.$cFun.'delAjax('.$v['message_id'].')">删除</a>
+								<a class="btn btn-danger radius" onclick="'.$type.$cFun.'delAjax('.$v['message_id'].')">ลบ</a>
 				            </td>
 						</tr>';
 					$i++;
@@ -75,7 +75,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -84,7 +84,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>

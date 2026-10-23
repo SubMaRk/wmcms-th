@@ -8,7 +8,7 @@
 		<input type="hidden" name="pid" value="<?php echo $pid;?>">
 		
 		<fieldset>
-			<legend>拒绝原因</legend>
+			<legend>เหตุผลการปฏิเสธ</legend>
     		<table class="table table-border table-bordered table-bg table-sort">
 	            <tbody>
 	                <tr>
@@ -24,8 +24,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">提交</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">ส่งข้อมูล</button></li>
     </ul>
 </div>
 

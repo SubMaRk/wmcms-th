@@ -22,19 +22,19 @@ if( $type == 'add'  )
 	
 	if( $fileName == '' )
 	{
-		Ajax('对不起，请填写文件名！',300);
+		Ajax('กรุณากรอกชื่อไฟล์!',300);
 	}
 	else if( ($urlOpen == '1' || $seoOpen == '1') && (Post('page') == '' || Post('name') == '') )
 	{
-		Ajax('对不起，请填写页面标识和页面名字！',300);
+		Ajax('กรุณากรอกตัวระบุหน้าและชื่อหน้า!',300);
 	}
 	else if( $urlOpen == '1' && ($url['url1'] == '' || $url['url2'] == '') )
 	{
-		Ajax('对不起，动态传统伪静态url地址必须填写！',300);
+		Ajax('ต้องกรอกที่อยู่ url แบบ pseudo-static ของส่วนไดนามิก!',300);
 	}
 	else if( $seoOpen == '1' && ($seo['title'] == '' || $seo['key'] == '' || $seo['desc'] == '') )
 	{
-		Ajax('对不起，SEO优化信息必须全部填写！',300);
+		Ajax('ต้องกรอกข้อมูล SEO ให้ครบทุกช่อง!',300);
 	}
 	else
 	{
@@ -47,7 +47,7 @@ if( $type == 'add'  )
 		$data['page'] = $page;
 		if( $devMod->Create($data) === false)
 		{
-			Ajax('对不起，该文件名的控制器已经存在，请更换名字！',300);
+			Ajax('มีคอนโทรลเลอร์ที่ใช้ชื่อไฟล์นี้อยู่แล้ว กรุณาเปลี่ยนชื่อ!',300);
 		}
 		
 		//url是否存在。
@@ -55,7 +55,7 @@ if( $type == 'add'  )
 		{
 			if( $seoMod->GetUrlByPage($module,$page) )
 			{
-				Ajax('对不起，该模块页面标识的URL已经存在！',300);
+				Ajax('URL ของตัวระบุหน้านี้ในโมดูลมีอยู่แล้ว!',300);
 			}
 			else
 			{
@@ -77,7 +77,7 @@ if( $type == 'add'  )
 		{
 			if( $seoMod->GetSeoByPage($module,$page) )
 			{
-				Ajax('对不起，该模块页面标识的SEO信息已经存在！',300);
+				Ajax('ข้อมูล SEO ของตัวระบุหน้านี้ในโมดูลมีอยู่แล้ว!',300);
 			}
 			else
 			{

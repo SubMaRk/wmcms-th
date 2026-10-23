@@ -27,13 +27,13 @@ if ( $type == 'edit' || $type == "add" )
 	{
 		if( $v == '' )
 		{
-			Ajax('对不起，所有项都不能为空！' , 300);
+			Ajax('ทุกช่องห้ามว่าง!' , 300);
 		}
 	}
 	//判断用户是否已经添加了
 	if( $bindMod->CheckExist($groupId,$editorIid,$where['bind_id']) )
 	{
-		Ajax('对不起，当前分组已经存在该编辑！' , 300);
+		Ajax('กลุ่มนี้มีผู้แก้ไขรายนี้อยู่แล้ว!' , 300);
 	}
 	
 	
@@ -44,7 +44,7 @@ if ( $type == 'edit' || $type == "add" )
 		$where['bind_id'] = $bindMod->Insert($data);
 		//写入操作记录
 		SetOpLog( '新增了分组成员' , 'editor' , 'insert' , $table , $where , $data );
-		Ajax('分组成员新增成功!');
+		Ajax('เพิ่มสมาชิกกลุ่มสำเร็จ!');
 	}
 	//如果是增加页面
 	else
@@ -53,7 +53,7 @@ if ( $type == 'edit' || $type == "add" )
 		SetOpLog( '修改分组成员' , 'editor' , 'update' , $table  , $where , $data );
 		//修改数据
 		$bindMod->Update($data,$where);
-		Ajax('分组成员修改成功！');
+		Ajax('แก้ไขสมาชิกกลุ่มสำเร็จ!');
 	}
 }
 //删除关联
@@ -63,6 +63,6 @@ else if( $type == 'del' )
 	$bindMod->Del($where);
 	//写入操作记录
 	SetOpLog( '删除了分组成员' , 'editor' , 'delete' , $table , $where);
-	Ajax('删除了分组分组成员!');
+	Ajax('ลบสมาชิกของกลุ่มแล้ว!');
 }
 ?>

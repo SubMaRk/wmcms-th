@@ -10,68 +10,68 @@ $.CurrentDialog.dialog('closeCurrent');
 		<input name="file_name" type="hidden" class="input-text" value="">
 		<input name="path" type="hidden" class="input-text" value="">
 		<fieldset>
-			<legend><?php if(!empty($data)){echo '《'.$data['novel_name'].'》 - ';}?>导入TXT</legend>
+			<legend><?php if(!empty($data)){echo '《'.$data['novel_name'].'》 - ';}?>นำเข้า TXT</legend>
             <div class="tab-pane fade active in" id="<?php echo $cFun.$type;?>base">
 				<table class="table table-border table-bordered table-bg table-sort">
 	            <tbody>
 	                <tr>
-	                    <td width="100"><b>分章类型：</b></td>
+	                    <td width="100"><b>ประเภทการแบ่งตอน:</b></td>
 					  	<td>
 		                    <select data-toggle="selectpicker" name="exp_type">
-		                    	<option value="1">自动分章</option>
-		                    	<option value="2">按格式分章</option>
-		                    	<option value="3">自定义章回名</option>
+		                    	<option value="1">แบ่งตอนอัตโนมัติ</option>
+		                    	<option value="2">แบ่งตอนตามรูปแบบ</option>
+		                    	<option value="3">ชื่อตอนกำหนดเอง</option>
                             </select>
 	                    </td>
 		                
 	                </tr>
 	                <tr id="<?php echo $cFun.$type?>exp_str_box" style="display:none">
-	                    <td width="120"><b>分章格式：</b></td>
+	                    <td width="120"><b>รูปแบบการแบ่งตอน:</b></td>
 					  	<td><input type="text" name="exp_str" value="######"></td>
 	                </tr>
 	                <tr id="<?php echo $cFun.$type?>exp_title_box" style="display:none">
-	                    <td width="120"><b>章回名格式：</b></td>
+	                    <td width="120"><b>รูปแบบชื่อตอน:</b></td>
 					  	<td><input type="text" name="exp_title" value="" placeholder="如:回、段、节"></td>
 	                </tr>
 	                <tr>
-	                    <td width="100"><b>章节缩进：</b></td>
+	                    <td width="100"><b>การเยื้องตอน:</b></td>
 					  	<td>
 		                    <select data-toggle="selectpicker" name="exp_indent">
-		                    	<option value="1">系统自动缩进</option>
-		                    	<option value="2">不自动缩进</option>
-		                    	<option value="3">清除原有缩进使用系统缩进</option>
-		                    	<option value="4">只清除原有缩进</option>
+		                    	<option value="1">การเยื้องอัตโนมัติของระบบ</option>
+		                    	<option value="2">ไม่ย่อหน้าอัตโนมัติ</option>
+		                    	<option value="3">ล้างการเยื้องเดิมและใช้การเยื้องของระบบ</option>
+		                    	<option value="4">ล้างเฉพาะการเยื้องเดิม</option>
                             </select>
 	                    </td>
 	                </tr>
 	                <tr>
-	                    <td width="100"><b>识别分卷：</b></td>
+	                    <td width="100"><b>ตรวจจับเล่ม:</b></td>
 					  	<td>
 		                    <select data-toggle="selectpicker" name="exp_volume">
-		                    	<option value="">不识别分卷</option>
-		                    	<option value="1">分卷章节独立模式</option>
-		                    	<option value="2">分卷章节同行模式</option>
+		                    	<option value="">ไม่แยกเล่ม</option>
+		                    	<option value="1">โหมดตอนในเล่มแบบแยก</option>
+		                    	<option value="2">โหมดตอนในเล่มแบบรวม</option>
                             </select>
 	                    </td>
 	                </tr>
 	                <tr>
-	                    <td width="100"><b>导入模式：</b></td>
+	                    <td width="100"><b>โหมดนำเข้า:</b></td>
 					  	<td>
 		                    <select data-toggle="selectpicker" name="import_type">
-		                    	<option value="origin">重新导入</option>
-		                    	<option value="append">追加导入</option>
+		                    	<option value="origin">นำเข้าใหม่</option>
+		                    	<option value="append">นำเข้าเพิ่มเติม</option>
                             </select>
 	                    </td>
 	                </tr>
 	                <tr>
-		                <td><b>上传TXT：</b></td>
+		                <td><b>อัปโหลด TXT：</b></td>
 					  	<td>
 		                   <span class="upload" data-uploader="index.php?a=yes&c=upload&t=file" data-on-upload-success="<?php echo $cFun.$type;?>upload_success" data-file-type-exts="*.txt" data-toggle="upload" data-icon="cloud-upload"></span>
 	                    </td>
 	                </tr>
 	                <tr id="<?php echo $cFun.$type?>init_box" style="display:none">
-		                <td><b>初始化信息：</b></td>
-					  	<td>初始化TXT信息中，请等待...</td>
+		                <td><b>ข้อมูลเริ่มต้น:</b></td>
+					  	<td>กำลังเริ่มต้นข้อมูล TXT กรุณารอสักครู่...</td>
 	                </tr>
 	            </tbody>
 	        	</table>
@@ -83,7 +83,7 @@ $.CurrentDialog.dialog('closeCurrent');
 <div class="bjui-pageFooter" id="<?php echo $cFun.$type?>button_box" style="pointer-events:none">
     <ul>
         <li><button type="button" class="btn-close" onClick="<?php echo $cFun.$type;?>initCancel()" data-icon="close">删除TXT</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">开始导入</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">เริ่มนำเข้า</button></li>
     </ul>
 </div>
 
@@ -161,7 +161,7 @@ $(document).ready(function(){
 	//显示分割字符串
 	$('[name="exp_type"]').change(function() {
         $('#<?php echo $cFun.$type?>init_box').hide();
-        $('#<?php echo $cFun.$type?>init_box').find('td').eq(1).html('初始化TXT信息中，请等待...');
+        $('#<?php echo $cFun.$type?>init_box').find('td').eq(1).html('กำลังเริ่มต้นข้อมูล TXT กรุณารอสักครู่...');
 		if ($(this).val() == 2){
 	        $('#<?php echo $cFun.$type?>exp_str_box').show();
 	        $('#<?php echo $cFun.$type?>exp_title_box').hide();

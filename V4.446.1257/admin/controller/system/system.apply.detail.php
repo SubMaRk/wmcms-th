@@ -15,7 +15,7 @@ $t = Request('t');
 $data = $newData = array();
 if( $module == '' || $mt == '' || $t == '' || !str::Number($id) )
 {
-	Ajax('对不起，参数错误',300);
+	Ajax('พารามิเตอร์ไม่ถูกต้อง',300);
 }
 else
 {

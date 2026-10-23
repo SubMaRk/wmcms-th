@@ -12,35 +12,35 @@ if( !is_array($data) )
       <td valign="top"><?php echo $data['log_id']?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>发送状态：</b></td>
+      <td valign="top" width="150"><b>สถานะการส่ง:</b></td>
       <td valign="top"><?php echo $emailMod->logStatus[$data['log_status']]?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>发信账户：</b></td>
+      <td valign="top" width="150"><b>บัญชีผู้ส่ง:</b></td>
       <td valign="top"><?php echo $data['log_sender']?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>收信账户：</b></td>
+      <td valign="top" width="150"><b>บัญชีผู้รับ:</b></td>
       <td valign="top"><?php echo $data['log_receive']?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>邮件主题：</b></td>
+      <td valign="top" width="150"><b>หัวข้ออีเมล:</b></td>
       <td valign="top"><?php echo str::Escape($data['log_title'])?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>邮件正文：</b></td>
+      <td valign="top" width="150"><b>เนื้อหาอีเมล:</b></td>
       <td valign="top"><?php echo str::Escape($data['log_content'])?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>备注：</b></td>
+      <td valign="top" width="150"><b>หมายเหตุ:</b></td>
       <td valign="top"><?php echo $data['log_remark']?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>任务创建时间：</b></td>
+      <td valign="top" width="150"><b>เวลาสร้างงาน：</b></td>
       <td valign="top"><?php echo date("Y-m-d H:i:s" , $data['log_time'])?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>邮件发送时间：</b></td>
+      <td valign="top" width="150"><b>เวลาส่งอีเมล:</b></td>
       <td valign="top"><?php echo date("Y-m-d H:i:s" , $data['log_sendtime'])?></td>
 	</tr>
 </table>
@@ -49,6 +49,6 @@ if( !is_array($data) )
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ปิด</button></li>
     </ul>
 </div>

@@ -13,9 +13,9 @@
 					<input type="hidden" name="type" value="1">
 					<div id="top-search" class="mod-top-search">
 						<div class="mod-search-input-wr ui-left">
-							<input class="mod-search-input" type="text" name="key" placeholder="请输入小说名字"/>
+							<input class="mod-search-input" type="text" name="key" placeholder="กรุณากรอกชื่อนิยาย"/>
 						</div>
-						<button class="mod-search-submit ui-left ui-text-hide" type="submit">搜索</button>
+						<button class="mod-search-submit ui-left ui-text-hide" type="submit">ค้นหา</button>
 					</div>
 				</form>
 
@@ -34,13 +34,13 @@
 			<!-- 主导航 -->
 			<ul class="mod-top-nav-list ui-left">
 				<li>
-					<a class="mod-top-nav-home" href="{首页}" title="首页">
-						<span>首页</span>
+					<a class="mod-top-nav-home" href="{首页}" title="หน้าแรก">
+						<span>หน้าแรก</span>
 						<!--<em class="mod-top-ico-new">&nbsp;</em>-->
 					</a>
 				</li>
-				<li {cur:tid=0}class="active"{/cur}><a href="{全部小说}" title="全部小说"><span>全部小说</span></a></li>
-				<li><a href="{小说排行首页}" title="排行榜"><span>排行榜</span></a></li>
+				<li {cur:tid=0}class="active"{/cur}><a href="{全部小说}" title="นิยายทั้งหมด"><span>นิยายทั้งหมด</span></a></li>
+				<li><a href="{小说排行首页}" title="อันดับ"><span>จัดอันดับ</span></a></li>
 				{小说分类:数量=7;排序=分类排序}
 				<li {cur}class="active"{/cur}><a href="{url}" title="{小说分类名字}"><span>{小说分类名字}</span></a></li>
 				{/小说分类}
@@ -58,10 +58,10 @@
 							url = '{消息列表}';
 							newHtml = '<em class="mod-top-ico-new">&nbsp;</em>';
 						}
-						$("#homebox").html('<a href="'+url+'" title="个人中心"><span>个人中心</span>'+newHtml+'</a>');
-						$("#loginbox").html('<a class="mod-top-nav-user ui-right" href="{退出登录}">&nbsp; 安全退出</a>');
+						$("#homebox").html('<a href="'+url+'" title="ศูนย์ส่วนตัว"><span>ศูนย์ส่วนตัว</span>'+newHtml+'</a>');
+						$("#loginbox").html('<a class="mod-top-nav-user ui-right" href="{退出登录}">&nbsp; ออกจากระบบ</a>');
 					}else if( data.code == 300){
-						$("#loginbox").html('<a class="mod-top-nav-user ui-right" href="javascript:easydialog_url(\'user.login\',\'登录/注册\',\'\',320,420)">&nbsp; 登录/注册</a>');
+						$("#loginbox").html('<a class="mod-top-nav-user ui-right" href="javascript:easydialog_url(\'user.login\',\'เข้าสู่ระบบ/สมัคร\',\'\',320,420)">&nbsp; เข้าสู่ระบบ/สมัคร</a>');
 					}
 				},"json");
 			});

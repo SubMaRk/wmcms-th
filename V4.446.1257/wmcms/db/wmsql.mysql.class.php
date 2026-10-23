@@ -1743,16 +1743,16 @@ class WMSql
 					//前台报错
 					if( !WMMANAGER )
 					{
-						tpl::ErrInfo('页面出错，我们已经记录了该信息！！');
+						tpl::ErrInfo('หน้าเว็บเกิดข้อผิดพลาด เราได้บันทึกข้อมูลนี้ไว้แล้ว!!');
 					}
 					else
 					{
-						Ajax('页面出错，我们已经记录了该信息！！',300);
+						Ajax('หน้าเว็บเกิดข้อผิดพลาด เราได้บันทึกข้อมูลนี้ไว้แล้ว!!',300);
 					}
 				}
 				else if( !file_exists(WMTEMPLATE.'system/wmsql.html') )
 				{
-					tpl::ErrInfo('对不起,系统模版“wmsql.html”不存在！');
+					tpl::ErrInfo('ไม่พบเทมเพลตระบบ “wmsql.html”!');
 				}
 				//如果是ajax请求
 				else if( IsAjax() )
@@ -1841,44 +1841,44 @@ class WMSql
         //老版本的Mysql并不支持union，常用的程序里也不使用union，但是一些黑客使用它，所以检查它
         if (strpos($sql, 'union') >0 && preg_match('~(^|[^a-z])union($|[^[a-z])~is', $sql) != 0)
         {
-            exit('禁止使用union查询');
+            exit('ห้ามใช้คำสั่ง union');
         }
         //程序没有使用--,#这样的注释，但是黑客经常使用它们
         elseif (strpos($sql, '/*') > 2 /*|| strpos($sql, '--') >0*/)
         {
-            exit('sql语句禁止使用注释');
+            exit('คำสั่ง sql ห้ามใช้คอมเมนต์');
         }
         //这些函数不会被使用，但是黑客会用它来操作文件，down掉数据库
         elseif (strpos($sql, 'sleep(') > 0 && preg_match('~(^|[^a-z])sleep($|[^[a-z])~is', $sql) != 0)
         {
-            exit('禁止使用特殊函数查询-sleep(');
+            exit('ห้ามใช้ฟังก์ชันพิเศษในการค้นหา - sleep(');
         }
         elseif (strpos($sql, 'benchmark') > 0 && preg_match('~(^|[^a-z])benchmark($|[^[a-z])~is', $sql) != 0)
         {
-            exit('禁止使用特殊函数查询-benchmark');
+            exit('ห้ามใช้ฟังก์ชันพิเศษในการค้นหา - benchmark');
         }
         elseif (strpos($sql, 'load_file') > 0 && preg_match('~(^|[^a-z])load_file($|[^[a-z])~is', $sql) != 0)
         {
-            exit('禁止使用特殊函数查询-load_file');
+            exit('ห้ามใช้ฟังก์ชันพิเศษในการค้นหา - load_file');
         }
         elseif (strpos($sql, 'into outfile') > 0 && preg_match('~(^|[^a-z])into\s+outfile($|[^[a-z])~is', $sql) != 0)
         {
-            exit('禁止使用特殊函数查询-into outfile');
+            exit('ห้ามใช้ฟังก์ชันพิเศษในการค้นหา - into outfile');
         }
         elseif (strpos($sql, 'extractvalue') > 0 && preg_match('~(^|[^a-z])extractvalue($|[^[a-z])~is', $sql) != 0)
         {
-            exit('禁止使用特殊函数查询-extractvalue');
+            exit('ห้ามใช้ฟังก์ชันพิเศษในการค้นหา - extractvalue');
         }
         elseif (strpos($sql, 'updatexml') > 0 && preg_match('~(^|[^a-z])updatexml($|[^[a-z])~is', $sql) != 0)
         {
-            exit('禁止使用特殊函数查询-updatexml');
+            exit('ห้ามใช้ฟังก์ชันพิเศษในการค้นหา - updatexml');
         }
         //老版本的MYSQL不支持子查询，但是黑客可以使用它来查询数据库敏感信息
         elseif (preg_match('~\([^)]*?select ~is', $sql) != 0)
         {
         	if ( self::$checkSql === true )
         	{
-        		exit('禁止使用子查询');
+        		exit('ห้ามใช้ subquery');
         	}
         	else
         	{

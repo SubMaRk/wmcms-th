@@ -18,7 +18,7 @@ if ( $type == 'del' )
 	//写入操作记录
 	SetOpLog( '删除了请求记录' , 'system' , 'delete' , $table , $where);
 	wmsql::Delete($table, $where);
-	Ajax('请求记录删除成功!');
+	Ajax('ลบบันทึกคำขอสำเร็จ!');
 }
 //清空请求记录
 else if ( $type == 'clear' )
@@ -26,6 +26,6 @@ else if ( $type == 'clear' )
 	wmsql::Exec('TRUNCATE TABLE `@'.$table.'`');
 	//写入操作记录
 	SetOpLog( '清空了请求记录记录' , 'system' , 'delete');
-	Ajax('所有请求记录成功清空！');
+	Ajax('ล้างข้อมูลบันทึกคำขอทั้งหมดสำเร็จ!');
 }
 ?>

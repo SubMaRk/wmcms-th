@@ -19,11 +19,11 @@ else
 					<table class="table table-border table-bordered table-bg table-sort">
 		            <tbody>
 		                <tr>
-		                    <td width="120"><b>小说名字：</b></td>
+		                    <td width="120"><b>ชื่อนิยาย:</b></td>
 						  	<td>《<?php echo $data['novel_name']?>》（id:<?php echo $data['novel_id']?>）</td>
 		                </tr>
 		                <tr>
-		                    <td width="120"><b>签约状态：</b></td>
+		                    <td width="120"><b>สถานะเซ็นสัญญา:</b></td>
 						  	<td style="<?php if($data['novel_copyright'] >= 1 ){?>color:red<?php }?>">
 						  	<?php if($data['novel_copyright'] >= 1 ){
 						  		echo '该小说已签约';
@@ -32,7 +32,7 @@ else
 						  	}?></td>
 		                </tr>
 		                <tr>
-		                    <td width="120"><b>上架状态：</b></td>
+		                    <td width="120"><b>สถานะการเปิดขาย：</b></td>
 						  	<td style="<?php if($data['novel_sell'] == 1 ){?>color:red<?php }?>">
 						  	<?php if($data['novel_sell'] == 1 ){
 						  		echo '该小说已经上架销售';
@@ -41,7 +41,7 @@ else
 						  	}?></td>
 		                </tr>
 		                <tr>
-		                    <td><b>收费方式：</b></td>
+		                    <td><b>วิธีการเก็บเงิน:</b></td>
 						  	<td>
 			                    <input type="checkbox" name="data[sell_type][]" value="1" data-toggle="icheck" data-label="单章" <?php if( in_array('1',$sellType) ){ echo 'checked';}?>>
 			                    <input type="checkbox" name="data[sell_type][]" value="2" data-toggle="icheck" data-label="全本" <?php if( in_array('2',$sellType) ){ echo 'checked';}?>>
@@ -49,21 +49,21 @@ else
 		                    </td>
 		                </tr>
 		                <tr>
-		                    <td><b>单章价格：</b></td>
+		                    <td><b>ราคาต่อตอน:</b></td>
 						  	<td>
-			                    <input type="text" name="data[sell_number]" value="<?php echo C('sell_number',null,'sellData');?>" size="14" placeholder="请输入单章千字价格"> <?php echo $goldName?> / 每千字
+			                    <input type="text" name="data[sell_number]" value="<?php echo C('sell_number',null,'sellData');?>" size="14" placeholder="请输入单章千คำ价格"> <?php echo $goldName?> / ต่อ 1,000 คำ
 			                </td>
 		                </tr>
 		                <tr>
-		                    <td><b>全本价格：</b></td>
+		                    <td><b>ราคาทั้งเล่ม：</b></td>
 						  	<td>
-			                    <input type="text" name="data[sell_all]" value="<?php echo C('sell_all',null,'sellData');?>" size="14" placeholder="请输入全本的价格"> <?php echo $goldName?> / 本
+			                    <input type="text" name="data[sell_all]" value="<?php echo C('sell_all',null,'sellData');?>" size="14" placeholder="请输入全本的价格"> <?php echo $goldName?> / เล่ม
 			                </td>
 		                </tr>
 		                <tr>
-		                    <td><b>包月价格：</b></td>
+		                    <td><b>ราคารายเดือน:</b></td>
 						  	<td>
-			                    <input type="text" name="data[sell_month]" value="<?php echo C('sell_month',null,'sellData');?>" size="14" placeholder="请输入包月的价格"> <?php echo $goldName?> / 月
+			                    <input type="text" name="data[sell_month]" value="<?php echo C('sell_month',null,'sellData');?>" size="14" placeholder="请输入包月的价格"> <?php echo $goldName?> / เดือน
 			                </td>
 		                </tr>
 		            </tbody>
@@ -76,7 +76,7 @@ else
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
         <li><button type="submit" class="btn-green" data-icon="save"><?php if($data['novel_sell'] == 1 ){ echo '立即下架';}else{echo '立即上架';}?></button></li>
     </ul>
 </div>

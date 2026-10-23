@@ -8,17 +8,17 @@
 <div class="bjui-pageContent">
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
       <thead><tr><th colspan="4" style="text-align:left;">
-      <b style="color:red;font-size:14px;">提示:请先到API管理-seo接口设置相关的api信息！</b>
+      <b style="color:red;font-size:14px;">คำแนะนำ: ไปตั้งค่าข้อมูล api ที่ จัดการ API - อินเทอร์เฟซ seo ก่อน!</b>
       </th></tr></thead>
 
       <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
 		<thead>
 		      <tr>
-		        <td width="150">搜索引擎</td>
+		        <td width="150">เครื่องมือค้นหา</td>
 		        <td>
 		        	<select data-toggle="selectpicker" data-width="130" id="<?php echo $cFun;?>sptype">
-		            	<option value="">请选择搜索引擎</option>
-		            	<option value="baidu">百度</option>
+		            	<option value="">กรุณาเลือกเครื่องมือค้นหา</option>
+		            	<option value="baidu">Baidu</option>
 		         	</select>
 		         	<span class="<?php echo $cFun;?>sptype_info" id="<?php echo $cFun;?>sptype_info_baidu">提示：每次最多只能提交2000条链接，每天可以提交5000000条</span>
 				</td>
@@ -26,7 +26,7 @@
 		      <tr>
 		        <td colspan="2">
 					<fieldset>
-						<legend>输入url</legend>
+						<legend>กรอก url</legend>
 						<ul class="nav nav-tabs" role="tablist">
 							<li class="active"><a href="#<?php echo $cFun;?>auto" role="tab" data-toggle="tab">自动提交</a></li>
 							<li><a href="#<?php echo $cFun;?>hand" role="tab" data-toggle="tab">手动提交</a></li>
@@ -37,10 +37,10 @@
 								<table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
 								<thead>
 								      <tr>
-								      	<td width="150">选择模块</td>
+								      	<td width="150">เลือกโมดูล</td>
 								        <td colspan="2">
 								        	<select data-toggle="selectpicker" data-width="130" id="<?php echo $cFun?>module">
-								            	<option value="">请选择模块</option>
+								            	<option value="">กรุณาเลือกโมดูล</option>
 								            	<?php 
 								            	foreach ($moduleArr as $k=>$v)
 								            	{
@@ -51,14 +51,14 @@
 								         </td>
 								      </tr>
 								      <tr>
-								      	<td width="150">内容条件</td>
+								      	<td width="150">เงื่อนไขเนื้อหา</td>
 								        <td colspan="2">
 									        <div style="float:left;margin-right:15px;">
 								        		<select data-toggle="selectpicker" id="<?php echo $cFun;?>content_where" data-width="100">
-									            	<option value="">请选择条件</option>
-									            	<option value="all">全部</option>
-									            	<option value="id">内容ID区间</option>
-									            	<option value="time">时间选择</option>
+									            	<option value="">กรุณาเลือกเงื่อนไข</option>
+									            	<option value="all">ทั้งหมด</option>
+									            	<option value="id">ช่วง ID เนื้อหา</option>
+									            	<option value="time">เลือกเวลา</option>
 									         	</select>
 								         	</div>
 								         	<div id="<?php echo $cFun;?>content_id_box" style="display:none">
@@ -82,7 +82,7 @@
 								<table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
 								<thead>
 								      <tr>
-								      	<td width="150">请输入URL，一行一个</td>
+								      	<td width="150">กรุณากรอก URL บรรทัดละหนึ่งรายการ</td>
 								      	<td><textarea rows="15" cols="50" id="<?php echo $cFun;?>urls"></textarea></td>
 								      </tr>
 							    </thead>
@@ -93,7 +93,7 @@
 		        </td>
 		      </tr>
 		      
-		      <tr><td colspan="2"><a class="btn btn-success radius size-MINI" onClick="urlpost()">立即提交</a></td></tr>
+		      <tr><td colspan="2"><a class="btn btn-success radius size-MINI" onClick="urlpost()">ส่งข้อมูลทันที</a></td></tr>
 		</thead>
 	</table>
 </div>

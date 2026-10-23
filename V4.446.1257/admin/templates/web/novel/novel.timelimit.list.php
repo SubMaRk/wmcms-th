@@ -17,15 +17,15 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                <span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
+                <span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
 				<select data-toggle="selectpicker" name="st" data-width="100">
-                	<option value="1" <?php echo str::CheckElse( $st , 1 , 'selected=""' );?>>搜书名</option>
-                	<option value="2" <?php echo str::CheckElse( $st , 2 , 'selected=""' );?>>搜作者</option>
+                	<option value="1" <?php echo str::CheckElse( $st , 1 , 'selected=""' );?>>ค้นชื่อหนังสือ</option>
+                	<option value="2" <?php echo str::CheckElse( $st , 2 , 'selected=""' );?>>ค้นผู้แต่ง</option>
                 </select>
                 <input type="text" placeholder="<?php echo $name;?>" name="name" size="15">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>&nbsp;
-				<a href="index.php?a=yes&c=novel.timelimit&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>&nbsp;
+				<a href="index.php?a=yes&c=novel.timelimit&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
 			</form>
 		</div>
 	</div>
@@ -37,14 +37,14 @@ thead th {
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="5%" data-order-field="timelimit_id">ID</th>
-				<th width="5%" data-order-field="novel_id">小说ID</th>
-				<th width="10%" data-order-field="novel_name">小说名字</th>
-	            <th width="5%" data-order-field="timelimit_status">是否免费</th>
-				<th width="10%" data-order-field="timelimit_starttime">免费开始时间</th>
-				<th width="10%" data-order-field="timelimit_endtime">免费结束时间</th>
-				<th width="4%" data-order-field="timelimit_order">排序</th>
-	            <th width="10%" data-order-field="timelimit_time">添加时间</th>
-	            <th width="10%">操作</th>
+				<th width="5%" data-order-field="novel_id">ID นิยาย</th>
+				<th width="10%" data-order-field="novel_name">ชื่อนิยาย</th>
+	            <th width="5%" data-order-field="timelimit_status">ฟรีหรือไม่</th>
+				<th width="10%" data-order-field="timelimit_starttime">เวลาเริ่มฟรี</th>
+				<th width="10%" data-order-field="timelimit_endtime">เวลาสิ้นสุดฟรี</th>
+				<th width="4%" data-order-field="timelimit_order">เรียงลำดับ</th>
+	            <th width="10%" data-order-field="timelimit_time">เวลาเพิ่ม</th>
+	            <th width="10%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody id="<?php echo $cFun?>List">
@@ -55,7 +55,7 @@ thead th {
 				foreach ($dataArr as $k=>$v)
 				{
 					$cur = str::CheckElse( $i%2 , 0 , '' , 'even_index_row');
-					$status = str::CheckElse( $v['timelimit_status'] , 0 , '<span style="color:red">暂停免费</span>' , '<span style="color:green">限时免费</span>');
+					$status = str::CheckElse( $v['timelimit_status'] , 0 , '<span style="color:red">หยุดฟรีชั่วคราว</span>' , '<span style="color:green">ฟรีชั่วคราว</span>');
 						
 					echo '<tr class="'.$cur.'">
 							<td style="text-align: center;"><input type="checkbox" name="ids" data-toggle="icheck" value="'.$v['timelimit_id'].'"></td>
@@ -68,8 +68,8 @@ thead th {
 							<td style="text-align: center;">'.$v['timelimit_order'].'</td>
 							<td style="text-align: center;">'.date( 'Y-m-d H:i:s' , $v['timelimit_time']).'</td>
 							<td style="text-align: center;" data-noedit="true">
-				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" data-toggle="dialog" data-title="编辑《'.$v['novel_name'].'》的限时免费信息" data-width="420" data-height="400" href="index.php?d=yes&c=novel.timelimit.edit&t=edit&id='.$v['timelimit_id'].'" >编辑</a> 
-								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['timelimit_id'].')">删除</a>
+				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" data-toggle="dialog" data-title="บรรณาธิการ《'.$v['novel_name'].'》的ฟรีชั่วคราว信息" data-width="420" data-height="400" href="index.php?d=yes&c=novel.timelimit.edit&t=edit&id='.$v['timelimit_id'].'" >แก้ไข</a> 
+								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['timelimit_id'].')">ลบ</a>
 				            </td>
 						</tr>';
 					$i++;
@@ -86,7 +86,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -95,7 +95,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>

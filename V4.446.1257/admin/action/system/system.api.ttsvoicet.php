@@ -20,7 +20,7 @@ if ( $type == 'edit' || $type == "add" )
 	{
 		if( $v == '' )
 		{
-			Ajax('对不起，所有项都不能为空！' , 300);
+			Ajax('ทุกช่องห้ามว่าง!' , 300);
 		}
 	}
 	
@@ -31,7 +31,7 @@ if ( $type == 'edit' || $type == "add" )
 		$where['voicet_id'] = $voicetMod->Insert($data);
 		//写入操作记录
 		SetOpLog( '新增了发音人'.$data['voicet_name'] , 'system' , 'insert' , $table , $where , $data );
-		Ajax('发音人新增成功!');
+		Ajax('เพิ่มผู้ให้เสียงสำเร็จ!');
 	}
 	//如果是增加页面
 	else
@@ -40,7 +40,7 @@ if ( $type == 'edit' || $type == "add" )
 		SetOpLog( '修改发音人' , 'system' , 'update' , $table  , $where , $data );
 		//修改数据
 		$voicetMod->Update($data,$where);
-		Ajax('发音人修改成功！');
+		Ajax('แก้ไขผู้ให้เสียงสำเร็จ!');
 	}
 }
 //删除条件删选
@@ -50,6 +50,6 @@ else if( $type == 'del' )
 	$voicetMod->Del($where);
 	//写入操作记录
 	SetOpLog( '删除了发音人' , 'system' , 'delete' , $table , $where);
-	Ajax('发音删除成功!');
+	Ajax('ลบเสียงอ่านสำเร็จ!');
 }
 ?>

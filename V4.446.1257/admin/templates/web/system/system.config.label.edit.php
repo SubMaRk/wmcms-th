@@ -9,19 +9,19 @@
 	<form action="index.php?a=yes&c=system.config.label&t=<?php echo $type;?>" class="form form-horizontal" data-reload="false" data-toggle="ajaxform" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
     	<input type="hidden" name="id[label_id]" value="<?php echo $id;?>"/>
 	    <div class="row cl">
-			<label class="form-label col-md-3">标签标题：</label>
+			<label class="form-label col-md-3">หัวข้อแท็ก:</label>
 	    	<div class="formControls col-md-8">
 	        	<input type="text" class="form-control"  name="label[label_title]" value="<?php echo C('label_title',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">标签名：</label>
+			<label class="form-label col-md-3">ชื่อแท็ก:</label>
 	    	<div class="formControls col-md-8">
 	    		<input type="text" class="form-control" name="label[label_name]" value="<?php echo C('label_name',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">标签值：</label>
+			<label class="form-label col-md-3">ค่าแท็ก:</label>
 	    	<div class="formControls col-md-8">
 	    		<textarea name="label[label_value]" cols="30" rows="3" data-toggle="autoheight"><?php echo str::Escape(C('label_value',null,'data'));?></textarea>
 	    	</div>
@@ -30,8 +30,8 @@
 	</form>
 	<div class="bjui-pageFooter">
 	    <ul>
-	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 保存</button></li>
+	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> บันทึก</button></li>
 	    </ul>
 	</div>
 </div>

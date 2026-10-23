@@ -27,6 +27,6 @@ else if ( $type == 'settlement')
 	$where['report_id'] =  array('lin' , Request('ids'));
 	SetOpLog( '结算了报表！' , 'finance' , 'update' , $reportTable,$where);
 	$repostMod->Settlement($where['report_id'],C('admin_id'));
-	Ajax('结算成功！');
+	Ajax('สรุปยอดสำเร็จ!');
 }
 ?>

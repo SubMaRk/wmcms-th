@@ -36,7 +36,7 @@ if ( $type == 'del' )
 		$applyMod->Delete($where);
 	}
 	
-	Ajax('小说封面申请删除成功!');
+	Ajax('ลบคำขอเปลี่ยนปกนิยายสำเร็จ!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -44,7 +44,7 @@ else if ( $type == 'status' )
 	$status = Request('status/i');
 	if( $status == 0)
 	{
-		Ajax('对不起，不能变更为未审核状态！');
+		Ajax('ไม่สามารถเปลี่ยนเป็นสถานะยังไม่ตรวจสอบได้!');
 	}
 	else if( $status == 1)
 	{
@@ -56,7 +56,7 @@ else if ( $type == 'status' )
     		$msg = '审核通过';
     	}
     	SetOpLog( $msg.'了小说上传封面' , 'system' , 'update' , $table , array('apply_id'=>GetDelId()));
-    	Ajax('小说封面'.$msg.'成功!');
+    	Ajax('ปกนิยาย'.$msg.'สำเร็จ!');
 	}
 }
 ?>

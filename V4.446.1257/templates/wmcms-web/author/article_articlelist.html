@@ -10,12 +10,12 @@ $(document).ready(function(){
 
 <div class="mainRight fl">
     <div class="crumbsWrap">
-        <i><span>投稿管理</span></i>
+        <i><span>จัดการผลงานที่ส่ง</span></i>
     </div>
     <div class="msgBoxTitle">
-        <p class="f12 c555">当前投稿总数<span id="bookCount" class="blue Num">{总数据}</span>篇</p>
-        <a class="create button" href="{文章投稿}"><em class="icon"></em>立即投稿</a>
-        <a class="button white" href="{文章草稿箱列表}">草稿箱</a>
+        <p class="f12 c555">จำนวนผลงานที่ส่งเข้าทั้งหมดในปัจจุบัน<span id="bookCount" class="blue Num">{总数据}</span>ฉบับ</p>
+        <a class="create button" href="{文章投稿}"><em class="icon"></em>ส่งผลงานเลย</a>
+        <a class="button white" href="{文章草稿箱列表}">ฉบับร่าง</a>
     </div>
     
     <!-- 存在作品 -->
@@ -36,14 +36,14 @@ $(document).ready(function(){
                 <thead>
 	                <tr>
 	                    <th></th>
-	                    <th class="tl">文章标题</th>
-	                    <th class="center">文章分类</th>
-	                    <th class="center">文章编辑</th>
-	                    <th class="center">审核状态</th>
-	                    <th class="center">点击量</th>
-	                    <th class="center">评论量</th>
-	                    <th class="center">投稿时间</th>
-	                    <th class="center">操作</th>
+	                    <th class="tl">หัวข้อบทความ</th>
+	                    <th class="center">หมวดหมู่บทความ</th>
+	                    <th class="center">บรรณาธิการบทความ</th>
+	                    <th class="center">สถานะการตรวจสอบ</th>
+	                    <th class="center">ยอดคลิก</th>
+	                    <th class="center">จำนวนความคิดเห็น</th>
+	                    <th class="center">เวลาส่งผลงาน</th>
+	                    <th class="center">ดำเนินการ</th>
 	                </tr>
                 </thead>
                 <tbody id="novelList">
@@ -52,7 +52,7 @@ $(document).ready(function(){
                		<tr class="active">
 	               		<td colspan="9">
 						    <div class="worksCtrlWrap">
-						        <div class="null"><p>你还没有进行过投稿，<a class="button" style="color: #FFF;" href="{文章投稿}">立即投稿</a></p></div>
+						        <div class="null"><p>คุณยังไม่เคยส่งผลงาน,<a class="button" style="color: #FFF;" href="{文章投稿}">ส่งผลงานเลย</a></p></div>
 						    </div>
 					    </td>
 				    </tr>
@@ -66,7 +66,7 @@ $(document).ready(function(){
                 		<td class="center">{文章阅读量}</td>
                 		<td class="center">{文章评论量}</td>
                 		<td class="center">{文章发布时间}</td>
-                		<td class="center"><div class="dib-wrap"><a class="button blue" href="{eurl}" title="编辑"><span class="icon"></span><i>编辑</i></a></div>
+                		<td class="center"><div class="dib-wrap"><a class="button blue" href="{eurl}" title="แก้ไข"><span class="icon"></span><i>บรรณาธิการ</i></a></div>
                 		</tr>
                 	{/文章列表}
                 </tbody>

@@ -13,4 +13,4 @@
 2.违法国家相关法律！','author_novel_cover_1' => '恭喜您，您提交的小说封面审核通过！','author_novel_cover_0' => '您好，您上传的封面请等待管理员审核通过后才能显示！','author_apply_2' => '对不起，您申请的作者没有通过审核！
 原因如下：
 1.可能资料不完善
-2.你的笔名涉嫌违法','author_apply_1' => '您好，您申请的作者已经通过审核，现在您可以去创建小说了！','author_apply_0' => '您好，您的作者申请已经提交，请等待管理员审核！。','author_novel_uploadcover' => '0','author_novel_coverheight' => '500','author_novel_coverwidth' => '400','author_novel_createchapter' => '0','author_novel_createnovel' => '0','author_default_notice' => '此作者暂时没有公告！','author_default_info' => '这个人很懒呢！','apply_author_open' => '1','apply_author_status' => '0','author_article_open' => '1',);?>
+2.你的笔名涉嫌违法','author_apply_1' => 'สวัสดี คำขอเป็นผู้แต่งของคุณได้รับอนุมัติแล้ว ตอนนี้คุณสร้างนิยายได้เลย!','author_apply_0' => '您好，您的作者申请已经提交，请等待管理员审核！。','author_novel_uploadcover' => '0','author_novel_coverheight' => '500','author_novel_coverwidth' => '400','author_novel_createchapter' => '0','author_novel_createnovel' => '0','author_default_notice' => 'ผู้แต่งท่านนี้ยังไม่มีประกาศ!','author_default_info' => '这个人很懒呢！','apply_author_open' => '1','apply_author_status' => '0','author_article_open' => '1',);?>

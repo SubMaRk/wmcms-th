@@ -105,7 +105,7 @@ class finance
 		switch ($status)
 		{
 			case '1':
-				return '已通过';
+				return 'อนุมัติแล้ว';
 				break;
 				
 			case '2':

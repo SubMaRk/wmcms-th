@@ -2,12 +2,12 @@
     <form action="index.php?a=yes&c=operate.flash&t=<?php echo $type;?>" data-reload="false" data-toggle="validate" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
 	<input name="id[flash_id]" type="hidden" class="input-text" value="<?php echo $id;?>">
 		<fieldset>
-			<legend>幻灯片编辑</legend>
+			<legend>แก้ไขสไลด์</legend>
         	<table class="table table-condensed table-hover" width="100%">
             <tbody>
             	<tr>
 				  <td colspan="2">
-				  	<b>专 题 分 类：</b>
+				  	<b>หมวดหมู่หัวข้อพิเศษ：</b>
 					<input id="<?php echo $cFun.$type;?>type_id" name="flash[type_id]" type="hidden" value="<?php echo C('type_id',null,'data');?>">
 			      	<input type="text" id="<?php echo $cFun.$type;?>_ztree_input" data-toggle="selectztree" data-tree="#<?php echo $cFun.$type;?>_ztree_select" readonly value="<?php echo C('type_name',null,'data');?>">
                     <ul id="<?php echo $cFun.$type;?>_ztree_select" class="ztree hide" data-toggle="ztree" data-expand-all="true" data-check-enable="true" data-chk-style="radio" data-radio-type="all" data-on-check="<?php echo $cFun.$type;?>S_NodeCheck" data-on-click="<?php echo $cFun.$type;?>S_NodeClick">
@@ -26,17 +26,17 @@
 				</tr>
                 <tr>
                     <td>
-                        <b>幻灯片标题：</b>
+                        <b>หัวข้อสไลด์:</b>
                         <input type="text" name="flash[flash_title]" value="<?php echo C('flash_title',null,'data');?>" data-rule="required">
                     </td>
                     <td>
-                        <b>幻灯片简介：</b>
+                        <b>เรื่องย่อสไลด์:</b>
                         <input type="text" name="flash[flash_info]" value="<?php echo C('flash_info',null,'data');?>">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <b>幻灯片状态：</b>
+                        <b>สถานะสไลด์:</b>
                         <select data-toggle="selectpicker" name="flash[flash_status]">
                        	<?php 
                        	foreach ($statusArr as $k=>$v)
@@ -48,13 +48,13 @@
                         </select>
 		             </td>
                     <td>
-                        <b>跳 转 地 址：</b>
+                        <b>ที่อยู่ปลายทาง:</b>
                         <input type="text" name="flash[flash_url]" value="<?php echo C('flash_url',null,'data');?>" data-rule="文章标题:required" size="40">
                     </td>
                 </tr>
                 <tr>
                    <td colspan="3">
-                        <b>幻灯片图片：</b>
+                        <b>รูปสไลด์:</b>
                         <input type="text" id="<?php echo $cFun.$type;?>flash_img" name="flash[flash_img]" value="<?php echo C('flash_img',null,'data');?>" size="40">
 						<span class="upload" data-uploader="index.php?a=yes&c=upload&t=img" data-on-upload-success="<?php echo $cFun;?>upload_success" data-file-type-exts="*.jpg;*.png;*.gif;*.mpg" data-toggle="upload" data-icon="cloud-upload"></span>
 						<?php if( C('flash_img',null,'data') != '' ){ echo '<a target="_blank" href="'.C('flash_img',null,'data').'">点击查看图片</a>';}?>
@@ -62,7 +62,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <b>所 属 模 块：</b>
+                        <b>โมดูลที่สังกัด:</b>
                         <select data-toggle="selectpicker" name="flash[flash_module]">
                        	<?php 
                        	foreach ($moduleArr as $k=>$v)
@@ -74,19 +74,19 @@
                         </select>
 		             </td>
 		             <td>
-                        <b>分 类 I D：</b>
+                        <b>ID หมวดหมู่:</b>
                         <input type="text" name="flash[flash_pid]" value="<?php echo C('flash_pid',null,'data');?>" data-rule="digits" size="10">
                     </td>
 		          </tr>
 	              <tr>
                     <td colspan="3">
-                        <b>显 示 顺 序：</b>
+                        <b>ลำดับการแสดง:</b>
                         <input type="text" name="flash[flash_order]" value="<?php echo C('flash_order',null,'data');?>" data-rule="digits" size="10">
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <b>幻灯片描述：</b>
+                        <b>คำอธิบายสไลด์:</b>
                         <textarea name="flash[flash_desc]" cols="40" rows="6"><?php echo C('flash_desc',null,'data');?></textarea>
                     </td>
                 </tr>
@@ -98,8 +98,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 
@@ -115,7 +115,7 @@ function <?php echo $cFun;?>(json){
     $(this).navtab("reload",op);	// 刷新Tab页面
     $(this).navtab("switchTab",tabid);	// 切换Tab页面
 }
-//上传封面
+//上传บล็อก面
 function <?php echo $cFun;?>upload_success(file,json,$element){
 	json = $.parseJSON(json);
 	if ( json.statusCode == 300){

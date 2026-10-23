@@ -19,7 +19,7 @@
 						{隐藏表单}
 						<div class="u-f-ac inputbox">
 							<div class="otc">
-								<span class="name">分卷名字	 :</span>
+								<span class="name">ชื่อเล่ม :</span>
 							</div>
 							<div class="input">
 								<input type="text" value="{分卷名字}" name="name" id="name">
@@ -27,26 +27,26 @@
 						</div>
 						<div class="u-f-ac inputbox">
 							<div class="otc">
-								<span class="name">显示顺序	 :</span>
+								<span class="name">ลำดับการแสดง :</span>
 							</div>
 							<div class="input">
-								<input type="text" value="{分卷顺序}" id="order" name="order" placeholder="分卷的顺序。越小越靠前">
+								<input type="text" value="{分卷顺序}" id="order" name="order" placeholder="ลำดับของเล่ม. ยิ่งน้อยยิ่งอยู่ข้างหน้า">
 							</div>
 						</div>
 						<div class="u-f-ac inputbox">
 							<div class="otc">
-								<span class="name">分卷介绍	 :</span>
+								<span class="name">คำอธิบายเล่ม :</span>
 							</div>
 							<div class="input">
-								<textarea id="desc" placeholder="分卷简介" name="desc">{分卷简介}</textarea>
+								<textarea id="desc" placeholder="เรื่องย่อเล่ม" name="desc">{分卷简介}</textarea>
 							</div>
 						</div>
 						<div class="u-f u-f-jsb">
 							<div class="u-f">
 								{cur:vid>0}
-								<a id="delete" style="background-color: #FF5722;text-align: center;line-height: 0.6rem;" class="submit" href="{删除分卷}">删除</a>
+								<a id="delete" style="background-color: #FF5722;text-align: center;line-height: 0.6rem;" class="submit" href="{删除分卷}">ลบ</a>
 								{/cur}
-								<button type="button" class="submit" id="sub">保存</button>
+								<button type="button" class="submit" id="sub">บันทึก</button>
 							</div>
 						</div>
 						
@@ -63,9 +63,9 @@
 				var order = $("#order").val();
 				
 				if( name == '' ){
-					layer.open({content:'对不起，分卷名字不能为空！',time: 2});
+					layer.open({content:'ขออภัย ชื่อเล่มห้ามว่าง!',time: 2});
 				}else if( order == '' ){
-					layer.open({content:'对不起，显示顺序只能为数字！',time: 2});
+					layer.open({content:'ขออภัย ลำดับการแสดงต้องเป็นตัวเลขเท่านั้น!',time: 2});
 				}else{
 					$.ajax({
 						type:"POST",

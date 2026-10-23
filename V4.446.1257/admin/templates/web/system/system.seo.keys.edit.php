@@ -8,7 +8,7 @@
 	<form action="index.php?a=yes&c=system.seo.keys&t=<?php echo $type;?>" class="form form-horizontal" data-reload="false" data-toggle="ajaxform" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
     	<input type="hidden" name="keys_id" value="<?php echo $id;?>"/>
 	    <div class="row cl">
-			<label class="form-label col-md-3">所属模块：</label>
+			<label class="form-label col-md-3">โมดูลที่สังกัด:</label>
 			<div class="formControls col-md-8">
 		      	<select data-toggle="selectpicker" readonly disabled>
 		        <?php
@@ -22,25 +22,25 @@
 			</div>
 		</div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">页面作用：</label>
+			<label class="form-label col-md-3">หน้าที่ใช้งาน:</label>
 	    	<div class="formControls col-md-8">
 	    		<input type="text" class="form-control" readonly disabled size="25" value="<?php echo C('keys_pagename',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">页面标题：</label>
+			<label class="form-label col-md-3">หัวข้อหน้า:</label>
 	    	<div class="formControls col-md-8">
 	        	<input type="text" class="form-control" name="keys_title" size="40" value="<?php echo C('keys_title',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">关键词：</label>
+			<label class="form-label col-md-3">คำสำคัญ：</label>
 	    	<div class="formControls col-md-8">
 	        	<input type="text" class="form-control" name="keys_key" size="40" value="<?php echo C('keys_key',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">页面描述：</label>
+			<label class="form-label col-md-3">คำอธิบายหน้า:</label>
 	    	<div class="formControls col-md-8">
 	        	<input type="text" class="form-control" name="keys_desc" size="40" value="<?php echo C('keys_desc',null,'data');?>">
 	    	</div>
@@ -49,8 +49,8 @@
 	</form>
 	<div class="bjui-pageFooter">
 	    <ul>
-	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 保存</button></li>
+	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> บันทึก</button></li>
 	    </ul>
 	</div>
 </div>

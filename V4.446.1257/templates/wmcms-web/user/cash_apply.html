@@ -14,32 +14,32 @@
 	<div class="mn">
 		<div class="bm">
 			<div class="bm_h">
-				<span class="xi2 y"><a href="{提现记录}" style="color:red">提现记录</a></span>
-				<h1 class="mt">在线提现申请</h1>
+				<span class="xi2 y"><a href="{提现记录}" style="color:red">ประวัติการถอนเงิน</a></span>
+				<h1 class="mt">คำขอถอนเงินออนไลน์</h1>
 			</div>
 			<div class="bm_c">
 				<div class="bm_c u_profile">
 				    <div class="pbm mbm bbda cl" style="position: relative;">
 						<div style="clear: both"></div>
 						<div id="pbbs" class="pf_l">
-							<div><span class="th">账户余额</span><span>{用户余额}</span></div>
-							<div><span class="th">提现手续费</span><span>{提现手续费} %</span></div>
-							{开启梦宝兑换余额}
+							<div><span class="th">ยอดคงเหลือในบัญชี</span><span>{用户余额}</span></div>
+							<div><span class="th">ค่าธรรมเนียมการถอนเงิน</span><span>{提现手续费} %</span></div>
+							{开启เมิ่งเป่า兑换余额}
 							<div><span class="th">{金币2名字}</span><span>{用户金币2数量} {金币2单位}</span></div>
-								<div><span class="th">兑换比例</span><span>1({金币2名字})：{兑换余额比例}(余额≈{梦宝兑换余额数量})</span></div>
-							{/开启梦宝兑换余额}
+								<div><span class="th">อัตราแลกเปลี่ยน</span><span>1({金币2名字}): {兑换余额比例}(ยอดคงเหลือ≈{เมิ่งเป่า兑换余额数量})</span></div>
+							{/开启เมิ่งเป่า兑换余额}
 							
-							<div style="width: 100%;"><span class="th">预计可提现</span><span>{可提现金额} 元</span></div>
+							<div style="width: 100%;"><span class="th">ยอดที่คาดว่าจะถอนได้</span><span>{可提现金额} หยวน</span></div>
 							
 							{关闭提现}
 							<div class="textCenter">
-								<span>对不起，提现功能已经关闭</span>
+								<span>ขออภัย ฟีเจอร์ถอนเงินปิดใช้งานแล้ว</span>
 							</div>
 							{/关闭提现}
 							{开启提现}
 							<div class="textCenter" style="width: 100%;">
-								<span><input class="pt" type="text" id="money" autocomplete="off" placeholder="单位元，最低提现{最低提现金额}元"> <button id="sub">立即提现</button>
-								&nbsp;&nbsp;实际到账 <b style="color:red" id="real">0</b> 元
+								<span><input class="pt" type="text" id="money" autocomplete="off" placeholder="หน่วยเป็นหยวน ถอนขั้นต่ำ{最低提现金额}หยวน"> <button id="sub">ถอนเงินทันที</button>
+								&nbsp;&nbsp;ยอดเข้าบัญชีจริง <b style="color:red" id="real">0</b> หยวน
 							</div>
 							{/开启提现}
 						</div>
@@ -66,7 +66,7 @@ $(function(){
 		var money = $(this).val();
 		if( isPositiveNum(money) == false){
 			$(this).val('0');
-			easydialog_autoclose("对不起，请输入正整数！");
+			easydialog_autoclose("ขออภัย กรุณากรอกจำนวนเต็มบวก!");
 		}
 		$("#real").html(Math.floor($(this).val()*((100-{提现手续费})/100)*100)/100);
     });
@@ -76,11 +76,11 @@ $(function(){
 			easydialog_autoclose("对不起，最低需要提现{最低提现金额}元！");
 		}if( !isPositiveNum(money) ){
 			$("#money").val('');
-			easydialog_autoclose("对不起，请输入正整数！");
+			easydialog_autoclose("ขออภัย กรุณากรอกจำนวนเต็มบวก!");
 		}else if(money > {可提现金额}){
-			easydialog_autoclose("对不起，提现金额不能超过您的余额！");
+			easydialog_autoclose("ขออภัย จำนวนเงินที่ถอนต้องไม่เกินยอดคงเหลือของคุณ!");
 		}else if({是否开启提现} == 0 ){
-			easydialog_autoclose("对不起，提现功能已经关闭！");
+			easydialog_autoclose("ขออภัย ฟังก์ชันถอนเงินถูกปิดแล้ว!");
 		}else{
 			//提现操作
 			$.ajax({

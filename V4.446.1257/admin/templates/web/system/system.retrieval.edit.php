@@ -9,7 +9,7 @@
     	<input type="hidden" name="retrieval_id" value="<?php echo $id;?>"/>
     	<input type="hidden" name="retrieval_module" value="<?php echo $module;?>"/>
 	    <div class="row cl">
-			<label class="form-label col-md-4">是否可用：</label>
+			<label class="form-label col-md-4">ใช้งานได้หรือไม่:</label>
 			<div class="formControls col-md-8">
 				<?php
 				$input['type'] = 'select';
@@ -22,13 +22,13 @@
 			</div>
 		</div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">条件名字：</label>
+			<label class="form-label col-md-4">ชื่อเงื่อนไข:</label>
 	    	<div class="formControls col-md-8">
-	        	<input type="text" class="form-control" placeholder="条件的名字" name="data[retrieval_title]" size="24" value="<?php echo C('retrieval_title',null,'data');?>">
+	        	<input type="text" class="form-control" placeholder="条件的名คำ" name="data[retrieval_title]" size="24" value="<?php echo C('retrieval_title',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">条件类型：</label>
+			<label class="form-label col-md-4">ประเภทเงื่อนไข:</label>
 	    	<div class="formControls col-md-8">
 				<?php
 				$input['type'] = 'select';
@@ -41,13 +41,13 @@
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">条件字段：</label>
+			<label class="form-label col-md-4">ฟิลด์เงื่อนไข:</label>
 	    	<div class="formControls col-md-8">
-	        	<input type="text" class="form-control" placeholder="条件的字段名字" name="data[retrieval_field]" size="24" value="<?php echo C('retrieval_field',null,'data');?>">
+	        	<input type="text" class="form-control" placeholder="条件的คำ段名คำ" name="data[retrieval_field]" size="24" value="<?php echo C('retrieval_field',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">查询类型：</label>
+			<label class="form-label col-md-4">ประเภทการสืบค้น:</label>
 	    	<div class="formControls col-md-8">
 				<?php
 				$input['type'] = 'select';
@@ -60,23 +60,23 @@
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">条件值：</label>
+			<label class="form-label col-md-4">ค่าเงื่อนไข:</label>
 	    	<div class="formControls col-md-8">
-	        	<input type="text" class="form-control" placeholder="条件的字段值" name="data[retrieval_value]" size="24" value="<?php echo C('retrieval_value',null,'data');?>">
+	        	<input type="text" class="form-control" placeholder="条件的คำ段值" name="data[retrieval_value]" size="24" value="<?php echo C('retrieval_value',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">显示顺序：</label>
+			<label class="form-label col-md-4">ลำดับการแสดง:</label>
 	    	<div class="formControls col-md-8">
-	        	<input type="text" class="form-control" placeholder="条件显示的顺序" name="data[retrieval_order]" size="24" value="<?php echo C('retrieval_order',null,'data');?>">
+	        	<input type="text" class="form-control" placeholder="条件แสดง的ลำดับ" name="data[retrieval_order]" size="24" value="<?php echo C('retrieval_order',null,'data');?>">
 	    	</div>
 	    </div>
 	</div>
 	</form>
 	<div class="bjui-pageFooter">
 	    <ul>
-	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 保存</button></li>
+	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> บันทึก</button></li>
 	    </ul>
 	</div>
 </div>

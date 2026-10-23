@@ -11,7 +11,7 @@
 	    <div class="row cl">
 			<label class="form-label col-md-4  <?php echo $cFun;?>label">字段名字：</label>
 	    	<div class="formControls">
-	        	<input type="text" class="form-control" placeholder="字段标题，用于区分显示" name="field[field_name]" value="<?php echo C('field_name',null,'data');?>">
+	        	<input type="text" class="form-control" placeholder="คำ段หัวข้อ，用于区分แสดง" name="field[field_name]" value="<?php echo C('field_name',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
@@ -21,14 +21,14 @@
 			        <option value="1" <?php if(C('field_type',null,'data')=='1'){ echo 'selected=""';}?>>分类字段</option>
 			        <option value="2" <?php if(C('field_type',null,'data')=='2'){ echo 'selected=""';}?>>内容字段</option>
 				</select>
-				<span style="margin-left:15px;color:#A7A7A7">一旦选择将无法修改。</span>
+				<span style="margin-left:15px;color:#A7A7A7">เมื่อเลือกแล้วจะไม่สามารถแก้ไขได้</span>
 	    	</div>
 	    </div>
 	    <div class="row cl">
 			<label class="form-label col-md-4  <?php echo $cFun;?>label">所属模块：</label>
 	    	<div class="formControls">
 	    		<select data-toggle="selectpicker" name="field[field_module]" id="<?php echo $cFun;?>module">
-			        <option value="">---请选择模块---</option>
+			        <option value="">---กรุณาเลือกโมดูล---</option>
 			        <?php
                 	foreach ($moduleArr as $k=>$v)
                 	{
@@ -45,7 +45,7 @@
 		        <?php
 			        if( $type=='add')
 			        {
-			        	echo '<div style="margin-top: 8px;font-size: 14px;color: #CAC8C8;">--请先选择模块--</div>';
+			        	echo '<div style="margin-top: 8px;font-size: 14px;color: #CAC8C8;">--กรุณาเลือกโมดูลก่อน--</div>';
 			        }
 			        else
 			        {
@@ -85,9 +85,9 @@
 				            }
 						}
 						echo '</select>
-						<input type="text" class="form-control" name="option[title][]" placeholder="字段标题" style="width:80px">
-						<input type="text" class="form-control" name="option[option][]" placeholder="字段选项，多个用,隔开" style="width:200px">
-						<input type="text" class="form-control" name="option[default][]" placeholder="默认值" name="field[field_default]" style="width:80px">
+						<input type="text" class="form-control" name="option[title][]" placeholder="คำ段หัวข้อ" style="width:80px">
+						<input type="text" class="form-control" name="option[option][]" placeholder="คำ段选项，多รายการ用,隔开" style="width:200px">
+						<input type="text" class="form-control" name="option[default][]" placeholder="ค่าเริ่มต้น值" name="field[field_default]" style="width:80px">
 						<a href="javascript:'.$cFun.'add()"><i class="fa fa-plus-square"></i></a></li>';
 			        }
 			        else
@@ -104,8 +104,8 @@
 			        		}
 			        		echo '</select>
 							<input type="text" class="form-control" name="option[title][]" value="'.$val['title'].'" style="width:80px">
-							<input type="text" class="form-control" name="option[option][]" placeholder="字段选项，多个用,隔开" value="'.$val['option'].'" style="width:200px">
-							<input type="text" class="form-control" name="option[default][]" placeholder="默认值" name="field[field_default]" value="'.$val['default'].'" style="width:80px">
+							<input type="text" class="form-control" name="option[option][]" placeholder="คำ段选项，多รายการ用,隔开" value="'.$val['option'].'" style="width:200px">
+							<input type="text" class="form-control" name="option[default][]" placeholder="ค่าเริ่มต้น值" name="field[field_default]" value="'.$val['default'].'" style="width:80px">
 							<a href="javascript:'.$cFun.'add()"><i class="fa fa-plus-square"></i></a>';
 			        		if( $i > 1)
 			        		{
@@ -123,8 +123,8 @@
 	</form>
 	<div class="bjui-pageFooter">
 	    <ul>
-	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-	        <li><button type="button" class="btn btn-success size-MINI radius <?php echo $cFun;?>sub"><i class="fa fa-floppy-o"></i> 保存</button></li>
+	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+	        <li><button type="button" class="btn btn-success size-MINI radius <?php echo $cFun;?>sub"><i class="fa fa-floppy-o"></i> บันทึก</button></li>
 	    </ul>
 	</div>
 </div>
@@ -217,9 +217,9 @@ function <?php echo $cFun;?>add(){
 	    }
 		?>
 		'</select>'+
-		'<input type="text" class="form-control" name="option[title][]" placeholder="字段标题" style="width:80px;margin-left: 4px;">'+
-		'<input type="text" class="form-control" name="option[option][]" placeholder="字段选项，多个用,隔开" style="width:200px;margin-left: 4px;">'+
-		'<input type="text" class="form-control" name="option[default][]" placeholder="默认值" name="field[field_default]" style="width:80px;margin-left: 4px;">'+
+		'<input type="text" class="form-control" name="option[title][]" placeholder="คำ段หัวข้อ" style="width:80px;margin-left: 4px;">'+
+		'<input type="text" class="form-control" name="option[option][]" placeholder="คำ段选项，多รายการ用,隔开" style="width:200px;margin-left: 4px;">'+
+		'<input type="text" class="form-control" name="option[default][]" placeholder="ค่าเริ่มต้น值" name="field[field_default]" style="width:80px;margin-left: 4px;">'+
 		'<a href="javascript:<?php echo $cFun;?>add()" style="margin-left: 4px;"><i class="fa fa-plus-square"></i></a>'+
 		'<a href="javascript:void(0)" onClick="<?php echo $cFun;?>unadd(this)" style="margin-left: 4px;"><i class="fa fa-minus-square"></i></a></li>';
 

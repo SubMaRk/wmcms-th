@@ -5,53 +5,53 @@
 <div class="bjui-pageContent">
 	<form name="form1" action="index.php?a=yes&c=picture.config&t=edit" method="post" data-toggle="validate">
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-      <thead><tr><th colspan="4" style="text-align:left;"><b>模块基本设置</b></th></tr></thead>
+      <thead><tr><th colspan="4" style="text-align:left;"><b>ตั้งค่าพื้นฐานโมดูล</b></th></tr></thead>
       <tr>
-        <td width="200">图集页检查参数：</td>
+        <td width="200">พารามิเตอร์ตรวจสอบหน้าอัลบั้ม:</td>
         <td><?php echo $manager->GetForm('picture' , 'par_picture');?></td>
-        <td>评论页检查参数：</td>
+        <td>พารามิเตอร์ตรวจสอบหน้าความคิดเห็น:</td>
         <td><?php echo $manager->GetForm('picture' , 'par_replay');?></td>
       </tr>
       <tr>
-        <td>后台更新需要审核：</td>
+        <td>การอัปเดตหลังบ้านต้องตรวจสอบ:</td>
         <td><?php echo $manager->GetForm('picture' , 'admin_add');?></td>
-        <td>用户投稿需要审核：</td>
+        <td>ผลงานผู้ใช้ต้องตรวจสอบ:</td>
         <td><?php echo $manager->GetForm('picture' , 'user_add');?></td>
       </tr>
     </table>
     
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-      <thead><tr><th colspan="4" style="text-align:left;"><b>模块互动设置</b></th></tr></thead>
+      <thead><tr><th colspan="4" style="text-align:left;"><b>ตั้งค่าการโต้ตอบโมดูล</b></th></tr></thead>
       <tr>
-        <td width="200">顶踩功能：</td>
+        <td width="200">ฟังก์ชันโหวต:</td>
         <td><?php echo $manager->GetForm('picture' , 'dingcai_open');?></td>
-        <td>每日每图集顶踩次数：</td>
+        <td>จำนวนโหวตต่ออัลบั้มต่อวัน:</td>
         <td><?php echo $manager->GetForm('picture' , 'dingcai_count');?></td>
       </tr>
       <tr>
-        <td>评分功能：</td>
+        <td>ฟังก์ชันให้คะแนน:</td>
         <td><?php echo $manager->GetForm('picture' , 'score_open');?></td>
-        <td>每日每图集评分次数：</td>
+        <td>จำนวนให้คะแนนต่ออัลบั้มต่อวัน:</td>
         <td><?php echo $manager->GetForm('picture' , 'score_count');?></td>
       </tr>
       <tr>
-        <td>评分是否登录：</td>
+        <td>ให้คะแนนต้องเข้าสู่ระบบหรือไม่:</td>
         <td colspan="3"><?php echo $manager->GetForm('picture' , 'score_login');?></td>
       </tr>
       <tr>
-        <td>评论功能：</td>
+        <td>ฟังก์ชันความคิดเห็น:</td>
         <td><?php echo $manager->GetForm('picture' , 'replay_open');?></td>
-        <td>评论是否登录：</td>
+        <td>ความคิดเห็นต้องเข้าสู่ระบบหรือไม่:</td>
         <td><?php echo $manager->GetForm('picture' , 'replay_login');?></td>
       </tr>
     </table>
 
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-      <thead><tr><th colspan="4" style="text-align:left;"><b>模块搜索设置</b></th></tr></thead>
+      <thead><tr><th colspan="4" style="text-align:left;"><b>ตั้งค่าค้นหาโมดูล</b></th></tr></thead>
       <tr>
-        <td width="200">搜索功能：</td>
+        <td width="200">ฟังก์ชันค้นหา:</td>
         <td><?php echo $manager->GetForm('picture' , 'search_open');?></td>
-        <td>搜索间隔：</td>
+        <td>ช่วงห่างการค้นหา:</td>
         <td><?php echo $manager->GetForm('picture' , 'search_time');?> 时间(单位：秒)</td>
       </tr>
     </table>
@@ -62,8 +62,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 

@@ -10,11 +10,11 @@ $(document).ready(function(){
 
 <div class="mainRight fl">
     <div class="crumbsWrap">
-        <i><span>小说管理</span></i>
+        <i><span>จัดการนิยาย</span></i>
     </div>
     <div class="msgBoxTitle">
-        <p class="f12 c555">当前作品总数<span id="bookCount" class="blue Num">{总数据}</span>本</p>
-        <a class="create button" href="{创建小说}"><em class="icon"></em>创建作品</a>
+        <p class="f12 c555">จำนวนผลงานทั้งหมดในปัจจุบัน<span id="bookCount" class="blue Num">{总数据}</span>เล่ม</p>
+        <a class="create button" href="{创建小说}"><em class="icon"></em>สร้างผลงาน</a>
     </div>
     <!-- 存在作品 -->
     <div id="bookManageExist" class="worksCtrlWrap">
@@ -33,13 +33,13 @@ $(document).ready(function(){
                 <thead>
 	                <tr>
 	                    <th></th>
-	                    <th class="tl">书名</th>
-	                    <th class="tl">状态</th>
-	                    <th class="tl">最新章节</th>
-	                    <th class="center">小说类型</th>
-	                    <th>收藏</th>
-	                    <th>进程</th>
-	                    <th class="center">操作</th>
+	                    <th class="tl">ชื่อหนังสือ</th>
+	                    <th class="tl">สถานะ</th>
+	                    <th class="tl">ตอนล่าสุด</th>
+	                    <th class="center">ประเภทนิยาย</th>
+	                    <th>รายการโปรด</th>
+	                    <th>โปรเซส</th>
+	                    <th class="center">ดำเนินการ</th>
 	                </tr>
                 </thead>
                 <tbody id="novelList">
@@ -48,7 +48,7 @@ $(document).ready(function(){
                		<tr class="active">
 	               		<td colspan="8">
 						    <div class="worksCtrlWrap">
-						        <div class="null"><p>你还没有发布任何作品，<a class="button" style="color: #FFF;" href="{创建小说}">创建作品</a></p></div>
+						        <div class="null"><p>คุณยังไม่ได้เผยแพร่ผลงานใดๆ,<a class="button" style="color: #FFF;" href="{创建小说}">สร้างผลงาน</a></p></div>
 						    </div>
 					    </td>
 				    </tr>
@@ -57,7 +57,7 @@ $(document).ready(function(){
                 		<td></td>
                 		<td class="tl">
 	                		<div class="work-photo">
-		                		<a href="{url}" target="_blank"><img src="{小说封面}" width="83" height="108" alt="作品封面"></a>
+		                		<a href="{url}" target="_blank"><img src="{小说封面}" width="83" height="108" alt="ปกผลงาน"></a>
 	                		</div>
 	                		<p class="work-name"><a href="{url}" target="_blank">{小说名字}</a></p>
                 		</td>
@@ -70,8 +70,8 @@ $(document).ready(function(){
                 		<td><em class="Num">{小说总收藏}</em></td>
                 		<td>{小说进程}</td>
                 		<td><div class="dib-wrap">
-                		<a class="button white" style="margin-right:10px" href="{neurl}"><span class="icon"></span><i>作品信息</i></a>
-                		<a class="button blue" href="{deurl}"><span class="icon"></span><i>工作台</i></a>
+                		<a class="button white" style="margin-right:10px" href="{neurl}"><span class="icon"></span><i>ข้อมูลผลงาน</i></a>
+                		<a class="button blue" href="{deurl}"><span class="icon"></span><i>หน้าใช้งาน</i></a>
                 		</div></td>
                 		</tr>
                 	{/小说列表}

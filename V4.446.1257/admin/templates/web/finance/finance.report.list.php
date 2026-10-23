@@ -12,8 +12,8 @@ thead th {
 <div class="bjui-pageHeader">
 	<div class="row cl pt-10 pb-10 pl-10">
 		<div class="f-l" style="margin-left:10px">
-            <span >快捷操作：</span>
-			<a href="index.php?a=yes&c=finance.report&t=confirm" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要结算选中项吗？" class="btn btn-success size-MINI radius" data-callback="<?php echo $cFun;?>ConfirmCallBack"> <i class="fa fa-check-square"></i> 批量结算</a>
+            <span >การดำเนินการด่วน:</span>
+			<a href="index.php?a=yes&c=finance.report&t=confirm" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ชำระบัญชี选中项吗？" class="btn btn-success size-MINI radius" data-callback="<?php echo $cFun;?>ConfirmCallBack"> <i class="fa fa-check-square"></i> ชำระบัญชีหลายรายการ</a>
 		</div>
 		<div class="f-l">
 			<form id="pagerForm" name="<?php echo $cFun;?>Form" data-toggle="ajaxsearch" data-loadingmask="true" action="<?php echo $url;?>" method="post">
@@ -21,7 +21,7 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-				<span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
+				<span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
 				
 				<select data-toggle="selectpicker" name="settlement" data-width="100">
                 	<option value="" <?php echo str::CheckElse( $settlement , '' , 'selected=""' );?>>全部</option>
@@ -39,9 +39,9 @@ thead th {
 					}
 					?>
                 </select>
-                <input type="text" value="<?php echo $cid;?>" placeholder="请输入内容ID" name="cid" size="15">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $cFun.$cid;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+                <input type="text" value="<?php echo $cid;?>" placeholder="请输入เนื้อหาID" name="cid" size="15">
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+				<a id="<?php echo $cFun.$cid;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
              </form>
 		</div>
 	</div>
@@ -53,16 +53,16 @@ thead th {
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="5%" data-order-field="report_id">ID</th>
-				<th width="5%" data-order-field="report_settlement">状态</th>
-				<th width="6%">报表模块</th>
-				<th width="6%">报表类型</th>
-				<th width="6%" data-order-field="report_cid">内容ID</th>
-				<th width="15%" data-order-field="report_user_id">用户</th>
-				<th width="6%" data-order-field="report_gold1">结算<?php echo $config['gold1_name']?></th>
-	            <th width="6%" data-order-field="report_gold2">结算<?php echo $config['gold2_name']?></th>
-	            <th width="10%" data-order-field="report_time">入账时间</th>
-	            <th width="10%" data-order-field="report_settlement_id">结算员</th>
-	            <th width="10%" data-order-field="report_settlement_time">结算时间</th>
+				<th width="5%" data-order-field="report_settlement">สถานะ</th>
+				<th width="6%">โมดูลรายงาน</th>
+				<th width="6%">ประเภทรายงาน</th>
+				<th width="6%" data-order-field="report_cid">ID เนื้อหา</th>
+				<th width="15%" data-order-field="report_user_id">ผู้ใช้</th>
+				<th width="6%" data-order-field="report_gold1">ชำระบัญชี<?php echo $config['gold1_name']?></th>
+	            <th width="6%" data-order-field="report_gold2">ชำระบัญชี<?php echo $config['gold2_name']?></th>
+	            <th width="10%" data-order-field="report_time">เวลาบันทึกบัญชี</th>
+	            <th width="10%" data-order-field="report_settlement_id">ผู้ชำระบัญชี</th>
+	            <th width="10%" data-order-field="report_settlement_time">เวลาชำระบัญชี</th>
 	            </tr>
 			</thead>
 			<tbody id="<?php echo $cFun?>List">
@@ -76,13 +76,13 @@ thead th {
 					$settlementId = '---';
 					$settlementTime = '---';
 					$disabled = '';
-					$status = '<a href="javascript:;" onClick="'.$cFun.'ConfirmAjax('.$v['report_id'].')"><span style="color:red">未结算</span></a>';
+					$status = '<a href="javascript:;" onClick="'.$cFun.'ConfirmAjax('.$v['report_id'].')"><span style="color:red">ยังไม่ชำระบัญชี</span></a>';
 					if( $v['report_settlement'] == '1' )
 					{
-						$status = '已结算';
+						$status = 'ชำระบัญชีแล้ว';
 						$settlementId = $manager->GetByMid($v['report_settlement_id'],'manager_name').'( id:'.$v['report_settlement_id'].')';
 						$settlementTime = date( 'Y-m-d H:i:s' , $v['report_settlement_time']);
-						$status = '<span style="color:green">已结算</span>';
+						$status = '<span style="color:green">ชำระบัญชีแล้ว</span>';
 						$disabled = 'disabled="disabled"';
 					}
 					echo '<tr class="'.$cur.'">
@@ -113,7 +113,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -122,7 +122,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>
@@ -137,11 +137,11 @@ thead th {
 	<p style="padding:0px 10px;font-size: 14px;color:red">
 		<?php echo $config['gold2_name']?>：<span id="<?php echo $cFun;?>Gold2">0</span> / 
 		<span id="<?php echo $cFun;?>RmbToGold2">0</span> = 
-		<span id="<?php echo $cFun;?>Rmb">0</span> 元
+		<span id="<?php echo $cFun;?>Rmb">0</span> หยวน
 	</p>
     <div class="pt-10" style="margin-left: 80px">
 		<button onClick="<?php echo $cFun;?>SettlementAjax()" type="button" class="btn-green" data-icon="location-arrow">确认结算</button>
-		<button type="button" class="btn-close" data-icon="close">关闭</button>
+		<button type="button" class="btn-close" data-icon="close">ปิด</button>
 	</div>
 </div>
 
@@ -195,7 +195,7 @@ function <?php echo $cFun;?>ConfirmCallBack(json){
 	//确认结算窗口打开
 	var ajaxOptions=new Array();
 	ajaxOptions['target'] = "#<?php echo $cFun;?>Confirm";
-	ajaxOptions['title'] = "确认结算";
+	ajaxOptions['title'] = "ยืนยันการชำระบัญชี";
 	ajaxOptions['width'] = "280";
 	ajaxOptions['height'] = "150";
 	ajaxOptions['loadingmask'] = true;

@@ -2,7 +2,7 @@
     <form action="index.php?a=yes&c=article.article&t=<?php echo $type;?>" data-reload="false" data-toggle="validate" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
 	<input name="article_id" id="<?php echo $cFun.$type;?>_cid" type="hidden" class="input-text" value="<?php echo $id;?>">
 		<fieldset>
-			<legend>文章内容编辑</legend>
+			<legend>แก้ไขเนื้อหาบทความ</legend>
             <ul class="nav nav-tabs" role="tablist">
             	<li class="active"><a href="#<?php echo $cFun.$type;?>base" role="tab" data-toggle="tab">基本信息</a></li>
             	<li><a href="#<?php echo $cFun.$type;?>senior" id="<?php echo $cFun;?>senior_tab" role="tab" data-toggle="tab">高级信息</a></li>
@@ -14,7 +14,7 @@
 		            <tbody>
 		            	<tr>
 						  <td colspan="3">
-						  	<b>文章分类：</b>
+						  	<b>หมวดหมู่บทความ:</b>
 							<input id="<?php echo $cFun.$type;?>type_id" name="article[type_id]" type="hidden" value="<?php echo C('type_id',null,'data');?>">
 					      	<input type="text" id="<?php echo $cFun.$type;?>_ztree_input" data-toggle="selectztree" data-tree="#<?php echo $cFun.$type;?>_ztree_select" readonly value="<?php echo C('type_name',null,'data');?>">
                             <ul id="<?php echo $cFun.$type;?>_ztree_select" class="ztree hide" data-toggle="ztree" data-expand-all="true" data-check-enable="true" data-chk-style="radio" data-radio-type="all" data-on-check="<?php echo $cFun.$type;?>S_NodeCheck" data-on-click="<?php echo $cFun.$type;?>S_NodeClick">
@@ -33,24 +33,24 @@
 						</tr>
 		                <tr>
 		                    <td width="50%">
-		                        <b>文章标题：</b>
+		                        <b>หัวข้อบทความ:</b>
 		                        <input type="text" name="article[article_name]" value="<?php echo str::DelHtml(C('article_name',null,'data'));?>" data-rule="文章标题:required" size="40">
 		                    </td>
 		                    <td>
-		                        <b>文章短标题：</b>
+		                        <b>หัวข้อย่อบทความ:</b>
 		                        <input type="text" name="article[article_cname]" value="<?php echo C('article_cname',null,'data');?>" size="30">
 		                    </td>
 		                </tr>
 		                <tr>
 		                   <td colspan="3">
-		                        <b>标题颜色：</b>
+		                        <b>สีหัวข้อ:</b>
 		                        <input type="text" id="color" name="article[article_color]" value="<?php echo C('article_color',null,'data');?>" data-toggle="colorpicker" size="15" readonly>
-		                        <a href="javascript:;" title="清除颜色" data-toggle="clearcolor" data-target="#color">清除颜色</a>
+		                        <a href="javascript:;" title="ล้างสี" data-toggle="clearcolor" data-target="#color">ล้างสี</a>
 		                    </td>
 		                </tr>
 		                <tr>
 		                    <td colspan="3">
-		                        <b>文章状态：</b>
+		                        <b>สถานะบทความ:</b>
 		                        <select data-toggle="selectpicker" name="article[article_status]">
                                     <option value="1" <?php if(C('article_status',null,'data') == '1'){ echo 'selected=""';}?>>审核通过</option>
                                     <option value="0" <?php if(C('article_status',null,'data') == '0'){ echo 'selected=""';}?>>待审核</option>
@@ -59,7 +59,7 @@
 		                </tr>
 		                <tr>
 		                    <td colspan="3">
-		                        <b>文章属性：</b>
+		                        <b>คุณสมบัติบทความ:</b>
 		                        <?php
 		                        foreach ($attrArr as $k=>$v)
 		                        {
@@ -71,7 +71,7 @@
 		                </tr>
 		                <tr>
 		                   <td colspan="3">
-		                        <b>文章封面：</b>
+		                        <b>ปกบทความ:</b>
 		                        <input type="checkbox" name="down_simg" value="1" data-toggle="icheck" data-label="下载远程图片">
 		                        <input type="text" id="article_simg" name="article[article_simg]" value="<?php echo C('article_simg',null,'data');?>" size="40">
 								<span class="upload" data-uploader="index.php?a=yes&c=upload&t=img" data-on-upload-success="<?php echo $cFun;?>upload_success" data-file-type-exts="*.jpg;*.png;*.gif;*.mpg" data-toggle="upload" data-icon="cloud-upload"></span>
@@ -80,34 +80,34 @@
 		                </tr>
 		                <tr>
 		                   <td>
-		                        <b>文章标签：</b>
+		                        <b>แท็กบทความ:</b>
 		                        <input type="text" data-tags="546" data-tagsArr="123" id="article_tags" name="article[article_tags]" size="40" value="<?php echo C('article_tags',null,'data');?>">
 		                    </td>
 		                   <td>
-		                        <b>文章来源：</b>
+		                        <b>แหล่งที่มาบทความ:</b>
 		                        <input type="text" data-toggle="lookup" data-url="index.php?c=article.author.lookup&st=s" data-width="520" data-title="选择来源" name="article[article_source]" value="<?php echo C('article_source',null,'data');?>">
 		                    </td>
 		                </tr>
 		                <tr>
 		                   <td>
-		                        <b>文章作者：</b>
+		                        <b>ผู้แต่งบทความ:</b>
 		                        <input type="text" data-toggle="lookup" data-url="index.php?c=article.author.lookup&st=a" data-width="520" data-title="选择作者" name="article[article_author]" value="<?php echo C('article_author',null,'data');?>">
 		                    </td>
 		                   <td>
-		                        <b>文章编辑：</b>
-		                        <input type="text" data-toggle="lookup" data-url="index.php?c=article.author.lookup&st=e" data-width="520" data-title="选择编辑" name="article[article_editor]" value="<?php echo C('article_editor',null,'data');?>">
+		                        <b>แก้ไขบทความ:</b>
+		                        <input type="text" data-toggle="lookup" data-url="index.php?c=article.author.lookup&st=e" data-width="520" data-title="选择บรรณาธิการ" name="article[article_editor]" value="<?php echo C('article_editor',null,'data');?>">
 		                    </td>
 		                </tr>
 		                <tr>
 		                   <td colspan="3">
-		                        <b>文章预览：</b>
+		                        <b>ดูตัวอย่างบทความ:</b>
 		                        <textarea cols="70" rows="1" name="article[article_info]" data-toggle="autoheight"><?php echo C('article_info',null,'data');?></textarea>
 		                    </td>
 		                </tr>
 		                
 		                <tr>
 		                   <td colspan="4">
-		                        <b>文章内容：</b>
+		                        <b>เนื้อหาบทความ:</b>
 		                    </td>
 		                </tr>
 		                <tr>
@@ -125,13 +125,13 @@
 		       		<table class="table table-condensed table-hover" width="100%">
 		            <tbody>
 		            	<tr>
-						  <td colspan="4"><b>跳转链接：</b>
+						  <td colspan="4"><b>ลิงก์ปลายทาง:</b>
 							<input name="article[article_url]" size="40" value="<?php echo C('article_url',null,'data');?>" placeholder="不跳转请留空">
 					      </td>
 						</tr>
 		                <tr>
 		                    <td colspan="4">
-		                        <b>是否显示：</b>
+		                        <b>แสดงหรือไม่:</b>
 		                        <select data-toggle="selectpicker" name="article[article_display]">
                                     <option value="1" <?php if(C('article_display',null,'data') == '1'){ echo 'selected=""';}?>>显示、生成html</option>
                                     <option value="0" <?php if(C('article_display',null,'data') == '0'){ echo 'selected=""';}?>>不显示、不生成html</option>
@@ -139,34 +139,34 @@
 		                    </td>
 		                </tr>
 		            	<tr>
-						  <td><b>文章权重：</b>
+						  <td><b>น้ำหนักบทความ:</b>
 							<input size="7" name="article[article_weight]" value="<?php echo C('article_weight',null,'data');?>">
 					      </td>
-						  <td colspan="3">越小越靠前 </td>
+						  <td colspan="3">ยิ่งน้อยยิ่งอยู่หน้า </td>
 						</tr>
 		            	<tr>
-						  <td width="200px"><b>文章评分：</b>
+						  <td width="200px"><b>คะแนนบทความ:</b>
 							<input size="7" name="article[article_score]" value="<?php echo C('article_score',null,'data');?>">
 							
 					      </td>
-						  <td colspan="3" >总分五分制 </td>
+						  <td colspan="3" >คะแนนเต็ม 5 </td>
 						</tr>
 		            	<tr>
-						  <td><b> 阅 读 量 ：</b>
+						  <td><b> ยอดเข้าชม :</b>
 							<input size="7" name="article[article_read]" value="<?php echo C('article_read',null,'data');?>">
 					     </td>
-						  <td><b> 评 论 量 ：</b>
+						  <td><b> จำนวนความคิดเห็น :</b>
 							<input size="7" name="article[article_replay]" value="<?php echo C('article_replay',null,'data');?>">
 					      </td>
-						  <td><b> 文 章 顶 ：</b>
+						  <td><b> โหวตขึ้นบทความ:</b>
 							<input size="7" name="article[article_ding]" value="<?php echo C('article_ding',null,'data');?>">
 					      </td>
-						  <td><b> 文 章 踩 ：</b>
+						  <td><b> โหวตลงบทความ:</b>
 							<input size="7" name="article[article_cai]" value="<?php echo C('article_cai',null,'data');?>">
 					      </td>
 						</tr>
 		            	<tr>
-						  <td colspan="4"><b>文章发布时间：</b>
+						  <td colspan="4"><b>เวลาเผยแพร่บทความ:</b>
 							<input type="text" name="article[article_addtime]" value="<?php echo date('Y-m-d H:i:s',C('article_addtime',null,'data'));?>" data-toggle="datepicker" data-pattern="yyyy-MM-dd H:m:s" size="19">
 					      </td>
 						</tr>
@@ -184,8 +184,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 
@@ -208,7 +208,7 @@ function <?php echo $cFun;?>(json){
     $(this).navtab("reload",op);	// 刷新Tab页面
     $(this).navtab("switchTab",tabid);	// 切换Tab页面
 }
-//上传封面
+//上传บล็อก面
 function <?php echo $cFun;?>upload_success(file,json,$element){
 	json = $.parseJSON(json);
 	if ( json.statusCode == 300){

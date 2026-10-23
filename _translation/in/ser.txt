@@ -1,0 +1,47 @@
+API密钥
+云APISecretId
+云APISecretKey
+从COS获得的API_KEY
+从COS获得的APP_ID
+从COS获得的SC_KEY
+从OSS获得的AccessKeyId
+从OSS获得的AccessKeySecret
+从七牛云对象存储获得的accessKey
+从七牛云对象存储获得的secretKey
+从新浪云对象存储获得的AccessKey
+从新浪云对象存储获得的SecretKey
+企业微信URL
+企业微信的WEBHOOK通知URL
+合作身份者id
+域名
+安全检验码
+小程序ID
+小程序密钥
+应用API Key
+应用Secret Key
+应用apikey
+应用appid
+应用id
+应用secretkey
+应用的APPID
+支付宝公匙
+支付宝私匙
+请输入您的API密钥
+请输入您的APPID
+请输入您的Appsecret
+请输入您的apikey
+请输入您的appid
+请输入您的secretkey
+请输入您的token
+请输入您的域名，无需加http://
+请输入您的应用API Key
+请输入您的应用APP ID
+请输入您的应用APP Key
+请输入您的应用App Key
+请输入您的应用App Secret
+请输入您的应用Appsecret
+请输入您的应用ID
+请输入您的应用Secret Key
+账号APPID
+钉钉URL
+钉钉的WEBHOOK通知URL

@@ -12,10 +12,10 @@ thead th {
 <div class="bjui-pageHeader">
 	<div class="row cl pt-10 pl-10">
 		<div class="list-tool pl-15">
-            <span >快捷操作：</span>
-			<a href="index.php?a=yes&c=operate.zt&t=status&status=1" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要审核选中项吗？" data-callback="<?php echo $type.$cFun;?>ajaxCallBack" class="btn btn-warning radius"> 批量审核</a>
-			<a href="index.php?a=yes&c=operate.zt&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $type.$cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
-			<a href="index.php?a=yes&c=operate.zt&t=clear" data-toggle="doajax" data-confirm-msg="此操作不可撤回确定要清空吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> 清空记录</a>
+            <span >การดำเนินการด่วน:</span>
+			<a href="index.php?a=yes&c=operate.zt&t=status&status=1" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要审核选中项吗？" data-callback="<?php echo $type.$cFun;?>ajaxCallBack" class="btn btn-warning radius"> ตรวจสอบหลายรายการ</a>
+			<a href="index.php?a=yes&c=operate.zt&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $type.$cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
+			<a href="index.php?a=yes&c=operate.zt&t=clear" data-toggle="doajax" data-confirm-msg="此ดำเนินการ不可撤回ยืนยัน要清空吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> ล้างบันทึก</a>
 		</div>
 		<div class="list-tool">
 			<form id="pagerForm" name="<?php echo $cFun.$type;?>Form" data-toggle="ajaxsearch" data-loadingmask="true" action="<?php echo $url;?>" method="post">
@@ -23,12 +23,12 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                <span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
+                <span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
                 
-                <input type="text" placeholder="请输入关键字" value="<?php echo $name;?>" name="name" size="15">
+                <input type="text" placeholder="请输入关键คำ" value="<?php echo $name;?>" name="name" size="15">
                 
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $type.$cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+				<a id="<?php echo $type.$cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
 			</form>
 		</div>
 	</div>
@@ -41,17 +41,17 @@ thead th {
 			<tr>
 			<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 			<th width="5%" data-order-field="zt_id">ID</th>
-			<th width="5%" data-order-field="zt_status">状态</th>
-			<th width="9%" data-order-field="zt.type_id">专题分类</th>
-			<th>专题名字</th>
-			<th width="8%" data-order-field="zt_pinyin">专题拼音</th>
-			<th width="5%" data-order-field="zt_read">阅读量</th>
-			<!-- <th width="7%">简版</th>
+			<th width="5%" data-order-field="zt_status">สถานะ</th>
+			<th width="9%" data-order-field="zt.type_id">หมวดหมู่หัวข้อพิเศษ</th>
+			<th>ชื่อหัวข้อพิเศษ</th>
+			<th width="8%" data-order-field="zt_pinyin">พินอินหัวข้อพิเศษ</th>
+			<th width="5%" data-order-field="zt_read">ยอดเข้าชม</th>
+			<!-- <th width="7%">เวอร์ชันเรียบง่าย</th>
 			<th width="7%">3G</th>
-			<th width="7%">触屏</th>
-            <th width="7%">电脑</th> -->
-			<th width="15%" data-order-field="zt_time">添加时间</th>
-            <th width="18%">操作</th>
+			<th width="7%">ทัชสกรีน</th>
+            <th width="7%">คอมพิวเตอร์</th> -->
+			<th width="15%" data-order-field="zt_time">เวลาเพิ่ม</th>
+            <th width="18%">ดำเนินการ</th>
             </tr>
 		</thead>
 		<tbody>
@@ -62,7 +62,7 @@ thead th {
 				foreach ($dataArr as $k=>$v)
 				{
 					$cur = str::CheckElse( $i%2 , 0 , '' , 'even_index_row');
-					$status = str::CheckElse( $v['zt_status'] , 0 , '<a href="javascript:;" onClick="'.$type.$cFun.'StatusAjax(1,'.$v['zt_id'].')"><span style="color:red">待审核</span></a>' , '<a href="javascript:;" onClick="'.$type.$cFun.'StatusAjax(0,'.$v['zt_id'].')"><span style="color:green">已审核</span></a>');
+					$status = str::CheckElse( $v['zt_status'] , 0 , '<a href="javascript:;" onClick="'.$type.$cFun.'StatusAjax(1,'.$v['zt_id'].')"><span style="color:red">รอตรวจสอบ</span></a>' , '<a href="javascript:;" onClick="'.$type.$cFun.'StatusAjax(0,'.$v['zt_id'].')"><span style="color:green">ตรวจสอบแล้ว</span></a>');
 					//$temp1 = str::CheckElse( $v['zt_temp1'] , '' , '<span style="color:#B9B6B6">无模版</span>' , '<span style="color:green">有模版</span>');
 					//$temp2 = str::CheckElse( $v['zt_temp2'] , '' , '<span style="color:#B9B6B6">无模版</span>' , '<span style="color:green">有模版</span>');
 					//$temp3 = str::CheckElse( $v['zt_temp3'] , '' , '<span style="color:#B9B6B6">无模版</span>' , '<span style="color:green">有模版</span>');
@@ -82,8 +82,8 @@ thead th {
 							<td style="text-align: center;">'.date( 'Y-m-d H:i:s' , $v['zt_time']).'</td>
 							<td style="text-align: center;">
 				            	<a class="btn btn-danger radius size-MINI" data-toggle="navtab" data-id="zt-node-list" data-title="《'.$v['zt_name'].'》专题节点管理" href="index.php?c=operate.zt.node.list&id='.$v['zt_id'].'">节点管理</a> 
-				            	<a class="btn btn-secondary radius size-MINI" data-toggle="navtab" data-id="operate-diy-edit" data-title="编辑专题内容" href="index.php?d=yes&c=operate.zt.edit&t=edit&id='.$v['zt_id'].'">编辑</a> 
-								<a class="btn btn-danger radius" onclick="'.$type.$cFun.'delAjax('.$v['zt_id'].')">删除</a>
+				            	<a class="btn btn-secondary radius size-MINI" data-toggle="navtab" data-id="operate-diy-edit" data-title="บรรณาธิการ专题เนื้อหา" href="index.php?d=yes&c=operate.zt.edit&t=edit&id='.$v['zt_id'].'">แก้ไข</a> 
+								<a class="btn btn-danger radius" onclick="'.$type.$cFun.'delAjax('.$v['zt_id'].')">ลบ</a>
 							</td>
 				          </tr>';
 					$i++;
@@ -100,7 +100,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -109,7 +109,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>"></div>
 </div>

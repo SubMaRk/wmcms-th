@@ -17,7 +17,7 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-				<a id="<?php echo $cFun;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+				<a id="<?php echo $cFun;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
              </form>
 		</div>
 	</div>
@@ -28,12 +28,12 @@ thead th {
 			<thead>
 				<tr>
 				<th width="5%" data-order-field="order_id">ID</th>
-				<th width="6%" data-order-field="order_gold1">结算<?php echo $config['gold1_name']?></th>
-	            <th width="6%" data-order-field="order_gold2">结算<?php echo $config['gold2_name']?></th>
-	            <th width="10%" data-order-field="order_money">结算金额</th>
-	            <th width="10%">结算员</th>
-	            <th width="10%" data-order-field="order_time">结算时间</th>
-	            <th width="10%">操作</th>
+				<th width="6%" data-order-field="order_gold1">ชำระบัญชี<?php echo $config['gold1_name']?></th>
+	            <th width="6%" data-order-field="order_gold2">ชำระบัญชี<?php echo $config['gold2_name']?></th>
+	            <th width="10%" data-order-field="order_money">จำนวนเงินชำระบัญชี</th>
+	            <th width="10%">ผู้ชำระบัญชี</th>
+	            <th width="10%" data-order-field="order_time">เวลาชำระบัญชี</th>
+	            <th width="10%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody id="<?php echo $cFun?>List">
@@ -52,7 +52,7 @@ thead th {
 							<td style="text-align: center;">'.$manager->GetByMid($v['order_admin_id'],'manager_name').'( id:'.$v['order_admin_id'].')'.'</td>
 							<td style="text-align: center;">'.date( 'Y-m-d H:i:s' , $v['order_time']).'</td>
 							<td style="text-align: center;" data-noedit="true">
-				            	<a class="btn btn-secondary radius size-MINI" data-toggle="navtab" data-id="finance-report-list" data-title="销售报表结算详情" href="index.php?d=yes&c=finance.report.list&ids='.$listMod->GetRidsByOid($v['order_id']).'">结算详情</a> 
+				            	<a class="btn btn-secondary radius size-MINI" data-toggle="navtab" data-id="finance-report-list" data-title="รายงานยอดขายชำระบัญชี详情" href="index.php?d=yes&c=finance.report.list&ids='.$listMod->GetRidsByOid($v['order_id']).'">结算详情</a> 
 				            </td>
 						</tr>';
 					$i++;
@@ -69,7 +69,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -78,7 +78,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>
@@ -93,11 +93,11 @@ thead th {
 	<p style="padding:0px 10px;font-size: 14px;color:red">
 		<?php echo $config['gold2_name']?>：<span id="<?php echo $cFun;?>Gold2">0</span> / 
 		<span id="<?php echo $cFun;?>RmbToGold2">0</span> = 
-		<span id="<?php echo $cFun;?>Rmb">0</span> 元
+		<span id="<?php echo $cFun;?>Rmb">0</span> หยวน
 	</p>
     <div class="pt-10" style="margin-left: 80px">
 		<button onClick="<?php echo $cFun;?>SettlementAjax()" type="button" class="btn-green" data-icon="location-arrow">确认结算</button>
-		<button type="button" class="btn-close" data-icon="close">关闭</button>
+		<button type="button" class="btn-close" data-icon="close">ปิด</button>
 	</div>
 </div>
 
@@ -151,7 +151,7 @@ function <?php echo $cFun;?>ConfirmCallBack(json){
 	//确认结算窗口打开
 	var ajaxOptions=new Array();
 	ajaxOptions['target'] = "#<?php echo $cFun;?>Confirm";
-	ajaxOptions['title'] = "确认结算";
+	ajaxOptions['title'] = "ยืนยันการชำระบัญชี";
 	ajaxOptions['width'] = "280";
 	ajaxOptions['height'] = "150";
 	ajaxOptions['loadingmask'] = true;

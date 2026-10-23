@@ -9,31 +9,31 @@ if( !is_array($data) )
 <div class="bjui-pageContent">
 <table class="table table-border table-bordered table-bg table-sort">
     <tr>
-      <td valign="top" width="200"><b>记录ID：</b></td>
+      <td valign="top" width="200"><b>ID บันทึก:</b></td>
       <td valign="top"><?php echo $data['msg_id'];?></td>
 	</tr>
     <tr>
-      <td valign="top"><b>所属公众号：</b></td>
+      <td valign="top"><b>บัญชีทางการที่สังกัด:</b></td>
       <td valign="top"><?php echo $data['account_name'];?></td>
 	</tr>
     <tr>
-      <td valign="top"><b>发送消息用户：</b></td>
+      <td valign="top"><b>ผู้ใช้ที่ส่งข้อความ:</b></td>
       <td valign="top"><?php echo $data['account_name'];?></td>
 	</tr>
     <tr>
-      <td valign="top"><b>消息类型：</b></td>
+      <td valign="top"><b>ประเภทข้อความ:</b></td>
       <td valign="top"><?php echo $msgMod->msgType[$data['msg_type']];?></td>
 	</tr>
     <tr>
-      <td valign="top"><b>用户发送消息时间：</b></td>
+      <td valign="top"><b>เวลาส่งข้อความผู้ใช้:</b></td>
       <td valign="top"><?php echo date("Y-m-d H:i:s" ,$data['msg_time']);?></td>
 	</tr>
     <tr>
-      <td valign="top"><b>网站回复消息时间：</b></td>
+      <td valign="top"><b>เวลาตอบกลับข้อความเว็บไซต์:</b></td>
       <td valign="top"><?php echo date("Y-m-d H:i:s" ,$data['msg_sendtime']);?></td>
 	</tr>
     <tr>
-      <td valign="top"><b>网站回复内容：</b></td>
+      <td valign="top"><b>เนื้อหาตอบกลับเว็บไซต์:</b></td>
       <td valign="top"><?php echo str::DelHtml($data['msg_send']);?></td>
 	</tr>
 	<?php 
@@ -80,11 +80,11 @@ if( !is_array($data) )
 		}
 		?>
 	    <tr>
-	      <td valign="top"><b>其他数据：</b></td>
+	      <td valign="top"><b>ข้อมูลอื่น ๆ：</b></td>
 	      <td valign="top"><?php echo $data['msg_attr'];?></td>
 		</tr>
 	    <tr>
-	      <td valign="top"><b>微信素材库ID：</b></td>
+	      <td valign="top"><b>ID คลังสื่อ WeChat:</b></td>
 	      <td valign="top" style="word-wrap:break-word; word-break:break-all; "><?php echo $data['msg_media_id'];?></td>
 		</tr>
 	<?php }?>
@@ -94,6 +94,6 @@ if( !is_array($data) )
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ปิด</button></li>
     </ul>
 </div>

@@ -15,11 +15,11 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                <span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
-                <input type="text" placeholder="用户ID" name="uid" size="10" value="<?php echo $uid;?>">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
-				<a class="btn btn-success radius size-MINI" data-toggle="dialog" data-mask="true" data-title="添加编辑分组" href="index.php?d=yes&c=editor.editor.edit&t=add" data-width="490" data-height="540" ><i class="fa fa-plus"></i> 添加编辑</a> &nbsp;
+                <span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
+                <input type="text" placeholder="ผู้ใช้ID" name="uid" size="10" value="<?php echo $uid;?>">
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
+				<a class="btn btn-success radius size-MINI" data-toggle="dialog" data-mask="true" data-title="เพิ่มกลุ่มบรรณาธิการ" href="index.php?d=yes&c=editor.editor.edit&t=add" data-width="490" data-height="540" ><i class="fa fa-plus"></i> เพิ่มบรรณาธิการ</a> &nbsp;
 			</form>
 		</div>
 	</div>
@@ -30,16 +30,16 @@ thead th {
 			<thead>
 				<tr>
 				<th width="4%" data-order-field="editor_id">ID</th>
-				<th width="5%">状态</th>
-	            <th width="10%">用户</th>
-	            <th width="10%">编辑名字</th>
-	            <th>编辑介绍</th>
-	            <th width="8%">姓名</th>
-	            <th width="10%">QQ号</th>
-	            <th width="10%">微信号</th>
-	            <th width="10%">手机号</th>
-	            <th width="12%">添加时间</th>
-	            <th width="6%">操作</th>
+				<th width="5%">สถานะ</th>
+	            <th width="10%">ผู้ใช้</th>
+	            <th width="10%">ชื่อบรรณาธิการ</th>
+	            <th>แนะนำบรรณาธิการ</th>
+	            <th width="8%">ชื่อ-นามสกุล</th>
+	            <th width="10%">หมายเลข QQ</th>
+	            <th width="10%">ID WeChat</th>
+	            <th width="10%">หมายเลขโทรศัพท์</th>
+	            <th width="12%">เวลาเพิ่ม</th>
+	            <th width="6%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody>
@@ -50,7 +50,7 @@ thead th {
 				foreach ($editorList as $k=>$v)
 				{
 					$cur = str::CheckElse( $i%2 , 0 , '' , 'even_index_row');
-					$status = str::CheckElse( $v['editor_status'] , 0 , '<a href="javascript:;" onClick="'.$cFun.'StatusAjax(1,'.$v['editor_id'].')"><span style="color:red">禁用</span></a>' , '<a href="javascript:;" onClick="'.$cFun.'StatusAjax(0,'.$v['editor_id'].')"><span style="color:green">启用</span></a>');
+					$status = str::CheckElse( $v['editor_status'] , 0 , '<a href="javascript:;" onClick="'.$cFun.'StatusAjax(1,'.$v['editor_id'].')"><span style="color:red">ปิดใช้งาน</span></a>' , '<a href="javascript:;" onClick="'.$cFun.'StatusAjax(0,'.$v['editor_id'].')"><span style="color:green">启用</span></a>');
 					echo '<tr class="'.$cur.'">
 							<td style="text-align: center;">'.$v['editor_id'].'</td>
 							<td style="text-align: center;">'.$status.'</td>
@@ -63,7 +63,7 @@ thead th {
 							<td style="text-align: center;">'.$v['editor_tel'].'</td>
 							<td style="text-align: center;">'.date('Y-m-d H:i:s',$v['editor_time']).'</td>
 							<td style="text-align: center;">
-				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" data-on-close="onClose" href="index.php?d=yes&c=editor.editor.edit&t=edit&id='.$v['editor_id'].'"  data-toggle="dialog" data-title="修改编辑" data-width="490" data-height="540" >编辑</a> 
+				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" data-on-close="onClose" href="index.php?d=yes&c=editor.editor.edit&t=edit&id='.$v['editor_id'].'"  data-toggle="dialog" data-title="แก้ไขบรรณาธิการ" data-width="490" data-height="540" >แก้ไข</a> 
                 			</td>
 						</tr>';
 					$i++;
@@ -80,7 +80,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -89,7 +89,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div id="asd" class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>
@@ -118,7 +118,7 @@ function <?php echo $cFun;?>StatusAjax(status,id)
 	switch(status)
 	{
 		case 0:
-			type = "禁用";
+			type = "ปิดใช้งาน";
 	  		break;
 		default:
 			type = "启用";

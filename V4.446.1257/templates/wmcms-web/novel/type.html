@@ -12,14 +12,14 @@
 <div class="ui-wm ui-mb40 ui-mt40 clearfix">
 	<div class="ret-side-wr ui-left">
 	    <div class="ret-tags-wr">
-	        <h2 class="ret-title">分类检索</h2>
+	        <h2 class="ret-title">ค้นหาตามหมวดหมู่</h2>
 	        <!-- <div class="ret-check-all clearfix">
-	            <span class="ui-left ret-check-ft">全部 &gt;</span>
+	            <span class="ui-left ret-check-ft">ทั้งหมด &gt;</span>
 	        </div> -->
 	        <div class="ret-tags-type">
-	            <h3 class="ret-tags-title ret-tags-lx">小说分类</h3>
+	            <h3 class="ret-tags-title ret-tags-lx">หมวดหมู่นิยาย</h3>
 	            <div class="ret-tags-items single" id="p_vip">
-					<a href="{全部小说}" title="全部" {cur:tid=0}class="active"{/cur}>全部</a>
+					<a href="{全部小说}" title="ทั้งหมด" {cur:tid=0}class="active"{/cur}>ทั้งหมด</a>
 	                {小说分类:父级分类=0;排序=分类排序}
 	                <a href="{surl}" title="{小说分类名字}" {cur}class="active"{/cur}>{小说分类名字}</a>
 					{/小说分类}
@@ -58,16 +58,16 @@
                 </ul>
                 
                 <div class="ret-head-page ui-right" id="pagination1">
-                	<a href="{第一页}" class="mod_page_next">第一页</a>
-                	<a href="{上一页}" class="mod_page_next">上一页</a>
+                	<a href="{第一页}" class="mod_page_next">หน้าแรก</a>
+                	<a href="{上一页}" class="mod_page_next">ก่อนหน้า</a>
                 	{跳页:2}
 	                	{选中页}<a href="javascript:void(0)" class="current">{i}</a>{/选中页}
 	                	<a href="{url}">{i}</a>
                 	{/跳页}
-                	<a href="{下一页}" class="mod_page_next">下一页</a>
-                	<a href="{最后页}" class="mod_page_next">最后页</a>
+                	<a href="{下一页}" class="mod_page_next">ถัดไป</a>
+                	<a href="{最后页}" class="mod_page_next">หน้าสุดท้าย</a>
                 </div>
-              	<span class="ret-result-num ui-right">共<em>{总数据}</em>个结果</span>
+              	<span class="ret-result-num ui-right">รวม<em>{总数据}</em>ผลลัพธ์</span>
             </div>
             
             <div class="ret-search-result">
@@ -88,24 +88,24 @@
 	                        <p class="ret-works-author" title="{小说作者}">{小说作者}</p>
                             <p class="ret-works-tags">
                                 <a href="{turl}" target="_blank">{小说分类名字}</a>
-                                <span>点击：<em>{小说总点击}</em></span>
+                                <span>คลิก:<em>{小说总点击}</em></span>
                     		</p>
                             <p class="ret-works-decs">{小说简介}</p>
-	                        <a class="ret-works-view ui-btn-pink" href="{rurl}" target="_blank">开始阅读</a>
+	                        <a class="ret-works-view ui-btn-pink" href="{rurl}" target="_blank">เริ่มอ่าน</a>
 	                	</div>
 	                </li>
 					{/小说列表}
                 </ul>
                 
                 <div class="ret-page-wr mod-page" id="pagination2">
-                	<a href="{第一页}" class="mod_page_next">第一页</a>
-                	<a href="{上一页}" class="mod_page_next">上一页</a>
+                	<a href="{第一页}" class="mod_page_next">หน้าแรก</a>
+                	<a href="{上一页}" class="mod_page_next">ก่อนหน้า</a>
                 	{跳页:3}
 	                	{选中页}<a href="javascript:void(0)" class="current">{i}</a>{/选中页}
 	                	<a href="{url}">{i}</a>
                 	{/跳页}
-                	<a href="{下一页}" class="mod_page_next">下一页</a>
-                	<a href="{最后页}" class="mod_page_next">最后页</a>
+                	<a href="{下一页}" class="mod_page_next">ถัดไป</a>
+                	<a href="{最后页}" class="mod_page_next">หน้าสุดท้าย</a>
                 </div>
             </div>
         </div>

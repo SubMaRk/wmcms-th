@@ -1,879 +1,879 @@
 DROP TABLE IF EXISTS `wm_about_about`;
 CREATE TABLE `wm_about_about` (
   `about_id` int NOT NULL AUTO_INCREMENT,
-  `type_id` int NOT NULL DEFAULT '1' COMMENT '信息分类id',
-  `about_name` varchar(50) NOT NULL COMMENT '文章标题',
-  `about_pinyin` varchar(50) DEFAULT NULL COMMENT '信息拼音',
-  `about_content` text COMMENT '内容',
-  `about_order` int DEFAULT '0' COMMENT '信息的排序',
-  `about_title` varchar(120) DEFAULT NULL COMMENT '信息内容标题',
-  `about_key` varchar(120) DEFAULT NULL COMMENT '信息内容关键字',
-  `about_desc` varchar(120) DEFAULT NULL COMMENT '信息内容描述',
-  `about_time` int NOT NULL DEFAULT '0' COMMENT '添加时间年月日时分秒',
-  `about_ctempid` int DEFAULT '0' COMMENT '使用的模版',
+  `type_id` int NOT NULL DEFAULT '1' COMMENT 'id หมวดหมู่ข้อมูล',
+  `about_name` varchar(50) NOT NULL COMMENT 'หัวข้อบทความ',
+  `about_pinyin` varchar(50) DEFAULT NULL COMMENT 'พินอินของข้อมูล',
+  `about_content` text COMMENT 'เนื้อหา',
+  `about_order` int DEFAULT '0' COMMENT 'ลำดับของข้อมูล',
+  `about_title` varchar(120) DEFAULT NULL COMMENT 'หัวข้อเนื้อหาข้อมูล',
+  `about_key` varchar(120) DEFAULT NULL COMMENT 'คำค้นหาเนื้อหาข้อมูล',
+  `about_desc` varchar(120) DEFAULT NULL COMMENT 'คำอธิบายเนื้อหาข้อมูล',
+  `about_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่เพิ่ม ปีเดือนวันชั่วโมงนาทีวินาที',
+  `about_ctempid` int DEFAULT '0' COMMENT 'เทมเพลตที่ใช้',
   PRIMARY KEY (`about_id`),
   KEY `tid_index` (`type_id`,`about_time`),
   KEY `ctempid_index` (`about_ctempid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='信息内容表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางเนื้อหาข้อมูล';
 DROP TABLE IF EXISTS `wm_about_type`;
 CREATE TABLE `wm_about_type` (
   `type_id` int NOT NULL AUTO_INCREMENT,
-  `type_topid` int DEFAULT '0' COMMENT '上级id',
-  `type_pid` varchar(50) DEFAULT NULL COMMENT '父级id',
-  `type_name` varchar(10) NOT NULL COMMENT '分类名',
-  `type_cname` varchar(10) DEFAULT NULL COMMENT '类型简称',
-  `type_pinyin` varchar(50) DEFAULT NULL COMMENT '类型拼音',
-  `type_order` int NOT NULL DEFAULT '0' COMMENT '排序',
-  `type_info` varchar(200) DEFAULT NULL COMMENT '分类描述',
-  `type_tempid` int NOT NULL DEFAULT '0' COMMENT '分类列表页模版id',
-  `type_ctempid` int NOT NULL DEFAULT '0' COMMENT '分类内容页模版id',
-  `type_title` varchar(120) DEFAULT NULL COMMENT '分类页标题',
-  `type_key` varchar(120) DEFAULT NULL COMMENT '分类页关键字',
-  `type_desc` varchar(120) DEFAULT NULL COMMENT '分类页描述',
+  `type_topid` int DEFAULT '0' COMMENT 'id ระดับเหนือขึ้นไป',
+  `type_pid` varchar(50) DEFAULT NULL COMMENT 'id ของรายการแม่',
+  `type_name` varchar(40) NOT NULL COMMENT 'ชื่อหมวดหมู่',
+  `type_cname` varchar(10) DEFAULT NULL COMMENT 'ชื่อย่อของประเภท',
+  `type_pinyin` varchar(50) DEFAULT NULL COMMENT 'พินอินของประเภท',
+  `type_order` int NOT NULL DEFAULT '0' COMMENT 'เรียงลำดับ',
+  `type_info` varchar(200) DEFAULT NULL COMMENT 'คำอธิบายหมวดหมู่',
+  `type_tempid` int NOT NULL DEFAULT '0' COMMENT 'id เทมเพลตหน้ารายการหมวดหมู่',
+  `type_ctempid` int NOT NULL DEFAULT '0' COMMENT 'id เทมเพลตหน้าเนื้อหาหมวดหมู่',
+  `type_title` varchar(120) DEFAULT NULL COMMENT 'หัวข้อหน้าหมวดหมู่',
+  `type_key` varchar(120) DEFAULT NULL COMMENT 'คำค้นหาหน้าหมวดหมู่',
+  `type_desc` varchar(120) DEFAULT NULL COMMENT 'คำอธิบายหน้าหมวดหมู่',
   PRIMARY KEY (`type_id`),
   KEY `topid_index` (`type_topid`),
   KEY `pid_index` (`type_pid`),
   KEY `order_index` (`type_order`),
   KEY `tempid_index` (`type_tempid`),
   KEY `ctempid_index` (`type_ctempid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='信息分类表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางหมวดหมู่ข้อมูล';
 DROP TABLE IF EXISTS `wm_ad_ad`;
 CREATE TABLE `wm_ad_ad` (
   `ad_id` int NOT NULL AUTO_INCREMENT,
-  `ad_type_id` int DEFAULT '0' COMMENT '广告分类id',
-  `ad_pt` tinyint(1) DEFAULT '4' COMMENT '广告属于哪个平台，1为简版，2为彩版，3为触屏，4为电脑',
-  `ad_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0为不显示，1为正常',
-  `ad_type` int NOT NULL DEFAULT '1' COMMENT '1为文字,2为图文,3为js',
-  `ad_name` varchar(20) DEFAULT NULL COMMENT '广告位的名字',
-  `ad_title` varchar(100) DEFAULT NULL COMMENT '广告的标题',
-  `ad_url` varchar(200) DEFAULT NULL COMMENT '广告的连接',
-  `ad_img` varchar(250) DEFAULT NULL COMMENT '图片广告的地址',
-  `ad_img_width` int DEFAULT '0' COMMENT '图片的宽度',
-  `ad_img_height` int DEFAULT '0' COMMENT '图片的高度',
-  `ad_price` decimal(4,2) DEFAULT '0.00' COMMENT '广告的单价',
-  `ad_js` varchar(2000) DEFAULT NULL COMMENT 'js广告代码',
-  `ad_time_type` tinyint DEFAULT NULL COMMENT '0为不限制时间，1为限时投放',
-  `ad_start_time` int DEFAULT '0' COMMENT '广告开始时间',
-  `ad_end_time` int DEFAULT '0' COMMENT '广告结束时间',
-  `ad_time` int NOT NULL DEFAULT '0' COMMENT '广告添加的时间',
+  `ad_type_id` int DEFAULT '0' COMMENT 'ID หมวดหมู่โฆษณา',
+  `ad_pt` tinyint(1) DEFAULT '4' COMMENT 'โฆษณาอยู่บนแพลตฟอร์มใด, 1=แบบย่อ, 2=แบบสี, 3=แบบสัมผัส, 4=คอมพิวเตอร์',
+  `ad_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0=ไม่แสดง 1=ปกติ',
+  `ad_type` int NOT NULL DEFAULT '1' COMMENT '1=ข้อความ 2=ข้อความพร้อมรูป 3=js',
+  `ad_name` varchar(20) DEFAULT NULL COMMENT 'ชื่อตำแหน่งโฆษณา',
+  `ad_title` varchar(100) DEFAULT NULL COMMENT 'หัวข้อโฆษณา',
+  `ad_url` varchar(200) DEFAULT NULL COMMENT 'ลิงก์ของโฆษณา',
+  `ad_img` varchar(250) DEFAULT NULL COMMENT 'ที่อยู่โฆษณารูปภาพ',
+  `ad_img_width` int DEFAULT '0' COMMENT 'ความกว้างของรูปภาพ',
+  `ad_img_height` int DEFAULT '0' COMMENT 'ความสูงของรูปภาพ',
+  `ad_price` decimal(4,2) DEFAULT '0.00' COMMENT 'ราคาต่อหน่วยของโฆษณา',
+  `ad_js` varchar(2000) DEFAULT NULL COMMENT 'โค้ดโฆษณา js',
+  `ad_time_type` tinyint DEFAULT NULL COMMENT '0=ไม่จำกัดเวลา 1=ลงโฆษณาแบบมีกำหนดเวลา',
+  `ad_start_time` int DEFAULT '0' COMMENT 'เวลาเริ่มโฆษณา',
+  `ad_end_time` int DEFAULT '0' COMMENT 'เวลาสิ้นสุดโฆษณา',
+  `ad_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่เพิ่มโฆษณา',
   PRIMARY KEY (`ad_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='广告表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางโฆษณา';
 DROP TABLE IF EXISTS `wm_ad_type`;
 CREATE TABLE `wm_ad_type` (
   `type_id` int NOT NULL AUTO_INCREMENT,
-  `type_name` varchar(20) NOT NULL COMMENT '广告分类名字',
-  `type_info` varchar(1000) DEFAULT NULL COMMENT '广告分类描述',
+  `type_name` varchar(20) NOT NULL COMMENT 'ชื่อหมวดหมู่โฆษณา',
+  `type_info` varchar(1000) DEFAULT NULL COMMENT 'คำอธิบายหมวดหมู่โฆษณา',
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='广告分类表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางหมวดหมู่โฆษณา';
 DROP TABLE IF EXISTS `wm_api_api`;
 CREATE TABLE `wm_api_api` (
   `api_id` int NOT NULL AUTO_INCREMENT,
-  `type_id` int NOT NULL COMMENT '接口类型',
-  `api_open` tinyint(1) DEFAULT '1' COMMENT '接口是否开启，1为开启，0为关闭',
-  `api_title` varchar(20) NOT NULL COMMENT '接口名称',
-  `api_ctitle` varchar(10) DEFAULT NULL COMMENT '接口简称',
-  `api_name` varchar(20) NOT NULL COMMENT '接口标识',
-  `api_appid` varchar(120) DEFAULT NULL COMMENT '开发者id',
+  `type_id` int NOT NULL COMMENT 'ประเภทอินเทอร์เฟซ',
+  `api_open` tinyint(1) DEFAULT '1' COMMENT 'อินเทอร์เฟซเปิดหรือไม่, 1=เปิด, 0=ปิด',
+  `api_title` varchar(80) NOT NULL COMMENT 'ชื่ออินเทอร์เฟซ',
+  `api_ctitle` varchar(80) DEFAULT NULL COMMENT 'ชื่อย่ออินเทอร์เฟซ',
+  `api_name` varchar(20) NOT NULL COMMENT 'ตัวระบุอินเทอร์เฟซ',
+  `api_appid` varchar(120) DEFAULT NULL COMMENT 'ID ผู้พัฒนา',
   `api_apikey` varchar(5000) DEFAULT NULL COMMENT 'apikey',
   `api_secretkey` varchar(5000) DEFAULT NULL COMMENT 'skey',
-  `api_base` varchar(500) DEFAULT NULL COMMENT '基本接口配置参数',
-  `api_info` varchar(200) DEFAULT NULL COMMENT '接口描述',
-  `api_order` int DEFAULT NULL COMMENT '接口排序',
-  `api_option` varchar(500) DEFAULT NULL COMMENT '接口的其他参数',
+  `api_base` varchar(2000) DEFAULT NULL COMMENT 'พารามิเตอร์ตั้งค่าอินเทอร์เฟซพื้นฐาน',
+  `api_info` varchar(500) DEFAULT NULL COMMENT 'คำอธิบายอินเทอร์เฟซ',
+  `api_order` int DEFAULT NULL COMMENT 'การเรียงลำดับอินเทอร์เฟซ',
+  `api_option` varchar(2000) DEFAULT NULL COMMENT 'พารามิเตอร์อื่นของอินเทอร์เฟซ',
   PRIMARY KEY (`api_id`),
   UNIQUE KEY `cname` (`api_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3 COMMENT='全站API接口系统表';
-INSERT INTO `wm_api_api` VALUES (1,1,1,'站内通用',NULL,'system','16047','9cbb02c4444b0d53','a2393f3830f3fc2c66167b500a622332','a:3:{s:9:\"api_appid\";a:2:{s:4:\"mast\";i:1;s:6:\"remark\";s:20:\"请输入您的appid\";}s:10:\"api_apikey\";a:2:{s:4:\"mast\";i:1;s:6:\"remark\";s:21:\"请输入您的apikey\";}s:13:\"api_secretkey\";a:2:{s:4:\"mast\";i:1;s:6:\"remark\";s:24:\"请输入您的secretkey\";}}','<span style=\"color:red\">用于站内互动的接口。如果不填写部分功能将无法使用，请勿进行任何修改！</span>',1,''),(2,2,1,'QQ登录',NULL,'qqlogin','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:6:\"APP ID\";s:6:\"remark\";s:27:\"请输入您的应用APP ID\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:7:\"APP Key\";s:6:\"remark\";s:28:\"请输入您的应用APP Key\";}s:13:\"api_secretkey\";a:1:{s:4:\"mast\";i:0;}}','用于QQ登录网站的接口，需要去腾讯开放平台申请。回调地址：域名+/wmcms/notify/apilogin.php',1,''),(3,3,1,'支付宝PC支付','支付宝','alipay','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:5:\"APPID\";s:6:\"remark\";s:8:\"应用id\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:15:\"支付宝私匙\";s:6:\"remark\";s:15:\"支付宝私匙\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:15:\"支付宝公匙\";s:6:\"remark\";s:15:\"支付宝公匙\";}}','支付宝在线支付接口，需要去支付宝开放平台申请。',1,''),(4,2,0,'百度登录',NULL,'bdlogin','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:2:\"ID\";s:6:\"remark\";s:23:\"请输入您的应用ID\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:7:\"API Key\";s:6:\"remark\";s:28:\"请输入您的应用API Key\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:10:\"Secret Key\";s:6:\"remark\";s:31:\"请输入您的应用Secret Key\";}}','百度账号登录，需要去百度开放平台申请。回调地址：域名+/wmcms/notify/apilogin.php',3,''),(5,2,0,'新浪登录',NULL,'weibologin','','','','a:3:{s:9:\"api_appid\";a:1:{s:4:\"mast\";i:0;}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:7:\"App Key\";s:6:\"remark\";s:28:\"请输入您的应用App Key\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:10:\"App Secret\";s:6:\"remark\";s:31:\"请输入您的应用App Secret\";}}','新浪微博账号登录，需要去新浪开放平台申请。',2,''),(6,3,1,'微信扫码支付','微信','wxpay','','','123','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:5:\"APPID\";s:6:\"remark\";s:20:\"请输入您的APPID\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:9:\"API密钥\";s:6:\"remark\";s:24:\"请输入您的API密钥\";}s:13:\"api_secretkey\";a:1:{s:4:\"mast\";i:0;}}','微信扫码支付接口，需要去微信商户平台申请。',3,'a:1:{#123}s:5:{#34}mchid{#34};a:3:{#123}s:5:{#34}title{#34};s:9:{#34}商户号{#34};s:5:{#34}value{#34};s:1:{#34}0{#34};s:4:{#34}info{#34};s:17:{#34}微信商户号id{#34};{#125}{#125}'),(7,4,0,'阿里云OSS',NULL,'oss','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:11:\"AccessKeyId\";s:6:\"remark\";s:26:\"从OSS获得的AccessKeyId\";}s:10:\"api_apikey\";a:1:{s:4:\"mast\";i:0;}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:15:\"AccessKeySecret\";s:6:\"remark\";s:30:\"从OSS获得的AccessKeySecret\";}}','阿里云的OSS存储',1,'a:2:{#123}s:6:{#34}bucket{#34};a:3:{#123}s:5:{#34}title{#34};s:9:{#34}bucket名{#34};s:5:{#34}value{#34};s:0:{#34}{#34};s:4:{#34}info{#34};s:0:{#34}{#34};{#125}s:5:{#34}point{#34};a:3:{#123}s:5:{#34}title{#34};s:12:{#34}地理位置{#34};s:5:{#34}value{#34};s:0:{#34}{#34};s:4:{#34}info{#34};s:81:{#34}根据自己的服务器位置设置,默认为http://oss-cn-shenzhen.aliyuncs.com{#34};{#125}{#125}'),(8,4,0,'腾讯云COS',NULL,'cos','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:6:\"APP_ID\";s:6:\"remark\";s:21:\"从COS获得的APP_ID\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:7:\"API_KEY\";s:6:\"remark\";s:22:\"从COS获得的API_KEY\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:6:\"SC_KEY\";s:6:\"remark\";s:21:\"从COS获得的SC_KEY\";}}','腾讯云的COS存储',2,'a:2:{#123}s:6:{#34}bucket{#34};a:3:{#123}s:5:{#34}title{#34};s:9:{#34}bucket名{#34};s:5:{#34}value{#34};s:0:{#34}{#34};s:4:{#34}info{#34};s:0:{#34}{#34};{#125}s:5:{#34}point{#34};a:3:{#123}s:5:{#34}title{#34};s:12:{#34}地理位置{#34};s:5:{#34}value{#34};s:0:{#34}{#34};s:4:{#34}info{#34};s:35:{#34}华南 -{#gt}gz；华中-{#gt}sh;华北-{#gt}tj{#34};{#125}{#125}'),(9,4,0,'七牛云',NULL,'qiniu','','','','a:3:{s:9:\"api_appid\";a:1:{s:4:\"mast\";i:0;}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:9:\"accessKey\";s:6:\"remark\";s:42:\"从七牛云对象存储获得的accessKey\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:9:\"secretKey\";s:6:\"remark\";s:42:\"从七牛云对象存储获得的secretKey\";}}','七牛云的存储',3,'a:2:{#123}s:6:{#34}bucket{#34};a:3:{#123}s:5:{#34}title{#34};s:9:{#34}bucket名{#34};s:5:{#34}value{#34};s:0:{#34}{#34};s:4:{#34}info{#34};s:0:{#34}{#34};{#125}s:6:{#34}domain{#34};a:3:{#123}s:5:{#34}title{#34};s:12:{#34}访问域名{#34};s:5:{#34}value{#34};s:0:{#34}{#34};s:4:{#34}info{#34};s:70:{#34}登录您的七牛云后台查看访问域名，必须带上http://！{#34};{#125}{#125}'),(10,4,0,'新浪云',NULL,'scs','','','','a:3:{s:9:\"api_appid\";a:1:{s:4:\"mast\";i:0;}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:9:\"AccessKey\";s:6:\"remark\";s:42:\"从新浪云对象存储获得的AccessKey\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:9:\"SecretKey\";s:6:\"remark\";s:42:\"从新浪云对象存储获得的SecretKey\";}}','新浪云的存储',4,'a:1:{#123}s:6:{#34}bucket{#34};a:3:{#123}s:5:{#34}title{#34};s:9:{#34}bucket名{#34};s:5:{#34}value{#34};s:0:{#34}{#34};s:4:{#34}info{#34};s:0:{#34}{#34};{#125}{#125}'),(11,5,0,'百度链接提交',NULL,'bdurl','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:6:\"域名\";s:6:\"remark\";s:40:\"请输入您的域名，无需加http://\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:5:\"token\";s:6:\"remark\";s:20:\"请输入您的token\";}s:13:\"api_secretkey\";a:1:{s:4:\"mast\";i:0;}}','用于网站原创url提交，appid填写域名，域名无需添加http://。apikey填写token',1,NULL),(12,2,0,'支付宝登录',NULL,'alipaylogin','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:3:\"PID\";s:6:\"remark\";s:17:\"合作身份者id\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:3:\"KEY\";s:6:\"remark\";s:15:\"安全检验码\";}s:13:\"api_secretkey\";a:1:{s:4:\"mast\";i:0;}}','支付宝账号登录，需要去支付宝开放平台申请。',4,''),(13,2,0,'微信扫码登录',NULL,'wxlogin','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:5:\"APPID\";s:6:\"remark\";s:23:\"请输入您的应用ID\";}s:10:\"api_apikey\";a:1:{s:4:\"mast\";i:0;}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:9:\"Appsecret\";s:6:\"remark\";s:30:\"请输入您的应用Appsecret\";}}','微信登录，需要支付300元认证申请资格。',5,''),(14,6,1,'支付宝WAP支付','支付宝','alipay_wap','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:5:\"APPID\";s:6:\"remark\";s:8:\"应用id\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:15:\"支付宝私匙\";s:6:\"remark\";s:15:\"支付宝私匙\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:15:\"支付宝公匙\";s:6:\"remark\";s:15:\"支付宝公匙\";}}','支付宝wap端支付，可以使用pc相同配置，也可以单独使用账户',2,NULL),(15,6,1,'微信公众号支付','微信','wxpay_jsapi','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:5:\"APPID\";s:6:\"remark\";s:20:\"请输入您的APPID\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:9:\"API密钥\";s:6:\"remark\";s:24:\"请输入您的API密钥\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:9:\"Appsecret\";s:6:\"remark\";s:24:\"请输入您的Appsecret\";}}','微信公众号内支付，只支持微信浏览器里面支付。可以和扫码支付同配置',4,'a:1:{#123}s:5:{#34}mchid{#34};a:3:{#123}s:5:{#34}title{#34};s:9:{#34}商户号{#34};s:5:{#34}value{#34};s:1:{#34}0{#34};s:4:{#34}info{#34};s:17:{#34}微信商户号id{#34};{#125}{#125}'),(16,2,1,'微信小程序登录','微信','wxapplogin','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:5:\"AppID\";s:6:\"remark\";s:11:\"小程序ID\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:0:\"\";s:6:\"remark\";s:0:\"\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:9:\"AppSecret\";s:6:\"remark\";s:15:\"小程序密钥\";}}','微信小程序接口设置',6,''),(17,2,0,'微信公众号登录','微信','wxmplogin','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:9:\"api_appid\";s:6:\"remark\";s:5:\"appID\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:10:\"api_apikey\";s:6:\"remark\";s:12:\"应用apikey\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:13:\"api_secretkey\";s:6:\"remark\";s:9:\"appsecret\";}}','微信公众号（服务号）登录，需要支付300元认证申请资格。',7,''),(18,3,0,'PayPal国际支付','PayPal','paypal','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:8:\"ClientId\";s:6:\"remark\";s:9:\"Client ID\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:10:\"api_apikey\";s:6:\"remark\";s:12:\"应用apikey\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:6:\"secret\";s:6:\"remark\";s:6:\"secret\";}}','PayPal是倍受全球亿万用户追捧的国际贸易支付工具，即时支付，即时到账，全中文操作界面，能通过中国的本地银行轻松提现，解决外贸收款难题。',5,''),(19,7,1,'支付宝APP支付','支付宝','alipay_app','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:5:\"APPID\";s:6:\"remark\";s:8:\"应用id\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:15:\"支付宝私匙\";s:6:\"remark\";s:15:\"支付宝私匙\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:15:\"支付宝公匙\";s:6:\"remark\";s:15:\"支付宝公匙\";}}','支付宝APP支付',1,''),(20,7,1,'微信APP支付','微信','wxpay_app','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:5:\"APPID\";s:6:\"remark\";s:5:\"APPID\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:9:\"API密钥\";s:6:\"remark\";s:9:\"API密钥\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:13:\"api_secretkey\";s:6:\"remark\";s:0:\"\";}}','微信APP支付',2,'a:1:{#123}s:5:{#34}mchid{#34};a:3:{#123}s:5:{#34}title{#34};s:8:{#34}商户ID{#34};s:5:{#34}value{#34};s:10:{#34}1504418791{#34};s:4:{#34}info{#34};s:11:{#34}商户号ID{#34};{#125}{#125}'),(21,8,1,'微信APP登录','微信','wxapp_login','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:5:\"APPID\";s:6:\"remark\";s:5:\"APPID\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:10:\"api_apikey\";s:6:\"remark\";s:12:\"应用apikey\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:9:\"APPSecret\";s:6:\"remark\";s:9:\"APPSecret\";}}','微信APP登录，需要去微信开放平台申请应用',0,''),(22,8,1,'手机QQ登录','QQ登录','qqapplogin','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:6:\"APP ID\";s:6:\"remark\";s:6:\"APP ID\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:7:\"APP Key\";s:6:\"remark\";s:7:\"APP Key\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:13:\"api_secretkey\";s:6:\"remark\";s:15:\"应用secretkey\";}}','需要到QQ开放平台申请',2,''),(23,9,0,'阿里云消息','阿里云','aliyunsms','','123123','1223123','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:9:\"api_appid\";s:6:\"remark\";s:11:\"应用appid\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:11:\"accessKeyId\";s:6:\"remark\";s:11:\"accessKeyId\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:15:\"accessKeySecret\";s:6:\"remark\";s:15:\"accessKeySecret\";}}','阿里云消息发送接口，请参阅 https://ak-console.aliyun.com/ 取得您的AK信息',1,''),(24,9,1,'腾讯云消息','腾讯云','tencentsms',NULL,NULL,NULL,'a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:14:\"应用的APPID\";s:6:\"remark\";s:14:\"应用的APPID\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:14:\"云APISecretId\";s:6:\"remark\";s:14:\"云APISecretId\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:15:\"云APISecretKey\";s:6:\"remark\";s:15:\"云APISecretKey\";}}','腾讯云消息发送接口，云API密匙查询: https://console.cloud.tencent.com/cam/capi',2,''),(25,10,0,'钉钉通知','钉钉','dingding_hook',NULL,NULL,NULL,'a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:9:\"api_appid\";s:6:\"remark\";s:11:\"应用appid\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:10:\"api_apikey\";s:6:\"remark\";s:12:\"应用apikey\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:13:\"api_secretkey\";s:6:\"remark\";s:15:\"应用secretkey\";}}','钉钉的消息通知',1,'a:1:{s:3:\"url\";a:3:{s:5:\"title\";s:9:\"钉钉URL\";s:5:\"value\";s:0:\"\";s:4:\"info\";s:25:\"钉钉的WEBHOOK通知URL\";}}'),(26,10,0,'企业微信通知','企业微信','weixinwork_hook',NULL,NULL,NULL,'a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:9:\"api_appid\";s:6:\"remark\";s:11:\"应用appid\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:10:\"api_apikey\";s:6:\"remark\";s:12:\"应用apikey\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:13:\"api_secretkey\";s:6:\"remark\";s:15:\"应用secretkey\";}}','企业微信的消息通知',2,'a:1:{s:3:\"url\";a:3:{s:5:\"title\";s:15:\"企业微信URL\";s:5:\"value\";s:0:\"\";s:4:\"info\";s:31:\"企业微信的WEBHOOK通知URL\";}}'),(27,11,0,'腾讯云语音合成','腾讯云','tencenttts',NULL,NULL,NULL,'a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:5:\"APPID\";s:6:\"remark\";s:11:\"账号APPID\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:8:\"secretId\";s:6:\"remark\";s:14:\"云APISecretId\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:9:\"secretKey\";s:6:\"remark\";s:14:\"云APISecretId\";}}','腾讯云语音合成，云API密匙查询: https://console.cloud.tencent.com/cam/capi',2,''),(28,11,0,'百度云语音合成','百度云','baidutts',NULL,NULL,NULL,'a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:5:\"AppID\";s:6:\"remark\";s:11:\"应用appid\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:7:\"API Key\";s:6:\"remark\";s:13:\"应用API Key\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:10:\"Secret Key\";s:6:\"remark\";s:16:\"应用Secret Key\";}}','百度云语音合成接口，需要在百度云创建应用',4,'');
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางระบบ API ทั้งเว็บไซต์';
+INSERT INTO `wm_api_api` VALUES (1,1,1,'ใช้ได้ทั่วไปในเว็บไซต์',NULL,'system','16047','9cbb02c4444b0d53','a2393f3830f3fc2c66167b500a622332','a:3:{s:9:\"api_appid\";a:2:{s:4:\"mast\";i:1;s:6:\"remark\";s:52:\"กรุณากรอก appid ของคุณ\";}s:10:\"api_apikey\";a:2:{s:4:\"mast\";i:1;s:6:\"remark\";s:53:\"กรุณากรอก apikey ของคุณ\";}s:13:\"api_secretkey\";a:2:{s:4:\"mast\";i:1;s:6:\"remark\";s:56:\"กรุณากรอก secretkey ของคุณ\";}}','<span style=\"color:red\">อินเทอร์เฟซสำหรับการโต้ตอบภายในเว็บไซต์ ถ้าไม่กรอกบางฟังก์ชันจะใช้งานไม่ได้ ห้ามแก้ไขใด ๆ</span>',1,''),(2,2,1,'เข้าสู่ระบบ QQ',NULL,'qqlogin','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:6:\"APP ID\";s:6:\"remark\";s:71:\"กรุณากรอก APP ID ของแอปของคุณ\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:7:\"APP Key\";s:6:\"remark\";s:72:\"กรุณากรอก APP Key ของแอปของคุณ\";}s:13:\"api_secretkey\";a:1:{s:4:\"mast\";i:0;}}','อินเทอร์เฟซสำหรับเข้าสู่ระบบเว็บไซต์ด้วย QQ ต้องไปสมัครที่ Tencent Open Platform ที่อยู่ callback: โดเมน+/wmcms/notify/apilogin.php',1,''),(3,3,1,'ชำระเงินผ่าน Alipay PC','Alipay','alipay','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:5:\"APPID\";s:6:\"remark\";s:21:\"id ของแอป\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:49:\"คีย์ส่วนตัวของ Alipay\";s:6:\"remark\";s:49:\"คีย์ส่วนตัวของ Alipay\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:49:\"คีย์สาธารณะของ Alipay\";s:6:\"remark\";s:49:\"คีย์สาธารณะของ Alipay\";}}','อินเทอร์เฟซชำระเงินออนไลน์ Alipay ต้องไปสมัครที่ Alipay Open Platform',1,''),(4,2,0,'เข้าสู่ระบบด้วย Baidu',NULL,'bdlogin','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:2:\"ID\";s:6:\"remark\";s:67:\"กรุณากรอก ID ของแอปของคุณ\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:7:\"API Key\";s:6:\"remark\";s:72:\"กรุณากรอก API Key ของแอปของคุณ\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:10:\"Secret Key\";s:6:\"remark\";s:75:\"กรุณากรอก Secret Key ของแอปของคุณ\";}}','เข้าสู่ระบบด้วยบัญชี Baidu ต้องไปสมัครที่ Baidu Open Platform ที่อยู่ callback: โดเมน+/wmcms/notify/apilogin.php',3,''),(5,2,0,'เข้าสู่ระบบด้วย Sina',NULL,'weibologin','','','','a:3:{s:9:\"api_appid\";a:1:{s:4:\"mast\";i:0;}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:7:\"App Key\";s:6:\"remark\";s:72:\"กรุณากรอก App Key ของแอปของคุณ\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:10:\"App Secret\";s:6:\"remark\";s:75:\"กรุณากรอก App Secret ของแอปของคุณ\";}}','เข้าสู่ระบบด้วยบัญชี Weibo ต้องไปสมัครที่ Sina Open Platform',2,''),(6,3,1,'ชำระเงินด้วยการสแกน WeChat','WeChat','wxpay','','','123','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:5:\"APPID\";s:6:\"remark\";s:52:\"กรุณากรอก APPID ของคุณ\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:16:\"คีย์ API\";s:6:\"remark\";s:62:\"กรุณากรอกคีย์ API ของคุณ\";}s:13:\"api_secretkey\";a:1:{s:4:\"mast\";i:0;}}','อินเทอร์เฟซชำระเงินผ่านการสแกน WeChat ต้องไปสมัครที่ WeChat Merchant Platform',3,'a:1:{#123}s:5:{#34}mchid{#34};a:3:{#123}s:5:{#34}title{#34};s:39:{#34}หมายเลขผู้ค้า{#34};s:5:{#34}value{#34};s:1:{#34}0{#34};s:4:{#34}info{#34};s:46:{#34}หมายเลขผู้ค้า WeChat{#34};{#125}{#125}'),(7,4,0,'Alibaba Cloud OSS',NULL,'oss','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:11:\"AccessKeyId\";s:6:\"remark\";s:43:\"AccessKeyId ที่ได้จาก OSS\";}s:10:\"api_apikey\";a:1:{s:4:\"mast\";i:0;}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:15:\"AccessKeySecret\";s:6:\"remark\";s:47:\"AccessKeySecret ที่ได้จาก OSS\";}}','พื้นที่จัดเก็บ OSS ของ Alibaba Cloud',1,'a:2:{#123}s:6:{#34}bucket{#34};a:3:{#123}s:5:{#34}title{#34};s:19:{#34}ชื่อ bucket{#34};s:5:{#34}value{#34};s:0:{#34}{#34};s:4:{#34}info{#34};s:0:{#34}{#34};{#125}s:5:{#34}point{#34};a:3:{#123}s:5:{#34}title{#34};s:42:{#34}ตำแหน่งที่ตั้ง{#34};s:5:{#34}value{#34};s:0:{#34}{#34};s:4:{#34}info{#34};s:181:{#34}ตั้งค่าตามตำแหน่งเซิร์ฟเวอร์ของคุณ ค่าเริ่มต้นคือ http://oss-cn-shenzhen.aliyuncs.com{#34};{#125}{#125}'),(8,4,0,'Tencent Cloud COS',NULL,'cos','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:6:\"APP_ID\";s:6:\"remark\";s:38:\"APP_ID ที่ได้จาก COS\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:7:\"API_KEY\";s:6:\"remark\";s:39:\"API_KEY ที่ได้จาก COS\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:6:\"SC_KEY\";s:6:\"remark\";s:38:\"SC_KEY ที่ได้จาก COS\";}}','พื้นที่จัดเก็บ COS ของ Tencent Cloud',2,'a:2:{#123}s:6:{#34}bucket{#34};a:3:{#123}s:5:{#34}title{#34};s:19:{#34}ชื่อ bucket{#34};s:5:{#34}value{#34};s:0:{#34}{#34};s:4:{#34}info{#34};s:0:{#34}{#34};{#125}s:5:{#34}point{#34};a:3:{#123}s:5:{#34}title{#34};s:42:{#34}ตำแหน่งที่ตั้ง{#34};s:5:{#34}value{#34};s:0:{#34}{#34};s:4:{#34}info{#34};s:82:{#34}จีนใต้ -{#gt}gz; จีนกลาง -{#gt}sh; จีนเหนือ -{#gt}tj{#34};{#125}{#125}'),(9,4,0,'คลาวด์ Qiniu',NULL,'qiniu','','','','a:3:{s:9:\"api_appid\";a:1:{s:4:\"mast\";i:0;}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:9:\"accessKey\";s:6:\"remark\";s:121:\"accessKey ที่ได้จากที่เก็บข้อมูลแบบออบเจกต์ Qiniu Cloud\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:9:\"secretKey\";s:6:\"remark\";s:121:\"secretKey ที่ได้จากที่เก็บข้อมูลแบบออบเจกต์ Qiniu Cloud\";}}','พื้นที่จัดเก็บ Qiniu Cloud',3,'a:2:{#123}s:6:{#34}bucket{#34};a:3:{#123}s:5:{#34}title{#34};s:19:{#34}ชื่อ bucket{#34};s:5:{#34}value{#34};s:0:{#34}{#34};s:4:{#34}info{#34};s:0:{#34}{#34};{#125}s:6:{#34}domain{#34};a:3:{#123}s:5:{#34}title{#34};s:45:{#34}โดเมนที่เข้าถึง{#34};s:5:{#34}value{#34};s:0:{#34}{#34};s:4:{#34}info{#34};s:183:{#34}เข้าสู่ระบบหลังบ้าน Qiniu Cloud เพื่อดูโดเมนที่เข้าถึง ต้องมี http:// นำหน้า!{#34};{#125}{#125}'),(10,4,0,'Sina Cloud',NULL,'scs','','','','a:3:{s:9:\"api_appid\";a:1:{s:4:\"mast\";i:0;}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:9:\"AccessKey\";s:6:\"remark\";s:120:\"AccessKey ที่ได้จากที่เก็บข้อมูลแบบออบเจกต์ Sina Cloud\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:9:\"SecretKey\";s:6:\"remark\";s:120:\"SecretKey ที่ได้จากที่เก็บข้อมูลแบบออบเจกต์ Sina Cloud\";}}','พื้นที่จัดเก็บ Sina Cloud',4,'a:1:{#123}s:6:{#34}bucket{#34};a:3:{#123}s:5:{#34}title{#34};s:19:{#34}ชื่อ bucket{#34};s:5:{#34}value{#34};s:0:{#34}{#34};s:4:{#34}info{#34};s:0:{#34}{#34};{#125}{#125}'),(11,5,0,'ส่งลิงก์ไปยัง Baidu',NULL,'bdurl','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:15:\"โดเมน\";s:6:\"remark\";s:99:\"กรุณากรอกโดเมนของคุณ ไม่ต้องใส่ http://\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:5:\"token\";s:6:\"remark\";s:52:\"กรุณากรอก token ของคุณ\";}s:13:\"api_secretkey\";a:1:{s:4:\"mast\";i:0;}}','ใช้สำหรับส่ง URL ต้นฉบับของเว็บไซต์ ช่อง appid ให้กรอกโดเมน ไม่ต้องใส่ http:// ช่อง apikey ให้กรอก token',1,NULL),(12,2,0,'เข้าสู่ระบบด้วย Alipay',NULL,'alipaylogin','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:3:\"PID\";s:6:\"remark\";s:42:\"id ของผู้ร่วมมือ\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:3:\"KEY\";s:6:\"remark\";s:66:\"รหัสตรวจสอบความปลอดภัย\";}s:13:\"api_secretkey\";a:1:{s:4:\"mast\";i:0;}}','เข้าสู่ระบบด้วยบัญชี Alipay ต้องไปสมัครที่ Alipay Open Platform',4,''),(13,2,0,'เข้าสู่ระบบด้วยการสแกน WeChat',NULL,'wxlogin','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:5:\"APPID\";s:6:\"remark\";s:67:\"กรุณากรอก ID ของแอปของคุณ\";}s:10:\"api_apikey\";a:1:{s:4:\"mast\";i:0;}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:9:\"Appsecret\";s:6:\"remark\";s:74:\"กรุณากรอก Appsecret ของแอปของคุณ\";}}','เข้าสู่ระบบด้วย WeChat ต้องชำระ 300 หยวนเพื่อขอสิทธิ์ยืนยัน',5,''),(14,6,1,'ชำระเงินผ่าน Alipay WAP','Alipay','alipay_wap','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:5:\"APPID\";s:6:\"remark\";s:21:\"id ของแอป\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:49:\"คีย์ส่วนตัวของ Alipay\";s:6:\"remark\";s:49:\"คีย์ส่วนตัวของ Alipay\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:49:\"คีย์สาธารณะของ Alipay\";s:6:\"remark\";s:49:\"คีย์สาธารณะของ Alipay\";}}','ชำระเงินผ่าน Alipay บนมือถือ ใช้การตั้งค่าเดียวกับ PC ได้ หรือใช้บัญชีแยกต่างหากก็ได้',2,NULL),(15,6,1,'ชำระเงินผ่าน WeChat Official Account','WeChat','wxpay_jsapi','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:5:\"APPID\";s:6:\"remark\";s:52:\"กรุณากรอก APPID ของคุณ\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:16:\"คีย์ API\";s:6:\"remark\";s:62:\"กรุณากรอกคีย์ API ของคุณ\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";i:1;s:4:\"name\";s:9:\"Appsecret\";s:6:\"remark\";s:56:\"กรุณากรอก Appsecret ของคุณ\";}}','ชำระเงินภายใน WeChat Official Account รองรับเฉพาะการชำระเงินในเบราว์เซอร์ WeChat เท่านั้น ใช้การตั้งค่าเดียวกับการชำระเงินผ่านการสแกนได้',4,'a:1:{#123}s:5:{#34}mchid{#34};a:3:{#123}s:5:{#34}title{#34};s:39:{#34}หมายเลขผู้ค้า{#34};s:5:{#34}value{#34};s:1:{#34}0{#34};s:4:{#34}info{#34};s:46:{#34}หมายเลขผู้ค้า WeChat{#34};{#125}{#125}'),(16,2,1,'เข้าสู่ระบบด้วย WeChat Mini Program','WeChat','wxapplogin','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:5:\"AppID\";s:6:\"remark\";s:45:\"ID ของมินิโปรแกรม\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:0:\"\";s:6:\"remark\";s:0:\"\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:9:\"AppSecret\";s:6:\"remark\";s:54:\"คีย์ของมินิโปรแกรม\";}}','ตั้งค่าอินเทอร์เฟซ WeChat Mini Program',6,''),(17,2,0,'เข้าสู่ระบบด้วย WeChat Official Account','WeChat','wxmplogin','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:9:\"api_appid\";s:6:\"remark\";s:5:\"appID\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:10:\"api_apikey\";s:6:\"remark\";s:25:\"apikey ของแอป\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:13:\"api_secretkey\";s:6:\"remark\";s:9:\"appsecret\";}}','เข้าสู่ระบบด้วย WeChat Official Account (บัญชีบริการ) ต้องชำระ 300 หยวนเพื่อขอสิทธิ์ยืนยัน',7,''),(18,3,0,'PayPal ชำระระหว่างประเทศ','PayPal','paypal','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:8:\"ClientId\";s:6:\"remark\";s:9:\"Client ID\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:10:\"api_apikey\";s:6:\"remark\";s:25:\"apikey ของแอป\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:6:\"secret\";s:6:\"remark\";s:6:\"secret\";}}','PayPal คือเครื่องมือชำระเงินสำหรับการค้าระหว่างประเทศที่ได้รับความนิยมจากผู้ใช้หลายร้อยล้านคนทั่วโลก ชำระเงินทันที เงินเข้าบัญชีทันที มีอินเทอร์เฟซการใช้งานภาษาจีนทั้งหมด สามารถถอนเงินผ่านธนาคารในประเทศจีนได้อย่างง่ายดาย ช่วยแก้ปัญหาการรับเงินจากการค้าต่างประเทศ',5,''),(19,7,1,'ชำระเงินผ่าน Alipay APP','Alipay','alipay_app','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:5:\"APPID\";s:6:\"remark\";s:21:\"id ของแอป\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:49:\"คีย์ส่วนตัวของ Alipay\";s:6:\"remark\";s:49:\"คีย์ส่วนตัวของ Alipay\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:49:\"คีย์สาธารณะของ Alipay\";s:6:\"remark\";s:49:\"คีย์สาธารณะของ Alipay\";}}','ชำระเงินผ่านแอป Alipay',1,''),(20,7,1,'ชำระเงินผ่าน WeChat APP','WeChat','wxpay_app','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:5:\"APPID\";s:6:\"remark\";s:5:\"APPID\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:16:\"คีย์ API\";s:6:\"remark\";s:16:\"คีย์ API\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:13:\"api_secretkey\";s:6:\"remark\";s:0:\"\";}}','ชำระเงินผ่านแอป WeChat',2,'a:1:{#123}s:5:{#34}mchid{#34};a:3:{#123}s:5:{#34}title{#34};s:21:{#34}ID ผู้ค้า{#34};s:5:{#34}value{#34};s:10:{#34}1504418791{#34};s:4:{#34}info{#34};s:39:{#34}หมายเลขผู้ค้า{#34};{#125}{#125}'),(21,8,1,'เข้าสู่ระบบด้วย WeChat APP','WeChat','wxapp_login','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:5:\"APPID\";s:6:\"remark\";s:5:\"APPID\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:10:\"api_apikey\";s:6:\"remark\";s:25:\"apikey ของแอป\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:9:\"APPSecret\";s:6:\"remark\";s:9:\"APPSecret\";}}','เข้าสู่ระบบด้วยแอป WeChat ต้องไปสมัครแอปที่ WeChat Open Platform',0,''),(22,8,1,'เข้าสู่ระบบด้วย QQ มือถือ','เข้าสู่ระบบ QQ','qqapplogin','','','','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:6:\"APP ID\";s:6:\"remark\";s:6:\"APP ID\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:7:\"APP Key\";s:6:\"remark\";s:7:\"APP Key\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:13:\"api_secretkey\";s:6:\"remark\";s:28:\"secretkey ของแอป\";}}','ต้องไปสมัครที่ QQ Open Platform',2,''),(23,9,0,'ข้อความ Alibaba Cloud','Alibaba Cloud','aliyunsms','','123123','1223123','a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:9:\"api_appid\";s:6:\"remark\";s:24:\"appid ของแอป\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:11:\"accessKeyId\";s:6:\"remark\";s:11:\"accessKeyId\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:15:\"accessKeySecret\";s:6:\"remark\";s:15:\"accessKeySecret\";}}','อินเทอร์เฟซส่งข้อความ Alibaba Cloud โปรดดู https://ak-console.aliyun.com/ เพื่อรับข้อมูล AK ของคุณ',1,''),(24,9,1,'ข้อความ Tencent Cloud','Tencent Cloud','tencentsms',NULL,NULL,NULL,'a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:24:\"APPID ของแอป\";s:6:\"remark\";s:24:\"APPID ของแอป\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:41:\"SecretId ของ API คลาวด์\";s:6:\"remark\";s:41:\"SecretId ของ API คลาวด์\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:42:\"SecretKey ของ API คลาวด์\";s:6:\"remark\";s:42:\"SecretKey ของ API คลาวด์\";}}','อินเทอร์เฟซส่งข้อความ Tencent Cloud ดูคีย์ Cloud API ได้ที่: https://console.cloud.tencent.com/cam/capi',2,''),(25,10,0,'แจ้งเตือน DingTalk','DingTalk','dingding_hook',NULL,NULL,NULL,'a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:9:\"api_appid\";s:6:\"remark\";s:24:\"appid ของแอป\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:10:\"api_apikey\";s:6:\"remark\";s:25:\"apikey ของแอป\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:13:\"api_secretkey\";s:6:\"remark\";s:28:\"secretkey ของแอป\";}}','การแจ้งเตือนผ่าน DingTalk',1,'a:1:{s:3:\"url\";a:3:{s:5:\"title\";s:22:\"URL ของ DingTalk\";s:5:\"value\";s:0:\"\";s:4:\"info\";s:58:\"URL แจ้งเตือน WEBHOOK ของ DingTalk\";}}'),(26,10,0,'แจ้งเตือน WeCom','WeCom','weixinwork_hook',NULL,NULL,NULL,'a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:9:\"api_appid\";s:6:\"remark\";s:24:\"appid ของแอป\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:10:\"api_apikey\";s:6:\"remark\";s:25:\"apikey ของแอป\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"0\";s:4:\"name\";s:13:\"api_secretkey\";s:6:\"remark\";s:28:\"secretkey ของแอป\";}}','การแจ้งเตือนผ่าน WeCom',2,'a:1:{s:3:\"url\";a:3:{s:5:\"title\";s:19:\"URL ของ WeCom\";s:5:\"value\";s:0:\"\";s:4:\"info\";s:55:\"URL แจ้งเตือน WEBHOOK ของ WeCom\";}}'),(27,11,0,'สังเคราะห์เสียง Tencent Cloud','Tencent Cloud','tencenttts',NULL,NULL,NULL,'a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:5:\"APPID\";s:6:\"remark\";s:30:\"APPID ของบัญชี\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:8:\"secretId\";s:6:\"remark\";s:41:\"SecretId ของ API คลาวด์\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:9:\"secretKey\";s:6:\"remark\";s:41:\"SecretId ของ API คลาวด์\";}}','การสังเคราะห์เสียง Tencent Cloud ดูคีย์ Cloud API ได้ที่: https://console.cloud.tencent.com/cam/capi',2,''),(28,11,0,'สังเคราะห์เสียง Baidu Cloud','Baidu Cloud','baidutts',NULL,NULL,NULL,'a:3:{s:9:\"api_appid\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:5:\"AppID\";s:6:\"remark\";s:24:\"appid ของแอป\";}s:10:\"api_apikey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:7:\"API Key\";s:6:\"remark\";s:26:\"API Key ของแอป\";}s:13:\"api_secretkey\";a:3:{s:4:\"mast\";s:1:\"1\";s:4:\"name\";s:10:\"Secret Key\";s:6:\"remark\";s:29:\"Secret Key ของแอป\";}}','อินเทอร์เฟซสังเคราะห์เสียง Baidu Cloud ต้องสร้างแอปใน Baidu Cloud',4,'');
 DROP TABLE IF EXISTS `wm_api_tts_voicet`;
 CREATE TABLE `wm_api_tts_voicet` (
   `voicet_id` int NOT NULL AUTO_INCREMENT,
-  `voicet_api_id` int NOT NULL COMMENT '接口id',
-  `voicet_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否使用:0=禁用,1=使用',
-  `voicet_ids` varchar(10) NOT NULL COMMENT '发音人ID',
-  `voicet_name` varchar(20) NOT NULL COMMENT '发音人名字',
-  `voicet_order` int NOT NULL DEFAULT '9' COMMENT '排序,越小越靠前',
+  `voicet_api_id` int NOT NULL COMMENT 'ID อินเทอร์เฟซ',
+  `voicet_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'ใช้งานหรือไม่: 0=ปิดใช้งาน, 1=ใช้งาน',
+  `voicet_ids` varchar(10) NOT NULL COMMENT 'ID ผู้พูด',
+  `voicet_name` varchar(60) NOT NULL COMMENT 'ชื่อผู้พูด',
+  `voicet_order` int NOT NULL DEFAULT '9' COMMENT 'เรียงลำดับ, ค่าน้อยอยู่ก่อน',
   PRIMARY KEY (`voicet_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COMMENT='语音合成发音人配置表';
-INSERT INTO `wm_api_tts_voicet` VALUES (1,29,1,'100510000','智逍遥，阅读男声',1),(2,29,1,'101001','智瑜，情感女声',2),(3,29,1,'101002','智聆，通用女声',3),(4,29,1,'101004','智云，通用男声',4),(5,29,1,'101023','智萱，聊天女声',5),(6,29,1,'101024','智皓，聊天男声',6),(7,29,1,'1005','智莉，通用女声',7),(8,29,1,'1018','智靖，情感男声',8),(9,30,1,'5003','度逍遥',1),(10,30,1,'5118','度小鹿',2),(11,30,1,'106','度博文',3),(12,30,1,'5','度小娇',4),(13,30,1,'1','度小宇',6),(14,30,1,'0','度小美',5),(15,30,1,'3','度逍遥',7),(16,30,1,'4','度丫丫',8);
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางตั้งค่าผู้พูดสังเคราะห์เสียง';
+INSERT INTO `wm_api_tts_voicet` VALUES (1,29,1,'100510000','จื้อเซียวเหยา, เสียงชายสำหรับอ่าน',1),(2,29,1,'101001','จื้อหยู, เสียงหญิงเชิงอารมณ์',2),(3,29,1,'101002','จื้อหลิง, เสียงหญิงทั่วไป',3),(4,29,1,'101004','จื้อหยุน, เสียงชายทั่วไป',4),(5,29,1,'101023','จื้อซวน, เสียงหญิงแบบสนทนา',5),(6,29,1,'101024','จื้อหาว, เสียงชายแบบสนทนา',6),(7,29,1,'1005','จื้อลี่, เสียงหญิงทั่วไป',7),(8,29,1,'1018','จื้อจิ้ง, เสียงชายเชิงอารมณ์',8),(9,30,1,'5003','ตู้เสียวเหยา',1),(10,30,1,'5118','ตู้เสี่ยวลู่',2),(11,30,1,'106','ตู้ป๋อเหวิน',3),(12,30,1,'5','ตู้เสี่ยวเจียว',4),(13,30,1,'1','ตู้เสี่ยวอวี่',6),(14,30,1,'0','ตู้เสี่ยวเหม่ย',5),(15,30,1,'3','ตู้เสียวเหยา',7),(16,30,1,'4','ตู้ยาหย่า',8);
 DROP TABLE IF EXISTS `wm_api_type`;
 CREATE TABLE `wm_api_type` (
   `type_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `type_title` varchar(20) DEFAULT NULL COMMENT '接口类型名字',
-  `type_name` varchar(20) DEFAULT NULL COMMENT '接口类型标识',
-  `type_order` int DEFAULT NULL COMMENT '排序',
+  `type_title` varchar(60) DEFAULT NULL COMMENT 'ชื่อประเภทอินเทอร์เฟซ',
+  `type_name` varchar(20) DEFAULT NULL COMMENT 'ตัวระบุประเภทอินเทอร์เฟซ',
+  `type_order` int DEFAULT NULL COMMENT 'เรียงลำดับ',
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3 COMMENT='api接口类型表';
-INSERT INTO `wm_api_type` VALUES (1,'站内接口','system',1),(2,'网页登录接口','login',2),(3,'PC支付接口','pay',3),(4,'存储接口','oss',4),(5,'SEO接口','seo',5),(6,'移动支付接口','pay_wap',3),(7,'APP支付接口','pay_app',3),(8,'APP登录接口','login_app',3),(9,'消息接口','sms',7),(10,'WEBHOOK','webhook',8),(11,'语音合成接口','tts',9);
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางประเภทอินเทอร์เฟซ API';
+INSERT INTO `wm_api_type` VALUES (1,'API ภายในเว็บไซต์','system',1),(2,'API เข้าสู่ระบบเว็บ','login',2),(3,'API ชำระเงิน PC','pay',3),(4,'API จัดเก็บ','oss',4),(5,'API SEO','seo',5),(6,'API ชำระเงินมือถือ','pay_wap',3),(7,'API ชำระเงิน APP','pay_app',3),(8,'API เข้าสู่ระบบ APP','login_app',3),(9,'API ข้อความ','sms',7),(10,'WEBHOOK','webhook',8),(11,'API สังเคราะห์เสียง','tts',9);
 DROP TABLE IF EXISTS `wm_app_app`;
 CREATE TABLE `wm_app_app` (
   `app_id` int NOT NULL AUTO_INCREMENT,
-  `type_id` int NOT NULL DEFAULT '1' COMMENT '应用分类id',
-  `app_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否审核',
-  `app_rec` int NOT NULL DEFAULT '0' COMMENT '是否推荐',
-  `app_ico` varchar(120) DEFAULT NULL COMMENT '应用图标',
-  `app_simg` varchar(120) DEFAULT NULL COMMENT '引用缩略图',
-  `app_pinyin` varchar(50) DEFAULT NULL COMMENT '应用拼音',
-  `app_name` varchar(50) NOT NULL COMMENT '应用标题',
-  `app_cname` varchar(50) DEFAULT NULL COMMENT '应用简称',
-  `app_lid` varchar(100) DEFAULT '0' COMMENT '语言id',
-  `app_lid_text` varchar(200) DEFAULT NULL COMMENT '语言文字',
-  `app_cid` varchar(100) DEFAULT '0' COMMENT '费用id',
-  `app_cid_text` varchar(200) DEFAULT NULL COMMENT '费用文字',
-  `app_tocn` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0为不是，1为是汉化应用',
-  `app_ver` varchar(20) NOT NULL DEFAULT '0' COMMENT '版本',
-  `app_size` varchar(20) NOT NULL DEFAULT '0' COMMENT '大小',
-  `app_tags` varchar(50) DEFAULT NULL COMMENT '应用标签',
-  `app_aid` int DEFAULT '0' COMMENT '开发商',
-  `app_oid` int DEFAULT '0' COMMENT '运营公司',
-  `app_info` varchar(100) DEFAULT NULL COMMENT '点评，预览',
-  `app_content` varchar(10000) DEFAULT NULL COMMENT '简介',
-  `app_read` int NOT NULL DEFAULT '0' COMMENT '应用浏览量',
-  `app_replay` int NOT NULL DEFAULT '0' COMMENT '应用评论量',
-  `app_ding` int NOT NULL DEFAULT '0' COMMENT '应用顶',
-  `app_cai` int NOT NULL DEFAULT '0' COMMENT '应用踩',
-  `app_start` decimal(2,1) NOT NULL DEFAULT '0.0' COMMENT '星级',
-  `app_score` decimal(2,1) NOT NULL DEFAULT '0.0' COMMENT '应用评分',
-  `app_paid` varchar(100) NOT NULL DEFAULT '0' COMMENT '运行平台',
-  `app_paid_text` varchar(200) DEFAULT NULL COMMENT '运行平台文字',
-  `app_osver` varchar(20) NOT NULL DEFAULT '0' COMMENT '系统要求',
-  `app_downnum` int NOT NULL DEFAULT '0' COMMENT '应用下载量',
-  `app_down1` varchar(120) DEFAULT NULL COMMENT '应用下载地址1',
-  `app_down2` varchar(120) DEFAULT NULL COMMENT '应用下载地址2',
-  `app_down3` varchar(120) DEFAULT NULL COMMENT '应用下载地址3',
-  `app_addtime` int NOT NULL DEFAULT '0' COMMENT '添加时间年月日时分秒',
+  `type_id` int NOT NULL DEFAULT '1' COMMENT 'ID หมวดหมู่แอป',
+  `app_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'ต้องตรวจสอบหรือไม่',
+  `app_rec` int NOT NULL DEFAULT '0' COMMENT 'แนะนำหรือไม่',
+  `app_ico` varchar(120) DEFAULT NULL COMMENT 'ไอคอนแอป',
+  `app_simg` varchar(120) DEFAULT NULL COMMENT 'รูปย่อที่อ้างอิง',
+  `app_pinyin` varchar(50) DEFAULT NULL COMMENT 'พินอินแอป',
+  `app_name` varchar(50) NOT NULL COMMENT 'หัวข้อแอป',
+  `app_cname` varchar(50) DEFAULT NULL COMMENT 'ชื่อย่อแอป',
+  `app_lid` varchar(100) DEFAULT '0' COMMENT 'id ภาษา',
+  `app_lid_text` varchar(200) DEFAULT NULL COMMENT 'ข้อความภาษา',
+  `app_cid` varchar(100) DEFAULT '0' COMMENT 'id ค่าใช้จ่าย',
+  `app_cid_text` varchar(200) DEFAULT NULL COMMENT 'ข้อความค่าใช้จ่าย',
+  `app_tocn` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=ไม่ใช่ 1=ใช่ แอปที่แปลภาษาแล้ว',
+  `app_ver` varchar(20) NOT NULL DEFAULT '0' COMMENT 'เวอร์ชัน',
+  `app_size` varchar(20) NOT NULL DEFAULT '0' COMMENT 'ขนาด',
+  `app_tags` varchar(50) DEFAULT NULL COMMENT 'แท็กแอป',
+  `app_aid` int DEFAULT '0' COMMENT 'ผู้พัฒนา',
+  `app_oid` int DEFAULT '0' COMMENT 'บริษัทผู้ให้บริการ',
+  `app_info` varchar(100) DEFAULT NULL COMMENT 'รีวิว, ตัวอย่าง',
+  `app_content` varchar(10000) DEFAULT NULL COMMENT 'เรื่องย่อ',
+  `app_read` int NOT NULL DEFAULT '0' COMMENT 'ยอดเข้าชมแอป',
+  `app_replay` int NOT NULL DEFAULT '0' COMMENT 'จำนวนความคิดเห็นแอป',
+  `app_ding` int NOT NULL DEFAULT '0' COMMENT 'จำนวนโหวตชอบแอป',
+  `app_cai` int NOT NULL DEFAULT '0' COMMENT 'จำนวนโหวตไม่ชอบแอป',
+  `app_start` decimal(2,1) NOT NULL DEFAULT '0.0' COMMENT 'ระดับดาว',
+  `app_score` decimal(2,1) NOT NULL DEFAULT '0.0' COMMENT 'คะแนนแอป',
+  `app_paid` varchar(100) NOT NULL DEFAULT '0' COMMENT 'แพลตฟอร์มที่ใช้งาน',
+  `app_paid_text` varchar(200) DEFAULT NULL COMMENT 'ข้อความแพลตฟอร์มที่ใช้งาน',
+  `app_osver` varchar(20) NOT NULL DEFAULT '0' COMMENT 'ข้อกำหนดของระบบ',
+  `app_downnum` int NOT NULL DEFAULT '0' COMMENT 'ยอดดาวน์โหลดแอป',
+  `app_down1` varchar(120) DEFAULT NULL COMMENT 'ที่อยู่ดาวน์โหลดแอป 1',
+  `app_down2` varchar(120) DEFAULT NULL COMMENT 'ที่อยู่ดาวน์โหลดแอป 2',
+  `app_down3` varchar(120) DEFAULT NULL COMMENT 'ที่อยู่ดาวน์โหลดแอป 3',
+  `app_addtime` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่เพิ่ม ปีเดือนวันชั่วโมงนาทีวินาที',
   PRIMARY KEY (`app_id`),
   KEY `tid` (`type_id`,`app_addtime`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='应用表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางแอป';
 DROP TABLE IF EXISTS `wm_app_attr`;
 CREATE TABLE `wm_app_attr` (
   `attr_id` int NOT NULL AUTO_INCREMENT,
-  `attr_type` varchar(10) NOT NULL COMMENT 'c费用，p平台，l语言',
-  `attr_name` varchar(20) NOT NULL COMMENT '属性名',
+  `attr_type` varchar(10) NOT NULL COMMENT 'c=ค่าใช้จ่าย p=แพลตฟอร์ม l=ภาษา',
+  `attr_name` varchar(20) NOT NULL COMMENT 'ชื่อแอตทริบิวต์',
   PRIMARY KEY (`attr_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3 COMMENT='应用资费系统表';
-INSERT INTO `wm_app_attr` VALUES (5,'c','内购'),(4,'p','安卓'),(6,'p','塞班'),(7,'l','英文'),(8,'p','苹果'),(9,'l','中文'),(10,'c','破解'),(11,'c','免费');
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางระบบค่าบริการแอป';
+INSERT INTO `wm_app_attr` VALUES (5,'c','ซื้อในแอป'),(4,'p','แอนดรอยด์'),(6,'p','ซิมเบียน'),(7,'l','ภาษาอังกฤษ'),(8,'p','แอปเปิล'),(9,'l','ภาษาจีน'),(10,'c','แคร็ก'),(11,'c','ฟรี');
 DROP TABLE IF EXISTS `wm_app_firms`;
 CREATE TABLE `wm_app_firms` (
   `firms_id` int NOT NULL AUTO_INCREMENT,
-  `firms_type` varchar(10) DEFAULT NULL COMMENT 'a是开发商，o是运营商，s自研自营',
-  `firms_name` varchar(30) NOT NULL COMMENT '开发商名字',
-  `firms_cname` varchar(10) DEFAULT NULL COMMENT '开发商简称',
-  `firms_url` varchar(120) DEFAULT NULL COMMENT '官网',
-  `firms_adress` varchar(120) DEFAULT NULL COMMENT '联系地址',
-  `firms_phone` varchar(15) DEFAULT NULL COMMENT '开发商电话',
-  `firms_email` varchar(20) DEFAULT NULL COMMENT '开发商邮件',
-  `firms_content` varchar(5000) DEFAULT NULL COMMENT '开发商描述',
-  `firms_addtime` int DEFAULT NULL COMMENT '添加时间',
+  `firms_type` varchar(10) DEFAULT NULL COMMENT 'a=ผู้พัฒนาระบบ o=ผู้ให้บริการ s=พัฒนาและขายเอง',
+  `firms_name` varchar(30) NOT NULL COMMENT 'ชื่อผู้พัฒนา',
+  `firms_cname` varchar(10) DEFAULT NULL COMMENT 'ชื่อย่อผู้พัฒนา',
+  `firms_url` varchar(120) DEFAULT NULL COMMENT 'เว็บไซต์ทางการ',
+  `firms_adress` varchar(120) DEFAULT NULL COMMENT 'ที่อยู่ติดต่อ',
+  `firms_phone` varchar(15) DEFAULT NULL COMMENT 'โทรศัพท์ผู้พัฒนา',
+  `firms_email` varchar(20) DEFAULT NULL COMMENT 'อีเมลผู้พัฒนา',
+  `firms_content` varchar(5000) DEFAULT NULL COMMENT 'คำอธิบายผู้พัฒนา',
+  `firms_addtime` int DEFAULT NULL COMMENT 'เวลาที่เพิ่ม',
   PRIMARY KEY (`firms_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='应用开发商表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางผู้พัฒนาแอป';
 DROP TABLE IF EXISTS `wm_app_type`;
 CREATE TABLE `wm_app_type` (
   `type_id` int NOT NULL AUTO_INCREMENT,
-  `type_topid` int NOT NULL DEFAULT '0' COMMENT '上级id',
-  `type_pid` varchar(20) NOT NULL DEFAULT '0' COMMENT '子栏目id',
-  `type_name` varchar(10) NOT NULL COMMENT '分类名',
-  `type_cname` varchar(10) DEFAULT NULL COMMENT '类型简称',
-  `type_pinyin` varchar(50) DEFAULT NULL COMMENT '类型拼音',
-  `type_order` int NOT NULL DEFAULT '0' COMMENT '排序',
-  `type_ico` varchar(200) DEFAULT NULL COMMENT '类型图标',
-  `type_info` varchar(200) DEFAULT NULL COMMENT '类型简介',
-  `type_tempid` int NOT NULL DEFAULT '0' COMMENT '分类模版',
-  `type_ctempid` int NOT NULL DEFAULT '0' COMMENT '分类内容模版',
-  `type_title` varchar(80) DEFAULT NULL COMMENT '分类标题',
-  `type_key` varchar(100) DEFAULT NULL COMMENT '分类关键字',
-  `type_desc` varchar(120) DEFAULT NULL COMMENT '分类描述',
+  `type_topid` int NOT NULL DEFAULT '0' COMMENT 'id ระดับเหนือขึ้นไป',
+  `type_pid` varchar(20) NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
+  `type_name` varchar(40) NOT NULL COMMENT 'ชื่อหมวดหมู่',
+  `type_cname` varchar(40) DEFAULT NULL COMMENT 'ชื่อย่อของประเภท',
+  `type_pinyin` varchar(50) DEFAULT NULL COMMENT 'พินอินของประเภท',
+  `type_order` int NOT NULL DEFAULT '0' COMMENT 'เรียงลำดับ',
+  `type_ico` varchar(200) DEFAULT NULL COMMENT 'ไอคอนประเภท',
+  `type_info` varchar(200) DEFAULT NULL COMMENT 'เรื่องย่อของประเภท',
+  `type_tempid` int NOT NULL DEFAULT '0' COMMENT 'เทมเพลตหมวดหมู่',
+  `type_ctempid` int NOT NULL DEFAULT '0' COMMENT 'เทมเพลตเนื้อหาหมวดหมู่',
+  `type_title` varchar(80) DEFAULT NULL COMMENT 'หัวข้อหมวดหมู่',
+  `type_key` varchar(100) DEFAULT NULL COMMENT 'คำค้นหาหมวดหมู่',
+  `type_desc` varchar(120) DEFAULT NULL COMMENT 'คำอธิบายหมวดหมู่',
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COMMENT='应用分类表';
-INSERT INTO `wm_app_type` VALUES (12,0,'0','体育竞速','体育','tiyu',5,NULL,'',0,0,'','',''),(11,0,'0','策略塔防','策略','celue',4,NULL,'',0,0,'','',''),(8,0,'0','角色扮演','角色','jiaose',1,NULL,'',0,0,'','',''),(9,0,'0','动作冒险','动作','dongzuo',2,'','',0,0,'','',''),(10,0,'0','飞行射击','飞行','feixing',3,NULL,'',0,0,'','',''),(13,0,'0','益智休闲','益智','yizhi',6,NULL,'',0,0,'','',''),(14,0,'0','卡牌桌游','卡牌','kapai',7,NULL,'',0,0,'','',''),(15,0,'0','模拟养成','养成','yangcheng',9,NULL,'',0,0,'','',''),(16,0,'0','汉化精品','汉化','hanhua',8,NULL,'',0,0,'','','');
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางหมวดหมู่แอป';
+INSERT INTO `wm_app_type` VALUES (12,0,'0','กีฬาแข่งความเร็ว','กีฬา','tiyu',5,NULL,'',0,0,'','',''),(11,0,'0','วางแผนป้องกันฐาน','วางแผน','celue',4,NULL,'',0,0,'','',''),(8,0,'0','สวมบทบาท','ตัวละคร','jiaose',1,NULL,'',0,0,'','',''),(9,0,'0','แอ็กชันผจญภัย','แอ็กชัน','dongzuo',2,'','',0,0,'','',''),(10,0,'0','ยิงเครื่องบิน','การบิน','feixing',3,NULL,'',0,0,'','',''),(13,0,'0','ฝึกสมองผ่อนคลาย','ฝึกสมอง','yizhi',6,NULL,'',0,0,'','',''),(14,0,'0','เกมกระดานไพ่','ไพ่','kapai',7,NULL,'',0,0,'','',''),(15,0,'0','จำลองการเลี้ยงดู','การเลี้ยงดู','yangcheng',9,NULL,'',0,0,'','',''),(16,0,'0','แปลจีนคุณภาพสูง','แปลภาษาจีน','hanhua',8,NULL,'',0,0,'','','');
 DROP TABLE IF EXISTS `wm_article_article`;
 CREATE TABLE `wm_article_article` (
   `article_id` int NOT NULL AUTO_INCREMENT,
-  `type_id` int NOT NULL DEFAULT '1' COMMENT '新闻分类id',
-  `article_display` tinyint(1) DEFAULT '1' COMMENT '是否显示、生成html',
-  `article_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0为审核，1为正常，2为回收站',
-  `article_weight` int NOT NULL DEFAULT '0' COMMENT '文章权重，越大越靠前',
-  `article_rec` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否推荐',
-  `article_head` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否头条',
-  `article_strong` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否加粗',
-  `article_name` varchar(50) NOT NULL COMMENT '文章标题',
-  `article_cname` varchar(35) DEFAULT NULL COMMENT '文章简称',
-  `article_color` varchar(20) DEFAULT NULL COMMENT '标题颜色',
-  `article_simg` varchar(200) DEFAULT NULL COMMENT '缩略图',
-  `article_source` varchar(20) DEFAULT NULL COMMENT '文章来源',
-  `article_tags` varchar(50) DEFAULT NULL COMMENT '标签',
-  `article_url` varchar(120) DEFAULT NULL COMMENT '是否跳转',
-  `article_author` varchar(20) DEFAULT 'admin' COMMENT '作者',
-  `article_author_id` int DEFAULT '0' COMMENT '文章作者',
-  `article_editor` varchar(20) DEFAULT 'admin' COMMENT '编辑',
-  `article_editor_id` int DEFAULT '1' COMMENT '编辑的id',
-  `article_info` varchar(250) DEFAULT NULL COMMENT '简介',
-  `article_save_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章内容保存类型，1为入库，2为文件',
-  `article_save_path` varchar(250) DEFAULT NULL COMMENT '文件保存的路径',
-  `article_content` mediumtext COMMENT '内容',
-  `article_read` int NOT NULL DEFAULT '0' COMMENT '阅读量',
-  `article_replay` int NOT NULL DEFAULT '0' COMMENT '回复量',
-  `article_score` decimal(2,1) DEFAULT '0.0' COMMENT '文章评分',
-  `article_ding` int NOT NULL DEFAULT '0' COMMENT '顶',
-  `article_cai` int NOT NULL DEFAULT '0' COMMENT '踩',
-  `article_addtime` int NOT NULL DEFAULT '0' COMMENT '添加时间年月日时分秒',
-  `article_examinetime` int NOT NULL DEFAULT '0' COMMENT '审核时间',
+  `type_id` int NOT NULL DEFAULT '1' COMMENT 'ID หมวดหมู่ข่าว',
+  `article_display` tinyint(1) DEFAULT '1' COMMENT 'แสดงหรือไม่, สร้าง html',
+  `article_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0=รอตรวจสอบ 1=ปกติ 2=ถังขยะ',
+  `article_weight` int NOT NULL DEFAULT '0' COMMENT 'น้ำหนักบทความ, ยิ่งมากยิ่งอยู่ก่อน',
+  `article_rec` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'แนะนำหรือไม่',
+  `article_head` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'เป็นข่าวพาดหัวหรือไม่',
+  `article_strong` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'ทำตัวหนาหรือไม่',
+  `article_name` varchar(50) NOT NULL COMMENT 'หัวข้อบทความ',
+  `article_cname` varchar(35) DEFAULT NULL COMMENT 'ชื่อย่อบทความ',
+  `article_color` varchar(20) DEFAULT NULL COMMENT 'สีหัวข้อ',
+  `article_simg` varchar(200) DEFAULT NULL COMMENT 'รูปย่อ',
+  `article_source` varchar(20) DEFAULT NULL COMMENT 'แหล่งที่มาบทความ',
+  `article_tags` varchar(50) DEFAULT NULL COMMENT 'แท็ก',
+  `article_url` varchar(120) DEFAULT NULL COMMENT 'เปลี่ยนเส้นทางหรือไม่',
+  `article_author` varchar(20) DEFAULT 'admin' COMMENT 'ผู้แต่ง',
+  `article_author_id` int DEFAULT '0' COMMENT 'ผู้แต่งบทความ',
+  `article_editor` varchar(20) DEFAULT 'admin' COMMENT 'บรรณาธิการ',
+  `article_editor_id` int DEFAULT '1' COMMENT 'id ของบรรณาธิการ',
+  `article_info` varchar(250) DEFAULT NULL COMMENT 'เรื่องย่อ',
+  `article_save_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'ประเภทการจัดเก็บเนื้อหาบทความ, 1=ฐานข้อมูล, 2=ไฟล์',
+  `article_save_path` varchar(250) DEFAULT NULL COMMENT 'พาธที่จัดเก็บไฟล์',
+  `article_content` mediumtext COMMENT 'เนื้อหา',
+  `article_read` int NOT NULL DEFAULT '0' COMMENT 'ยอดอ่าน',
+  `article_replay` int NOT NULL DEFAULT '0' COMMENT 'จำนวนตอบกลับ',
+  `article_score` decimal(2,1) DEFAULT '0.0' COMMENT 'คะแนนบทความ',
+  `article_ding` int NOT NULL DEFAULT '0' COMMENT 'กดชอบ',
+  `article_cai` int NOT NULL DEFAULT '0' COMMENT 'กดไม่ชอบ',
+  `article_addtime` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่เพิ่ม ปีเดือนวันชั่วโมงนาทีวินาที',
+  `article_examinetime` int NOT NULL DEFAULT '0' COMMENT 'เวลาตรวจสอบ',
   PRIMARY KEY (`article_id`),
   KEY `tid_index` (`type_id`,`article_addtime`),
   KEY `attr_index` (`article_display`,`article_status`,`article_weight`,`article_rec`,`article_head`,`article_strong`),
   KEY `list_index` (`article_status`,`type_id`),
   KEY `status_index` (`article_status`),
   KEY `type_index` (`type_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='文章内容表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางเนื้อหาบทความ';
 DROP TABLE IF EXISTS `wm_article_author`;
 CREATE TABLE `wm_article_author` (
   `author_id` int NOT NULL AUTO_INCREMENT,
-  `author_type` varchar(2) NOT NULL DEFAULT 'a' COMMENT '是作者还是文章来源,a是作者，s是文章来源',
-  `author_name` varchar(20) NOT NULL COMMENT '作者或者来源名字',
-  `author_default` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否为默认数据',
-  `author_data` int DEFAULT '0' COMMENT '当前属性配对的数据条数',
+  `author_type` varchar(2) NOT NULL DEFAULT 'a' COMMENT 'เป็นผู้แต่งหรือแหล่งที่มา, a=ผู้แต่ง, s=แหล่งที่มา',
+  `author_name` varchar(20) NOT NULL COMMENT 'ชื่อผู้แต่งหรือแหล่งที่มา',
+  `author_default` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'เป็นข้อมูลเริ่มต้นหรือไม่',
+  `author_data` int DEFAULT '0' COMMENT 'จำนวนรายการข้อมูลที่จับคู่กับแอตทริบิวต์ปัจจุบัน',
   PRIMARY KEY (`author_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb3 COMMENT='文章作者表';
-INSERT INTO `wm_article_author` VALUES (1,'s','原创',1,10),(32,'a','admin',1,10),(65,'e','admin',0,10);
+) ENGINE=MyISAM AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางผู้แต่งบทความ';
+INSERT INTO `wm_article_author` VALUES (1,'s','ต้นฉบับ',1,10),(32,'a','admin',1,10),(65,'e','admin',0,10);
 DROP TABLE IF EXISTS `wm_article_type`;
 CREATE TABLE `wm_article_type` (
   `type_id` int NOT NULL AUTO_INCREMENT,
-  `type_status` tinyint(1) DEFAULT '1' COMMENT '是否显示',
-  `type_topid` int NOT NULL DEFAULT '0' COMMENT '上级id',
-  `type_pid` varchar(20) NOT NULL DEFAULT '0' COMMENT '子栏目id',
-  `type_name` varchar(10) NOT NULL COMMENT '分类名',
-  `type_cname` varchar(10) DEFAULT NULL COMMENT '分类简称',
-  `type_pinyin` varchar(50) DEFAULT NULL COMMENT '分类拼音',
-  `type_order` int NOT NULL DEFAULT '0' COMMENT '排序',
-  `type_ico` varchar(200) DEFAULT NULL COMMENT '图标',
-  `type_info` varchar(100) DEFAULT NULL COMMENT '分类简介',
-  `type_add` tinyint(1) DEFAULT '1' COMMENT '分类是否允许投稿',
-  `type_titempid` int NOT NULL DEFAULT '0' COMMENT '分类首页',
-  `type_tempid` int NOT NULL DEFAULT '0' COMMENT '分类列表',
-  `type_ctempid` int NOT NULL DEFAULT '0' COMMENT '内容页的模版id',
-  `type_title` varchar(80) DEFAULT NULL COMMENT '分类标题',
-  `type_key` varchar(100) DEFAULT NULL COMMENT '分类关键字',
-  `type_desc` varchar(120) DEFAULT NULL COMMENT '分类描述',
+  `type_status` tinyint(1) DEFAULT '1' COMMENT 'แสดงหรือไม่',
+  `type_topid` int NOT NULL DEFAULT '0' COMMENT 'id ระดับเหนือขึ้นไป',
+  `type_pid` varchar(20) NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
+  `type_name` varchar(40) NOT NULL COMMENT 'ชื่อหมวดหมู่',
+  `type_cname` varchar(40) DEFAULT NULL COMMENT 'ชื่อย่อหมวดหมู่',
+  `type_pinyin` varchar(50) DEFAULT NULL COMMENT 'พินอินหมวดหมู่',
+  `type_order` int NOT NULL DEFAULT '0' COMMENT 'เรียงลำดับ',
+  `type_ico` varchar(200) DEFAULT NULL COMMENT 'ไอคอน',
+  `type_info` varchar(100) DEFAULT NULL COMMENT 'เรื่องย่อหมวดหมู่',
+  `type_add` tinyint(1) DEFAULT '1' COMMENT 'หมวดหมู่อนุญาตให้ส่งผลงานหรือไม่',
+  `type_titempid` int NOT NULL DEFAULT '0' COMMENT 'หน้าแรกหมวดหมู่',
+  `type_tempid` int NOT NULL DEFAULT '0' COMMENT 'รายการหมวดหมู่',
+  `type_ctempid` int NOT NULL DEFAULT '0' COMMENT 'id เทมเพลตหน้าเนื้อหา',
+  `type_title` varchar(80) DEFAULT NULL COMMENT 'หัวข้อหมวดหมู่',
+  `type_key` varchar(100) DEFAULT NULL COMMENT 'คำค้นหาหมวดหมู่',
+  `type_desc` varchar(120) DEFAULT NULL COMMENT 'คำอธิบายหมวดหมู่',
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COMMENT='文章分类表';
-INSERT INTO `wm_article_type` VALUES (1,1,0,'0','网站公告','公告','gg',1,'','',0,0,0,0,'','',''),(2,1,0,'0','新闻资讯','新闻','news',2,'','',0,0,0,0,'','',''),(3,1,1,'1','ces','','',1,'','',0,0,0,0,'','',''),(4,1,0,'0','ceshi分类',NULL,NULL,0,NULL,NULL,1,0,0,0,NULL,NULL,NULL);
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางหมวดหมู่บทความ';
+INSERT INTO `wm_article_type` VALUES (1,1,0,'0','ประกาศเว็บไซต์','ประกาศ','gg',1,'','',0,0,0,0,'','',''),(2,1,0,'0','ข่าวสาร','ข่าว','news',2,'','',0,0,0,0,'','',''),(3,1,1,'1','ces','','',1,'','',0,0,0,0,'','',''),(4,1,0,'0','หมวดหมู่ ceshi',NULL,NULL,0,NULL,NULL,1,0,0,0,NULL,NULL,NULL);
 DROP TABLE IF EXISTS `wm_author_author`;
 CREATE TABLE `wm_author_author` (
   `author_id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL DEFAULT '0' COMMENT '用户id',
-  `author_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0为审核中,1为正常,2为不通过',
-  `author_nickname` varchar(20) NOT NULL COMMENT '作者笔名，不允许更改',
-  `author_info` varchar(100) NOT NULL COMMENT '作者简介',
-  `author_notice` varchar(500) DEFAULT NULL COMMENT '作者公告',
-  `author_time` int NOT NULL DEFAULT '0' COMMENT '开通时间',
-  `author_toptime` int NOT NULL DEFAULT '0' COMMENT '上次登录的时间',
+  `user_id` int NOT NULL DEFAULT '0' COMMENT 'id ผู้ใช้',
+  `author_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=รอตรวจสอบ 1=ปกติ 2=ไม่ผ่าน',
+  `author_nickname` varchar(20) NOT NULL COMMENT 'นามปากกาผู้แต่ง ห้ามแก้ไข',
+  `author_info` varchar(100) NOT NULL COMMENT 'เรื่องย่อผู้แต่ง',
+  `author_notice` varchar(500) DEFAULT NULL COMMENT 'ประกาศจากผู้แต่ง',
+  `author_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่เปิดใช้งาน',
+  `author_toptime` int NOT NULL DEFAULT '0' COMMENT 'เวลาเข้าสู่ระบบครั้งล่าสุด',
   PRIMARY KEY (`author_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='作者表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางผู้แต่ง';
 DROP TABLE IF EXISTS `wm_author_draft`;
 CREATE TABLE `wm_author_draft` (
   `draft_id` int NOT NULL AUTO_INCREMENT,
-  `draft_author_id` int NOT NULL COMMENT '草稿的作者',
-  `draft_module` varchar(20) NOT NULL COMMENT '草稿箱所属模块',
-  `draft_cid` int NOT NULL DEFAULT '0' COMMENT '草稿所属的内容id',
-  `draft_title` varchar(100) NOT NULL COMMENT '草稿标题',
-  `draft_content` text NOT NULL COMMENT '草稿内容',
-  `draft_number` int NOT NULL DEFAULT '0' COMMENT '草稿字数',
-  `draft_option` varchar(2000) DEFAULT NULL COMMENT '其他数据的选项',
-  `draft_createtime` int NOT NULL COMMENT '草稿创建时间',
+  `draft_author_id` int NOT NULL COMMENT 'ผู้แต่งของฉบับร่าง',
+  `draft_module` varchar(20) NOT NULL COMMENT 'โมดูลของกล่องฉบับร่าง',
+  `draft_cid` int NOT NULL DEFAULT '0' COMMENT 'id เนื้อหาที่ฉบับร่างสังกัด',
+  `draft_title` varchar(100) NOT NULL COMMENT 'หัวข้อฉบับร่าง',
+  `draft_content` text NOT NULL COMMENT 'เนื้อหาฉบับร่าง',
+  `draft_number` int NOT NULL DEFAULT '0' COMMENT 'จำนวนคำของฉบับร่าง',
+  `draft_option` varchar(2000) DEFAULT NULL COMMENT 'ตัวเลือกของข้อมูลอื่น',
+  `draft_createtime` int NOT NULL COMMENT 'เวลาสร้างฉบับร่าง',
   PRIMARY KEY (`draft_id`),
   KEY `draft_index` (`draft_author_id`,`draft_module`,`draft_cid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='草稿箱';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='กล่องฉบับร่าง';
 DROP TABLE IF EXISTS `wm_author_end`;
 CREATE TABLE `wm_author_end` (
   `end_id` int NOT NULL AUTO_INCREMENT,
-  `end_module` varchar(20) DEFAULT NULL COMMENT '完结奖励模块',
-  `end_type` varchar(20) DEFAULT NULL COMMENT '完结奖励验证类型（字数、章节）',
-  `end_number` int DEFAULT NULL COMMENT '奖励数字要求',
-  `end_gold1` decimal(5,2) DEFAULT NULL COMMENT '奖励金币1',
-  `end_gold2` decimal(5,2) DEFAULT NULL COMMENT '奖励金币2',
+  `end_module` varchar(20) DEFAULT NULL COMMENT 'โมดูลรางวัลเมื่อจบเรื่อง',
+  `end_type` varchar(20) DEFAULT NULL COMMENT 'ประเภทการตรวจสอบรางวัลเมื่อจบเรื่อง（จำนวนคำ、ตอน）',
+  `end_number` int DEFAULT NULL COMMENT 'เงื่อนไขจำนวนรางวัล',
+  `end_gold1` decimal(5,2) DEFAULT NULL COMMENT 'รางวัลเหรียญ 1',
+  `end_gold2` decimal(5,2) DEFAULT NULL COMMENT 'รางวัลเหรียญ 2',
   PRIMARY KEY (`end_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='完结奖励表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางรางวัลการจบเรื่อง';
 DROP TABLE IF EXISTS `wm_author_exp`;
 CREATE TABLE `wm_author_exp` (
   `exp_id` int NOT NULL AUTO_INCREMENT,
-  `exp_module` varchar(20) NOT NULL COMMENT '经验值所属的模块',
-  `exp_number` int NOT NULL DEFAULT '0' COMMENT '经验值',
-  `exp_author_id` int NOT NULL COMMENT '作者id',
+  `exp_module` varchar(20) NOT NULL COMMENT 'โมดูลของค่าประสบการณ์',
+  `exp_number` int NOT NULL DEFAULT '0' COMMENT 'ค่าประสบการณ์',
+  `exp_author_id` int NOT NULL COMMENT 'id ผู้แต่ง',
   PRIMARY KEY (`exp_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='作者经验等级表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางระดับประสบการณ์ของผู้แต่ง';
 DROP TABLE IF EXISTS `wm_author_level`;
 CREATE TABLE `wm_author_level` (
   `level_id` int NOT NULL AUTO_INCREMENT,
-  `level_module` varchar(15) DEFAULT NULL COMMENT '等级模块',
-  `level_name` varchar(20) NOT NULL COMMENT '等级名字',
-  `level_start` int NOT NULL DEFAULT '0' COMMENT '开始经验',
-  `level_end` int NOT NULL DEFAULT '0' COMMENT '结束经验',
-  `level_order` int NOT NULL DEFAULT '0' COMMENT '显示位置',
+  `level_module` varchar(15) DEFAULT NULL COMMENT 'โมดูลระดับ',
+  `level_name` varchar(40) NOT NULL COMMENT 'ชื่อระดับ',
+  `level_start` int NOT NULL DEFAULT '0' COMMENT 'ประสบการณ์เริ่มต้น',
+  `level_end` int NOT NULL DEFAULT '0' COMMENT 'ประสบการณ์สิ้นสุด',
+  `level_order` int NOT NULL DEFAULT '0' COMMENT 'ตำแหน่งที่แสดง',
   PRIMARY KEY (`level_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3 COMMENT='经验等级';
-INSERT INTO `wm_author_level` VALUES (1,'novel','初入文坛',0,100,1),(2,'novel','初露锋芒',100,300,2),(3,'novel','略有小成',300,600,3),(4,'novel','粉丝众多',600,1000,4),(5,'novel','职业写手',1000,1500,5),(6,'novel','写作大神',1500,2100,6),(22,'article','普通写手',0,100,1),(23,'article','中级写手',100,500,2),(24,'article','高级写手',500,2000,3),(25,'article','专职写手',2000,5000,4);
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3 COMMENT='ระดับประสบการณ์';
+INSERT INTO `wm_author_level` VALUES (1,'novel','นักเขียนหน้าใหม่',0,100,1),(2,'novel','ดาวรุ่ง',100,300,2),(3,'novel','มีฝีมือระดับหนึ่ง',300,600,3),(4,'novel','มีแฟนคลับมาก',600,1000,4),(5,'novel','นักเขียนอาชีพ',1000,1500,5),(6,'novel','นักเขียนมือเทพ',1500,2100,6),(22,'article','นักเขียนทั่วไป',0,100,1),(23,'article','นักเขียนระดับกลาง',100,500,2),(24,'article','นักเขียนระดับสูง',500,2000,3),(25,'article','นักเขียนอาชีพ',2000,5000,4);
 DROP TABLE IF EXISTS `wm_author_module_income`;
 CREATE TABLE `wm_author_module_income` (
   `income_id` int NOT NULL AUTO_INCREMENT,
-  `income_module` varchar(20) NOT NULL COMMENT '收入的模块',
-  `income_author_id` int NOT NULL COMMENT '作者id',
-  `income_cid` int NOT NULL COMMENT '模块的内容',
-  `income_gold1_now` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '当前累积的金币1',
-  `income_gold2_now` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '当前累积的金币2',
-  `income_gold1` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '总共累积的金币1',
-  `income_gold2` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '总共累积的金币2',
+  `income_module` varchar(20) NOT NULL COMMENT 'โมดูลรายรับ',
+  `income_author_id` int NOT NULL COMMENT 'id ผู้แต่ง',
+  `income_cid` int NOT NULL COMMENT 'เนื้อหาโมดูล',
+  `income_gold1_now` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'เหรียญสะสมปัจจุบัน 1',
+  `income_gold2_now` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'เหรียญสะสมปัจจุบัน 2',
+  `income_gold1` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'เหรียญสะสมทั้งหมด 1',
+  `income_gold2` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'เหรียญสะสมทั้งหมด 2',
   PRIMARY KEY (`income_id`),
   KEY `user_index` (`income_module`,`income_author_id`,`income_cid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='作者模块内容收入记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกรายได้เนื้อหาของโมดูลผู้แต่ง';
 DROP TABLE IF EXISTS `wm_author_sign`;
 CREATE TABLE `wm_author_sign` (
   `sign_id` int NOT NULL AUTO_INCREMENT,
-  `sign_module` varchar(20) NOT NULL COMMENT '模块',
-  `sign_name` varchar(20) NOT NULL COMMENT '签约等级名字',
-  `sign_divide` varchar(5) NOT NULL DEFAULT '7:3' COMMENT '道具打赏收入分成比例',
-  `sign_gold1` decimal(5,2) NOT NULL DEFAULT '0.00' COMMENT '千字金币1',
-  `sign_gold2` decimal(5,2) NOT NULL DEFAULT '0.00' COMMENT '千字金币2',
-  `sign_order` tinyint DEFAULT '0' COMMENT '排序',
+  `sign_module` varchar(20) NOT NULL COMMENT 'โมดูล',
+  `sign_name` varchar(40) NOT NULL COMMENT 'ชื่อระดับการเซ็นสัญญา',
+  `sign_divide` varchar(5) NOT NULL DEFAULT '7:3' COMMENT 'อัตราส่วนแบ่งรายได้จากการให้รางวัลด้วยไอเทม',
+  `sign_gold1` decimal(5,2) NOT NULL DEFAULT '0.00' COMMENT 'เหรียญ 1 ต่อพันคำ',
+  `sign_gold2` decimal(5,2) NOT NULL DEFAULT '0.00' COMMENT 'เหรียญ 2 ต่อพันคำ',
+  `sign_order` tinyint DEFAULT '0' COMMENT 'เรียงลำดับ',
   PRIMARY KEY (`sign_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COMMENT='小说作者签约等级';
-INSERT INTO `wm_author_sign` VALUES (1,'novel','D级签约','9:1',1.00,10.00,1),(2,'novel','C级签约','8:2',2.00,20.00,2),(3,'novel','B级签约','7:3',3.00,30.00,3),(4,'novel','A级签约','6:4',4.00,40.00,4),(5,'novel','白银签约','5:5',5.00,50.00,5),(6,'novel','黄金签约','4:6',6.00,60.00,6),(7,'novel','白金签约','3:7',7.00,70.00,7);
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COMMENT='ระดับการเซ็นสัญญาของผู้แต่งนิยาย';
+INSERT INTO `wm_author_sign` VALUES (1,'novel','สัญญาระดับ D','9:1',1.00,10.00,1),(2,'novel','สัญญาระดับ C','8:2',2.00,20.00,2),(3,'novel','สัญญาระดับ B','7:3',3.00,30.00,3),(4,'novel','สัญญาระดับ A','6:4',4.00,40.00,4),(5,'novel','เซ็นสัญญาระดับซิลเวอร์','5:5',5.00,50.00,5),(6,'novel','เซ็นสัญญาระดับโกลด์','4:6',6.00,60.00,6),(7,'novel','เซ็นสัญญาระดับแพลตินัม','3:7',7.00,70.00,7);
 DROP TABLE IF EXISTS `wm_author_word`;
 CREATE TABLE `wm_author_word` (
   `word_id` int NOT NULL AUTO_INCREMENT,
-  `word_module` varchar(20) DEFAULT NULL COMMENT '模块',
-  `word_author_id` int DEFAULT NULL COMMENT '作者id',
-  `word_cid` int DEFAULT NULL COMMENT '内容id',
-  `word_time` int DEFAULT NULL COMMENT '时间',
+  `word_module` varchar(20) DEFAULT NULL COMMENT 'โมดูล',
+  `word_author_id` int DEFAULT NULL COMMENT 'id ผู้แต่ง',
+  `word_cid` int DEFAULT NULL COMMENT 'id เนื้อหา',
+  `word_time` int DEFAULT NULL COMMENT 'เวลา',
   PRIMARY KEY (`word_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='字数更新记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการอัปเดตจำนวนคำ';
 DROP TABLE IF EXISTS `wm_bbs_bbs`;
 CREATE TABLE `wm_bbs_bbs` (
   `bbs_id` int NOT NULL AUTO_INCREMENT,
-  `bbs_isreplay` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否需要回复',
-  `bbs_islogin` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否需要登录',
-  `bbs_ispay` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否付费',
-  `bbs_isself` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否只能自己查看',
-  `type_id` int NOT NULL COMMENT '分类id',
-  `bbs_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0为审核中，1为正常',
-  `bbs_rec` tinyint(1) NOT NULL DEFAULT '0' COMMENT '推荐',
-  `bbs_es` tinyint(1) NOT NULL DEFAULT '0' COMMENT '精华',
-  `bbs_top` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1为全站置顶，2为分类置顶，3为当前置顶',
-  `bbs_simg` varchar(120) DEFAULT NULL COMMENT '缩略图',
-  `bbs_title` varchar(30) NOT NULL COMMENT '帖子标题',
-  `bbs_content` text NOT NULL COMMENT '帖子内容',
-  `user_id` int NOT NULL DEFAULT '0' COMMENT '发帖用户',
-  `bbs_time` int NOT NULL DEFAULT '0' COMMENT '发帖时间',
-  `bbs_replay_time` int NOT NULL DEFAULT '0' COMMENT '最后回帖时间',
-  `bbs_replay_nickname` varchar(20) DEFAULT NULL COMMENT '回帖用户昵称',
-  `bbs_replay_uid` int NOT NULL DEFAULT '0' COMMENT '回帖用户id',
-  `bbs_read` int NOT NULL DEFAULT '0' COMMENT '浏览量',
-  `bbs_replay` int NOT NULL DEFAULT '0' COMMENT '回复量',
-  `bbs_tags` varchar(50) DEFAULT NULL COMMENT '标签',
-  `bbs_ding` int NOT NULL DEFAULT '0' COMMENT '顶',
-  `bbs_cai` int NOT NULL DEFAULT '0' COMMENT '踩',
-  `bbs_score` decimal(5,2) NOT NULL DEFAULT '0.00' COMMENT '评分',
+  `bbs_isreplay` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'ต้องตอบกลับหรือไม่',
+  `bbs_islogin` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'ต้องเข้าสู่ระบบหรือไม่',
+  `bbs_ispay` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'เสียเงินหรือไม่',
+  `bbs_isself` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'ดูได้เฉพาะตัวเองหรือไม่',
+  `type_id` int NOT NULL COMMENT 'id หมวดหมู่',
+  `bbs_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=รอตรวจสอบ 1=ปกติ',
+  `bbs_rec` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'แนะนำ',
+  `bbs_es` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'คัดสรร',
+  `bbs_top` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1=ปักหมุดทั้งเว็บไซต์ 2=ปักหมุดในหมวดหมู่ 3=ปักหมุดปัจจุบัน',
+  `bbs_simg` varchar(120) DEFAULT NULL COMMENT 'รูปย่อ',
+  `bbs_title` varchar(30) NOT NULL COMMENT 'หัวข้อโพสต์',
+  `bbs_content` text NOT NULL COMMENT 'เนื้อหาโพสต์',
+  `user_id` int NOT NULL DEFAULT '0' COMMENT 'ผู้ใช้ที่โพสต์',
+  `bbs_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาโพสต์',
+  `bbs_replay_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาตอบกลับล่าสุด',
+  `bbs_replay_nickname` varchar(20) DEFAULT NULL COMMENT 'ชื่อเล่นผู้ใช้ที่ตอบโพสต์',
+  `bbs_replay_uid` int NOT NULL DEFAULT '0' COMMENT 'id ผู้ใช้ที่ตอบโพสต์',
+  `bbs_read` int NOT NULL DEFAULT '0' COMMENT 'ยอดเข้าชม',
+  `bbs_replay` int NOT NULL DEFAULT '0' COMMENT 'จำนวนตอบกลับ',
+  `bbs_tags` varchar(50) DEFAULT NULL COMMENT 'แท็ก',
+  `bbs_ding` int NOT NULL DEFAULT '0' COMMENT 'กดชอบ',
+  `bbs_cai` int NOT NULL DEFAULT '0' COMMENT 'กดไม่ชอบ',
+  `bbs_score` decimal(5,2) NOT NULL DEFAULT '0.00' COMMENT 'คะแนน',
   PRIMARY KEY (`bbs_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='论坛主题表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางหัวข้อฟอรัม';
 DROP TABLE IF EXISTS `wm_bbs_moderator`;
 CREATE TABLE `wm_bbs_moderator` (
   `moderator_id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL DEFAULT '0' COMMENT '用户id',
-  `type_id` int NOT NULL DEFAULT '0' COMMENT '版块id',
+  `user_id` int NOT NULL DEFAULT '0' COMMENT 'id ผู้ใช้',
+  `type_id` int NOT NULL DEFAULT '0' COMMENT 'id ของบอร์ด',
   PRIMARY KEY (`moderator_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='论坛版主表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางผู้ดูแลหมวดฟอรัม';
 DROP TABLE IF EXISTS `wm_bbs_type`;
 CREATE TABLE `wm_bbs_type` (
   `type_id` int NOT NULL AUTO_INCREMENT,
-  `type_post_open` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1为开启',
-  `type_replay_open` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1为开启',
-  `type_topid` int NOT NULL DEFAULT '0' COMMENT '上级id',
-  `type_pid` varchar(20) NOT NULL DEFAULT '0' COMMENT '子栏目id',
-  `type_name` varchar(10) NOT NULL COMMENT '分类名',
-  `type_cname` varchar(10) NOT NULL COMMENT '类型简称',
-  `type_pinyin` varchar(50) NOT NULL COMMENT '类型拼音',
-  `type_order` int NOT NULL DEFAULT '50' COMMENT '排序',
-  `type_info` varchar(200) DEFAULT NULL COMMENT '简介',
-  `type_tempid` int NOT NULL DEFAULT '0' COMMENT '分类页模版',
-  `type_ctempid` int NOT NULL DEFAULT '0' COMMENT '内容页模版',
-  `type_rtempid` int NOT NULL DEFAULT '0' COMMENT '评论页模版',
-  `type_ico` varchar(225) DEFAULT NULL COMMENT '图标地址',
-  `type_title` varchar(80) DEFAULT NULL COMMENT '版块标题',
-  `type_key` varchar(100) DEFAULT NULL COMMENT '版块关键字',
-  `type_desc` varchar(120) DEFAULT NULL COMMENT '版块描述',
-  `type_last_post` int NOT NULL DEFAULT '0' COMMENT '最后发帖',
-  `type_last_replay` int NOT NULL DEFAULT '0' COMMENT '最后回帖',
-  `type_uptime` int NOT NULL DEFAULT '0' COMMENT '数据更新时间',
-  `type_sum_post` int NOT NULL DEFAULT '0' COMMENT '总帖子',
-  `type_sum_replay` int NOT NULL DEFAULT '0' COMMENT '总回复',
-  `type_sum_read` int NOT NULL DEFAULT '0' COMMENT '总浏览',
-  `type_today_post` int NOT NULL DEFAULT '0' COMMENT '日帖子',
-  `type_today_replay` int NOT NULL DEFAULT '0' COMMENT '日回复',
-  `type_today_read` int NOT NULL DEFAULT '0' COMMENT '日浏览',
+  `type_post_open` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=เปิด',
+  `type_replay_open` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=เปิด',
+  `type_topid` int NOT NULL DEFAULT '0' COMMENT 'id ระดับเหนือขึ้นไป',
+  `type_pid` varchar(20) NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
+  `type_name` varchar(10) NOT NULL COMMENT 'ชื่อหมวดหมู่',
+  `type_cname` varchar(10) NOT NULL COMMENT 'ชื่อย่อของประเภท',
+  `type_pinyin` varchar(50) NOT NULL COMMENT 'พินอินของประเภท',
+  `type_order` int NOT NULL DEFAULT '50' COMMENT 'เรียงลำดับ',
+  `type_info` varchar(200) DEFAULT NULL COMMENT 'เรื่องย่อ',
+  `type_tempid` int NOT NULL DEFAULT '0' COMMENT 'เทมเพลตหน้าหมวดหมู่',
+  `type_ctempid` int NOT NULL DEFAULT '0' COMMENT 'เทมเพลตหน้าเนื้อหา',
+  `type_rtempid` int NOT NULL DEFAULT '0' COMMENT 'เทมเพลตหน้าความคิดเห็น',
+  `type_ico` varchar(225) DEFAULT NULL COMMENT 'ที่อยู่ไอคอน',
+  `type_title` varchar(80) DEFAULT NULL COMMENT 'หัวข้อบอร์ด',
+  `type_key` varchar(100) DEFAULT NULL COMMENT 'คำค้นของบอร์ด',
+  `type_desc` varchar(120) DEFAULT NULL COMMENT 'คำอธิบายบอร์ด',
+  `type_last_post` int NOT NULL DEFAULT '0' COMMENT 'โพสต์ล่าสุด',
+  `type_last_replay` int NOT NULL DEFAULT '0' COMMENT 'ตอบกลับล่าสุด',
+  `type_uptime` int NOT NULL DEFAULT '0' COMMENT 'เวลาอัปเดตข้อมูล',
+  `type_sum_post` int NOT NULL DEFAULT '0' COMMENT 'จำนวนโพสต์ทั้งหมด',
+  `type_sum_replay` int NOT NULL DEFAULT '0' COMMENT 'จำนวนตอบกลับทั้งหมด',
+  `type_sum_read` int NOT NULL DEFAULT '0' COMMENT 'ยอดเข้าชมทั้งหมด',
+  `type_today_post` int NOT NULL DEFAULT '0' COMMENT 'โพสต์รายวัน',
+  `type_today_replay` int NOT NULL DEFAULT '0' COMMENT 'ตอบกลับรายวัน',
+  `type_today_read` int NOT NULL DEFAULT '0' COMMENT 'ยอดเข้าชมรายวัน',
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='论坛版块表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบอร์ดย่อยของฟอรัม';
 DROP TABLE IF EXISTS `wm_config_config`;
 CREATE TABLE `wm_config_config` (
   `config_id` int NOT NULL AUTO_INCREMENT,
-  `config_status` tinyint(1) DEFAULT '1' COMMENT '是否显示配置',
-  `group_id` int DEFAULT '0' COMMENT '配置分组id',
-  `config_module` varchar(20) NOT NULL COMMENT '配置所属的模块',
-  `config_title` varchar(35) NOT NULL COMMENT '配置的标题',
-  `config_name` varchar(35) NOT NULL COMMENT '配置的字段名',
-  `config_value` varchar(2000) NOT NULL COMMENT '配置的字段值',
-  `config_formtype` varchar(20) DEFAULT NULL COMMENT '配置的表单类型',
-  `config_remark` varchar(200) DEFAULT NULL COMMENT '配置的备注信息',
-  `config_order` int DEFAULT NULL COMMENT '配置的显示顺序',
+  `config_status` tinyint(1) DEFAULT '1' COMMENT 'แสดงการตั้งค่าหรือไม่',
+  `group_id` int DEFAULT '0' COMMENT 'id กลุ่มการตั้งค่า',
+  `config_module` varchar(20) NOT NULL COMMENT 'โมดูลของการตั้งค่า',
+  `config_title` varchar(80) NOT NULL COMMENT 'หัวข้อของการตั้งค่า',
+  `config_name` varchar(35) NOT NULL COMMENT 'ชื่อฟิลด์ของการตั้งค่า',
+  `config_value` varchar(2000) NOT NULL COMMENT 'ค่าฟิลด์ของการตั้งค่า',
+  `config_formtype` varchar(20) DEFAULT NULL COMMENT 'ประเภทฟอร์มของการตั้งค่า',
+  `config_remark` varchar(255) DEFAULT NULL COMMENT 'ข้อมูลหมายเหตุของการตั้งค่า',
+  `config_order` int DEFAULT NULL COMMENT 'ลำดับการแสดงของการตั้งค่า',
   PRIMARY KEY (`config_id`,`config_title`)
-) ENGINE=MyISAM AUTO_INCREMENT=442 DEFAULT CHARSET=utf8mb3 COMMENT='系统配置表';
-INSERT INTO `wm_config_config` VALUES (1,1,1,'system','网站名字','webname','WMCMS演示网站','input','网站的名字',1),(2,1,1,'system','网站主域','weburl','wmcms.com','input','网站的主域名(禁止/结尾,无需填写http://)',2),(3,1,1,'system','站长邮箱','email','1747699213@qq.com','input','站长的联系邮箱',3),(14,1,1,'system','备案号','beian','渝ICP证030173号','input','网站域名的备案号',4),(7,1,1,'system','网站开启','siteopen','1','radio','网站开启关闭的状态',5),(8,1,1,'system','关闭提示','closeinfo','对不起，网站升级中暂时关闭。','textarea','网站关闭的时候的提示信息',6),(9,1,1,'templates','简版模版','tp1','wmcms-web','input','wap1.0使用的模版',9),(10,1,1,'templates','3G模板','tp2','wmcms-web','input','3g网站使用模版',10),(11,1,1,'templates','触屏模板','tp3','wmcms-m','input','触屏网站使用的模版',11),(12,1,1,'templates','电脑模板','tp4','wmcms-web','input','电脑网站使用模版',12),(13,1,15,'urlmode','开启伪静态','url_type','1','select','开启伪静态将消耗服务器资源',8),(15,1,1,'domain','电脑域名','domain4','','input','直接访问电脑版的域名',8),(16,1,1,'domain','触屏域名','domain3','','input','直接访问触屏版的域名',7),(17,1,1,'domain','3G域名','domain2','','input','直接访问3G版的域名',6),(18,1,1,'domain','简版域名','domain1','','input','直接访问简版的域名',5),(25,1,4,'user','禁用关键字','shieldkey','管理员,站长,系统,admin','input','用户昵称禁用的关键字',50),(28,1,1,'system','邮件发送日志','emaillog_open','0','select','是否记录邮件发送的日志',13),(390,1,1,'cache','队列缓存类型','cache_queuetype','file','select','队列缓存使用的类型',16),(391,1,1,'cache','sql缓存文件夹','sql_folder','sql','input','sql缓存保存的文件夹',5),(392,1,1,'cache','sql缓存文件后缀','sql_ext','.sql','input','sql缓存文件名的后缀名',5),(39,1,1,'system','站长QQ','qq','1747699213','input','站长的QQ号码',9),(40,1,1,'system','站长电话','phone','15123931801','input','站长的电话号码',10),(47,1,1,'domain','显示pt标识','pt_rep','0','input','是否显示pt识别标识符',11),(42,1,1,'tongji','统计代码','tongji','','textarea','统计代码',0),(43,1,1,'domain','简洁版标识','tpmark1','wap','input','简洁版的识别标识符',13),(44,1,1,'domain','3G版标识','tpmark2','3g','input','3G版的识别标识符',12),(45,1,1,'domain','触屏版标识','tpmark3','m','input','触屏版的识别标识符',10),(46,1,1,'domain','电脑版标识','tpmark4','web','input','电脑版的识别标识符',9),(50,1,1,'domain','原始域名','bdomain','','input','将原来的域名',1),(51,1,1,'domain','新的域名','ndomain','','input','跳转到新的域名',2),(53,1,1,'domain','后台绑定域名','admin_domain','','input','网站后台管理绑定的域名',3),(54,1,1,'system','后台目录','admin_path','admin','input','后台文件所在的目录,如：admin',2),(57,1,1,'code','后台登录验证码','code_admin_login','0','radio','后台登录是否需要填写验证码',1),(67,1,1,'upload','自动剪裁','upload_cut','0','radio','是否开启图片自动剪裁',3),(58,1,1,'upload','上传类型','upload_type','jpeg,jpg,gif,png,gif,txt,doc,apk','input','允许上传的文件类型用,隔开',2),(59,1,1,'upload','上传大小','upload_size','1024','input','限制上传文件大小，Kb单位',2),(60,1,1,'upload','开启水印','watermark_open','1','radio','是否开启水印功能',20),(61,1,1,'upload','触发水印的宽度','watermark_width','100','input','当图片的宽度大于此值',21),(62,1,1,'upload','触发水印的高度','watermark_height','200','input','当图片的宽度大于此值',22),(63,1,1,'upload','水印类型','watermark_type','text','radio','水印的类型！图片水印的路径/files/images/watermark.png',23),(64,1,1,'upload','水印位置','watermark_location','9','radio','水印的显示位置',27),(65,1,1,'upload','水印颜色','watermark_color','#e01515','input','文字水印的颜色',25),(66,1,1,'upload','文字大小','watermark_size','5','input','文字水印的大小，单位：像素',26),(68,1,1,'upload','触发剪裁的宽度','upload_imgwidth','1200','input','当图片的宽度大于此值',4),(69,1,1,'upload','触发剪裁的高度','upload_imgheight','800','input','当图片的高度大于此值',5),(70,1,1,'upload','剪裁后的宽度','upload_cutwidth','500','input','图片剪裁后的宽度',6),(71,1,1,'upload','剪裁后的高度','upload_cutheight','500','input','图片剪裁后的高度',7),(72,1,1,'upload','水印内容','watermark_text','wmcms中文标签','input','文字水印的内容',24),(73,1,1,'system','程序主语言','lang','zh_cn','radio','程序使用的语言',15),(389,1,1,'cache','sql缓存类型','cache_sqltype','file','select','sql缓存使用的类型',16),(75,1,1,'system','允许代理访问','proxy_visit','1','radio','是否允许代理访问',16),(77,1,1,'system','管理员请求','request_open','0','radio','是否开启后台管理员请求日志',11),(78,1,1,'system','管理员操作','operation_open','0','radio','是否开启后台管理员修改数据的备份记录',14),(79,1,2,'article','文章页检查参数','par_article','1','radio','文章页的是否检测所有参数正确',1),(80,1,2,'article','评论页检查参数','par_replay','1','radio','评论页的是否检测所有参数正确',2),(81,1,2,'article','后台发布默认状态','admin_add','1','radio','后台管理员发布文章的默认状态',3),(82,1,11,'author','投稿功能是否开启','author_article_open','1','radio','用户投稿功能是否开启',24),(84,1,2,'article','文章搜索开关','search_open','1','radio','文章搜索功能是否开启',5),(85,1,2,'article','搜索间隔','search_time','3','input','每次搜索的间隔时间(单位:秒)',6),(86,1,2,'article','开启文章顶踩','dingcai_open','1','select','是否开启文章顶踩功能',7),(87,1,2,'article','文章顶踩次数','dingcai_count','2','input','每篇文章每日的顶踩次数限制',8),(88,1,1,'system','记录错误日志','err_open','0','select','是否开启网站错误日志记录',12),(89,1,2,'article','直接永久删除数据','admin_del','1','select','删除文章是直接删除还是先到回收站',3),(90,1,2,'article','文章评论开关','replay_open','0','select','文章模块是否开启评论功能',9),(91,1,2,'article','评论是否需要登录','replay_login','1','select','文章模块评论是否需要登录',11),(92,1,3,'novel','小说页参数检查','par_info','1','select','小说详情页分类id和书籍id同时检查',1),(93,1,3,'novel','评论页参数检查','par_replay','0','select','小说评论页分类id和书籍id同时检查',2),(94,1,3,'novel','目录页参数检查','par_menu','1','select','小说目录页分类id和书籍id同时检查',3),(95,1,3,'novel','阅读页参数检查','par_read','1','select','小说阅读页分类id和书籍id同时检查',4),(96,1,3,'novel','小说文件保存路径','novel_save','/files/txt/novel/{#123}tid{#125}/{#123}nid{#125}/index.txt','input','小说生成的txt文件保存路径',5),(97,1,3,'novel','小说章节保存路径','chapter_save','/files/txt/novel/{#123}tid{#125}/{#123}nid{#125}/{#123}cid{#125}.txt','input','小说生成的章节txt文件保存路径',6),(98,1,3,'novel','默认封面','cover','/files/images/nocover.jpg','input','默认小说封面地址',7),(99,1,3,'novel','后台书籍发布的状态','admin_novel_add','1','select','后台书籍发布的默认审核状态',8),(100,1,3,'novel','后台章节发布的状态','admin_chapter_add','100','select','后台章节发布的默认审核状态',9),(101,1,3,'novel','发布默认类型','type','1','select','小说发布默认类型',10),(102,1,3,'novel','数据入库模式','data_type','1','radio','数据入库模式',11),(103,1,3,'novel','开启小说下载','down_open','1','radio','是否开启小说下载',12),(104,1,3,'novel','默认最新章节名','new_cname','暂无章节','input','新建小说默认最新章节名',13),(105,1,3,'novel','生成TXT前置内容模版','novel_head','本小说网站完全无毒','textarea','新建小说生成txt的前面模版',14),(106,1,3,'novel','新建TXT章节开始模版','chapter_start','欢迎收藏','textarea','新建TXT章节开始模版',15),(107,1,3,'novel','新建TXT章节结束模版','chapter_end','请记住本网址','textarea','新建TXT章节结束模版',16),(108,1,3,'novel','章节默认是否需要登录','chapter_isvip','0','radio','发布章节默认是否需要登录阅读',17),(109,1,3,'novel','订阅章节使用金币种类','buy_gold_type','2','radio','订阅章节使用金币种类',13),(110,1,3,'novel','低于字数不收费','buy_wordnumber','500','input','低于多少字的章节不收费',19),(111,1,3,'novel','顶踩开关','dingcai_open','1','select','小说顶踩功能开启',20),(112,1,3,'novel','顶踩次数','dingcai_count','1','input','每本小说每日顶踩次数限制',21),(113,1,3,'novel','评分次数','score_count','1','input','每本小说每日评分次数限制',23),(114,1,3,'novel','评分开启','score_open','1','select','小说评分功能开启',22),(115,1,3,'novel','评分是否登录','score_login','0','select','小说评分功能是否需要登录',24),(116,1,3,'novel','评论开启','replay_open','0','select','小说评论功能是否开启',25),(117,1,3,'novel','评论需要登录','replay_login','1','select','小说评论功能是否需要登录',26),(118,1,3,'novel','收藏功能','coll_open','1','select','小说收藏功能是否开启',27),(119,1,3,'novel','推荐功能','rec_open','1','select','小说推荐功能是否开启',28),(120,1,3,'novel','消费金币1获得粉丝经验值','fans_exp_gold1','200','input','小说订阅功能是否开启',30),(121,1,3,'novel','打赏金币功能','reward_open','1','select','小说打赏金币功能是否开启',31),(122,1,3,'novel','搜索功能','search_open','1','select','小说搜索功能是否开启',32),(123,1,3,'novel','搜索间隔','search_time','3','input','小说搜索间隔时间',33),(124,1,3,'novel','搜索跳转','search_jump','0','radio','小说搜索只有一条结果的时候是否直接跳转到小说页',34),(125,1,3,'novel','书架是否开启','shelf_open','1','select','书架功能是否开启',31),(126,1,4,'user','注册功能','reg_open','1','select','是否开启注册',1),(127,1,4,'user','登陆功能','login_open','1','select','是否开启登陆',2),(128,1,4,'user','登陆日志','login_log','1','select','是否开启登陆日志记录',3),(129,1,4,'user','默认头像类型','user_head','1','select','新用户注册头像默认',4),(130,1,4,'user','默认头像类型','default_head','/files/images/nohead.gif','input','默认头像的地址',5),(131,1,4,'user','新用户注册状态','reg_status','1','select','新用户注册账号的默认状态',6),(132,1,4,'user','头像宽度','head_width','100','input','用户头像宽度',7),(133,1,4,'user','头像高度','head_height','100','input','用户头像高度',8),(134,1,4,'user','系统头像','msg_head','/files/images/system.jpg','input','系统的头像',9),(135,1,4,'user','注册赠送金币1','reg_gold1','2','input','新用户注册赠送金币1的数量',10),(136,1,4,'user','注册赠送金币2','reg_gold2','0','input','新用户注册赠送金币2的数量',11),(137,1,4,'user','注册赠送经验','reg_exp','0','input','新用户注册赠送经验的数量',12),(138,1,4,'user','注册默认签名','reg_sign','wmcms与您共在！','textarea','新用户注册的默认签名',13),(139,1,4,'user','经验名字','exp_name','梦点','input','网站经验的名字',14),(140,1,4,'user','金币1名字','gold1_name','梦元','input','网站金币1的名字',15),(141,1,4,'user','金币2名字','gold2_name','梦宝','input','网站金币2的名字',16),(142,1,4,'user','金币1单位','gold1_unit','元','input','网站金币1的单位',17),(143,1,4,'user','金币2单位','gold2_unit','个','input','网站金币2的单位',18),(144,1,4,'user','登陆赠送经验','login_exp','1','input','每日首次登陆赠送的经验值',19),(145,1,4,'user','登陆赠送金币1','login_gold1','0','input','每日首次登陆赠送的金币1数量',20),(146,1,4,'user','登陆赠送金币2','login_gold2','0','input','每日首次登陆赠送的金币2数量',21),(147,1,1,'system','检查保留字符','check_shield','0','select','检查保留字符',98),(148,1,1,'system','检查禁用字符','check_disable','0','select','检查禁用字符',99),(149,1,4,'user','签到开关','sign_open','1','select','签到功能开关',24),(150,1,4,'user','签到奖励开关','sign_reward','0','select','签到奖励开关',25),(151,1,4,'user','签到奖励经验','sign_exp','1','input','每日签到奖励的经验值',26),(152,1,4,'user','签到奖励金币1','sign_gold1','0','input','每日签到奖励的金币1',27),(153,1,4,'user','签到奖励金币2','sign_gold2','0','input','每日签到奖励的金币2',28),(154,1,5,'replay','开启评论','replay_open','1','select','是否开启评论功能',1),(155,1,5,'replay','统一设置','unify','1','select','其他模块是否由评论模块设置',2),(156,1,5,'replay','是否登录','replay_login','0','select','评论是否需要登录',3),(157,1,5,'replay','默认评论状态','status','1','select','默认评论是审核状态还是待审核',4),(158,1,5,'replay','两次评论间隔','top_time','15','input','两次评论之间的间隔',5),(159,1,5,'replay','评论条数','everyday_count','100','input','每天能评论的次数',6),(160,1,5,'replay','顶踩功能','dingcai_open','1','select','评论顶踩功能是否开启',7),(161,1,5,'replay','顶踩次数','dingcai_count','1','input','同一评论每日顶踩次数',8),(162,1,5,'replay','游客评论昵称','nickname','游客','input','游客评论的时候的昵称',9),(163,1,5,'replay','前几次评论奖励','reward_count','0','input','每天前几次评论有奖励',10),(164,1,5,'replay','奖励金币1','replay_gold1','0','input','评论奖励金币1',11),(165,1,5,'replay','奖励金币2','replay_gold2','0','input','评论奖励金币2',12),(166,1,5,'replay','奖励经验值','replay_exp','0','input','评论奖励经验值',13),(167,1,5,'replay','js评论框名','boxname','江湖茶馆','input','js评论框的名字',14),(168,1,5,'replay','无数据提示','no_data','就等你了','input','js评论无数据的时候提示',15),(169,1,5,'replay','输入框提示','input','少侠,你不来两句？','input','js评论输入框提示',16),(170,1,5,'replay','显示热门评论','hot','1','select','是否显示热门评论',17),(171,1,5,'replay','多少顶成为热门评论','hot_display','2','input','多少顶成为热门评论',18),(172,1,5,'replay','热门评论条数','hot_count','2','input','显示多少条热门评论',19),(173,1,5,'replay','每页条数','list_limit','6','input','每页显示多少条评论',20),(174,1,5,'replay','分页链接数量','page_count','5','input','显示多少条跳页按钮',21),(175,1,6,'link','友链页参数检查','par_link','0','select','友链页参数检查',1),(176,1,6,'link','开启申请','join','1','select','是否开启申请友链',2),(177,1,6,'link','友链点击类型','click_type','0','select','友链的点击类型',3),(178,1,6,'link','防刷新时间','ref_time','3600','input','防止刷新时间',4),(179,1,6,'link','检查点击UA','check_ua','1','select','点击友链的时候是否检查UA',5),(180,1,6,'link','只记录一次IP','check_oneip','1','select','同一天点击只记录一次IP',6),(181,1,6,'link','点击日志','click_log','1','select','开启点击记录统计',7),(182,1,6,'link','IP统计开启','getip_open','1','select','开启IP统计开启',8),(183,1,6,'link','地址统计开启','getadress_open','0','select','开启地址统计开启',9),(184,1,6,'link','前台申请默认状态','join_status','0','select','友链前台申请默认状态',10),(185,1,6,'link','后台添加默认状态','admin_status','1','select','友链后台添加默认状态',11),(186,1,6,'link','友链进入页面','in_jump','','input','友链点入的时候进入的页面，空为首页',12),(187,1,7,'picture','图集页参数检查','par_picture','0','select','图集页参数检查',1),(188,1,7,'picture','评论页参数检查','par_replay','0','select','图集评论页参数检查',2),(189,1,7,'picture','后台更新需要审核','admin_add','1','select','后台更新图集是否需要审核',3),(190,1,7,'picture','用户投稿需要审核','user_add','1','select','用户图集投稿需要审核审核',4),(191,1,7,'picture','顶踩功能','dingcai_open','1','select','顶踩功能',5),(192,1,7,'picture','评分功能','score_open','1','select','评分功能是否开启',6),(193,1,7,'picture','评论功能','replay_open','1','select','评论功能是否开启',7),(194,1,7,'picture','评分是否登录','score_login','1','select','评分是否需要登录',8),(195,1,7,'picture','搜索是否开启','search_open','1','select','搜索是否开启',9),(196,1,7,'picture','顶踩次数','dingcai_count','1','input','同一内容每日顶踩次数',10),(197,1,7,'picture','评分次数','score_count','1','input','同一内容每日评分次数',11),(198,1,7,'picture','搜索间隔','search_time','3','input','每次搜索的间隔时间',12),(199,1,7,'picture','评论是否登录','replay_login','1','select','评论是否需要登录',14),(200,1,8,'app','应用页参数检查','par_app','0','select','应用页参数检查',1),(201,1,8,'app','评论页参数检查','par_replay','0','select','应用评论页参数检查',2),(202,1,8,'app','应用默认图标','default_ico','/files/images/noimage.gif','input','应用的默认图标',3),(203,1,8,'app','应用默认封面','default_simg','/files/images/noimage.gif','input','应用的默认封面',4),(204,1,8,'app','后台更新需要审核','admin_add','1','select','后台更新应用是否需要审核',5),(205,1,8,'app','是否开启应用下载','down_open','1','select','是否开启应用下载功能',6),(206,1,8,'app','顶踩功能','dingcai_open','1','select','顶踩功能',6),(207,1,8,'app','顶踩次数','dingcai_count','1','input','同一内容每日顶踩次数',7),(208,1,8,'app','评分功能','score_open','1','select','评分功能是否开启',8),(209,1,8,'app','评分次数','score_count','1','input','同一内容每日评分次数',9),(210,1,8,'app','评分是否登录','score_login','0','select','评分是否需要登录',10),(211,1,8,'app','评论功能','replay_open','1','select','评论功能是否开启',11),(212,1,8,'app','评论是否登录','replay_login','0','select','评论是否需要登录',12),(213,1,8,'app','搜索是否开启','search_open','1','select','搜索是否开启',13),(214,1,8,'app','搜索间隔','search_time','3','input','两次搜索的时间间隔',14),(215,1,9,'bbs','主题页参数检查','par_bbs','0','select','主题页参数检查',1),(216,1,9,'bbs','回帖页参数检查','par_relist','0','select','回帖页参数检查',2),(217,1,9,'bbs','作者是否可以查看','author_look','1','select','作者是否可以查看审核中的主题',3),(218,1,9,'bbs','作者是否可以修改','author_up','1','select','作者是否可以修改自己的主题',4),(219,1,9,'bbs','作者是否可以删除','author_del','1','select','作者是否可以删除自己的主题',5),(220,1,9,'bbs','发帖默认状态','user_post','1','select','用户发帖默认状态',6),(221,1,9,'bbs','回帖默认状态','user_replay','1','select','用户回帖默认状态',7),(222,1,9,'bbs','修改后是否需要审核','up_status','1','select','用户修改主题后是否需要审核',8),(223,1,9,'bbs','发帖功能','post_open','0','select','是否开启发帖功能',9),(224,1,9,'bbs','回帖功能','replay_open','0','select','是否开启回帖功能',10),(225,1,9,'bbs','发帖限制','post_num','0','input','是否限制每日发帖数量',11),(226,1,9,'bbs','前几次发帖奖励','post_top','5','input','每天前几次发帖有奖励',12),(227,1,9,'bbs','发帖奖励金币1','post_gold1','1','input','发帖奖励金币1',13),(228,1,9,'bbs','发帖奖励金币2','post_gold2','0','input','发帖奖励金币2',14),(229,1,9,'bbs','发帖奖励经验','post_exp','1','input','发帖奖励经验',15),(230,1,9,'bbs','每日回帖限制','everyday_count','0','input','每日回帖限制数量',16),(231,1,9,'bbs','前几次回帖有奖励','reward_count','5','input','每日前几次回帖有奖励',17),(232,1,9,'bbs','回帖奖励金币1','replay_gold1','1','input','回帖奖励金币1',18),(233,1,9,'bbs','回帖奖励金币2','replay_gold2','0','input','回帖奖励金币2',18),(234,1,9,'bbs','回帖奖励经验','replay_exp','1','input','回帖奖励经验',19),(235,1,9,'bbs','默认版块图标','default_ico','/files/images/forum.png','input','默认版块图标',20),(236,1,9,'bbs','搜索间隔','search_time','3','input','两次搜索的时间间隔',22),(237,1,9,'bbs','开启搜索','search_open','1','select','是否开启主题搜索',21),(238,1,2,'article','前台调用缺省缩略图','default_simg','/files/images/noimage.gif','input','前台调用缩略图没有的时候缺省封面',0),(239,1,1,'logo','简版logo','logo_1','','input','简版使用的logo',1),(240,1,1,'logo','彩版logo','logo_2','','input','彩版使用的logo',2),(241,1,1,'logo','触屏logo','logo_3','/files/images/logo.png','input','触屏使用的logo',3),(242,1,1,'logo','电脑logo','logo_4','/files/images/logo.png','input','电脑使用的logo',4),(243,1,1,'system','数据库类型','db','mysql','select','使用的数据库类型',17),(244,1,10,'message','留言功能开关','message_open','1','select','是否开启留言功能',1),(245,1,10,'message','每天留言条数','message_count','3','input','每天留言的限制条数',2),(246,1,1,'logo','微信二维码','ewm_wx','','input','微信二维码',5),(247,1,1,'logo','支付宝二维码','ewm_alipay','/files/images/ewm_alipay.png','input','支付宝二维码',6),(248,1,1,'logo','微博二维码','ewm_weibo','','input','微博二维码',7),(249,1,1,'logo','QQ群二维码','ewm_qun','/files/images/ewm_qun.png','input','QQ群二维码',8),(250,1,1,'cache','缓存开关','cache_open','1','select','是否开启缓存',1),(251,1,1,'cache','缓存类型','cache_type','file','select','缓存的类型',2),(252,1,1,'cache','缓存保存路径','cache_path','cache','input','缓存保存的路径',3),(253,1,1,'cache','文件缓存路径','file_folder','site','input','文件缓存保存路径',4),(254,1,1,'cache','文件缓存后缀','file_ext','.cache','input','文件缓存后缀',5),(255,1,1,'cache','队列保存文件夹','queue_folder','queue','input','队列保存文件夹',6),(256,1,1,'cache','队列缓存后缀','queue_ext','.queue','input','队列缓存后缀',7),(257,1,1,'cache','redis服务器','redis_host','127.0.0.1','input','redis服务器',8),(258,1,1,'cache','redis端口','redis_port','6379','input','redis端口',9),(259,1,1,'cache','memcached服务器','memcached_host','127.0.0.1','input','memcached服务器',10),(260,1,1,'cache','memcached端口','memcached_port','11211','input','memcached端口',11),(261,1,1,'cache','缓存机制','cache_mechanism','page','select','缓存机制',1),(262,1,1,'cache','SQL缓存','cache_sql','1','radio','SQL缓存',1),(263,1,1,'cache','缓存保存时间','cache_time','300','input','缓存保存时间(单位:秒)',12),(268,1,4,'user','ajax登陆后操作','ajax_login','ref','select','ajax登陆后执行的操作',29),(265,1,1,'cache','队列缓存开启','cache_queue','0','radio','队列缓存是否开启',14),(266,1,1,'cache','队列缓存时间','cache_queuetime','300','input','队列缓存时间',15),(267,1,1,'cache','SQL缓存时间','cache_sqltime','300','input','SQL缓存时间',16),(269,1,11,'author','作者申请默认状态','apply_author_status','0','select','作者申请默认的审核状态',2),(270,1,11,'author','开启自助作者申请','apply_author_open','1','select','是否开启前台自助作者申请',1),(271,1,11,'author','默认简介','author_default_info','这个人很懒呢！','input','申请作者默认的个人简介',3),(272,1,11,'author','默认公告','author_default_notice','此作者暂时没有公告！','input','申请作者默认的公告',4),(273,1,4,'user','余额名字','money_name','软妹币','input','账户余额的名字',30),(274,1,11,'author','小说审核方式','author_novel_createnovel','0','select','新建的小说审核方式',5),(275,1,11,'author','章节审核方式','author_novel_createchapter','0','select','新建的小说章节审核方式',6),(276,1,11,'author','上传封面宽度','author_novel_coverwidth','400','input','上传封面的宽度限制',7),(277,1,11,'author','上传封面高度','author_novel_coverheight','500','input','上传封面的高度限制',8),(278,1,11,'author','封面审核方式','author_novel_uploadcover','0','radio','封面审核方式',9),(279,1,11,'author','未审核消息','author_apply_0','您好，您的作者申请已经提交，请等待管理员审核！。','textarea','作者状态变更为未审核的原因',10),(280,1,11,'author','审核通过原因','author_apply_1','您好，您申请的作者已经通过审核，现在您可以去创建小说了！','textarea','作者审核通过的时候发送消息的原因',11),(281,1,11,'author','拒绝通过原因','author_apply_2','对不起，您申请的作者没有通过审核！\r\n原因如下：\r\n1.可能资料不完善\r\n2.你的笔名涉嫌违法','textarea','作者拒绝通过审核的原因',12),(282,1,11,'author','未审核原因','author_novel_cover_0','您好，您上传的封面请等待管理员审核通过后才能显示！','textarea','封面变成未审核的原因',13),(283,1,11,'author','审核通过原因','author_novel_cover_1','恭喜您，您提交的小说封面审核通过！','textarea','封面审核通过的原因',14),(284,1,11,'author','拒绝审核的原因','author_novel_cover_2','对不起，您申请的封面没有通过审核！\r\n原因如下：\r\n1.可能封面涉黄、暴力！\r\n2.违法国家相关法律！','textarea','封面拒绝审核的原因',15),(285,1,11,'author','编辑小说审核方式','author_novel_editnovel','0','select','编辑小说是否需要审核',16),(286,1,11,'author','编辑章节审核方式','author_novel_editchapter','0','select','编辑章节是否需要审核',17),(287,1,11,'author','未审核原因','author_novel_editnovel_0','您好，您编辑的小说请等待管理员审核！','textarea','编辑小说状态变更为未审核的原因',18),(288,1,11,'author','审核通过原因','author_novel_editnovel_1','恭喜您，您提交的小说信息审核通过！','textarea','编辑小说审核通过的原因',19),(289,1,11,'author','拒绝审核的原因','author_novel_editnovel_2','对不起，您编辑的小说没有通过审核！\r\n原因如下：\r\n1.可能内容涉黄、暴力！\r\n2.违法国家相关法律！','textarea','编辑小说拒绝审核的原因',20),(290,1,11,'author','未审核原因','author_novel_editchapter_0','您好，您编辑的章节请等待管理员审核！','textarea','编辑章节状态变更为未审核的原因',21),(291,1,11,'author','审核通过原因','author_novel_editchapter_1','恭喜您，您的章节审核通过！','textarea','编辑章节审核通过的原因',22),(292,1,11,'author','拒绝审核的原因','author_novel_editchapter_2','对不起，您编辑的章节没有通过审核！\r\n原因如下：\r\n1.可能内容涉黄、暴力！\r\n2.违法国家相关法律！','textarea','编辑章节拒绝审核的原因',23),(293,1,11,'author','文章审核方式','author_article_createarticle','0','select','文章投稿的审核方式',24),(294,1,11,'author','编辑文章审核方式','author_article_editarticle','0','select','编辑文章投稿的审核方式',25),(295,1,11,'author','未审核原因','author_article_editarticle_0','您好，请等待管理员审核您的稿件！','textarea','编辑文章变更为未审核的原因',26),(296,1,11,'author','审核通过原因','author_article_editarticle_1','恭喜您，您的投稿已经审核通过！','textarea','编辑文章审核通过的原因',27),(297,1,11,'author','拒绝审核的原因','author_article_editarticle_2','对不起，您的投稿没有通过审核！\r\n原因如下：\r\n1.可能内容涉黄、暴力！\r\n2.违法国家相关法律！','textarea','编辑文章变更为未审核的原因',28),(302,1,1,'system','自动上传错误','err_auto_upload','1','select','发现错误是否自动上报到云服务器进行处理',13),(301,1,15,'urlmode','是否开启HTML','ishtml','0','radio','是否开启HTML访问',6),(303,1,3,'novel','消费金币1数量','cons_gold1','200','input','消费金币1的数量',30),(304,1,3,'novel','消费金币1赠送月票','cons_gold1_month','0','input','消费金币1达到一定数量赠送月票',31),(322,1,3,'novel','消费金币1赠送推荐票','cons_gold1_rec','1','input','消费金币1达到一定数量赠送推荐票',32),(305,1,4,'user','登录赠送推荐票','login_rec','0','input','每日登录赠送的推荐票数量',31),(306,1,4,'user','登录赠送月票','login_month','0','input','每日登录赠送的月票数量',32),(307,1,4,'user','签到赠送月票','sign_month','0','input','每日签到赠送月票数量',33),(308,1,4,'user','签到赠送推荐票','sign_rec','0','input','每日签到赠送推荐数量',34),(309,1,4,'user','推荐票名字','ticket_rec','推荐票','input','推荐票的自定义名字',35),(310,1,4,'user','月票名字','ticket_month','月票','input','月票的自定义名字',36),(311,1,12,'finance','开启充值','recharge_open','1','select','是否开启充值',1),(312,1,12,'finance','余额兑换金币2','money_to_gold2_open','1','select','是否开启余额兑换金币2',2),(313,1,12,'finance','金币2兑换金币1','gold2_to_gold1_open','0','select','是否开启金币2兑换金币1',3),(314,1,12,'finance','金币1兑换金币2','gold1_to_gold2_open','0','select','是否开启金币1兑换金币2',4),(315,1,12,'finance','金币2兑换余额','gold2_to_money_open','1','select','是否开启金币2兑换余额',5),(316,1,12,'finance','是否开启提现','cash_open','1','select','是否开启提现',6),(317,1,12,'finance','充值比例','rmb_to_gold2','10','input','充值比例',7),(318,1,12,'finance','余额兑换金币2比例','money_to_gold2','1','input','余额兑换金币2比例',8),(319,1,12,'finance','金币2兑换金币1比例','gold2_to_gold1','10','input','金币2兑换金币1比例',9),(320,1,12,'finance','金币1兑换金币2比例','gold1_to_gold2','0','input','金币1兑换金币2比例',10),(321,1,12,'finance','金币2兑换余额比例','gold2_to_money','0.1','input','金币2兑换余额比例',11),(323,1,3,'novel','消费金币2数量','cons_gold2','100','input','消费金币2的数量',33),(324,1,3,'novel','消费金币2赠送月票','cons_gold2_month','2','input','消费金币2达到一定数量赠送月票',34),(325,1,3,'novel','消费金币2赠送推荐票','cons_gold2_rec','3','input','消费金币2达到一定数量赠送推荐票',35),(326,1,4,'user','注册赠送推荐票','reg_rec','0','input','注册赠送的推荐票',48),(327,1,4,'user','注册赠送月票','reg_month','0','input','注册赠送的月票',49),(328,1,3,'novel','消费金币2获得粉丝经验值','fans_exp_gold2','15','input','消费金币2到一定数量获得粉丝经验值',36),(329,1,11,'author','登录赠送','login_exp','10','input','每日登录赠送的作者经验值',29),(330,1,11,'author','收入推荐票经验值','income_rec','5','input','收入一张推荐票获得多少经验值',30),(331,1,11,'author','收入月票经验值','income_month','10','input','收入一张月票获得多少经验值',31),(332,1,11,'author','收入金币1数量','income_gold1','100','input','收入金币1多少数量可以获得1点作者经验值',32),(333,1,11,'author','收入金币2数量','income_gold2','50','input','收入金币2多少数量可以获得1点作者经验值',33),(334,1,3,'novel','赠送礼物功能','give_open','1','select','赠送礼物功能是否开启',37),(335,1,3,'novel','顶踩是否登录','dingcai_login','1','select','顶踩是否需要登录',38),(336,1,3,'novel','阅读页未订阅提示方式','read_sub_prompt','1','select','阅读页未订阅提示方式',39),(337,1,12,'finance','卡密购买地址','card_buy_url','http://www.weimengcms.com','input','卡密购买地址',12),(338,1,12,'finance','首充奖励','recharge_reward_gold2','10','input','首次充值奖励多少金币2',13),(339,1,12,'finance','充值活动','activity_open','1','radio','充值活动是否开启',14),(340,1,12,'finance','活动开始时间','activity_starttime','1524055804','input','活动开始时间',15),(341,1,12,'finance','活动结束时间','activity_endtime','1524919806','input','活动结束时间',16),(342,1,12,'finance','提现手续费','cash_cost','8','input','提现手续费',17),(343,1,12,'finance','最低提现金额','cash_lowest','100','input','最低提现金额',18),(344,1,1,'upload','上传保存方式','upload_savetype','0','select','上传文件保存的位置',1),(345,1,1,'upload','远程保存路径/前缀','upload_savepath','','input','远程上传文件保存的位置或者前缀',1),(346,1,2,'article','文章评分功能','score_open','1','select','文章评分功能是否开启',12),(347,1,2,'article','文章顶踩登录','dingcai_login','1','select','文章顶踩是否需要登录',13),(348,1,2,'article','文章评分登录','score_login','1','select','文章评分是否需要登录',14),(349,1,2,'article','每篇文章评分次数','score_count','1','input','每日每篇文章评分次数',15),(350,1,5,'replay','评论顶踩登录','dingcai_login','1','select','顶踩评论是否需要登陆了',22),(351,1,1,'system','自动识别UA跳转','auto_jump','1','select','是否开启自动检测并且跳转到相应的手机版或者电脑版',4),(352,1,1,'code','用户注册验证码','code_user_reg','1','radio','用户注册是否开启验证码',2),(353,1,1,'code','用户登录验证码','code_user_login','1','radio','用户登录是否开启验证码',3),(354,1,1,'code','修改密码验证码','code_user_uppsw','1','radio','修改密码是否开启验证码',4),(355,1,1,'code','找回密码验证码','code_user_getpsw','1','radio','找回密码是否开启验证码',5),(356,1,1,'code','发表评论验证码','code_replay','0','radio','发表评论是否开启验证码',6),(357,1,1,'code','发表主题验证码','code_bbs_post','1','radio','发表主题是否开启验证码',7),(358,1,1,'code','回复主题验证码','code_bbs_replay','1','radio','回复主题是否开启验证码',8),(359,1,1,'code','问答验证码题库','code_question','WMCMS的官网是什么？|www.weimengcms.com\r\nWMCMS创始人是谁？|未梦','textarea','问答验证码的题库',9),(360,1,1,'code','后台登录验证码类型','code_admin_login_type','2','select','后台登录验证码的类型',10),(361,1,1,'code','用户注册验证码类型','code_user_reg_type','2','select','用户注册验证码的类型',11),(362,1,1,'code','用户登录验证码类型','code_user_login_type','2','select','用户登录验证码的类型',12),(363,1,1,'code','找回密码验证码类型','code_user_uppsw_type','2','select','找回密码验证码的类型',13),(364,1,1,'code','发表评论验证码类型','code_user_getpsw_type','2','select','发表评论验证码的类型',14),(365,1,1,'code','发表主题验证码类型','code_replay_type','1','select','发表主题验证码的类型',15),(366,1,1,'code','回复主题验证码类型','code_bbs_post_type','1','select','回复主题验证码的类型',16),(367,1,1,'code','问答验证码题库类型','code_bbs_replay_type','1','select','问答验证码题库的类型',17),(368,1,1,'cache','全站首页缓存','cache_index','300','input','全站首页缓存时间',17),(369,1,1,'cache','模块首页缓存','cache_module_index','300','input','模块首页缓存时间',18),(370,1,1,'cache','模块分类首页缓存','cache_module_tindex','300','input','模块分类首页缓存时间',19),(371,1,1,'cache','模块排行首页缓存','cache_module_topindex','36000','input','模块排行首页缓存时间',20),(372,1,1,'cache','模块列表缓存','cache_module_type','600','input','模块列表缓存时间',21),(373,1,1,'cache','模块评论缓存','cache_module_replay','600','input','模块评论列表缓存时间',22),(374,1,1,'cache','模块搜索缓存','cache_module_search','600','input','模块搜索列表缓存时间',23),(375,1,1,'cache','模块排行列表缓存','cache_module_toplist','36000','input','模块排行列表缓存时间',24),(376,1,1,'cache','模块内容缓存','cache_module_content','1800','input','模块内容缓存时间',25),(377,1,1,'cache','模块目录缓存','cache_module_menu','1800','input','模块目录缓存时间',26),(378,1,1,'cache','模块详情缓存','cache_module_info','360000','input','模块详情缓存时间',27),(379,1,2,'article','更新文章自动创建HTML','auto_create_html','0','select','更新文章自动创建HTML',16),(380,1,3,'novel','更新章节自动创建HTML','auto_create_html','0','select','更新章节自动创建HTML',40),(381,1,8,'app','更新应用自动创建HTML','auto_create_html','0','select','更新应用自动创建HTML',14),(382,1,1,'system','COOKIE共享方式','cookie_type','0','select','网站的cookeie共享方式',15),(383,1,1,'site','站群开关','site_open','0','select','站群的是否开启或者关闭',1),(384,1,5,'replay','楼层备注','replay_floor_nickname','沙发\r\n板凳\r\n地板','textarea','从上倒下沙发开始，不限制楼层数量。',23),(385,1,5,'replay','楼层名','replay_floor_name','楼','input','楼层的名字是什么：比如“楼”',24),(386,1,3,'novel','章节比较','chapter_compare','2','select','章节入库同章判断方式',41),(387,1,3,'novel','对比相似度','chapter_compare_number','70','input','相似度为多少则表示为一样的内容',42),(393,1,3,'novel','阅读记录','read_open','1','select','是否开启小说阅读记录',43),(394,1,4,'user','接口登录绑定账号','api_login_bind','0','select','第三方登陆是否强制绑定本站的账号',50),(395,1,1,'domain','后台域名认证','admin_domain_access','0','select','后台只能通过域名访问',14),(397,1,3,'novel','小说自定义加密字符串','novel_en_str','','input','小说文件名字加密时候的自定义字符串',5),(396,1,1,'system','网络协议','tcp_type','http','select','网络访问的TCP协议类型',2),(398,1,1,'upload','上传开关','upload_open','1','select','是否允许前台上传文件',0),(399,1,1,'code','后台登录错误次数','admin_login_error_number','5','input','后台允许登录错误次数',1),(400,1,1,'code','后台错误登录限制时间','admin_login_error_time','1440','input','后台达到错误次数后封锁登录时间',1),(401,1,1,'code','用户登录错误次数','user_login_error_number','5','input','用户允许登录错误次数',3),(402,1,1,'code','用户错误登录限制时间','user_login_error_time','1440','input','用户达到错误次数后封锁登录时间',3),(403,1,6,'link','公共链接出站模式','link_url_outtype','1','select','公共链接出站模式',1),(404,1,14,'zt','专题页检查参数','par_zt','1','radio','专题页的是否检测所有参数正确',1),(405,1,14,'zt','评论页检查参数','par_replay','1','radio','评论页的是否检测所有参数正确',2),(406,1,14,'zt','开启专题顶踩','dingcai_open','0','select','是否开启专题顶踩功能',11),(407,1,14,'zt','专题顶踩登录','dingcai_login','1','select','专题顶踩是否需要登录',12),(408,1,14,'zt','专题顶踩次数','dingcai_count','2','input','每篇专题每日的顶踩次数限制',13),(409,1,14,'zt','开启专题评分','score_open','0','select','是否开启专题评分功能',14),(410,1,14,'zt','专题评分登录','score_login','1','select','专题评分是否需要登录',15),(411,1,14,'zt','专题评分次数','score_count','1','input','每日每篇专题评分次数',16),(412,1,14,'zt','专题评论开关','replay_open','0','select','专题模块是否开启评论功能',17),(413,1,14,'zt','专题评论登录','replay_login','1','select','专题模块评论是否需要登录',18),(414,1,15,'urlmode','URL参数分割字符','urlmode_exp','/','input','URL参数的分割字符',3),(415,1,15,'urlmode','URL文件后缀','urlmode_suffix','.html','input','URL文件后缀，可以为空',4),(416,1,15,'urlmode','普通模式模块参数名','urlmode_par_odnr1','module','input','普通模式的模块参数名',5),(417,1,15,'urlmode','普通模式文件参数名','urlmode_par_odnr2','file','input','普通模式的文件参数名',6),(418,1,15,'urlmode','兼容模式参数名','urlmode_par_cptb','path','input','兼容模式的参数名',7),(419,1,15,'urlmode','URL路由','urlmode_route','','textarea','url参数的路由匹配',8),(420,1,2,'article','数据保存方式','data_save_type','2','radio','文章数据保存的方式',17),(421,1,2,'article','文件保存路径','data_save_path','/files/txt/article/{#123}tid{#125}/{#123}aid{#125}.txt','input','文章数据保存的路径',18),(422,1,1,'upload','自动生成缩略图','upload_simg','1','select','是否开启自动生成缩略图',8),(423,1,1,'upload','触发缩略图宽度','upload_simg_width','900','input','触发生成缩略图的原图宽度',9),(424,1,1,'upload','触发缩略图高度','upload_simg_height','600','input','触发生成缩略图的原图高度',10),(425,1,1,'upload','缩略图宽度','upload_simgwidth','540','input','生成的缩略图宽度',11),(426,1,1,'upload','缩略图高度','upload_simgheight','370','input','生成的缩略图高度',12),(427,1,5,'replay','评论显示模式','replay_type','1','select','评论列表显示模式',25),(428,1,5,'replay','默认显示回复数','replay_replay_number','5','input','每条评论的回复显示几条',26),(429,1,5,'replay','每页显示回复数','replay_replay_page','10','input','每页显示多少条回复',27),(430,1,5,'replay','回复排序方式','replay_replay_order','replay_time','select','评论回复额排序方式',28),(431,1,4,'user','登录清空推荐票','login_clear_ticket','0','select','登录是否清空推荐票',55),(432,1,11,'author','作者财务收入模式','author_income_type','2','select','作者的财务收入结算模式',34),(433,1,11,'author','销售统计财务申请模式','author_finance_apply_type','1','select','销售统计财务申请模式',35),(434,1,1,'system','短信发送日志','tellog_open','1','select','是否记录短信发送的日志',13),(435,1,16,'dev','预警通知','warning_open','0','select','是否开启预警通知',1),(436,1,16,'dev','预警通道','warning_channel','','select','预警通知渠道',2),(437,1,16,'dev','WebHook通道','warning_hook_channel','','select','通知webhook渠道',3),(438,1,16,'dev','预警通道收件人','warning_receive','','input','预警收件人',4),(439,1,16,'dev','预警类型','warning_type','','check','预警通知类型',5),(440,1,3,'novel','小说文件保存路径','novel_mp3_save','/files/audio/novel/{#123}tid{#125}/{#123}nid{#125}/index.mp3','input','小说生成的听书mp3主文件保存路径',6),(441,1,3,'novel','小说章节保存路径','chapter_mp3_save','/files/audio/novel/{#123}tid{#125}/{#123}nid{#125}/{#123}cid{#125}.mp3','input','小说生成的听书mp3章节文件保存路径',6);
+) ENGINE=MyISAM AUTO_INCREMENT=442 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางการตั้งค่าระบบ';
+INSERT INTO `wm_config_config` VALUES (1,1,1,'system','ชื่อเว็บไซต์','webname','WMCMS เว็บไซต์ตัวอย่าง','input','ชื่อเว็บไซต์',1),(2,1,1,'system','โดเมนหลักของเว็บไซต์','weburl','wmcms.com','input','โดเมนหลักของเว็บไซต์ (ห้ามลงท้ายด้วย / ไม่ต้องใส่ http://)',2),(3,1,1,'system','อีเมลผู้ดูแลเว็บ','email','1747699213@qq.com','input','อีเมลติดต่อของผู้ดูแลเว็บไซต์',3),(14,1,1,'system','เลขทะเบียน ICP','beian','เลขที่ใบอนุญาต ICP ฉงชิ่ง 030173','input','หมายเลขจดทะเบียนโดเมนของเว็บไซต์',4),(7,1,1,'system','เปิดเว็บไซต์','siteopen','1','radio','สถานะเปิดปิดของเว็บไซต์',5),(8,1,1,'system','คำแนะนำเมื่อปิด','closeinfo','ขออภัย เว็บไซต์กำลังอัปเกรด ปิดให้บริการชั่วคราว','textarea','ข้อความแจ้งเมื่อเว็บไซต์ปิด',6),(9,1,1,'templates','เทมเพลตแบบเรียบง่าย','tp1','wmcms-web','input','เทมเพลตที่ใช้กับ wap1.0',9),(10,1,1,'templates','เทมเพลต 3G','tp2','wmcms-web','input','เทมเพลตที่ใช้กับเว็บไซต์ 3G',10),(11,1,1,'templates','เทมเพลตทัชสกรีน','tp3','wmcms-m','input','เทมเพลตที่ใช้กับเว็บไซต์ท็อชสกรีน',11),(12,1,1,'templates','เทมเพลตคอมพิวเตอร์','tp4','wmcms-web','input','เทมเพลตที่ใช้กับเว็บไซต์คอมพิวเตอร์',12),(13,1,15,'urlmode','เปิด URL แบบคงที่','url_type','1','select','การเปิดใช้ลิงก์แบบคงที่จำลองจะใช้ทรัพยากรเซิร์ฟเวอร์',8),(15,1,1,'domain','โดเมนคอมพิวเตอร์','domain4','','input','โดเมนสำหรับเข้าถึงเวอร์ชันคอมพิวเตอร์โดยตรง',8),(16,1,1,'domain','โดเมนทัชสกรีน','domain3','','input','โดเมนสำหรับเข้าถึงเวอร์ชันท็อชสกรีนโดยตรง',7),(17,1,1,'domain','โดเมน 3G','domain2','','input','โดเมนสำหรับเข้าถึงเวอร์ชัน 3G โดยตรง',6),(18,1,1,'domain','โดเมนแบบเรียบง่าย','domain1','','input','โดเมนสำหรับเข้าถึงเวอร์ชันเรียบง่ายโดยตรง',5),(25,1,4,'user','คำต้องห้าม','shieldkey','ผู้ดูแลระบบ,เจ้าของเว็บไซต์,ระบบ,admin','input','คำต้องห้ามในชื่อเล่นผู้ใช้',50),(28,1,1,'system','บันทึกการส่งอีเมล','emaillog_open','0','select','บันทึกประวัติการส่งอีเมลหรือไม่',13),(390,1,1,'cache','ประเภทแคชคิว','cache_queuetype','file','select','ประเภทแคชคิวที่ใช้งาน',16),(391,1,1,'cache','โฟลเดอร์แคช sql','sql_folder','sql','input','โฟลเดอร์เก็บแคช sql',5),(392,1,1,'cache','นามสกุลไฟล์แคช sql','sql_ext','.sql','input','นามสกุลไฟล์แคช sql',5),(39,1,1,'system','QQ ผู้ดูแลเว็บ','qq','1747699213','input','หมายเลข QQ ของผู้ดูแลเว็บไซต์',9),(40,1,1,'system','เบอร์โทรผู้ดูแลเว็บ','phone','15123931801','input','หมายเลขโทรศัพท์ของผู้ดูแลเว็บไซต์',10),(47,1,1,'domain','แสดงสัญลักษณ์ pt','pt_rep','0','input','แสดงตัวระบุ pt หรือไม่',11),(42,1,1,'tongji','โค้ดสถิติ','tongji','','textarea','โค้ดสถิติ',0),(43,1,1,'domain','สัญลักษณ์เวอร์ชันเรียบง่าย','tpmark1','wap','input','ตัวระบุสำหรับเวอร์ชันกะทัดรัด',13),(44,1,1,'domain','สัญลักษณ์เวอร์ชัน 3G','tpmark2','3g','input','ตัวระบุสำหรับเวอร์ชัน 3G',12),(45,1,1,'domain','สัญลักษณ์เวอร์ชันทัชสกรีน','tpmark3','m','input','ตัวระบุสำหรับเวอร์ชันท็อชสกรีน',10),(46,1,1,'domain','สัญลักษณ์เวอร์ชันคอมพิวเตอร์','tpmark4','web','input','ตัวระบุสำหรับเวอร์ชันคอมพิวเตอร์',9),(50,1,1,'domain','โดเมนเดิม','bdomain','','input','โดเมนเดิม',1),(51,1,1,'domain','โดเมนใหม่','ndomain','','input','โดเมนใหม่ที่ข้ามไป',2),(53,1,1,'domain','ผูกโดเมนหลังบ้าน','admin_domain','','input','โดเมนที่ผูกกับการจัดการหลังบ้านของเว็บไซต์',3),(54,1,1,'system','ไดเรกทอรีหลังบ้าน','admin_path','admin','input','ไดเรกทอรีของไฟล์หลังบ้าน เช่น admin',2),(57,1,1,'code','รหัสยืนยันเข้าสู่ระบบหลังบ้าน','code_admin_login','0','radio','การเข้าสู่ระบบหลังบ้านต้องกรอกรหัสยืนยันหรือไม่',1),(67,1,1,'upload','ครอปอัตโนมัติ','upload_cut','0','radio','เปิดใช้การตัดขอบรูปภาพอัตโนมัติหรือไม่',3),(58,1,1,'upload','ประเภทการอัปโหลด','upload_type','jpeg,jpg,gif,png,gif,txt,doc,apk','input','ประเภทไฟล์ที่อนุญาตให้อัปโหลด คั่นด้วย ,',2),(59,1,1,'upload','ขนาดอัปโหลด','upload_size','1024','input','จำกัดขนาดไฟล์อัปโหลด หน่วยเป็น Kb',2),(60,1,1,'upload','เปิดลายน้ำ','watermark_open','1','radio','เปิดใช้ฟังก์ชันลายน้ำหรือไม่',20),(61,1,1,'upload','ความกว้างที่ทริกเกอร์ลายน้ำ','watermark_width','100','input','เมื่อความกว้างของรูปภาพมากกว่าค่านี้',21),(62,1,1,'upload','ความสูงที่ทริกเกอร์ลายน้ำ','watermark_height','200','input','เมื่อความกว้างของรูปภาพมากกว่าค่านี้',22),(63,1,1,'upload','ประเภทลายน้ำ','watermark_type','text','radio','ประเภทลายน้ำ! พาธลายน้ำรูปภาพ /files/images/watermark.png',23),(64,1,1,'upload','ตำแหน่งลายน้ำ','watermark_location','9','radio','ตำแหน่งแสดงลายน้ำ',27),(65,1,1,'upload','สีลายน้ำ','watermark_color','#e01515','input','สีลายน้ำข้อความ',25),(66,1,1,'upload','ขนาดตัวอักษร','watermark_size','5','input','ขนาดลายน้ำข้อความ หน่วย: พิกเซล',26),(68,1,1,'upload','ความกว้างที่ทริกเกอร์ครอป','upload_imgwidth','1200','input','เมื่อความกว้างของรูปภาพมากกว่าค่านี้',4),(69,1,1,'upload','ความสูงที่ทริกเกอร์ครอป','upload_imgheight','800','input','เมื่อความสูงของรูปภาพมากกว่าค่านี้',5),(70,1,1,'upload','ความกว้างหลังครอป','upload_cutwidth','500','input','ความกว้างของรูปภาพหลังตัดขอบ',6),(71,1,1,'upload','ความสูงหลังครอป','upload_cutheight','500','input','ความสูงของรูปภาพหลังตัดขอบ',7),(72,1,1,'upload','เนื้อหาลายน้ำ','watermark_text','แท็กภาษาไทย WMCMS','input','เนื้อหาลายน้ำข้อความ',24),(73,1,1,'system','ภาษาหลักของโปรแกรม','lang','th_th','radio','ภาษาที่โปรแกรมใช้งาน',15),(389,1,1,'cache','ประเภทแคช sql','cache_sqltype','file','select','ประเภทแคช sql ที่ใช้งาน',16),(75,1,1,'system','อนุญาตเข้าผ่านพร็อกซี','proxy_visit','1','radio','อนุญาตให้เข้าถึงผ่านพร็อกซีหรือไม่',16),(77,1,1,'system','คำขอผู้ดูแลระบบ','request_open','0','radio','เปิดใช้บันทึกคำขอของผู้ดูแลระบบหลังบ้านหรือไม่',11),(78,1,1,'system','การดำเนินการผู้ดูแลระบบ','operation_open','0','radio','เปิดใช้การบันทึกสำรองข้อมูลเมื่อผู้ดูแลระบบแก้ไขข้อมูลหรือไม่',14),(79,1,2,'article','ตรวจพารามิเตอร์หน้าบทความ','par_article','1','radio','หน้าบทความตรวจสอบพารามิเตอร์ทั้งหมดว่าถูกต้องหรือไม่',1),(80,1,2,'article','ตรวจสอบพารามิเตอร์หน้าความคิดเห็น','par_replay','1','radio','หน้าความคิดเห็นตรวจสอบพารามิเตอร์ทั้งหมดว่าถูกต้องหรือไม่',2),(81,1,2,'article','สถานะเริ่มต้นเผยแพร่หลังบ้าน','admin_add','1','radio','สถานะเริ่มต้นเมื่อผู้ดูแลระบบเผยแพร่บทความจากหลังบ้าน',3),(82,1,11,'author','เปิดฟังก์ชันส่งผลงานหรือไม่','author_article_open','1','radio','เปิดใช้ฟังก์ชันส่งผลงานของผู้ใช้หรือไม่',24),(84,1,2,'article','สวิตช์ค้นหาบทความ','search_open','1','radio','เปิดใช้ฟังก์ชันค้นหาบทความหรือไม่',5),(85,1,2,'article','ระยะห่างการค้นหา','search_time','3','input','ช่วงเวลาระหว่างการค้นหาแต่ละครั้ง (หน่วย: วินาที)',6),(86,1,2,'article','เปิดโหวตบทความ','dingcai_open','1','select','เปิดใช้ฟังก์ชันโหวตถูกใจ/ไม่ถูกใจบทความหรือไม่',7),(87,1,2,'article','จำนวนโหวตบทความ','dingcai_count','2','input','จำกัดจำนวนครั้งที่โหวตถูกใจ/ไม่ถูกใจบทความแต่ละชิ้นต่อวัน',8),(88,1,1,'system','บันทึกข้อผิดพลาด','err_open','0','select','เปิดใช้บันทึกข้อผิดพลาดของเว็บไซต์หรือไม่',12),(89,1,2,'article','ลบข้อมูลถาวรทันที','admin_del','1','select','การลบบทความลบทันทีหรือย้ายไปถังขยะก่อน',3),(90,1,2,'article','สวิตช์ความคิดเห็นบทความ','replay_open','0','select','โมดูลบทความเปิดใช้ความคิดเห็นหรือไม่',9),(91,1,2,'article','แสดงความคิดเห็นต้องเข้าสู่ระบบหรือไม่','replay_login','1','select','ความคิดเห็นในโมดูลบทความต้องเข้าสู่ระบบหรือไม่',11),(92,1,3,'novel','ตรวจพารามิเตอร์หน้านิยาย','par_info','1','select','หน้ารายละเอียดนิยายตรวจสอบ id หมวดหมู่และ id หนังสือพร้อมกัน',1),(93,1,3,'novel','ตรวจพารามิเตอร์หน้าความคิดเห็น','par_replay','0','select','หน้าความคิดเห็นนิยายตรวจสอบ id หมวดหมู่และ id หนังสือพร้อมกัน',2),(94,1,3,'novel','ตรวจพารามิเตอร์หน้าสารบัญ','par_menu','1','select','หน้าสารบัญนิยายตรวจสอบ id หมวดหมู่และ id หนังสือพร้อมกัน',3),(95,1,3,'novel','ตรวจพารามิเตอร์หน้าอ่าน','par_read','1','select','หน้าอ่านนิยายตรวจสอบ id หมวดหมู่และ id หนังสือพร้อมกัน',4),(96,1,3,'novel','พาธเก็บไฟล์นิยาย','novel_save','/files/txt/novel/{#123}tid{#125}/{#123}nid{#125}/index.txt','input','พาธเก็บไฟล์ txt ที่สร้างจากนิยาย',5),(97,1,3,'novel','พาธเก็บตอนนิยาย','chapter_save','/files/txt/novel/{#123}tid{#125}/{#123}nid{#125}/{#123}cid{#125}.txt','input','พาธเก็บไฟล์ txt ของตอนที่สร้างจากนิยาย',6),(98,1,3,'novel','ปกเริ่มต้น','cover','/files/images/nocover.jpg','input','ที่อยู่ปกนิยายเริ่มต้น',7),(99,1,3,'novel','สถานะเผยแพร่หนังสือหลังบ้าน','admin_novel_add','1','select','สถานะตรวจสอบเริ่มต้นของการเผยแพร่หนังสือจากหลังบ้าน',8),(100,1,3,'novel','สถานะเผยแพร่ตอนหลังบ้าน','admin_chapter_add','100','select','สถานะตรวจสอบเริ่มต้นของการเผยแพร่ตอนจากหลังบ้าน',9),(101,1,3,'novel','ประเภทเริ่มต้นการเผยแพร่','type','1','select','ประเภทเริ่มต้นของการเผยแพร่นิยาย',10),(102,1,3,'novel','รูปแบบบันทึกเข้าฐานข้อมูล','data_type','1','radio','โหมดบันทึกข้อมูลลงฐานข้อมูล',11),(103,1,3,'novel','เปิดดาวน์โหลดนิยาย','down_open','1','radio','เปิดใช้การดาวน์โหลดนิยายหรือไม่',12),(104,1,3,'novel','ชื่อตอนล่าสุดเริ่มต้น','new_cname','ยังไม่มีตอน','input','ชื่อตอนล่าสุดเริ่มต้นของนิยายที่สร้างใหม่',13),(105,1,3,'novel','เทมเพลตเนื้อหานำหน้า TXT','novel_head','เว็บไซต์นิยายนี้ปลอดไวรัสอย่างแน่นอน','textarea','เทมเพลตส่วนหัวของ txt ที่สร้างเมื่อสร้างนิยายใหม่',14),(106,1,3,'novel','เทมเพลตเริ่มตอน TXT ใหม่','chapter_start','กดเพิ่มในรายการโปรดเพื่อติดตามได้เลย','textarea','เทมเพลตเริ่มต้นของตอน TXT ที่สร้างใหม่',15),(107,1,3,'novel','เทมเพลตจบตอน TXT ใหม่','chapter_end','โปรดจดจำที่อยู่เว็บไซต์นี้','textarea','เทมเพลตสิ้นสุดของตอน TXT ที่สร้างใหม่',16),(108,1,3,'novel','ตอนเริ่มต้นต้องเข้าสู่ระบบหรือไม่','chapter_isvip','0','radio','การเผยแพร่ตอนต้องเข้าสู่ระบบเพื่ออ่านหรือไม่ (ค่าเริ่มต้น)',17),(109,1,3,'novel','ชนิดเหรียญที่ใช้ซื้อตอน','buy_gold_type','2','radio','ประเภทเหรียญที่ใช้สมัครรับตอน',13),(110,1,3,'novel','ต่ำกว่าจำนวนคำไม่คิดเงิน','buy_wordnumber','500','input','ตอนที่มีจำนวนคำต่ำกว่าเท่าไรจึงไม่คิดเงิน',19),(111,1,3,'novel','สวิตช์โหวต','dingcai_open','1','select','เปิดใช้ฟังก์ชันโหวตถูกใจ/ไม่ถูกใจนิยาย',20),(112,1,3,'novel','จำนวนโหวต','dingcai_count','1','input','จำกัดจำนวนครั้งที่โหวตถูกใจ/ไม่ถูกใจนิยายแต่ละเล่มต่อวัน',21),(113,1,3,'novel','จำนวนครั้งให้คะแนน','score_count','1','input','จำกัดจำนวนครั้งที่ให้คะแนนนิยายแต่ละเล่มต่อวัน',23),(114,1,3,'novel','เปิดให้คะแนน','score_open','1','select','เปิดใช้ฟังก์ชันให้คะแนนนิยาย',22),(115,1,3,'novel','ให้คะแนนต้องเข้าสู่ระบบหรือไม่','score_login','0','select','ฟังก์ชันให้คะแนนนิยายต้องเข้าสู่ระบบหรือไม่',24),(116,1,3,'novel','เปิดความคิดเห็น','replay_open','0','select','เปิดใช้ฟังก์ชันความคิดเห็นนิยายหรือไม่',25),(117,1,3,'novel','ความคิดเห็นต้องเข้าสู่ระบบ','replay_login','1','select','ฟังก์ชันความคิดเห็นนิยายต้องเข้าสู่ระบบหรือไม่',26),(118,1,3,'novel','ฟังก์ชันรายการโปรด','coll_open','1','select','เปิดใช้ฟังก์ชันรายการโปรดนิยายหรือไม่',27),(119,1,3,'novel','ฟังก์ชันแนะนำ','rec_open','1','select','เปิดใช้ฟังก์ชันแนะนำนิยายหรือไม่',28),(120,1,3,'novel','ใช้เหรียญ 1 ได้ประสบการณ์แฟน','fans_exp_gold1','200','input','เปิดใช้ฟังก์ชันสมัครรับนิยายหรือไม่',30),(121,1,3,'novel','ฟังก์ชันให้เหรียญรางวัล','reward_open','1','select','เปิดใช้ฟังก์ชันให้เหรียญสนับสนุนนิยายหรือไม่',31),(122,1,3,'novel','ฟังก์ชันค้นหา','search_open','1','select','เปิดใช้ฟังก์ชันค้นหานิยายหรือไม่',32),(123,1,3,'novel','ระยะห่างการค้นหา','search_time','3','input','ช่วงเวลาระหว่างการค้นหานิยาย',33),(124,1,3,'novel','เปลี่ยนเส้นทางค้นหา','search_jump','0','radio','เมื่อค้นหานิยายได้ผลลัพธ์เดียว ให้ข้ามไปหน้านิยายทันทีหรือไม่',34),(125,1,3,'novel','เปิดชั้นหนังสือหรือไม่','shelf_open','1','select','เปิดใช้ฟังก์ชันชั้นหนังสือหรือไม่',31),(126,1,4,'user','ฟังก์ชันสมัครสมาชิก','reg_open','1','select','เปิดใช้การสมัครสมาชิกหรือไม่',1),(127,1,4,'user','ฟังก์ชันเข้าสู่ระบบ','login_open','1','select','เปิดใช้การเข้าสู่ระบบหรือไม่',2),(128,1,4,'user','บันทึกการเข้าสู่ระบบ','login_log','1','select','เปิดใช้บันทึกประวัติการเข้าสู่ระบบหรือไม่',3),(129,1,4,'user','ประเภทโปรไฟล์เริ่มต้น','user_head','1','select','รูปโปรไฟล์เริ่มต้นของผู้ใช้ที่สมัครใหม่',4),(130,1,4,'user','ประเภทโปรไฟล์เริ่มต้น','default_head','/files/images/nohead.gif','input','ที่อยู่รูปโปรไฟล์เริ่มต้น',5),(131,1,4,'user','สถานะสมัครสมาชิกใหม่','reg_status','1','select','สถานะเริ่มต้นของบัญชีผู้ใช้ที่สมัครใหม่',6),(132,1,4,'user','ความกว้างรูปโปรไฟล์','head_width','100','input','ความกว้างรูปโปรไฟล์ผู้ใช้',7),(133,1,4,'user','ความสูงรูปโปรไฟล์','head_height','100','input','ความสูงรูปโปรไฟล์ผู้ใช้',8),(134,1,4,'user','รูปโปรไฟล์ระบบ','msg_head','/files/images/system.jpg','input','รูปโปรไฟล์เริ่มต้นของระบบ',9),(135,1,4,'user','สมัครแล้วแถมเหรียญ 1','reg_gold1','2','input','จำนวนเหรียญ 1 ที่มอบให้ผู้ใช้ที่สมัครใหม่',10),(136,1,4,'user','สมัครแล้วแถมเหรียญ 2','reg_gold2','0','input','จำนวนเหรียญ 2 ที่มอบให้ผู้ใช้ที่สมัครใหม่',11),(137,1,4,'user','สมัครแล้วแถมประสบการณ์','reg_exp','0','input','จำนวนประสบการณ์ที่มอบให้ผู้ใช้ที่สมัครใหม่',12),(138,1,4,'user','ลายเซ็นเริ่มต้นสมัครสมาชิก','reg_sign','WMCMS อยู่เคียงข้างคุณ!','textarea','ลายเซ็นเริ่มต้นของผู้ใช้ที่สมัครใหม่',13),(139,1,4,'user','ชื่อค่าประสบการณ์','exp_name','แต้มฝัน','input','ชื่อประสบการณ์ของเว็บไซต์',14),(140,1,4,'user','ชื่อเหรียญ 1','gold1_name','หยวนฝัน','input','ชื่อเหรียญ 1 ของเว็บไซต์',15),(141,1,4,'user','ชื่อเหรียญ 2','gold2_name','สมบัติฝัน','input','ชื่อเหรียญ 2 ของเว็บไซต์',16),(142,1,4,'user','หน่วยเหรียญ 1','gold1_unit','หยวน','input','หน่วยของเหรียญ 1 ของเว็บไซต์',17),(143,1,4,'user','หน่วยเหรียญ 2','gold2_unit','รายการ','input','หน่วยของเหรียญ 2 ของเว็บไซต์',18),(144,1,4,'user','เข้าสู่ระบบแถมประสบการณ์','login_exp','1','input','ประสบการณ์ที่มอบให้เมื่อเข้าสู่ระบบครั้งแรกของวัน',19),(145,1,4,'user','เข้าสู่ระบบแถมเหรียญ 1','login_gold1','0','input','จำนวนเหรียญ 1 ที่มอบให้เมื่อเข้าสู่ระบบครั้งแรกของวัน',20),(146,1,4,'user','เข้าสู่ระบบแถมเหรียญ 2','login_gold2','0','input','จำนวนเหรียญ 2 ที่มอบให้เมื่อเข้าสู่ระบบครั้งแรกของวัน',21),(147,1,1,'system','ตรวจอักขระสงวน','check_shield','0','select','ตรวจสอบอักขระที่สงวนไว้',98),(148,1,1,'system','ตรวจอักขระต้องห้าม','check_disable','0','select','ตรวจสอบอักขระที่ห้ามใช้',99),(149,1,4,'user','สวิตช์เช็คอิน','sign_open','1','select','สวิตช์ฟังก์ชันเช็กอิน',24),(150,1,4,'user','สวิตช์รางวัลเช็คอิน','sign_reward','0','select','สวิตช์รางวัลการเช็กอิน',25),(151,1,4,'user','รางวัลประสบการณ์เช็คอิน','sign_exp','1','input','ประสบการณ์ที่ได้จากการเช็กอินทุกวัน',26),(152,1,4,'user','รางวัลเหรียญ 1 เช็คอิน','sign_gold1','0','input','เหรียญ 1 ที่ได้จากการเช็กอินทุกวัน',27),(153,1,4,'user','รางวัลเหรียญ 2 เช็คอิน','sign_gold2','0','input','เหรียญ 2 ที่ได้จากการเช็กอินทุกวัน',28),(154,1,5,'replay','เปิดความคิดเห็น','replay_open','1','select','เปิดใช้ฟังก์ชันความคิดเห็นหรือไม่',1),(155,1,5,'replay','ตั้งค่าแบบรวม','unify','1','select','โมดูลอื่นใช้การตั้งค่าจากโมดูลความคิดเห็นหรือไม่',2),(156,1,5,'replay','ต้องเข้าสู่ระบบหรือไม่','replay_login','0','select','ความคิดเห็นต้องเข้าสู่ระบบหรือไม่',3),(157,1,5,'replay','สถานะความคิดเห็นเริ่มต้น','status','1','select','ความคิดเห็นเริ่มต้นเป็นสถานะตรวจสอบแล้วหรือรอตรวจสอบ',4),(158,1,5,'replay','ระยะห่างระหว่างความคิดเห็น','top_time','15','input','ช่วงเวลาระหว่างความคิดเห็นสองครั้ง',5),(159,1,5,'replay','จำนวนความคิดเห็น','everyday_count','100','input','จำนวนครั้งที่แสดงความคิดเห็นได้ต่อวัน',6),(160,1,5,'replay','ฟังก์ชันโหวต','dingcai_open','1','select','เปิดใช้ฟังก์ชันโหวตถูกใจ/ไม่ถูกใจความคิดเห็นหรือไม่',7),(161,1,5,'replay','จำนวนโหวต','dingcai_count','1','input','จำนวนครั้งที่โหวตถูกใจ/ไม่ถูกใจความคิดเห็นเดียวกันได้ต่อวัน',8),(162,1,5,'replay','ชื่อเล่นผู้เยี่ยมชม','nickname','ผู้เยี่ยมชม','input','ชื่อเล่นเมื่อผู้เยี่ยมชมแสดงความคิดเห็น',9),(163,1,5,'replay','รางวัลความคิดเห็นครั้งแรก ๆ','reward_count','0','input','ความคิดเห็นกี่ครั้งแรกของวันจึงได้รางวัล',10),(164,1,5,'replay','รางวัลเหรียญ 1','replay_gold1','0','input','เหรียญ 1 ที่ได้จากความคิดเห็น',11),(165,1,5,'replay','รางวัลเหรียญ 2','replay_gold2','0','input','เหรียญ 2 ที่ได้จากความคิดเห็น',12),(166,1,5,'replay','ค่าประสบการณ์รางวัล','replay_exp','0','input','ประสบการณ์ที่ได้จากความคิดเห็น',13),(167,1,5,'replay','ชื่อกล่องความคิดเห็น js','boxname','โรงน้ำชายุทธภพ','input','ชื่อกล่องความคิดเห็น js',14),(168,1,5,'replay','คำแนะนำเมื่อไม่มีข้อมูล','no_data','รอคุณอยู่','input','ข้อความแจ้งเมื่อไม่มีความคิดเห็นใน js',15),(169,1,5,'replay','คำแนะนำในช่องกรอก','input','ไม่แสดงความคิดเห็นสักหน่อยหรือ?','input','คำใบ้ในช่องกรอกความคิดเห็น js',16),(170,1,5,'replay','แสดงความคิดเห็นยอดนิยม','hot','1','select','แสดงความคิดเห็นยอดนิยมหรือไม่',17),(171,1,5,'replay','กี่โหวตขึ้นเป็นความคิดเห็นยอดนิยม','hot_display','2','input','ต้องมีโหวตถูกใจกี่ครั้งจึงเป็นความคิดเห็นยอดนิยม',18),(172,1,5,'replay','จำนวนความคิดเห็นยอดนิยม','hot_count','2','input','จำนวนความคิดเห็นยอดนิยมที่แสดง',19),(173,1,5,'replay','จำนวนรายการต่อหน้า','list_limit','6','input','จำนวนความคิดเห็นที่แสดงต่อหน้า',20),(174,1,5,'replay','จำนวนลิงก์แบ่งหน้า','page_count','5','input','จำนวนปุ่มข้ามหน้าที่แสดง',21),(175,1,6,'link','ตรวจพารามิเตอร์หน้าลิงก์เพื่อน','par_link','0','select','ตรวจสอบพารามิเตอร์ของหน้าลิงก์เพื่อน',1),(176,1,6,'link','เปิดรับสมัคร','join','1','select','เปิดใช้การขอลิงก์เพื่อนหรือไม่',2),(177,1,6,'link','ประเภทคลิกลิงก์เพื่อน','click_type','0','select','ประเภทการคลิกของลิงก์เพื่อน',3),(178,1,6,'link','เวลาป้องกันรีเฟรช','ref_time','3600','input','เวลาป้องกันการรีเฟรช',4),(179,1,6,'link','ตรวจ UA การคลิก','check_ua','1','select','ตรวจสอบ UA เมื่อคลิกลิงก์เพื่อนหรือไม่',5),(180,1,6,'link','บันทึก IP ครั้งเดียว','check_oneip','1','select','การคลิกในวันเดียวกันบันทึก IP เพียงครั้งเดียว',6),(181,1,6,'link','บันทึกการคลิก','click_log','1','select','เปิดใช้การบันทึกสถิติการคลิก',7),(182,1,6,'link','เปิดนับสถิติ IP','getip_open','1','select','เปิดใช้การสถิติ IP',8),(183,1,6,'link','เปิดนับสถิติที่อยู่','getadress_open','0','select','เปิดใช้การสถิติที่อยู่',9),(184,1,6,'link','สถานะเริ่มต้นใบสมัครหน้าเว็บ','join_status','0','select','สถานะเริ่มต้นของการขอลิงก์เพื่อนจากหน้าเว็บ',10),(185,1,6,'link','สถานะเริ่มต้นเพิ่มหลังบ้าน','admin_status','1','select','สถานะเริ่มต้นเมื่อเพิ่มลิงก์เพื่อนจากหลังบ้าน',11),(186,1,6,'link','หน้าเข้าลิงก์เพื่อน','in_jump','','input','หน้าที่เปิดเมื่อคลิกลิงก์เพื่อน หากว่างถือเป็นหน้าแรก',12),(187,1,7,'picture','ตรวจพารามิเตอร์หน้าอัลบั้ม','par_picture','0','select','ตรวจสอบพารามิเตอร์ของหน้าอัลบั้มภาพ',1),(188,1,7,'picture','ตรวจพารามิเตอร์หน้าความคิดเห็น','par_replay','0','select','ตรวจสอบพารามิเตอร์ของหน้าความคิดเห็นอัลบั้มภาพ',2),(189,1,7,'picture','อัปเดตหลังบ้านต้องตรวจสอบ','admin_add','1','select','การอัปเดตอัลบั้มภาพจากหลังบ้านต้องตรวจสอบหรือไม่',3),(190,1,7,'picture','ผู้ใช้ส่งผลงานต้องตรวจสอบ','user_add','1','select','การส่งอัลบั้มภาพของผู้ใช้ต้องผ่านการตรวจสอบ',4),(191,1,7,'picture','ฟังก์ชันโหวต','dingcai_open','1','select','ฟังก์ชันโหวตถูกใจ/ไม่ถูกใจ',5),(192,1,7,'picture','ฟังก์ชันให้คะแนน','score_open','1','select','เปิดใช้ฟังก์ชันให้คะแนนหรือไม่',6),(193,1,7,'picture','ฟังก์ชันความคิดเห็น','replay_open','1','select','เปิดใช้ฟังก์ชันความคิดเห็นหรือไม่',7),(194,1,7,'picture','ให้คะแนนต้องเข้าสู่ระบบหรือไม่','score_login','1','select','การให้คะแนนต้องเข้าสู่ระบบหรือไม่',8),(195,1,7,'picture','เปิดค้นหาหรือไม่','search_open','1','select','เปิดใช้การค้นหาหรือไม่',9),(196,1,7,'picture','จำนวนโหวต','dingcai_count','1','input','จำนวนครั้งที่โหวตถูกใจ/ไม่ถูกใจเนื้อหาเดียวกันได้ต่อวัน',10),(197,1,7,'picture','จำนวนครั้งให้คะแนน','score_count','1','input','จำนวนครั้งที่ให้คะแนนเนื้อหาเดียวกันได้ต่อวัน',11),(198,1,7,'picture','ระยะห่างการค้นหา','search_time','3','input','ช่วงเวลาระหว่างการค้นหาแต่ละครั้ง',12),(199,1,7,'picture','ความคิดเห็นต้องเข้าสู่ระบบหรือไม่','replay_login','1','select','ความคิดเห็นต้องเข้าสู่ระบบหรือไม่',14),(200,1,8,'app','ตรวจพารามิเตอร์หน้าแอป','par_app','0','select','ตรวจสอบพารามิเตอร์ของหน้าแอป',1),(201,1,8,'app','ตรวจพารามิเตอร์หน้าความคิดเห็น','par_replay','0','select','ตรวจสอบพารามิเตอร์ของหน้าความคิดเห็นแอป',2),(202,1,8,'app','ไอคอนเริ่มต้นแอป','default_ico','/files/images/noimage.gif','input','ไอคอนเริ่มต้นของแอป',3),(203,1,8,'app','ปกเริ่มต้นแอป','default_simg','/files/images/noimage.gif','input','ปกเริ่มต้นของแอป',4),(204,1,8,'app','อัปเดตหลังบ้านต้องตรวจสอบ','admin_add','1','select','การอัปเดตแอปจากหลังบ้านต้องตรวจสอบหรือไม่',5),(205,1,8,'app','เปิดดาวน์โหลดแอปหรือไม่','down_open','1','select','เปิดใช้ฟังก์ชันดาวน์โหลดแอปหรือไม่',6),(206,1,8,'app','ฟังก์ชันโหวต','dingcai_open','1','select','ฟังก์ชันโหวตถูกใจ/ไม่ถูกใจ',6),(207,1,8,'app','จำนวนโหวต','dingcai_count','1','input','จำนวนครั้งที่โหวตถูกใจ/ไม่ถูกใจเนื้อหาเดียวกันได้ต่อวัน',7),(208,1,8,'app','ฟังก์ชันให้คะแนน','score_open','1','select','เปิดใช้ฟังก์ชันให้คะแนนหรือไม่',8),(209,1,8,'app','จำนวนครั้งให้คะแนน','score_count','1','input','จำนวนครั้งที่ให้คะแนนเนื้อหาเดียวกันได้ต่อวัน',9),(210,1,8,'app','ให้คะแนนต้องเข้าสู่ระบบหรือไม่','score_login','0','select','การให้คะแนนต้องเข้าสู่ระบบหรือไม่',10),(211,1,8,'app','ฟังก์ชันความคิดเห็น','replay_open','1','select','เปิดใช้ฟังก์ชันความคิดเห็นหรือไม่',11),(212,1,8,'app','ความคิดเห็นต้องเข้าสู่ระบบหรือไม่','replay_login','0','select','ความคิดเห็นต้องเข้าสู่ระบบหรือไม่',12),(213,1,8,'app','เปิดค้นหาหรือไม่','search_open','1','select','เปิดใช้การค้นหาหรือไม่',13),(214,1,8,'app','ระยะห่างการค้นหา','search_time','3','input','ช่วงเวลาระหว่างการค้นหาสองครั้ง',14),(215,1,9,'bbs','ตรวจพารามิเตอร์หน้ากระทู้','par_bbs','0','select','ตรวจสอบพารามิเตอร์ของหน้ากระทู้',1),(216,1,9,'bbs','ตรวจพารามิเตอร์หน้าตอบกลับ','par_relist','0','select','ตรวจสอบพารามิเตอร์ของหน้าการตอบกลับ',2),(217,1,9,'bbs','ผู้แต่งดูได้หรือไม่','author_look','1','select','ผู้แต่งดูกระทู้ที่อยู่ระหว่างตรวจสอบได้หรือไม่',3),(218,1,9,'bbs','ผู้แต่งแก้ไขได้หรือไม่','author_up','1','select','ผู้แต่งแก้ไขกระทู้ของตนเองได้หรือไม่',4),(219,1,9,'bbs','ผู้แต่งลบได้หรือไม่','author_del','1','select','ผู้แต่งลบกระทู้ของตนเองได้หรือไม่',5),(220,1,9,'bbs','สถานะเริ่มต้นโพสต์','user_post','1','select','สถานะเริ่มต้นของการโพสต์ของผู้ใช้',6),(221,1,9,'bbs','สถานะเริ่มต้นตอบกลับ','user_replay','1','select','สถานะเริ่มต้นของการตอบกลับของผู้ใช้',7),(222,1,9,'bbs','แก้ไขแล้วต้องตรวจสอบหรือไม่','up_status','1','select','ผู้ใช้แก้ไขกระทู้แล้วต้องตรวจสอบหรือไม่',8),(223,1,9,'bbs','ฟังก์ชันโพสต์','post_open','0','select','เปิดใช้ฟังก์ชันโพสต์หรือไม่',9),(224,1,9,'bbs','ฟังก์ชันตอบกลับ','replay_open','0','select','เปิดใช้ฟังก์ชันตอบกลับหรือไม่',10),(225,1,9,'bbs','จำกัดการโพสต์','post_num','0','input','จำกัดจำนวนโพสต์ต่อวันหรือไม่',11),(226,1,9,'bbs','รางวัลโพสต์ครั้งแรก ๆ','post_top','5','input','โพสต์กี่ครั้งแรกของวันจึงได้รางวัล',12),(227,1,9,'bbs','รางวัลเหรียญ 1 โพสต์','post_gold1','1','input','เหรียญ 1 ที่ได้จากการโพสต์',13),(228,1,9,'bbs','รางวัลเหรียญ 2 โพสต์','post_gold2','0','input','เหรียญ 2 ที่ได้จากการโพสต์',14),(229,1,9,'bbs','รางวัลประสบการณ์โพสต์','post_exp','1','input','ประสบการณ์ที่ได้จากการโพสต์',15),(230,1,9,'bbs','จำกัดตอบกลับต่อวัน','everyday_count','0','input','จำนวนการตอบกลับสูงสุดต่อวัน',16),(231,1,9,'bbs','ตอบกลับครั้งแรก ๆ มีรางวัล','reward_count','5','input','ตอบกลับกี่ครั้งแรกของวันจึงได้รางวัล',17),(232,1,9,'bbs','รางวัลเหรียญ 1 ตอบกลับ','replay_gold1','1','input','เหรียญ 1 ที่ได้จากการตอบกลับ',18),(233,1,9,'bbs','รางวัลเหรียญ 2 ตอบกลับ','replay_gold2','0','input','เหรียญ 2 ที่ได้จากการตอบกลับ',18),(234,1,9,'bbs','รางวัลประสบการณ์ตอบกลับ','replay_exp','1','input','ประสบการณ์ที่ได้จากการตอบกลับ',19),(235,1,9,'bbs','ไอคอนบอร์ดเริ่มต้น','default_ico','/files/images/forum.png','input','ไอคอนเริ่มต้นของบอร์ด',20),(236,1,9,'bbs','ระยะห่างการค้นหา','search_time','3','input','ช่วงเวลาระหว่างการค้นหาสองครั้ง',22),(237,1,9,'bbs','เปิดค้นหา','search_open','1','select','เปิดใช้การค้นหากระทู้หรือไม่',21),(238,1,2,'article','รูปย่อเริ่มต้นของหน้าเว็บ','default_simg','/files/images/noimage.gif','input','ปกเริ่มต้นเมื่อหน้าเว็บเรียกภาพย่อแล้วไม่มีภาพ',0),(239,1,1,'logo','โลโก้แบบเรียบง่าย','logo_1','','input','โลโก้ที่ใช้กับเวอร์ชันเรียบง่าย',1),(240,1,1,'logo','โลโก้สี','logo_2','','input','โลโก้ที่ใช้กับเวอร์ชันสี',2),(241,1,1,'logo','โลโก้ทัชสกรีน','logo_3','/files/images/logo.png','input','โลโก้ที่ใช้กับหน้าจอสัมผัส',3),(242,1,1,'logo','โลโก้คอมพิวเตอร์','logo_4','/files/images/logo.png','input','โลโก้ที่ใช้กับคอมพิวเตอร์',4),(243,1,1,'system','ประเภทฐานข้อมูล','db','mysql','select','ประเภทฐานข้อมูลที่ใช้งาน',17),(244,1,10,'message','สวิตช์ฟังก์ชันข้อความ','message_open','1','select','เปิดใช้ฟังก์ชันข้อความหรือไม่',1),(245,1,10,'message','จำนวนข้อความต่อวัน','message_count','3','input','จำนวนข้อความสูงสุดต่อวัน',2),(246,1,1,'logo','คิวอาร์โค้ด WeChat','ewm_wx','','input','คิวอาร์โค้ด WeChat',5),(247,1,1,'logo','คิวอาร์โค้ด Alipay','ewm_alipay','/files/images/ewm_alipay.png','input','คิวอาร์โค้ด Alipay',6),(248,1,1,'logo','คิวอาร์โค้ด Weibo','ewm_weibo','','input','คิวอาร์โค้ด Weibo',7),(249,1,1,'logo','คิวอาร์โค้ดกลุ่ม QQ','ewm_qun','/files/images/ewm_qun.png','input','คิวอาร์โค้ดกลุ่ม QQ',8),(250,1,1,'cache','สวิตช์แคช','cache_open','1','select','เปิดใช้แคชหรือไม่',1),(251,1,1,'cache','ประเภทแคช','cache_type','file','select','ประเภทแคช',2),(252,1,1,'cache','พาธบันทึกแคช','cache_path','cache','input','พาธเก็บแคช',3),(253,1,1,'cache','พาธแคชไฟล์','file_folder','site','input','พาธเก็บแคชไฟล์',4),(254,1,1,'cache','นามสกุลแคชไฟล์','file_ext','.cache','input','นามสกุลแคชไฟล์',5),(255,1,1,'cache','โฟลเดอร์บันทึกคิว','queue_folder','queue','input','โฟลเดอร์เก็บคิว',6),(256,1,1,'cache','นามสกุลแคชคิว','queue_ext','.queue','input','นามสกุลแคชคิว',7),(257,1,1,'cache','เซิร์ฟเวอร์ redis','redis_host','127.0.0.1','input','เซิร์ฟเวอร์ redis',8),(258,1,1,'cache','พอร์ต redis','redis_port','6379','input','พอร์ต redis',9),(259,1,1,'cache','เซิร์ฟเวอร์ memcached','memcached_host','127.0.0.1','input','เซิร์ฟเวอร์ memcached',10),(260,1,1,'cache','พอร์ต memcached','memcached_port','11211','input','พอร์ต memcached',11),(261,1,1,'cache','กลไกแคช','cache_mechanism','page','select','กลไกแคช',1),(262,1,1,'cache','แคช SQL','cache_sql','1','radio','แคช SQL',1),(263,1,1,'cache','เวลาบันทึกแคช','cache_time','300','input','เวลาเก็บแคช (หน่วย: วินาที)',12),(268,1,4,'user','การทำงานหลังเข้าสู่ระบบ ajax','ajax_login','ref','select','การทำงานหลังเข้าสู่ระบบด้วย ajax',29),(265,1,1,'cache','เปิดแคชคิว','cache_queue','0','radio','เปิดใช้แคชคิวหรือไม่',14),(266,1,1,'cache','เวลาแคชคิว','cache_queuetime','300','input','เวลาแคชคิว',15),(267,1,1,'cache','เวลาแคช SQL','cache_sqltime','300','input','เวลาแคช SQL',16),(269,1,11,'author','สถานะเริ่มต้นใบสมัครผู้แต่ง','apply_author_status','0','select','สถานะตรวจสอบเริ่มต้นของการสมัครเป็นผู้แต่ง',2),(270,1,11,'author','เปิดสมัครผู้แต่งด้วยตนเอง','apply_author_open','1','select','เปิดใช้การสมัครเป็นผู้แต่งด้วยตนเองจากหน้าเว็บหรือไม่',1),(271,1,11,'author','เรื่องย่อเริ่มต้น','author_default_info','คนนี้ขี้เกียจมาก!','input','ประวัติส่วนตัวเริ่มต้นของผู้สมัครเป็นผู้แต่ง',3),(272,1,11,'author','ประกาศเริ่มต้น','author_default_notice','ผู้แต่งรายนี้ยังไม่มีประกาศ!','input','ประกาศเริ่มต้นของผู้สมัครเป็นผู้แต่ง',4),(273,1,4,'user','ชื่อยอดเงิน','money_name','หยวนนุ่ม','input','ชื่อยอดคงเหลือของบัญชี',30),(274,1,11,'author','วิธีตรวจสอบนิยาย','author_novel_createnovel','0','select','วิธีตรวจสอบนิยายที่สร้างใหม่',5),(275,1,11,'author','วิธีตรวจสอบตอน','author_novel_createchapter','0','select','วิธีตรวจสอบตอนของนิยายที่สร้างใหม่',6),(276,1,11,'author','ความกว้างปกอัปโหลด','author_novel_coverwidth','400','input','จำกัดความกว้างของปกที่อัปโหลด',7),(277,1,11,'author','ความสูงปกอัปโหลด','author_novel_coverheight','500','input','จำกัดความสูงของปกที่อัปโหลด',8),(278,1,11,'author','วิธีตรวจสอบปก','author_novel_uploadcover','0','radio','วิธีตรวจสอบปก',9),(279,1,11,'author','ข้อความยังไม่ตรวจสอบ','author_apply_0','สวัสดี คำขอเป็นนักเขียนของคุณถูกส่งแล้ว กรุณารอผู้ดูแลระบบตรวจสอบ!','textarea','เหตุผลที่สถานะผู้แต่งเปลี่ยนเป็นยังไม่ตรวจสอบ',10),(280,1,11,'author','เหตุผลที่อนุมัติ','author_apply_1','สวัสดี คำขอเป็นนักเขียนของคุณผ่านการตรวจสอบแล้ว ตอนนี้คุณสามารถสร้างนิยายได้เลย!','textarea','เหตุผลที่ส่งข้อความเมื่อผู้แต่งผ่านการตรวจสอบ',11),(281,1,11,'author','เหตุผลที่ไม่อนุมัติ','author_apply_2','ขออภัย คำขอเป็นนักเขียนของคุณไม่ผ่านการตรวจสอบ!\\r\\nสาเหตุมีดังนี้:\\r\\n1. ข้อมูลอาจไม่ครบถ้วน\\r\\n2. นามปากกาของคุณอาจเข้าข่ายผิดกฎหมาย','textarea','เหตุผลที่ผู้แต่งไม่ผ่านการตรวจสอบ',12),(282,1,11,'author','เหตุผลที่ยังไม่ตรวจสอบ','author_novel_cover_0','สวัสดี ปกที่คุณอัปโหลดจะแสดงให้เห็นหลังผู้ดูแลระบบตรวจสอบผ่านแล้วเท่านั้น!','textarea','เหตุผลที่ปกกลายเป็นยังไม่ตรวจสอบ',13),(283,1,11,'author','เหตุผลที่อนุมัติ','author_novel_cover_1','ยินดีด้วย ปกนิยายที่คุณส่งผ่านการตรวจสอบแล้ว!','textarea','เหตุผลที่ปกผ่านการตรวจสอบ',14),(284,1,11,'author','เหตุผลที่ปฏิเสธการตรวจสอบ','author_novel_cover_2','ขออภัย ปกที่คุณขอไม่ผ่านการตรวจสอบ!\\r\\nสาเหตุมีดังนี้:\\r\\n1. ปกอาจมีเนื้อหาลามกหรือรุนแรง!\\r\\n2. ผิดกฎหมายที่เกี่ยวข้องของประเทศ!','textarea','เหตุผลที่ปกไม่ผ่านการตรวจสอบ',15),(285,1,11,'author','วิธีตรวจสอบแก้ไขนิยาย','author_novel_editnovel','0','select','การแก้ไขนิยายต้องตรวจสอบหรือไม่',16),(286,1,11,'author','วิธีตรวจสอบแก้ไขตอน','author_novel_editchapter','0','select','การแก้ไขตอนต้องตรวจสอบหรือไม่',17),(287,1,11,'author','เหตุผลที่ยังไม่ตรวจสอบ','author_novel_editnovel_0','สวัสดี นิยายที่คุณแก้ไขกรุณารอผู้ดูแลระบบตรวจสอบ!','textarea','เหตุผลที่สถานะการแก้ไขนิยายเปลี่ยนเป็นยังไม่ตรวจสอบ',18),(288,1,11,'author','เหตุผลที่อนุมัติ','author_novel_editnovel_1','ยินดีด้วย ข้อมูลนิยายที่คุณส่งผ่านการตรวจสอบแล้ว!','textarea','เหตุผลที่การแก้ไขนิยายผ่านการตรวจสอบ',19),(289,1,11,'author','เหตุผลที่ปฏิเสธการตรวจสอบ','author_novel_editnovel_2','ขออภัย นิยายที่คุณแก้ไขไม่ผ่านการตรวจสอบ!\\r\\nสาเหตุมีดังนี้:\\r\\n1. เนื้อหาอาจลามกหรือรุนแรง!\\r\\n2. ผิดกฎหมายที่เกี่ยวข้องของประเทศ!','textarea','เหตุผลที่การแก้ไขนิยายไม่ผ่านการตรวจสอบ',20),(290,1,11,'author','เหตุผลที่ยังไม่ตรวจสอบ','author_novel_editchapter_0','สวัสดี ตอนที่คุณแก้ไขกรุณารอผู้ดูแลระบบตรวจสอบ!','textarea','เหตุผลที่สถานะการแก้ไขตอนเปลี่ยนเป็นยังไม่ตรวจสอบ',21),(291,1,11,'author','เหตุผลที่อนุมัติ','author_novel_editchapter_1','ยินดีด้วย ตอนของคุณผ่านการตรวจสอบแล้ว!','textarea','เหตุผลที่การแก้ไขตอนผ่านการตรวจสอบ',22),(292,1,11,'author','เหตุผลที่ปฏิเสธการตรวจสอบ','author_novel_editchapter_2','ขออภัย ตอนที่คุณแก้ไขไม่ผ่านการตรวจสอบ!\\r\\nสาเหตุมีดังนี้:\\r\\n1. เนื้อหาอาจลามกหรือรุนแรง!\\r\\n2. ผิดกฎหมายที่เกี่ยวข้องของประเทศ!','textarea','เหตุผลที่การแก้ไขตอนไม่ผ่านการตรวจสอบ',23),(293,1,11,'author','วิธีตรวจสอบบทความ','author_article_createarticle','0','select','วิธีตรวจสอบการส่งบทความ',24),(294,1,11,'author','วิธีตรวจสอบแก้ไขบทความ','author_article_editarticle','0','select','วิธีตรวจสอบการส่งบทความที่แก้ไข',25),(295,1,11,'author','เหตุผลที่ยังไม่ตรวจสอบ','author_article_editarticle_0','สวัสดี กรุณารอผู้ดูแลระบบตรวจสอบต้นฉบับของคุณ!','textarea','เหตุผลที่การแก้ไขบทความเปลี่ยนเป็นยังไม่ตรวจสอบ',26),(296,1,11,'author','เหตุผลที่อนุมัติ','author_article_editarticle_1','ยินดีด้วย บทความที่คุณส่งผ่านการตรวจสอบแล้ว!','textarea','เหตุผลที่การแก้ไขบทความผ่านการตรวจสอบ',27),(297,1,11,'author','เหตุผลที่ปฏิเสธการตรวจสอบ','author_article_editarticle_2','ขออภัย บทความที่คุณส่งเข้ามาไม่ผ่านการตรวจสอบ!\\r\\nสาเหตุมีดังนี้:\\r\\n1. เนื้อหาอาจลามกหรือรุนแรง!\\r\\n2. ผิดกฎหมายที่เกี่ยวข้องของประเทศ!','textarea','เหตุผลที่การแก้ไขบทความเปลี่ยนเป็นยังไม่ตรวจสอบ',28),(302,1,1,'system','ข้อผิดพลาดอัปโหลดอัตโนมัติ','err_auto_upload','1','select','เมื่อพบข้อผิดพลาดให้ส่งไปยังเซิร์ฟเวอร์คลาวด์เพื่อดำเนินการโดยอัตโนมัติหรือไม่',13),(301,1,15,'urlmode','เปิด HTML หรือไม่','ishtml','0','radio','เปิดใช้การเข้าถึงแบบ HTML หรือไม่',6),(303,1,3,'novel','จำนวนใช้เหรียญ 1','cons_gold1','200','input','จำนวนเหรียญ 1 ที่ใช้',30),(304,1,3,'novel','ใช้เหรียญ 1 แถมโหวตรายเดือน','cons_gold1_month','0','input','ใช้เหรียญ 1 ครบจำนวนหนึ่งแล้วมอบโหวตรายเดือน',31),(322,1,3,'novel','ใช้เหรียญ 1 แถมโหวตแนะนำ','cons_gold1_rec','1','input','ใช้เหรียญ 1 ครบจำนวนหนึ่งแล้วมอบโหวตแนะนำ',32),(305,1,4,'user','เข้าสู่ระบบแถมโหวตแนะนำ','login_rec','0','input','จำนวนโหวตแนะนำที่มอบให้เมื่อเข้าสู่ระบบทุกวัน',31),(306,1,4,'user','เข้าสู่ระบบแถมโหวตรายเดือน','login_month','0','input','จำนวนโหวตรายเดือนที่มอบให้เมื่อเข้าสู่ระบบทุกวัน',32),(307,1,4,'user','เช็คอินแถมโหวตรายเดือน','sign_month','0','input','จำนวนโหวตรายเดือนที่มอบให้เมื่อเช็กอินทุกวัน',33),(308,1,4,'user','เช็คอินแถมโหวตแนะนำ','sign_rec','0','input','จำนวนโหวตแนะนำที่มอบให้เมื่อเช็กอินทุกวัน',34),(309,1,4,'user','ชื่อโหวตแนะนำ','ticket_rec','โหวตแนะนำ','input','ชื่อกำหนดเองของโหวตแนะนำ',35),(310,1,4,'user','ชื่อโหวตรายเดือน','ticket_month','โหวตรายเดือน','input','ชื่อกำหนดเองของโหวตรายเดือน',36),(311,1,12,'finance','เปิดเติมเงิน','recharge_open','1','select','เปิดใช้การเติมเงินหรือไม่',1),(312,1,12,'finance','แลกยอดเงินเป็นเหรียญ 2','money_to_gold2_open','1','select','เปิดใช้การแลกยอดคงเหลือเป็นเหรียญ 2 หรือไม่',2),(313,1,12,'finance','แลกเหรียญ 2 เป็นเหรียญ 1','gold2_to_gold1_open','0','select','เปิดใช้การแลกเหรียญ 2 เป็นเหรียญ 1 หรือไม่',3),(314,1,12,'finance','แลกเหรียญ 1 เป็นเหรียญ 2','gold1_to_gold2_open','0','select','เปิดใช้การแลกเหรียญ 1 เป็นเหรียญ 2 หรือไม่',4),(315,1,12,'finance','แลกเหรียญ 2 เป็นยอดเงิน','gold2_to_money_open','1','select','เปิดใช้การแลกเหรียญ 2 เป็นยอดคงเหลือหรือไม่',5),(316,1,12,'finance','เปิดถอนเงินหรือไม่','cash_open','1','select','เปิดใช้การถอนเงินหรือไม่',6),(317,1,12,'finance','อัตราเติมเงิน','rmb_to_gold2','10','input','อัตราการเติมเงิน',7),(318,1,12,'finance','อัตราแลกยอดเงินเป็นเหรียญ 2','money_to_gold2','1','input','อัตราแลกเปลี่ยนยอดคงเหลือเป็นเหรียญ 2',8),(319,1,12,'finance','อัตราแลกเหรียญ 2 เป็นเหรียญ 1','gold2_to_gold1','10','input','อัตราแลกเหรียญ 2 เป็นเหรียญ 1',9),(320,1,12,'finance','อัตราแลกเหรียญ 1 เป็นเหรียญ 2','gold1_to_gold2','0','input','อัตราแลกเหรียญ 1 เป็นเหรียญ 2',10),(321,1,12,'finance','อัตราแลกเหรียญ 2 เป็นยอดเงิน','gold2_to_money','0.1','input','อัตราแลกเหรียญ 2 เป็นยอดคงเหลือ',11),(323,1,3,'novel','จำนวนใช้เหรียญ 2','cons_gold2','100','input','จำนวนเหรียญ 2 ที่ใช้',33),(324,1,3,'novel','ใช้เหรียญ 2 แถมโหวตรายเดือน','cons_gold2_month','2','input','ใช้เหรียญ 2 ครบจำนวนหนึ่งแล้วมอบโหวตรายเดือน',34),(325,1,3,'novel','ใช้เหรียญ 2 แถมโหวตแนะนำ','cons_gold2_rec','3','input','ใช้เหรียญ 2 ครบจำนวนหนึ่งแล้วมอบโหวตแนะนำ',35),(326,1,4,'user','สมัครแล้วแถมโหวตแนะนำ','reg_rec','0','input','โหวตแนะนำที่มอบให้เมื่อสมัครสมาชิก',48),(327,1,4,'user','สมัครแล้วแถมโหวตรายเดือน','reg_month','0','input','โหวตรายเดือนที่มอบให้เมื่อสมัครสมาชิก',49),(328,1,3,'novel','ใช้เหรียญ 2 ได้ประสบการณ์แฟน','fans_exp_gold2','15','input','ใช้เหรียญ 2 ครบจำนวนหนึ่งแล้วได้ประสบการณ์แฟนคลับ',36),(329,1,11,'author','ของแถมเข้าสู่ระบบ','login_exp','10','input','ประสบการณ์ผู้แต่งที่มอบให้เมื่อเข้าสู่ระบบทุกวัน',29),(330,1,11,'author','ประสบการณ์รับโหวตแนะนำ','income_rec','5','input','ได้ประสบการณ์เท่าไรจากการได้รับโหวตแนะนำ 1 ใบ',30),(331,1,11,'author','ประสบการณ์รับโหวตรายเดือน','income_month','10','input','ได้ประสบการณ์เท่าไรจากการได้รับโหวตรายเดือน 1 ใบ',31),(332,1,11,'author','จำนวนรับเหรียญ 1','income_gold1','100','input','ได้เหรียญ 1 จำนวนเท่าไรจึงจะได้ประสบการณ์ผู้แต่ง 1 แต้ม',32),(333,1,11,'author','จำนวนรับเหรียญ 2','income_gold2','50','input','ได้เหรียญ 2 จำนวนเท่าไรจึงจะได้ประสบการณ์ผู้แต่ง 1 แต้ม',33),(334,1,3,'novel','ฟังก์ชันส่งของขวัญ','give_open','1','select','เปิดใช้ฟังก์ชันมอบของขวัญหรือไม่',37),(335,1,3,'novel','โหวตต้องเข้าสู่ระบบหรือไม่','dingcai_login','1','select','การโหวตถูกใจ/ไม่ถูกใจต้องเข้าสู่ระบบหรือไม่',38),(336,1,3,'novel','วิธีแจ้งเตือนหน้ายังไม่ได้ซื้อ','read_sub_prompt','1','select','วิธีแจ้งเมื่อยังไม่ได้สมัครรับบนหน้าอ่าน',39),(337,1,12,'finance','ที่อยู่ซื้อบัตรเติมเงิน','card_buy_url','http://www.weimengcms.com','input','ที่อยู่สำหรับซื้อรหัสบัตร',12),(338,1,12,'finance','รางวัลเติมเงินครั้งแรก','recharge_reward_gold2','10','input','เหรียญ 2 ที่ได้เป็นรางวัลจากการเติมเงินครั้งแรก',13),(339,1,12,'finance','กิจกรรมเติมเงิน','activity_open','1','radio','เปิดใช้กิจกรรมเติมเงินหรือไม่',14),(340,1,12,'finance','เวลาเริ่มกิจกรรม','activity_starttime','1524055804','input','เวลาเริ่มกิจกรรม',15),(341,1,12,'finance','เวลาสิ้นสุดกิจกรรม','activity_endtime','1524919806','input','เวลาสิ้นสุดกิจกรรม',16),(342,1,12,'finance','ค่าธรรมเนียมถอนเงิน','cash_cost','8','input','ค่าธรรมเนียมการถอนเงิน',17),(343,1,12,'finance','ยอดถอนขั้นต่ำ','cash_lowest','100','input','ยอดถอนเงินขั้นต่ำ',18),(344,1,1,'upload','วิธีบันทึกการอัปโหลด','upload_savetype','0','select','ตำแหน่งเก็บไฟล์ที่อัปโหลด',1),(345,1,1,'upload','พาธจัดเก็บระยะไกล/คำนำหน้า','upload_savepath','','input','ตำแหน่งหรือคำนำหน้าสำหรับเก็บไฟล์ที่อัปโหลดจากระยะไกล',1),(346,1,2,'article','ฟังก์ชันให้คะแนนบทความ','score_open','1','select','เปิดใช้ฟังก์ชันให้คะแนนบทความหรือไม่',12),(347,1,2,'article','เข้าสู่ระบบเพื่อโหวตบทความ','dingcai_login','1','select','การโหวตถูกใจ/ไม่ถูกใจบทความต้องเข้าสู่ระบบหรือไม่',13),(348,1,2,'article','เข้าสู่ระบบเพื่อให้คะแนนบทความ','score_login','1','select','การให้คะแนนบทความต้องเข้าสู่ระบบหรือไม่',14),(349,1,2,'article','จำนวนให้คะแนนต่อบทความ','score_count','1','input','จำนวนครั้งที่ให้คะแนนบทความแต่ละชิ้นได้ต่อวัน',15),(350,1,5,'replay','เข้าสู่ระบบเพื่อโหวตความคิดเห็น','dingcai_login','1','select','การโหวตถูกใจ/ไม่ถูกใจความคิดเห็นต้องเข้าสู่ระบบหรือไม่',22),(351,1,1,'system','ตรวจ UA แล้วเปลี่ยนเส้นทางอัตโนมัติ','auto_jump','1','select','เปิดใช้การตรวจสอบอัตโนมัติและข้ามไปยังเวอร์ชันมือถือหรือคอมพิวเตอร์ที่เหมาะสมหรือไม่',4),(352,1,1,'code','รหัสยืนยันสมัครสมาชิก','code_user_reg','1','radio','การสมัครสมาชิกของผู้ใช้ต้องใช้รหัสยืนยันหรือไม่',2),(353,1,1,'code','รหัสยืนยันเข้าสู่ระบบผู้ใช้','code_user_login','1','radio','การเข้าสู่ระบบของผู้ใช้ต้องใช้รหัสยืนยันหรือไม่',3),(354,1,1,'code','รหัสยืนยันเปลี่ยนรหัสผ่าน','code_user_uppsw','1','radio','การแก้ไขรหัสผ่านต้องใช้รหัสยืนยันหรือไม่',4),(355,1,1,'code','รหัสยืนยันกู้รหัสผ่าน','code_user_getpsw','1','radio','การกู้คืนรหัสผ่านต้องใช้รหัสยืนยันหรือไม่',5),(356,1,1,'code','รหัสยืนยันแสดงความคิดเห็น','code_replay','0','radio','การแสดงความคิดเห็นต้องใช้รหัสยืนยันหรือไม่',6),(357,1,1,'code','รหัสยืนยันโพสต์กระทู้','code_bbs_post','1','radio','การตั้งกระทู้ต้องใช้รหัสยืนยันหรือไม่',7),(358,1,1,'code','รหัสยืนยันตอบกลับกระทู้','code_bbs_replay','1','radio','การตอบกลับกระทู้ต้องใช้รหัสยืนยันหรือไม่',8),(359,1,1,'code','คลังคำถามรหัสยืนยัน','code_question','เว็บไซต์อย่างเป็นทางการของ WMCMS คืออะไร?|www.weimengcms.com\\r\\nใครคือผู้ก่อตั้ง WMCMS?|เวยเมิ่ง','textarea','คลังคำถามของรหัสยืนยันแบบถามตอบ',9),(360,1,1,'code','ประเภทรหัสยืนยันเข้าสู่ระบบหลังบ้าน','code_admin_login_type','2','select','ประเภทรหัสยืนยันของการเข้าสู่ระบบหลังบ้าน',10),(361,1,1,'code','ประเภทรหัสยืนยันสมัครสมาชิก','code_user_reg_type','2','select','ประเภทรหัสยืนยันของการสมัครสมาชิก',11),(362,1,1,'code','ประเภทรหัสยืนยันเข้าสู่ระบบผู้ใช้','code_user_login_type','2','select','ประเภทรหัสยืนยันของการเข้าสู่ระบบของผู้ใช้',12),(363,1,1,'code','ประเภทรหัสยืนยันกู้รหัสผ่าน','code_user_uppsw_type','2','select','ประเภทรหัสยืนยันของการกู้คืนรหัสผ่าน',13),(364,1,1,'code','ประเภทรหัสยืนยันแสดงความคิดเห็น','code_user_getpsw_type','2','select','ประเภทรหัสยืนยันของการแสดงความคิดเห็น',14),(365,1,1,'code','ประเภทรหัสยืนยันโพสต์กระทู้','code_replay_type','1','select','ประเภทรหัสยืนยันของการตั้งกระทู้',15),(366,1,1,'code','ประเภทรหัสยืนยันตอบกลับกระทู้','code_bbs_post_type','1','select','ประเภทรหัสยืนยันของการตอบกลับกระทู้',16),(367,1,1,'code','ประเภทคลังคำถามรหัสยืนยัน','code_bbs_replay_type','1','select','ประเภทคลังคำถามของรหัสยืนยันแบบถามตอบ',17),(368,1,1,'cache','แคชหน้าแรกทั้งเว็บ','cache_index','300','input','เวลาแคชหน้าแรกของทั้งเว็บไซต์',17),(369,1,1,'cache','แคชหน้าแรกโมดูล','cache_module_index','300','input','เวลาแคชหน้าแรกของโมดูล',18),(370,1,1,'cache','แคชหน้าแรกหมวดหมู่โมดูล','cache_module_tindex','300','input','เวลาแคชหน้าแรกหมวดหมู่ของโมดูล',19),(371,1,1,'cache','แคชหน้าแรกจัดอันดับโมดูล','cache_module_topindex','36000','input','เวลาแคชหน้าแรกการจัดอันดับของโมดูล',20),(372,1,1,'cache','แคชรายการโมดูล','cache_module_type','600','input','เวลาแคชรายการของโมดูล',21),(373,1,1,'cache','แคชความคิดเห็นโมดูล','cache_module_replay','600','input','เวลาแคชรายการความคิดเห็นของโมดูล',22),(374,1,1,'cache','แคชค้นหาโมดูล','cache_module_search','600','input','เวลาแคชรายการค้นหาของโมดูล',23),(375,1,1,'cache','แคชรายการจัดอันดับโมดูล','cache_module_toplist','36000','input','เวลาแคชรายการจัดอันดับของโมดูล',24),(376,1,1,'cache','แคชเนื้อหาโมดูล','cache_module_content','1800','input','เวลาแคชเนื้อหาโมดูล',25),(377,1,1,'cache','แคชสารบัญโมดูล','cache_module_menu','1800','input','เวลาแคชสารบัญของโมดูล',26),(378,1,1,'cache','แคชรายละเอียดโมดูล','cache_module_info','360000','input','เวลาแคชหน้ารายละเอียดของโมดูล',27),(379,1,2,'article','อัปเดตบทความสร้าง HTML อัตโนมัติ','auto_create_html','0','select','สร้าง HTML อัตโนมัติเมื่ออัปเดตบทความ',16),(380,1,3,'novel','อัปเดตตอนสร้าง HTML อัตโนมัติ','auto_create_html','0','select','สร้าง HTML อัตโนมัติเมื่ออัปเดตตอน',40),(381,1,8,'app','อัปเดตแอปสร้าง HTML อัตโนมัติ','auto_create_html','0','select','สร้าง HTML อัตโนมัติเมื่ออัปเดตแอป',14),(382,1,1,'system','วิธีแชร์ COOKIE','cookie_type','0','select','วิธีแชร์ cookeie ของเว็บไซต์',15),(383,1,1,'site','สวิตช์กลุ่มเว็บไซต์','site_open','0','select','เปิดหรือปิดเครือข่ายเว็บไซต์',1),(384,1,5,'replay','หมายเหตุชั้นความคิดเห็น','replay_floor_nickname','โซฟา\\r\\nม้านั่ง\\r\\nพื้น','textarea','เริ่มนับจากชั้นแรกเรียงลงมา ไม่จำกัดจำนวนชั้น',23),(385,1,5,'replay','ชื่อชั้นความคิดเห็น','replay_floor_name','ชั้น','input','ชื่อของชั้นคืออะไร เช่น “ชั้น”',24),(386,1,3,'novel','เปรียบเทียบตอน','chapter_compare','2','select','วิธีตรวจสอบว่าตอนที่บันทึกลงฐานข้อมูลเป็นตอนเดียวกัน',41),(387,1,3,'novel','เปรียบเทียบความคล้าย','chapter_compare_number','70','input','ค่าความคล้ายเท่าไรจึงถือว่าเป็นเนื้อหาเดียวกัน',42),(393,1,3,'novel','ประวัติการอ่าน','read_open','1','select','เปิดใช้การบันทึกประวัตินิยายที่อ่านหรือไม่',43),(394,1,4,'user','บัญชีผูกการเข้าสู่ระบบ API','api_login_bind','0','select','การเข้าสู่ระบบด้วยบุคคลที่สามบังคับผูกบัญชีของเว็บไซต์นี้หรือไม่',50),(395,1,1,'domain','ยืนยันโดเมนหลังบ้าน','admin_domain_access','0','select','หลังบ้านเข้าถึงได้ผ่านโดเมนเท่านั้น',14),(397,1,3,'novel','สตริงเข้ารหัสกำหนดเองของนิยาย','novel_en_str','','input','สตริงกำหนดเองที่ใช้เมื่อเข้ารหัสชื่อไฟล์นิยาย',5),(396,1,1,'system','โปรโตคอลเครือข่าย','tcp_type','http','select','ประเภทโปรโตคอล TCP ของการเข้าถึงผ่านเครือข่าย',2),(398,1,1,'upload','สวิตช์อัปโหลด','upload_open','1','select','อนุญาตให้อัปโหลดไฟล์จากหน้าเว็บหรือไม่',0),(399,1,1,'code','จำนวนเข้าสู่ระบบผิดหลังบ้าน','admin_login_error_number','5','input','จำนวนครั้งที่เข้าสู่ระบบผิดพลาดได้ในหลังบ้าน',1),(400,1,1,'code','เวลาจำกัดเข้าสู่ระบบผิดหลังบ้าน','admin_login_error_time','1440','input','ระยะเวลาล็อกการเข้าสู่ระบบหลังบ้านเมื่อผิดพลาดครบจำนวนครั้ง',1),(401,1,1,'code','จำนวนเข้าสู่ระบบผิดของผู้ใช้','user_login_error_number','5','input','จำนวนครั้งที่ผู้ใช้เข้าสู่ระบบผิดพลาดได้',3),(402,1,1,'code','เวลาจำกัดเข้าสู่ระบบผิดของผู้ใช้','user_login_error_time','1440','input','ระยะเวลาล็อกการเข้าสู่ระบบของผู้ใช้เมื่อผิดพลาดครบจำนวนครั้ง',3),(403,1,6,'link','รูปแบบลิงก์ออกภายนอก','link_url_outtype','1','select','โหมดลิงก์ออกภายนอกของลิงก์สาธารณะ',1),(404,1,14,'zt','ตรวจพารามิเตอร์หน้าหัวข้อพิเศษ','par_zt','1','radio','หน้าหัวข้อพิเศษตรวจสอบพารามิเตอร์ทั้งหมดว่าถูกต้องหรือไม่',1),(405,1,14,'zt','ตรวจสอบพารามิเตอร์หน้าความคิดเห็น','par_replay','1','radio','หน้าความคิดเห็นตรวจสอบพารามิเตอร์ทั้งหมดว่าถูกต้องหรือไม่',2),(406,1,14,'zt','เปิดโหวตหัวข้อพิเศษ','dingcai_open','0','select','เปิดใช้ฟังก์ชันโหวตถูกใจ/ไม่ถูกใจหัวข้อพิเศษหรือไม่',11),(407,1,14,'zt','เข้าสู่ระบบเพื่อโหวตหัวข้อพิเศษ','dingcai_login','1','select','การโหวตถูกใจ/ไม่ถูกใจหัวข้อพิเศษต้องเข้าสู่ระบบหรือไม่',12),(408,1,14,'zt','จำนวนโหวตขึ้นลงหัวข้อพิเศษ','dingcai_count','2','input','จำกัดจำนวนครั้งที่โหวตถูกใจ/ไม่ถูกใจหัวข้อพิเศษแต่ละรายการต่อวัน',13),(409,1,14,'zt','เปิดให้คะแนนหัวข้อพิเศษ','score_open','0','select','เปิดใช้ฟังก์ชันให้คะแนนหัวข้อพิเศษหรือไม่',14),(410,1,14,'zt','เข้าสู่ระบบเพื่อให้คะแนนหัวข้อพิเศษ','score_login','1','select','การให้คะแนนหัวข้อพิเศษต้องเข้าสู่ระบบหรือไม่',15),(411,1,14,'zt','จำนวนครั้งให้คะแนนหัวข้อพิเศษ','score_count','1','input','จำนวนครั้งที่ให้คะแนนหัวข้อพิเศษแต่ละรายการได้ต่อวัน',16),(412,1,14,'zt','สวิตช์ความคิดเห็นหัวข้อพิเศษ','replay_open','0','select','โมดูลหัวข้อพิเศษเปิดใช้ความคิดเห็นหรือไม่',17),(413,1,14,'zt','เข้าสู่ระบบเพื่อแสดงความคิดเห็นหัวข้อพิเศษ','replay_login','1','select','ความคิดเห็นในโมดูลหัวข้อพิเศษต้องเข้าสู่ระบบหรือไม่',18),(414,1,15,'urlmode','ตัวคั่นพารามิเตอร์ URL','urlmode_exp','/','input','อักขระคั่นพารามิเตอร์ URL',3),(415,1,15,'urlmode','นามสกุลไฟล์ URL','urlmode_suffix','.html','input','นามสกุลไฟล์ URL เว้นว่างได้',4),(416,1,15,'urlmode','ชื่อพารามิเตอร์โมดูลโหมดปกติ','urlmode_par_odnr1','module','input','ชื่อพารามิเตอร์โมดูลในโหมดปกติ',5),(417,1,15,'urlmode','ชื่อพารามิเตอร์ไฟล์โหมดปกติ','urlmode_par_odnr2','file','input','ชื่อพารามิเตอร์ไฟล์ในโหมดปกติ',6),(418,1,15,'urlmode','ชื่อพารามิเตอร์โหมดเข้ากันได้','urlmode_par_cptb','path','input','ชื่อพารามิเตอร์ในโหมดเข้ากันได้',7),(419,1,15,'urlmode','เส้นทาง URL','urlmode_route','','textarea','การจับคู่เส้นทางของพารามิเตอร์ url',8),(420,1,2,'article','วิธีบันทึกข้อมูล','data_save_type','2','radio','วิธีบันทึกข้อมูลบทความ',17),(421,1,2,'article','พาธบันทึกไฟล์','data_save_path','/files/txt/article/{#123}tid{#125}/{#123}aid{#125}.txt','input','พาธบันทึกข้อมูลบทความ',18),(422,1,1,'upload','สร้างรูปย่ออัตโนมัติ','upload_simg','1','select','เปิดใช้การสร้างภาพย่ออัตโนมัติหรือไม่',8),(423,1,1,'upload','ความกว้างที่ทริกเกอร์รูปย่อ','upload_simg_width','900','input','ความกว้างของภาพต้นฉบับที่กระตุ้นการสร้างภาพย่อ',9),(424,1,1,'upload','ความสูงที่ทริกเกอร์รูปย่อ','upload_simg_height','600','input','ความสูงของภาพต้นฉบับที่กระตุ้นการสร้างภาพย่อ',10),(425,1,1,'upload','ความกว้างรูปย่อ','upload_simgwidth','540','input','ความกว้างของภาพย่อที่สร้างขึ้น',11),(426,1,1,'upload','ความสูงรูปย่อ','upload_simgheight','370','input','ความสูงของภาพย่อที่สร้างขึ้น',12),(427,1,5,'replay','รูปแบบแสดงความคิดเห็น','replay_type','1','select','โหมดแสดงรายการความคิดเห็น',25),(428,1,5,'replay','จำนวนตอบกลับที่แสดงเริ่มต้น','replay_replay_number','5','input','จำนวนการตอบกลับที่แสดงต่อความคิดเห็นหนึ่งรายการ',26),(429,1,5,'replay','จำนวนตอบกลับต่อหน้า','replay_replay_page','10','input','จำนวนการตอบกลับที่แสดงต่อหน้า',27),(430,1,5,'replay','วิธีเรียงลำดับตอบกลับ','replay_replay_order','replay_time','select','วิธีเรียงลำดับการตอบกลับความคิดเห็น',28),(431,1,4,'user','ล้างโหวตแนะนำเมื่อเข้าสู่ระบบ','login_clear_ticket','0','select','การเข้าสู่ระบบล้างโหวตแนะนำหรือไม่',55),(432,1,11,'author','รูปแบบรายได้ผู้แต่ง','author_income_type','2','select','รูปแบบการชำระรายได้ของผู้แต่ง',34),(433,1,11,'author','รูปแบบคำขอการเงินสถิติการขาย','author_finance_apply_type','1','select','โหมดการยื่นเรื่องการเงินจากสถิติการขาย',35),(434,1,1,'system','บันทึกการส่ง SMS','tellog_open','1','select','บันทึกประวัติการส่ง SMS หรือไม่',13),(435,1,16,'dev','การแจ้งเตือนล่วงหน้า','warning_open','0','select','เปิดใช้การแจ้งเตือนล่วงหน้าหรือไม่',1),(436,1,16,'dev','ช่องทางแจ้งเตือน','warning_channel','','select','ช่องทางแจ้งเตือนล่วงหน้า',2),(437,1,16,'dev','ช่องทาง WebHook','warning_hook_channel','','select','ช่องทางแจ้งเตือน webhook',3),(438,1,16,'dev','ผู้รับช่องทางแจ้งเตือน','warning_receive','','input','ผู้รับการแจ้งเตือนล่วงหน้า',4),(439,1,16,'dev','ประเภทการแจ้งเตือน','warning_type','','check','ประเภทการแจ้งเตือนล่วงหน้า',5),(440,1,3,'novel','พาธเก็บไฟล์นิยาย','novel_mp3_save','/files/audio/novel/{#123}tid{#125}/{#123}nid{#125}/index.mp3','input','พาธเก็บไฟล์ mp3 หลักของหนังสือเสียงที่สร้างจากนิยาย',6),(441,1,3,'novel','พาธเก็บตอนนิยาย','chapter_mp3_save','/files/audio/novel/{#123}tid{#125}/{#123}nid{#125}/{#123}cid{#125}.mp3','input','พาธเก็บไฟล์ mp3 ของแต่ละตอนของหนังสือเสียงที่สร้างจากนิยาย',6);
 DROP TABLE IF EXISTS `wm_config_field`;
 CREATE TABLE `wm_config_field` (
   `field_id` int NOT NULL AUTO_INCREMENT,
-  `field_name` varchar(20) DEFAULT NULL COMMENT '字段名字',
-  `field_module` varchar(20) NOT NULL COMMENT '所属模块',
-  `field_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1为分类字段，2为内容字段',
-  `field_type_id` int NOT NULL COMMENT '所属分类的id',
-  `field_type_child` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否对子级分类有效',
-  `field_type_pids` varchar(50) NOT NULL DEFAULT '0' COMMENT '分类的级别关系',
-  `field_option` varchar(2000) NOT NULL COMMENT '选项',
+  `field_name` varchar(20) DEFAULT NULL COMMENT 'ชื่อฟิลด์',
+  `field_module` varchar(20) NOT NULL COMMENT 'โมดูลที่สังกัด',
+  `field_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=ฟิลด์หมวดหมู่ 2=ฟิลด์เนื้อหา',
+  `field_type_id` int NOT NULL COMMENT 'ID ของหมวดหมู่ที่สังกัด',
+  `field_type_child` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'มีผลกับหมวดหมู่ย่อยหรือไม่',
+  `field_type_pids` varchar(50) NOT NULL DEFAULT '0' COMMENT 'ความสัมพันธ์ระดับของหมวดหมู่',
+  `field_option` varchar(2000) NOT NULL COMMENT 'ตัวเลือก',
   PRIMARY KEY (`field_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='自建字段表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางฟิลด์ที่สร้างเอง';
 DROP TABLE IF EXISTS `wm_config_field_value`;
 CREATE TABLE `wm_config_field_value` (
   `value_id` int NOT NULL AUTO_INCREMENT,
-  `value_field_id` int NOT NULL COMMENT '选项的id',
-  `value_field_module` varchar(20) DEFAULT NULL COMMENT '值的模块',
-  `value_field_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '值的类型',
-  `value_content_id` int NOT NULL DEFAULT '0' COMMENT '内容的id，默认为0',
-  `field_option` varchar(2000) DEFAULT NULL COMMENT '选项的标题',
-  `value_option` varchar(2000) NOT NULL COMMENT '选项的值',
+  `value_field_id` int NOT NULL COMMENT 'id ของตัวเลือก',
+  `value_field_module` varchar(20) DEFAULT NULL COMMENT 'โมดูลของค่า',
+  `value_field_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'ประเภทของค่า',
+  `value_content_id` int NOT NULL DEFAULT '0' COMMENT 'id ของเนื้อหา ค่าเริ่มต้น 0',
+  `field_option` varchar(2000) DEFAULT NULL COMMENT 'หัวข้อของตัวเลือก',
+  `value_option` varchar(2000) NOT NULL COMMENT 'ค่าของตัวเลือก',
   PRIMARY KEY (`value_id`),
   KEY `value_field_id` (`value_field_id`),
   KEY `value_module_type_id` (`value_field_module`,`value_field_type`,`value_content_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='自建字段的值';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ค่าของฟิลด์ที่สร้างเอง';
 DROP TABLE IF EXISTS `wm_config_group`;
 CREATE TABLE `wm_config_group` (
   `group_id` int NOT NULL AUTO_INCREMENT,
-  `group_name` varchar(10) DEFAULT NULL COMMENT '分组的名',
-  `group_remark` varchar(50) DEFAULT NULL COMMENT '分组备注信息',
+  `group_name` varchar(10) DEFAULT NULL COMMENT 'ชื่อกลุ่ม',
+  `group_remark` varchar(50) DEFAULT NULL COMMENT 'ข้อมูลหมายเหตุกลุ่ม',
   PRIMARY KEY (`group_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COMMENT='配置分组';
-INSERT INTO `wm_config_group` VALUES (1,'web','系统配置组'),(2,'article','文章配置组'),(3,'novel','小说配置组'),(4,'user','用户配置组'),(5,'replay','评论配置组'),(6,'link','友链配置组'),(7,'picture','图集配置组'),(8,'app','应用配置组'),(9,'bbs','论坛配置组'),(10,'message','留言配置组'),(11,'author','原创配置组'),(12,'finance','财务配置组'),(13,'site','站群配置组'),(14,'zt','专题配置组'),(15,'route','路由配置组'),(16,'dev','开发配置组');
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COMMENT='การจัดกลุ่มการตั้งค่า';
+INSERT INTO `wm_config_group` VALUES (1,'web','กลุ่มการตั้งค่าระบบ'),(2,'article','กลุ่มการตั้งค่าบทความ'),(3,'novel','กลุ่มการตั้งค่านิยาย'),(4,'user','กลุ่มการตั้งค่าผู้ใช้'),(5,'replay','กลุ่มการตั้งค่าความคิดเห็น'),(6,'link','กลุ่มการตั้งค่าลิงก์เพื่อน'),(7,'picture','กลุ่มการตั้งค่าแกลเลอรี'),(8,'app','กลุ่มการตั้งค่าแอป'),(9,'bbs','กลุ่มการตั้งค่าฟอรัม'),(10,'message','กลุ่มการตั้งค่าข้อความ'),(11,'author','กลุ่มการตั้งค่าต้นฉบับ'),(12,'finance','กลุ่มการตั้งค่าการเงิน'),(13,'site','กลุ่มการตั้งค่าเครือข่ายเว็บไซต์'),(14,'zt','กลุ่มการตั้งค่าหัวข้อพิเศษ'),(15,'route','กลุ่มการตั้งค่าเส้นทาง'),(16,'dev','กลุ่มการตั้งค่าการพัฒนา');
 DROP TABLE IF EXISTS `wm_config_label`;
 CREATE TABLE `wm_config_label` (
   `label_id` int NOT NULL AUTO_INCREMENT,
-  `label_title` varchar(20) DEFAULT NULL COMMENT '标签标题',
-  `label_name` varchar(20) DEFAULT NULL COMMENT '标签名字',
-  `label_value` varchar(500) DEFAULT NULL COMMENT '标签的值',
+  `label_title` varchar(20) DEFAULT NULL COMMENT 'หัวข้อแท็ก',
+  `label_name` varchar(20) DEFAULT NULL COMMENT 'ชื่อแท็ก',
+  `label_value` varchar(500) DEFAULT NULL COMMENT 'ค่าของแท็ก',
   PRIMARY KEY (`label_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='自定义标签表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางแท็กกำหนดเอง';
 DROP TABLE IF EXISTS `wm_config_option`;
 CREATE TABLE `wm_config_option` (
   `option_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `config_id` int DEFAULT '0' COMMENT '配置的id',
-  `option_title` varchar(50) DEFAULT NULL COMMENT '选项标题',
-  `option_value` varchar(50) DEFAULT NULL COMMENT '选项的值',
-  `option_order` int DEFAULT '9' COMMENT '选项的排序',
+  `config_id` int DEFAULT '0' COMMENT 'id ของการตั้งค่า',
+  `option_title` varchar(80) DEFAULT NULL COMMENT 'หัวข้อตัวเลือก',
+  `option_value` varchar(50) DEFAULT NULL COMMENT 'ค่าของตัวเลือก',
+  `option_order` int DEFAULT '9' COMMENT 'การเรียงลำดับของตัวเลือก',
   PRIMARY KEY (`option_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=412 DEFAULT CHARSET=utf8mb3 COMMENT='系统配置选项';
-INSERT INTO `wm_config_option` VALUES (1,7,'开启网站','1',1),(2,7,'关闭网站','0',2),(3,13,'传统伪静态模式','2',2),(4,13,'传统动态模式','1',1),(5,57,'开启验证码','1',1),(6,57,'关闭验证码','0',2),(7,73,'中文-简体','zh_cn',1),(8,67,'关闭自动剪裁','0',1),(9,67,'开启自动剪裁','1',2),(10,60,'关闭水印','0',1),(11,60,'开启水印','1',2),(12,63,'图片水印','img',1),(13,63,'文字水印','text',2),(14,75,'禁止代理访问','0',1),(15,75,'允许代理访问','1',2),(16,77,'开启统计','1',1),(17,77,'关闭统计','0',2),(18,78,'开启记录','1',1),(19,78,'关闭记录','0',2),(35,80,'关闭检查','0',1),(34,80,'开启检查','1',0),(25,79,'开启检查','1',1),(26,79,'关闭检查','0',2),(36,81,'默认未审','0',2),(37,81,'默认审核','1',1),(38,82,'关闭投稿','0',1),(39,82,'开启投稿','1',2),(40,84,'开启搜索','1',0),(41,84,'关闭搜索','0',1),(42,86,'开启顶踩','1',1),(43,86,'关闭顶踩','0',2),(44,88,'关闭错误日志记录','0',2),(45,88,'开启错误日志记录','1',1),(46,89,'先删除到回收站','0',1),(47,89,'直接永久删除','1',2),(48,90,'关闭评论','0',2),(49,90,'开启评论','1',1),(50,91,'需要登录','1',2),(51,91,'无需登录','0',1),(52,92,'开启检查','1',2),(53,92,'关闭检查','0',1),(54,93,'开启检查','1',2),(55,93,'关闭检查','0',1),(56,94,'开启检查','1',2),(57,94,'关闭检查','0',1),(58,95,'开启检查','1',2),(59,95,'关闭检查','0',1),(60,101,'他站首发','2',2),(61,101,'原创首发','1',1),(62,102,'生成TXT','1',1),(63,102,'直接入库','2',2),(64,103,'关闭小说下载','0',2),(65,103,'开启小说下载','1',1),(66,99,'待审状态','0',2),(67,99,'通过状态','1',1),(68,100,'待审状态','0',2),(69,100,'通过状态','1',1),(70,108,'登录查看','1',2),(71,108,'无需登录','0',1),(73,109,'金币2','2',2),(72,109,'金币1','1',1),(74,111,'关闭顶踩','0',1),(75,111,'开启顶踩','1',2),(76,114,'关闭评分','0',1),(77,114,'开启评分','1',2),(78,115,'需要登录','1',1),(79,115,'无需登录','0',2),(80,116,'开启评论','1',2),(81,116,'关闭评论','0',1),(82,117,'无需登录','0',1),(83,117,'需要登录','1',2),(84,118,'关闭收藏','0',1),(85,118,'开启收藏','1',2),(86,119,'开启推荐','1',2),(87,119,'关闭推荐','0',1),(88,120,'开启订阅','1',2),(89,120,'关闭订阅','0',1),(251,311,'开启充值','1',2),(250,311,'关闭充值','0',1),(92,122,'关闭搜索','0',1),(93,122,'开启搜索','1',2),(94,124,'显示列表','0',1),(95,124,'跳转书页','1',2),(96,125,'关闭书架','0',1),(97,125,'开启书架','1',2),(98,126,'开启注册','1',1),(99,126,'关闭注册','0',2),(100,127,'关闭登陆','0',2),(101,127,'开启登陆','1',1),(102,128,'开启记录日志','1',2),(103,128,'关闭记录日志','0',1),(104,129,'默认头像','0',2),(105,129,'随机头像','1',1),(106,131,'正常状态','1',2),(107,131,'等待审核','0',1),(108,147,'开启检查','1',2),(109,147,'无需检查','0',1),(110,148,'开启检查','1',2),(111,148,'无需检查','0',1),(112,149,'开启签到','1',2),(113,149,'关闭签到','0',1),(114,150,'关闭签到奖励','0',2),(115,150,'开启签到奖励','1',1),(116,154,'开启评论','1',2),(117,154,'关闭评论','0',1),(118,155,'开启统一设置','1',2),(119,155,'关闭统一设置','0',1),(120,156,'评论无需登录','0',2),(121,156,'评论需要登录','1',1),(122,157,'审核状态','0',1),(123,157,'通过状态','1',2),(124,160,'关闭顶踩','0',2),(125,160,'开启顶踩','1',1),(126,170,'关闭热门评论','0',2),(127,170,'显示热门评论','1',1),(128,175,'开启检查','1',2),(129,175,'关闭检查','0',1),(130,176,'关闭申请','0',2),(131,176,'开启申请','1',1),(132,177,'直接跳出','0',1),(133,177,'进入详情页','1',2),(134,179,'关闭检查','0',2),(135,179,'开启检查','1',1),(136,180,'不限制记录次数','0',2),(137,180,'一天只记录同IP一次','1',1),(138,181,'开启点击日志记录','1',1),(139,181,'关闭点击日志记录','0',2),(140,182,'关闭IP统计','0',1),(141,182,'开启IP统计','1',2),(142,183,'关闭地址统计','0',1),(143,183,'开启地址统计','1',2),(144,184,'无需审核','1',1),(145,184,'需要审核','0',2),(146,185,'正常状态','1',1),(147,185,'审核状态','0',2),(148,187,'关闭检查','0',1),(149,187,'开启检查','1',2),(150,188,'开启检查','1',2),(151,188,'关闭检查','0',1),(152,189,'无需审核','1',1),(153,189,'需要审核','0',2),(154,190,'无需审核','1',2),(155,190,'需要审核','0',1),(156,191,'开启顶踩功能','1',1),(157,191,'关闭顶踩功能','0',2),(158,192,'关闭评分功能','0',2),(159,192,'开启评分功能','1',1),(160,193,'关闭评论功能','0',2),(161,193,'开启评论功能','1',1),(162,194,'需要登录','1',1),(163,194,'无需登录','0',2),(164,195,'开启搜索','1',1),(165,195,'关闭搜索','0',2),(166,199,'游客也可评论','0',2),(167,199,'登录才能评论','1',1),(168,200,'关闭检查','0',1),(169,200,'开启检查','1',2),(170,201,'开启检查','1',2),(171,201,'关闭检查','0',1),(172,204,'无需审核','1',1),(173,204,'需要审核','0',2),(174,205,'开启下载','1',2),(175,205,'关闭下载','0',1),(176,206,'开启顶踩功能','1',1),(177,206,'关闭顶踩功能','0',2),(178,208,'关闭评分功能','0',2),(179,208,'开启评分功能','1',1),(180,211,'关闭评论功能','0',2),(181,211,'开启评论功能','1',1),(182,212,'需要登录','1',1),(183,212,'无需登录','0',2),(184,213,'开启搜索','1',1),(185,213,'关闭搜索','0',2),(186,215,'关闭检查','0',1),(187,215,'开启检查','1',2),(188,216,'关闭检查','0',1),(189,216,'开启检查','1',2),(190,217,'作者可以查看','1',1),(191,217,'作者不能查看','0',2),(192,218,'作者可以修改','1',1),(193,218,'作者不能修改','0',2),(194,219,'作者可以删除','1',1),(195,219,'作者不能删除','0',2),(196,220,'无需审核','1',1),(197,220,'需要审核','0',2),(198,221,'无需审核','1',1),(199,221,'需要审核','0',2),(200,222,'无需审核','1',1),(201,222,'需要审核','0',2),(202,223,'开启发帖','1',1),(203,223,'关闭发帖','0',2),(227,268,'跳转用户中心','jump',2),(206,237,'开启搜索','1',1),(207,237,'关闭搜索','0',2),(208,243,'MYSQL','mysql',1),(209,244,'开启留言','1',1),(210,244,'关闭留言','0',2),(211,210,'无需登录','0',1),(212,210,'需要登录','1',2),(213,250,'关闭缓存','0',1),(214,250,'开启缓存','1',2),(215,251,'文件缓存','file',1),(216,251,'redis缓存','redis',2),(217,251,'memcached缓存','memcached',3),(218,261,'页面缓存','page',1),(219,261,'区块缓存','block',2),(220,262,'关闭sql缓存','0',1),(221,262,'开启sql缓存','1',2),(222,265,'关闭队列缓存','0',1),(223,265,'开启队列缓存','1',2),(226,268,'刷新当前页','ref',1),(225,389,'文件缓存','file',1),(204,224,'开启回帖','1',1),(205,224,'关闭回帖','0',2),(228,269,'手动审核','0',1),(229,269,'自动审核','1',2),(230,270,'关闭自助申请','0',1),(231,270,'开启自助申请','1',2),(232,274,'自动审核','1',2),(233,274,'人工审核','0',1),(234,275,'人工审核','0',1),(235,275,'自动审核','1',2),(236,278,'人工审核','0',1),(237,278,'自动审核','1',2),(238,285,'人工审核','0',1),(239,285,'自动审核','1',2),(240,286,'人工审核','0',1),(241,286,'自动审核','1',2),(242,293,'人工审核','0',1),(243,293,'自动审核','1',2),(244,294,'人工审核','0',1),(245,294,'自动审核','1',2),(246,301,'不使用HTML','0',1),(247,301,'使用HTML','1',2),(248,302,'开启自动上传','1',1),(249,302,'关闭自动上传','0',2),(252,312,'关闭兑换','0',1),(253,312,'开启兑换','1',2),(254,313,'关闭兑换','0',1),(255,313,'开启兑换','1',2),(256,314,'关闭兑换','0',1),(257,314,'开启兑换','1',2),(258,315,'关闭兑换','0',1),(259,315,'开启兑换','1',2),(260,316,'关闭提现','0',1),(261,316,'开启提现','1',2),(262,121,'关闭打赏金币','0',1),(263,121,'开启打赏金币','1',2),(264,334,'关闭赠送礼物','0',1),(265,334,'开启赠送礼物','1',2),(266,335,'无需登陆','0',1),(267,335,'需要登录','1',2),(268,336,'页面标签提示','1',1),(269,336,'通用错误页面提示','2',2),(270,339,'关闭活动','0',1),(271,339,'开启活动','1',2),(272,344,'本地保存','0',1),(273,344,'阿里云OSS','oss',2),(274,344,'腾讯云COS','cos',3),(275,344,'七牛云','qiniu',4),(276,344,'新浪云','scs',5),(277,346,'关闭评分','0',1),(278,346,'开启评分','1',2),(279,347,'无需登录','0',1),(280,347,'需要登录','1',2),(281,348,'无需登录','0',1),(282,348,'需要登录','1',2),(283,350,'无需登陆','0',1),(284,350,'需要登录','1',2),(285,351,'自动识别跳转','1',1),(286,351,'无需识别跳转','0',2),(287,352,'开启验证码','1',1),(288,352,'关闭验证码','0',2),(289,353,'开启验证码','1',1),(290,353,'关闭验证码','0',2),(291,354,'开启验证码','1',1),(292,354,'关闭验证码','0',2),(293,355,'开启验证码','1',1),(294,355,'关闭验证码','0',2),(295,356,'开启验证码','1',1),(296,356,'关闭验证码','0',2),(297,357,'开启验证码','1',1),(298,357,'关闭验证码','0',2),(299,358,'开启验证码','1',1),(300,358,'关闭验证码','0',2),(301,360,'普通验证码','1',1),(302,360,'计算验证码','2',2),(303,360,'问答验证码','3',3),(304,361,'普通验证码','1',1),(305,361,'计算验证码','2',2),(306,361,'问答验证码','3',3),(307,362,'普通验证码','1',1),(308,362,'计算验证码','2',2),(309,362,'问答验证码','3',3),(310,363,'普通验证码','1',1),(311,363,'计算验证码','2',2),(312,363,'问答验证码','3',3),(313,364,'普通验证码','1',1),(314,364,'计算验证码','2',2),(315,364,'问答验证码','3',3),(316,365,'普通验证码','1',1),(317,365,'计算验证码','2',2),(318,365,'问答验证码','3',3),(319,366,'普通验证码','1',1),(320,366,'计算验证码','2',2),(321,366,'问答验证码','3',3),(322,367,'普通验证码','1',1),(323,367,'计算验证码','2',2),(324,367,'问答验证码','3',3),(325,379,'不创建HTML','0',1),(326,379,'创建HTML','1',2),(327,380,'不创建HTML','0',1),(328,380,'创建HTML','1',2),(329,381,'不创建HTML','0',1),(330,381,'创建HTML','1',2),(331,382,'主/子域名单享','0',1),(332,382,'主/子域名共享','1',2),(333,383,'关闭站群模式','0',1),(334,383,'开启站群模式','1',2),(335,28,'关闭发送日志','0',1),(336,386,'只对比章节名','1',1),(337,386,'对比内容和名字','2',2),(340,28,'开启发送日志','1',2),(341,389,'redis缓存','redis',2),(342,389,'memcached缓存','memcached',3),(343,390,'文件缓存','file',1),(344,390,'redis缓存','redis',2),(345,390,'memcached缓存','memcached',3),(346,393,'关闭阅读记录','0',1),(347,393,'开启阅读记录','1',2),(348,394,'强制绑定账号','1',1),(349,394,'自动创建账号','0',2),(350,395,'关闭域名认证','0',1),(351,395,'开启域名认证','1',2),(352,396,'HTTP','http',1),(353,396,'HTTPS','https',2),(354,398,'关闭上传','0',1),(355,398,'开启上传','1',2),(356,403,'直接跳出','1',1),(357,403,'进入详情页','2',2),(358,404,'开启检查','1',1),(359,404,'关闭检查','0',2),(360,405,'开启检查','1',1),(361,405,'关闭检查','0',2),(362,406,'开启顶踩','1',1),(363,406,'关闭顶踩','0',2),(364,407,'需要登录','1',1),(365,407,'无需登录','0',2),(366,409,'开启评分','1',1),(367,409,'关闭评分','0',2),(368,410,'需要登录','1',1),(369,410,'无需登录','0',2),(370,412,'开启评论','1',1),(371,412,'关闭评论','0',2),(372,413,'需要登录','1',1),(373,413,'无需登录','0',2),(374,13,'普通模式','3',3),(375,13,'兼容模式','4',4),(376,13,'PATHINFO模式','5',5),(377,13,'REWRITE模式','6',6),(378,420,'保存到数据库','1',1),(379,420,'保存到文件','2',2),(380,422,'关闭自动生成','0',1),(381,422,'开启自动生成','1',2),(382,427,'列表模式','1',1),(383,427,'题主模式','2',2),(384,430,'最新','replay_time',1),(385,430,'热门','replay_ding',2),(386,430,'顺序','replay_id',3),(387,431,'不清空','0',1),(388,431,'只清空推荐票','1',2),(389,431,'只清空月票','2',3),(390,431,'清空推荐票和月票','3',4),(391,432,'收入直接转入作者账户','1',1),(392,432,'人工结算模式','2',2),(393,433,'财务申请处理后资金转入作者账户','1',1),(394,433,'无资金流转只发送消息提示','2',2),(395,361,'短信验证码','5',5),(396,361,'邮件验证码','4',4),(399,434,'关闭发送日志','0',1),(400,434,'开启发送日志','1',2),(401,435,'关闭预警通知','0',1),(402,435,'开启预警通知','1',2),(403,436,'请选择','',1),(404,436,'WebHook','webhook',2),(405,436,'邮件地址','email',3),(406,436,'手机短信','tel',4),(407,437,'请选择','',1),(408,437,'钉钉','dingding_hook',2),(409,437,'企业微信','weixinwork_hook',3),(410,439,'后台登录','warning_admin_login',1),(411,439,'代码报错','warning_code_eroor',2);
+) ENGINE=MyISAM AUTO_INCREMENT=412 DEFAULT CHARSET=utf8mb3 COMMENT='ตัวเลือกการตั้งค่าระบบ';
+INSERT INTO `wm_config_option` VALUES (1,7,'เปิดเว็บไซต์','1',1),(2,7,'ปิดเว็บไซต์','0',2),(3,13,'โหมดสแตติกเทียมแบบเดิม','2',2),(4,13,'โหมดไดนามิกแบบเดิม','1',1),(5,57,'เปิดรหัสยืนยัน','1',1),(6,57,'ปิดรหัสยืนยัน','0',2),(7,73,'จีน-ตัวย่อ','zh_cn',1),(8,67,'ปิดครอปรูปอัตโนมัติ','0',1),(9,67,'เปิดครอปรูปอัตโนมัติ','1',2),(10,60,'ปิดลายน้ำ','0',1),(11,60,'เปิดลายน้ำ','1',2),(12,63,'ลายน้ำรูปภาพ','img',1),(13,63,'ลายน้ำข้อความ','text',2),(14,75,'ห้ามเข้าผ่านพร็อกซี','0',1),(15,75,'อนุญาตเข้าผ่านพร็อกซี','1',2),(16,77,'เปิดสถิติ','1',1),(17,77,'ปิดสถิติ','0',2),(18,78,'เปิดการบันทึก','1',1),(19,78,'ปิดการบันทึก','0',2),(35,80,'ปิดการตรวจสอบ','0',1),(34,80,'เปิดการตรวจสอบ','1',0),(25,79,'เปิดการตรวจสอบ','1',1),(26,79,'ปิดการตรวจสอบ','0',2),(36,81,'ค่าเริ่มต้นยังไม่ตรวจสอบ','0',2),(37,81,'ตรวจสอบตามค่าเริ่มต้น','1',1),(38,82,'ปิดการส่งต้นฉบับ','0',1),(39,82,'เปิดการส่งบทความ','1',2),(40,84,'เปิดการค้นหา','1',0),(41,84,'ปิดการค้นหา','0',1),(42,86,'เปิดโหวตขึ้นลง','1',1),(43,86,'ปิดโหวตขึ้นลง','0',2),(44,88,'ปิดบันทึกข้อผิดพลาด','0',2),(45,88,'เปิดบันทึกข้อผิดพลาด','1',1),(46,89,'ย้ายไปถังขยะก่อน','0',1),(47,89,'ลบถาวรทันที','1',2),(48,90,'ปิดความคิดเห็น','0',2),(49,90,'เปิดความคิดเห็น','1',1),(50,91,'ต้องเข้าสู่ระบบ','1',2),(51,91,'ไม่ต้องเข้าสู่ระบบ','0',1),(52,92,'เปิดการตรวจสอบ','1',2),(53,92,'ปิดการตรวจสอบ','0',1),(54,93,'เปิดการตรวจสอบ','1',2),(55,93,'ปิดการตรวจสอบ','0',1),(56,94,'เปิดการตรวจสอบ','1',2),(57,94,'ปิดการตรวจสอบ','0',1),(58,95,'เปิดการตรวจสอบ','1',2),(59,95,'ปิดการตรวจสอบ','0',1),(60,101,'เว็บอื่นลงก่อน','2',2),(61,101,'ต้นฉบับลงก่อน','1',1),(62,102,'สร้าง TXT','1',1),(63,102,'บันทึกลงฐานข้อมูลโดยตรง','2',2),(64,103,'ปิดดาวน์โหลดนิยาย','0',2),(65,103,'เปิดดาวน์โหลดนิยาย','1',1),(66,99,'สถานะรอตรวจสอบ','0',2),(67,99,'สถานะผ่าน','1',1),(68,100,'สถานะรอตรวจสอบ','0',2),(69,100,'สถานะผ่าน','1',1),(70,108,'เข้าสู่ระบบเพื่อดู','1',2),(71,108,'ไม่ต้องเข้าสู่ระบบ','0',1),(73,109,'เหรียญ 2','2',2),(72,109,'เหรียญ 1','1',1),(74,111,'ปิดโหวตขึ้นลง','0',1),(75,111,'เปิดโหวตขึ้นลง','1',2),(76,114,'ปิดการให้คะแนน','0',1),(77,114,'เปิดให้คะแนน','1',2),(78,115,'ต้องเข้าสู่ระบบ','1',1),(79,115,'ไม่ต้องเข้าสู่ระบบ','0',2),(80,116,'เปิดความคิดเห็น','1',2),(81,116,'ปิดความคิดเห็น','0',1),(82,117,'ไม่ต้องเข้าสู่ระบบ','0',1),(83,117,'ต้องเข้าสู่ระบบ','1',2),(84,118,'ปิดรายการโปรด','0',1),(85,118,'เปิดรายการโปรด','1',2),(86,119,'เปิดการแนะนำ','1',2),(87,119,'ปิดการแนะนำ','0',1),(88,120,'เปิดการติดตาม','1',2),(89,120,'ปิดการสมัครรับ','0',1),(251,311,'เปิดเติมเงิน','1',2),(250,311,'ปิดเติมเงิน','0',1),(92,122,'ปิดการค้นหา','0',1),(93,122,'เปิดการค้นหา','1',2),(94,124,'แสดงรายการ','0',1),(95,124,'ไปยังหน้าหนังสือ','1',2),(96,125,'ปิดชั้นหนังสือ','0',1),(97,125,'เปิดชั้นหนังสือ','1',2),(98,126,'เปิดสมัครสมาชิก','1',1),(99,126,'ปิดการสมัครสมาชิก','0',2),(100,127,'ปิดเข้าสู่ระบบ','0',2),(101,127,'เปิดเข้าสู่ระบบ','1',1),(102,128,'เปิดบันทึกล็อก','1',2),(103,128,'ปิดบันทึกเหตุการณ์','0',1),(104,129,'รูปโปรไฟล์เริ่มต้น','0',2),(105,129,'รูปโปรไฟล์สุ่ม','1',1),(106,131,'สถานะปกติ','1',2),(107,131,'รอตรวจสอบ','0',1),(108,147,'เปิดการตรวจสอบ','1',2),(109,147,'ไม่ต้องตรวจ','0',1),(110,148,'เปิดการตรวจสอบ','1',2),(111,148,'ไม่ต้องตรวจ','0',1),(112,149,'เปิดเช็กอิน','1',2),(113,149,'ปิดเช็กอิน','0',1),(114,150,'ปิดรางวัลเช็กอิน','0',2),(115,150,'เปิดรางวัลเช็กอิน','1',1),(116,154,'เปิดความคิดเห็น','1',2),(117,154,'ปิดความคิดเห็น','0',1),(118,155,'เปิดตั้งค่ารวม','1',2),(119,155,'ปิดการตั้งค่ารวม','0',1),(120,156,'แสดงความคิดเห็นโดยไม่ต้องเข้าสู่ระบบ','0',2),(121,156,'ต้องเข้าสู่ระบบจึงแสดงความคิดเห็น','1',1),(122,157,'สถานะตรวจสอบ','0',1),(123,157,'สถานะผ่าน','1',2),(124,160,'ปิดโหวตขึ้นลง','0',2),(125,160,'เปิดโหวตขึ้นลง','1',1),(126,170,'ปิดความคิดเห็นยอดนิยม','0',2),(127,170,'แสดงความคิดเห็นยอดนิยม','1',1),(128,175,'เปิดการตรวจสอบ','1',2),(129,175,'ปิดการตรวจสอบ','0',1),(130,176,'ปิดการยื่นคำขอ','0',2),(131,176,'เปิดการยื่นคำขอ','1',1),(132,177,'เด้งออกทันที','0',1),(133,177,'ไปยังหน้ารายละเอียด','1',2),(134,179,'ปิดการตรวจสอบ','0',2),(135,179,'เปิดการตรวจสอบ','1',1),(136,180,'ไม่จำกัดจำนวนครั้ง','0',2),(137,180,'บันทึก IP เดียววันละครั้ง','1',1),(138,181,'เปิดบันทึกการคลิก','1',1),(139,181,'ปิดบันทึกการคลิก','0',2),(140,182,'ปิดสถิติ IP','0',1),(141,182,'เปิดสถิติ IP','1',2),(142,183,'ปิดสถิติที่อยู่','0',1),(143,183,'เปิดสถิติที่อยู่','1',2),(144,184,'ไม่ต้องตรวจสอบ','1',1),(145,184,'ต้องตรวจสอบ','0',2),(146,185,'สถานะปกติ','1',1),(147,185,'สถานะตรวจสอบ','0',2),(148,187,'ปิดการตรวจสอบ','0',1),(149,187,'เปิดการตรวจสอบ','1',2),(150,188,'เปิดการตรวจสอบ','1',2),(151,188,'ปิดการตรวจสอบ','0',1),(152,189,'ไม่ต้องตรวจสอบ','1',1),(153,189,'ต้องตรวจสอบ','0',2),(154,190,'ไม่ต้องตรวจสอบ','1',2),(155,190,'ต้องตรวจสอบ','0',1),(156,191,'เปิดฟังก์ชันโหวตขึ้นลง','1',1),(157,191,'ปิดระบบโหวตขึ้นลง','0',2),(158,192,'ปิดระบบให้คะแนน','0',2),(159,192,'เปิดฟังก์ชันให้คะแนน','1',1),(160,193,'ปิดระบบความคิดเห็น','0',2),(161,193,'เปิดฟังก์ชันความคิดเห็น','1',1),(162,194,'ต้องเข้าสู่ระบบ','1',1),(163,194,'ไม่ต้องเข้าสู่ระบบ','0',2),(164,195,'เปิดการค้นหา','1',1),(165,195,'ปิดการค้นหา','0',2),(166,199,'ผู้เยี่ยมชมแสดงความคิดเห็นได้','0',2),(167,199,'ต้องเข้าสู่ระบบก่อนแสดงความคิดเห็น','1',1),(168,200,'ปิดการตรวจสอบ','0',1),(169,200,'เปิดการตรวจสอบ','1',2),(170,201,'เปิดการตรวจสอบ','1',2),(171,201,'ปิดการตรวจสอบ','0',1),(172,204,'ไม่ต้องตรวจสอบ','1',1),(173,204,'ต้องตรวจสอบ','0',2),(174,205,'เปิดดาวน์โหลด','1',2),(175,205,'ปิดดาวน์โหลด','0',1),(176,206,'เปิดฟังก์ชันโหวตขึ้นลง','1',1),(177,206,'ปิดระบบโหวตขึ้นลง','0',2),(178,208,'ปิดระบบให้คะแนน','0',2),(179,208,'เปิดฟังก์ชันให้คะแนน','1',1),(180,211,'ปิดระบบความคิดเห็น','0',2),(181,211,'เปิดฟังก์ชันความคิดเห็น','1',1),(182,212,'ต้องเข้าสู่ระบบ','1',1),(183,212,'ไม่ต้องเข้าสู่ระบบ','0',2),(184,213,'เปิดการค้นหา','1',1),(185,213,'ปิดการค้นหา','0',2),(186,215,'ปิดการตรวจสอบ','0',1),(187,215,'เปิดการตรวจสอบ','1',2),(188,216,'ปิดการตรวจสอบ','0',1),(189,216,'เปิดการตรวจสอบ','1',2),(190,217,'ผู้แต่งดูได้','1',1),(191,217,'ผู้แต่งดูไม่ได้','0',2),(192,218,'ผู้แต่งแก้ไขได้','1',1),(193,218,'ผู้แต่งแก้ไขไม่ได้','0',2),(194,219,'ผู้แต่งลบได้','1',1),(195,219,'ผู้แต่งลบไม่ได้','0',2),(196,220,'ไม่ต้องตรวจสอบ','1',1),(197,220,'ต้องตรวจสอบ','0',2),(198,221,'ไม่ต้องตรวจสอบ','1',1),(199,221,'ต้องตรวจสอบ','0',2),(200,222,'ไม่ต้องตรวจสอบ','1',1),(201,222,'ต้องตรวจสอบ','0',2),(202,223,'เปิดการตั้งกระทู้','1',1),(203,223,'ปิดการตั้งกระทู้','0',2),(227,268,'ไปยังศูนย์ผู้ใช้','jump',2),(206,237,'เปิดการค้นหา','1',1),(207,237,'ปิดการค้นหา','0',2),(208,243,'MYSQL','mysql',1),(209,244,'เปิดข้อความ','1',1),(210,244,'ปิดข้อความ','0',2),(211,210,'ไม่ต้องเข้าสู่ระบบ','0',1),(212,210,'ต้องเข้าสู่ระบบ','1',2),(213,250,'ปิดแคช','0',1),(214,250,'เปิดแคช','1',2),(215,251,'แคชไฟล์','file',1),(216,251,'แคช redis','redis',2),(217,251,'แคช memcached','memcached',3),(218,261,'แคชหน้า','page',1),(219,261,'แคชบล็อก','block',2),(220,262,'ปิดแคช sql','0',1),(221,262,'เปิดแคช sql','1',2),(222,265,'ปิดแคชคิว','0',1),(223,265,'เปิดแคชคิว','1',2),(226,268,'รีเฟรชหน้านี้','ref',1),(225,389,'แคชไฟล์','file',1),(204,224,'เปิดการตอบกลับ','1',1),(205,224,'ปิดการตอบกลับ','0',2),(228,269,'ตรวจสอบด้วยตนเอง','0',1),(229,269,'ตรวจสอบอัตโนมัติ','1',2),(230,270,'ปิดการขอเอง','0',1),(231,270,'เปิดยื่นคำขอด้วยตนเอง','1',2),(232,274,'ตรวจสอบอัตโนมัติ','1',2),(233,274,'ตรวจสอบโดยคน','0',1),(234,275,'ตรวจสอบโดยคน','0',1),(235,275,'ตรวจสอบอัตโนมัติ','1',2),(236,278,'ตรวจสอบโดยคน','0',1),(237,278,'ตรวจสอบอัตโนมัติ','1',2),(238,285,'ตรวจสอบโดยคน','0',1),(239,285,'ตรวจสอบอัตโนมัติ','1',2),(240,286,'ตรวจสอบโดยคน','0',1),(241,286,'ตรวจสอบอัตโนมัติ','1',2),(242,293,'ตรวจสอบโดยคน','0',1),(243,293,'ตรวจสอบอัตโนมัติ','1',2),(244,294,'ตรวจสอบโดยคน','0',1),(245,294,'ตรวจสอบอัตโนมัติ','1',2),(246,301,'ไม่ใช้ HTML','0',1),(247,301,'ใช้ HTML','1',2),(248,302,'เปิดอัปโหลดอัตโนมัติ','1',1),(249,302,'ปิดอัปโหลดอัตโนมัติ','0',2),(252,312,'ปิดการแลก','0',1),(253,312,'เปิดการแลก','1',2),(254,313,'ปิดการแลก','0',1),(255,313,'เปิดการแลก','1',2),(256,314,'ปิดการแลก','0',1),(257,314,'เปิดการแลก','1',2),(258,315,'ปิดการแลก','0',1),(259,315,'เปิดการแลก','1',2),(260,316,'ปิดการถอนเงิน','0',1),(261,316,'เปิดถอนเงิน','1',2),(262,121,'ปิดการให้เหรียญ','0',1),(263,121,'เปิดรางวัลด้วยเหรียญ','1',2),(264,334,'ปิดการให้ของขวัญ','0',1),(265,334,'เปิดส่งของขวัญ','1',2),(266,335,'ไม่ต้องเข้าสู่ระบบ','0',1),(267,335,'ต้องเข้าสู่ระบบ','1',2),(268,336,'ข้อความแท็กหน้า','1',1),(269,336,'ข้อความหน้าแสดงข้อผิดพลาดทั่วไป','2',2),(270,339,'ปิดกิจกรรม','0',1),(271,339,'เปิดกิจกรรม','1',2),(272,344,'บันทึกในเครื่อง','0',1),(273,344,'Alibaba Cloud OSS','oss',2),(274,344,'Tencent Cloud COS','cos',3),(275,344,'คลาวด์ Qiniu','qiniu',4),(276,344,'Sina Cloud','scs',5),(277,346,'ปิดการให้คะแนน','0',1),(278,346,'เปิดให้คะแนน','1',2),(279,347,'ไม่ต้องเข้าสู่ระบบ','0',1),(280,347,'ต้องเข้าสู่ระบบ','1',2),(281,348,'ไม่ต้องเข้าสู่ระบบ','0',1),(282,348,'ต้องเข้าสู่ระบบ','1',2),(283,350,'ไม่ต้องเข้าสู่ระบบ','0',1),(284,350,'ต้องเข้าสู่ระบบ','1',2),(285,351,'ตรวจจับการเปลี่ยนเส้นทางอัตโนมัติ','1',1),(286,351,'ไม่ต้องตรวจจับการเปลี่ยนเส้นทาง','0',2),(287,352,'เปิดรหัสยืนยัน','1',1),(288,352,'ปิดรหัสยืนยัน','0',2),(289,353,'เปิดรหัสยืนยัน','1',1),(290,353,'ปิดรหัสยืนยัน','0',2),(291,354,'เปิดรหัสยืนยัน','1',1),(292,354,'ปิดรหัสยืนยัน','0',2),(293,355,'เปิดรหัสยืนยัน','1',1),(294,355,'ปิดรหัสยืนยัน','0',2),(295,356,'เปิดรหัสยืนยัน','1',1),(296,356,'ปิดรหัสยืนยัน','0',2),(297,357,'เปิดรหัสยืนยัน','1',1),(298,357,'ปิดรหัสยืนยัน','0',2),(299,358,'เปิดรหัสยืนยัน','1',1),(300,358,'ปิดรหัสยืนยัน','0',2),(301,360,'รหัสยืนยันทั่วไป','1',1),(302,360,'คำนวณรหัสยืนยัน','2',2),(303,360,'รหัสยืนยันแบบถามตอบ','3',3),(304,361,'รหัสยืนยันทั่วไป','1',1),(305,361,'คำนวณรหัสยืนยัน','2',2),(306,361,'รหัสยืนยันแบบถามตอบ','3',3),(307,362,'รหัสยืนยันทั่วไป','1',1),(308,362,'คำนวณรหัสยืนยัน','2',2),(309,362,'รหัสยืนยันแบบถามตอบ','3',3),(310,363,'รหัสยืนยันทั่วไป','1',1),(311,363,'คำนวณรหัสยืนยัน','2',2),(312,363,'รหัสยืนยันแบบถามตอบ','3',3),(313,364,'รหัสยืนยันทั่วไป','1',1),(314,364,'คำนวณรหัสยืนยัน','2',2),(315,364,'รหัสยืนยันแบบถามตอบ','3',3),(316,365,'รหัสยืนยันทั่วไป','1',1),(317,365,'คำนวณรหัสยืนยัน','2',2),(318,365,'รหัสยืนยันแบบถามตอบ','3',3),(319,366,'รหัสยืนยันทั่วไป','1',1),(320,366,'คำนวณรหัสยืนยัน','2',2),(321,366,'รหัสยืนยันแบบถามตอบ','3',3),(322,367,'รหัสยืนยันทั่วไป','1',1),(323,367,'คำนวณรหัสยืนยัน','2',2),(324,367,'รหัสยืนยันแบบถามตอบ','3',3),(325,379,'ไม่สร้าง HTML','0',1),(326,379,'สร้าง HTML','1',2),(327,380,'ไม่สร้าง HTML','0',1),(328,380,'สร้าง HTML','1',2),(329,381,'ไม่สร้าง HTML','0',1),(330,381,'สร้าง HTML','1',2),(331,382,'เฉพาะโดเมนหลัก/ย่อย','0',1),(332,382,'แชร์โดเมนหลัก/ย่อย','1',2),(333,383,'ปิดโหมดหลายเว็บไซต์','0',1),(334,383,'เปิดโหมดกลุ่มเว็บไซต์','1',2),(335,28,'ปิดบันทึกการส่ง','0',1),(336,386,'เทียบเฉพาะชื่อตอน','1',1),(337,386,'เทียบเนื้อหาและชื่อ','2',2),(340,28,'เปิดบันทึกการส่ง','1',2),(341,389,'แคช redis','redis',2),(342,389,'แคช memcached','memcached',3),(343,390,'แคชไฟล์','file',1),(344,390,'แคช redis','redis',2),(345,390,'แคช memcached','memcached',3),(346,393,'ปิดประวัติการอ่าน','0',1),(347,393,'เปิดประวัติการอ่าน','1',2),(348,394,'บังคับผูกบัญชี','1',1),(349,394,'สร้างบัญชีอัตโนมัติ','0',2),(350,395,'ปิดยืนยันโดเมน','0',1),(351,395,'เปิดยืนยันโดเมน','1',2),(352,396,'HTTP','http',1),(353,396,'HTTPS','https',2),(354,398,'ปิดอัปโหลด','0',1),(355,398,'เปิดอัปโหลด','1',2),(356,403,'เด้งออกทันที','1',1),(357,403,'ไปยังหน้ารายละเอียด','2',2),(358,404,'เปิดการตรวจสอบ','1',1),(359,404,'ปิดการตรวจสอบ','0',2),(360,405,'เปิดการตรวจสอบ','1',1),(361,405,'ปิดการตรวจสอบ','0',2),(362,406,'เปิดโหวตขึ้นลง','1',1),(363,406,'ปิดโหวตขึ้นลง','0',2),(364,407,'ต้องเข้าสู่ระบบ','1',1),(365,407,'ไม่ต้องเข้าสู่ระบบ','0',2),(366,409,'เปิดให้คะแนน','1',1),(367,409,'ปิดการให้คะแนน','0',2),(368,410,'ต้องเข้าสู่ระบบ','1',1),(369,410,'ไม่ต้องเข้าสู่ระบบ','0',2),(370,412,'เปิดความคิดเห็น','1',1),(371,412,'ปิดความคิดเห็น','0',2),(372,413,'ต้องเข้าสู่ระบบ','1',1),(373,413,'ไม่ต้องเข้าสู่ระบบ','0',2),(374,13,'โหมดปกติ','3',3),(375,13,'โหมดเข้ากันได้','4',4),(376,13,'โหมด PATHINFO','5',5),(377,13,'โหมด REWRITE','6',6),(378,420,'บันทึกลงฐานข้อมูล','1',1),(379,420,'บันทึกลงไฟล์','2',2),(380,422,'ปิดสร้างอัตโนมัติ','0',1),(381,422,'เปิดสร้างอัตโนมัติ','1',2),(382,427,'โหมดรายการ','1',1),(383,427,'โหมดผู้ตั้งกระทู้','2',2),(384,430,'ล่าสุด','replay_time',1),(385,430,'ยอดนิยม','replay_ding',2),(386,430,'ลำดับ','replay_id',3),(387,431,'ไม่ล้างข้อมูล','0',1),(388,431,'ล้างเฉพาะโหวตแนะนำ','1',2),(389,431,'ล้างเฉพาะโหวตรายเดือน','2',3),(390,431,'ล้างโหวตแนะนำและโหวตรายเดือน','3',4),(391,432,'รายได้โอนเข้าบัญชีผู้แต่งโดยตรง','1',1),(392,432,'โหมดชำระโดยคน','2',2),(393,433,'หลังอนุมัติคำขอ เงินจะโอนเข้าบัญชีผู้แต่ง','1',1),(394,433,'ไม่โอนเงิน แจ้งเตือนเท่านั้น','2',2),(395,361,'รหัสยืนยัน SMS','5',5),(396,361,'รหัสยืนยันทางอีเมล','4',4),(399,434,'ปิดบันทึกการส่ง','0',1),(400,434,'เปิดบันทึกการส่ง','1',2),(401,435,'ปิดแจ้งเตือนล่วงหน้า','0',1),(402,435,'เปิดแจ้งเตือนล่วงหน้า','1',2),(403,436,'กรุณาเลือก','',1),(404,436,'WebHook','webhook',2),(405,436,'ที่อยู่อีเมล','email',3),(406,436,'SMS มือถือ','tel',4),(407,437,'กรุณาเลือก','',1),(408,437,'DingTalk','dingding_hook',2),(409,437,'WeCom','weixinwork_hook',3),(410,439,'เข้าสู่ระบบหลังบ้าน','warning_admin_login',1),(411,439,'โค้ดผิดพลาด','warning_code_eroor',2);
 DROP TABLE IF EXISTS `wm_diy_diy`;
 CREATE TABLE `wm_diy_diy` (
   `diy_id` int NOT NULL AUTO_INCREMENT,
-  `diy_status` tinyint(1) DEFAULT '1' COMMENT '自定义页面的状态',
-  `diy_read` int DEFAULT '0' COMMENT '阅读量',
-  `diy_name` varchar(20) NOT NULL COMMENT '自定义页面名字',
-  `diy_pinyin` varchar(20) NOT NULL COMMENT '拼音',
-  `diy_title` varchar(100) DEFAULT NULL COMMENT '标题',
-  `diy_key` varchar(120) DEFAULT NULL COMMENT '关键字',
-  `diy_desc` varchar(150) DEFAULT NULL COMMENT '描述',
-  `diy_content` varchar(2000) NOT NULL COMMENT '内容',
-  `diy_time` int NOT NULL DEFAULT '0' COMMENT '添加时间',
-  `diy_ctempid` int DEFAULT '0' COMMENT '专题的模版id',
+  `diy_status` tinyint(1) DEFAULT '1' COMMENT 'สถานะของหน้าเพจที่กำหนดเอง',
+  `diy_read` int DEFAULT '0' COMMENT 'ยอดอ่าน',
+  `diy_name` varchar(20) NOT NULL COMMENT 'ชื่อหน้าเพจที่กำหนดเอง',
+  `diy_pinyin` varchar(20) NOT NULL COMMENT 'พินอิน',
+  `diy_title` varchar(100) DEFAULT NULL COMMENT 'หัวข้อ',
+  `diy_key` varchar(120) DEFAULT NULL COMMENT 'คำค้นหา',
+  `diy_desc` varchar(150) DEFAULT NULL COMMENT 'คำอธิบาย',
+  `diy_content` varchar(2000) NOT NULL COMMENT 'เนื้อหา',
+  `diy_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่เพิ่ม',
+  `diy_ctempid` int DEFAULT '0' COMMENT 'id เทมเพลตของหัวข้อพิเศษ',
   PRIMARY KEY (`diy_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='自定义页面表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางหน้ากำหนดเอง';
 DROP TABLE IF EXISTS `wm_editor`;
 CREATE TABLE `wm_editor` (
   `editor_id` int NOT NULL AUTO_INCREMENT,
-  `editor_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否启用:1=是,0=否',
-  `editor_uid` int NOT NULL COMMENT '用户id',
-  `editor_name` varchar(20) NOT NULL COMMENT '编辑名字',
-  `editor_realname` varchar(20) NOT NULL COMMENT '编辑真实姓名',
-  `editor_desc` varchar(200) NOT NULL COMMENT '编辑简介',
-  `editor_qq` varchar(20) DEFAULT NULL COMMENT '编辑qq',
-  `editor_weixin` varchar(50) DEFAULT NULL COMMENT '编辑微信号',
-  `editor_tel` varchar(11) DEFAULT NULL COMMENT '编辑手机号',
-  `editor_time` int NOT NULL COMMENT '添加时间',
+  `editor_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'เปิดใช้งานหรือไม่: 1=ใช่, 0=ไม่ใช่',
+  `editor_uid` int NOT NULL COMMENT 'id ผู้ใช้',
+  `editor_name` varchar(20) NOT NULL COMMENT 'ชื่อบรรณาธิการ',
+  `editor_realname` varchar(20) NOT NULL COMMENT 'ชื่อ-นามสกุลจริงของบรรณาธิการ',
+  `editor_desc` varchar(200) NOT NULL COMMENT 'เรื่องย่อของบรรณาธิการ',
+  `editor_qq` varchar(20) DEFAULT NULL COMMENT 'qq ของบรรณาธิการ',
+  `editor_weixin` varchar(50) DEFAULT NULL COMMENT 'บัญชี WeChat ของบรรณาธิการ',
+  `editor_tel` varchar(11) DEFAULT NULL COMMENT 'หมายเลขมือถือของบรรณาธิการ',
+  `editor_time` int NOT NULL COMMENT 'เวลาที่เพิ่ม',
   PRIMARY KEY (`editor_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='编辑表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบรรณาธิการ';
 DROP TABLE IF EXISTS `wm_editor_bind`;
 CREATE TABLE `wm_editor_bind` (
   `bind_id` int NOT NULL AUTO_INCREMENT,
-  `bind_module` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT 'novel' COMMENT '模块',
-  `bind_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '编辑类型:1=主编,2=责编',
-  `bind_group_id` int NOT NULL COMMENT '分组id',
-  `bind_editor_id` int NOT NULL DEFAULT '0' COMMENT '编辑id',
-  `bind_time` int NOT NULL COMMENT '绑定时间',
+  `bind_module` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT 'novel' COMMENT 'โมดูล',
+  `bind_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'ประเภทบรรณาธิการ:1=บรรณาธิการใหญ่,2=บรรณาธิการดูแลต้นฉบับ',
+  `bind_group_id` int NOT NULL COMMENT 'id กลุ่ม',
+  `bind_editor_id` int NOT NULL DEFAULT '0' COMMENT 'id บรรณาธิการ',
+  `bind_time` int NOT NULL COMMENT 'เวลาผูกบัญชี',
   PRIMARY KEY (`bind_id`),
   KEY `module_index` (`bind_module`),
   KEY `group_index` (`bind_group_id`),
   KEY `editor_index` (`bind_editor_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='编辑分组绑定';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='การผูกกลุ่มบรรณาธิการ';
 DROP TABLE IF EXISTS `wm_editor_group`;
 CREATE TABLE `wm_editor_group` (
-  `group_id` int NOT NULL AUTO_INCREMENT COMMENT '分组id',
-  `group_module` varchar(20) NOT NULL DEFAULT 'novel' COMMENT '分组模块',
-  `group_name` varchar(20) NOT NULL COMMENT '分组名字',
-  `group_desc` varchar(100) NOT NULL COMMENT '分组描述',
-  `group_order` tinyint NOT NULL DEFAULT '9' COMMENT '分组排序',
-  `group_time` int NOT NULL COMMENT '添加时间',
+  `group_id` int NOT NULL AUTO_INCREMENT COMMENT 'id กลุ่ม',
+  `group_module` varchar(20) NOT NULL DEFAULT 'novel' COMMENT 'โมดูลกลุ่ม',
+  `group_name` varchar(20) NOT NULL COMMENT 'ชื่อกลุ่ม',
+  `group_desc` varchar(100) NOT NULL COMMENT 'คำอธิบายกลุ่ม',
+  `group_order` tinyint NOT NULL DEFAULT '9' COMMENT 'ลำดับกลุ่ม',
+  `group_time` int NOT NULL COMMENT 'เวลาที่เพิ่ม',
   PRIMARY KEY (`group_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='编辑分组';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='กลุ่มบรรณาธิการ';
 DROP TABLE IF EXISTS `wm_editor_works`;
 CREATE TABLE `wm_editor_works` (
   `works_id` int NOT NULL AUTO_INCREMENT,
-  `works_module` varchar(20) NOT NULL DEFAULT 'novel' COMMENT '模块',
-  `works_group_id` int NOT NULL COMMENT '编辑分组id',
-  `works_cid` int NOT NULL COMMENT '作品id',
-  `works_bind_id` int DEFAULT '0' COMMENT '分组绑定id',
-  `works_editor_id` int DEFAULT '0' COMMENT '编辑id',
-  `works_time` int NOT NULL COMMENT '申请时间',
+  `works_module` varchar(20) NOT NULL DEFAULT 'novel' COMMENT 'โมดูล',
+  `works_group_id` int NOT NULL COMMENT 'id กลุ่มของบรรณาธิการ',
+  `works_cid` int NOT NULL COMMENT 'id ผลงาน',
+  `works_bind_id` int DEFAULT '0' COMMENT 'id ผูกกลุ่ม',
+  `works_editor_id` int DEFAULT '0' COMMENT 'id บรรณาธิการ',
+  `works_time` int NOT NULL COMMENT 'เวลายื่นคำขอ',
   PRIMARY KEY (`works_id`),
   KEY `module_index` (`works_module`),
   KEY `group_index` (`works_group_id`),
   KEY `cid_index` (`works_cid`),
   KEY `bind_index` (`works_bind_id`),
   KEY `editor_index` (`works_editor_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='编辑作品关系表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='ตารางความสัมพันธ์ระหว่างบรรณาธิการกับผลงาน';
 DROP TABLE IF EXISTS `wm_fans_module`;
 CREATE TABLE `wm_fans_module` (
   `fans_id` int NOT NULL AUTO_INCREMENT,
-  `fans_module` varchar(20) DEFAULT NULL COMMENT '所属模块',
-  `fans_user_id` int NOT NULL COMMENT '粉丝id',
-  `fans_cid` int DEFAULT NULL COMMENT '内容id',
-  `fans_exp` int DEFAULT '0' COMMENT '粉丝经验值',
-  `fans_addtime` int DEFAULT NULL COMMENT '关注时间',
+  `fans_module` varchar(20) DEFAULT NULL COMMENT 'โมดูลที่สังกัด',
+  `fans_user_id` int NOT NULL COMMENT 'id แฟนคลับ',
+  `fans_cid` int DEFAULT NULL COMMENT 'id เนื้อหา',
+  `fans_exp` int DEFAULT '0' COMMENT 'ค่าประสบการณ์แฟนคลับ',
+  `fans_addtime` int DEFAULT NULL COMMENT 'เวลาติดตาม',
   PRIMARY KEY (`fans_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='模块内容粉丝表。';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางแฟนคลับเนื้อหาโมดูล.';
 DROP TABLE IF EXISTS `wm_fans_module_consume`;
 CREATE TABLE `wm_fans_module_consume` (
   `consume_id` int NOT NULL AUTO_INCREMENT,
-  `consume_module` varchar(20) DEFAULT NULL COMMENT '消费的模块',
-  `consume_user_id` int DEFAULT NULL COMMENT '用户id',
-  `consume_cid` int DEFAULT NULL COMMENT '内容id',
-  `consume_gold1_exp` decimal(10,2) DEFAULT '0.00' COMMENT '粉丝经验值当前累积消费金币1',
-  `consume_gold2_exp` decimal(10,2) DEFAULT '0.00' COMMENT '粉丝经验值当前累积消费金币2',
-  `consume_gold1_ticket` decimal(10,2) DEFAULT '0.00' COMMENT '票类当前阶段累积的消费金币1',
-  `consume_gold2_ticket` decimal(10,2) DEFAULT '0.00' COMMENT '票类当前阶段累积的消费金币2',
-  `consume_gold1` decimal(15,2) DEFAULT '0.00' COMMENT '总共消费的金币1',
-  `consume_gold2` decimal(15,2) DEFAULT '0.00' COMMENT '总共消费的金币2',
+  `consume_module` varchar(20) DEFAULT NULL COMMENT 'โมดูลที่ใช้จ่าย',
+  `consume_user_id` int DEFAULT NULL COMMENT 'id ผู้ใช้',
+  `consume_cid` int DEFAULT NULL COMMENT 'id เนื้อหา',
+  `consume_gold1_exp` decimal(10,2) DEFAULT '0.00' COMMENT 'เหรียญที่ใช้สะสมในระยะปัจจุบันของค่าประสบการณ์แฟนคลับ1',
+  `consume_gold2_exp` decimal(10,2) DEFAULT '0.00' COMMENT 'เหรียญที่ใช้สะสมในระยะปัจจุบันของค่าประสบการณ์แฟนคลับ2',
+  `consume_gold1_ticket` decimal(10,2) DEFAULT '0.00' COMMENT 'เหรียญที่ใช้สะสมในระยะปัจจุบันของประเภทโหวต1',
+  `consume_gold2_ticket` decimal(10,2) DEFAULT '0.00' COMMENT 'เหรียญที่ใช้สะสมในระยะปัจจุบันของประเภทโหวต2',
+  `consume_gold1` decimal(15,2) DEFAULT '0.00' COMMENT 'เหรียญที่ใช้จ่ายทั้งหมด 1',
+  `consume_gold2` decimal(15,2) DEFAULT '0.00' COMMENT 'เหรียญที่ใช้จ่ายทั้งหมด 2',
   PRIMARY KEY (`consume_id`),
   KEY `user_index` (`consume_module`,`consume_user_id`,`consume_cid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='模块内容粉丝消费记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการใช้จ่ายของแฟนคลับเนื้อหาโมดูล';
 DROP TABLE IF EXISTS `wm_fans_module_level`;
 CREATE TABLE `wm_fans_module_level` (
   `level_id` int NOT NULL AUTO_INCREMENT,
-  `level_module` varchar(20) NOT NULL COMMENT '等级所属模块',
-  `level_cid` int NOT NULL DEFAULT '0' COMMENT '0为所有内容，否则为单独定制的粉丝等级。',
-  `level_name` varchar(20) NOT NULL COMMENT '等级名字',
-  `level_start` int NOT NULL DEFAULT '0' COMMENT '等级开始经验',
-  `level_end` int NOT NULL DEFAULT '0' COMMENT '等级结束经验',
-  `level_order` int NOT NULL DEFAULT '0' COMMENT '等级排序',
+  `level_module` varchar(20) NOT NULL COMMENT 'โมดูลของระดับ',
+  `level_cid` int NOT NULL DEFAULT '0' COMMENT '0=เนื้อหาทั้งหมด ค่าอื่น=ระดับแฟนที่กำหนดเอง',
+  `level_name` varchar(40) NOT NULL COMMENT 'ชื่อระดับ',
+  `level_start` int NOT NULL DEFAULT '0' COMMENT 'ประสบการณ์เริ่มต้นของระดับ',
+  `level_end` int NOT NULL DEFAULT '0' COMMENT 'ประสบการณ์สิ้นสุดของระดับ',
+  `level_order` int NOT NULL DEFAULT '0' COMMENT 'การเรียงลำดับระดับ',
   PRIMARY KEY (`level_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3 COMMENT='模块内容粉丝等级表';
-INSERT INTO `wm_fans_module_level` VALUES (1,'novel',0,'练气弟子',0,500,1),(2,'novel',0,'筑基弟子',500,1000,2),(3,'novel',0,'外门弟子',1000,2000,3),(4,'novel',0,'内门弟子',2000,4000,4),(5,'novel',0,'真传弟子',4000,6000,5),(6,'novel',0,'虚丹外门执事',6000,10000,6),(7,'novel',0,'金丹内门执事',10000,20000,7),(8,'novel',0,'元婴护法',20000,30000,8),(9,'novel',0,'出窍长老',30000,50000,9),(10,'novel',0,'化神副门主',50000,60000,10),(11,'novel',0,'合体门主',60000,70000,11),(12,'novel',0,'洞虚掌门',70000,80000,12),(13,'novel',0,'大乘盟主',80000,100000,13);
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางระดับแฟนคลับเนื้อหาโมดูล';
+INSERT INTO `wm_fans_module_level` VALUES (1,'novel',0,'ศิษย์ฝึกปราณ',0,500,1),(2,'novel',0,'ศิษย์สร้างฐาน',500,1000,2),(3,'novel',0,'ศิษย์ประตูชั้นนอก',1000,2000,3),(4,'novel',0,'ศิษย์ประตูชั้นใน',2000,4000,4),(5,'novel',0,'ศิษย์สายตรง',4000,6000,5),(6,'novel',0,'ผู้ดูแลศิษย์นอกสำนักขั้นตานลวง',6000,10000,6),(7,'novel',0,'ผู้ดูแลศิษย์ในสำนักขั้นตานทอง',10000,20000,7),(8,'novel',0,'ผู้พิทักษ์ธรรมระดับหยวนอิง',20000,30000,8),(9,'novel',0,'ผู้อาวุโสระดับออกร่าง',30000,50000,9),(10,'novel',0,'รองเจ้าสำนักระดับแปลงจิต',50000,60000,10),(11,'novel',0,'เจ้าสำนักระดับรวมร่าง',60000,70000,11),(12,'novel',0,'เจ้าสำนักขั้นต้งซวี',70000,80000,12),(13,'novel',0,'ประมุขพันธมิตรระดับมหายาน',80000,100000,13);
 DROP TABLE IF EXISTS `wm_finance_apply`;
 CREATE TABLE `wm_finance_apply` (
   `apply_id` int NOT NULL AUTO_INCREMENT,
-  `apply_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0为待审核，1为已处理，2为未通过',
-  `apply_module` varchar(20) DEFAULT NULL COMMENT '结算来源模块，可以为空',
-  `apply_cid` int NOT NULL DEFAULT '0' COMMENT '模块内容id',
-  `apply_month` int NOT NULL COMMENT '结算的月份',
-  `apply_time` int NOT NULL COMMENT '结算的时间',
-  `apply_manager_id` int NOT NULL COMMENT '结算申请人',
-  `apply_total` decimal(10,2) NOT NULL COMMENT '结算申请总金额',
-  `apply_bonus` decimal(10,2) DEFAULT NULL COMMENT '奖励金额',
-  `apply_bonus_remark` varchar(50) DEFAULT NULL COMMENT '奖励备注',
-  `apply_deduct` decimal(10,2) DEFAULT NULL COMMENT '惩罚备注',
-  `apply_deduct_remark` varchar(50) DEFAULT NULL COMMENT '惩罚备注',
-  `apply_real` decimal(10,2) NOT NULL COMMENT '实际到账金额',
-  `apply_real_money` decimal(10,2) DEFAULT '0.00' COMMENT '实际到账人民币,为0表示模式1',
-  `apply_remark` varchar(50) DEFAULT NULL COMMENT '结算申请备注',
-  `apply_to_user_id` int NOT NULL DEFAULT '0' COMMENT '结算申请给哪个用户',
-  `apply_handle_manager_id` int NOT NULL DEFAULT '0' COMMENT '处理申请的管理员id',
-  `apply_handle_remark` varchar(50) DEFAULT NULL COMMENT '处理申请的备注',
-  `apply_handle_time` int NOT NULL DEFAULT '0' COMMENT '处理申请的时间',
+  `apply_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=รอตรวจสอบ 1=ดำเนินการแล้ว 2=ไม่ผ่าน',
+  `apply_module` varchar(20) DEFAULT NULL COMMENT 'โมดูลต้นทางของการชำระบัญชี สามารถเว้นว่างได้',
+  `apply_cid` int NOT NULL DEFAULT '0' COMMENT 'ID เนื้อหาโมดูล',
+  `apply_month` int NOT NULL COMMENT 'เดือนของการชำระบัญชี',
+  `apply_time` int NOT NULL COMMENT 'เวลาของการชำระบัญชี',
+  `apply_manager_id` int NOT NULL COMMENT 'ผู้ยื่นคำขอชำระบัญชี',
+  `apply_total` decimal(10,2) NOT NULL COMMENT 'ยอดรวมของคำขอชำระบัญชี',
+  `apply_bonus` decimal(10,2) DEFAULT NULL COMMENT 'จำนวนเงินรางวัล',
+  `apply_bonus_remark` varchar(50) DEFAULT NULL COMMENT 'หมายเหตุรางวัล',
+  `apply_deduct` decimal(10,2) DEFAULT NULL COMMENT 'หมายเหตุการลงโทษ',
+  `apply_deduct_remark` varchar(50) DEFAULT NULL COMMENT 'หมายเหตุการลงโทษ',
+  `apply_real` decimal(10,2) NOT NULL COMMENT 'จำนวนเงินที่เข้าบัญชีจริง',
+  `apply_real_money` decimal(10,2) DEFAULT '0.00' COMMENT 'ยอดเงินหยวนที่เข้าจริง 0=โหมด 1',
+  `apply_remark` varchar(50) DEFAULT NULL COMMENT 'หมายเหตุคำขอชำระบัญชี',
+  `apply_to_user_id` int NOT NULL DEFAULT '0' COMMENT 'ผู้ใช้ที่ได้รับคำขอชำระบัญชี',
+  `apply_handle_manager_id` int NOT NULL DEFAULT '0' COMMENT 'id ผู้ดูแลระบบที่พิจารณาคำขอ',
+  `apply_handle_remark` varchar(50) DEFAULT NULL COMMENT 'หมายเหตุการพิจารณาคำขอ',
+  `apply_handle_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาพิจารณาคำขอ',
   PRIMARY KEY (`apply_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='财务申请记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกคำขอด้านการเงิน';
 DROP TABLE IF EXISTS `wm_finance_level`;
 CREATE TABLE `wm_finance_level` (
   `level_id` int NOT NULL AUTO_INCREMENT,
-  `level_money` int NOT NULL DEFAULT '0' COMMENT '充值的金额',
-  `level_real` int NOT NULL DEFAULT '0' COMMENT '折扣后应付的价格',
-  `level_reward_gold2` int NOT NULL DEFAULT '0' COMMENT '赠送的金币2',
+  `level_money` int NOT NULL DEFAULT '0' COMMENT 'จำนวนเงินที่เติม',
+  `level_real` int NOT NULL DEFAULT '0' COMMENT 'ราคาที่ต้องชำระหลังส่วนลด',
+  `level_reward_gold2` int NOT NULL DEFAULT '0' COMMENT 'เหรียญที่แจกให้2',
   PRIMARY KEY (`level_id`),
   KEY `money_index` (`level_money`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3 COMMENT='充值等级表';
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางระดับการเติมเงิน';
 INSERT INTO `wm_finance_level` VALUES (1,10,10,0),(2,20,20,0),(3,50,50,0),(4,100,100,0),(5,200,200,0),(7,500,500,100),(8,80,80,0),(9,150,150,0);
 DROP TABLE IF EXISTS `wm_finance_order_cash`;
 CREATE TABLE `wm_finance_order_cash` (
   `cash_id` int NOT NULL AUTO_INCREMENT,
-  `cash_status` tinyint(1) DEFAULT '0' COMMENT '0为申请中，1为已经处理，2为已拒绝',
-  `cash_user_id` int NOT NULL COMMENT '申请用户',
-  `cash_money` decimal(10,2) NOT NULL COMMENT '提现金额',
-  `cash_real` decimal(10,2) NOT NULL COMMENT '实际到账',
-  `cash_cost` tinyint NOT NULL DEFAULT '0' COMMENT '提现手续费',
-  `cash_remark` varchar(200) DEFAULT NULL COMMENT '备注信息',
-  `cash_time` int DEFAULT '0' COMMENT '申请时间',
-  `cash_handletime` int DEFAULT '0' COMMENT '处理时间',
+  `cash_status` tinyint(1) DEFAULT '0' COMMENT '0=รอพิจารณา 1=ดำเนินการแล้ว 2=ถูกปฏิเสธ',
+  `cash_user_id` int NOT NULL COMMENT 'ผู้ใช้ที่ยื่นคำขอ',
+  `cash_money` decimal(10,2) NOT NULL COMMENT 'จำนวนเงินที่ถอน',
+  `cash_real` decimal(10,2) NOT NULL COMMENT 'ยอดเงินเข้าบัญชีจริง',
+  `cash_cost` tinyint NOT NULL DEFAULT '0' COMMENT 'ค่าธรรมเนียมการถอนเงิน',
+  `cash_remark` varchar(200) DEFAULT NULL COMMENT 'ข้อมูลหมายเหตุ',
+  `cash_time` int DEFAULT '0' COMMENT 'เวลายื่นคำขอ',
+  `cash_handletime` int DEFAULT '0' COMMENT 'เวลาดำเนินการ',
   PRIMARY KEY (`cash_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='提现申请订单表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางคำสั่งซื้อคำขอถอนเงิน';
 DROP TABLE IF EXISTS `wm_finance_order_charge`;
 CREATE TABLE `wm_finance_order_charge` (
   `charge_id` int NOT NULL AUTO_INCREMENT,
-  `charge_sn` varchar(60) NOT NULL COMMENT '本站充值订单号',
-  `charge_paysn` varchar(60) DEFAULT NULL COMMENT '第三方充值订单号',
-  `charge_status` tinyint(1) DEFAULT '0' COMMENT '订单状态，0为待付款，1为已付款',
-  `charge_type` varchar(20) NOT NULL COMMENT '充值方式。card卡密充值',
-  `charge_user_id` int NOT NULL DEFAULT '0' COMMENT '充值用户',
-  `charge_tuser_id` int NOT NULL DEFAULT '0' COMMENT '好友的id',
-  `charge_money` decimal(10,2) DEFAULT NULL COMMENT '充值金额',
-  `charge_gold2` decimal(10,2) DEFAULT NULL COMMENT '获得金币2',
-  `charge_first` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '是否有首冲奖励',
-  `charge_reward` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '是否有充值奖励',
-  `charge_addtime` int DEFAULT '0' COMMENT '下单时间',
-  `charge_paytime` int DEFAULT '0' COMMENT '支付时间',
-  `charge_remark` varchar(200) DEFAULT NULL COMMENT '备注',
+  `charge_sn` varchar(60) NOT NULL COMMENT 'หมายเลขคำสั่งซื้อเติมเงินของเว็บไซต์นี้',
+  `charge_paysn` varchar(60) DEFAULT NULL COMMENT 'หมายเลขคำสั่งซื้อการเติมเงินของบุคคลที่สาม',
+  `charge_status` tinyint(1) DEFAULT '0' COMMENT 'สถานะคำสั่งซื้อ 0 คือรอชำระเงิน 1 คือชำระเงินแล้ว',
+  `charge_type` varchar(20) NOT NULL COMMENT 'วิธีเติมเงิน card=เติมด้วยรหัสบัตร',
+  `charge_user_id` int NOT NULL DEFAULT '0' COMMENT 'ผู้ใช้ที่เติมเงิน',
+  `charge_tuser_id` int NOT NULL DEFAULT '0' COMMENT 'id เพื่อน',
+  `charge_money` decimal(10,2) DEFAULT NULL COMMENT 'จำนวนเงินเติม',
+  `charge_gold2` decimal(10,2) DEFAULT NULL COMMENT 'เหรียญที่ได้รับ2',
+  `charge_first` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'มีรางวัลเติมเงินครั้งแรกหรือไม่',
+  `charge_reward` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'มีรางวัลเติมเงินหรือไม่',
+  `charge_addtime` int DEFAULT '0' COMMENT 'เวลาสั่งซื้อ',
+  `charge_paytime` int DEFAULT '0' COMMENT 'เวลาชำระเงิน',
+  `charge_remark` varchar(200) DEFAULT NULL COMMENT 'หมายเหตุ',
   PRIMARY KEY (`charge_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='充值记录';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='บันทึกการเติมเงิน';
 DROP TABLE IF EXISTS `wm_finance_report`;
 CREATE TABLE `wm_finance_report` (
   `report_id` int NOT NULL AUTO_INCREMENT,
-  `report_settlement` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否计算:0=未结算,1=已结算',
-  `report_module` varchar(20) DEFAULT NULL COMMENT '模块',
-  `report_type` varchar(20) DEFAULT NULL COMMENT '类型',
-  `report_user_id` int NOT NULL DEFAULT '0' COMMENT '消费或者收入的用户id',
-  `report_cid` varchar(35) NOT NULL DEFAULT '0' COMMENT '购买的内容id或者来源id',
-  `report_gold1` decimal(10,3) DEFAULT '0.000' COMMENT '需要结算金币1的数量',
-  `report_gold2` decimal(10,3) NOT NULL DEFAULT '0.000' COMMENT '需要结算金币2的数量',
-  `report_remark` varchar(100) DEFAULT NULL COMMENT '备注信息',
-  `report_time` int NOT NULL DEFAULT '0' COMMENT '入账时间',
-  `report_settlement_id` int NOT NULL DEFAULT '0' COMMENT '结算员ID',
-  `report_settlement_time` int NOT NULL DEFAULT '0' COMMENT '结算时间',
+  `report_settlement` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'คำนวณหรือไม่: 0=ยังไม่ชำระ, 1=ชำระแล้ว',
+  `report_module` varchar(20) DEFAULT NULL COMMENT 'โมดูล',
+  `report_type` varchar(20) DEFAULT NULL COMMENT 'ประเภท',
+  `report_user_id` int NOT NULL DEFAULT '0' COMMENT 'ID ผู้ใช้ที่ใช้จ่ายหรือรับรายได้',
+  `report_cid` varchar(35) NOT NULL DEFAULT '0' COMMENT 'id เนื้อหาที่ซื้อ หรือ id ต้นทาง',
+  `report_gold1` decimal(10,3) DEFAULT '0.000' COMMENT 'จำนวนเหรียญ1 ที่ต้องชำระบัญชี',
+  `report_gold2` decimal(10,3) NOT NULL DEFAULT '0.000' COMMENT 'จำนวนเหรียญ2 ที่ต้องชำระบัญชี',
+  `report_remark` varchar(100) DEFAULT NULL COMMENT 'ข้อมูลหมายเหตุ',
+  `report_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาบันทึกเข้าบัญชี',
+  `report_settlement_id` int NOT NULL DEFAULT '0' COMMENT 'ID ผู้ชำระบัญชี',
+  `report_settlement_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาชำระบัญชี',
   PRIMARY KEY (`report_id`),
   KEY `module_index` (`report_module`),
   KEY `type_index` (`report_type`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='销售报表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='รายงานการขาย';
 DROP TABLE IF EXISTS `wm_finance_report_list`;
 CREATE TABLE `wm_finance_report_list` (
   `list_id` int NOT NULL AUTO_INCREMENT,
-  `list_report_id` int NOT NULL DEFAULT '0' COMMENT '结算报表id',
-  `list_order_id` int NOT NULL DEFAULT '0' COMMENT '结算订单id',
+  `list_report_id` int NOT NULL DEFAULT '0' COMMENT 'id รายงานการชำระบัญชี',
+  `list_order_id` int NOT NULL DEFAULT '0' COMMENT 'id คำสั่งซื้อที่ชำระบัญชี',
   PRIMARY KEY (`list_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='结算订单关联记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกความเชื่อมโยงของคำสั่งซื้อที่ชำระบัญชี';
 DROP TABLE IF EXISTS `wm_finance_report_order`;
 CREATE TABLE `wm_finance_report_order` (
   `order_id` int NOT NULL AUTO_INCREMENT,
-  `order_gold1` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '订单金币1',
-  `order_gold2` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '订单金币2',
-  `order_money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '订单金额',
-  `order_admin_id` int NOT NULL DEFAULT '0' COMMENT '结算员',
-  `order_time` int NOT NULL DEFAULT '0' COMMENT '结算结算',
+  `order_gold1` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'เหรียญของคำสั่งซื้อ1',
+  `order_gold2` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'เหรียญของคำสั่งซื้อ2',
+  `order_money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'ยอดเงินของคำสั่งซื้อ',
+  `order_admin_id` int NOT NULL DEFAULT '0' COMMENT 'ผู้ชำระบัญชี',
+  `order_time` int NOT NULL DEFAULT '0' COMMENT 'การชำระบัญชี',
   PRIMARY KEY (`order_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='结算订单记录';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='บันทึกคำสั่งซื้อที่ชำระบัญชี';
 DROP TABLE IF EXISTS `wm_flash_flash`;
 CREATE TABLE `wm_flash_flash` (
   `flash_id` int NOT NULL AUTO_INCREMENT,
-  `flash_status` tinyint(1) DEFAULT '1' COMMENT '状态',
-  `type_id` int NOT NULL DEFAULT '0' COMMENT '幻灯片分组',
-  `flash_order` int NOT NULL COMMENT '排序',
-  `flash_module` varchar(20) NOT NULL COMMENT '属于哪个模块',
-  `flash_pid` int NOT NULL COMMENT '页面id',
-  `flash_title` varchar(20) NOT NULL COMMENT '标题',
-  `flash_info` varchar(100) DEFAULT NULL COMMENT '简介',
-  `flash_desc` varchar(200) NOT NULL COMMENT '描述',
-  `flash_url` varchar(200) NOT NULL COMMENT '跳转地址',
-  `flash_img` varchar(500) DEFAULT NULL COMMENT '幻灯片图标',
-  `flash_time` int NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `flash_status` tinyint(1) DEFAULT '1' COMMENT 'สถานะ',
+  `type_id` int NOT NULL DEFAULT '0' COMMENT 'กลุ่มสไลด์',
+  `flash_order` int NOT NULL COMMENT 'เรียงลำดับ',
+  `flash_module` varchar(20) NOT NULL COMMENT 'อยู่ในโมดูลใด',
+  `flash_pid` int NOT NULL COMMENT 'id หน้าเพจ',
+  `flash_title` varchar(20) NOT NULL COMMENT 'หัวข้อ',
+  `flash_info` varchar(100) DEFAULT NULL COMMENT 'เรื่องย่อ',
+  `flash_desc` varchar(200) NOT NULL COMMENT 'คำอธิบาย',
+  `flash_url` varchar(200) NOT NULL COMMENT 'ที่อยู่ปลายทาง',
+  `flash_img` varchar(500) DEFAULT NULL COMMENT 'ไอคอนสไลด์',
+  `flash_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่เพิ่ม',
   PRIMARY KEY (`flash_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='幻灯片表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางสไลด์';
 DROP TABLE IF EXISTS `wm_flash_type`;
 CREATE TABLE `wm_flash_type` (
   `type_id` int NOT NULL AUTO_INCREMENT,
-  `type_topid` int NOT NULL DEFAULT '0' COMMENT '上级id',
-  `type_pid` varchar(20) NOT NULL DEFAULT '0' COMMENT '子栏目id',
-  `type_name` varchar(10) NOT NULL COMMENT '分类名',
-  `type_pinyin` varchar(50) DEFAULT NULL COMMENT '类型拼音',
-  `type_order` int NOT NULL DEFAULT '0' COMMENT '分类排序',
-  `type_info` varchar(100) DEFAULT NULL COMMENT '分类备注',
+  `type_topid` int NOT NULL DEFAULT '0' COMMENT 'id ระดับเหนือขึ้นไป',
+  `type_pid` varchar(20) NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
+  `type_name` varchar(10) NOT NULL COMMENT 'ชื่อหมวดหมู่',
+  `type_pinyin` varchar(50) DEFAULT NULL COMMENT 'พินอินของประเภท',
+  `type_order` int NOT NULL DEFAULT '0' COMMENT 'ลำดับหมวดหมู่',
+  `type_info` varchar(100) DEFAULT NULL COMMENT 'หมายเหตุหมวดหมู่',
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='幻灯片表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางสไลด์';
 DROP TABLE IF EXISTS `wm_link_click`;
 CREATE TABLE `wm_link_click` (
   `click_id` int NOT NULL AUTO_INCREMENT,
   `click_lid` int NOT NULL,
-  `click_type` varchar(10) NOT NULL COMMENT '进还是出',
-  `click_ua` varchar(250) DEFAULT NULL COMMENT 'UA信息',
-  `click_ip` varchar(15) DEFAULT NULL COMMENT '点击IP',
-  `click_adress` varchar(30) DEFAULT NULL COMMENT '地理位置',
-  `click_browser` varchar(30) DEFAULT NULL COMMENT '浏览器',
-  `click_browser_ver` varchar(30) DEFAULT NULL COMMENT '浏览器版本',
-  `click_system` varchar(250) DEFAULT NULL COMMENT '系统类型',
-  `click_system_ver` varchar(30) DEFAULT NULL COMMENT '系统版本',
-  `click_time` int NOT NULL COMMENT '点击时间',
+  `click_type` varchar(10) NOT NULL COMMENT 'เข้าหรือออก',
+  `click_ua` varchar(250) DEFAULT NULL COMMENT 'ข้อมูล UA',
+  `click_ip` varchar(15) DEFAULT NULL COMMENT 'IP ที่คลิก',
+  `click_adress` varchar(30) DEFAULT NULL COMMENT 'ตำแหน่งที่ตั้ง',
+  `click_browser` varchar(30) DEFAULT NULL COMMENT 'เบราว์เซอร์',
+  `click_browser_ver` varchar(30) DEFAULT NULL COMMENT 'เวอร์ชันเบราว์เซอร์',
+  `click_system` varchar(250) DEFAULT NULL COMMENT 'ประเภทระบบ',
+  `click_system_ver` varchar(30) DEFAULT NULL COMMENT 'เวอร์ชันระบบ',
+  `click_time` int NOT NULL COMMENT 'เวลาคลิก',
   PRIMARY KEY (`click_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='友链点击记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการคลิกลิงก์เพื่อน';
 DROP TABLE IF EXISTS `wm_link_link`;
 CREATE TABLE `wm_link_link` (
   `link_id` int NOT NULL AUTO_INCREMENT,
-  `type_id` int NOT NULL COMMENT '分类id',
-  `link_name` varchar(20) NOT NULL COMMENT '友链名字',
-  `link_cname` varchar(5) DEFAULT NULL COMMENT '友链简称',
-  `link_pinyin` varchar(20) DEFAULT NULL COMMENT '拼音',
-  `link_ico` varchar(120) DEFAULT NULL COMMENT '图标',
-  `link_order` int NOT NULL DEFAULT '99' COMMENT '排序',
-  `link_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态',
-  `link_show` tinyint(1) DEFAULT '1' COMMENT '1为显示跳转链接，0为直链',
-  `link_url` varchar(120) NOT NULL COMMENT '友链地址',
-  `link_fixed` tinyint(1) NOT NULL DEFAULT '0' COMMENT '固链',
-  `link_rec` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否推荐',
-  `link_jointime` int NOT NULL DEFAULT '0' COMMENT '加入时间',
-  `link_in_jump` varchar(200) DEFAULT NULL COMMENT '友链进入跳转连接',
-  `link_info` varchar(50) DEFAULT NULL COMMENT '友链简介',
-  `link_qq` varchar(20) DEFAULT NULL COMMENT '联系QQ',
-  `link_read` int NOT NULL DEFAULT '0' COMMENT '阅读量',
-  `link_ding` int NOT NULL DEFAULT '0' COMMENT '顶',
-  `link_cai` int NOT NULL DEFAULT '0' COMMENT '踩',
-  `link_lastintime` int NOT NULL DEFAULT '0' COMMENT '最后点入',
-  `link_lastouttime` int NOT NULL DEFAULT '0' COMMENT '最后点出',
-  `link_outday` int NOT NULL DEFAULT '0' COMMENT '日点出',
-  `link_outweek` int NOT NULL DEFAULT '0' COMMENT '周点出',
-  `link_outmonth` int NOT NULL DEFAULT '0' COMMENT '月点出',
-  `link_outyear` int DEFAULT '0' COMMENT '年点出',
-  `link_outsum` int NOT NULL DEFAULT '0' COMMENT '总点处',
-  `link_inday` int NOT NULL DEFAULT '0' COMMENT '日点入',
-  `link_inweek` int NOT NULL DEFAULT '0' COMMENT '周点入',
-  `link_inmonth` int NOT NULL DEFAULT '0' COMMENT '月点入',
-  `link_inyear` int DEFAULT '0' COMMENT '年点入',
-  `link_insum` int NOT NULL DEFAULT '0' COMMENT '总点入',
+  `type_id` int NOT NULL COMMENT 'id หมวดหมู่',
+  `link_name` varchar(80) NOT NULL COMMENT 'ชื่อลิงก์เพื่อน',
+  `link_cname` varchar(5) DEFAULT NULL COMMENT 'ชื่อย่อลิงก์เพื่อน',
+  `link_pinyin` varchar(20) DEFAULT NULL COMMENT 'พินอิน',
+  `link_ico` varchar(120) DEFAULT NULL COMMENT 'ไอคอน',
+  `link_order` int NOT NULL DEFAULT '99' COMMENT 'เรียงลำดับ',
+  `link_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'สถานะ',
+  `link_show` tinyint(1) DEFAULT '1' COMMENT '1=แสดงลิงก์เปลี่ยนเส้นทาง 0=ลิงก์ตรง',
+  `link_url` varchar(120) NOT NULL COMMENT 'ที่อยู่ลิงก์เพื่อน',
+  `link_fixed` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'ลิงก์ถาวร',
+  `link_rec` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'แนะนำหรือไม่',
+  `link_jointime` int NOT NULL DEFAULT '0' COMMENT 'เวลาเข้าร่วม',
+  `link_in_jump` varchar(200) DEFAULT NULL COMMENT 'ลิงก์เปลี่ยนเส้นทางเมื่อเข้าลิงก์เพื่อน',
+  `link_info` varchar(50) DEFAULT NULL COMMENT 'เรื่องย่อลิงก์เพื่อน',
+  `link_qq` varchar(20) DEFAULT NULL COMMENT 'QQ ติดต่อ',
+  `link_read` int NOT NULL DEFAULT '0' COMMENT 'ยอดอ่าน',
+  `link_ding` int NOT NULL DEFAULT '0' COMMENT 'กดชอบ',
+  `link_cai` int NOT NULL DEFAULT '0' COMMENT 'กดไม่ชอบ',
+  `link_lastintime` int NOT NULL DEFAULT '0' COMMENT 'คลิกเข้าล่าสุด',
+  `link_lastouttime` int NOT NULL DEFAULT '0' COMMENT 'คลิกออกล่าสุด',
+  `link_outday` int NOT NULL DEFAULT '0' COMMENT 'คลิกออกรายวัน',
+  `link_outweek` int NOT NULL DEFAULT '0' COMMENT 'คลิกออก (รายสัปดาห์)',
+  `link_outmonth` int NOT NULL DEFAULT '0' COMMENT 'คลิกออกรายเดือน',
+  `link_outyear` int DEFAULT '0' COMMENT 'คลิกออกรายปี',
+  `link_outsum` int NOT NULL DEFAULT '0' COMMENT 'คลิกออกทั้งหมด',
+  `link_inday` int NOT NULL DEFAULT '0' COMMENT 'คลิกเข้ารายวัน',
+  `link_inweek` int NOT NULL DEFAULT '0' COMMENT 'คลิกเข้า (รายสัปดาห์)',
+  `link_inmonth` int NOT NULL DEFAULT '0' COMMENT 'คลิกเข้ารายเดือน',
+  `link_inyear` int DEFAULT '0' COMMENT 'คลิกเข้ารายปี',
+  `link_insum` int NOT NULL DEFAULT '0' COMMENT 'คลิกเข้าทั้งหมด',
   PRIMARY KEY (`link_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COMMENT='友链表';
-INSERT INTO `wm_link_link` VALUES (1,2,'WMCMS','','','',99,1,0,'http://www.weimengcms.com',1,1,1494685926,'','','',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(2,2,'使用帮助','','','',99,1,1,'http://help.weimengcms.com',0,0,1552653211,'','','',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางลิงก์เพื่อน';
+INSERT INTO `wm_link_link` VALUES (1,2,'WMCMS','','','',99,1,0,'http://www.weimengcms.com',1,1,1494685926,'','','',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(2,2,'ความช่วยเหลือในการใช้งาน','','','',99,1,1,'http://help.weimengcms.com',0,0,1552653211,'','','',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 DROP TABLE IF EXISTS `wm_link_type`;
 CREATE TABLE `wm_link_type` (
   `type_id` int NOT NULL AUTO_INCREMENT,
-  `type_topid` int NOT NULL DEFAULT '0' COMMENT '上级id',
-  `type_pid` varchar(20) NOT NULL DEFAULT '0' COMMENT '子栏目id',
-  `type_rec` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否推荐分类',
-  `type_name` varchar(10) NOT NULL COMMENT '分类名',
-  `type_cname` varchar(10) DEFAULT NULL COMMENT '类型简称',
-  `type_pinyin` varchar(50) DEFAULT NULL COMMENT '类型拼音',
-  `type_order` int NOT NULL COMMENT '排序',
-  `type_ico` varchar(200) DEFAULT NULL COMMENT '分类图标',
-  `type_info` varchar(100) DEFAULT NULL COMMENT '分类信息',
-  `type_in_jump` varchar(200) DEFAULT NULL COMMENT '该分类友链点入跳转连接',
-  `type_tempid` int NOT NULL DEFAULT '0' COMMENT '分类页模版',
-  `type_ctempid` int NOT NULL DEFAULT '0' COMMENT '展示页模版',
-  `type_title` varchar(80) DEFAULT NULL COMMENT '页面标题',
-  `type_key` varchar(100) DEFAULT NULL COMMENT '页面关键字',
-  `type_desc` varchar(120) DEFAULT NULL COMMENT '页面描述',
+  `type_topid` int NOT NULL DEFAULT '0' COMMENT 'id ระดับเหนือขึ้นไป',
+  `type_pid` varchar(20) NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
+  `type_rec` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'แนะนำหมวดหมู่หรือไม่',
+  `type_name` varchar(40) NOT NULL COMMENT 'ชื่อหมวดหมู่',
+  `type_cname` varchar(10) DEFAULT NULL COMMENT 'ชื่อย่อของประเภท',
+  `type_pinyin` varchar(50) DEFAULT NULL COMMENT 'พินอินของประเภท',
+  `type_order` int NOT NULL COMMENT 'เรียงลำดับ',
+  `type_ico` varchar(200) DEFAULT NULL COMMENT 'ไอคอนหมวดหมู่',
+  `type_info` varchar(100) DEFAULT NULL COMMENT 'ข้อมูลหมวดหมู่',
+  `type_in_jump` varchar(200) DEFAULT NULL COMMENT 'ลิงก์ปลายทางเมื่อคลิกเข้าลิงก์เพื่อนของหมวดหมู่นี้',
+  `type_tempid` int NOT NULL DEFAULT '0' COMMENT 'เทมเพลตหน้าหมวดหมู่',
+  `type_ctempid` int NOT NULL DEFAULT '0' COMMENT 'เทมเพลตหน้าจัดแสดง',
+  `type_title` varchar(80) DEFAULT NULL COMMENT 'หัวข้อหน้าเพจ',
+  `type_key` varchar(100) DEFAULT NULL COMMENT 'คำค้นของหน้าเพจ',
+  `type_desc` varchar(120) DEFAULT NULL COMMENT 'คำอธิบายหน้าเพจ',
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COMMENT='友链分类表';
-INSERT INTO `wm_link_type` VALUES (2,0,'0',0,'电脑友链','','',0,'','','',0,0,'','','');
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางหมวดหมู่ลิงก์เพื่อน';
+INSERT INTO `wm_link_type` VALUES (2,0,'0',0,'ลิงก์เพื่อนสำหรับคอมพิวเตอร์','','',0,'','','',0,0,'','','');
 DROP TABLE IF EXISTS `wm_manager_login`;
 CREATE TABLE `wm_manager_login` (
   `login_id` int NOT NULL AUTO_INCREMENT,
-  `manager_id` int NOT NULL COMMENT '管理员id',
-  `login_status` tinyint(1) DEFAULT NULL COMMENT '0为登录失败，1为登录成功，2为密码错误',
-  `login_remark` varchar(100) DEFAULT NULL COMMENT '备注详情',
-  `login_ip` varchar(150) NOT NULL COMMENT '登录ip',
-  `login_time` int NOT NULL COMMENT '登录时间',
-  `login_ua` varchar(1000) NOT NULL COMMENT '登录UA',
-  `login_browser` varchar(250) DEFAULT NULL COMMENT '登录浏览器',
+  `manager_id` int NOT NULL COMMENT 'id ผู้ดูแลระบบ',
+  `login_status` tinyint(1) DEFAULT NULL COMMENT '0=เข้าสู่ระบบล้มเหลว 1=เข้าสู่ระบบสำเร็จ 2=รหัสผ่านผิด',
+  `login_remark` varchar(100) DEFAULT NULL COMMENT 'รายละเอียดหมายเหตุ',
+  `login_ip` varchar(150) NOT NULL COMMENT 'ip ที่เข้าสู่ระบบ',
+  `login_time` int NOT NULL COMMENT 'เวลาที่เข้าสู่ระบบ',
+  `login_ua` varchar(1000) NOT NULL COMMENT 'UA ที่เข้าสู่ระบบ',
+  `login_browser` varchar(250) DEFAULT NULL COMMENT 'เบราว์เซอร์ที่เข้าสู่ระบบ',
   PRIMARY KEY (`login_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='管理员登录记录';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='บันทึกการเข้าสู่ระบบของผู้ดูแลระบบ';
 DROP TABLE IF EXISTS `wm_manager_manager`;
 CREATE TABLE `wm_manager_manager` (
   `manager_id` int NOT NULL AUTO_INCREMENT,
-  `manager_status` int NOT NULL DEFAULT '1' COMMENT '0为禁用,1为正常',
-  `manager_cid` int NOT NULL DEFAULT '0' COMMENT '管理员权限ID',
-  `manager_name` varchar(20) NOT NULL COMMENT '管理员账号',
-  `manager_psw` varchar(255) NOT NULL COMMENT '管理员密码',
-  `manager_salt` varchar(50) DEFAULT NULL COMMENT '管理员密码盐（bcrypt 后不再使用，仅为兼容旧哈希保留）',
-  `manager_lastip` varchar(150) DEFAULT NULL COMMENT '最后登录ip',
-  `manager_lasttime` int NOT NULL DEFAULT '0' COMMENT '最后登陆',
+  `manager_status` int NOT NULL DEFAULT '1' COMMENT '0=ปิดใช้งาน 1=ปกติ',
+  `manager_cid` int NOT NULL DEFAULT '0' COMMENT 'ID สิทธิ์ของผู้ดูแลระบบ',
+  `manager_name` varchar(20) NOT NULL COMMENT 'บัญชีผู้ดูแลระบบ',
+  `manager_psw` varchar(255) NOT NULL COMMENT 'รหัสผ่านผู้ดูแลระบบ',
+  `manager_salt` varchar(50) DEFAULT NULL COMMENT 'ซอลต์รหัสผ่านผู้ดูแลระบบ (ไม่ใช้แล้วหลังเปลี่ยนเป็น bcrypt เก็บไว้เพียงเพื่อรองรับแฮชเก่า)',
+  `manager_lastip` varchar(150) DEFAULT NULL COMMENT 'IP เข้าสู่ระบบล่าสุด',
+  `manager_lasttime` int NOT NULL DEFAULT '0' COMMENT 'เข้าสู่ระบบล่าสุด',
   PRIMARY KEY (`manager_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COMMENT='管理员账号表';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบัญชีผู้ดูแลระบบ';
 INSERT INTO `wm_manager_manager` VALUES (1,1,0,'admin','d4b6232e4aa20cd032009cbb79b3452507a24830','a8e52ffc28e3300ee098aec5b1415b6cea5befcb','127.0.0.1',1613876021),(4,1,1,'sdasd','b8dbfcaea467bc655229df4a370cabe063f7daa4',NULL,'127.0.0.1',1499091969);
 DROP TABLE IF EXISTS `wm_manager_operation`;
 CREATE TABLE `wm_manager_operation` (
   `operation_id` int NOT NULL AUTO_INCREMENT,
-  `operation_manager_id` int DEFAULT '0' COMMENT '操作的管理员',
-  `operation_module` varchar(20) DEFAULT NULL COMMENT '操作的模块',
-  `operation_table` varchar(50) DEFAULT NULL COMMENT '操作的表',
-  `operation_type` varchar(20) DEFAULT NULL COMMENT '操作的类型，insert，updata,delete',
-  `operation_data` text COMMENT '操作的新数据',
-  `operation_where` text COMMENT '操作数据的条件',
-  `operation_backdata` text COMMENT '操作的镜像原始数据',
-  `operation_remark` varchar(500) DEFAULT NULL COMMENT '操作的备注信息',
-  `operation_time` int DEFAULT '0' COMMENT '操作的时间',
+  `operation_manager_id` int DEFAULT '0' COMMENT 'ผู้ดูแลระบบที่ดำเนินการ',
+  `operation_module` varchar(20) DEFAULT NULL COMMENT 'โมดูลที่ดำเนินการ',
+  `operation_table` varchar(50) DEFAULT NULL COMMENT 'ตารางที่ดำเนินการ',
+  `operation_type` varchar(20) DEFAULT NULL COMMENT 'ประเภทการดำเนินการ, insert, updata, delete',
+  `operation_data` text COMMENT 'ข้อมูลใหม่ของการดำเนินการ',
+  `operation_where` text COMMENT 'เงื่อนไขของข้อมูลที่ดำเนินการ',
+  `operation_backdata` text COMMENT 'ข้อมูลต้นฉบับแบบมิเรอร์ของการดำเนินการ',
+  `operation_remark` varchar(500) DEFAULT NULL COMMENT 'ข้อมูลหมายเหตุของการดำเนินการ',
+  `operation_time` int DEFAULT '0' COMMENT 'เวลาของการดำเนินการ',
   PRIMARY KEY (`operation_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='管理员操作记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการดำเนินการของผู้ดูแลระบบ';
 DROP TABLE IF EXISTS `wm_manager_recycle`;
 CREATE TABLE `wm_manager_recycle` (
   `recycle_id` int NOT NULL AUTO_INCREMENT,
-  `recycle_manager_id` int NOT NULL DEFAULT '0' COMMENT '管理员的id',
-  `recycle_module` varchar(20) NOT NULL COMMENT '操作的是哪个模块',
-  `recycle_data_id` int NOT NULL DEFAULT '0' COMMENT '删除的数据id',
-  `recycle_title` varchar(100) DEFAULT NULL COMMENT '删除数据的标题',
-  `recycle_time` int DEFAULT '0' COMMENT '删除的时间',
+  `recycle_manager_id` int NOT NULL DEFAULT '0' COMMENT 'id ของผู้ดูแลระบบ',
+  `recycle_module` varchar(20) NOT NULL COMMENT 'โมดูลใดที่ถูกดำเนินการ',
+  `recycle_data_id` int NOT NULL DEFAULT '0' COMMENT 'id ข้อมูลที่ลบ',
+  `recycle_title` varchar(100) DEFAULT NULL COMMENT 'หัวข้อข้อมูลที่ลบ',
+  `recycle_time` int DEFAULT '0' COMMENT 'เวลาที่ลบ',
   PRIMARY KEY (`recycle_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='管理员删除数据回收站';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ถังรีไซเคิลข้อมูลที่ผู้ดูแลระบบลบ';
 DROP TABLE IF EXISTS `wm_manager_request`;
 CREATE TABLE `wm_manager_request` (
   `request_id` int NOT NULL AUTO_INCREMENT,
-  `request_manager_id` int NOT NULL COMMENT '管理员的id',
-  `request_file` varchar(30) NOT NULL COMMENT '访问的控制器文件',
-  `request_type` varchar(20) NOT NULL DEFAULT 'GET' COMMENT '访问的类型',
-  `request_ip` varchar(20) DEFAULT NULL COMMENT '访问的ip',
-  `request_time` int DEFAULT '0' COMMENT '访问的时间',
-  `request_get` text COMMENT 'GET请求的参数',
-  `request_post` text COMMENT 'POST请求的参数',
+  `request_manager_id` int NOT NULL COMMENT 'id ของผู้ดูแลระบบ',
+  `request_file` varchar(30) NOT NULL COMMENT 'ไฟล์คอนโทรลเลอร์ที่เข้าถึง',
+  `request_type` varchar(20) NOT NULL DEFAULT 'GET' COMMENT 'ประเภทการเข้าชม',
+  `request_ip` varchar(20) DEFAULT NULL COMMENT 'ip ของการเข้าชม',
+  `request_time` int DEFAULT '0' COMMENT 'เวลาที่เข้าชม',
+  `request_get` text COMMENT 'พารามิเตอร์ของคำขอ GET',
+  `request_post` text COMMENT 'พารามิเตอร์ของคำขอ POST',
   PRIMARY KEY (`request_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='管理员请求记录';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='บันทึกคำขอของผู้ดูแลระบบ';
 DROP TABLE IF EXISTS `wm_message_message`;
 CREATE TABLE `wm_message_message` (
   `message_id` int NOT NULL AUTO_INCREMENT,
-  `message_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0为未读',
-  `message_content` varchar(100) NOT NULL COMMENT '留言内容',
-  `message_time` int NOT NULL COMMENT '留言时间',
-  `message_ip` varchar(15) DEFAULT NULL COMMENT '留言IP',
+  `message_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=ยังไม่ได้อ่าน',
+  `message_content` varchar(100) NOT NULL COMMENT 'เนื้อหาข้อความ',
+  `message_time` int NOT NULL COMMENT 'เวลาข้อความ',
+  `message_ip` varchar(15) DEFAULT NULL COMMENT 'IP ของข้อความ',
   PRIMARY KEY (`message_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='留言表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางข้อความ';
 DROP TABLE IF EXISTS `wm_novel_author_said`;
 CREATE TABLE `wm_novel_author_said` (
-  `said_id` int NOT NULL AUTO_INCREMENT COMMENT '自增ID',
-  `novel_id` int NOT NULL COMMENT '小说ID',
-  `chapter_id` int NOT NULL COMMENT '章节ID',
-  `said_content` text COMMENT '内容',
-  `said_uptime` int NOT NULL COMMENT '更新时间',
+  `said_id` int NOT NULL AUTO_INCREMENT COMMENT 'ID เพิ่มอัตโนมัติ',
+  `novel_id` int NOT NULL COMMENT 'ID นิยาย',
+  `chapter_id` int NOT NULL COMMENT 'ID ของตอน',
+  `said_content` text COMMENT 'เนื้อหา',
+  `said_uptime` int NOT NULL COMMENT 'เวลาอัปเดต',
   PRIMARY KEY (`said_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='作者的话';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='คำกล่าวของผู้แต่ง';
 DROP TABLE IF EXISTS `wm_novel_chapter`;
 CREATE TABLE `wm_novel_chapter` (
   `chapter_id` int NOT NULL AUTO_INCREMENT,
-  `chapter_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0为审核中,1为正常,2为不通过',
-  `chapter_islogin` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否需要登录才能查看',
-  `chapter_isvip` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否需要会员,0为不需要',
-  `chapter_ispay` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否需要付费',
-  `chapter_istxt` tinyint(1) NOT NULL DEFAULT '2' COMMENT '2为入库，1为是txt文件',
-  `chapter_number` int DEFAULT '0' COMMENT '章节的字数',
-  `chapter_name` varchar(100) DEFAULT NULL COMMENT '章节名',
-  `chapter_nid` int NOT NULL DEFAULT '0' COMMENT '书籍id',
-  `chapter_vid` int NOT NULL DEFAULT '1' COMMENT '分卷id默认为1',
-  `chapter_cid` int NOT NULL DEFAULT '0' COMMENT '内容id',
-  `chapter_order` int NOT NULL DEFAULT '999' COMMENT '排序',
-  `chapter_path` varchar(250) DEFAULT NULL COMMENT '章节txt完整保存路径',
-  `chapter_time` int NOT NULL DEFAULT '0' COMMENT '添加时间年月日时分秒',
+  `chapter_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0=รอตรวจสอบ 1=ปกติ 2=ไม่ผ่าน',
+  `chapter_islogin` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'ต้องเข้าสู่ระบบจึงจะดูได้หรือไม่',
+  `chapter_isvip` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'ต้องเป็นสมาชิกหรือไม่, 0=ไม่ต้อง',
+  `chapter_ispay` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'ต้องเสียเงินหรือไม่',
+  `chapter_istxt` tinyint(1) NOT NULL DEFAULT '2' COMMENT '2=นำเข้าฐานข้อมูล 1=เป็นไฟล์ txt',
+  `chapter_number` int DEFAULT '0' COMMENT 'จำนวนคำของตอน',
+  `chapter_name` varchar(100) DEFAULT NULL COMMENT 'ชื่อตอน',
+  `chapter_nid` int NOT NULL DEFAULT '0' COMMENT 'id หนังสือ',
+  `chapter_vid` int NOT NULL DEFAULT '1' COMMENT 'id เล่ม ค่าเริ่มต้น 1',
+  `chapter_cid` int NOT NULL DEFAULT '0' COMMENT 'id เนื้อหา',
+  `chapter_order` int NOT NULL DEFAULT '999' COMMENT 'เรียงลำดับ',
+  `chapter_path` varchar(250) DEFAULT NULL COMMENT 'พาธบันทึกไฟล์ txt ของตอนแบบครบถ้วน',
+  `chapter_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่เพิ่ม ปีเดือนวันชั่วโมงนาทีวินาที',
   PRIMARY KEY (`chapter_id`),
   KEY `nid_vid_time_Index` (`chapter_nid`,`chapter_vid`,`chapter_time`),
   KEY `nid_time_Index` (`chapter_nid`,`chapter_time`),
@@ -882,63 +882,63 @@ CREATE TABLE `wm_novel_chapter` (
   KEY `cid_index` (`chapter_cid`),
   KEY `status_index` (`chapter_status`),
   KEY `order_index` (`chapter_order`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='小说章节索引表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางดัชนีตอนนิยาย';
 DROP TABLE IF EXISTS `wm_novel_content`;
 CREATE TABLE `wm_novel_content` (
   `content_id` int NOT NULL AUTO_INCREMENT,
-  `content` mediumtext NOT NULL COMMENT '内容',
+  `content` mediumtext NOT NULL COMMENT 'เนื้อหา',
   PRIMARY KEY (`content_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='章节内容表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางเนื้อหาตอน';
 DROP TABLE IF EXISTS `wm_novel_novel`;
 CREATE TABLE `wm_novel_novel` (
   `novel_id` int NOT NULL AUTO_INCREMENT,
-  `author_id` int NOT NULL DEFAULT '0' COMMENT '作者id',
-  `novel_name` varchar(100) NOT NULL COMMENT '小说名',
-  `novel_wordname` varchar(50) DEFAULT NULL COMMENT '全文字书名',
-  `novel_pinyin` varchar(50) NOT NULL COMMENT '拼音',
-  `novel_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0为审核,1为正常',
-  `novel_copyright` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0为无版权，1为签约销售，2为买断版权',
-  `novel_sign_id` int NOT NULL DEFAULT '0' COMMENT '签约等级的id',
-  `novel_sell` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否允许上架出售',
-  `novel_process` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1为连载，2完成，3断更',
-  `novel_type` int NOT NULL DEFAULT '1' COMMENT '1为原创首发，2为他站首发',
-  `type_id` int NOT NULL COMMENT '类型id',
-  `novel_author` varchar(50) NOT NULL COMMENT '作者',
-  `novel_cover` varchar(250) NOT NULL COMMENT '封面',
-  `novel_comment` varchar(500) DEFAULT NULL COMMENT '编辑点评',
-  `novel_info` varchar(2000) NOT NULL COMMENT '小说简介',
-  `novel_tags` varchar(80) DEFAULT NULL COMMENT '小说标签',
-  `novel_chapter` int NOT NULL DEFAULT '0' COMMENT '总章节数',
-  `novel_wordnumber` int NOT NULL DEFAULT '0' COMMENT '总字数',
-  `novel_uptime` int NOT NULL DEFAULT '0' COMMENT '最后更新时间年月日时分秒',
-  `novel_clicktime` int NOT NULL DEFAULT '0' COMMENT '点击更新日期年月日',
-  `novel_score` decimal(2,1) NOT NULL DEFAULT '0.0' COMMENT '评分',
-  `novel_ding` int NOT NULL DEFAULT '0' COMMENT '顶',
-  `novel_cai` int NOT NULL DEFAULT '0' COMMENT '踩',
-  `novel_replay` int NOT NULL DEFAULT '0' COMMENT '评论条数',
-  `novel_startcid` int NOT NULL DEFAULT '0' COMMENT '第一章节的id',
-  `novel_startcname` varchar(50) NOT NULL DEFAULT '0' COMMENT '第一章节的名字',
-  `novel_newcid` int NOT NULL DEFAULT '0' COMMENT '最新章节的id',
-  `novel_newcname` varchar(50) NOT NULL DEFAULT '0' COMMENT '最新章节的名字',
-  `novel_createtime` int NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `novel_todayclick` int NOT NULL DEFAULT '0' COMMENT '今日点击',
-  `novel_weekclick` int NOT NULL DEFAULT '0' COMMENT '周点击',
-  `novel_monthclick` int NOT NULL DEFAULT '0' COMMENT '本月点击',
-  `novel_yearclick` int DEFAULT '0' COMMENT '年点击',
-  `novel_allclick` int NOT NULL DEFAULT '0' COMMENT '总点击数',
-  `novel_todaycoll` int NOT NULL DEFAULT '0' COMMENT '日收藏',
-  `novel_weekcoll` int NOT NULL DEFAULT '0' COMMENT '周收藏',
-  `novel_monthcoll` int NOT NULL DEFAULT '0' COMMENT '月收藏',
-  `novel_yearcoll` int NOT NULL DEFAULT '0' COMMENT '年收藏',
-  `novel_allcoll` int NOT NULL DEFAULT '0' COMMENT '总收藏',
-  `novel_colltime` int NOT NULL DEFAULT '0' COMMENT '收藏更新时间',
-  `novel_todayrec` int NOT NULL DEFAULT '0' COMMENT '日用户推荐',
-  `novel_weekrec` int NOT NULL DEFAULT '0' COMMENT '周用户推荐',
-  `novel_monthrec` int NOT NULL DEFAULT '0' COMMENT '月用户推荐',
-  `novel_yearrec` int NOT NULL DEFAULT '0' COMMENT '年用户推荐',
-  `novel_allrec` int NOT NULL DEFAULT '0' COMMENT '总用户推荐',
-  `novel_path` varchar(250) DEFAULT NULL COMMENT '小说完本txt保存地址',
-  `novel_rectime` int NOT NULL DEFAULT '0' COMMENT '推荐更新时间',
+  `author_id` int NOT NULL DEFAULT '0' COMMENT 'id ผู้แต่ง',
+  `novel_name` varchar(100) NOT NULL COMMENT 'ชื่อนิยาย',
+  `novel_wordname` varchar(50) DEFAULT NULL COMMENT 'ชื่อหนังสือแบบเต็ม',
+  `novel_pinyin` varchar(50) NOT NULL COMMENT 'พินอิน',
+  `novel_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0=รอตรวจสอบ 1=ปกติ',
+  `novel_copyright` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=ไม่มีลิขสิทธิ์ 1=ขายแบบเซ็นสัญญา 2=ซื้อขาดลิขสิทธิ์',
+  `novel_sign_id` int NOT NULL DEFAULT '0' COMMENT 'id ของระดับการเซ็นสัญญา',
+  `novel_sell` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'อนุญาตให้วางขายหรือไม่',
+  `novel_process` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=กำลังเขียน 2=จบแล้ว 3=หยุดอัปเดต',
+  `novel_type` int NOT NULL DEFAULT '1' COMMENT '1=ต้นฉบับลงก่อน 2=ลงที่เว็บอื่นก่อน',
+  `type_id` int NOT NULL COMMENT 'id ประเภท',
+  `novel_author` varchar(50) NOT NULL COMMENT 'ผู้แต่ง',
+  `novel_cover` varchar(250) NOT NULL COMMENT 'ปก',
+  `novel_comment` varchar(500) DEFAULT NULL COMMENT 'รีวิวของบรรณาธิการ',
+  `novel_info` varchar(2000) NOT NULL COMMENT 'เรื่องย่อนิยาย',
+  `novel_tags` varchar(80) DEFAULT NULL COMMENT 'แท็กนิยาย',
+  `novel_chapter` int NOT NULL DEFAULT '0' COMMENT 'จำนวนตอนทั้งหมด',
+  `novel_wordnumber` int NOT NULL DEFAULT '0' COMMENT 'จำนวนคำทั้งหมด',
+  `novel_uptime` int NOT NULL DEFAULT '0' COMMENT 'เวลาอัปเดตล่าสุด ปีเดือนวันชั่วโมงนาทีวินาที',
+  `novel_clicktime` int NOT NULL DEFAULT '0' COMMENT 'วันที่อัปเดตการคลิก (ปีเดือนวัน)',
+  `novel_score` decimal(2,1) NOT NULL DEFAULT '0.0' COMMENT 'คะแนน',
+  `novel_ding` int NOT NULL DEFAULT '0' COMMENT 'กดชอบ',
+  `novel_cai` int NOT NULL DEFAULT '0' COMMENT 'กดไม่ชอบ',
+  `novel_replay` int NOT NULL DEFAULT '0' COMMENT 'จำนวนความคิดเห็น',
+  `novel_startcid` int NOT NULL DEFAULT '0' COMMENT 'id ของตอนแรก',
+  `novel_startcname` varchar(50) NOT NULL DEFAULT '0' COMMENT 'ชื่อของตอนแรก',
+  `novel_newcid` int NOT NULL DEFAULT '0' COMMENT 'ID ของตอนล่าสุด',
+  `novel_newcname` varchar(50) NOT NULL DEFAULT '0' COMMENT 'ชื่อตอนล่าสุด',
+  `novel_createtime` int NOT NULL DEFAULT '0' COMMENT 'เวลาสร้าง',
+  `novel_todayclick` int NOT NULL DEFAULT '0' COMMENT 'คลิกวันนี้',
+  `novel_weekclick` int NOT NULL DEFAULT '0' COMMENT 'คลิกสัปดาห์นี้',
+  `novel_monthclick` int NOT NULL DEFAULT '0' COMMENT 'คลิกเดือนนี้',
+  `novel_yearclick` int DEFAULT '0' COMMENT 'คลิกรายปี',
+  `novel_allclick` int NOT NULL DEFAULT '0' COMMENT 'จำนวนคลิกทั้งหมด',
+  `novel_todaycoll` int NOT NULL DEFAULT '0' COMMENT 'รายการโปรดรายวัน',
+  `novel_weekcoll` int NOT NULL DEFAULT '0' COMMENT 'รายการโปรดสัปดาห์นี้',
+  `novel_monthcoll` int NOT NULL DEFAULT '0' COMMENT 'รายการโปรดรายเดือน',
+  `novel_yearcoll` int NOT NULL DEFAULT '0' COMMENT 'รายการโปรดรายปี',
+  `novel_allcoll` int NOT NULL DEFAULT '0' COMMENT 'รายการโปรดทั้งหมด',
+  `novel_colltime` int NOT NULL DEFAULT '0' COMMENT 'เวลาอัปเดตรายการโปรด',
+  `novel_todayrec` int NOT NULL DEFAULT '0' COMMENT 'การแนะนำจากผู้ใช้รายวัน',
+  `novel_weekrec` int NOT NULL DEFAULT '0' COMMENT 'ผู้ใช้แนะนำสัปดาห์นี้',
+  `novel_monthrec` int NOT NULL DEFAULT '0' COMMENT 'การแนะนำจากผู้ใช้รายเดือน',
+  `novel_yearrec` int NOT NULL DEFAULT '0' COMMENT 'การแนะนำจากผู้ใช้รายปี',
+  `novel_allrec` int NOT NULL DEFAULT '0' COMMENT 'การแนะนำจากผู้ใช้ทั้งหมด',
+  `novel_path` varchar(250) DEFAULT NULL COMMENT 'ที่อยู่จัดเก็บไฟล์ txt ของนิยายที่จบแล้ว',
+  `novel_rectime` int NOT NULL DEFAULT '0' COMMENT 'เวลาอัปเดตที่แนะนำ',
   PRIMARY KEY (`novel_id`),
   KEY `UPTIME_INDEX` (`novel_uptime`),
   KEY `LIST_INDEX` (`novel_status`,`type_id`),
@@ -968,428 +968,428 @@ CREATE TABLE `wm_novel_novel` (
   KEY `ALLCOLL_INDEX` (`novel_allcoll`),
   KEY `PRE_NEXT_INDEX` (`type_id`,`novel_id`),
   KEY `AUTHOR_INDEX` (`novel_author`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='小说书籍表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางหนังสือ';
 DROP TABLE IF EXISTS `wm_novel_outline`;
 CREATE TABLE `wm_novel_outline` (
-  `outline_id` int NOT NULL AUTO_INCREMENT COMMENT '自增ID',
-  `novel_id` int NOT NULL COMMENT '小说ID',
-  `outline_content` text COMMENT '大纲内容',
-  `outline_uptime` int NOT NULL COMMENT '更新时间',
+  `outline_id` int NOT NULL AUTO_INCREMENT COMMENT 'ID เพิ่มอัตโนมัติ',
+  `novel_id` int NOT NULL COMMENT 'ID นิยาย',
+  `outline_content` text COMMENT 'เนื้อหาโครงเรื่อง',
+  `outline_uptime` int NOT NULL COMMENT 'เวลาอัปเดต',
   PRIMARY KEY (`outline_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='小说大纲';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='โครงเรื่องนิยาย';
 DROP TABLE IF EXISTS `wm_novel_rec`;
 CREATE TABLE `wm_novel_rec` (
   `rec_id` int NOT NULL AUTO_INCREMENT,
-  `rec_nid` int NOT NULL COMMENT '小说id',
-  `rec_img3` varchar(250) DEFAULT NULL COMMENT '触屏推荐图片地址',
-  `rec_img4` varchar(250) DEFAULT NULL COMMENT '电脑推荐图片地址',
-  `rec_rt` varchar(20) DEFAULT NULL COMMENT '推荐显示的标题',
-  `rec_icr` tinyint(1) NOT NULL DEFAULT '0' COMMENT '首页封面',
-  `rec_ibr` tinyint(1) NOT NULL DEFAULT '0' COMMENT '首页精品',
-  `rec_ir` tinyint(1) NOT NULL DEFAULT '0' COMMENT '首页推荐',
-  `rec_ccr` tinyint(1) NOT NULL DEFAULT '0' COMMENT '分类封面',
-  `rec_cbr` tinyint(1) NOT NULL DEFAULT '0' COMMENT '分类精品',
-  `rec_cr` tinyint(1) NOT NULL DEFAULT '0' COMMENT '分类推荐',
-  `rec_order` int NOT NULL DEFAULT '99' COMMENT '排序',
-  `rec_time` int NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `rec_nid` int NOT NULL COMMENT 'ID นิยาย',
+  `rec_img3` varchar(250) DEFAULT NULL COMMENT 'ที่อยู่รูปภาพแนะนำสำหรับหน้าจอสัมผัส',
+  `rec_img4` varchar(250) DEFAULT NULL COMMENT 'ที่อยู่รูปภาพแนะนำสำหรับคอมพิวเตอร์',
+  `rec_rt` varchar(20) DEFAULT NULL COMMENT 'หัวข้อที่แนะนำให้แสดง',
+  `rec_icr` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'ปกหน้าแรก',
+  `rec_ibr` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'รายการพรีเมียมหน้าแรก',
+  `rec_ir` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'แนะนำหน้าแรก',
+  `rec_ccr` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'ปกหมวดหมู่',
+  `rec_cbr` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'หมวดหมู่คัดสรร',
+  `rec_cr` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'แนะนำหมวดหมู่',
+  `rec_order` int NOT NULL DEFAULT '99' COMMENT 'เรียงลำดับ',
+  `rec_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่เพิ่ม',
   PRIMARY KEY (`rec_id`),
   KEY `nid_index` (`rec_nid`),
   KEY `rec_index` (`rec_rt`,`rec_icr`,`rec_ibr`,`rec_ir`,`rec_ccr`,`rec_cbr`,`rec_cr`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='小说推荐表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางแนะนำนิยาย';
 DROP TABLE IF EXISTS `wm_novel_rewardlog`;
 CREATE TABLE `wm_novel_rewardlog` (
   `log_id` int NOT NULL AUTO_INCREMENT,
-  `log_nid` int NOT NULL DEFAULT '0' COMMENT '小说id',
-  `log_cid` int DEFAULT '0' COMMENT '章节id，可以为0',
-  `log_uid` int NOT NULL DEFAULT '0' COMMENT '打赏的用户id',
-  `log_gold1` decimal(10,2) DEFAULT '0.00' COMMENT '打赏消耗的金币1',
-  `log_gold2` decimal(10,2) DEFAULT '0.00' COMMENT '打赏消耗的金币2',
-  `log_time` int NOT NULL DEFAULT '0' COMMENT '订打赏的时间',
+  `log_nid` int NOT NULL DEFAULT '0' COMMENT 'ID นิยาย',
+  `log_cid` int DEFAULT '0' COMMENT 'id ของตอน สามารถเป็น 0 ได้',
+  `log_uid` int NOT NULL DEFAULT '0' COMMENT 'ID ผู้ใช้ที่ให้รางวัล',
+  `log_gold1` decimal(10,2) DEFAULT '0.00' COMMENT 'เหรียญที่ใช้ในการให้รางวัล 1',
+  `log_gold2` decimal(10,2) DEFAULT '0.00' COMMENT 'เหรียญที่ใช้ในการให้รางวัล 2',
+  `log_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาการให้รางวัล',
   PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='小说打赏记录日志表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการให้รางวัลนิยาย';
 DROP TABLE IF EXISTS `wm_novel_sell`;
 CREATE TABLE `wm_novel_sell` (
   `sell_id` int NOT NULL AUTO_INCREMENT,
-  `sell_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1为上架，0为下架',
-  `sell_novel_id` int NOT NULL DEFAULT '0' COMMENT '小说id',
-  `sell_type` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT '1' COMMENT '销售类型,1为单章，2为全本，3为包月',
-  `sell_number` decimal(8,2) DEFAULT '0.00' COMMENT '单章千字价格【金币2】',
-  `sell_all` decimal(8,2) DEFAULT '0.00' COMMENT '全本销售价格【金币2】',
-  `sell_month` decimal(8,2) DEFAULT '0.00' COMMENT '包月价格【金币2】',
-  `sell_time` int NOT NULL DEFAULT '0' COMMENT '上架时间',
+  `sell_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=วางขาย 0=เอาออกจากชั้น',
+  `sell_novel_id` int NOT NULL DEFAULT '0' COMMENT 'ID นิยาย',
+  `sell_type` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT '1' COMMENT 'ประเภทการขาย,1 คือรายตอน 2 คือทั้งเล่ม 3 คือรายเดือน',
+  `sell_number` decimal(8,2) DEFAULT '0.00' COMMENT 'ราคาต่อพันคำต่อตอน【เหรียญ 2】',
+  `sell_all` decimal(8,2) DEFAULT '0.00' COMMENT 'ราคาขายทั้งเล่ม【เหรียญ 2】',
+  `sell_month` decimal(8,2) DEFAULT '0.00' COMMENT 'ราคารายเดือน【เหรียญ 2】',
+  `sell_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาวางขาย',
   PRIMARY KEY (`sell_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='小说上架销售记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการวางขายนิยาย';
 DROP TABLE IF EXISTS `wm_novel_sign`;
 CREATE TABLE `wm_novel_sign` (
   `sign_id` int NOT NULL AUTO_INCREMENT,
-  `sign_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1为签约，0为解除签约',
-  `sign_novel_id` int NOT NULL COMMENT '小说id',
-  `sign_manager_id` int NOT NULL DEFAULT '1' COMMENT '签约的管理员',
-  `sign_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '签约类型，1为分成销售，2为买断版权',
-  `sign_sign_id` int DEFAULT '0' COMMENT '签约等级',
-  `sign_time` int NOT NULL COMMENT '签约的时间',
+  `sign_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=เซ็นสัญญา 0=ยกเลิกสัญญา',
+  `sign_novel_id` int NOT NULL COMMENT 'ID นิยาย',
+  `sign_manager_id` int NOT NULL DEFAULT '1' COMMENT 'ผู้ดูแลระบบที่เซ็นสัญญา',
+  `sign_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'ประเภทการเซ็นสัญญา 1 คือขายแบบแบ่งรายได้ 2 คือซื้อขาดลิขสิทธิ์',
+  `sign_sign_id` int DEFAULT '0' COMMENT 'ระดับการเซ็นสัญญา',
+  `sign_time` int NOT NULL COMMENT 'เวลาที่เซ็นสัญญา',
   PRIMARY KEY (`sign_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='小说签约买断记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการเซ็นสัญญาซื้อขาดนิยาย';
 DROP TABLE IF EXISTS `wm_novel_sublog`;
 CREATE TABLE `wm_novel_sublog` (
   `log_id` int NOT NULL AUTO_INCREMENT,
-  `log_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '订阅类型，1是单章，2是全本，3是包月',
-  `log_nid` int NOT NULL DEFAULT '0' COMMENT '小说id',
-  `log_cid` int DEFAULT '0' COMMENT '章节id，可以为0',
-  `log_uid` int NOT NULL DEFAULT '0' COMMENT '订阅的用户id',
-  `log_gold1` decimal(10,2) DEFAULT '0.00' COMMENT '订阅消耗的金币1',
-  `log_gold2` decimal(10,2) DEFAULT '0.00' COMMENT '订阅消耗的金币2',
-  `log_time` int NOT NULL DEFAULT '0' COMMENT '订阅的时间',
+  `log_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'ประเภทการสมัครรับ 1 คือรายตอน 2 คือทั้งเล่ม 3 คือรายเดือน',
+  `log_nid` int NOT NULL DEFAULT '0' COMMENT 'ID นิยาย',
+  `log_cid` int DEFAULT '0' COMMENT 'id ของตอน สามารถเป็น 0 ได้',
+  `log_uid` int NOT NULL DEFAULT '0' COMMENT 'id ผู้ใช้ที่สมัครรับ',
+  `log_gold1` decimal(10,2) DEFAULT '0.00' COMMENT 'เหรียญที่ใช้ในการสมัครรับ1',
+  `log_gold2` decimal(10,2) DEFAULT '0.00' COMMENT 'เหรียญที่ใช้ในการสมัครรับ2',
+  `log_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาสมัครรับ',
   PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='小说订阅记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการติดตามนิยาย';
 DROP TABLE IF EXISTS `wm_novel_timelimit`;
 CREATE TABLE `wm_novel_timelimit` (
   `timelimit_id` int NOT NULL AUTO_INCREMENT,
-  `timelimit_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '布尔值，是否可用',
-  `timelimit_nid` int NOT NULL COMMENT '小说id',
-  `timelimit_starttime` int NOT NULL COMMENT '限时免费开始时间',
-  `timelimit_endtime` int NOT NULL COMMENT '限时免费结束时间',
-  `timelimit_order` int NOT NULL COMMENT '显示顺序',
-  `timelimit_time` int NOT NULL COMMENT '添加时间',
+  `timelimit_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'ค่าบูลีน, ใช้งานได้หรือไม่',
+  `timelimit_nid` int NOT NULL COMMENT 'ID นิยาย',
+  `timelimit_starttime` int NOT NULL COMMENT 'เวลาเริ่มฟรีแบบจำกัดเวลา',
+  `timelimit_endtime` int NOT NULL COMMENT 'เวลาสิ้นสุดฟรีแบบจำกัดเวลา',
+  `timelimit_order` int NOT NULL COMMENT 'ลำดับการแสดง',
+  `timelimit_time` int NOT NULL COMMENT 'เวลาที่เพิ่ม',
   PRIMARY KEY (`timelimit_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='小说限时免费表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางนิยายฟรีชั่วคราว';
 DROP TABLE IF EXISTS `wm_novel_type`;
 CREATE TABLE `wm_novel_type` (
   `type_id` int NOT NULL AUTO_INCREMENT,
-  `type_topid` int NOT NULL DEFAULT '0' COMMENT '上级id',
-  `type_pid` varchar(20) NOT NULL DEFAULT '0' COMMENT '子栏目id',
-  `type_name` varchar(10) NOT NULL COMMENT '分类名',
-  `type_cname` varchar(10) DEFAULT NULL COMMENT '类型简称',
-  `type_pinyin` varchar(50) DEFAULT NULL COMMENT '类型拼音',
-  `type_order` int NOT NULL COMMENT '排序',
-  `type_ico` varchar(200) DEFAULT NULL COMMENT '分类图标',
-  `type_info` varchar(100) DEFAULT NULL COMMENT '分类简介',
-  `type_tempid` int NOT NULL DEFAULT '0' COMMENT '分类页模版',
-  `type_titempid` int NOT NULL DEFAULT '0' COMMENT '分类首页的模版',
-  `type_ctempid` int NOT NULL DEFAULT '0' COMMENT 'info模版',
-  `type_mtempid` int NOT NULL DEFAULT '0' COMMENT 'menu模版',
-  `type_rtempid` int NOT NULL DEFAULT '0' COMMENT 'read模版',
-  `type_title` varchar(80) DEFAULT NULL COMMENT '分类标题',
-  `type_key` varchar(100) DEFAULT NULL COMMENT '分类关键字',
-  `type_desc` varchar(120) DEFAULT NULL COMMENT '分类描述',
+  `type_topid` int NOT NULL DEFAULT '0' COMMENT 'id ระดับเหนือขึ้นไป',
+  `type_pid` varchar(20) NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
+  `type_name` varchar(10) NOT NULL COMMENT 'ชื่อหมวดหมู่',
+  `type_cname` varchar(40) DEFAULT NULL COMMENT 'ชื่อย่อของประเภท',
+  `type_pinyin` varchar(50) DEFAULT NULL COMMENT 'พินอินของประเภท',
+  `type_order` int NOT NULL COMMENT 'เรียงลำดับ',
+  `type_ico` varchar(200) DEFAULT NULL COMMENT 'ไอคอนหมวดหมู่',
+  `type_info` varchar(100) DEFAULT NULL COMMENT 'เรื่องย่อหมวดหมู่',
+  `type_tempid` int NOT NULL DEFAULT '0' COMMENT 'เทมเพลตหน้าหมวดหมู่',
+  `type_titempid` int NOT NULL DEFAULT '0' COMMENT 'เทมเพลตหน้าแรกหมวดหมู่',
+  `type_ctempid` int NOT NULL DEFAULT '0' COMMENT 'เทมเพลต info',
+  `type_mtempid` int NOT NULL DEFAULT '0' COMMENT 'เทมเพลต menu',
+  `type_rtempid` int NOT NULL DEFAULT '0' COMMENT 'เทมเพลต read',
+  `type_title` varchar(80) DEFAULT NULL COMMENT 'หัวข้อหมวดหมู่',
+  `type_key` varchar(100) DEFAULT NULL COMMENT 'คำค้นหาหมวดหมู่',
+  `type_desc` varchar(120) DEFAULT NULL COMMENT 'คำอธิบายหมวดหมู่',
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COMMENT='小说分类表';
-INSERT INTO `wm_novel_type` VALUES (1,0,'0','玄幻魔法','玄幻','xuanhuanmofa',1,'','玄幻魔法给你最真实的魔法小说洗',0,0,0,0,0,'','',''),(2,0,'0','武侠修真','武侠','wuxiaxiuzhen',3,'','',0,0,0,0,0,'','',''),(3,0,'0','都市言情','都市','dushiyanqing',5,'','',0,0,0,0,0,'','',''),(4,0,'0','历史军事','历史','lishijunshi',7,'','',0,0,0,0,0,'','',''),(5,0,'0','悬疑激情','悬疑','xuanyijiqing',9,'','',0,0,0,0,0,'','',''),(6,0,'0','网游竞技','网游','wangyoujingji',11,'','',0,0,0,0,0,'','',''),(7,0,'0','科幻奇幻','科幻','kehuanqihuan',13,'','',0,0,0,0,0,'','',''),(8,0,'0','恐怖灵异','恐怖','kongbulingyi',15,'','',0,0,0,0,0,'','','');
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางหมวดหมู่นิยาย';
+INSERT INTO `wm_novel_type` VALUES (1,0,'0','แฟนตาซี','แฟนตาซี','xuanhuanmofa',1,'','แฟนตาซีเวทมนตร์มอบนิยายเวทมนตร์ที่สมจริงที่สุดให้คุณ',0,0,0,0,0,'','',''),(2,0,'0','กำลังภายใน','กำลังภายใน','wuxiaxiuzhen',3,'','',0,0,0,0,0,'','',''),(3,0,'0','โรแมนติก','ชีวิตในเมือง','dushiyanqing',5,'','',0,0,0,0,0,'','',''),(4,0,'0','สงคราม','ประวัติศาสตร์','lishijunshi',7,'','',0,0,0,0,0,'','',''),(5,0,'0','ระทึกขวัญ','ระทึกขวัญ','xuanyijiqing',9,'','',0,0,0,0,0,'','',''),(6,0,'0','อีสเปอร์ต','เกมออนไลน์','wangyoujingji',11,'','',0,0,0,0,0,'','',''),(7,0,'0','นิยายวิทย์','ไซไฟ','kehuanqihuan',13,'','',0,0,0,0,0,'','',''),(8,0,'0','สยองขวัญ','สยองขวัญ','kongbulingyi',15,'','',0,0,0,0,0,'','','');
 DROP TABLE IF EXISTS `wm_novel_volume`;
 CREATE TABLE `wm_novel_volume` (
   `volume_id` int NOT NULL AUTO_INCREMENT,
-  `volume_name` varchar(20) NOT NULL COMMENT '分卷名',
-  `volume_nid` int NOT NULL DEFAULT '0' COMMENT '书籍id0为默认分卷',
-  `volume_desc` varchar(100) DEFAULT NULL COMMENT '分卷描述',
-  `volume_order` int NOT NULL DEFAULT '0' COMMENT '排序',
-  `volume_time` int NOT NULL DEFAULT '0' COMMENT '创建时间年月日时分秒',
+  `volume_name` varchar(20) NOT NULL COMMENT 'ชื่อเล่ม',
+  `volume_nid` int NOT NULL DEFAULT '0' COMMENT 'id หนังสือ 0=เล่มเริ่มต้น',
+  `volume_desc` varchar(100) DEFAULT NULL COMMENT 'คำอธิบายเล่ม',
+  `volume_order` int NOT NULL DEFAULT '0' COMMENT 'เรียงลำดับ',
+  `volume_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาสร้าง ปีเดือนวันชั่วโมงนาทีวินาที',
   PRIMARY KEY (`volume_id`,`volume_time`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COMMENT='小说分卷表';
-INSERT INTO `wm_novel_volume` VALUES (1,'正文',0,'正文内容',0,22);
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางเล่มนิยาย';
+INSERT INTO `wm_novel_volume` VALUES (1,'เนื้อหาหลัก',0,'คำอธิบายเนื้อหาหลัก',0,22);
 DROP TABLE IF EXISTS `wm_novel_welfare`;
 CREATE TABLE `wm_novel_welfare` (
   `welfare_id` int NOT NULL AUTO_INCREMENT,
-  `welfare_nid` int NOT NULL COMMENT '小说id',
-  `welfare_type` varchar(250) DEFAULT NULL COMMENT '允许的小说分成方式',
-  `welfare_number` decimal(5,2) DEFAULT NULL COMMENT '小说字数奖励',
-  `welfare_finish` varchar(500) DEFAULT NULL COMMENT '小说完本奖励',
-  `welfare_update` varchar(500) DEFAULT NULL COMMENT '小说更新奖励，每月结算',
-  `welfare_full` varchar(500) DEFAULT NULL COMMENT '每月出勤奖励，每月结算',
+  `welfare_nid` int NOT NULL COMMENT 'ID นิยาย',
+  `welfare_type` varchar(250) DEFAULT NULL COMMENT 'วิธีแบ่งรายได้นิยายที่อนุญาต',
+  `welfare_number` decimal(5,2) DEFAULT NULL COMMENT 'รางวัลตามจำนวนคำของนิยาย',
+  `welfare_finish` varchar(500) DEFAULT NULL COMMENT 'รางวัลนิยายที่จบแล้ว',
+  `welfare_update` varchar(500) DEFAULT NULL COMMENT 'รางวัลการอัปเดตนิยาย, ชำระทุกเดือน',
+  `welfare_full` varchar(500) DEFAULT NULL COMMENT 'รางวัลการเข้าใช้งานรายเดือน, ชำระทุกเดือน',
   PRIMARY KEY (`welfare_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='小说福利设置表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางตั้งค่าสวัสดิการนิยาย';
 DROP TABLE IF EXISTS `wm_operate_operate`;
 CREATE TABLE `wm_operate_operate` (
   `operate_id` int NOT NULL AUTO_INCREMENT,
-  `operate_module` varchar(20) NOT NULL COMMENT '操作模块',
-  `operate_type` varchar(30) NOT NULL COMMENT '操作类型',
-  `operate_cid` int NOT NULL DEFAULT '0' COMMENT '操作内容的id',
+  `operate_module` varchar(20) NOT NULL COMMENT 'โมดูลที่ดำเนินการ',
+  `operate_type` varchar(30) NOT NULL COMMENT 'ประเภทการดำเนินการ',
+  `operate_cid` int NOT NULL DEFAULT '0' COMMENT 'ID ของเนื้อหาที่ดำเนินการ',
   `operate_ip` varchar(15) NOT NULL DEFAULT '127.0.0.1' COMMENT 'ip',
-  `operate_time` int NOT NULL DEFAULT '0' COMMENT '时间',
+  `operate_time` int NOT NULL DEFAULT '0' COMMENT 'เวลา',
   PRIMARY KEY (`operate_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='用户顶踩，评分等操作记录';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='บันทึกการโหวตขึ้น-ลงและการให้คะแนนของผู้ใช้';
 DROP TABLE IF EXISTS `wm_operate_score`;
 CREATE TABLE `wm_operate_score` (
   `score_id` int NOT NULL AUTO_INCREMENT,
-  `score_module` varchar(20) NOT NULL COMMENT '评分的模块',
-  `score_cid` int NOT NULL COMMENT '内容id',
-  `score_one` int NOT NULL DEFAULT '0' COMMENT '一分的人数',
-  `score_two` int NOT NULL DEFAULT '0' COMMENT '两分的人数',
-  `score_three` int NOT NULL DEFAULT '0' COMMENT '三分的人数',
-  `score_four` int NOT NULL DEFAULT '0' COMMENT '四分的人数',
-  `score_five` int NOT NULL DEFAULT '0' COMMENT '五分的人数',
+  `score_module` varchar(20) NOT NULL COMMENT 'โมดูลของคะแนน',
+  `score_cid` int NOT NULL COMMENT 'id เนื้อหา',
+  `score_one` int NOT NULL DEFAULT '0' COMMENT 'จำนวนคนที่ได้ 1 คะแนน',
+  `score_two` int NOT NULL DEFAULT '0' COMMENT 'จำนวนคนที่ได้ 2 คะแนน',
+  `score_three` int NOT NULL DEFAULT '0' COMMENT 'จำนวนคนที่ได้ 3 คะแนน',
+  `score_four` int NOT NULL DEFAULT '0' COMMENT 'จำนวนคนที่ได้ 4 คะแนน',
+  `score_five` int NOT NULL DEFAULT '0' COMMENT 'จำนวนคนที่ได้ 5 คะแนน',
   PRIMARY KEY (`score_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='互动评分操作';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='การให้คะแนนการมีส่วนร่วม';
 DROP TABLE IF EXISTS `wm_picture_picture`;
 CREATE TABLE `wm_picture_picture` (
   `picture_id` int NOT NULL AUTO_INCREMENT,
-  `type_id` int NOT NULL DEFAULT '1' COMMENT '新闻分类id',
-  `picture_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否审核',
-  `picture_rec` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否推荐',
-  `picture_simg` varchar(120) DEFAULT NULL COMMENT '缩略图',
-  `picture_name` varchar(50) NOT NULL COMMENT '图集标题',
-  `picture_cname` varchar(50) DEFAULT NULL COMMENT '图集段标题',
-  `picture_tags` varchar(50) DEFAULT NULL COMMENT '图集标签',
-  `picture_info` varchar(100) DEFAULT NULL COMMENT '点评，预览',
-  `picture_imgs` text COMMENT '图片序列化数组',
-  `picture_count` int NOT NULL DEFAULT '0' COMMENT '图片数量',
-  `picture_content` text COMMENT '简介',
-  `picture_read` int NOT NULL DEFAULT '0' COMMENT '图集阅读量',
-  `picture_replay` int NOT NULL DEFAULT '0' COMMENT '评论量',
-  `picture_ding` int NOT NULL DEFAULT '0' COMMENT '顶',
-  `picture_cai` int NOT NULL DEFAULT '0' COMMENT '踩',
-  `picture_start` decimal(2,1) NOT NULL DEFAULT '0.0' COMMENT '星级',
-  `picture_score` decimal(2,0) DEFAULT '0' COMMENT '评分',
-  `picture_time` int NOT NULL DEFAULT '0' COMMENT '添加时间年月日时分秒',
+  `type_id` int NOT NULL DEFAULT '1' COMMENT 'ID หมวดหมู่ข่าว',
+  `picture_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'ต้องตรวจสอบหรือไม่',
+  `picture_rec` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'แนะนำหรือไม่',
+  `picture_simg` varchar(120) DEFAULT NULL COMMENT 'รูปย่อ',
+  `picture_name` varchar(50) NOT NULL COMMENT 'หัวข้อชุดรูปภาพ',
+  `picture_cname` varchar(50) DEFAULT NULL COMMENT 'หัวข้อตอนของชุดรูปภาพ',
+  `picture_tags` varchar(50) DEFAULT NULL COMMENT 'แท็กชุดรูปภาพ',
+  `picture_info` varchar(100) DEFAULT NULL COMMENT 'รีวิว, ตัวอย่าง',
+  `picture_imgs` text COMMENT 'อาร์เรย์ซีเรียลไลซ์ของรูปภาพ',
+  `picture_count` int NOT NULL DEFAULT '0' COMMENT 'จำนวนรูปภาพ',
+  `picture_content` text COMMENT 'เรื่องย่อ',
+  `picture_read` int NOT NULL DEFAULT '0' COMMENT 'ยอดเข้าชมชุดรูปภาพ',
+  `picture_replay` int NOT NULL DEFAULT '0' COMMENT 'จำนวนความคิดเห็น',
+  `picture_ding` int NOT NULL DEFAULT '0' COMMENT 'กดชอบ',
+  `picture_cai` int NOT NULL DEFAULT '0' COMMENT 'กดไม่ชอบ',
+  `picture_start` decimal(2,1) NOT NULL DEFAULT '0.0' COMMENT 'ระดับดาว',
+  `picture_score` decimal(2,0) DEFAULT '0' COMMENT 'คะแนน',
+  `picture_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่เพิ่ม ปีเดือนวันชั่วโมงนาทีวินาที',
   PRIMARY KEY (`picture_id`),
   KEY `tid` (`type_id`,`picture_time`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='图集表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางแกลเลอรี';
 DROP TABLE IF EXISTS `wm_picture_type`;
 CREATE TABLE `wm_picture_type` (
   `type_id` int NOT NULL AUTO_INCREMENT,
-  `type_topid` int NOT NULL DEFAULT '0' COMMENT '上级id',
-  `type_pid` varchar(20) NOT NULL DEFAULT '0' COMMENT '子栏目id',
-  `type_name` varchar(10) NOT NULL COMMENT '分类名',
-  `type_cname` varchar(10) DEFAULT NULL COMMENT '类型简称',
-  `type_pinyin` varchar(50) DEFAULT NULL COMMENT '类型拼音',
-  `type_order` int NOT NULL DEFAULT '0' COMMENT '排序',
-  `type_simg` varchar(200) DEFAULT NULL COMMENT '分类缩略图',
-  `type_ico` varchar(200) DEFAULT NULL COMMENT '分类图标',
-  `type_info` varchar(100) DEFAULT NULL COMMENT '分类信息',
-  `type_titempid` int NOT NULL DEFAULT '0' COMMENT '分类首页模版',
-  `type_tempid` int NOT NULL DEFAULT '0' COMMENT '分类页模板',
-  `type_ctempid` int NOT NULL DEFAULT '0' COMMENT '分类内容页模版',
-  `type_title` varchar(80) DEFAULT NULL COMMENT '标题',
-  `type_key` varchar(100) DEFAULT NULL COMMENT '关键字',
-  `type_desc` varchar(120) DEFAULT NULL COMMENT '描述',
+  `type_topid` int NOT NULL DEFAULT '0' COMMENT 'id ระดับเหนือขึ้นไป',
+  `type_pid` varchar(20) NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
+  `type_name` varchar(10) NOT NULL COMMENT 'ชื่อหมวดหมู่',
+  `type_cname` varchar(10) DEFAULT NULL COMMENT 'ชื่อย่อของประเภท',
+  `type_pinyin` varchar(50) DEFAULT NULL COMMENT 'พินอินของประเภท',
+  `type_order` int NOT NULL DEFAULT '0' COMMENT 'เรียงลำดับ',
+  `type_simg` varchar(200) DEFAULT NULL COMMENT 'รูปย่อหมวดหมู่',
+  `type_ico` varchar(200) DEFAULT NULL COMMENT 'ไอคอนหมวดหมู่',
+  `type_info` varchar(100) DEFAULT NULL COMMENT 'ข้อมูลหมวดหมู่',
+  `type_titempid` int NOT NULL DEFAULT '0' COMMENT 'เทมเพลตหน้าแรกหมวดหมู่',
+  `type_tempid` int NOT NULL DEFAULT '0' COMMENT 'เทมเพลตหน้าหมวดหมู่',
+  `type_ctempid` int NOT NULL DEFAULT '0' COMMENT 'เทมเพลตหน้าเนื้อหาหมวดหมู่',
+  `type_title` varchar(80) DEFAULT NULL COMMENT 'หัวข้อ',
+  `type_key` varchar(100) DEFAULT NULL COMMENT 'คำค้นหา',
+  `type_desc` varchar(120) DEFAULT NULL COMMENT 'คำอธิบาย',
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='图集分类表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางหมวดหมู่แกลเลอรี';
 DROP TABLE IF EXISTS `wm_plugin`;
 CREATE TABLE `wm_plugin` (
   `plugin_id` int NOT NULL AUTO_INCREMENT,
-  `plugin_name` varchar(50) NOT NULL COMMENT '插件名字',
-  `plugin_floder` varchar(50) NOT NULL COMMENT '插件文件夹',
-  `plugin_author` varchar(20) NOT NULL COMMENT '插件作者',
-  `plugin_version` varchar(10) NOT NULL COMMENT '插件版本',
-  `plugin_time` int NOT NULL COMMENT '插件安装时间',
+  `plugin_name` varchar(80) NOT NULL COMMENT 'ชื่อปลั๊กอิน',
+  `plugin_floder` varchar(50) NOT NULL COMMENT 'โฟลเดอร์ปลั๊กอิน',
+  `plugin_author` varchar(60) NOT NULL COMMENT 'ผู้พัฒนาปลั๊กอิน',
+  `plugin_version` varchar(10) NOT NULL COMMENT 'เวอร์ชันปลั๊กอิน',
+  `plugin_time` int NOT NULL COMMENT 'เวลาติดตั้งปลั๊กอิน',
   PRIMARY KEY (`plugin_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 COMMENT='插件安装表';
-INSERT INTO `wm_plugin` VALUES (6,'官方-报名插件DEMO','demo','WMCMS官方','V1.0',1528631159);
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางการติดตั้งปลั๊กอิน';
+INSERT INTO `wm_plugin` VALUES (6,'ทางการ-ปลั๊กอินลงทะเบียน DEMO','demo','WMCMS อย่างเป็นทางการ','V1.0',1528631159);
 DROP TABLE IF EXISTS `wm_plugin_config`;
 CREATE TABLE `wm_plugin_config` (
   `config_id` int NOT NULL AUTO_INCREMENT,
-  `config_plugin_id` int NOT NULL COMMENT '插件id',
-  `config_key` varchar(100) NOT NULL COMMENT '插件键',
-  `config_val` text COMMENT '插件值',
+  `config_plugin_id` int NOT NULL COMMENT 'ID ปลั๊กอิน',
+  `config_key` varchar(100) NOT NULL COMMENT 'คีย์ปลั๊กอิน',
+  `config_val` text COMMENT 'ค่าปลั๊กอิน',
   PRIMARY KEY (`config_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COMMENT='插件参数配置表';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางตั้งค่าพารามิเตอร์ปลั๊กอิน';
 INSERT INTO `wm_plugin_config` VALUES (4,6,'plugin_demo_site_open','0');
 DROP TABLE IF EXISTS `wm_plugin_demo_apply`;
 CREATE TABLE `wm_plugin_demo_apply` (
   `message_id` int NOT NULL AUTO_INCREMENT,
-  `message_name` varchar(20) NOT NULL COMMENT '报名用户',
-  `message_phone` varchar(11) NOT NULL COMMENT '报名电话',
-  `message_time` int NOT NULL COMMENT '报名时间',
+  `message_name` varchar(20) NOT NULL COMMENT 'ผู้ใช้ที่สมัคร',
+  `message_phone` varchar(11) NOT NULL COMMENT 'โทรศัพท์ที่ใช้สมัคร',
+  `message_time` int NOT NULL COMMENT 'เวลาสมัคร',
   PRIMARY KEY (`message_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COMMENT='demo插件报名表';
-INSERT INTO `wm_plugin_demo_apply` VALUES (1,'未梦','15123232323',1528631188);
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางลงทะเบียนปลั๊กอิน demo';
+INSERT INTO `wm_plugin_demo_apply` VALUES (1,'เว่ยเมิ่ง','15123232323',1528631188);
 DROP TABLE IF EXISTS `wm_props_props`;
 CREATE TABLE `wm_props_props` (
   `props_id` int NOT NULL AUTO_INCREMENT,
-  `props_type_id` int NOT NULL COMMENT '类型',
-  `props_status` tinyint(1) DEFAULT '1' COMMENT '是否显示',
-  `props_name` varchar(20) NOT NULL COMMENT '道具名字',
-  `props_cover` varchar(250) DEFAULT NULL COMMENT '道具图标',
-  `props_stock` int NOT NULL DEFAULT '0' COMMENT '剩余库存',
-  `props_desc` text COMMENT '道具介绍',
-  `props_cost` tinyint(1) DEFAULT '1' COMMENT '1为网站消费类型，金币购买，2为现金购买',
-  `props_gold1` decimal(8,2) DEFAULT '0.00' COMMENT '金币1价格',
-  `props_gold2` decimal(8,2) DEFAULT '0.00' COMMENT '金币2价格',
-  `props_money` decimal(10,2) DEFAULT '0.00' COMMENT '现金价格',
-  `props_time` int NOT NULL DEFAULT '0' COMMENT '上架时间',
-  `props_option` varchar(500) DEFAULT NULL COMMENT '附加数据，序列化字符串',
-  `props_order` int DEFAULT '999' COMMENT '排序，越小越靠前',
+  `props_type_id` int NOT NULL COMMENT 'ประเภท',
+  `props_status` tinyint(1) DEFAULT '1' COMMENT 'แสดงหรือไม่',
+  `props_name` varchar(60) NOT NULL COMMENT 'ชื่อไอเทม',
+  `props_cover` varchar(250) DEFAULT NULL COMMENT 'ไอคอนไอเทม',
+  `props_stock` int NOT NULL DEFAULT '0' COMMENT 'สต็อกคงเหลือ',
+  `props_desc` text COMMENT 'คำอธิบายไอเทม',
+  `props_cost` tinyint(1) DEFAULT '1' COMMENT '1=ซื้อด้วยเหรียญ 2=ซื้อด้วยเงินสด',
+  `props_gold1` decimal(8,2) DEFAULT '0.00' COMMENT 'ราคาเหรียญ1',
+  `props_gold2` decimal(8,2) DEFAULT '0.00' COMMENT 'ราคาเหรียญ2',
+  `props_money` decimal(10,2) DEFAULT '0.00' COMMENT 'ราคาเงินสด',
+  `props_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาวางขาย',
+  `props_option` varchar(500) DEFAULT NULL COMMENT 'ข้อมูลเพิ่มเติม สตริงที่ serialize แล้ว',
+  `props_order` int DEFAULT '999' COMMENT 'เรียงลำดับ, ค่าน้อยอยู่ก่อน',
   PRIMARY KEY (`props_id`),
   KEY `index_type` (`props_type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COMMENT='礼物道具表';
-INSERT INTO `wm_props_props` VALUES (3,4,1,'美女鼓励师','/upload/images/20170317/20170317180045804022978302.jpg',99956,'',2,0.00,200.00,0.00,1488720588,'a:5:{s:3:\"rec\";s:1:\"0\";s:5:\"month\";s:1:\"0\";s:10:\"author_exp\";s:1:\"0\";s:8:\"fans_exp\";s:1:\"0\";s:8:\"user_exp\";s:1:\"0\";}',4),(4,4,1,'纯金奖杯','/upload/images/20170317/20170317180040436654527725.jpg',99979,'',1,0.00,100.00,0.00,1488720588,'a:5:{s:3:\"rec\";s:1:\"0\";s:5:\"month\";s:1:\"0\";s:10:\"author_exp\";s:1:\"0\";s:8:\"fans_exp\";s:1:\"0\";s:8:\"user_exp\";s:1:\"0\";}',3),(7,4,1,'苹果电脑','/upload/images/20170317/20170317180034787516420251.jpg',99950,'',1,0.00,50.00,0.00,1488720803,'a:5:{s:3:\"rec\";s:1:\"0\";s:5:\"month\";s:1:\"0\";s:10:\"author_exp\";s:1:\"0\";s:8:\"fans_exp\";s:1:\"0\";s:8:\"user_exp\";s:1:\"0\";}',2),(8,4,1,'二手电脑','/upload/images/20170317/20170317180028754600344308.jpg',99935,'',1,0.00,10.00,0.00,1488721070,'a:5:{s:3:\"rec\";s:1:\"1\";s:5:\"month\";s:1:\"1\";s:10:\"author_exp\";s:1:\"1\";s:8:\"fans_exp\";s:1:\"1\";s:8:\"user_exp\";s:1:\"1\";}',1);
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางของขวัญและไอเทม';
+INSERT INTO `wm_props_props` VALUES (3,4,1,'พนักงานให้กำลังใจสาวสวย','/upload/images/20170317/20170317180045804022978302.jpg',99956,'',2,0.00,200.00,0.00,1488720588,'a:5:{s:3:\"rec\";s:1:\"0\";s:5:\"month\";s:1:\"0\";s:10:\"author_exp\";s:1:\"0\";s:8:\"fans_exp\";s:1:\"0\";s:8:\"user_exp\";s:1:\"0\";}',4),(4,4,1,'ถ้วยรางวัลทองคำแท้','/upload/images/20170317/20170317180040436654527725.jpg',99979,'',1,0.00,100.00,0.00,1488720588,'a:5:{s:3:\"rec\";s:1:\"0\";s:5:\"month\";s:1:\"0\";s:10:\"author_exp\";s:1:\"0\";s:8:\"fans_exp\";s:1:\"0\";s:8:\"user_exp\";s:1:\"0\";}',3),(7,4,1,'คอมพิวเตอร์แอปเปิล','/upload/images/20170317/20170317180034787516420251.jpg',99950,'',1,0.00,50.00,0.00,1488720803,'a:5:{s:3:\"rec\";s:1:\"0\";s:5:\"month\";s:1:\"0\";s:10:\"author_exp\";s:1:\"0\";s:8:\"fans_exp\";s:1:\"0\";s:8:\"user_exp\";s:1:\"0\";}',2),(8,4,1,'คอมพิวเตอร์มือสอง','/upload/images/20170317/20170317180028754600344308.jpg',99935,'',1,0.00,10.00,0.00,1488721070,'a:5:{s:3:\"rec\";s:1:\"1\";s:5:\"month\";s:1:\"1\";s:10:\"author_exp\";s:1:\"1\";s:8:\"fans_exp\";s:1:\"1\";s:8:\"user_exp\";s:1:\"1\";}',1);
 DROP TABLE IF EXISTS `wm_props_sell`;
 CREATE TABLE `wm_props_sell` (
   `sell_id` int NOT NULL AUTO_INCREMENT,
-  `sell_module` varchar(20) NOT NULL COMMENT '销售的模块',
-  `sell_cid` int NOT NULL DEFAULT '0' COMMENT '购买的内容id',
-  `sell_props_id` int NOT NULL COMMENT '销售产品',
-  `sell_user_id` int NOT NULL COMMENT '购买用户',
-  `sell_number` int NOT NULL DEFAULT '1' COMMENT '购买数量',
-  `sell_gold1` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '购买金币1',
-  `sell_gold2` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '购买金币2',
-  `sell_money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '购买现金',
-  `sell_remark` varchar(100) DEFAULT NULL COMMENT '留言备注',
-  `sell_time` int NOT NULL DEFAULT '0' COMMENT '购买时间',
+  `sell_module` varchar(20) NOT NULL COMMENT 'โมดูลที่ขาย',
+  `sell_cid` int NOT NULL DEFAULT '0' COMMENT 'id เนื้อหาที่ซื้อ',
+  `sell_props_id` int NOT NULL COMMENT 'ผลิตภัณฑ์ที่ขาย',
+  `sell_user_id` int NOT NULL COMMENT 'ผู้ใช้ที่ซื้อ',
+  `sell_number` int NOT NULL DEFAULT '1' COMMENT 'จำนวนที่ซื้อ',
+  `sell_gold1` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'เหรียญที่ใช้ซื้อ1',
+  `sell_gold2` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'เหรียญที่ใช้ซื้อ2',
+  `sell_money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'เงินสดที่ใช้ซื้อ',
+  `sell_remark` varchar(100) DEFAULT NULL COMMENT 'หมายเหตุข้อความ',
+  `sell_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่ซื้อ',
   PRIMARY KEY (`sell_id`),
   KEY `index_props` (`sell_props_id`),
   KEY `index_user` (`sell_user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='道具出售记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการขายไอเทม';
 DROP TABLE IF EXISTS `wm_props_type`;
 CREATE TABLE `wm_props_type` (
   `type_id` int NOT NULL AUTO_INCREMENT,
-  `type_status` tinyint(1) DEFAULT '1' COMMENT '是否显示',
-  `type_module` varchar(20) DEFAULT NULL COMMENT '分类所属模块',
-  `type_topid` int DEFAULT '0' COMMENT '上级id',
-  `type_pid` varchar(20) DEFAULT '0' COMMENT '子栏目id',
-  `type_name` varchar(20) DEFAULT NULL COMMENT '分类名字',
-  `type_cname` varchar(20) DEFAULT NULL COMMENT '分类简称',
-  `type_order` int DEFAULT NULL COMMENT '分类排序',
+  `type_status` tinyint(1) DEFAULT '1' COMMENT 'แสดงหรือไม่',
+  `type_module` varchar(20) DEFAULT NULL COMMENT 'โมดูลที่หมวดหมู่อยู่',
+  `type_topid` int DEFAULT '0' COMMENT 'id ระดับเหนือขึ้นไป',
+  `type_pid` varchar(20) DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
+  `type_name` varchar(40) DEFAULT NULL COMMENT 'ชื่อหมวดหมู่',
+  `type_cname` varchar(20) DEFAULT NULL COMMENT 'ชื่อย่อหมวดหมู่',
+  `type_order` int DEFAULT NULL COMMENT 'ลำดับหมวดหมู่',
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COMMENT='道具分类表';
-INSERT INTO `wm_props_type` VALUES (4,1,'novel',0,'0','打赏','',0);
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางหมวดหมู่ไอเทม';
+INSERT INTO `wm_props_type` VALUES (4,1,'novel',0,'0','สนับสนุน','',0);
 DROP TABLE IF EXISTS `wm_replay_replay`;
 CREATE TABLE `wm_replay_replay` (
   `replay_id` int NOT NULL AUTO_INCREMENT,
-  `replay_floor` int NOT NULL DEFAULT '1' COMMENT '评论的楼层',
-  `replay_pid` varchar(200) NOT NULL DEFAULT '0' COMMENT '祖父楼层id树',
-  `replay_rid` int NOT NULL DEFAULT '0' COMMENT '回复的id',
-  `replay_status` int NOT NULL DEFAULT '1' COMMENT '1为正常,2为审核中',
-  `replay_module` varchar(20) DEFAULT NULL COMMENT '模块',
-  `replay_cid` int NOT NULL COMMENT '内容id',
-  `replay_subset_id` int DEFAULT '0' COMMENT '内容子集id',
-  `replay_segment_id` int DEFAULT '0' COMMENT '内容子集分段id',
-  `replay_uid` int DEFAULT '0' COMMENT '用户id',
-  `replay_nickname` varchar(50) NOT NULL COMMENT '姓名',
-  `replay_ruid` int DEFAULT '0' COMMENT '回复用户的id',
-  `replay_rnickname` varchar(50) DEFAULT NULL COMMENT '回复用户的昵称',
-  `replay_content` text NOT NULL COMMENT '内容',
-  `replay_count` int NOT NULL DEFAULT '0' COMMENT '回复数量',
-  `replay_ding` int NOT NULL DEFAULT '0' COMMENT '顶',
-  `replay_cai` int NOT NULL DEFAULT '0' COMMENT '踩',
-  `replay_time` int NOT NULL COMMENT '时间',
+  `replay_floor` int NOT NULL DEFAULT '1' COMMENT 'ชั้นของความคิดเห็น',
+  `replay_pid` varchar(200) NOT NULL DEFAULT '0' COMMENT 'โครงสร้าง id ของชั้นความคิดเห็นระดับบนสุด',
+  `replay_rid` int NOT NULL DEFAULT '0' COMMENT 'id ของการตอบกลับ',
+  `replay_status` int NOT NULL DEFAULT '1' COMMENT '1=ปกติ 2=รอตรวจสอบ',
+  `replay_module` varchar(20) DEFAULT NULL COMMENT 'โมดูล',
+  `replay_cid` int NOT NULL COMMENT 'id เนื้อหา',
+  `replay_subset_id` int DEFAULT '0' COMMENT 'id ชุดย่อยเนื้อหา',
+  `replay_segment_id` int DEFAULT '0' COMMENT 'id ตอนย่อยของชุดย่อยเนื้อหา',
+  `replay_uid` int DEFAULT '0' COMMENT 'id ผู้ใช้',
+  `replay_nickname` varchar(50) NOT NULL COMMENT 'ชื่อ-นามสกุล',
+  `replay_ruid` int DEFAULT '0' COMMENT 'id ผู้ใช้ที่ตอบกลับ',
+  `replay_rnickname` varchar(50) DEFAULT NULL COMMENT 'ชื่อเล่นผู้ใช้ที่ตอบกลับ',
+  `replay_content` text NOT NULL COMMENT 'เนื้อหา',
+  `replay_count` int NOT NULL DEFAULT '0' COMMENT 'จำนวนตอบกลับ',
+  `replay_ding` int NOT NULL DEFAULT '0' COMMENT 'กดชอบ',
+  `replay_cai` int NOT NULL DEFAULT '0' COMMENT 'กดไม่ชอบ',
+  `replay_time` int NOT NULL COMMENT 'เวลา',
   `replay_ip` varchar(150) DEFAULT NULL COMMENT 'ip',
   PRIMARY KEY (`replay_id`),
   KEY `ding` (`replay_ding`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='评论表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางความคิดเห็น';
 DROP TABLE IF EXISTS `wm_search_search`;
 CREATE TABLE `wm_search_search` (
   `search_id` int NOT NULL AUTO_INCREMENT,
-  `search_rec` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否推荐显示',
-  `search_count` int NOT NULL DEFAULT '1' COMMENT '搜索次数',
-  `search_module` varchar(20) NOT NULL COMMENT '模块',
-  `search_type` int NOT NULL COMMENT '1为标题,2为作者,3为标签',
-  `search_key` varchar(20) NOT NULL COMMENT '关键词',
-  `search_data` int NOT NULL DEFAULT '0' COMMENT '数据',
-  `search_time` int NOT NULL DEFAULT '0' COMMENT '搜索时间',
+  `search_rec` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'แนะนำให้แสดงหรือไม่',
+  `search_count` int NOT NULL DEFAULT '1' COMMENT 'จำนวนครั้งที่ค้นหา',
+  `search_module` varchar(20) NOT NULL COMMENT 'โมดูล',
+  `search_type` int NOT NULL COMMENT '1=หัวข้อ 2=ผู้แต่ง 3=แท็ก',
+  `search_key` varchar(20) NOT NULL COMMENT 'คำสำคัญ',
+  `search_data` int NOT NULL DEFAULT '0' COMMENT 'ข้อมูล',
+  `search_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาค้นหา',
   PRIMARY KEY (`search_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='搜索记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางประวัติการค้นหา';
 DROP TABLE IF EXISTS `wm_seo_errpage`;
 CREATE TABLE `wm_seo_errpage` (
   `errpage_id` int NOT NULL AUTO_INCREMENT,
-  `errpage_code` int DEFAULT '500' COMMENT '错误页面代码类型，404或者500',
-  `errpage_url` varchar(500) DEFAULT NULL COMMENT '错误的页面地址',
-  `errpage_ua` varchar(500) DEFAULT NULL COMMENT '浏览器ua',
-  `errpage_time` int DEFAULT '0' COMMENT '错误记录的时间',
+  `errpage_code` int DEFAULT '500' COMMENT 'ประเภทโค้ดหน้าข้อผิดพลาด 404 หรือ 500',
+  `errpage_url` varchar(500) DEFAULT NULL COMMENT 'ที่อยู่หน้าที่ผิดพลาด',
+  `errpage_ua` varchar(500) DEFAULT NULL COMMENT 'ua เบราว์เซอร์',
+  `errpage_time` int DEFAULT '0' COMMENT 'เวลาที่บันทึกข้อผิดพลาด',
   PRIMARY KEY (`errpage_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='错误页面统计';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='สถิติหน้าแสดงข้อผิดพลาด';
 DROP TABLE IF EXISTS `wm_seo_html`;
 CREATE TABLE `wm_seo_html` (
   `html_id` int NOT NULL AUTO_INCREMENT,
-  `html_module` varchar(20) DEFAULT NULL COMMENT '模块',
-  `html_type` varchar(30) DEFAULT NULL COMMENT '类型',
-  `html_type_id` int NOT NULL DEFAULT '0' COMMENT '分类id',
-  `html_path4` varchar(100) DEFAULT NULL COMMENT 'web静态路径',
+  `html_module` varchar(20) DEFAULT NULL COMMENT 'โมดูล',
+  `html_type` varchar(30) DEFAULT NULL COMMENT 'ประเภท',
+  `html_type_id` int NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่',
+  `html_path4` varchar(100) DEFAULT NULL COMMENT 'พาธไฟล์ static ของเว็บ',
   PRIMARY KEY (`html_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=156 DEFAULT CHARSET=utf8mb3 COMMENT='分类和内容静态地址表';
+) ENGINE=MyISAM AUTO_INCREMENT=156 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางที่อยู่แบบคงที่ของหมวดหมู่และเนื้อหา';
 INSERT INTO `wm_seo_html` VALUES (118,'novel','tindex',4,'/html/novel/{tid}.html'),(119,'novel','list',4,'/html/novel/{tid}_{page}.html'),(120,'novel','content',4,'/html/novel/{nid}.html'),(121,'novel','menu',4,'/html/novel/menu/{nid}/{page}.html'),(122,'novel','read',4,'/html/novel/read/{nid}/{cid}.html'),(123,'novel','tindex',5,'/html/novel/{tid}.html'),(124,'novel','list',5,'/html/novel/{tid}_{page}.html'),(125,'novel','content',5,'/html/novel/{nid}.html'),(126,'novel','menu',5,'/html/novel/menu/{nid}/{page}.html'),(127,'novel','read',5,'/html/novel/read/{nid}/{cid}.html'),(128,'novel','tindex',6,'/html/novel/{tid}.html'),(129,'novel','list',6,'/html/novel/{tid}_{page}.html'),(130,'novel','content',6,'/html/novel/{nid}.html'),(131,'novel','menu',6,'/html/novel/menu/{nid}/{page}.html'),(132,'novel','read',6,'/html/novel/read/{nid}/{cid}.html'),(133,'novel','tindex',7,'/html/novel/{tid}.html'),(134,'novel','list',7,'/html/novel/{tid}_{page}.html'),(135,'novel','content',7,'/html/novel/{nid}.html'),(136,'novel','menu',7,'/html/novel/menu/{nid}/{page}.html'),(137,'novel','read',7,'/html/novel/read/{nid}/{cid}.html'),(138,'novel','tindex',8,'/html/novel/{tid}.html'),(139,'novel','list',8,'/html/novel/{tid}_{page}.html'),(140,'novel','content',8,'/html/novel/{nid}.html'),(141,'novel','menu',8,'/html/novel/menu/{nid}/{page}.html'),(142,'novel','read',8,'/html/novel/read/{nid}/{cid}.html'),(82,'novel','tindex',9,'/html/novel/{tid}.html'),(83,'novel','list',9,'/html/novel/{tid}_{page}.html'),(84,'novel','content',9,'/html/novel/{nid}.html'),(85,'novel','menu',9,'/html/novel/menu/{nid}/{page}.html'),(86,'novel','read',9,'/html/novel/read/{nid}/{cid}.html'),(108,'novel','tindex',1,'/html/novel/{tid}.html'),(109,'novel','list',1,'/html/novel/{tid}_{page}.html'),(110,'novel','content',1,'/html/novel/{nid}.html'),(111,'novel','menu',1,'/html/novel/menu/{nid}/{page}.html'),(112,'novel','read',1,'/html/novel/read/{nid}/{cid}.html'),(113,'novel','tindex',2,'/html/novel/{tid}.html'),(114,'novel','list',2,'/html/novel/{tid}_{page}.html'),(115,'novel','content',2,'/html/novel/{nid}.html'),(116,'novel','menu',2,'/html/novel/menu/{nid}/{page}.html'),(117,'novel','read',2,'/html/novel/read/{nid}/{cid}.html'),(100,'novel','tindex',3,'/html/novel/{tid}.html'),(101,'novel','list',3,'/html/novel/{tid}_{page}.html'),(102,'novel','content',3,'/html/novel/{nid}.html'),(103,'novel','menu',3,'/html/novel/menu/{nid}/{page}.html'),(104,'novel','read',3,'/html/novel/read/{nid}/{cid}.html'),(143,'article','tindex',1,'/html/article/{tid}.html'),(144,'article','list',1,'/html/article/list/{tid}_{page}.html'),(145,'article','content',1,'/html/article/content/{aid}.html'),(146,'article','tindex',2,'/html/article/{tid}.html'),(147,'article','list',2,'/html/article/list/{tid}_{page}.html'),(148,'article','content',2,'/html/article/content/{aid}.html'),(149,'article','tindex',3,'/html/article/{tid}.html'),(150,'article','list',3,'/html/article/list/{tid}_{page}.html'),(151,'article','content',3,'/html/article/content/{aid}.html'),(152,'picture','list',1,'/html/picture/{tid}_{page}.html'),(153,'picture','content',1,'/html/picture/{nid}.html'),(154,'picture','list',2,'/html/picture/{tid}_{page}.html'),(155,'picture','content',2,'/html/picture/{nid}.html');
 DROP TABLE IF EXISTS `wm_seo_html_plan`;
 CREATE TABLE `wm_seo_html_plan` (
   `plan_id` int NOT NULL AUTO_INCREMENT,
-  `plan_name` varchar(30) NOT NULL COMMENT '任务名字',
-  `plan_url` varchar(250) NOT NULL COMMENT 'url连接',
-  `plan_data` varchar(500) DEFAULT NULL COMMENT 'post参数',
-  `plan_path` varchar(100) NOT NULL COMMENT '保存路径',
-  `plan_lasttime` int NOT NULL DEFAULT '0' COMMENT '最后执行时间',
-  `plan_addtime` int NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `plan_name` varchar(30) NOT NULL COMMENT 'ชื่อภารกิจ',
+  `plan_url` varchar(250) NOT NULL COMMENT 'ลิงก์ url',
+  `plan_data` varchar(500) DEFAULT NULL COMMENT 'พารามิเตอร์ post',
+  `plan_path` varchar(100) NOT NULL COMMENT 'พาธที่บันทึก',
+  `plan_lasttime` int NOT NULL DEFAULT '0' COMMENT 'เวลาดำเนินการล่าสุด',
+  `plan_addtime` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่เพิ่ม',
   PRIMARY KEY (`plan_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='html任务表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางงาน HTML';
 DROP TABLE IF EXISTS `wm_seo_keys`;
 CREATE TABLE `wm_seo_keys` (
   `keys_id` int NOT NULL AUTO_INCREMENT,
-  `keys_module` varchar(20) DEFAULT NULL COMMENT '所属模块',
-  `keys_page` varchar(50) NOT NULL COMMENT '页面标识',
-  `keys_pagename` varchar(20) DEFAULT NULL COMMENT '页面名字',
-  `keys_title` varchar(80) NOT NULL COMMENT '页面标题',
-  `keys_key` varchar(150) NOT NULL COMMENT '页面关键字',
-  `keys_desc` varchar(250) NOT NULL COMMENT '页面描述',
+  `keys_module` varchar(20) DEFAULT NULL COMMENT 'โมดูลที่สังกัด',
+  `keys_page` varchar(50) NOT NULL COMMENT 'ตัวระบุหน้าเพจ',
+  `keys_pagename` varchar(60) DEFAULT NULL COMMENT 'ชื่อหน้าเพจ',
+  `keys_title` varchar(200) NOT NULL COMMENT 'หัวข้อหน้าเพจ',
+  `keys_key` varchar(200) NOT NULL COMMENT 'คำค้นของหน้าเพจ',
+  `keys_desc` varchar(255) NOT NULL COMMENT 'คำอธิบายหน้าเพจ',
   PRIMARY KEY (`keys_id`),
   UNIQUE KEY `page` (`keys_page`)
-) ENGINE=MyISAM AUTO_INCREMENT=113 DEFAULT CHARSET=utf8mb3 COMMENT='seo关键词表';
-INSERT INTO `wm_seo_keys` VALUES (1,'all','index','首页','网站首页-{网站名}','{网站名}','{网站名}'),(2,'novel','novel_type','小说列表','最新{分类名字}小说列表，{网站名}','最新{分类名字}小说列表，{网站名}','最新{分类名字}小说列表，{网站名}'),(3,'novel','novel_info','小说介绍','{名字}最新章节-{作者}-{类型}','{名字}最新章节-{作者}-{类型}','{简介:100}'),(4,'novel','novel_menu','小说目录','{名字}','{名字}','{简介:100}'),(5,'novel','novel_read','小说阅读','{名字}-{章节名字}','{名字}-{章节名字}','{名字}-{章节名字}'),(6,'novel','novel_topindex','小说排行首页','小说排行榜首页','小说排行榜首页','小说排行榜首页'),(7,'novel','novel_search','小说搜索','{搜索词}的搜索结果页','{搜索词}的搜索结果页','{搜索词}的搜索结果页'),(8,'novel','novel_toplist','小说排行列表','{类型排行}小说排行榜','{类型排行},小说排行榜','{类型排行}小说排行榜'),(9,'user','user_reg','用户注册','用户注册-{网站名}','用户注册,{网站名}','{网站名}新用户注册中心'),(10,'user','user_login','用户登录','用户登录-{网站名}','用户登录,{网站名}','{网站名}老用户登录'),(11,'user','user_getpsw','找回密码','找回密码-{网站名}','找回密码','找回密码'),(12,'user','user_home','个人中心','个人中心-{网站名}','个人中心,{网站名}','{用户名}的个人中心'),(13,'user','user_repsw','重置密码','重置密码-{网站名}','重置密码,{网站名}','重置用户密码'),(14,'user','user_basic','用户资料','用户资料-{网站名}','用户资料,{网站名}','{用户名}的详细资料'),(15,'user','user_attribute','用户属性','用户属性-{网站名}','用户属性,{网站名}','{用户名}的用户属性'),(17,'user','user_head','修改头像','修改头像-{网站名}','修改头像,{网站名}','修改头像'),(18,'user','user_uppsw','修改密码','修改密码-{网站名}','修改密码,{网站名}','修改密码'),(19,'user','user_bind','账号绑定','账号绑定-{网站名}','账号绑定,{网站名}','账号绑定'),(20,'user','user_shelf','我的书架','我的书架-{网站名}','我的书架','我的书架'),(21,'user','user_coll','我的收藏','我的收藏-{网站名}','我的收藏,{网站名}','我的收藏'),(22,'user','user_fhome','查看好友资料','查看好友资料-{网站名}','查看好友资料,{网站名}','{用户名}的个人资料'),(23,'novel','novel_replay','小说评论列表','{名字}的所有评论列表','{名字}评论','{名字}的所有评论列表'),(24,'user','user_msglist','消息列表','消息列表-{网站名}','消息列表,网站名}','消息列表-{网站名}'),(25,'user','user_msg','消息内容','消息内容-{网站名}','消息内容,{网站名}','消息内容-{网站名}'),(26,'author','author_index','作家中心','作家中心-{网站名}','作家中心,{网站名}','作家中心-{网站名}'),(27,'author','author_novel_novellist','小说管理','作品管理-{网站名}','作品管理,{网站名}','作品管理-{网站名}'),(28,'author','author_novel_noveledit','编辑小说','编辑作品-{网站名}','编辑作品,{网站名}','编辑作品-{网站名}'),(29,'author','author_novel_volumelist','小说分卷列表','小说分卷列表-{网站名}','小说分卷列表,{网站名}','小说分卷列表-{网站名}'),(30,'author','author_createchapter','新建章节','新建章节-{网站名}','新建章节,{网站名}','新建章节-{网站名}'),(31,'author','author_novel_draftlist','小说草稿箱','草稿箱-{网站名}','草稿箱,{网站名}','草稿箱-{网站名}'),(32,'author','author_novel_chapterlist','小说章节列表','章节列表-{网站名}','章节列表,{网站名}','章节列表-{网站名}'),(33,'author','author_novel_draftedit','小说草稿编辑','编辑草稿-{网站名}','编辑草稿,{网站名}','编辑草稿-{网站名}'),(34,'zt','zt_type','专题列表','专题列表-{网站名}','专题列表,{网站名}','专题列表-{网站名}'),(37,'user','user_vistlist','最新访客列表','最新访客列表-{网站名}','最新访客列表,{网站名}','最新访客列表-{网站名}'),(38,'author','author_basic','作者基本资料','作者基本资料-{网站名}','作者基本资料,{网站名}','作者基本资料-{网站名}'),(39,'author','author_incomechapter','章节收入','章节收入-{网站名}','章节收入,{网站名}','章节收入-{网站名}'),(40,'author','author_incomedashang','打赏收入','打赏收入-{网站名}','打赏收入,{网站名}','打赏收入-{网站名}'),(41,'author','author_mentionapply','提现申请','提现申请-{网站名}','提现申请,{网站名}','提现申请-{网站名}'),(42,'author','author_mentionrecord','提现记录','提现记录-{网站名}','提现记录,{网站名}','提现记录-{网站名}'),(43,'article','article_article','文章内容','{标题}-{网站名}','{标题}-{网站名}','{标题}-{网站名}'),(44,'article','article_type','文章分类列表','{分类名}-{网站名}','{分类名}-{网站名}','{分类名}-{网站名}'),(45,'article','article_search','文章搜素','{搜索词}的搜索结果页','{搜索词}的搜索结果页','{搜索词}的搜索结果页'),(46,'article','article_replay','文章评论','{标题}的所有评论列表','{标题}的所有评论列表','{标题}的所有评论列表'),(47,'message','message_add','新增反馈','新增反馈-{网站名}','新增反馈,{网站名}','新增反馈'),(48,'user','user_sign','用户签到','用户签到','用户签到','用户签到'),(49,'bbs','bbs_index','论坛首页','论坛首页,{网站名}','论坛首页,{网站名}','论坛首页,{网站名}'),(50,'bbs','bbs_type','论坛板块列表','论坛板块列表,{网站名}','论坛板块列表,{网站名}','论坛板块列表,{网站名}'),(51,'bbs','bbs_list','主题列表','&#123;版块名字&#125;主题列表','&#123;版块名字&#125;主题列表','&#123;版块名字&#125;主题列表'),(52,'bbs','bbs_bbs','主题内容','{标题},{网站名}','{标题},{网站名}','{标题},{网站名}'),(75,'article','article_tindex','文章分类首页','{分类名}-{网站名}','{分类名}-{网站名}','{分类名}-{网站名}'),(54,'bbs','bbs_post','发表新话题','发表新话题,{网站名}','发表新话题,{网站名}','发表新话题,{网站名}'),(55,'link','link_index','友链首页','友链首页,{网站名}','友链首页,{网站名}','友链首页,{网站名}'),(56,'link','link_type','友链分类','{分类名字},{网站名}','{分类名字},{网站名}','{分类名字},{网站名}'),(57,'link','link_show','友链展示','{友链名字},{网站名}','{友链名字},{网站名}','{友链名字},{网站名}'),(58,'link','link_join','申请友链','申请友链,{网站名}','申请友链,{网站名}','申请友链,{网站名}'),(59,'app','app_type','应用分类列表','{类型名}-{网站名}','{类型名},{网站名}','{类型名},{网站名}'),(60,'app','app_app','应用介绍','{名字}-{网站名}','{名字},{网站名}','{名字}-{网站名}'),(61,'app','app_index','应用首页','应用下载中心-{网站名}','应用下载中心,{网站名}','应用下载中心,{网站名}'),(62,'app','app_search','应用搜索','{搜索词}的搜索结果页','{搜索词}的搜索结果页','{搜索词}的搜索结果页'),(63,'article','article_index','文章首页','文章首页-{网站名}	','文章首页,{网站名}	','文章首页,{网站名}	'),(64,'bbs','bbs_search','论坛搜索','论坛搜索,{网站名}1','论坛搜索,{网站名}','论坛搜索,{网站名}'),(65,'about','about_type','关于信息列表','{分类名字}_{网站名}','{分类名字},{网站名}','{分类名字}-{网站名}'),(66,'about','about_about','关于信息内容页','{标题}-{网站名}','{标题},{网站名}','{标题}-{网站名}'),(67,'user','user_apilogin','第三方账号注册','完善账号信息-{网站名}','完善账号信息,{网站名}','完善账号信息,{网站名}'),(68,'picture','picture_picture','图集内容','{标题}-{网站名}','{标题}-{网站名}','{标题}-{网站名}'),(69,'picture','picture_type','图集分类列表','{分类名字}-{网站名}','{分类名字}-{网站名}','{分类名字}-{网站名}'),(70,'picture','picture_search','图集搜素','{搜索词}的搜索结果页','{搜索词}的搜索结果页','{搜索词}的搜索结果页'),(71,'picture','picture_replay','图集评论','{标题}的所有评论列表','{标题}的所有评论列表','{标题}的所有评论列表'),(72,'picture','picture_toplist','图集排行列表','{排行类型}图集排行榜','{排行类型}图集排行榜','{排行类型}图集排行榜'),(73,'user','user_signlist','用户签到列表','用户签到列表','用户签到列表','用户签到列表'),(74,'novel','novel_index','小说首页','小说首页','小说首页','小说首页'),(76,'picture','picture_index','图集首页','图集首页-{网站名}','图集首页-{网站名}','图集首页-{网站名}'),(77,'user','user_rec','我的推荐','我的推荐-{网站名}','我的推荐','我的推荐'),(78,'user','user_dingyue','我的订阅','我的订阅-{网站名}','我的订阅','我的订阅'),(79,'user','user_fcoll','好友收藏','{好友昵称}的收藏-{网站名}','{好友昵称}的收藏,{网站名}','{好友昵称}的收藏,{网站名}'),(80,'user','user_fdingyue','好友订阅','{好友昵称}的订阅-{网站名}','{好友昵称}的订阅,{网站名}','{好友昵称}的订阅,{网站名}'),(81,'user','user_frec','好友推荐','{好友昵称}的推荐-{网站名}','{好友昵称}的订阅,{网站名}','{好友昵称}的推荐,{网站名}'),(82,'user','user_fshelf','好友书架','{好友昵称}的书架-{网站名}','{好友昵称}的书架,{网站名}','{好友昵称}的书架,{网站名}'),(83,'novel','novel_tindex','分类首页','{分类名字}-小说分类首页-{网站名}','{分类名字}-小说分类首页-{网站名}','{分类名字}-小说分类首页-{网站名}'),(84,'author','author_apply','申请作家','申请作家-{网站名}','申请作家,{网站名}','申请作家-{网站名}'),(85,'author','author_agreement','申请作家协议','申请作家协议-{网站名}','申请作家协议,{网站名}','申请作家协议-{网站名}'),(86,'author','author_novel_volumeedit','小说分卷编辑','小说分卷编辑-{网站名}','小说分卷编辑,{网站名}','小说分卷编辑-{网站名}'),(87,'author','author_article_articlelist','文章投稿列表','文章投稿列表-{网站名}','文章投稿列表,{网站名}','文章投稿列表-{网站名}'),(88,'author','author_article_draftedit','文章草稿编辑','编辑草稿-{网站名}','编辑草稿,{网站名}','编辑草稿-{网站名}'),(89,'author','author_article_draftlist','文章草稿箱','草稿箱-{网站名}','草稿箱,{网站名}','草稿箱-{网站名}'),(90,'author','author_article_articleedit','文章编辑','文章编辑-{网站名}','文章编辑,{网站名}','文章编辑-{网站名}'),(91,'user','user_charge','在线充值','在线充值-{网站名}','在线充值,{网站名}','在线充值-{网站名}'),(92,'author','author_novel_incomelist','小说收入列表','小说收入列表-{网站名}','小说收入列表,{网站名}','小说收入列表-{网站名}'),(93,'user','user_cash_apply','在线申请提现','在线申请提现-{网站名}','在线申请提现,{网站名}','在线申请提现-{网站名}'),(94,'user','user_cash_list','提现申请记录','提现申请记录-{网站名}','提现申请记录,{网站名}','提现申请记录-{网站名}'),(95,'about','about_tindex','关于首页','关于首页-{网站名}','关于首页,{网站名}','关于首页-{网站名}'),(96,'down','down_down','下载内容','{下载内容}-{网站名}','{下载内容},{网站名}','{下载内容}-{网站名}'),(97,'novel','novel_index_boy','男生小说首页','男生小说首页','男生小说首页','男生小说首页'),(98,'novel','novel_index_girl','女生小说首页','女生小说首页','女生小说首页','女生小说首页'),(99,'user','user_read','阅读记录','阅读记录-{网站名}','阅读记录,{网站名}','阅读记录-{网站名}'),(100,'user','user_sub','我的订阅','我的订阅-{网站名}','我的订阅,{网站名}','我的订阅-{网站名}'),(101,'user','user_charge_code','扫码支付','{支付方式}在线扫码支付-{网站名}','{支付方式}在线扫码支付,{网站名}','{支付方式}在线扫码支付-{网站名}'),(102,'user','user_charge_success','支付成功','支付成功-{网站名}','支付成功,{网站名}','支付成功-{网站名}'),(103,'zt','zt_zt','专题详情','{名字}-{网站名}','{名字},{网站名}','{名字}-{网站名}'),(104,'app','app_replay','{名字}评论列表','{名字}的所有评论列表','{名字}评论','{名字}的所有评论列表'),(105,'picture','picture_tindex','分类首页','{分类名字}-图集分类首页-{网站名}','{分类名字}-图集分类首页-{网站名}','{分类名字}-小说分类首页-{网站名}'),(106,'author','author_author','作者个人中心','{笔名}-{网站名}','{笔名},{网站名}','{笔名}-{网站名}'),(107,'author','author_novel_statistics','小说数据统计','小说数据统计','小说数据统计','小说数据统计'),(108,'editor','editor_index','编辑首页','编辑首页-{网站名}','编辑首页,{网站名}','编辑首页-{网站名}'),(109,'editor','editor_novel','编辑新书审核','新书审核-{网站名}','编辑首页,{网站名}','编辑首页-{网站名}'),(110,'editor','editor_novel_cover','编辑封面审核','封面审核-{网站名}','编辑首页,{网站名}','编辑首页-{网站名}'),(111,'editor','editor_novel_chapter','编辑章节审核','章节审核-{网站名}','编辑首页,{网站名}','编辑首页-{网站名}'),(112,'editor','editor_basic','编辑基本资料','基本资料-{网站名}','编辑首页,{网站名}','编辑首页-{网站名}');
+) ENGINE=MyISAM AUTO_INCREMENT=113 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางคีย์เวิร์ด SEO';
+INSERT INTO `wm_seo_keys` VALUES (1,'all','index','หน้าแรก','หน้าแรกเว็บไซต์-{网站名}','{网站名}','{网站名}'),(2,'novel','novel_type','รายการนิยาย','รายการนิยาย{分类名字}ล่าสุด, {网站名}','รายการนิยาย{分类名字}ล่าสุด, {网站名}','รายการนิยาย{分类名字}ล่าสุด, {网站名}'),(3,'novel','novel_info','แนะนำนิยาย','{名字}ตอนล่าสุด-{作者}-{类型}','{名字}ตอนล่าสุด-{作者}-{类型}','{简介:100}'),(4,'novel','novel_menu','สารบัญนิยาย','{名字}','{名字}','{简介:100}'),(5,'novel','novel_read','อ่านนิยาย','{名字}-{章节名字}','{名字}-{章节名字}','{名字}-{章节名字}'),(6,'novel','novel_topindex','หน้าแรกอันดับนิยาย','หน้าแรกอันดับนิยาย','หน้าแรกอันดับนิยาย','หน้าแรกอันดับนิยาย'),(7,'novel','novel_search','ค้นหานิยาย','หน้าผลการค้นหาสำหรับ{搜索词}','หน้าผลการค้นหาสำหรับ{搜索词}','หน้าผลการค้นหาสำหรับ{搜索词}'),(8,'novel','novel_toplist','รายการอันดับนิยาย','อันดับนิยาย{类型排行}','{类型排行},อันดับนิยาย','อันดับนิยาย{类型排行}'),(9,'user','user_reg','สมัครสมาชิก','สมัครสมาชิก-{网站名}','สมัครสมาชิก,{网站名}','ศูนย์สมัครสมาชิกใหม่ของ{网站名}'),(10,'user','user_login','เข้าสู่ระบบ','เข้าสู่ระบบ-{网站名}','เข้าสู่ระบบ,{网站名}','เข้าสู่ระบบสำหรับสมาชิกเดิมของ{网站名}'),(11,'user','user_getpsw','กู้คืนรหัสผ่าน','กู้คืนรหัสผ่าน-{网站名}','กู้คืนรหัสผ่าน','กู้คืนรหัสผ่าน'),(12,'user','user_home','ศูนย์ส่วนตัว','ศูนย์ส่วนตัว-{网站名}','ศูนย์ส่วนตัว,{网站名}','ศูนย์ส่วนตัวของ{用户名}'),(13,'user','user_repsw','รีเซ็ตรหัสผ่าน','รีเซ็ตรหัสผ่าน-{网站名}','รีเซ็ตรหัสผ่าน,{网站名}','รีเซ็ตรหัสผ่านผู้ใช้'),(14,'user','user_basic','ข้อมูลผู้ใช้','ข้อมูลผู้ใช้-{网站名}','ข้อมูลผู้ใช้,{网站名}','ข้อมูลโดยละเอียดของ{用户名}'),(15,'user','user_attribute','คุณสมบัติผู้ใช้','คุณสมบัติผู้ใช้-{网站名}','คุณสมบัติผู้ใช้,{网站名}','คุณสมบัติผู้ใช้ของ{用户名}'),(17,'user','user_head','แก้ไขรูปโปรไฟล์','แก้ไขรูปโปรไฟล์-{网站名}','แก้ไขรูปโปรไฟล์,{网站名}','แก้ไขรูปโปรไฟล์'),(18,'user','user_uppsw','แก้ไขรหัสผ่าน','แก้ไขรหัสผ่าน-{网站名}','แก้ไขรหัสผ่าน,{网站名}','แก้ไขรหัสผ่าน'),(19,'user','user_bind','ผูกบัญชี','ผูกบัญชี-{网站名}','ผูกบัญชี,{网站名}','ผูกบัญชี'),(20,'user','user_shelf','ชั้นหนังสือของฉัน','ชั้นหนังสือของฉัน-{网站名}','ชั้นหนังสือของฉัน','ชั้นหนังสือของฉัน'),(21,'user','user_coll','รายการโปรดของฉัน','รายการโปรดของฉัน-{网站名}','รายการโปรดของฉัน,{网站名}','รายการโปรดของฉัน'),(22,'user','user_fhome','ดูข้อมูลเพื่อน','ดูข้อมูลเพื่อน-{网站名}','ดูข้อมูลเพื่อน,{网站名}','ข้อมูลส่วนตัวของ{用户名}'),(23,'novel','novel_replay','รายการความคิดเห็นนิยาย','รายการความคิดเห็นทั้งหมดของ{名字}','ความคิดเห็น{名字}','รายการความคิดเห็นทั้งหมดของ{名字}'),(24,'user','user_msglist','รายการข้อความ','รายการข้อความ-{网站名}','รายการข้อความ,ชื่อเว็บไซต์}','รายการข้อความ-{网站名}'),(25,'user','user_msg','เนื้อหาข้อความ','เนื้อหาข้อความ-{网站名}','เนื้อหาข้อความ,{网站名}','เนื้อหาข้อความ-{网站名}'),(26,'author','author_index','ศูนย์นักเขียน','ศูนย์นักเขียน-{网站名}','ศูนย์นักเขียน,{网站名}','ศูนย์นักเขียน-{网站名}'),(27,'author','author_novel_novellist','จัดการนิยาย','จัดการผลงาน-{网站名}','จัดการผลงาน,{网站名}','จัดการผลงาน-{网站名}'),(28,'author','author_novel_noveledit','แก้ไขนิยาย','แก้ไขผลงาน-{网站名}','แก้ไขผลงาน,{网站名}','แก้ไขผลงาน-{网站名}'),(29,'author','author_novel_volumelist','รายการเล่มนิยาย','รายการเล่มนิยาย-{网站名}','รายการเล่มนิยาย,{网站名}','รายการเล่มนิยาย-{网站名}'),(30,'author','author_createchapter','สร้างตอนใหม่','สร้างตอนใหม่-{网站名}','สร้างตอนใหม่,{网站名}','สร้างตอนใหม่-{网站名}'),(31,'author','author_novel_draftlist','กล่องฉบับร่างนิยาย','กล่องฉบับร่าง-{网站名}','กล่องฉบับร่าง,{网站名}','กล่องฉบับร่าง-{网站名}'),(32,'author','author_novel_chapterlist','รายการตอนนิยาย','รายการตอน-{网站名}','รายการตอน,{网站名}','รายการตอน-{网站名}'),(33,'author','author_novel_draftedit','แก้ไขฉบับร่างนิยาย','แก้ไขฉบับร่าง-{网站名}','แก้ไขฉบับร่าง,{网站名}','แก้ไขฉบับร่าง-{网站名}'),(34,'zt','zt_type','รายการหัวข้อพิเศษ','รายการหัวข้อพิเศษ-{网站名}','รายการหัวข้อพิเศษ,{网站名}','รายการหัวข้อพิเศษ-{网站名}'),(37,'user','user_vistlist','รายการผู้เยี่ยมชมล่าสุด','รายการผู้เยี่ยมชมล่าสุด-{网站名}','รายการผู้เยี่ยมชมล่าสุด,{网站名}','รายการผู้เยี่ยมชมล่าสุด-{网站名}'),(38,'author','author_basic','ข้อมูลพื้นฐานนักเขียน','ข้อมูลพื้นฐานนักเขียน-{网站名}','ข้อมูลพื้นฐานนักเขียน,{网站名}','ข้อมูลพื้นฐานนักเขียน-{网站名}'),(39,'author','author_incomechapter','รายได้จากตอน','รายได้จากตอน-{网站名}','รายได้จากตอน,{网站名}','รายได้จากตอน-{网站名}'),(40,'author','author_incomedashang','รายได้จากของขวัญ','รายได้จากของขวัญ-{网站名}','รายได้จากของขวัญ,{网站名}','รายได้จากของขวัญ-{网站名}'),(41,'author','author_mentionapply','คำขอถอนเงิน','คำขอถอนเงิน-{网站名}','คำขอถอนเงิน,{网站名}','คำขอถอนเงิน-{网站名}'),(42,'author','author_mentionrecord','ประวัติการถอนเงิน','ประวัติการถอนเงิน-{网站名}','ประวัติการถอนเงิน,{网站名}','ประวัติการถอนเงิน-{网站名}'),(43,'article','article_article','เนื้อหาบทความ','{标题}-{网站名}','{标题}-{网站名}','{标题}-{网站名}'),(44,'article','article_type','รายการหมวดหมู่บทความ','{分类名}-{网站名}','{分类名}-{网站名}','{分类名}-{网站名}'),(45,'article','article_search','ค้นหาบทความ','หน้าผลการค้นหาสำหรับ{搜索词}','หน้าผลการค้นหาสำหรับ{搜索词}','หน้าผลการค้นหาสำหรับ{搜索词}'),(46,'article','article_replay','ความคิดเห็นบทความ','รายการความคิดเห็นทั้งหมดของ{标题}','รายการความคิดเห็นทั้งหมดของ{标题}','รายการความคิดเห็นทั้งหมดของ{标题}'),(47,'message','message_add','เพิ่มข้อเสนอแนะ','เพิ่มข้อเสนอแนะ-{网站名}','เพิ่มข้อเสนอแนะ,{网站名}','เพิ่มข้อเสนอแนะ'),(48,'user','user_sign','เช็คอินผู้ใช้','เช็คอินผู้ใช้','เช็คอินผู้ใช้','เช็คอินผู้ใช้'),(49,'bbs','bbs_index','หน้าแรกฟอรัม','หน้าแรกฟอรัม,{网站名}','หน้าแรกฟอรัม,{网站名}','หน้าแรกฟอรัม,{网站名}'),(50,'bbs','bbs_type','รายการหมวดฟอรัม','รายการหมวดฟอรัม,{网站名}','รายการหมวดฟอรัม,{网站名}','รายการหมวดฟอรัม,{网站名}'),(51,'bbs','bbs_list','รายการหัวข้อ','&#123;版块名字&#125;รายการหัวข้อ','&#123;版块名字&#125;รายการหัวข้อ','&#123;版块名字&#125;รายการหัวข้อ'),(52,'bbs','bbs_bbs','เนื้อหาหัวข้อ','{标题},{网站名}','{标题},{网站名}','{标题},{网站名}'),(75,'article','article_tindex','หน้าแรกหมวดหมู่บทความ','{分类名}-{网站名}','{分类名}-{网站名}','{分类名}-{网站名}'),(54,'bbs','bbs_post','ตั้งกระทู้ใหม่','ตั้งกระทู้ใหม่,{网站名}','ตั้งกระทู้ใหม่,{网站名}','ตั้งกระทู้ใหม่,{网站名}'),(55,'link','link_index','หน้าแรกลิงก์เพื่อน','หน้าแรกลิงก์เพื่อน,{网站名}','หน้าแรกลิงก์เพื่อน,{网站名}','หน้าแรกลิงก์เพื่อน,{网站名}'),(56,'link','link_type','หมวดหมู่ลิงก์เพื่อน','{分类名字},{网站名}','{分类名字},{网站名}','{分类名字},{网站名}'),(57,'link','link_show','แสดงลิงก์เพื่อน','{友链名字},{网站名}','{友链名字},{网站名}','{友链名字},{网站名}'),(58,'link','link_join','ขอลิงก์เพื่อน','ขอลิงก์เพื่อน,{网站名}','ขอลิงก์เพื่อน,{网站名}','ขอลิงก์เพื่อน,{网站名}'),(59,'app','app_type','รายการหมวดหมู่แอป','{类型名}-{网站名}','{类型名},{网站名}','{类型名},{网站名}'),(60,'app','app_app','แนะนำแอป','{名字}-{网站名}','{名字},{网站名}','{名字}-{网站名}'),(61,'app','app_index','หน้าแรกแอป','ศูนย์ดาวน์โหลดแอป-{网站名}','ศูนย์ดาวน์โหลดแอป,{网站名}','ศูนย์ดาวน์โหลดแอป,{网站名}'),(62,'app','app_search','ค้นหาแอป','หน้าผลการค้นหาสำหรับ{搜索词}','หน้าผลการค้นหาสำหรับ{搜索词}','หน้าผลการค้นหาสำหรับ{搜索词}'),(63,'article','article_index','หน้าแรกบทความ','หน้าแรกบทความ-{网站名}	','หน้าแรกบทความ,{网站名}	','หน้าแรกบทความ,{网站名}	'),(64,'bbs','bbs_search','ค้นหาฟอรัม','ค้นหาฟอรัม,{网站名}1','ค้นหาฟอรัม,{网站名}','ค้นหาฟอรัม,{网站名}'),(65,'about','about_type','รายการข้อมูลเกี่ยวกับ','{分类名字}_{网站名}','{分类名字},{网站名}','{分类名字}-{网站名}'),(66,'about','about_about','หน้าเนื้อหาข้อมูลเกี่ยวกับ','{标题}-{网站名}','{标题},{网站名}','{标题}-{网站名}'),(67,'user','user_apilogin','สมัครสมาชิกด้วยบัญชีบุคคลที่สาม','กรอกข้อมูลบัญชีให้ครบถ้วน-{网站名}','กรอกข้อมูลบัญชีให้ครบถ้วน,{网站名}','กรอกข้อมูลบัญชีให้ครบถ้วน,{网站名}'),(68,'picture','picture_picture','เนื้อหาแกลเลอรี','{标题}-{网站名}','{标题}-{网站名}','{标题}-{网站名}'),(69,'picture','picture_type','รายการหมวดหมู่แกลเลอรี','{分类名字}-{网站名}','{分类名字}-{网站名}','{分类名字}-{网站名}'),(70,'picture','picture_search','ค้นหาแกลเลอรี','หน้าผลการค้นหาสำหรับ{搜索词}','หน้าผลการค้นหาสำหรับ{搜索词}','หน้าผลการค้นหาสำหรับ{搜索词}'),(71,'picture','picture_replay','ความคิดเห็นแกลเลอรี','รายการความคิดเห็นทั้งหมดของ{标题}','รายการความคิดเห็นทั้งหมดของ{标题}','รายการความคิดเห็นทั้งหมดของ{标题}'),(72,'picture','picture_toplist','รายการอันดับแกลเลอรี','อันดับแกลเลอรี{排行类型}','อันดับแกลเลอรี{排行类型}','อันดับแกลเลอรี{排行类型}'),(73,'user','user_signlist','รายการเช็คอินผู้ใช้','รายการเช็คอินผู้ใช้','รายการเช็คอินผู้ใช้','รายการเช็คอินผู้ใช้'),(74,'novel','novel_index','หน้าแรกนิยาย','หน้าแรกนิยาย','หน้าแรกนิยาย','หน้าแรกนิยาย'),(76,'picture','picture_index','หน้าแรกแกลเลอรี','หน้าแรกแกลเลอรี-{网站名}','หน้าแรกแกลเลอรี-{网站名}','หน้าแรกแกลเลอรี-{网站名}'),(77,'user','user_rec','รายการแนะนำของฉัน','รายการแนะนำของฉัน-{网站名}','รายการแนะนำของฉัน','รายการแนะนำของฉัน'),(78,'user','user_dingyue','รายการติดตามของฉัน','รายการติดตามของฉัน-{网站名}','รายการติดตามของฉัน','รายการติดตามของฉัน'),(79,'user','user_fcoll','รายการโปรดของเพื่อน','รายการโปรดของ{好友昵称}-{网站名}','รายการโปรดของ{好友昵称},{网站名}','รายการโปรดของ{好友昵称},{网站名}'),(80,'user','user_fdingyue','รายการติดตามของเพื่อน','รายการติดตามของ{好友昵称}-{网站名}','รายการติดตามของ{好友昵称},{网站名}','รายการติดตามของ{好友昵称},{网站名}'),(81,'user','user_frec','รายการแนะนำของเพื่อน','รายการแนะนำของ{好友昵称}-{网站名}','รายการติดตามของ{好友昵称},{网站名}','รายการแนะนำของ{好友昵称},{网站名}'),(82,'user','user_fshelf','ชั้นหนังสือเพื่อน','ชั้นหนังสือของ{好友昵称}-{网站名}','ชั้นหนังสือของ{好友昵称},{网站名}','ชั้นหนังสือของ{好友昵称},{网站名}'),(83,'novel','novel_tindex','หน้าแรกหมวดหมู่','{分类名字}-หน้าแรกหมวดหมู่นิยาย-{网站名}','{分类名字}-หน้าแรกหมวดหมู่นิยาย-{网站名}','{分类名字}-หน้าแรกหมวดหมู่นิยาย-{网站名}'),(84,'author','author_apply','สมัครเป็นนักเขียน','สมัครเป็นนักเขียน-{网站名}','สมัครเป็นนักเขียน,{网站名}','สมัครเป็นนักเขียน-{网站名}'),(85,'author','author_agreement','ข้อตกลงการสมัครเป็นนักเขียน','ข้อตกลงการสมัครเป็นนักเขียน-{网站名}','ข้อตกลงการสมัครเป็นนักเขียน,{网站名}','ข้อตกลงการสมัครเป็นนักเขียน-{网站名}'),(86,'author','author_novel_volumeedit','แก้ไขเล่มนิยาย','แก้ไขเล่มนิยาย-{网站名}','แก้ไขเล่มนิยาย,{网站名}','แก้ไขเล่มนิยาย-{网站名}'),(87,'author','author_article_articlelist','รายการบทความที่ส่งเข้ามา','รายการบทความที่ส่งเข้ามา-{网站名}','รายการบทความที่ส่งเข้ามา,{网站名}','รายการบทความที่ส่งเข้ามา-{网站名}'),(88,'author','author_article_draftedit','แก้ไขฉบับร่างบทความ','แก้ไขฉบับร่าง-{网站名}','แก้ไขฉบับร่าง,{网站名}','แก้ไขฉบับร่าง-{网站名}'),(89,'author','author_article_draftlist','กล่องฉบับร่างบทความ','กล่องฉบับร่าง-{网站名}','กล่องฉบับร่าง,{网站名}','กล่องฉบับร่าง-{网站名}'),(90,'author','author_article_articleedit','แก้ไขบทความ','แก้ไขบทความ-{网站名}','แก้ไขบทความ,{网站名}','แก้ไขบทความ-{网站名}'),(91,'user','user_charge','เติมเงินออนไลน์','เติมเงินออนไลน์-{网站名}','เติมเงินออนไลน์,{网站名}','เติมเงินออนไลน์-{网站名}'),(92,'author','author_novel_incomelist','รายการรายได้นิยาย','รายการรายได้นิยาย-{网站名}','รายการรายได้นิยาย,{网站名}','รายการรายได้นิยาย-{网站名}'),(93,'user','user_cash_apply','ขอถอนเงินออนไลน์','ขอถอนเงินออนไลน์-{网站名}','ขอถอนเงินออนไลน์,{网站名}','ขอถอนเงินออนไลน์-{网站名}'),(94,'user','user_cash_list','ประวัติคำขอถอนเงิน','ประวัติคำขอถอนเงิน-{网站名}','ประวัติคำขอถอนเงิน,{网站名}','ประวัติคำขอถอนเงิน-{网站名}'),(95,'about','about_tindex','หน้าแรกเกี่ยวกับ','หน้าแรกเกี่ยวกับ-{网站名}','หน้าแรกเกี่ยวกับ,{网站名}','หน้าแรกเกี่ยวกับ-{网站名}'),(96,'down','down_down','เนื้อหาดาวน์โหลด','{下载内容}-{网站名}','{下载内容},{网站名}','{下载内容}-{网站名}'),(97,'novel','novel_index_boy','หน้าแรกนิยายสำหรับผู้ชาย','หน้าแรกนิยายสำหรับผู้ชาย','หน้าแรกนิยายสำหรับผู้ชาย','หน้าแรกนิยายสำหรับผู้ชาย'),(98,'novel','novel_index_girl','หน้าแรกนิยายสำหรับผู้หญิง','หน้าแรกนิยายสำหรับผู้หญิง','หน้าแรกนิยายสำหรับผู้หญิง','หน้าแรกนิยายสำหรับผู้หญิง'),(99,'user','user_read','ประวัติการอ่าน','ประวัติการอ่าน-{网站名}','ประวัติการอ่าน,{网站名}','ประวัติการอ่าน-{网站名}'),(100,'user','user_sub','รายการติดตามของฉัน','รายการติดตามของฉัน-{网站名}','รายการติดตามของฉัน,{网站名}','รายการติดตามของฉัน-{网站名}'),(101,'user','user_charge_code','ชำระเงินด้วยการสแกน','ชำระเงินออนไลน์ด้วยการสแกนโค้ด{支付方式}-{网站名}','ชำระเงินออนไลน์ด้วยการสแกนโค้ด{支付方式},{网站名}','ชำระเงินออนไลน์ด้วยการสแกนโค้ด{支付方式}-{网站名}'),(102,'user','user_charge_success','ชำระเงินสำเร็จ','ชำระเงินสำเร็จ-{网站名}','ชำระเงินสำเร็จ,{网站名}','ชำระเงินสำเร็จ-{网站名}'),(103,'zt','zt_zt','รายละเอียดหัวข้อพิเศษ','{名字}-{网站名}','{名字},{网站名}','{名字}-{网站名}'),(104,'app','app_replay','รายการความคิดเห็น{名字}','รายการความคิดเห็นทั้งหมดของ{名字}','ความคิดเห็น{名字}','รายการความคิดเห็นทั้งหมดของ{名字}'),(105,'picture','picture_tindex','หน้าแรกหมวดหมู่','{分类名字}-หน้าแรกหมวดหมู่แกลเลอรี-{网站名}','{分类名字}-หน้าแรกหมวดหมู่แกลเลอรี-{网站名}','{分类名字}-หน้าแรกหมวดหมู่นิยาย-{网站名}'),(106,'author','author_author','ศูนย์ส่วนตัวนักเขียน','{笔名}-{网站名}','{笔名},{网站名}','{笔名}-{网站名}'),(107,'author','author_novel_statistics','สถิตินิยาย','สถิตินิยาย','สถิตินิยาย','สถิตินิยาย'),(108,'editor','editor_index','แก้ไขหน้าแรก','แก้ไขหน้าแรก-{网站名}','แก้ไขหน้าแรก,{网站名}','แก้ไขหน้าแรก-{网站名}'),(109,'editor','editor_novel','แก้ไขการตรวจสอบนิยายใหม่','ตรวจสอบนิยายใหม่-{网站名}','แก้ไขหน้าแรก,{网站名}','แก้ไขหน้าแรก-{网站名}'),(110,'editor','editor_novel_cover','แก้ไขการตรวจสอบปก','ตรวจสอบปก-{网站名}','แก้ไขหน้าแรก,{网站名}','แก้ไขหน้าแรก-{网站名}'),(111,'editor','editor_novel_chapter','แก้ไขการตรวจสอบตอน','ตรวจสอบตอน-{网站名}','แก้ไขหน้าแรก,{网站名}','แก้ไขหน้าแรก-{网站名}'),(112,'editor','editor_basic','แก้ไขข้อมูลพื้นฐาน','ข้อมูลพื้นฐาน-{网站名}','แก้ไขหน้าแรก,{网站名}','แก้ไขหน้าแรก-{网站名}');
 DROP TABLE IF EXISTS `wm_seo_spider`;
 CREATE TABLE `wm_seo_spider` (
   `spider_id` int NOT NULL AUTO_INCREMENT,
-  `spider_group` varchar(30) DEFAULT NULL COMMENT '蜘蛛的分组',
-  `spider_group_name` varchar(30) DEFAULT NULL COMMENT '蜘蛛分组的名字',
-  `spider_name` varchar(30) DEFAULT NULL COMMENT '蜘蛛的名字',
-  `spider_title` varchar(30) DEFAULT NULL COMMENT '蜘蛛的标识',
-  `spider_url` varchar(1000) DEFAULT NULL COMMENT '蜘蛛爬行的url',
-  `spider_ua` varchar(1000) DEFAULT NULL COMMENT '蜘蛛的ua',
-  `spider_time` int DEFAULT NULL COMMENT '蜘蛛爬行时间',
+  `spider_group` varchar(30) DEFAULT NULL COMMENT 'กลุ่มของสไปเดอร์',
+  `spider_group_name` varchar(30) DEFAULT NULL COMMENT 'ชื่อกลุ่มของสไปเดอร์',
+  `spider_name` varchar(30) DEFAULT NULL COMMENT 'ชื่อของสไปเดอร์',
+  `spider_title` varchar(30) DEFAULT NULL COMMENT 'ตัวระบุของสไปเดอร์',
+  `spider_url` varchar(1000) DEFAULT NULL COMMENT 'url ที่สไปเดอร์เข้าถึง',
+  `spider_ua` varchar(1000) DEFAULT NULL COMMENT 'ua ของสไปเดอร์',
+  `spider_time` int DEFAULT NULL COMMENT 'เวลาที่สไปเดอร์เข้าถึง',
   PRIMARY KEY (`spider_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='蜘蛛爬行记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการทำงานของสไปเดอร์';
 DROP TABLE IF EXISTS `wm_seo_urls`;
 CREATE TABLE `wm_seo_urls` (
   `urls_id` int NOT NULL AUTO_INCREMENT,
-  `urls_module` varchar(20) DEFAULT NULL COMMENT '所属模块',
-  `urls_page` varchar(50) NOT NULL COMMENT '页面标识',
-  `urls_pagename` varchar(20) DEFAULT NULL COMMENT '页面名字',
-  `urls_url1` varchar(250) NOT NULL COMMENT '动态地址',
-  `urls_url2` varchar(250) NOT NULL COMMENT '静态地址',
-  `urls_url3` varchar(250) DEFAULT NULL COMMENT '普通模式地址',
-  `urls_url4` varchar(250) DEFAULT NULL COMMENT '兼容模式地址',
-  `urls_url5` varchar(250) DEFAULT NULL COMMENT 'PATHINFO模式地址',
-  `urls_url6` varchar(250) DEFAULT NULL COMMENT 'REWRITE模式地址',
+  `urls_module` varchar(20) DEFAULT NULL COMMENT 'โมดูลที่สังกัด',
+  `urls_page` varchar(50) NOT NULL COMMENT 'ตัวระบุหน้าเพจ',
+  `urls_pagename` varchar(60) DEFAULT NULL COMMENT 'ชื่อหน้าเพจ',
+  `urls_url1` varchar(250) NOT NULL COMMENT 'ที่อยู่แบบไดนามิก',
+  `urls_url2` varchar(250) NOT NULL COMMENT 'ที่อยู่สแตติก',
+  `urls_url3` varchar(250) DEFAULT NULL COMMENT 'ที่อยู่ในโหมดปกติ',
+  `urls_url4` varchar(250) DEFAULT NULL COMMENT 'ที่อยู่โหมดเข้ากันได้',
+  `urls_url5` varchar(250) DEFAULT NULL COMMENT 'ที่อยู่โหมด PATHINFO',
+  `urls_url6` varchar(250) DEFAULT NULL COMMENT 'ที่อยู่โหมด REWRITE',
   PRIMARY KEY (`urls_id`),
   UNIQUE KEY `page` (`urls_page`)
-) ENGINE=MyISAM AUTO_INCREMENT=130 DEFAULT CHARSET=utf8mb3 COMMENT='seo伪静态地址';
-INSERT INTO `wm_seo_urls` VALUES (1,'all','index','首页','/index.php?pt={pt}','/index.html','/','/','/','/'),(2,'novel','novel_type','小说列表','/module/novel/type.php?pt={pt}&tid={tid}&page={page}','/{tid}/list/{page}.html','/?pt={pt}&module=novel&file=type&tid={tid}&page={page}','/?path=/novel/type/pt/{pt}/tid/{tid}/page/{page}','/index.php/novel/type/pt/{pt}/tid/{tid}/page/{page}','/novel/type/pt/{pt}/tid/{tid}/page/{page}'),(3,'novel','novel_info','小说介绍','/module/novel/info.php?pt={pt}&tid={tid}&nid={nid}','/{tid}/{nid}/info.html','/?module=novel&file=info&pt={pt}&tid={tid}&nid={nid}','/?path=/novel/info/pt/{pt}/tid/{tid}/nid/{nid}','/index.php/novel/info/pt/{pt}/tid/{tid}/nid/{nid}','/novel/info/pt/{pt}/tid/{tid}/nid/{nid}'),(4,'novel','novel_menu','小说目录','/module/novel/menu.php?pt={pt}&tid={tid}&nid={nid}&page={page}','/{tid}/{nid}/menu/{page}.html','/?module=novel&file=menu&pt={pt}&tid={tid}&nid={nid}&page={page}','/?path=/novel/menu/pt/{pt}/tid/{tid}/nid/{nid}/page/{page}','/index.php/novel/menu/pt/{pt}/tid/{tid}/nid/{nid}/page/{page}','/novel/menu/pt/{pt}/tid/{tid}/nid/{nid}/page/{page}'),(5,'novel','novel_read','小说阅读','/module/novel/read.php?pt={pt}&tid={tid}&nid={nid}&cid={cid}','/{tid}/{nid}/read/{cid}.html','/?module=novel&file=read&pt={pt}&tid={tid}&nid={nid}&cid={cid}','/?path=/novel/read/pt/{pt}/tid/{tid}/nid/{nid}/cid/{cid}','/index.php/novel/read/pt/{pt}/tid/{tid}/nid/{nid}/cid/{cid}','/novel/read/pt/{pt}/tid/{tid}/nid/{nid}/cid/{cid}'),(6,'novel','novel_topindex','小说排行首页','/module/novel/topindex.php?pt={pt}','/top/index.html','/?module=novel&file=topindex&pt={pt}','/?path=/novel/topindex/pt/{pt}','/index.php/novel/topindex/pt/{pt}','/novel/topindex/pt/{pt}'),(7,'novel','novel_search','小说搜索','/module/novel/search.php?pt={pt}&type={type}&key={key}&page={page}','/search/{type}/{key}/{page}.html','/?module=novel&file=search&pt={pt}&type={type}&key={key}&page={page}','/?path=/novel/search/pt/{pt}/type/{type}/key/{key}/page/{page}','/index.php/novel/search/pt/{pt}/type/{type}/key/{key}/page/{page}','/novel/search/pt/{pt}/type/{type}/key/{key}/page/{page}'),(8,'novel','novel_toplist','小说排行列表','/module/novel/toplist.php?pt={pt}&tid={tid}&type={type}&page={page}','/top/list/{tid}/{type}/{page}.html','/?module=novel&file=toplist&pt={pt}&tid={tid}&type={type}&page={page}','/?path=/novel/toplist/pt/{pt}/tid/{tid}/type/{type}/page/{page}','/index.php/novel/toplist/pt/{pt}/tid/{tid}/type/{type}/page/{page}','/novel/toplist/pt/{pt}/tid/{tid}/type/{type}/page/{page}'),(9,'user','user_login','用户登录','/module/user/login.php?pt={pt}','/module/user/login.php?pt={pt}','/?module=user&file=login&pt={pt}','/?path=/user/login/pt/{pt}','/index.php/user/login/pt/{pt}','/user/login/pt/{pt}'),(10,'user','user_reg','用户注册','/module/user/reg.php?pt={pt}','/module/user/reg.php?pt={pt}','/?module=user&file=reg&pt={pt}','/?path=/user/reg/pt/{pt}','/index.php/user/reg/pt/{pt}','/user/reg/pt/{pt}'),(11,'user','user_getpsw','找回密码','/module/user/getpsw.php?pt={pt}','/module/user/getpsw.php?pt={pt}','/?module=user&file=getpsw&pt={pt}','/?path=/user/getpsw/pt/{pt}','/index.php/user/getpsw/pt/{pt}','/user/getpsw/pt/{pt}'),(12,'user','user_home','个人中心','/module/user/home.php?pt={pt}','/module/user/home.php?pt={pt}','/?module=user&file=home&pt={pt}','/?path=/user/home/pt/{pt}','/index.php/user/home/pt/{pt}','/user/home/pt/{pt}'),(13,'user','user_exit','退出登录','/module/user/exit.php?pt={pt}','/module/user/exit.php?pt={pt}','/?module=user&file=exit&pt={pt}','/?path=/user/exit/pt/{pt}','/index.php/user/exit/pt/{pt}','/user/exit/pt/{pt}'),(14,'user','user_basic','用户资料','/module/user/basic.php?pt={pt}','/module/user/basic.php?pt={pt}','/?module=user&file=basic&pt={pt}','/?path=/user/basic/pt/{pt}','/index.php/user/basic/pt/{pt}','/user/basic/pt/{pt}'),(16,'user','user_attribute','用户属性','/module/user/attribute.php?pt={pt}','/module/user/attribute.php?pt={pt}','/?module=user&file=attribute&pt={pt}','/?path=/user/attribute/pt/{pt}','/index.php/user/attribute/pt/{pt}','/user/attribute/pt/{pt}'),(18,'user','user_head','修改头像','/module/user/head.php?pt={pt}','/module/user/head.php?pt={pt}','/?module=user&file=head&pt={pt}','/?path=/user/head/pt/{pt}','/index.php/user/head/pt/{pt}','/user/head/pt/{pt}'),(19,'user','user_uppsw','修改密码','/module/user/uppsw.php?pt={pt}','/module/user/uppsw.php?pt={pt}','/?module=user&file=uppsw&pt={pt}','/?path=/user/uppsw/pt/{pt}','/index.php/user/uppsw/pt/{pt}','/user/uppsw/pt/{pt}'),(20,'user','user_bind','账号绑定','/module/user/bind.php?pt={pt}','/module/user/bind.php?pt={pt}','/?module=user&file=bind&pt={pt}','/?path=/user/bind/pt/{pt}','/index.php/user/bind/pt/{pt}','/user/bind/pt/{pt}'),(22,'user','user_coll','用户收藏等','/module/user/coll.php?module={module}&type={type}&page={page}&pt={pt}','/module/user/coll.php?module={module}&type={type}&page={page}&pt={pt}','/?module=user&file=coll&module={module}&type={type}&page={page}&pt={pt}','/?path=/user/coll/module/{module}/type/{type}/page/{page}/pt/{pt}','/index.php/user/coll/module/{module}/type/{type}/page/{page}/pt/{pt}','/user/coll/module/{module}/type/{type}/page/{page}/pt/{pt}'),(24,'novel','novel_replay','小说评论列表','/module/novel/replay.php?pt={pt}&tid={tid}&nid={nid}&page={page}','/{tid}/{nid}/replay/{page}.html','/?module=novel&file=replay&pt={pt}&tid={tid}&nid={nid}&page={page}','/?path=/novel/replay/pt/{pt}/tid/{tid}/nid/{nid}/page/{page}','/index.php/novel/replay/pt/{pt}/tid/{tid}/nid/{nid}/page/{page}','/novel/replay/pt/{pt}/tid/{tid}/nid/{nid}/page/{page}'),(26,'diy','diy_diy','自定义页','/module/diy/diy.php?pt={pt}&did={did}','/diy/{pinyin}/index.html','/?module=diy&file=diy&pt={pt}&did={did}','/?path=/diy/diy/pt/{pt}/did/{did}','/index.php/diy/diy/pt/{pt}/did/{did}','/diy/diy/pt/{pt}/did/{did}'),(27,'user','user_msglist','消息列表','/module/user/msglist.php?pt={pt}&page={page}','/module/user/msglist.php?pt={pt}&page={page}','/?module=user&file=msglist&pt={pt}&page={page}','/?path=/user/msglist/pt/{pt}/page/{page}','/index.php/user/msglist/pt/{pt}/page/{page}','/user/msglist/pt/{pt}/page/{page}'),(28,'user','user_msg','消息内容','/module/user/msg.php?pt={pt}&mid={mid}','/module/user/msg.php?pt={pt}&mid={mid}','/?module=user&file=msg&pt={pt}&mid={mid}','/?path=/user/msg/pt/{pt}/mid/{mid}','/index.php/user/msg/pt/{pt}/mid/{mid}','/user/msg/pt/{pt}/mid/{mid}'),(29,'author','author_index','作者首页','/module/author/index.php?pt={pt}','/module/author/index.php?pt={pt}','/?module=author&file=index&pt={pt}','/?path=/author/index/pt/{pt}','/index.php/author/index/pt/{pt}','/author/index/pt/{pt}'),(30,'author','author_novel_noveledit','新建小说','/module/author/novel_noveledit.php?pt={pt}&nid={nid}','/module/author/novel_noveledit.php?pt={pt}&nid={nid}','/?module=author&file=novel_noveledit&pt={pt}&nid={nid}','/?path=/author/novel_noveledit/pt/{pt}/nid/{nid}','/index.php/author/novel_noveledit/pt/{pt}/nid/{nid}','/author/novel_noveledit/pt/{pt}/nid/{nid}'),(31,'author','author_novel_novellist','小说管理','/module/author/novel_novellist.php?pt={pt}&page={page}','/module/author/novel_novellist.php?pt={pt}&page={page}','/?module=author&file=novel_novellist&pt={pt}&page={page}','/?path=/author/novel_novellist/pt/{pt}/page/{page}','/index.php/author/novel_novellist/pt/{pt}/page/{page}','/author/novel_novellist/pt/{pt}/page/{page}'),(32,'author','author_novel_volumelist','小说分卷列表','/module/author/novel_volumelist.php?pt={pt}&nid={nid}&page={page}','/module/author/novel_volumelist.php?pt={pt}&nid={nid}&page={page}','/?module=author&file=novel_volumelist&pt={pt}&nid={nid}&page={page}','/?path=/author/novel_volumelist/pt/{pt}/nid/{nid}/page/{page}','/index.php/author/novel_volumelist/pt/{pt}/nid/{nid}/page/{page}','/author/novel_volumelist/pt/{pt}/nid/{nid}/page/{page}'),(33,'author','author_createchapter','创建章节','/module/author/createchapter.php?pt={pt}&cid={cid}','/module/author/createchapter.php?pt={pt}&cid={cid}','/?module=author&file=createchapter&pt={pt}&cid={cid}','/?path=/author/createchapter/pt/{pt}/cid/{cid}','/index.php/author/createchapter/pt/{pt}/cid/{cid}','/author/createchapter/pt/{pt}/cid/{cid}'),(34,'author','author_novel_draftlist','小说草稿列表','/module/author/novel_draftlist.php?nid={nid}&page={page}&pt={pt}','/module/author/novel_draftlist.php?nid={nid}&page={page}&pt={pt}','/?module=author&file=novel_draftlist&nid={nid}&page={page}&pt={pt}','/?path=/author/novel_draftlist/nid/{nid}/page/{page}/pt/{pt}','/index.php/author/novel_draftlist/nid/{nid}/page/{page}/pt/{pt}','/author/novel_draftlist/nid/{nid}/page/{page}/pt/{pt}'),(36,'author','author_novel_draftedit','小说草稿编辑','/module/author/novel_draftedit.php?pt={pt}&nid={nid}&did={did}','/module/author/novel_draftedit.php?pt={pt}&nid={nid}&did={did}','/?module=author&file=novel_draftedit&pt={pt}&nid={nid}&did={did}','/?path=/author/novel_draftedit/pt/{pt}/nid/{nid}/did/{did}','/index.php/author/novel_draftedit/pt/{pt}/nid/{nid}/did/{did}','/author/novel_draftedit/pt/{pt}/nid/{nid}/did/{did}'),(37,'author','author_novel_chapterlist','小说章节列表','/module/author/novel_chapterlist.php?pt={pt}&nid={nid}&page={page}','/module/author/novel_chapterlist.php?pt={pt}&nid={nid}&page={page}','/?module=author&file=novel_chapterlist&pt={pt}&nid={nid}&page={page}','/?path=/author/novel_chapterlist/pt/{pt}/nid/{nid}/page/{page}','/index.php/author/novel_chapterlist/pt/{pt}/nid/{nid}/page/{page}','/author/novel_chapterlist/pt/{pt}/nid/{nid}/page/{page}'),(38,'zt','zt_zt','专题内容','/module/zt/zt.php?pt={pt}&zid={zid}','/module/zt/zt.php?pt={pt}&zid={zid}','/?module=zt&file=zt&pt={pt}&zid={zid}','/?path=/zt/zt/pt/{pt}/zid/{zid}','/index.php/zt/zt/pt/{pt}/zid/{zid}','/zt/zt/pt/{pt}/zid/{zid}'),(39,'zt','zt_type','专题分类','/module/zt/type.php?pt={pt}&tid={tid}&page={page}','/module/zt/type.php?pt={pt}&tid={tid}&page={page}','/?module=zt&file=type&pt={pt}&tid={tid}&page={page}','/?path=/zt/type/pt/{pt}/tid/{tid}/page/{page}','/index.php/zt/type/pt/{pt}/tid/{tid}/page/{page}','/zt/type/pt/{pt}/tid/{tid}/page/{page}'),(42,'user','user_fvistlist','好友访客列表','/module/user/fvistlist.php?pt={pt}&uid={uid}&page={page}','/module/user/fvistlist.php?pt={pt}&uid={uid}&page={page}','/?module=user&file=fvistlist&pt={pt}&uid={uid}&page={page}','/?path=/user/fvistlist/pt/{pt}/uid/{uid}/page/{page}','/index.php/user/fvistlist/pt/{pt}/uid/{uid}/page/{page}','/user/fvistlist/pt/{pt}/uid/{uid}/page/{page}'),(43,'author','author_basic','作者基本资料','/module/author/basic.php?pt={pt}','/module/author/basic.php?pt={pt}','/?module=author&file=basic&pt={pt}','/?path=/author/basic/pt/{pt}','/index.php/author/basic/pt/{pt}','/author/basic/pt/{pt}'),(44,'author','author_incomechapter','章节收入','/module/author/incomechapter.php?pt={pt}&page={page}','/module/author/incomechapter.php?pt={pt}&page={page}','/?module=author&file=incomechapter&pt={pt}&page={page}','/?path=/author/incomechapter/pt/{pt}/page/{page}','/index.php/author/incomechapter/pt/{pt}/page/{page}','/author/incomechapter/pt/{pt}/page/{page}'),(45,'author','author_incomedashang','打赏收入','/module/author/incomedashang.php?pt={pt}&page={page}','/module/author/incomedashang.php?pt={pt}&page={page}','/?module=author&file=incomedashang&pt={pt}&page={page}','/?path=/author/incomedashang/pt/{pt}/page/{page}','/index.php/author/incomedashang/pt/{pt}/page/{page}','/author/incomedashang/pt/{pt}/page/{page}'),(46,'author','author_mentionapply','提现申请','/module/author/mentionapply.php?pt={pt}','/module/author/mentionapply.php?pt={pt}','/?module=author&file=mentionapply&pt={pt}','/?path=/author/mentionapply/pt/{pt}','/index.php/author/mentionapply/pt/{pt}','/author/mentionapply/pt/{pt}'),(47,'author','author_mentionrecord','提现记录','/module/author/mentionrecord.php?pt={pt}&page={page}','/module/author/mentionrecord.php?pt={pt}&page={page}','/?module=author&file=mentionrecord&pt={pt}&page={page}','/?path=/author/mentionrecord/pt/{pt}/page/{page}','/index.php/author/mentionrecord/pt/{pt}/page/{page}','/author/mentionrecord/pt/{pt}/page/{page}'),(48,'article','article_type','文章列表','/module/article/type.php?pt={pt}&tid={tid}&page={page}','/module/article/type.php?pt={pt}&tid={tid}&page={page}','/?module=article&file=type&pt={pt}&tid={tid}&page={page}','/?path=/article/type/pt/{pt}/tid/{tid}/page/{page}','/index.php/article/type/pt/{pt}/tid/{tid}/page/{page}','/article/type/pt/{pt}/tid/{tid}/page/{page}'),(49,'article','article_article','文章内容','/module/article/article.php?pt={pt}&tid={tid}&aid={aid}','/module/article/article.php?pt={pt}&tid={tid}&aid={aid}','/?module=article&file=article&pt={pt}&tid={tid}&aid={aid}','/?path=/article/article/pt/{pt}/tid/{tid}/aid/{aid}','/index.php/article/article/pt/{pt}/tid/{tid}/aid/{aid}','/article/article/pt/{pt}/tid/{tid}/aid/{aid}'),(50,'article','article_search','文章搜索','/module/article/search.php?pt={pt}&key={key}&type={type}&page={page}','/module/article/search.php?pt={pt}&key={key}&type={type}&page={page}','/?module=article&file=search&pt={pt}&key={key}&type={type}&page={page}','/?path=/article/search/pt/{pt}/key/{key}/type/{type}/page/{page}','/index.php/article/search/pt/{pt}/key/{key}/type/{type}/page/{page}','/article/search/pt/{pt}/key/{key}/type/{type}/page/{page}'),(51,'article','article_replay','文章评论','/module/article/replay.php?pt={pt}&tid={tid}&aid={aid}&page={page}','/module/article/replay.php?pt={pt}&tid={tid}&aid={aid}&page={page}','/?module=article&file=replay&pt={pt}&tid={tid}&aid={aid}&page={page}','/?path=/article/replay/pt/{pt}/tid/{tid}/aid/{aid}/page/{page}','/index.php/article/replay/pt/{pt}/tid/{tid}/aid/{aid}/page/{page}','/article/replay/pt/{pt}/tid/{tid}/aid/{aid}/page/{page}'),(52,'novel','novel_index','小说首页','/module/novel/index.php?pt={pt}','/novel/index.html','/?module=novel&file=index&pt={pt}','/?path=/novel/index/pt/{pt}','/index.php/novel/index/pt/{pt}','/novel/index/pt/{pt}'),(54,'message','message_add','新增留言','/module/message/add.php?pt={pt}','/message/{pt}/add.html','/?module=message&file=add&pt={pt}','/?path=/message/add/pt/{pt}','/index.php/message/add/pt/{pt}','/message/add/pt/{pt}'),(55,'user','user_sign','用户签到','/module/user/sign.php?pt={pt}','/module/user/sign.php?pt={pt}','/?module=user&file=sign&pt={pt}','/?path=/user/sign/pt/{pt}','/index.php/user/sign/pt/{pt}','/user/sign/pt/{pt}'),(56,'bbs','bbs_index','论坛首页','/module/bbs/index.php?pt={pt}','/module/bbs/index.php?pt={pt}','/?module=bbs&file=index&pt={pt}','/?path=/bbs/index/pt/{pt}','/index.php/bbs/index/pt/{pt}','/bbs/index/pt/{pt}'),(57,'bbs','bbs_bbs','主题内容','/module/bbs/bbs.php?pt={pt}&tid={tid}&bid={bid}&page={page}','/module/bbs/bbs.php?pt={pt}&tid={tid}&bid={bid}&page={page}','/?module=bbs&file=bbs&pt={pt}&tid={tid}&bid={bid}&page={page}','/?path=/bbs/bbs/pt/{pt}/tid/{tid}/bid/{bid}/page/{page}','/index.php/bbs/bbs/pt/{pt}/tid/{tid}/bid/{bid}/page/{page}','/bbs/bbs/pt/{pt}/tid/{tid}/bid/{bid}/page/{page}'),(58,'bbs','bbs_type','板块分类','/module/bbs/type.php?pt={pt}&tid={tid}','/module/bbs/type.php?pt={pt}&tid={tid}','/?module=bbs&file=type&pt={pt}&tid={tid}','/?path=/bbs/type/pt/{pt}/tid/{tid}','/index.php/bbs/type/pt/{pt}/tid/{tid}','/bbs/type/pt/{pt}/tid/{tid}'),(59,'bbs','bbs_list','主题列表','/module/bbs/list.php?pt={pt}&tid={tid}&page={page}','/module/bbs/list.php?pt={pt}&tid={tid}&page={page}','/?module=bbs&file=list&pt={pt}&tid={tid}&page={page}','/?path=/bbs/list/pt/{pt}/tid/{tid}/page/{page}','/index.php/bbs/list/pt/{pt}/tid/{tid}/page/{page}','/bbs/list/pt/{pt}/tid/{tid}/page/{page}'),(83,'article','article_tindex','文章分类首页','/module/article/tindex.php?pt={pt}&tid={tid}','/module/article/tindex.php?pt={pt}&tid={tid}','/?module=article&file=tindex&pt={pt}&tid={tid}','/?path=/article/tindex/pt/{pt}/tid/{tid}','/index.php/article/tindex/pt/{pt}/tid/{tid}','/article/tindex/pt/{pt}/tid/{tid}'),(61,'bbs','bbs_post','发表主题','/module/bbs/post.php?pt={pt}&tid={tid}&bid={bid}','/module/bbs/post.php?pt={pt}&tid={tid}&bid={bid}','/?module=bbs&file=post&pt={pt}&tid={tid}&bid={bid}','/?path=/bbs/post/pt/{pt}/tid/{tid}/bid/{bid}','/index.php/bbs/post/pt/{pt}/tid/{tid}/bid/{bid}','/bbs/post/pt/{pt}/tid/{tid}/bid/{bid}'),(62,'link','link_index','友链首页','/module/link/index.php?pt={pt}','/module/link/index.php?pt={pt}','/?module=link&file=index&pt={pt}','/?path=/link/index/pt/{pt}','/index.php/link/index/pt/{pt}','/link/index/pt/{pt}'),(63,'link','link_show','友链展示','/module/link/show.php?pt={pt}&tid={tid}&lid={lid}','/module/link/show.php?pt={pt}&tid={tid}&lid={lid}','/?module=link&file=show&pt={pt}&tid={tid}&lid={lid}','/?path=/link/show/pt/{pt}/tid/{tid}/lid/{lid}','/index.php/link/show/pt/{pt}/tid/{tid}/lid/{lid}','/link/show/pt/{pt}/tid/{tid}/lid/{lid}'),(64,'link','link_link','友链点击','/module/link/click.php?lid={lid}&t={t}','/module/link/click.php?lid={lid}&t={t}','/?module=link&file=click&lid={lid}&t={t}','/?path=/link/click/lid/{lid}/t/{t}','/index.php/link/click/lid/{lid}/t/{t}','/link/click/lid/{lid}/t/{t}'),(65,'link','link_type','友链分类列表','/module/link/type.php?pt={pt}&tid={tid}&page={page}','/module/link/type.php?pt={pt}&tid={tid}&page={page}','/?module=link&file=type&pt={pt}&tid={tid}&page={page}','/?path=/link/type/pt/{pt}/tid/{tid}/page/{page}','/index.php/link/type/pt/{pt}/tid/{tid}/page/{page}','/link/type/pt/{pt}/tid/{tid}/page/{page}'),(66,'link','link_join','申请友链','/module/link/join.php?pt={pt}','/module/link/join.php?pt={pt}','/?module=link&file=join&pt={pt}','/?path=/link/join/pt/{pt}','/index.php/link/join/pt/{pt}','/link/join/pt/{pt}'),(67,'app','app_type','应用分类列表','/module/app/type.php?pt={pt}&tid={tid}&page={page}','/module/app/type.php?pt={pt}&tid={tid}&page={page}','/?module=app&file=type&pt={pt}&tid={tid}&page={page}','/?path=/app/type/pt/{pt}/tid/{tid}/page/{page}','/index.php/app/type/pt/{pt}/tid/{tid}/page/{page}','/app/type/pt/{pt}/tid/{tid}/page/{page}'),(111,'app','app_type_retrieval','应用列表筛选','/module/app/type.php?pt={pt}&tid={tid}&page={page}&rec={rec}&lang={lang}&cost={cost}&size={size}&platform={platform}&order={order}','/{tid}/list/{rec}_{lang}_{cost}_{size}_{platform}_{order}_{page}.html','/?module=app&file=type&pt={pt}&tid={tid}&page={page}&rec={rec}&lang={lang}&cost={cost}&size={size}&platform={platform}&order={order}','/?path=/app/type/pt/{pt}/tid/{tid}/page/{page}/rec/{rec}/lang/{lang}/cost/{cost}/size/{size}/platform/{platform}/order/{order}','/index.php/app/type/pt/{pt}/tid/{tid}/page/{page}/rec/{rec}/lang/{lang}/cost/{cost}/size/{size}/platform/{platform}/order/{order}','/app/type/pt/{pt}/tid/{tid}/page/{page}/rec/{rec}/lang/{lang}/cost/{cost}/size/{size}/platform/{platform}/order/{order}'),(68,'app','app_app','应用内容','/module/app/app.php?pt={pt}&tid={tid}&aid={aid}','/module/app/app.php?pt={pt}&tid={tid}&aid={aid}','/?module=app&file=app&pt={pt}&tid={tid}&aid={aid}','/?path=/app/app/pt/{pt}/tid/{tid}/aid/{aid}','/index.php/app/app/pt/{pt}/tid/{tid}/aid/{aid}','/app/app/pt/{pt}/tid/{tid}/aid/{aid}'),(69,'app','app_index','应用首页','/module/app/index.php?pt={pt}','/module/app/index.php?pt={pt}','/?module=app&file=index&pt={pt}','/?path=/app/index/pt/{pt}','/index.php/app/index/pt/{pt}','/app/index/pt/{pt}'),(70,'down','down_down','下载内容','/module/down/down.php?pt={pt}&module={module}&fid={fid}&cid={cid}','/module/down/down.php?pt={pt}&module={module}&fid={fid}&cid={cid}','/?module=down&file=down&pt={pt}&module={module}&fid={fid}&cid={cid}','/?path=/down/down/pt/{pt}/module/{module}/fid/{fid}/cid/{cid}','/index.php/down/down/pt/{pt}/module/{module}/fid/{fid}/cid/{cid}','/down/down/pt/{pt}/module/{module}/fid/{fid}/cid/{cid}'),(71,'app','app_search','应用搜索','/module/app/search.php?pt={pt}&type={type}&key={key}&page={page}','/module/app/search.php?pt={pt}&type={type}&key={key}&page={page}','/?module=app&file=search&pt={pt}&type={type}&key={key}&page={page}','/?path=/app/search/pt/{pt}/type/{type}/key/{key}/page/{page}','/index.php/app/search/pt/{pt}/type/{type}/key/{key}/page/{page}','/app/search/pt/{pt}/type/{type}/key/{key}/page/{page}'),(72,'article','article_index','文章首页','/module/article/index.php?pt={pt}','/html/article/index_{pt}.html','/?module=article&file=index&pt={pt}','/?path=/article/index/pt/{pt}','/index.php/article/index/pt/{pt}','/article/index/pt/{pt}'),(73,'bbs','bbs_search','论坛搜索','/module/bbs/search.php?pt={pt}&key={key}&type={type}&page={page}','/module/bbs/search.php?pt={pt}&key={key}&type={type}&page={page}','/?module=bbs&file=search&pt={pt}&key={key}&type={type}&page={page}','/?path=/bbs/search/pt/{pt}/key/{key}/type/{type}/page/{page}','/index.php/bbs/search/pt/{pt}/key/{key}/type/{type}/page/{page}','/bbs/search/pt/{pt}/key/{key}/type/{type}/page/{page}'),(74,'about','about_type','关于信息列表','/module/about/type.php?pt={pt}&tid={tid}','/module/about/type.php?pt={pt}&tid={tid}','/?module=about&file=type&pt={pt}&tid={tid}','/?path=/about/type/pt/{pt}/tid/{tid}','/index.php/about/type/pt/{pt}/tid/{tid}','/about/type/pt/{pt}/tid/{tid}'),(75,'about','about_about','关于信息内容','/module/about/about.php?pt={pt}&aid={aid}','/module/about/about.php?pt={pt}&aid={aid}','/?module=about&file=about&pt={pt}&aid={aid}','/?path=/about/about/pt/{pt}/aid/{aid}','/index.php/about/about/pt/{pt}/aid/{aid}','/about/about/pt/{pt}/aid/{aid}'),(76,'picture','picture_type','图集列表','/module/picture/type.php?pt={pt}&tid={tid}&page={page}','/module/picture/type.php?pt={pt}&tid={tid}&page={page}','/?module=picture&file=type&pt={pt}&tid={tid}&page={page}','/?path=/picture/type/pt/{pt}/tid/{tid}/page/{page}','/index.php/picture/type/pt/{pt}/tid/{tid}/page/{page}','/picture/type/pt/{pt}/tid/{tid}/page/{page}'),(77,'picture','picture_picture','图集内容','/module/picture/picture.php?pt={pt}&tid={tid}&pid={pid}&page={page}','/module/picture/picture.php?pt={pt}&tid={tid}&pid={pid}&page={page}','/?module=picture&file=picture&pt={pt}&tid={tid}&pid={pid}&page={page}','/?path=/picture/picture/pt/{pt}/tid/{tid}/pid/{pid}/page/{page}','/index.php/picture/picture/pt/{pt}/tid/{tid}/pid/{pid}/page/{page}','/picture/picture/pt/{pt}/tid/{tid}/pid/{pid}/page/{page}'),(78,'picture','picture_search','图集搜索','/module/picture/search.php?pt={pt}&key={key}&type={type}&page={page}','/module/picture/search.php?pt={pt}&key={key}&type={type}&page={page}','/?module=picture&file=search&pt={pt}&key={key}&type={type}&page={page}','/?path=/picture/search/pt/{pt}/key/{key}/type/{type}/page/{page}','/index.php/picture/search/pt/{pt}/key/{key}/type/{type}/page/{page}','/picture/search/pt/{pt}/key/{key}/type/{type}/page/{page}'),(79,'picture','picture_replay','图集评论','/module/picture/replay.php?pt={pt}&tid={tid}&cid={cid}&page={page}','/module/picture/replay.php?pt={pt}&tid={tid}&cid={cid}&page={page}','/?module=picture&file=replay&pt={pt}&tid={tid}&cid={cid}&page={page}','/?path=/picture/replay/pt/{pt}/tid/{tid}/cid/{cid}/page/{page}','/index.php/picture/replay/pt/{pt}/tid/{tid}/cid/{cid}/page/{page}','/picture/replay/pt/{pt}/tid/{tid}/cid/{cid}/page/{page}'),(80,'picture','picture_toplist','图集排行列表','/module/picture/toplist.php?pt={pt}&tid={tid}&page={page}','/module/picture/toplist.php?pt={pt}&tid={tid}&page={page}','/?module=picture&file=toplist&pt={pt}&tid={tid}&page={page}','/?path=/picture/toplist/pt/{pt}/tid/{tid}/page/{page}','/index.php/picture/toplist/pt/{pt}/tid/{tid}/page/{page}','/picture/toplist/pt/{pt}/tid/{tid}/page/{page}'),(81,'user','user_signlist','签到列表','/module/user/signlist.php?pt={pt}&page={page}','/module/user/signlist.php?pt={pt}&page={page}','/?module=user&file=signlist&pt={pt}&page={page}','/?path=/user/signlist/pt/{pt}/page/{page}','/index.php/user/signlist/pt/{pt}/page/{page}','/user/signlist/pt/{pt}/page/{page}'),(23,'user','user_fhome','好友资料','/module/user/fhome.php?pt={pt}&uid={uid}','/module/user/fhome.php?pt={pt}&uid={uid}','/?module=user&file=fhome&pt={pt}&uid={uid}','/?path=/user/fhome/pt/{pt}/uid/{uid}','/index.php/user/fhome/pt/{pt}/uid/{uid}','/user/fhome/pt/{pt}/uid/{uid}'),(82,'user','user_apilogin','接口登录','/module/user/apilogin.php','/module/user/apilogin.php','/?module=user&file=apilogin','/?path=/user/apilogin','/index.php/user/apilogin','/user/apilogin'),(84,'picture','picture_index','图集首页','/module/picture/index.php?pt={pt}','/module/picture/index.php?pt={pt}','/?module=picture&file=index&pt={pt}','/?path=/picture/index/pt/{pt}','/index.php/picture/index/pt/{pt}','/picture/index/pt/{pt}'),(85,'user','user_fcoll','好友收藏等','/module/user/fcoll.php?module={module}&type={type}&page={page}&pt={pt}&uid={uid}','/module/user/fcoll.php?module={module}&type={type}&page={page}&pt={pt}&uid={uid}','/?module=user&file=fcoll&module={module}&type={type}&page={page}&pt={pt}&uid={uid}','/?path=/user/fcoll/module/{module}/type/{type}/page/{page}/pt/{pt}/uid/{uid}','/index.php/user/fcoll/module/{module}/type/{type}/page/{page}/pt/{pt}/uid/{uid}','/user/fcoll/module/{module}/type/{type}/page/{page}/pt/{pt}/uid/{uid}'),(86,'novel','novel_tindex','小说分类首页','/module/novel/tindex.php?pt={pt}&tid={tid}','/{tid}/index.html','/?module=novel&file=tindex&pt={pt}&tid={tid}','/?path=/novel/tindex/pt/{pt}/tid/{tid}','/index.php/novel/tindex/pt/{pt}/tid/{tid}','/novel/tindex/pt/{pt}/tid/{tid}'),(87,'author','author_apply','申请作家','/module/author/apply.php?pt={pt}','/module/author/apply.php?pt={pt}','/?module=author&file=apply&pt={pt}','/?path=/author/apply/pt/{pt}','/index.php/author/apply/pt/{pt}','/author/apply/pt/{pt}'),(88,'author','author_agreement','申请作家协议','/module/author/agreement.php?pt={pt}','/module/author/agreement.php?pt={pt}','/?module=author&file=agreement&pt={pt}','/?path=/author/agreement/pt/{pt}','/index.php/author/agreement/pt/{pt}','/author/agreement/pt/{pt}'),(89,'author','author_novel_volumeedit','小说分卷编辑','/module/author/novel_volumeedit.php?pt={pt}&nid={nid}&vid={vid}','/module/author/novel_volumeedit.php?pt={pt}&nid={nid}&vid={vid}','/?module=author&file=novel_volumeedit&pt={pt}&nid={nid}&vid={vid}','/?path=/author/novel_volumeedit/pt/{pt}/nid/{nid}/vid/{vid}','/index.php/author/novel_volumeedit/pt/{pt}/nid/{nid}/vid/{vid}','/author/novel_volumeedit/pt/{pt}/nid/{nid}/vid/{vid}'),(90,'author','author_article_articlelist','文章投稿列表','/module/author/article_articlelist.php?pt={pt}&page={page}','/module/author/article_articlelist.php?pt={pt}&page={page}','/?module=author&file=article_articlelist&pt={pt}&page={page}','/?path=/author/article_articlelist/pt/{pt}/page/{page}','/index.php/author/article_articlelist/pt/{pt}/page/{page}','/author/article_articlelist/pt/{pt}/page/{page}'),(91,'author','author_article_draftedit','文章草稿箱列表','/module/author/article_draftedit.php?did={did}&pt={pt}','/module/author/article_draftedit.php?did={did}&pt={pt}','/?module=author&file=article_draftedit&did={did}&pt={pt}','/?path=/author/article_draftedit/did/{did}/pt/{pt}','/index.php/author/article_draftedit/did/{did}/pt/{pt}','/author/article_draftedit/did/{did}/pt/{pt}'),(92,'author','author_article_draftlist','文章草稿列表','/module/author/article_draftlist.php?page={page}&pt={pt}','/module/author/article_draftlist.php?page={page}&pt={pt}','/?module=author&file=article_draftlist&page={page}&pt={pt}','/?path=/author/article_draftlist/page/{page}/pt/{pt}','/index.php/author/article_draftlist/page/{page}/pt/{pt}','/author/article_draftlist/page/{page}/pt/{pt}'),(93,'author','author_article_articleedit','文章编辑','/module/author/article_articleedit.php?id={id}&pt={pt}','/module/author/article_articleedit.php?id={id}&pt={pt}','/?module=author&file=article_articleedit&id={id}&pt={pt}','/?path=/author/article_articleedit/id/{id}/pt/{pt}','/index.php/author/article_articleedit/id/{id}/pt/{pt}','/author/article_articleedit/id/{id}/pt/{pt}'),(94,'sitemap','sitemap_html_index','HTML地图','/wmcms/module/sitemap/index.php?type=html','/html/sitemap/index.html','/wmcms/module/sitemap/index.php?type=html','/wmcms/module/sitemap/index.php?type=html','/wmcms/module/sitemap/index.php?type=html','/wmcms/module/sitemap/index.php?type=html'),(95,'sitemap','sitemap_xml_index','XML地图','/wmcms/module/sitemap/index.php?type=xml','/html/sitemap/sitemap.xml','/wmcms/module/sitemap/index.php?type=xml','/wmcms/module/sitemap/index.php?type=xml','/wmcms/module/sitemap/index.php?type=xml','/wmcms/module/sitemap/index.php?type=xml'),(96,'sitemap','sitemap_rss_index','RSS地图','/wmcms/module/sitemap/index.php?type=rss','/html/sitemap/rss.html','/wmcms/module/sitemap/index.php?type=rss','/wmcms/module/sitemap/index.php?type=rss','/wmcms/module/sitemap/index.php?type=rss','/wmcms/module/sitemap/index.php?type=rss'),(97,'sitemap','sitemap_rss_list','网站地图列表','/wmcms/module/sitemap/list.php?type={type}&module={module}&tid={tid}','/html/sitemap/rss/{module}/{tid}.xml','/wmcms/module/sitemap/list.php?type={type}&module={module}&tid={tid}','/wmcms/module/sitemap/list.php?type={type}&module={module}&tid={tid}','/wmcms/module/sitemap/list.php?type={type}&module={module}&tid={tid}','/wmcms/module/sitemap/list.php?type={type}&module={module}&tid={tid}'),(98,'user','user_charge','在线充值','/module/user/charge.php?pt={pt}','/module/user/charge.php?pt={pt}','/?module=user&file=charge&pt={pt}','/?path=/user/charge/pt/{pt}','/index.php/user/charge/pt/{pt}','/user/charge/pt/{pt}'),(99,'author','author_novel_incomelist','小说收入列表','/module/author/novel_incomelist.php?type={type}&page={page}&pt={pt}','/module/author/novel_incomelist.php?type={type}&page={page}&pt={pt}','/?module=author&file=novel_incomelist&type={type}&page={page}&pt={pt}','/?path=/author/novel_incomelist/type/{type}/page/{page}/pt/{pt}','/index.php/author/novel_incomelist/type/{type}/page/{page}/pt/{pt}','/author/novel_incomelist/type/{type}/page/{page}/pt/{pt}'),(100,'user','user_cash_apply','在线申请提现','/module/user/cash_apply.php?pt={pt}','/module/user/cash_apply.php?pt={pt}','/?module=user&file=cash_apply&pt={pt}','/?path=/user/cash_apply/pt/{pt}','/index.php/user/cash_apply/pt/{pt}','/user/cash_apply/pt/{pt}'),(101,'user','user_cash_list','提现申请记录','/module/user/cash_list.php?page={page}&pt={pt}','/module/user/cash_list.php?page={page}&pt={pt}','/?module=user&file=cash_list&page={page}&pt={pt}','/?path=/user/cash_list/page/{page}/pt/{pt}','/index.php/user/cash_list/page/{page}/pt/{pt}','/user/cash_list/page/{page}/pt/{pt}'),(102,'about','about_tindex','关于首页','/module/about/tindex.php?pt={pt}&tid={tid}','/module/about/tindex.php?pt={pt}&tid={tid}','/?module=about&file=tindex&pt={pt}&tid={tid}','/?path=/about/tindex/pt/{pt}/tid/{tid}','/index.php/about/tindex/pt/{pt}/tid/{tid}','/about/tindex/pt/{pt}/tid/{tid}'),(103,'sitemap','sitemap_site_index','结构化数据','/wmcms/module/sitemap/index.php?type=site','/html/sitemap/site.xml','/wmcms/module/sitemap/index.php?type=site','/wmcms/module/sitemap/index.php?type=site','/wmcms/module/sitemap/index.php?type=site','/wmcms/module/sitemap/index.php?type=site'),(104,'novel','novel_type_retrieval','小说列表筛选','/module/novel/type.php?pt={pt}&tid={tid}&page={page}&process={process}&word={word}&chapter={chapter}&copy={copy}&cost={cost}&letter={letter}&order={order}','/{tid}/list/{process}_{word}_{chapter}_{copy}_{cost}_{letter}_{order}_{page}.html','/?module=novel&file=type&pt={pt}&tid={tid}&page={page}&process={process}&word={word}&chapter={chapter}&copy={copy}&cost={cost}&letter={letter}&order={order}','/?path=/novel/type/pt/{pt}/tid/{tid}/page/{page}/process/{process}/word/{word}/chapter/{chapter}/copy/{copy}/cost/{cost}/letter/{letter}/order/{order}','/index.php/novel/type/pt/{pt}/tid/{tid}/page/{page}/process/{process}/word/{word}/chapter/{chapter}/copy/{copy}/cost/{cost}/letter/{letter}/order/{order}','/novel/type/pt/{pt}/tid/{tid}/page/{page}/process/{process}/word/{word}/chapter/{chapter}/copy/{copy}/cost/{cost}/letter/{letter}/order/{order}'),(105,'novel','novel_index_boy','男生小说首页','/module/novel/index_boy.php?pt={pt}','/index_boy.html','/?module=novel&file=index_boy&pt={pt}','/?path=/novel/index_boy/pt/{pt}','/index.php/novel/index_boy/pt/{pt}','/novel/index_boy/pt/{pt}'),(106,'novel','novel_index_girl','女生小说首页','/module/novel/index_girl.php?pt={pt}','/index_girl.html','/?module=novel&file=index_girl&pt={pt}','/?path=/novel/index_girl/pt/{pt}','/index.php/novel/index_girl/pt/{pt}','/novel/index_girl/pt/{pt}'),(107,'user','user_read','阅读记录','/module/user/read.php?pt={pt}&module={module}&page={page}','/module/user/read.php?pt={pt}&module={module}&page={page}','/?module=user&file=read&pt={pt}&module={module}&page={page}','/?path=/user/read/pt/{pt}/module/{module}/page/{page}','/index.php/user/read/pt/{pt}/module/{module}/page/{page}','/user/read/pt/{pt}/module/{module}/page/{page}'),(108,'user','user_charge_code','在线扫码支付','/module/user/charge_code.php?pt={pt}&code={code}&sn={sn}','/module/user/charge_code.php?pt={pt}&code={code}&sn={sn}','/?module=user&file=charge_code&pt={pt}&code={code}&sn={sn}','/?path=/user/charge_code/pt/{pt}/code/{code}/sn/{sn}','/index.php/user/charge_code/pt/{pt}/code/{code}/sn/{sn}','/user/charge_code/pt/{pt}/code/{code}/sn/{sn}'),(109,'user','user_charge_success','支付成功','/module/user/charge_success.php?pt={pt}','/module/user/charge_success.php?pt={pt}','/?module=user&file=charge_success&pt={pt}','/?path=/user/charge_success/pt/{pt}','/index.php/user/charge_success/pt/{pt}','/user/charge_success/pt/{pt}'),(110,'replay','replay_list','评论列表','/module/replay/list.php?pt={pt}&module={module}&page={page}','/module/replay/list.php?pt={pt}&module={module}&page={page}','/?module=replay&file=list&pt={pt}&module={module}&page={page}','/?path=/replay/list/pt/{pt}/module/{module}/page/{page}','/index.php/replay/list/pt/{pt}/module/{module}/page/{page}','/replay/list/pt/{pt}/module/{module}/page/{page}'),(112,'picture','picture_tindex','图集分类首页','/module/picture/tindex.php?pt={pt}&tid={tid}','/{tid}/index.html','/?module=picture&file=tindex&pt={pt}&tid={tid}','/?path=/picture/tindex/pt/{pt}/tid/{tid}','/index.php/picture/tindex/pt/{pt}/tid/{tid}','/picture/tindex/pt/{pt}/tid/{tid}'),(113,'author','author_author','作者个人中心','/module/author/author.php?pt={pt}&aid={aid}','/module/author/author.php?pt={pt}&aid={aid}','/module/author/author.php?pt={pt}&aid={aid}','/?path=/author/author/pt/{pt}/aid/{aid}','/index.php/author/author/pt/{pt}/aid/{aid}','/author/author/pt/{pt}/aid/{aid}'),(114,'author','author_novel_statistics','小说数据统计','/module/author/novel_statistics.php?pt={pt}','/module/author/novel_statistics.php?pt={pt}','/?module=author&file=novel_statistics&pt={pt}','/?path=/author/novel_statistics/pt/{pt}','/index.php/author/novel_statistics/pt/{pt}','/author/novel_statistics/pt/{pt}'),(128,'editor','editor_novel_chapter','编辑章节审核','/module/editor/novel_chapter.php?page={page}&status={status}&pt={pt}','/module/editor/novel_chapter.php?page={page}&status={status}&pt={pt}','/?module=editor&file=novel_chapter&page={page}&status={status}&pt={pt}','/?path=/editor/novel_chapter/page/{page}/status/{status}/pt/{pt}','/index.php/editor/novel_chapter/page/{page}/status/{status}/pt/{pt}','/editor/novel_chapter/page/{page}/status/{status}/pt/{pt}'),(127,'editor','editor_novel_cover','编辑封面审核','/module/editor/novel_cover.php?page={page}&status={status}&pt={pt}','/module/editor/novel_cover.php?page={page}&status={status}&pt={pt}','/?module=editor&file=novel_cover&page={page}&status={status}&pt={pt}','/?path=/editor/novel_cover/page/{page}/status/{status}/pt/{pt}','/index.php/editor/novel_cover/page/{page}/status/{status}/pt/{pt}','/editor/novel_cover/page/{page}/status/{status}/pt/{pt}'),(125,'editor','editor_index','编辑首页','/module/editor/index.php?pt={pt}','/module/editor/index.php?pt={pt}','/?module=editor&file=index&pt={pt}','/?path=/editor/index/pt/{pt}','/index.php/editor/index/pt/{pt}','/editor/index/pt/{pt}'),(126,'editor','editor_novel','编辑新书审核','/module/editor/novel.php?page={page}&status={status}&pt={pt}','/module/editor/novel.php?page={page}&status={status}&pt={pt}','/?module=editor&file=novel&page={page}&status={status}&pt={pt}','/?path=/editor/novel/page/{page}/status/{status}/pt/{pt}','/index.php/editor/novel/page/{page}/status/{status}/pt/{pt}','/editor/novel/page/{page}/status/{status}/pt/{pt}'),(129,'editor','editor_basic','编辑基本资料','/module/editor/basic.php?pt={pt}','/module/editor/basic.php?pt={pt}','/?module=editor&file=basic&pt={pt}','/?path=/editor/basic/pt/{pt}','/index.php/editor/basic/pt/{pt}','/editor/basic/pt/{pt}');
+) ENGINE=MyISAM AUTO_INCREMENT=130 DEFAULT CHARSET=utf8mb3 COMMENT='ที่อยู่สแตติกเสมือน SEO';
+INSERT INTO `wm_seo_urls` VALUES (1,'all','index','หน้าแรก','/index.php?pt={pt}','/index.html','/','/','/','/'),(2,'novel','novel_type','รายการนิยาย','/module/novel/type.php?pt={pt}&tid={tid}&page={page}','/{tid}/list/{page}.html','/?pt={pt}&module=novel&file=type&tid={tid}&page={page}','/?path=/novel/type/pt/{pt}/tid/{tid}/page/{page}','/index.php/novel/type/pt/{pt}/tid/{tid}/page/{page}','/novel/type/pt/{pt}/tid/{tid}/page/{page}'),(3,'novel','novel_info','แนะนำนิยาย','/module/novel/info.php?pt={pt}&tid={tid}&nid={nid}','/{tid}/{nid}/info.html','/?module=novel&file=info&pt={pt}&tid={tid}&nid={nid}','/?path=/novel/info/pt/{pt}/tid/{tid}/nid/{nid}','/index.php/novel/info/pt/{pt}/tid/{tid}/nid/{nid}','/novel/info/pt/{pt}/tid/{tid}/nid/{nid}'),(4,'novel','novel_menu','สารบัญนิยาย','/module/novel/menu.php?pt={pt}&tid={tid}&nid={nid}&page={page}','/{tid}/{nid}/menu/{page}.html','/?module=novel&file=menu&pt={pt}&tid={tid}&nid={nid}&page={page}','/?path=/novel/menu/pt/{pt}/tid/{tid}/nid/{nid}/page/{page}','/index.php/novel/menu/pt/{pt}/tid/{tid}/nid/{nid}/page/{page}','/novel/menu/pt/{pt}/tid/{tid}/nid/{nid}/page/{page}'),(5,'novel','novel_read','อ่านนิยาย','/module/novel/read.php?pt={pt}&tid={tid}&nid={nid}&cid={cid}','/{tid}/{nid}/read/{cid}.html','/?module=novel&file=read&pt={pt}&tid={tid}&nid={nid}&cid={cid}','/?path=/novel/read/pt/{pt}/tid/{tid}/nid/{nid}/cid/{cid}','/index.php/novel/read/pt/{pt}/tid/{tid}/nid/{nid}/cid/{cid}','/novel/read/pt/{pt}/tid/{tid}/nid/{nid}/cid/{cid}'),(6,'novel','novel_topindex','หน้าแรกจัดอันดับนิยาย','/module/novel/topindex.php?pt={pt}','/top/index.html','/?module=novel&file=topindex&pt={pt}','/?path=/novel/topindex/pt/{pt}','/index.php/novel/topindex/pt/{pt}','/novel/topindex/pt/{pt}'),(7,'novel','novel_search','ค้นหานิยาย','/module/novel/search.php?pt={pt}&type={type}&key={key}&page={page}','/search/{type}/{key}/{page}.html','/?module=novel&file=search&pt={pt}&type={type}&key={key}&page={page}','/?path=/novel/search/pt/{pt}/type/{type}/key/{key}/page/{page}','/index.php/novel/search/pt/{pt}/type/{type}/key/{key}/page/{page}','/novel/search/pt/{pt}/type/{type}/key/{key}/page/{page}'),(8,'novel','novel_toplist','รายการจัดอันดับนิยาย','/module/novel/toplist.php?pt={pt}&tid={tid}&type={type}&page={page}','/top/list/{tid}/{type}/{page}.html','/?module=novel&file=toplist&pt={pt}&tid={tid}&type={type}&page={page}','/?path=/novel/toplist/pt/{pt}/tid/{tid}/type/{type}/page/{page}','/index.php/novel/toplist/pt/{pt}/tid/{tid}/type/{type}/page/{page}','/novel/toplist/pt/{pt}/tid/{tid}/type/{type}/page/{page}'),(9,'user','user_login','ผู้ใช้เข้าสู่ระบบ','/module/user/login.php?pt={pt}','/module/user/login.php?pt={pt}','/?module=user&file=login&pt={pt}','/?path=/user/login/pt/{pt}','/index.php/user/login/pt/{pt}','/user/login/pt/{pt}'),(10,'user','user_reg','ผู้ใช้สมัครสมาชิก','/module/user/reg.php?pt={pt}','/module/user/reg.php?pt={pt}','/?module=user&file=reg&pt={pt}','/?path=/user/reg/pt/{pt}','/index.php/user/reg/pt/{pt}','/user/reg/pt/{pt}'),(11,'user','user_getpsw','กู้คืนรหัสผ่าน','/module/user/getpsw.php?pt={pt}','/module/user/getpsw.php?pt={pt}','/?module=user&file=getpsw&pt={pt}','/?path=/user/getpsw/pt/{pt}','/index.php/user/getpsw/pt/{pt}','/user/getpsw/pt/{pt}'),(12,'user','user_home','ศูนย์ของฉัน','/module/user/home.php?pt={pt}','/module/user/home.php?pt={pt}','/?module=user&file=home&pt={pt}','/?path=/user/home/pt/{pt}','/index.php/user/home/pt/{pt}','/user/home/pt/{pt}'),(13,'user','user_exit','ออกจากระบบ','/module/user/exit.php?pt={pt}','/module/user/exit.php?pt={pt}','/?module=user&file=exit&pt={pt}','/?path=/user/exit/pt/{pt}','/index.php/user/exit/pt/{pt}','/user/exit/pt/{pt}'),(14,'user','user_basic','ข้อมูลผู้ใช้','/module/user/basic.php?pt={pt}','/module/user/basic.php?pt={pt}','/?module=user&file=basic&pt={pt}','/?path=/user/basic/pt/{pt}','/index.php/user/basic/pt/{pt}','/user/basic/pt/{pt}'),(16,'user','user_attribute','คุณสมบัติผู้ใช้','/module/user/attribute.php?pt={pt}','/module/user/attribute.php?pt={pt}','/?module=user&file=attribute&pt={pt}','/?path=/user/attribute/pt/{pt}','/index.php/user/attribute/pt/{pt}','/user/attribute/pt/{pt}'),(18,'user','user_head','เปลี่ยนรูปโปรไฟล์','/module/user/head.php?pt={pt}','/module/user/head.php?pt={pt}','/?module=user&file=head&pt={pt}','/?path=/user/head/pt/{pt}','/index.php/user/head/pt/{pt}','/user/head/pt/{pt}'),(19,'user','user_uppsw','เปลี่ยนรหัสผ่าน','/module/user/uppsw.php?pt={pt}','/module/user/uppsw.php?pt={pt}','/?module=user&file=uppsw&pt={pt}','/?path=/user/uppsw/pt/{pt}','/index.php/user/uppsw/pt/{pt}','/user/uppsw/pt/{pt}'),(20,'user','user_bind','ผูกบัญชี','/module/user/bind.php?pt={pt}','/module/user/bind.php?pt={pt}','/?module=user&file=bind&pt={pt}','/?path=/user/bind/pt/{pt}','/index.php/user/bind/pt/{pt}','/user/bind/pt/{pt}'),(22,'user','user_coll','รายการโปรดผู้ใช้ ฯลฯ','/module/user/coll.php?module={module}&type={type}&page={page}&pt={pt}','/module/user/coll.php?module={module}&type={type}&page={page}&pt={pt}','/?module=user&file=coll&module={module}&type={type}&page={page}&pt={pt}','/?path=/user/coll/module/{module}/type/{type}/page/{page}/pt/{pt}','/index.php/user/coll/module/{module}/type/{type}/page/{page}/pt/{pt}','/user/coll/module/{module}/type/{type}/page/{page}/pt/{pt}'),(24,'novel','novel_replay','รายการความคิดเห็นนิยาย','/module/novel/replay.php?pt={pt}&tid={tid}&nid={nid}&page={page}','/{tid}/{nid}/replay/{page}.html','/?module=novel&file=replay&pt={pt}&tid={tid}&nid={nid}&page={page}','/?path=/novel/replay/pt/{pt}/tid/{tid}/nid/{nid}/page/{page}','/index.php/novel/replay/pt/{pt}/tid/{tid}/nid/{nid}/page/{page}','/novel/replay/pt/{pt}/tid/{tid}/nid/{nid}/page/{page}'),(26,'diy','diy_diy','หน้ากำหนดเอง','/module/diy/diy.php?pt={pt}&did={did}','/diy/{pinyin}/index.html','/?module=diy&file=diy&pt={pt}&did={did}','/?path=/diy/diy/pt/{pt}/did/{did}','/index.php/diy/diy/pt/{pt}/did/{did}','/diy/diy/pt/{pt}/did/{did}'),(27,'user','user_msglist','รายการข้อความ','/module/user/msglist.php?pt={pt}&page={page}','/module/user/msglist.php?pt={pt}&page={page}','/?module=user&file=msglist&pt={pt}&page={page}','/?path=/user/msglist/pt/{pt}/page/{page}','/index.php/user/msglist/pt/{pt}/page/{page}','/user/msglist/pt/{pt}/page/{page}'),(28,'user','user_msg','เนื้อหาข้อความ','/module/user/msg.php?pt={pt}&mid={mid}','/module/user/msg.php?pt={pt}&mid={mid}','/?module=user&file=msg&pt={pt}&mid={mid}','/?path=/user/msg/pt/{pt}/mid/{mid}','/index.php/user/msg/pt/{pt}/mid/{mid}','/user/msg/pt/{pt}/mid/{mid}'),(29,'author','author_index','หน้าแรกผู้แต่ง','/module/author/index.php?pt={pt}','/module/author/index.php?pt={pt}','/?module=author&file=index&pt={pt}','/?path=/author/index/pt/{pt}','/index.php/author/index/pt/{pt}','/author/index/pt/{pt}'),(30,'author','author_novel_noveledit','สร้างนิยายใหม่','/module/author/novel_noveledit.php?pt={pt}&nid={nid}','/module/author/novel_noveledit.php?pt={pt}&nid={nid}','/?module=author&file=novel_noveledit&pt={pt}&nid={nid}','/?path=/author/novel_noveledit/pt/{pt}/nid/{nid}','/index.php/author/novel_noveledit/pt/{pt}/nid/{nid}','/author/novel_noveledit/pt/{pt}/nid/{nid}'),(31,'author','author_novel_novellist','จัดการนิยาย','/module/author/novel_novellist.php?pt={pt}&page={page}','/module/author/novel_novellist.php?pt={pt}&page={page}','/?module=author&file=novel_novellist&pt={pt}&page={page}','/?path=/author/novel_novellist/pt/{pt}/page/{page}','/index.php/author/novel_novellist/pt/{pt}/page/{page}','/author/novel_novellist/pt/{pt}/page/{page}'),(32,'author','author_novel_volumelist','รายการเล่มนิยาย','/module/author/novel_volumelist.php?pt={pt}&nid={nid}&page={page}','/module/author/novel_volumelist.php?pt={pt}&nid={nid}&page={page}','/?module=author&file=novel_volumelist&pt={pt}&nid={nid}&page={page}','/?path=/author/novel_volumelist/pt/{pt}/nid/{nid}/page/{page}','/index.php/author/novel_volumelist/pt/{pt}/nid/{nid}/page/{page}','/author/novel_volumelist/pt/{pt}/nid/{nid}/page/{page}'),(33,'author','author_createchapter','สร้างตอน','/module/author/createchapter.php?pt={pt}&cid={cid}','/module/author/createchapter.php?pt={pt}&cid={cid}','/?module=author&file=createchapter&pt={pt}&cid={cid}','/?path=/author/createchapter/pt/{pt}/cid/{cid}','/index.php/author/createchapter/pt/{pt}/cid/{cid}','/author/createchapter/pt/{pt}/cid/{cid}'),(34,'author','author_novel_draftlist','รายการฉบับร่างนิยาย','/module/author/novel_draftlist.php?nid={nid}&page={page}&pt={pt}','/module/author/novel_draftlist.php?nid={nid}&page={page}&pt={pt}','/?module=author&file=novel_draftlist&nid={nid}&page={page}&pt={pt}','/?path=/author/novel_draftlist/nid/{nid}/page/{page}/pt/{pt}','/index.php/author/novel_draftlist/nid/{nid}/page/{page}/pt/{pt}','/author/novel_draftlist/nid/{nid}/page/{page}/pt/{pt}'),(36,'author','author_novel_draftedit','แก้ไขฉบับร่างนิยาย','/module/author/novel_draftedit.php?pt={pt}&nid={nid}&did={did}','/module/author/novel_draftedit.php?pt={pt}&nid={nid}&did={did}','/?module=author&file=novel_draftedit&pt={pt}&nid={nid}&did={did}','/?path=/author/novel_draftedit/pt/{pt}/nid/{nid}/did/{did}','/index.php/author/novel_draftedit/pt/{pt}/nid/{nid}/did/{did}','/author/novel_draftedit/pt/{pt}/nid/{nid}/did/{did}'),(37,'author','author_novel_chapterlist','รายการตอนนิยาย','/module/author/novel_chapterlist.php?pt={pt}&nid={nid}&page={page}','/module/author/novel_chapterlist.php?pt={pt}&nid={nid}&page={page}','/?module=author&file=novel_chapterlist&pt={pt}&nid={nid}&page={page}','/?path=/author/novel_chapterlist/pt/{pt}/nid/{nid}/page/{page}','/index.php/author/novel_chapterlist/pt/{pt}/nid/{nid}/page/{page}','/author/novel_chapterlist/pt/{pt}/nid/{nid}/page/{page}'),(38,'zt','zt_zt','เนื้อหาหัวข้อพิเศษ','/module/zt/zt.php?pt={pt}&zid={zid}','/module/zt/zt.php?pt={pt}&zid={zid}','/?module=zt&file=zt&pt={pt}&zid={zid}','/?path=/zt/zt/pt/{pt}/zid/{zid}','/index.php/zt/zt/pt/{pt}/zid/{zid}','/zt/zt/pt/{pt}/zid/{zid}'),(39,'zt','zt_type','หมวดหมู่หัวข้อพิเศษ','/module/zt/type.php?pt={pt}&tid={tid}&page={page}','/module/zt/type.php?pt={pt}&tid={tid}&page={page}','/?module=zt&file=type&pt={pt}&tid={tid}&page={page}','/?path=/zt/type/pt/{pt}/tid/{tid}/page/{page}','/index.php/zt/type/pt/{pt}/tid/{tid}/page/{page}','/zt/type/pt/{pt}/tid/{tid}/page/{page}'),(42,'user','user_fvistlist','รายการผู้เยี่ยมเพื่อน','/module/user/fvistlist.php?pt={pt}&uid={uid}&page={page}','/module/user/fvistlist.php?pt={pt}&uid={uid}&page={page}','/?module=user&file=fvistlist&pt={pt}&uid={uid}&page={page}','/?path=/user/fvistlist/pt/{pt}/uid/{uid}/page/{page}','/index.php/user/fvistlist/pt/{pt}/uid/{uid}/page/{page}','/user/fvistlist/pt/{pt}/uid/{uid}/page/{page}'),(43,'author','author_basic','ข้อมูลพื้นฐานผู้แต่ง','/module/author/basic.php?pt={pt}','/module/author/basic.php?pt={pt}','/?module=author&file=basic&pt={pt}','/?path=/author/basic/pt/{pt}','/index.php/author/basic/pt/{pt}','/author/basic/pt/{pt}'),(44,'author','author_incomechapter','รายได้จากตอน','/module/author/incomechapter.php?pt={pt}&page={page}','/module/author/incomechapter.php?pt={pt}&page={page}','/?module=author&file=incomechapter&pt={pt}&page={page}','/?path=/author/incomechapter/pt/{pt}/page/{page}','/index.php/author/incomechapter/pt/{pt}/page/{page}','/author/incomechapter/pt/{pt}/page/{page}'),(45,'author','author_incomedashang','รายได้จากรางวัล','/module/author/incomedashang.php?pt={pt}&page={page}','/module/author/incomedashang.php?pt={pt}&page={page}','/?module=author&file=incomedashang&pt={pt}&page={page}','/?path=/author/incomedashang/pt/{pt}/page/{page}','/index.php/author/incomedashang/pt/{pt}/page/{page}','/author/incomedashang/pt/{pt}/page/{page}'),(46,'author','author_mentionapply','คำขอถอนเงิน','/module/author/mentionapply.php?pt={pt}','/module/author/mentionapply.php?pt={pt}','/?module=author&file=mentionapply&pt={pt}','/?path=/author/mentionapply/pt/{pt}','/index.php/author/mentionapply/pt/{pt}','/author/mentionapply/pt/{pt}'),(47,'author','author_mentionrecord','ประวัติถอนเงิน','/module/author/mentionrecord.php?pt={pt}&page={page}','/module/author/mentionrecord.php?pt={pt}&page={page}','/?module=author&file=mentionrecord&pt={pt}&page={page}','/?path=/author/mentionrecord/pt/{pt}/page/{page}','/index.php/author/mentionrecord/pt/{pt}/page/{page}','/author/mentionrecord/pt/{pt}/page/{page}'),(48,'article','article_type','รายการบทความ','/module/article/type.php?pt={pt}&tid={tid}&page={page}','/module/article/type.php?pt={pt}&tid={tid}&page={page}','/?module=article&file=type&pt={pt}&tid={tid}&page={page}','/?path=/article/type/pt/{pt}/tid/{tid}/page/{page}','/index.php/article/type/pt/{pt}/tid/{tid}/page/{page}','/article/type/pt/{pt}/tid/{tid}/page/{page}'),(49,'article','article_article','เนื้อหาบทความ','/module/article/article.php?pt={pt}&tid={tid}&aid={aid}','/module/article/article.php?pt={pt}&tid={tid}&aid={aid}','/?module=article&file=article&pt={pt}&tid={tid}&aid={aid}','/?path=/article/article/pt/{pt}/tid/{tid}/aid/{aid}','/index.php/article/article/pt/{pt}/tid/{tid}/aid/{aid}','/article/article/pt/{pt}/tid/{tid}/aid/{aid}'),(50,'article','article_search','ค้นหาบทความ','/module/article/search.php?pt={pt}&key={key}&type={type}&page={page}','/module/article/search.php?pt={pt}&key={key}&type={type}&page={page}','/?module=article&file=search&pt={pt}&key={key}&type={type}&page={page}','/?path=/article/search/pt/{pt}/key/{key}/type/{type}/page/{page}','/index.php/article/search/pt/{pt}/key/{key}/type/{type}/page/{page}','/article/search/pt/{pt}/key/{key}/type/{type}/page/{page}'),(51,'article','article_replay','ความคิดเห็นบทความ','/module/article/replay.php?pt={pt}&tid={tid}&aid={aid}&page={page}','/module/article/replay.php?pt={pt}&tid={tid}&aid={aid}&page={page}','/?module=article&file=replay&pt={pt}&tid={tid}&aid={aid}&page={page}','/?path=/article/replay/pt/{pt}/tid/{tid}/aid/{aid}/page/{page}','/index.php/article/replay/pt/{pt}/tid/{tid}/aid/{aid}/page/{page}','/article/replay/pt/{pt}/tid/{tid}/aid/{aid}/page/{page}'),(52,'novel','novel_index','หน้าแรกนิยาย','/module/novel/index.php?pt={pt}','/novel/index.html','/?module=novel&file=index&pt={pt}','/?path=/novel/index/pt/{pt}','/index.php/novel/index/pt/{pt}','/novel/index/pt/{pt}'),(54,'message','message_add','เพิ่มข้อความ','/module/message/add.php?pt={pt}','/message/{pt}/add.html','/?module=message&file=add&pt={pt}','/?path=/message/add/pt/{pt}','/index.php/message/add/pt/{pt}','/message/add/pt/{pt}'),(55,'user','user_sign','ผู้ใช้เช็กอิน','/module/user/sign.php?pt={pt}','/module/user/sign.php?pt={pt}','/?module=user&file=sign&pt={pt}','/?path=/user/sign/pt/{pt}','/index.php/user/sign/pt/{pt}','/user/sign/pt/{pt}'),(56,'bbs','bbs_index','หน้าแรกฟอรัม','/module/bbs/index.php?pt={pt}','/module/bbs/index.php?pt={pt}','/?module=bbs&file=index&pt={pt}','/?path=/bbs/index/pt/{pt}','/index.php/bbs/index/pt/{pt}','/bbs/index/pt/{pt}'),(57,'bbs','bbs_bbs','เนื้อหากระทู้','/module/bbs/bbs.php?pt={pt}&tid={tid}&bid={bid}&page={page}','/module/bbs/bbs.php?pt={pt}&tid={tid}&bid={bid}&page={page}','/?module=bbs&file=bbs&pt={pt}&tid={tid}&bid={bid}&page={page}','/?path=/bbs/bbs/pt/{pt}/tid/{tid}/bid/{bid}/page/{page}','/index.php/bbs/bbs/pt/{pt}/tid/{tid}/bid/{bid}/page/{page}','/bbs/bbs/pt/{pt}/tid/{tid}/bid/{bid}/page/{page}'),(58,'bbs','bbs_type','หมวดหมู่บอร์ด','/module/bbs/type.php?pt={pt}&tid={tid}','/module/bbs/type.php?pt={pt}&tid={tid}','/?module=bbs&file=type&pt={pt}&tid={tid}','/?path=/bbs/type/pt/{pt}/tid/{tid}','/index.php/bbs/type/pt/{pt}/tid/{tid}','/bbs/type/pt/{pt}/tid/{tid}'),(59,'bbs','bbs_list','รายการกระทู้','/module/bbs/list.php?pt={pt}&tid={tid}&page={page}','/module/bbs/list.php?pt={pt}&tid={tid}&page={page}','/?module=bbs&file=list&pt={pt}&tid={tid}&page={page}','/?path=/bbs/list/pt/{pt}/tid/{tid}/page/{page}','/index.php/bbs/list/pt/{pt}/tid/{tid}/page/{page}','/bbs/list/pt/{pt}/tid/{tid}/page/{page}'),(83,'article','article_tindex','หน้าแรกหมวดบทความ','/module/article/tindex.php?pt={pt}&tid={tid}','/module/article/tindex.php?pt={pt}&tid={tid}','/?module=article&file=tindex&pt={pt}&tid={tid}','/?path=/article/tindex/pt/{pt}/tid/{tid}','/index.php/article/tindex/pt/{pt}/tid/{tid}','/article/tindex/pt/{pt}/tid/{tid}'),(61,'bbs','bbs_post','ตั้งกระทู้','/module/bbs/post.php?pt={pt}&tid={tid}&bid={bid}','/module/bbs/post.php?pt={pt}&tid={tid}&bid={bid}','/?module=bbs&file=post&pt={pt}&tid={tid}&bid={bid}','/?path=/bbs/post/pt/{pt}/tid/{tid}/bid/{bid}','/index.php/bbs/post/pt/{pt}/tid/{tid}/bid/{bid}','/bbs/post/pt/{pt}/tid/{tid}/bid/{bid}'),(62,'link','link_index','หน้าแรกลิงก์เพื่อน','/module/link/index.php?pt={pt}','/module/link/index.php?pt={pt}','/?module=link&file=index&pt={pt}','/?path=/link/index/pt/{pt}','/index.php/link/index/pt/{pt}','/link/index/pt/{pt}'),(63,'link','link_show','แสดงลิงก์เพื่อน','/module/link/show.php?pt={pt}&tid={tid}&lid={lid}','/module/link/show.php?pt={pt}&tid={tid}&lid={lid}','/?module=link&file=show&pt={pt}&tid={tid}&lid={lid}','/?path=/link/show/pt/{pt}/tid/{tid}/lid/{lid}','/index.php/link/show/pt/{pt}/tid/{tid}/lid/{lid}','/link/show/pt/{pt}/tid/{tid}/lid/{lid}'),(64,'link','link_link','คลิกลิงก์เพื่อน','/module/link/click.php?lid={lid}&t={t}','/module/link/click.php?lid={lid}&t={t}','/?module=link&file=click&lid={lid}&t={t}','/?path=/link/click/lid/{lid}/t/{t}','/index.php/link/click/lid/{lid}/t/{t}','/link/click/lid/{lid}/t/{t}'),(65,'link','link_type','รายการหมวดลิงก์เพื่อน','/module/link/type.php?pt={pt}&tid={tid}&page={page}','/module/link/type.php?pt={pt}&tid={tid}&page={page}','/?module=link&file=type&pt={pt}&tid={tid}&page={page}','/?path=/link/type/pt/{pt}/tid/{tid}/page/{page}','/index.php/link/type/pt/{pt}/tid/{tid}/page/{page}','/link/type/pt/{pt}/tid/{tid}/page/{page}'),(66,'link','link_join','ขอลิงก์เพื่อน','/module/link/join.php?pt={pt}','/module/link/join.php?pt={pt}','/?module=link&file=join&pt={pt}','/?path=/link/join/pt/{pt}','/index.php/link/join/pt/{pt}','/link/join/pt/{pt}'),(67,'app','app_type','รายการหมวดแอป','/module/app/type.php?pt={pt}&tid={tid}&page={page}','/module/app/type.php?pt={pt}&tid={tid}&page={page}','/?module=app&file=type&pt={pt}&tid={tid}&page={page}','/?path=/app/type/pt/{pt}/tid/{tid}/page/{page}','/index.php/app/type/pt/{pt}/tid/{tid}/page/{page}','/app/type/pt/{pt}/tid/{tid}/page/{page}'),(111,'app','app_type_retrieval','ตัวกรองรายการแอป','/module/app/type.php?pt={pt}&tid={tid}&page={page}&rec={rec}&lang={lang}&cost={cost}&size={size}&platform={platform}&order={order}','/{tid}/list/{rec}_{lang}_{cost}_{size}_{platform}_{order}_{page}.html','/?module=app&file=type&pt={pt}&tid={tid}&page={page}&rec={rec}&lang={lang}&cost={cost}&size={size}&platform={platform}&order={order}','/?path=/app/type/pt/{pt}/tid/{tid}/page/{page}/rec/{rec}/lang/{lang}/cost/{cost}/size/{size}/platform/{platform}/order/{order}','/index.php/app/type/pt/{pt}/tid/{tid}/page/{page}/rec/{rec}/lang/{lang}/cost/{cost}/size/{size}/platform/{platform}/order/{order}','/app/type/pt/{pt}/tid/{tid}/page/{page}/rec/{rec}/lang/{lang}/cost/{cost}/size/{size}/platform/{platform}/order/{order}'),(68,'app','app_app','เนื้อหาแอป','/module/app/app.php?pt={pt}&tid={tid}&aid={aid}','/module/app/app.php?pt={pt}&tid={tid}&aid={aid}','/?module=app&file=app&pt={pt}&tid={tid}&aid={aid}','/?path=/app/app/pt/{pt}/tid/{tid}/aid/{aid}','/index.php/app/app/pt/{pt}/tid/{tid}/aid/{aid}','/app/app/pt/{pt}/tid/{tid}/aid/{aid}'),(69,'app','app_index','หน้าแรกแอป','/module/app/index.php?pt={pt}','/module/app/index.php?pt={pt}','/?module=app&file=index&pt={pt}','/?path=/app/index/pt/{pt}','/index.php/app/index/pt/{pt}','/app/index/pt/{pt}'),(70,'down','down_down','เนื้อหาดาวน์โหลด','/module/down/down.php?pt={pt}&module={module}&fid={fid}&cid={cid}','/module/down/down.php?pt={pt}&module={module}&fid={fid}&cid={cid}','/?module=down&file=down&pt={pt}&module={module}&fid={fid}&cid={cid}','/?path=/down/down/pt/{pt}/module/{module}/fid/{fid}/cid/{cid}','/index.php/down/down/pt/{pt}/module/{module}/fid/{fid}/cid/{cid}','/down/down/pt/{pt}/module/{module}/fid/{fid}/cid/{cid}'),(71,'app','app_search','ค้นหาแอป','/module/app/search.php?pt={pt}&type={type}&key={key}&page={page}','/module/app/search.php?pt={pt}&type={type}&key={key}&page={page}','/?module=app&file=search&pt={pt}&type={type}&key={key}&page={page}','/?path=/app/search/pt/{pt}/type/{type}/key/{key}/page/{page}','/index.php/app/search/pt/{pt}/type/{type}/key/{key}/page/{page}','/app/search/pt/{pt}/type/{type}/key/{key}/page/{page}'),(72,'article','article_index','หน้าแรกบทความ','/module/article/index.php?pt={pt}','/html/article/index_{pt}.html','/?module=article&file=index&pt={pt}','/?path=/article/index/pt/{pt}','/index.php/article/index/pt/{pt}','/article/index/pt/{pt}'),(73,'bbs','bbs_search','ค้นหาฟอรัม','/module/bbs/search.php?pt={pt}&key={key}&type={type}&page={page}','/module/bbs/search.php?pt={pt}&key={key}&type={type}&page={page}','/?module=bbs&file=search&pt={pt}&key={key}&type={type}&page={page}','/?path=/bbs/search/pt/{pt}/key/{key}/type/{type}/page/{page}','/index.php/bbs/search/pt/{pt}/key/{key}/type/{type}/page/{page}','/bbs/search/pt/{pt}/key/{key}/type/{type}/page/{page}'),(74,'about','about_type','รายการข้อมูลเกี่ยวกับ','/module/about/type.php?pt={pt}&tid={tid}','/module/about/type.php?pt={pt}&tid={tid}','/?module=about&file=type&pt={pt}&tid={tid}','/?path=/about/type/pt/{pt}/tid/{tid}','/index.php/about/type/pt/{pt}/tid/{tid}','/about/type/pt/{pt}/tid/{tid}'),(75,'about','about_about','เนื้อหาข้อมูลเกี่ยวกับ','/module/about/about.php?pt={pt}&aid={aid}','/module/about/about.php?pt={pt}&aid={aid}','/?module=about&file=about&pt={pt}&aid={aid}','/?path=/about/about/pt/{pt}/aid/{aid}','/index.php/about/about/pt/{pt}/aid/{aid}','/about/about/pt/{pt}/aid/{aid}'),(76,'picture','picture_type','รายการแกลเลอรี','/module/picture/type.php?pt={pt}&tid={tid}&page={page}','/module/picture/type.php?pt={pt}&tid={tid}&page={page}','/?module=picture&file=type&pt={pt}&tid={tid}&page={page}','/?path=/picture/type/pt/{pt}/tid/{tid}/page/{page}','/index.php/picture/type/pt/{pt}/tid/{tid}/page/{page}','/picture/type/pt/{pt}/tid/{tid}/page/{page}'),(77,'picture','picture_picture','เนื้อหาแกลเลอรี','/module/picture/picture.php?pt={pt}&tid={tid}&pid={pid}&page={page}','/module/picture/picture.php?pt={pt}&tid={tid}&pid={pid}&page={page}','/?module=picture&file=picture&pt={pt}&tid={tid}&pid={pid}&page={page}','/?path=/picture/picture/pt/{pt}/tid/{tid}/pid/{pid}/page/{page}','/index.php/picture/picture/pt/{pt}/tid/{tid}/pid/{pid}/page/{page}','/picture/picture/pt/{pt}/tid/{tid}/pid/{pid}/page/{page}'),(78,'picture','picture_search','ค้นหาแกลเลอรี','/module/picture/search.php?pt={pt}&key={key}&type={type}&page={page}','/module/picture/search.php?pt={pt}&key={key}&type={type}&page={page}','/?module=picture&file=search&pt={pt}&key={key}&type={type}&page={page}','/?path=/picture/search/pt/{pt}/key/{key}/type/{type}/page/{page}','/index.php/picture/search/pt/{pt}/key/{key}/type/{type}/page/{page}','/picture/search/pt/{pt}/key/{key}/type/{type}/page/{page}'),(79,'picture','picture_replay','ความคิดเห็นแกลเลอรี','/module/picture/replay.php?pt={pt}&tid={tid}&cid={cid}&page={page}','/module/picture/replay.php?pt={pt}&tid={tid}&cid={cid}&page={page}','/?module=picture&file=replay&pt={pt}&tid={tid}&cid={cid}&page={page}','/?path=/picture/replay/pt/{pt}/tid/{tid}/cid/{cid}/page/{page}','/index.php/picture/replay/pt/{pt}/tid/{tid}/cid/{cid}/page/{page}','/picture/replay/pt/{pt}/tid/{tid}/cid/{cid}/page/{page}'),(80,'picture','picture_toplist','รายการจัดอันดับแกลเลอรี','/module/picture/toplist.php?pt={pt}&tid={tid}&page={page}','/module/picture/toplist.php?pt={pt}&tid={tid}&page={page}','/?module=picture&file=toplist&pt={pt}&tid={tid}&page={page}','/?path=/picture/toplist/pt/{pt}/tid/{tid}/page/{page}','/index.php/picture/toplist/pt/{pt}/tid/{tid}/page/{page}','/picture/toplist/pt/{pt}/tid/{tid}/page/{page}'),(81,'user','user_signlist','รายการเช็กอิน','/module/user/signlist.php?pt={pt}&page={page}','/module/user/signlist.php?pt={pt}&page={page}','/?module=user&file=signlist&pt={pt}&page={page}','/?path=/user/signlist/pt/{pt}/page/{page}','/index.php/user/signlist/pt/{pt}/page/{page}','/user/signlist/pt/{pt}/page/{page}'),(23,'user','user_fhome','ข้อมูลเพื่อน','/module/user/fhome.php?pt={pt}&uid={uid}','/module/user/fhome.php?pt={pt}&uid={uid}','/?module=user&file=fhome&pt={pt}&uid={uid}','/?path=/user/fhome/pt/{pt}/uid/{uid}','/index.php/user/fhome/pt/{pt}/uid/{uid}','/user/fhome/pt/{pt}/uid/{uid}'),(82,'user','user_apilogin','เข้าสู่ระบบผ่าน API','/module/user/apilogin.php','/module/user/apilogin.php','/?module=user&file=apilogin','/?path=/user/apilogin','/index.php/user/apilogin','/user/apilogin'),(84,'picture','picture_index','หน้าแรกแกลเลอรี','/module/picture/index.php?pt={pt}','/module/picture/index.php?pt={pt}','/?module=picture&file=index&pt={pt}','/?path=/picture/index/pt/{pt}','/index.php/picture/index/pt/{pt}','/picture/index/pt/{pt}'),(85,'user','user_fcoll','รายการโปรดเพื่อน ฯลฯ','/module/user/fcoll.php?module={module}&type={type}&page={page}&pt={pt}&uid={uid}','/module/user/fcoll.php?module={module}&type={type}&page={page}&pt={pt}&uid={uid}','/?module=user&file=fcoll&module={module}&type={type}&page={page}&pt={pt}&uid={uid}','/?path=/user/fcoll/module/{module}/type/{type}/page/{page}/pt/{pt}/uid/{uid}','/index.php/user/fcoll/module/{module}/type/{type}/page/{page}/pt/{pt}/uid/{uid}','/user/fcoll/module/{module}/type/{type}/page/{page}/pt/{pt}/uid/{uid}'),(86,'novel','novel_tindex','หน้าแรกหมวดนิยาย','/module/novel/tindex.php?pt={pt}&tid={tid}','/{tid}/index.html','/?module=novel&file=tindex&pt={pt}&tid={tid}','/?path=/novel/tindex/pt/{pt}/tid/{tid}','/index.php/novel/tindex/pt/{pt}/tid/{tid}','/novel/tindex/pt/{pt}/tid/{tid}'),(87,'author','author_apply','สมัครเป็นนักเขียน','/module/author/apply.php?pt={pt}','/module/author/apply.php?pt={pt}','/?module=author&file=apply&pt={pt}','/?path=/author/apply/pt/{pt}','/index.php/author/apply/pt/{pt}','/author/apply/pt/{pt}'),(88,'author','author_agreement','ข้อตกลงนักเขียน','/module/author/agreement.php?pt={pt}','/module/author/agreement.php?pt={pt}','/?module=author&file=agreement&pt={pt}','/?path=/author/agreement/pt/{pt}','/index.php/author/agreement/pt/{pt}','/author/agreement/pt/{pt}'),(89,'author','author_novel_volumeedit','แก้ไขเล่มนิยาย','/module/author/novel_volumeedit.php?pt={pt}&nid={nid}&vid={vid}','/module/author/novel_volumeedit.php?pt={pt}&nid={nid}&vid={vid}','/?module=author&file=novel_volumeedit&pt={pt}&nid={nid}&vid={vid}','/?path=/author/novel_volumeedit/pt/{pt}/nid/{nid}/vid/{vid}','/index.php/author/novel_volumeedit/pt/{pt}/nid/{nid}/vid/{vid}','/author/novel_volumeedit/pt/{pt}/nid/{nid}/vid/{vid}'),(90,'author','author_article_articlelist','รายการบทความที่ส่ง','/module/author/article_articlelist.php?pt={pt}&page={page}','/module/author/article_articlelist.php?pt={pt}&page={page}','/?module=author&file=article_articlelist&pt={pt}&page={page}','/?path=/author/article_articlelist/pt/{pt}/page/{page}','/index.php/author/article_articlelist/pt/{pt}/page/{page}','/author/article_articlelist/pt/{pt}/page/{page}'),(91,'author','author_article_draftedit','รายการกล่องฉบับร่าง','/module/author/article_draftedit.php?did={did}&pt={pt}','/module/author/article_draftedit.php?did={did}&pt={pt}','/?module=author&file=article_draftedit&did={did}&pt={pt}','/?path=/author/article_draftedit/did/{did}/pt/{pt}','/index.php/author/article_draftedit/did/{did}/pt/{pt}','/author/article_draftedit/did/{did}/pt/{pt}'),(92,'author','author_article_draftlist','รายการฉบับร่างบทความ','/module/author/article_draftlist.php?page={page}&pt={pt}','/module/author/article_draftlist.php?page={page}&pt={pt}','/?module=author&file=article_draftlist&page={page}&pt={pt}','/?path=/author/article_draftlist/page/{page}/pt/{pt}','/index.php/author/article_draftlist/page/{page}/pt/{pt}','/author/article_draftlist/page/{page}/pt/{pt}'),(93,'author','author_article_articleedit','แก้ไขบทความ','/module/author/article_articleedit.php?id={id}&pt={pt}','/module/author/article_articleedit.php?id={id}&pt={pt}','/?module=author&file=article_articleedit&id={id}&pt={pt}','/?path=/author/article_articleedit/id/{id}/pt/{pt}','/index.php/author/article_articleedit/id/{id}/pt/{pt}','/author/article_articleedit/id/{id}/pt/{pt}'),(94,'sitemap','sitemap_html_index','แผนผัง HTML','/wmcms/module/sitemap/index.php?type=html','/html/sitemap/index.html','/wmcms/module/sitemap/index.php?type=html','/wmcms/module/sitemap/index.php?type=html','/wmcms/module/sitemap/index.php?type=html','/wmcms/module/sitemap/index.php?type=html'),(95,'sitemap','sitemap_xml_index','แผนผัง XML','/wmcms/module/sitemap/index.php?type=xml','/html/sitemap/sitemap.xml','/wmcms/module/sitemap/index.php?type=xml','/wmcms/module/sitemap/index.php?type=xml','/wmcms/module/sitemap/index.php?type=xml','/wmcms/module/sitemap/index.php?type=xml'),(96,'sitemap','sitemap_rss_index','แผนผัง RSS','/wmcms/module/sitemap/index.php?type=rss','/html/sitemap/rss.html','/wmcms/module/sitemap/index.php?type=rss','/wmcms/module/sitemap/index.php?type=rss','/wmcms/module/sitemap/index.php?type=rss','/wmcms/module/sitemap/index.php?type=rss'),(97,'sitemap','sitemap_rss_list','รายการแผนผังเว็บไซต์','/wmcms/module/sitemap/list.php?type={type}&module={module}&tid={tid}','/html/sitemap/rss/{module}/{tid}.xml','/wmcms/module/sitemap/list.php?type={type}&module={module}&tid={tid}','/wmcms/module/sitemap/list.php?type={type}&module={module}&tid={tid}','/wmcms/module/sitemap/list.php?type={type}&module={module}&tid={tid}','/wmcms/module/sitemap/list.php?type={type}&module={module}&tid={tid}'),(98,'user','user_charge','เติมเงินออนไลน์','/module/user/charge.php?pt={pt}','/module/user/charge.php?pt={pt}','/?module=user&file=charge&pt={pt}','/?path=/user/charge/pt/{pt}','/index.php/user/charge/pt/{pt}','/user/charge/pt/{pt}'),(99,'author','author_novel_incomelist','รายการรายได้นิยาย','/module/author/novel_incomelist.php?type={type}&page={page}&pt={pt}','/module/author/novel_incomelist.php?type={type}&page={page}&pt={pt}','/?module=author&file=novel_incomelist&type={type}&page={page}&pt={pt}','/?path=/author/novel_incomelist/type/{type}/page/{page}/pt/{pt}','/index.php/author/novel_incomelist/type/{type}/page/{page}/pt/{pt}','/author/novel_incomelist/type/{type}/page/{page}/pt/{pt}'),(100,'user','user_cash_apply','ขอถอนเงินออนไลน์','/module/user/cash_apply.php?pt={pt}','/module/user/cash_apply.php?pt={pt}','/?module=user&file=cash_apply&pt={pt}','/?path=/user/cash_apply/pt/{pt}','/index.php/user/cash_apply/pt/{pt}','/user/cash_apply/pt/{pt}'),(101,'user','user_cash_list','ประวัติคำขอถอนเงิน','/module/user/cash_list.php?page={page}&pt={pt}','/module/user/cash_list.php?page={page}&pt={pt}','/?module=user&file=cash_list&page={page}&pt={pt}','/?path=/user/cash_list/page/{page}/pt/{pt}','/index.php/user/cash_list/page/{page}/pt/{pt}','/user/cash_list/page/{page}/pt/{pt}'),(102,'about','about_tindex','หน้าแรกเกี่ยวกับ','/module/about/tindex.php?pt={pt}&tid={tid}','/module/about/tindex.php?pt={pt}&tid={tid}','/?module=about&file=tindex&pt={pt}&tid={tid}','/?path=/about/tindex/pt/{pt}/tid/{tid}','/index.php/about/tindex/pt/{pt}/tid/{tid}','/about/tindex/pt/{pt}/tid/{tid}'),(103,'sitemap','sitemap_site_index','ข้อมูลแบบมีโครงสร้าง','/wmcms/module/sitemap/index.php?type=site','/html/sitemap/site.xml','/wmcms/module/sitemap/index.php?type=site','/wmcms/module/sitemap/index.php?type=site','/wmcms/module/sitemap/index.php?type=site','/wmcms/module/sitemap/index.php?type=site'),(104,'novel','novel_type_retrieval','ตัวกรองรายการนิยาย','/module/novel/type.php?pt={pt}&tid={tid}&page={page}&process={process}&word={word}&chapter={chapter}&copy={copy}&cost={cost}&letter={letter}&order={order}','/{tid}/list/{process}_{word}_{chapter}_{copy}_{cost}_{letter}_{order}_{page}.html','/?module=novel&file=type&pt={pt}&tid={tid}&page={page}&process={process}&word={word}&chapter={chapter}&copy={copy}&cost={cost}&letter={letter}&order={order}','/?path=/novel/type/pt/{pt}/tid/{tid}/page/{page}/process/{process}/word/{word}/chapter/{chapter}/copy/{copy}/cost/{cost}/letter/{letter}/order/{order}','/index.php/novel/type/pt/{pt}/tid/{tid}/page/{page}/process/{process}/word/{word}/chapter/{chapter}/copy/{copy}/cost/{cost}/letter/{letter}/order/{order}','/novel/type/pt/{pt}/tid/{tid}/page/{page}/process/{process}/word/{word}/chapter/{chapter}/copy/{copy}/cost/{cost}/letter/{letter}/order/{order}'),(105,'novel','novel_index_boy','หน้าแรกนิยายชาย','/module/novel/index_boy.php?pt={pt}','/index_boy.html','/?module=novel&file=index_boy&pt={pt}','/?path=/novel/index_boy/pt/{pt}','/index.php/novel/index_boy/pt/{pt}','/novel/index_boy/pt/{pt}'),(106,'novel','novel_index_girl','หน้าแรกนิยายหญิง','/module/novel/index_girl.php?pt={pt}','/index_girl.html','/?module=novel&file=index_girl&pt={pt}','/?path=/novel/index_girl/pt/{pt}','/index.php/novel/index_girl/pt/{pt}','/novel/index_girl/pt/{pt}'),(107,'user','user_read','ประวัติการอ่าน','/module/user/read.php?pt={pt}&module={module}&page={page}','/module/user/read.php?pt={pt}&module={module}&page={page}','/?module=user&file=read&pt={pt}&module={module}&page={page}','/?path=/user/read/pt/{pt}/module/{module}/page/{page}','/index.php/user/read/pt/{pt}/module/{module}/page/{page}','/user/read/pt/{pt}/module/{module}/page/{page}'),(108,'user','user_charge_code','สแกนจ่ายออนไลน์','/module/user/charge_code.php?pt={pt}&code={code}&sn={sn}','/module/user/charge_code.php?pt={pt}&code={code}&sn={sn}','/?module=user&file=charge_code&pt={pt}&code={code}&sn={sn}','/?path=/user/charge_code/pt/{pt}/code/{code}/sn/{sn}','/index.php/user/charge_code/pt/{pt}/code/{code}/sn/{sn}','/user/charge_code/pt/{pt}/code/{code}/sn/{sn}'),(109,'user','user_charge_success','ชำระเงินสำเร็จ','/module/user/charge_success.php?pt={pt}','/module/user/charge_success.php?pt={pt}','/?module=user&file=charge_success&pt={pt}','/?path=/user/charge_success/pt/{pt}','/index.php/user/charge_success/pt/{pt}','/user/charge_success/pt/{pt}'),(110,'replay','replay_list','รายการความคิดเห็น','/module/replay/list.php?pt={pt}&module={module}&page={page}','/module/replay/list.php?pt={pt}&module={module}&page={page}','/?module=replay&file=list&pt={pt}&module={module}&page={page}','/?path=/replay/list/pt/{pt}/module/{module}/page/{page}','/index.php/replay/list/pt/{pt}/module/{module}/page/{page}','/replay/list/pt/{pt}/module/{module}/page/{page}'),(112,'picture','picture_tindex','หน้าแรกหมวดแกลเลอรี','/module/picture/tindex.php?pt={pt}&tid={tid}','/{tid}/index.html','/?module=picture&file=tindex&pt={pt}&tid={tid}','/?path=/picture/tindex/pt/{pt}/tid/{tid}','/index.php/picture/tindex/pt/{pt}/tid/{tid}','/picture/tindex/pt/{pt}/tid/{tid}'),(113,'author','author_author','ศูนย์ของผู้แต่ง','/module/author/author.php?pt={pt}&aid={aid}','/module/author/author.php?pt={pt}&aid={aid}','/module/author/author.php?pt={pt}&aid={aid}','/?path=/author/author/pt/{pt}/aid/{aid}','/index.php/author/author/pt/{pt}/aid/{aid}','/author/author/pt/{pt}/aid/{aid}'),(114,'author','author_novel_statistics','สถิติข้อมูลนิยาย','/module/author/novel_statistics.php?pt={pt}','/module/author/novel_statistics.php?pt={pt}','/?module=author&file=novel_statistics&pt={pt}','/?path=/author/novel_statistics/pt/{pt}','/index.php/author/novel_statistics/pt/{pt}','/author/novel_statistics/pt/{pt}'),(128,'editor','editor_novel_chapter','ตรวจสอบตอนที่แก้ไข','/module/editor/novel_chapter.php?page={page}&status={status}&pt={pt}','/module/editor/novel_chapter.php?page={page}&status={status}&pt={pt}','/?module=editor&file=novel_chapter&page={page}&status={status}&pt={pt}','/?path=/editor/novel_chapter/page/{page}/status/{status}/pt/{pt}','/index.php/editor/novel_chapter/page/{page}/status/{status}/pt/{pt}','/editor/novel_chapter/page/{page}/status/{status}/pt/{pt}'),(127,'editor','editor_novel_cover','ตรวจสอบปกที่แก้ไข','/module/editor/novel_cover.php?page={page}&status={status}&pt={pt}','/module/editor/novel_cover.php?page={page}&status={status}&pt={pt}','/?module=editor&file=novel_cover&page={page}&status={status}&pt={pt}','/?path=/editor/novel_cover/page/{page}/status/{status}/pt/{pt}','/index.php/editor/novel_cover/page/{page}/status/{status}/pt/{pt}','/editor/novel_cover/page/{page}/status/{status}/pt/{pt}'),(125,'editor','editor_index','แก้ไขหน้าแรก','/module/editor/index.php?pt={pt}','/module/editor/index.php?pt={pt}','/?module=editor&file=index&pt={pt}','/?path=/editor/index/pt/{pt}','/index.php/editor/index/pt/{pt}','/editor/index/pt/{pt}'),(126,'editor','editor_novel','ตรวจสอบหนังสือใหม่ที่แก้ไข','/module/editor/novel.php?page={page}&status={status}&pt={pt}','/module/editor/novel.php?page={page}&status={status}&pt={pt}','/?module=editor&file=novel&page={page}&status={status}&pt={pt}','/?path=/editor/novel/page/{page}/status/{status}/pt/{pt}','/index.php/editor/novel/page/{page}/status/{status}/pt/{pt}','/editor/novel/page/{page}/status/{status}/pt/{pt}'),(129,'editor','editor_basic','แก้ไขข้อมูลพื้นฐาน','/module/editor/basic.php?pt={pt}','/module/editor/basic.php?pt={pt}','/?module=editor&file=basic&pt={pt}','/?path=/editor/basic/pt/{pt}','/index.php/editor/basic/pt/{pt}','/editor/basic/pt/{pt}');
 DROP TABLE IF EXISTS `wm_site_product`;
 CREATE TABLE `wm_site_product` (
   `product_id` int NOT NULL AUTO_INCREMENT,
-  `product_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否可用',
-  `product_title` varchar(20) NOT NULL COMMENT '站点名字',
-  `product_domain` varchar(100) NOT NULL COMMENT '域名',
-  `product_admin` varchar(80) NOT NULL COMMENT '后台文件夹',
-  `product_name` varchar(20) NOT NULL COMMENT '后台登录账号',
-  `product_psw` varchar(50) NOT NULL COMMENT '后台登录密码',
-  `product_order` int NOT NULL DEFAULT '99' COMMENT '显示排序，越小越靠前',
-  `product_time` int NOT NULL COMMENT '创建时间',
+  `product_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'ใช้งานได้หรือไม่',
+  `product_title` varchar(20) NOT NULL COMMENT 'ชื่อเว็บไซต์',
+  `product_domain` varchar(100) NOT NULL COMMENT 'โดเมน',
+  `product_admin` varchar(80) NOT NULL COMMENT 'โฟลเดอร์หลังบ้าน',
+  `product_name` varchar(20) NOT NULL COMMENT 'บัญชีเข้าสู่ระบบหลังบ้าน',
+  `product_psw` varchar(50) NOT NULL COMMENT 'รหัสผ่านเข้าสู่ระบบหลังบ้าน',
+  `product_order` int NOT NULL DEFAULT '99' COMMENT 'การเรียงลำดับที่แสดง, ค่าน้อยอยู่ก่อน',
+  `product_time` int NOT NULL COMMENT 'เวลาสร้าง',
   PRIMARY KEY (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='产品线站群表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางเครือข่ายเว็บไซต์ตามสายผลิตภัณฑ์';
 DROP TABLE IF EXISTS `wm_site_site`;
 CREATE TABLE `wm_site_site` (
   `site_id` int NOT NULL AUTO_INCREMENT,
-  `site_status` tinyint(1) DEFAULT '1' COMMENT '是否可用',
-  `site_title` varchar(30) DEFAULT NULL COMMENT '站点名字',
-  `site_domain` varchar(30) DEFAULT NULL COMMENT '站点域名',
-  `site_domain_type` tinyint(1) DEFAULT '1' COMMENT '域名类型，1为单域名，2为泛解析',
-  `site_type` tinyint(1) DEFAULT '1' COMMENT '站点类型，1为数据独享站群，2为数据共享站群(泛解析时必为2)',
-  `site_template` varchar(30) DEFAULT NULL COMMENT '使用的模版文件夹名字',
-  `site_order` int DEFAULT '99' COMMENT '排序',
-  `site_time` int DEFAULT '0' COMMENT '创建的时间',
+  `site_status` tinyint(1) DEFAULT '1' COMMENT 'ใช้งานได้หรือไม่',
+  `site_title` varchar(30) DEFAULT NULL COMMENT 'ชื่อเว็บไซต์',
+  `site_domain` varchar(30) DEFAULT NULL COMMENT 'โดเมนเว็บไซต์',
+  `site_domain_type` tinyint(1) DEFAULT '1' COMMENT 'ประเภทโดเมน 1=โดเมนเดี่ยว 2=ไวลด์การ์ด',
+  `site_type` tinyint(1) DEFAULT '1' COMMENT 'ประเภทเว็บไซต์ 1 คือเครือข่ายเว็บไซต์ที่แยกข้อมูล 2 คือเครือข่ายเว็บไซต์ที่ใช้ข้อมูลร่วมกัน (เมื่อใช้ไวลด์การ์ด DNS ต้องเป็น 2)',
+  `site_template` varchar(30) DEFAULT NULL COMMENT 'ชื่อโฟลเดอร์เทมเพลตที่ใช้',
+  `site_order` int DEFAULT '99' COMMENT 'เรียงลำดับ',
+  `site_time` int DEFAULT '0' COMMENT 'เวลาที่สร้าง',
   PRIMARY KEY (`site_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='站群站内站点表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางเว็บไซต์ย่อยในเครือข่ายเว็บไซต์';
 DROP TABLE IF EXISTS `wm_system_apply`;
 CREATE TABLE `wm_system_apply` (
   `apply_id` int NOT NULL AUTO_INCREMENT,
-  `apply_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0为申请中，1为通过，2为拒绝',
-  `apply_module` varchar(20) NOT NULL COMMENT '申请的模块',
-  `apply_type` varchar(20) NOT NULL COMMENT '模块中申请的类型',
-  `apply_uid` int NOT NULL COMMENT '用户id或者作者id',
-  `apply_cid` int NOT NULL DEFAULT '0' COMMENT '所属内容的id',
-  `apply_pid` int DEFAULT '0' COMMENT '内容父id',
-  `apply_createtime` int NOT NULL COMMENT '申请时间',
-  `apply_manager_id` int NOT NULL DEFAULT '0' COMMENT '操作的管理员',
-  `apply_editor_id` int DEFAULT '0' COMMENT '操作的编辑',
-  `apply_updatetime` int NOT NULL DEFAULT '0' COMMENT '处理的时间',
-  `apply_remark` varchar(200) NOT NULL COMMENT '处理备注',
-  `apply_option` mediumtext COMMENT '特殊的数据',
+  `apply_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=รอพิจารณา 1=อนุมัติ 2=ปฏิเสธ',
+  `apply_module` varchar(20) NOT NULL COMMENT 'โมดูลที่ยื่นคำขอ',
+  `apply_type` varchar(20) NOT NULL COMMENT 'ประเภทที่สมัครในโมดูล',
+  `apply_uid` int NOT NULL COMMENT 'id ผู้ใช้ หรือ id ผู้แต่ง',
+  `apply_cid` int NOT NULL DEFAULT '0' COMMENT 'ID ของเนื้อหาที่สังกัด',
+  `apply_pid` int DEFAULT '0' COMMENT 'id เนื้อหาแม่',
+  `apply_createtime` int NOT NULL COMMENT 'เวลายื่นคำขอ',
+  `apply_manager_id` int NOT NULL DEFAULT '0' COMMENT 'ผู้ดูแลระบบที่ดำเนินการ',
+  `apply_editor_id` int DEFAULT '0' COMMENT 'การแก้ไขของการดำเนินการ',
+  `apply_updatetime` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่ดำเนินการ',
+  `apply_remark` varchar(200) NOT NULL COMMENT 'หมายเหตุการดำเนินการ',
+  `apply_option` mediumtext COMMENT 'ข้อมูลพิเศษ',
   PRIMARY KEY (`apply_id`),
   KEY `status_index` (`apply_status`),
   KEY `module_index` (`apply_module`),
@@ -1398,652 +1398,652 @@ CREATE TABLE `wm_system_apply` (
   KEY `cid_index` (`apply_cid`),
   KEY `editor_index` (`apply_editor_id`),
   KEY `pid_index` (`apply_pid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='全系统申请记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการสมัครทั้งระบบ';
 DROP TABLE IF EXISTS `wm_system_competence`;
 CREATE TABLE `wm_system_competence` (
   `comp_id` int NOT NULL AUTO_INCREMENT,
-  `comp_name` varchar(20) NOT NULL COMMENT '权限名',
-  `comp_site` varchar(5000) NOT NULL DEFAULT '0' COMMENT '账号管理站点权限，0为所有站点',
-  `comp_content` varchar(5000) NOT NULL COMMENT '权限内容',
+  `comp_name` varchar(20) NOT NULL COMMENT 'ชื่อสิทธิ์',
+  `comp_site` varchar(5000) NOT NULL DEFAULT '0' COMMENT 'สิทธิ์จัดการเว็บไซต์ของบัญชี 0 คือทุกเว็บไซต์',
+  `comp_content` varchar(5000) NOT NULL COMMENT 'เนื้อหาสิทธิ์',
   PRIMARY KEY (`comp_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='系统权限表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางสิทธิ์ของระบบ';
 DROP TABLE IF EXISTS `wm_system_domain`;
 CREATE TABLE `wm_system_domain` (
   `domain_id` int NOT NULL AUTO_INCREMENT,
-  `domain_title` varchar(10) NOT NULL COMMENT '模块标题',
-  `domain_name` varchar(10) NOT NULL COMMENT '模块名字',
-  `domain_domain` varchar(30) NOT NULL COMMENT '模块绑定域名',
-  `domain_index` varchar(30) DEFAULT NULL COMMENT '模块首页',
-  `domain_order` int DEFAULT '9' COMMENT '域名排序',
+  `domain_title` varchar(40) NOT NULL COMMENT 'หัวข้อโมดูล',
+  `domain_name` varchar(10) NOT NULL COMMENT 'ชื่อโมดูล',
+  `domain_domain` varchar(30) NOT NULL COMMENT 'โดเมนที่ผูกกับโมดูล',
+  `domain_index` varchar(30) DEFAULT NULL COMMENT 'หน้าแรกโมดูล',
+  `domain_order` int DEFAULT '9' COMMENT 'ลำดับโดเมน',
   PRIMARY KEY (`domain_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COMMENT='模块绑定域名表';
-INSERT INTO `wm_system_domain` VALUES (1,'文章模块','article','','index',9),(2,'论坛模块','bbs','','index',9),(3,'应用模块','app','','index',9),(4,'用户模块','user','','homne',9),(5,'友链模块','link','','index',9),(6,'原创模块','author','','index',9),(7,'小说模块','novel','','index',9);
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางโดเมนที่ผูกกับโมดูล';
+INSERT INTO `wm_system_domain` VALUES (1,'โมดูลบทความ','article','','index',9),(2,'โมดูลฟอรัม','bbs','','index',9),(3,'โมดูลแอป','app','','index',9),(4,'โมดูลผู้ใช้','user','','homne',9),(5,'โมดูลลิงก์เพื่อน','link','','index',9),(6,'โมดูลต้นฉบับ','author','','index',9),(7,'โมดูลนิยาย','novel','','index',9);
 DROP TABLE IF EXISTS `wm_system_email`;
 CREATE TABLE `wm_system_email` (
   `email_id` int NOT NULL AUTO_INCREMENT,
-  `email_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '邮件服务使用状态，0为禁用，1为启用',
-  `email_type` tinyint(1) DEFAULT '1' COMMENT '邮箱类型，1为smtp，2为sendmail,3为php smtp函数',
-  `email_smtp` varchar(20) DEFAULT NULL COMMENT 'smtp服务器',
-  `email_port` varchar(10) DEFAULT NULL COMMENT 'smtp端口',
-  `email_name` varchar(30) DEFAULT NULL COMMENT '邮箱登录账号',
-  `email_psw` varchar(50) DEFAULT NULL COMMENT '邮箱登录密码',
-  `email_send` varchar(30) DEFAULT NULL COMMENT '发信账户',
+  `email_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'สถานะการใช้งานบริการอีเมล 0 คือปิดใช้งาน 1 คือเปิดใช้งาน',
+  `email_type` tinyint(1) DEFAULT '1' COMMENT 'ประเภทอีเมล 1 คือ smtp 2 คือ sendmail,3 คือฟังก์ชัน php smtp',
+  `email_smtp` varchar(20) DEFAULT NULL COMMENT 'เซิร์ฟเวอร์ smtp',
+  `email_port` varchar(10) DEFAULT NULL COMMENT 'พอร์ต smtp',
+  `email_name` varchar(30) DEFAULT NULL COMMENT 'บัญชีเข้าสู่ระบบอีเมล',
+  `email_psw` varchar(50) DEFAULT NULL COMMENT 'รหัสผ่านเข้าสู่ระบบอีเมล',
+  `email_send` varchar(30) DEFAULT NULL COMMENT 'บัญชีผู้ส่ง',
   PRIMARY KEY (`email_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COMMENT='邮件服务配置';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COMMENT='การตั้งค่าบริการอีเมล';
 INSERT INTO `wm_system_email` VALUES (1,0,1,'smtp.163.com','25','user@163.com','1TFfVrRCnfnximMmLHE','user@163.com');
 DROP TABLE IF EXISTS `wm_system_email_log`;
 CREATE TABLE `wm_system_email_log` (
   `log_id` int NOT NULL AUTO_INCREMENT,
-  `log_status` tinyint(1) DEFAULT '0' COMMENT '使用状态:0=未使用,1已使用,2=已过期',
-  `log_send` tinyint(1) DEFAULT '0' COMMENT '发送状态:1=成功,0=失败,2=等待发送',
-  `log_type` varchar(20) DEFAULT NULL COMMENT '信件类型',
-  `log_sender` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '发信账户',
-  `log_receive` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '收信账户',
-  `log_title` varchar(200) NOT NULL COMMENT '邮件主题',
-  `log_content` text NOT NULL COMMENT '邮件正文',
-  `log_remark` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '发送成功' COMMENT '备注信息',
-  `log_time` int DEFAULT '0' COMMENT '邮件任务创建的时间',
-  `log_sendtime` int DEFAULT '0' COMMENT '邮件发送的时间',
-  `log_exptime` int DEFAULT '0' COMMENT '邮件的有效期',
+  `log_status` tinyint(1) DEFAULT '0' COMMENT 'สถานะการใช้ 0=ยังไม่ใช้ 1=ใช้แล้ว 2=หมดอายุ',
+  `log_send` tinyint(1) DEFAULT '0' COMMENT 'สถานะการส่ง 1=สำเร็จ 0=ล้มเหลว 2=รอส่ง',
+  `log_type` varchar(20) DEFAULT NULL COMMENT 'ประเภทจดหมาย',
+  `log_sender` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'บัญชีผู้ส่ง',
+  `log_receive` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'บัญชีผู้รับ',
+  `log_title` varchar(200) NOT NULL COMMENT 'หัวข้ออีเมล',
+  `log_content` text NOT NULL COMMENT 'เนื้อหาอีเมล',
+  `log_remark` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT 'ส่งสำเร็จ' COMMENT 'ข้อมูลหมายเหตุ',
+  `log_time` int DEFAULT '0' COMMENT 'เวลาสร้างงานส่งอีเมล',
+  `log_sendtime` int DEFAULT '0' COMMENT 'เวลาส่งอีเมล',
+  `log_exptime` int DEFAULT '0' COMMENT 'อายุการใช้งานของอีเมล',
   PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='邮件任务记录日志表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกงานอีเมล';
 DROP TABLE IF EXISTS `wm_system_email_temp`;
 CREATE TABLE `wm_system_email_temp` (
-  `temp_id` varchar(20) NOT NULL COMMENT '模版的id',
-  `temp_status` tinyint(1) DEFAULT '1' COMMENT '0为禁用，1为起启用',
-  `temp_name` varchar(20) DEFAULT NULL COMMENT '模版标题',
-  `temp_desc` varchar(100) DEFAULT NULL COMMENT '模版描述',
-  `temp_title` varchar(200) NOT NULL COMMENT '发信标题',
-  `temp_content` text NOT NULL COMMENT '发信内容',
+  `temp_id` varchar(20) NOT NULL COMMENT 'ID ของเทมเพลต',
+  `temp_status` tinyint(1) DEFAULT '1' COMMENT '0=ปิดใช้งาน 1=เปิดใช้งาน',
+  `temp_name` varchar(60) DEFAULT NULL COMMENT 'หัวข้อเทมเพลต',
+  `temp_desc` varchar(200) DEFAULT NULL COMMENT 'คำอธิบายเทมเพลต',
+  `temp_title` varchar(120) NOT NULL COMMENT 'หัวข้อจดหมาย',
+  `temp_content` mediumtext NOT NULL COMMENT 'เนื้อหาจดหมาย',
   PRIMARY KEY (`temp_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='邮件模版表';
-INSERT INTO `wm_system_email_temp` VALUES ('user_welcome',0,'欢迎邮件','注册账号成功时候发送的欢迎邮件','欢迎您加入{网站名}','{#lt}p{#gt}尊敬的{用户名}您好,欢迎您注册 {网站名}。{#lt}/p{#gt}'),('user_getpsw',1,'找回密码','找回密码时候发送的邮件','密码找回的邮件！','{#lt}p{#gt}尊敬的用户您好!{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}这封信是由 {#123}网站名{#125} 自动发送的。{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}您收到这封邮件，是由于在您 {#123}网站名{#125} 使用{#lt}span style={#34}color: rgb(255, 0, 0);{#34}{#gt}找回密码服务{#lt}/span{#gt}。如果您并没有访问过 {#123}网站名{#125}，或没有进行上述操作，请忽 略这封邮件。您不需要退订或进行其他进一步的操作。{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}验证码为：{#123}验证码{#125}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}'),('user_bind',1,'绑定验证码','绑定邮箱的时候获取验证码','您正在绑定邮箱','{#lt}p{#gt}尊敬的用户您好!{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}这封信是由 {#123}网站名{#125} 自动发送的。{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}您收到这封邮件，是由于在您 {#123}网站名{#125} 使用{#lt}span style={#34}color: rgb(255, 0, 0);{#34}{#gt}绑定账号验证码{#lt}/span{#gt}。如果您并没有访问过 {#123}网站名{#125}，或没有进行上述操作，请忽 略这封邮件。您不需要退订或进行其他进一步的操作。{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}验证码为：{#123}验证码{#125}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br style={#34}white-space: normal;{#34}/{#gt}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br style={#34}white-space: normal;{#34}/{#gt}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br style={#34}white-space: normal;{#34}/{#gt}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}'),('user_veremail',1,'验证邮箱','验证用户的邮箱','用户名{用户名}，邮箱验证邮件！','{#lt}p{#gt}尊敬的{#123}用户名{#125}您好!{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}这封信是由 {#123}网站名{#125} 自动发送的。{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}您收到这封邮件，是由于在您 {#123}网站名{#125} 使用{#lt}span style={#34}color: rgb(255, 0, 0);{#34}{#gt}用户邮箱验证服务{#lt}/span{#gt}。如果您并没有访问过 {#123}网站名{#125}，或没有进行上述操作，请忽 略这封邮件。您不需要退订或进行其他进一步的操作。{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}验证码为：{#123}验证码{#125}{#lt}/p{#gt}'),('user_reg',1,'注册验证码','注册的时候获取邮件验证码','期待您的加入','{#lt}p{#gt}尊敬的用户您好!{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}这封信是由 {#123}网站名{#125} 自动发送的。{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}您收到这封邮件，是由于在您 {#123}网站名{#125} 使用{#lt}span style={#34}color: rgb(255, 0, 0);{#34}{#gt}获取注册验证码{#lt}/span{#gt}。如果您并没有访问过 {#123}网站名{#125}，或没有进行上述操作，请忽 略这封邮件。您不需要退订或进行其他进一步的操作。{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}验证码为：{#123}验证码{#125}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br style={#34}white-space: normal;{#34}/{#gt}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br style={#34}white-space: normal;{#34}/{#gt}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}'),('user_login',1,'登录验证码','登录的时候获取邮件验证码','欢迎您登录{#123}网站名{#125}','{#lt}p{#gt}尊敬的{#123}用户名{#125}您好!{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}这封信是由 {#123}网站名{#125} 自动发送的。{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}您收到这封邮件，是由于在您 {#123}网站名{#125} 使用{#lt}span style={#34}color: rgb(255, 0, 0);{#34}{#gt}获取登录验证码{#lt}/span{#gt}。如果您并没有访问过 {#123}网站名{#125}，或没有进行上述操作，请忽 略这封邮件。您不需要退订或进行其他进一步的操作。{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}验证码为：{#123}验证码{#125}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br style={#34}white-space: normal;{#34}/{#gt}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br style={#34}white-space: normal;{#34}/{#gt}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br style={#34}white-space: normal;{#34}/{#gt}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}'),('warning_admin_login',1,'预警通知_后台登录','预警通知_后台登录','预警通知_后台登录','{#lt}p{#gt}尊敬的管理员：IP{#123}后台登录ip{#125}于{#123}后台登录时间{#125}登录账号{#123}后台登录账号{#125}，登录状态：{#123}后台登录状态{#125}！{#lt}/p{#gt}'),('warning_code_eroor',1,'预警通知_代码报错','预警通知_代码报错','预警通知_代码报错','{#lt}p{#gt}尊敬的管理员：网站发生错误，{#123}代码报错详情{#125}！{#lt}/p{#gt}');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางเทมเพลตอีเมล';
+INSERT INTO `wm_system_email_temp` VALUES ('user_welcome',0,'อีเมลต้อนรับ','อีเมลต้อนรับที่ส่งเมื่อสมัครสมาชิกสำเร็จ','ยินดีต้อนรับคุณเข้าร่วม {网站名}','{#lt}p{#gt}เรียน {用户名} ยินดีต้อนรับคุณสู่การสมัครสมาชิก {网站名}.{#lt}/p{#gt}'),('user_getpsw',1,'กู้คืนรหัสผ่าน','อีเมลที่ส่งเมื่อกู้คืนรหัสผ่าน','อีเมลสำหรับกู้คืนรหัสผ่าน!','{#lt}p{#gt}เรียนผู้ใช้ที่เคารพ!{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}อีเมลฉบับนี้ส่งโดยอัตโนมัติจาก {#123}网站名{#125}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}คุณได้รับอีเมลฉบับนี้ เนื่องจากคุณได้ใช้{#lt}span style={#34}color: rgb(255, 0, 0);{#34}{#gt}บริการกู้คืนรหัสผ่าน{#lt}/span{#gt} ที่ {#123}网站名{#125} หากคุณไม่เคยเข้าชม {#123}网站名{#125} หรือไม่ได้ดำเนินการข้างต้น กรุณาเพิกเฉยต่ออีเมลฉบับนี้ คุณไม่จำเป็นต้องยกเลิกการรับหรือดำเนินการใด ๆ เพิ่มเติม{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}รหัสยืนยัน: {#123}验证码{#125}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}'),('user_bind',1,'รหัสยืนยันการผูกบัญชี','รับรหัสยืนยันเมื่อผูกอีเมล','คุณกำลังผูกอีเมล','{#lt}p{#gt}เรียนผู้ใช้ที่เคารพ!{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}อีเมลฉบับนี้ส่งโดยอัตโนมัติจาก {#123}网站名{#125}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}คุณได้รับอีเมลฉบับนี้ เนื่องจากคุณได้ใช้{#lt}span style={#34}color: rgb(255, 0, 0);{#34}{#gt}บริการขอรหัสยืนยันการผูกบัญชี{#lt}/span{#gt} ที่ {#123}网站名{#125} หากคุณไม่เคยเข้าชม {#123}网站名{#125} หรือไม่ได้ดำเนินการข้างต้น กรุณาเพิกเฉยต่ออีเมลฉบับนี้ คุณไม่จำเป็นต้องยกเลิกการรับหรือดำเนินการใด ๆ เพิ่มเติม{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}รหัสยืนยัน: {#123}验证码{#125}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br style={#34}white-space: normal;{#34}/{#gt}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br style={#34}white-space: normal;{#34}/{#gt}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br style={#34}white-space: normal;{#34}/{#gt}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}'),('user_veremail',1,'ยืนยันอีเมล','ยืนยันอีเมลผู้ใช้','ชื่อผู้ใช้{用户名} อีเมลยืนยันอีเมล!','{#lt}p{#gt}เรียนคุณ{#123}用户名{#125}!{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}อีเมลฉบับนี้ส่งโดยอัตโนมัติจาก {#123}网站名{#125}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}คุณได้รับอีเมลฉบับนี้ เนื่องจากคุณได้ใช้{#lt}span style={#34}color: rgb(255, 0, 0);{#34}{#gt}บริการยืนยันอีเมลผู้ใช้{#lt}/span{#gt} ที่ {#123}网站名{#125} หากคุณไม่เคยเข้าชม {#123}网站名{#125} หรือไม่ได้ดำเนินการข้างต้น กรุณาเพิกเฉยต่ออีเมลฉบับนี้ คุณไม่จำเป็นต้องยกเลิกการรับหรือดำเนินการใด ๆ เพิ่มเติม{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}รหัสยืนยัน: {#123}验证码{#125}{#lt}/p{#gt}'),('user_reg',1,'รหัสยืนยันการสมัครสมาชิก','รับรหัสยืนยันทางอีเมลเมื่อสมัครสมาชิก','รอคอยการเข้าร่วมของคุณ','{#lt}p{#gt}เรียนผู้ใช้ที่เคารพ!{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}อีเมลฉบับนี้ส่งโดยอัตโนมัติจาก {#123}网站名{#125}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}คุณได้รับอีเมลฉบับนี้ เนื่องจากคุณได้ใช้{#lt}span style={#34}color: rgb(255, 0, 0);{#34}{#gt}บริการขอรหัสยืนยันการสมัครสมาชิก{#lt}/span{#gt} ที่ {#123}网站名{#125} หากคุณไม่เคยเข้าชม {#123}网站名{#125} หรือไม่ได้ดำเนินการข้างต้น กรุณาเพิกเฉยต่ออีเมลฉบับนี้ คุณไม่จำเป็นต้องยกเลิกการรับหรือดำเนินการใด ๆ เพิ่มเติม{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}รหัสยืนยัน: {#123}验证码{#125}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br style={#34}white-space: normal;{#34}/{#gt}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br style={#34}white-space: normal;{#34}/{#gt}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}'),('user_login',1,'รหัสยืนยันการเข้าสู่ระบบ','รับรหัสยืนยันทางอีเมลเมื่อเข้าสู่ระบบ','ยินดีต้อนรับคุณเข้าสู่ระบบ {#123}网站名{#125}','{#lt}p{#gt}เรียนคุณ{#123}用户名{#125}!{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}อีเมลฉบับนี้ส่งโดยอัตโนมัติจาก {#123}网站名{#125}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}คุณได้รับอีเมลฉบับนี้ เนื่องจากคุณได้ใช้{#lt}span style={#34}color: rgb(255, 0, 0);{#34}{#gt}บริการขอรหัสยืนยันการเข้าสู่ระบบ{#lt}/span{#gt} ที่ {#123}网站名{#125} หากคุณไม่เคยเข้าชม {#123}网站名{#125} หรือไม่ได้ดำเนินการข้างต้น กรุณาเพิกเฉยต่ออีเมลฉบับนี้ คุณไม่จำเป็นต้องยกเลิกการรับหรือดำเนินการใด ๆ เพิ่มเติม{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}{#lt}p{#gt}รหัสยืนยัน: {#123}验证码{#125}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br style={#34}white-space: normal;{#34}/{#gt}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br style={#34}white-space: normal;{#34}/{#gt}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br style={#34}white-space: normal;{#34}/{#gt}{#lt}/p{#gt}{#lt}p{#gt}{#lt}br/{#gt}{#lt}/p{#gt}'),('warning_admin_login',1,'แจ้งเตือนล่วงหน้า_เข้าสู่ระบบหลังบ้าน','แจ้งเตือนล่วงหน้า_เข้าสู่ระบบหลังบ้าน','แจ้งเตือนล่วงหน้า_เข้าสู่ระบบหลังบ้าน','{#lt}p{#gt}เรียนผู้ดูแลระบบ: IP{#123}后台登录ip{#125}เข้าสู่ระบบบัญชี{#123}后台登录账号{#125} เมื่อ{#123}后台登录时间{#125} สถานะการเข้าสู่ระบบ: {#123}后台登录状态{#125}!{#lt}/p{#gt}'),('warning_code_eroor',1,'แจ้งเตือนล่วงหน้า_ข้อผิดพลาดของโค้ด','แจ้งเตือนล่วงหน้า_ข้อผิดพลาดของโค้ด','แจ้งเตือนล่วงหน้า_ข้อผิดพลาดของโค้ด','{#lt}p{#gt}เรียนผู้ดูแลระบบ: เว็บไซต์เกิดข้อผิดพลาด {#123}代码报错详情{#125}!{#lt}/p{#gt}');
 DROP TABLE IF EXISTS `wm_system_errlog`;
 CREATE TABLE `wm_system_errlog` (
   `errlog_id` int NOT NULL AUTO_INCREMENT,
-  `errlog_status` tinyint(1) DEFAULT '0' COMMENT '是否上传，0为没有',
-  `errlog_url` varchar(255) DEFAULT NULL COMMENT '错误的url',
-  `errlog_state` varchar(20) DEFAULT NULL COMMENT 'SQLSTATE 错误码',
-  `errlog_code` varchar(20) DEFAULT NULL COMMENT '驱动错误码',
-  `errlog_msg` varchar(255) DEFAULT NULL COMMENT '驱动错误信息',
-  `errlog_sql` varchar(2000) DEFAULT NULL COMMENT '错误的sql语句',
-  `errlog_ip` varchar(15) DEFAULT NULL COMMENT '访问ip',
-  `errlog_time` int DEFAULT NULL COMMENT '错误的时间',
+  `errlog_status` tinyint(1) DEFAULT '0' COMMENT 'อัปโหลดหรือไม่, 0=ไม่มี',
+  `errlog_url` varchar(255) DEFAULT NULL COMMENT 'url ที่ผิดพลาด',
+  `errlog_state` varchar(20) DEFAULT NULL COMMENT 'รหัสข้อผิดพลาด SQLSTATE',
+  `errlog_code` varchar(20) DEFAULT NULL COMMENT 'รหัสข้อผิดพลาดของไดรเวอร์',
+  `errlog_msg` varchar(255) DEFAULT NULL COMMENT 'ข้อความข้อผิดพลาดของไดรเวอร์',
+  `errlog_sql` varchar(2000) DEFAULT NULL COMMENT 'คำสั่ง sql ที่ผิดพลาด',
+  `errlog_ip` varchar(15) DEFAULT NULL COMMENT 'ip ที่เข้าชม',
+  `errlog_time` int DEFAULT NULL COMMENT 'เวลาที่ผิดพลาด',
   PRIMARY KEY (`errlog_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='系统sql错误记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกข้อผิดพลาด sql ของระบบ';
 DROP TABLE IF EXISTS `wm_system_menu`;
 CREATE TABLE `wm_system_menu` (
   `menu_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `menu_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '菜单的显示状态，0为隐藏，1为显示',
-  `menu_title` varchar(20) NOT NULL COMMENT '目录标题',
-  `menu_name` varchar(50) NOT NULL COMMENT '目录名字，如果为权限菜单的时候，此值为t的类型',
-  `menu_pid` int NOT NULL DEFAULT '0' COMMENT '父级id',
-  `menu_group` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0为普通目录，1为组目录,2为权限菜单',
-  `menu_order` int DEFAULT '10' COMMENT '显示顺序',
-  `menu_file` varchar(40) DEFAULT NULL COMMENT '目录文件名字',
-  `menu_url` tinyint(1) DEFAULT '0' COMMENT '是否加上name为type值',
-  `menu_ico` varchar(50) DEFAULT NULL COMMENT '菜单的图标名',
+  `menu_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'สถานะการแสดงของเมนู 0 คือซ่อน 1 คือแสดง',
+  `menu_title` varchar(60) NOT NULL COMMENT 'หัวข้อสารบัญ',
+  `menu_name` varchar(50) NOT NULL COMMENT 'ชื่อสารบัญ หากเป็นเมนูสิทธิ์ ค่านี้จะเป็นประเภท t',
+  `menu_pid` int NOT NULL DEFAULT '0' COMMENT 'id ของรายการแม่',
+  `menu_group` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=สารบัญปกติ 1=สารบัญกลุ่ม 2=เมนูตามสิทธิ์',
+  `menu_order` int DEFAULT '10' COMMENT 'ลำดับการแสดง',
+  `menu_file` varchar(40) DEFAULT NULL COMMENT 'ชื่อไฟล์ของสารบัญ',
+  `menu_url` tinyint(1) DEFAULT '0' COMMENT 'เพิ่มค่า name เป็น type หรือไม่',
+  `menu_ico` varchar(50) DEFAULT NULL COMMENT 'ชื่อไอคอนของเมนู',
   PRIMARY KEY (`menu_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=921 DEFAULT CHARSET=utf8mb3 COMMENT='系统目录菜单表';
-INSERT INTO `wm_system_menu` VALUES (1,1,'系统管理','system',0,0,1,NULL,0,'fa-cog'),(2,1,'网站设置','set',1,0,1,NULL,0,'fa-cogs'),(3,1,'基本设置','config',2,0,1,'system.set.config',0,'fa-wrench'),(4,1,'API管理','api',245,0,1,'system.set.api',0,'fa-random'),(5,1,'水印上传','water',2,0,3,'system.set.water',0,'fa-cloud-upload'),(6,1,'域名设置','domain',2,0,4,'system.set.domain',0,'fa-bars'),(7,1,'模版管理','templates',2,0,5,'system.set.templates',0,'fa-clone'),(8,1,'去除BOM','delbom',2,0,8,'system.set.delbom',0,'fa-ban'),(9,1,'菜单管理','menu',1,0,2,NULL,0,'fa-align-justify'),(10,0,'新增菜单','add',9,0,1,'system.menu.edit',0,NULL),(11,1,'菜单列表','menu',9,0,2,'system.menu.menu',0,'fa-list-ul'),(12,1,'网站SEO','seo',1,0,4,NULL,0,'fa-recycle'),(13,1,'SEO设置','config',12,0,1,'system.seo.keys',0,'fa-refresh'),(14,1,'伪静态','rewrite',12,0,2,'system.seo.rewrite',0,'fa-square'),(15,1,'静态生成','html',12,0,3,'system.seo.html',0,'fa-sticky-note'),(16,1,'权限管理','competence',1,0,7,'',0,'fa-arrows-alt'),(17,1,'新增权限','edit',16,0,1,'system.competence.edit',0,'fa-plus-square'),(18,1,'权限列表','list',16,0,2,'system.competence.list',0,'fa-list-ul'),(19,1,'后台账号','manager',1,0,8,NULL,0,'fa-user-secret'),(20,1,'新增管理','edit',19,0,1,'system.manager.edit',0,'fa-user-plus'),(22,1,'安全管理','safe',1,0,9,'',0,'fa-tasks'),(21,1,'管理列表','manager',19,0,2,'system.manager.list',0,'fa-list-ul'),(23,1,'登录记录','log',22,0,5,'system.safe.log',0,'fa-location-arrow'),(24,1,'修改密码','uppsw',22,0,20,'system.safe.account.uppsw',0,'fa-unlock-alt'),(25,1,'模块管理','module',0,0,2,'',0,'fa-th-large'),(26,1,'文章模块','article',25,0,1,NULL,0,'fa-file-text'),(27,1,'分类管理','type',26,1,1,NULL,0,NULL),(28,1,'新增分类','add',27,0,1,'article.type.edit',0,NULL),(29,1,'分类列表','list',27,0,2,'article.type.list',0,NULL),(30,1,'文章管理','article',26,1,2,'',0,NULL),(31,1,'添加文章','add',30,0,1,'article.article.edit',0,NULL),(32,1,'文章列表','list',30,0,2,'article.article.list',0,NULL),(33,1,'模块设置','set',26,0,3,NULL,0,NULL),(34,1,'作者来源','author',33,0,1,'article.author.list',0,NULL),(35,1,'模块配置','config',33,0,2,'article.set.config',0,NULL),(36,1,'关于模块','about',25,0,2,'',0,'fa-info-circle'),(37,1,'关于分类','type',36,1,1,'',0,NULL),(38,1,'添加分类','add',37,0,1,'about.type.edit',0,NULL),(39,1,'分类列表','list',37,0,2,'about.type.list',0,NULL),(40,1,'关于信息','about',36,1,2,'',0,NULL),(41,1,'添加信息','add',40,0,1,'about.about.edit',0,NULL),(42,1,'信息列表','list',40,0,2,'about.about.list',0,NULL),(43,1,'图集模块','picture',25,0,3,'',0,'fa-picture-o'),(44,1,'分类管理','type',43,1,1,'',0,NULL),(45,1,'添加分类','add',44,0,1,'picture.type.edit',0,NULL),(46,1,'分类列表','list',44,0,2,'picture.type.list',0,NULL),(47,1,'图集管理','picture',43,1,2,'',0,NULL),(48,1,'添加图集','add',47,0,1,'picture.picture.edit',0,NULL),(49,1,'图集列表','list',47,0,2,'picture.picture.list',0,NULL),(50,1,'模块设置','set',43,1,3,'',0,NULL),(51,1,'模块配置','config',50,0,1,'picture.set.config',0,NULL),(52,0,'论坛模块','bbs',25,0,4,'',0,'fa-comments'),(53,1,'版块管理','type',52,1,1,'',0,NULL),(54,1,'添加版块','add',53,0,1,'bbs.type.edit',0,NULL),(55,1,'版块列表','type',53,0,2,'bbs.type.list',0,NULL),(56,1,'主题管理','bbs',52,1,3,'',0,NULL),(57,1,'主题列表','bbs',56,0,1,'bbs.bbs.list',0,NULL),(58,1,'回帖列表','replay',56,0,2,'bbs.replay.list',0,NULL),(59,1,'模块设置','set',52,1,4,'',0,NULL),(60,1,'模块配置','config',59,0,1,'bbs.set.config',0,NULL),(61,1,'应用模块','app',25,0,5,'',0,'fa-android'),(62,1,'分类管理','type',61,1,1,'',0,NULL),(63,1,'添加分类','add',62,0,1,'app.type.edit',0,NULL),(64,1,'分类列表','list',62,0,2,'app.type.list',0,NULL),(65,1,'应用管理','app',61,1,2,'',0,NULL),(66,1,'添加应用','add',65,0,1,'app.app.edit',0,NULL),(67,1,'应用列表','list',65,0,2,'app.app.list',0,NULL),(68,1,'资料属性','attr',61,1,3,'',0,NULL),(69,1,'资料预设','abs',68,0,1,'app.attr.abs',0,NULL),(70,1,'厂商新增','add',68,0,2,'app.firms.edit',0,NULL),(71,1,'厂商列表','list',68,0,3,'app.firms.list',0,NULL),(72,1,'模块设置','set',61,1,4,'',0,NULL),(73,1,'模块配置','config',72,0,1,'app.set.config',0,NULL),(74,1,'小说模块','novel',25,0,0,'',0,'fa-book'),(75,1,'分类管理','type',74,1,1,'',0,NULL),(76,1,'添加分类','add',75,0,1,'novel.type.edit',0,NULL),(77,1,'分类列表','list',75,0,2,'novel.type.list',0,NULL),(78,1,'小说管理','novel',74,1,2,'',0,NULL),(79,1,'添加小说','add',78,0,1,'novel.novel.edit',0,NULL),(80,1,'小说列表','list',78,0,2,'novel.novel.list',0,NULL),(81,1,'分卷管理','volume',74,1,3,'',0,NULL),(82,1,'添加分卷','add',81,0,1,'novel.volume.edit',0,NULL),(83,1,'分卷列表','list',81,0,2,'novel.volume.list',0,NULL),(84,1,'章节管理','chapter',74,1,4,'',0,NULL),(85,1,'添加章节','add',84,0,1,'novel.chapter.edit',0,NULL),(86,1,'章节列表','list',84,0,2,'novel.chapter.list',0,NULL),(87,1,'模块设置','set',74,1,6,'',0,NULL),(88,1,'推荐管理','rec',78,0,3,'novel.novel.rec',0,NULL),(91,1,'小说配置','config',87,0,4,'novel.set.config',0,NULL),(92,1,'原创模块','author',25,0,7,'',0,'fa-users'),(93,1,'作家管理','author',92,1,1,'',0,NULL),(94,1,'添加作家','add',93,0,1,'author.author.edit',0,NULL),(95,1,'作家列表','list',93,0,2,'author.author.list',0,NULL),(96,1,'原创小说','novel',92,1,2,'',0,NULL),(97,1,'原创列表','list',96,0,2,'author.novel.novel.list',0,NULL),(98,1,'待审章节','status',96,0,3,'author.novel.chapter.list',0,NULL),(99,1,'财务管理','finance',107,1,5,'',0,'fa-jpy'),(100,1,'提现申请','cash',99,0,1,'finance.order.cash',0,'fa-money'),(101,1,'资金记录','log',99,0,2,'finance.finance.list',0,'fa-vine'),(102,1,'充值记录','charge',99,0,3,'finance.order.charge',0,' fa-buysellads'),(103,1,'模块设置','set',92,1,9,'',0,NULL),(104,1,'作家写作等级','level',103,0,1,'author.level.author',0,NULL),(105,1,'作品签约等级','sign',103,0,2,'author.level.sign',0,NULL),(106,1,'模块配置','config',103,0,5,'author.set.config',0,NULL),(107,1,'用户模块','user',0,0,3,'',0,'fa-user'),(108,1,'用户管理','user',107,1,1,'',0,'fa-user'),(109,1,'添加用户','add',108,0,1,'user.user.edit',0,'fa-user-plus'),(110,1,'用户列表','list',108,0,2,'user.user.list',0,'fa-users'),(111,1,'预设管理','preset',107,1,2,'',0,'fa-tachometer'),(112,1,'预设头像','head',111,0,1,'user.preset.head',0,'fa-smile-o'),(113,1,'等级配置','lv',111,0,2,'user.preset.lv',0,'fa-plane'),(114,1,'互动管理','interactive',107,1,3,'',0,'fa-commenting'),(115,1,'发送内信','send',114,0,2,'user.msg.send',0,'fa-paper-plane'),(116,1,'内信列表','list',114,0,3,'user.msg.list',0,'fa-envelope'),(117,1,'模块设置','set',107,1,4,'',0,'fa-th-large'),(118,1,'用户配置','config',117,0,1,'user.set.config',0,'fa-user-secret'),(119,1,'友链模块','link',25,0,8,'',0,'fa-link'),(120,1,'分类管理','type',119,1,1,'',0,NULL),(121,1,'添加分类','add',120,0,1,'link.type.edit',0,NULL),(122,1,'分类列表','list',120,0,2,'link.type.list',0,NULL),(123,1,'友链管理','link',119,0,2,'',0,NULL),(124,1,'添加友链','add',123,0,1,'link.link.edit',0,NULL),(125,1,'友链列表','list',123,0,2,'link.link.list',0,NULL),(126,1,'模块设置','set',119,1,3,'',0,NULL),(127,1,'欠量站点','owed',126,0,1,'link.owed.list',1,NULL),(128,1,'点击记录','click',126,0,2,'link.click.list',0,NULL),(129,1,'模块配置','config',126,0,3,'link.set.config',0,NULL),(130,1,'运营中心','operations',0,0,4,'',0,'fa-arrows'),(131,1,'评论管理','replay',130,1,1,'',0,'fa-comment'),(132,1,'今日评论','today',131,0,1,'operate.replay.list',1,'fa-square'),(133,1,'热门评论','hot',131,0,2,'operate.replay.list',1,'fa-th-large'),(134,1,'所有评论','all',131,0,3,'operate.replay.list',1,'fa-th'),(135,1,'评论配置','config',131,0,4,'operate.replay.config',0,'fa-wrench'),(136,1,'搜索管理','search',130,1,2,'',0,'fa-search'),(137,1,'全部搜索','all',136,0,1,'operate.search.list',1,'fa-search-plus'),(138,1,'标题搜索','name',136,0,2,'operate.search.list',1,'fa-search-minus'),(139,1,'作者搜索','author',136,0,3,'operate.search.list',1,'fa-search-minus'),(140,1,'标签搜索','tag',136,0,4,'operate.search.list',1,'fa-search-minus'),(141,1,'幻灯片管理','falsh',130,1,3,'',0,'fa-file-video-o'),(142,1,'添加幻灯片','add',141,0,3,'operate.flash.edit',0,'fa-plus-circle'),(143,1,'幻灯片列表','flash',141,0,4,'operate.flash.list',0,'fa-file-text-o'),(144,1,'留言管理','message',130,1,4,'',0,'fa-commenting'),(145,1,'留言列表','message',144,0,1,'operate.message.list',0,'fa-list'),(146,1,'预设模版','templates',130,1,5,'',0,'fa-align-justify'),(147,1,'上传模版','add',146,0,1,'system.templates.edit',0,'fa-cloud-upload'),(148,1,'模版列表','list',146,0,2,'system.templates.list',0,'fa-list'),(149,1,'专题管理','zt',130,1,6,'',0,'fa-newspaper-o'),(150,1,'新增专题','add',149,0,3,'operate.zt.edit',0,'fa-plus-circle'),(151,1,'专题列表','list',149,0,4,'operate.zt.list',0,'fa-indent'),(152,1,'单页管理','diy',130,1,7,'',0,'fa-cubes'),(153,1,'新增单页','add',152,0,1,'operate.diy.edit',0,'fa-plus-circle'),(154,1,'单页列表','list',152,0,2,'operate.diy.list',0,'fa-list-alt'),(155,1,'统计管理','tongji',130,1,8,'',0,'fa-bar-chart'),(156,1,'统计代码','code',155,0,1,'operate.tongji.code',0,'fa-file-code-o'),(157,1,'广告管理','ad',130,1,9,'',0,'fa-dollar'),(158,1,'添加广告','add',157,0,3,'operate.ad.edit',0,'fa-plus-circle'),(159,1,'广告列表','list',157,0,4,'operate.ad.list',0,'fa-list-ul'),(160,1,'数据中心','data',0,0,5,'',0,'fa-bar-chart'),(161,1,'数据统计','chart',160,0,3,'',0,'fa-area-chart'),(162,1,'图形数据','graph',161,1,1,'',0,NULL),(163,1,'数据统计图','tongji',162,0,1,'data.chart.tongji',0,NULL),(164,1,'数据增长图','week',162,0,2,'data.chart.add',1,NULL),(165,0,'数据采集','collection',160,0,4,'',0,'fa-list-ul'),(166,1,'规则管理','rules',165,1,1,'',0,NULL),(167,1,'添加规则','edit',166,0,1,'data.collection.rules',0,NULL),(168,1,'规则列表','rules',166,0,2,'data.collection.rules',0,NULL),(169,1,'任务管理','task',165,1,2,'',0,NULL),(170,1,'添加任务','edit',169,0,1,'data.collection.rules',0,NULL),(171,1,'任务列表','task',169,0,2,'data.collection.rules',0,NULL),(172,1,'执行任务','start',169,0,3,'data.collection.rules',0,NULL),(173,1,'邮件设置','email',245,0,6,'system.set.email',0,'fa-envelope'),(177,1,'修改基本设置','system',3,2,1,'system.set.config',0,NULL),(178,1,'修改api设置','api',4,2,1,'system.set.api',0,NULL),(179,1,'修改上传设置','config',5,2,1,'system.set.water',0,NULL),(180,1,'修改域名设置','domain',6,2,1,'system.set.domain',0,NULL),(181,1,'修改模版','update',7,2,1,'system.set.templates',0,NULL),(182,1,'卸载模版','uninstall',7,2,2,'system.set.templates',0,NULL),(183,1,'安装模版','install',7,2,3,'system.set.templates',0,NULL),(184,1,'修改邮件配置','update',173,2,5,'system.set.email',0,NULL),(185,0,'发送测试邮件','test',173,2,6,'system.email.email',0,NULL),(186,1,'删除BOM','delbom',8,2,1,'system.set.delbom',0,NULL),(187,1,'修改菜单顺序','order',11,2,1,'system.menu.menu',0,NULL),(188,1,'修改菜单','edit',11,2,3,'system.menu.menu',0,NULL),(189,1,'删除菜单','del',11,2,4,'system.menu.menu',0,NULL),(190,1,'新增菜单','add',11,2,0,'system.menu.menu',0,NULL),(191,1,'新增SEO页面','add',13,0,1,'system.seo.keys.edit',0,NULL),(192,1,'修改SEO页面','edit',13,0,2,'system.seo.keys.edit',0,NULL),(193,1,'新增SEO操作','add',191,2,10,'system.seo.keys',0,NULL),(194,1,'修改SEO操作','edit',192,2,10,'system.seo.keys',0,NULL),(195,1,'新增URL链接','add',14,0,1,'system.seo.rewrite.edit',0,NULL),(196,1,'修改URL链接','edit',14,0,1,'system.seo.rewrite.edit',0,NULL),(197,1,'新增URL操作','add',195,2,1,'system.seo.rewrite',0,NULL),(198,1,'修改URL操作','edit',196,2,1,'system.seo.rewrite',0,NULL),(199,1,'新增权限操作','add',17,2,1,'system.competence.competence',0,NULL),(200,1,'修改权限操作','edit',17,2,2,'system.competence.competence',0,NULL),(201,1,'新增管理员操作','add',20,2,1,'system.manager.manager',0,NULL),(202,1,'修改管理员操作','edit',20,2,2,'system.manager.manager',0,NULL),(203,1,'禁用恢复管理员','status',20,2,3,'system.manager.manager',0,NULL),(204,1,'删除管理员账号','del',20,2,4,'system.manager.manager',0,NULL),(205,1,'删除登录记录','del',23,2,1,'system.safe.log',0,NULL),(206,1,'登录记录详情','detail',23,0,2,'system.safe.log.detail',0,NULL),(207,1,'修改密码操作','uppsw',24,2,1,'system.safe.account',0,NULL),(208,1,'生成关键词缓存','config',13,2,3,'system.seo.keys',0,NULL),(209,1,'生成URL缓存','config',14,2,4,'system.seo.rewrite',0,NULL),(210,1,'增加文章分类操作','add',28,2,1,'article.type',0,NULL),(211,1,'修改文章分类操作','edit',28,2,1,'article.type',0,NULL),(212,1,'编辑模版','edit',147,0,2,'system.templates.edit',0,NULL),(213,1,'新增模版操作','add',147,2,1,'system.templates.templates',0,NULL),(214,1,'模版查找带回','lookup',148,0,1,'system.templates.lookup',0,NULL),(215,1,'请求日志','requset',22,0,7,'system.safe.request',0,'fa-random'),(216,1,'请求详情','detail',215,0,1,'system.safe.request.detail',0,NULL),(217,0,'删除请求日志','del',215,2,2,'system.safe.request',0,NULL),(218,0,'清空请求日志','clear',215,2,3,'system.safe.request',0,NULL),(219,0,'清空登录记录','clear',23,2,4,'system.safe.log',0,NULL),(220,1,'操作记录','operation',22,0,9,'system.safe.operation',0,'fa-list'),(221,0,'删除操作记录','del',220,2,1,'system.safe.operation',0,NULL),(222,0,'清空操作记录','clear',220,2,2,'system.safe.operation',0,NULL),(223,0,'操作记录详情','detail',220,0,1,'system.safe.operation.detail',0,NULL),(224,0,'删除权限操作','del',18,2,2,'system.competence.competence',0,NULL),(225,0,'修改文章操作','edit',31,2,1,'article.article',0,NULL),(226,0,'添加文章操作','add',31,2,2,'article.article',0,NULL),(227,0,'编辑文章分类','edit',27,0,10,'article.type.edit',0,NULL),(228,1,'删除文章分类操作','del',28,2,2,'article.type',0,NULL),(229,1,'删除文章操作','del',31,2,3,'article.article',0,NULL),(230,1,'审核文章操作','status',31,2,4,'article.article',0,NULL),(231,1,'文章移动操作','move',31,2,5,'article.article',0,NULL),(232,1,'设置属性操作','attr',31,2,6,'article.article',0,NULL),(233,1,'编辑文章内容','edit',31,0,2,'article.article.edit',0,NULL),(234,1,'编辑作者操作','edit',31,2,7,'article.author',0,NULL),(235,1,'删除作者操作','del',31,2,8,'article.author',0,NULL),(236,1,'添加作者操作','add',31,2,9,'article.author',0,NULL),(237,1,'编辑作者来源','edit',34,0,1,'article.author.edit',0,NULL),(238,1,'新增作者来源','add',34,0,2,'article.author.edit',0,NULL),(239,1,'配置列表','list',245,0,1,'system.config.list',0,'fa-list-ul'),(240,1,'编辑配置','edit',239,0,1,'system.config.edit',0,NULL),(241,1,'添加配置','add',239,0,2,'system.config.edit',0,NULL),(242,1,'添加配置操作','add',241,2,1,'system.config.config',0,NULL),(243,1,'编辑配置操作','edit',241,2,2,'system.config.config',0,NULL),(244,1,'删除配置操作','del',241,2,3,'system.config.config',0,NULL),(245,1,'配置管理','option',1,0,2,'',0,'fa-server'),(246,1,'选项管理','optionlist',245,0,2,'system.config.option.list',0,'fa-file-text-o'),(247,1,'添加选项','add',246,0,3,'system.config.option.edit',0,NULL),(248,1,'编辑选项','edit',246,0,4,'system.config.option.edit',0,NULL),(249,1,'编辑选项操作','edit',246,2,1,'system.config.option',0,NULL),(250,1,'添加选项操作','add',246,2,2,'system.config.option',0,NULL),(251,1,'获取分组配置','getconfig',246,2,3,'system.config.config',0,NULL),(252,1,'删除选项操作','del',246,2,4,'system.config.option',0,NULL),(253,1,'修改配置操作','edit',35,2,1,'article.config',0,NULL),(254,1,'错误日志','errlog',22,0,11,'system.safe.errlog',0,'fa-bug'),(255,1,'错误日志详情','detail',254,0,1,'system.safe.errlog.detail',0,NULL),(256,1,'删除日志操作','del',254,2,1,'system.safe.errlog',0,NULL),(257,1,'清空日志操作','clear',254,2,2,'system.safe.errlog',0,NULL),(258,1,'作者来源选择','lookup',31,0,10,'article.author.lookup',0,NULL),(259,1,'回收站','recycle',30,0,3,'article.article.recycle',0,NULL),(260,1,'还原操作','reduction',259,2,1,'article.article',0,NULL),(261,1,'彻底删除操作','realdel',259,2,2,'article.article',0,NULL),(262,0,'增加小说分类操作','add',76,2,1,'novel.type',0,NULL),(263,0,'修改小说分类操作','edit',76,2,2,'novel.type',0,NULL),(264,0,'删除小说分类操作','del',77,2,1,'novel.type',0,NULL),(265,1,'添加小说操作','add',79,2,1,'novel.novel',0,NULL),(266,1,'删除小说操作','del',80,2,1,'novel.novel',0,NULL),(267,1,'审核小说操作','status',80,2,2,'novel.novel',0,NULL),(268,1,'移动小说操作','move',80,2,3,'novel.novel',0,NULL),(269,0,'批量推荐操作','rec',80,2,4,'novel.rec',0,NULL),(270,1,'修改小说操作','edit',79,2,2,'novel.novel',0,NULL),(271,1,'新增分卷操作','add',82,2,1,'novel.volume',0,NULL),(272,1,'小说搜索操作','search',80,2,5,'novel.novel',0,NULL),(273,1,'删除分卷操作','del',83,2,1,'novel.volume',0,NULL),(274,0,'修改小说分类','edit',75,0,2,'novel.type.edit',0,NULL),(275,0,'修改小说','edit',78,0,10,'novel.novel.edit',0,NULL),(276,0,'修改小说分卷','edit',81,0,10,'novel.volume.edit',0,NULL),(277,0,'获得分卷操作','getvolume',81,2,3,'novel.volume',0,NULL),(278,1,'添加章节操作','add',85,2,1,'novel.chapter',0,NULL),(279,0,'编辑章节','edit',85,0,2,'novel.chapter.edit',0,NULL),(280,1,'编辑章节内容','edit',279,2,1,'novel.chapter',0,NULL),(281,1,'删除章节操作','del',86,2,1,'novel.chapter',0,NULL),(282,1,'清空章节操作','clear',86,2,2,'novel.chapter',0,NULL),(283,0,'删除推荐操作','del',88,2,2,'novel.rec',0,NULL),(284,0,'修改推荐','edit',88,0,1,'novel.novel.rec.edit',0,NULL),(285,0,'修改推荐操作','edit',88,2,10,'novel.rec',0,NULL),(286,1,'修改配置操作','edit',91,2,10,'novel.config',0,NULL),(287,1,'修改分卷操作','edit',82,2,2,'novel.volume',0,NULL),(288,1,'新增用户操作','add',109,2,1,'user.user',0,NULL),(290,1,'删除用户操作','del',110,2,1,'user.user',0,NULL),(289,1,'修改用户操作','edit',292,2,2,'user.user',0,NULL),(291,1,'审核用户操作','status',110,2,2,'user.user',0,NULL),(292,0,'编辑用户','edit',110,0,1,'user.user.edit',0,NULL),(293,0,'删除头像操作','del',112,2,1,'user.head',0,NULL),(294,0,'添加头像操作','add',112,2,2,'user.head',0,NULL),(295,0,'添加等级操作','add',113,2,1,'user.lv',0,NULL),(296,1,'修改等级操作','edit',113,2,2,'user.lv',0,NULL),(297,0,'删除等级操作','del',113,2,3,'user.lv',0,NULL),(298,0,'发送消息操作','send',115,2,1,'user.msg',0,NULL),(299,0,'删除消息操作','del',116,2,1,'user.msg',0,NULL),(300,0,'清空消息操作','clear',116,2,1,'user.msg',0,NULL),(475,0,'移动章节顺序','order',84,0,3,'novel.chapter.order',0,NULL),(302,0,'修改配置操作','edit',118,2,1,'user.config',0,NULL),(303,0,'删除评论操作','del',131,2,1,'operate.replay',0,NULL),(304,0,'清空评论操作','clear',131,2,2,'operate.replay',0,NULL),(305,0,'评论审核操作','status',131,2,3,'operate.replay',0,NULL),(306,0,'修改配置操作','edit',135,2,1,'operate.replay.config',0,NULL),(307,0,'删除搜索操作','del',137,2,1,'operate.search',0,NULL),(308,0,'清空搜索操作','clear',137,2,2,'operate.search',0,NULL),(309,0,'编辑幻灯片','edit',143,0,1,'operate.flash.edit',0,NULL),(310,0,'添加幻灯片操作','add',142,2,1,'operate.flash',0,NULL),(311,0,'修改幻灯片操作','edit',309,2,2,'operate.flash',0,NULL),(312,0,'幻灯片显示操作','status',143,2,1,'operate.flash',0,NULL),(313,0,'删除幻灯片操作','del',143,2,2,'operate.flash',0,NULL),(314,0,'清空幻灯片操作','clear',143,2,3,'operate.flash',0,NULL),(315,0,'留言审核操作','status',145,2,1,'operate.message',0,NULL),(316,0,'删除留言操作','del',145,2,2,'operate.message',0,NULL),(317,0,'清空留言操作','clear',145,2,3,'operate.message',0,NULL),(318,0,'获取模块分类','gettype',147,2,1,'system.templates.templates',0,NULL),(319,0,'删除预设模版操作','del',147,2,1,'system.templates.templates',0,NULL),(320,0,'清空预设模版操作','clear',147,2,2,'system.templates.templates',0,NULL),(321,0,'修改预设模版操作','edit',147,2,2,'system.templates.templates',0,NULL),(322,0,'添加单页操作','add',153,2,1,'operate.diy',0,NULL),(323,0,'删除单页操作','del',154,2,1,'operate.diy',0,NULL),(324,0,'清空单页操作','clear',154,2,2,'operate.diy',0,NULL),(325,0,'单页审核操作','status',154,2,3,'operate.diy',0,NULL),(326,0,'修改单页操作','edit',327,2,2,'operate.diy',0,NULL),(327,0,'修改单页','edit',154,0,1,'operate.diy.edit',0,NULL),(328,0,'修改统计操作','edit',156,2,1,'operate.tongji',0,NULL),(329,0,'添加广告操作','add',158,2,1,'operate.ad',0,NULL),(330,0,'修改广告操作','edit',334,2,1,'operate.ad',0,NULL),(331,1,'广告审核操作','status',159,2,1,'operate.ad',0,NULL),(332,1,'删除广告操作','del',159,2,2,'operate.ad',0,NULL),(333,1,'清空广告操作','clear',159,2,3,'operate.ad',0,NULL),(334,0,'修改广告','edit',159,0,1,'operate.ad.edit',0,NULL),(335,1,'添加分类','add',157,0,1,'operate.ad.type.edit',0,'fa-plus-circle'),(336,1,'分类列表','list',157,0,2,'operate.ad.type.list',0,'fa-list'),(337,0,'新增分类操作','add',335,2,1,'operate.ad.type',0,NULL),(338,0,'修改分类操作','edit',341,2,2,'operate.ad.type',0,NULL),(339,0,'删除分类操作','del',336,2,1,'operate.ad.type',0,NULL),(340,0,'清空分类操作','clear',336,2,2,'operate.ad.type',0,NULL),(341,0,'编辑分类','edit',336,0,2,'operate.ad.type.edit',0,NULL),(342,0,'本月增长统计','month',162,0,3,'data.chart.add',0,NULL),(343,0,'本年增长统计','year',162,0,4,'data.chart.add',0,NULL),(344,0,'添加专题操作','add',150,2,1,'operate.zt',0,NULL),(345,0,'删除专题操作','del',151,2,1,'operate.zt',0,NULL),(346,0,'清空专题操作','clear',151,2,2,'operate.zt',0,NULL),(347,0,'专题审核操作','status',151,2,3,'operate.zt',0,NULL),(348,0,'修改专题操作','edit',349,2,4,'operate.zt',0,NULL),(349,0,'修改专题','edit',151,0,1,'operate.zt.edit',0,NULL),(350,0,'专题节点列表','node',151,0,1,'operate.zt.node.list',0,NULL),(351,0,'增加专题节点','add',350,0,2,'operate.zt.node.edit',0,NULL),(352,0,'修改专题节点','edit',350,0,3,'operate.zt.node.edit',0,NULL),(353,1,'增加节点操作','add',351,2,1,'operate.zt.node',0,NULL),(354,1,'修改节点操作','edit',352,2,1,'operate.zt.node',0,NULL),(355,1,'删除节点操作','del',350,2,1,'operate.zt.node',0,NULL),(356,1,'清空节点操作','clear',350,2,2,'operate.zt.node',0,NULL),(357,1,'顶踩记录','dingcai',359,0,1,'operate.operate.list',1,'fa-list-ul'),(358,1,'评分记录','score',359,0,2,'operate.operate.list',1,'fa-list-ul'),(359,1,'互动管理','interaction',130,0,2,'',0,'fa-thumbs-up'),(360,1,'删除互动操作','del',359,2,1,'operate.operate',0,NULL),(361,1,'清空互动操作','clear',359,2,1,'operate.operate',0,NULL),(362,1,'签到记录','sign',114,0,1,'user.sign.list',0,'fa-list-ul'),(363,1,'删除签到记录','del',362,2,10,'user.sign',0,NULL),(364,1,'清空签到记录','clear',362,2,10,'user.sign',0,NULL),(365,1,'文件管理','file',160,0,2,'',0,'fa-file'),(366,1,'文件列表','list',365,0,2,'data.file.list',0,'fa-list-ul'),(367,0,'文件重命名','rename',366,0,1,'data.file.rename',0,NULL),(368,0,'重命名操作','rename',367,2,1,'data.file',0,NULL),(370,0,'创建文件夹','createfolder',367,0,3,'data.file.createfolder',0,NULL),(369,0,'删除操作','del',367,2,2,'data.file',0,NULL),(371,0,'创建文件夹操作','createfolder',370,2,1,'data.file',0,NULL),(373,1,'移动文件操作','movefile',372,2,1,'data.file',0,NULL),(372,0,'移动文件','movefile',365,0,1,'data.file.movefile',0,NULL),(374,0,'创建文件','create',366,0,1,'data.file.file',0,NULL),(375,0,'编辑文件','edit',366,0,1,'data.file.file',0,NULL),(376,1,'创建文件操作','create',374,2,1,'data.file',0,NULL),(377,1,'编辑文件操作','edit',375,2,1,'data.file',0,NULL),(378,1,'数据库管理','mysql',160,0,1,'data.mysql',0,'fa-cubes'),(379,1,'执行SQL','runsql',378,0,2,'data.mysql.runsql',0,'fa-list-ul'),(380,1,'执行SQL操作','runsql',379,2,1,'data.mysql',0,NULL),(381,1,'数据库库列表','table',378,0,1,'data.mysql.table',0,'fa-list-ul'),(382,1,'优化表操作','optimize',381,2,1,'data.mysql',0,NULL),(383,1,'修复表操作','repair',381,2,2,'data.mysql',0,NULL),(384,1,'增加分类操作','add',121,2,1,'link.type',0,NULL),(385,1,'修改分类操作','edit',386,2,1,'link.type',0,NULL),(386,0,'修改友链分类','edit',122,0,2,'link.type.edit',0,NULL),(387,0,'删除分类操作','del',122,2,2,'link.type',0,NULL),(388,0,'添加友链操作','add',124,2,1,'link.link',0,NULL),(389,0,'修改友链操作','edit',395,2,2,'link.link',0,NULL),(390,0,'删除友链操作','del',125,2,3,'link.link',0,NULL),(391,0,'清空友链操作','clear',125,2,4,'link.link',0,NULL),(392,0,'审核友链操作','status',125,2,5,'link.link',0,NULL),(393,0,'推荐友链操作','attr',125,2,6,'link.link',0,NULL),(394,0,'移动友链操作','move',125,2,7,'link.link',0,NULL),(395,0,'修改友链','edit',125,0,1,'link.link.edit',0,NULL),(396,0,'删除点击记录','del',128,2,1,'link.click',0,NULL),(397,0,'清空点击记录','clear',128,2,2,'link.click',0,NULL),(398,0,'修改友链配置','edit',129,2,1,'link.config',0,NULL),(399,0,'添加分类操作','add',38,2,1,'about.type',0,NULL),(400,0,'修改分类操作','edit',39,2,1,'about.type',0,NULL),(401,0,'修改信息分类','edit',39,0,1,'about.type.edit',0,NULL),(402,1,'删除分类操作','del',39,2,2,'about.type',0,NULL),(403,0,'修改信息','edit',42,0,1,'about.about.edit',0,NULL),(404,0,'删除信息操作','del',42,2,3,'about.about',0,NULL),(405,0,'清空信息操作','clear',42,2,4,'about.about',0,NULL),(406,0,'添加信息操作','add',42,2,5,'about.about',0,NULL),(407,0,'修改信息操作','edit',42,2,6,'about.about',0,NULL),(408,0,'移动信息操作','move',42,2,7,'about.about',0,NULL),(409,0,'检查友链操作','checkseo',125,2,8,'link.link',0,NULL),(410,0,'检查回链操作','checkback',125,2,9,'link.link',0,NULL),(411,1,'用户金币奖惩','reward',110,0,3,'user.user.reward',0,NULL),(412,0,'金币奖惩操作','reward',411,2,1,'user.user',0,NULL),(413,0,'修改图集分类','edit',44,0,2,'picture.type.edit',0,NULL),(414,0,'增加分类操作','add',45,2,1,'picture.type',0,NULL),(415,0,'修改分类操作','edit',46,2,1,'picture.type',0,NULL),(416,0,'删除分类操作','del',46,2,2,'picture.type',0,NULL),(417,0,'添加图集操作','add',48,2,1,'picture.picture',0,NULL),(418,0,'修改图集操作','edit',49,2,2,'picture.picture',0,NULL),(419,0,'删除图集操作','del',49,2,3,'picture.picture',0,NULL),(420,0,'审核图集操作','status',49,2,4,'picture.picture',0,NULL),(421,0,'移动图集操作','move',49,2,5,'picture.picture',0,NULL),(422,0,'图集属性操作','attr',49,2,6,'picture.picture',0,NULL),(423,0,'修改图集','edit',49,0,7,'picture.picture.edit',0,NULL),(424,0,'修改设置操作','edit',51,2,1,'picture.config',0,NULL),(425,1,'快捷菜单','quick',9,0,3,'system.menu.quick',0,'fa-list-ul'),(426,0,'静态资源管理','static',147,0,3,'system.templates.static',0,NULL),(427,1,'删除资源操作','delstatic',426,2,1,'system.templates.templates',0,NULL),(428,1,'删除分类操作','del',64,2,1,'app.type',0,NULL),(429,1,'新增分类操作','add',63,2,2,'app.type',0,NULL),(430,1,'修改分类操作','edit',64,2,3,'app.type',0,NULL),(431,0,'修改应用分类','edit',64,0,2,'app.type.edit',0,NULL),(432,0,'修改应用','edit',67,0,1,'app.app.edit',0,NULL),(433,0,'删除应用操作','del',67,2,1,'app.app',0,NULL),(434,0,'增加应用操作','add',67,2,2,'app.app',0,NULL),(435,0,'修改应用操作','edit',432,2,3,'app.app',0,NULL),(436,0,'审核应用操作','status',67,2,4,'app.app',0,NULL),(437,0,'移动应用操作','move',67,2,5,'app.app',0,NULL),(438,0,'应用属性操作','attr',67,2,6,'app.app',0,NULL),(439,0,'添加资料','add',69,0,1,'app.attr.edit',0,NULL),(440,0,'修改资料','edit',69,0,1,'app.attr.edit',0,NULL),(441,0,'添加资料操作','add',439,2,1,'app.attr',0,NULL),(442,0,'修改资料操作','edit',440,2,1,'app.attr',0,NULL),(443,0,'删除资料操作','del',69,2,2,'app.attr',0,NULL),(444,0,'修改设置操作','edit',73,2,1,'app.config',0,NULL),(445,0,'添加厂商操作','add',70,2,1,'app.firms',0,NULL),(446,0,'修改厂商操作','edit',71,2,2,'app.firms',0,NULL),(447,0,'删除厂商操作','del',71,2,3,'app.firms',0,NULL),(448,0,'修改厂商','edit',71,0,1,'app.firms.edit',0,NULL),(449,0,'厂商搜索操作','search',71,2,1,'app.firms',0,NULL),(450,0,'备份程序操作','backup',366,2,1,'data.file',0,NULL),(451,0,'修改论坛版块','edit',55,0,2,'bbs.type.edit',0,NULL),(452,0,'增加版块操作','add',54,2,3,'bbs.type',0,NULL),(453,0,'修改版块操作','edit',55,2,1,'bbs.type',0,NULL),(454,0,'删除版块操作','del',55,2,2,'bbs.type',0,NULL),(455,0,'删除主题操作','del',57,2,1,'bbs.bbs',0,NULL),(456,0,'移动主题操作','move',57,2,2,'bbs.bbs',0,NULL),(457,0,'审核主题操作','status',57,2,3,'bbs.bbs',0,NULL),(458,0,'主题属性操作','attr',57,2,4,'bbs.bbs',0,NULL),(459,0,'修改配置操作','edit',60,2,1,'bbs.config',0,NULL),(460,1,'自定义标签','label',245,0,3,'system.config.label.list',0,'fa-list-ul'),(461,0,'添加标签','add',460,0,1,'system.config.label.edit',0,NULL),(462,0,'修改标签','edit',460,0,2,'system.config.label.edit',0,NULL),(463,1,'添加标签操作','add',461,2,1,'system.config.label',0,NULL),(464,1,'修改标签操作','edit',462,2,2,'system.config.label',0,NULL),(465,1,'删除标签操作','del',460,2,3,'system.config.label',0,NULL),(466,1,'LOGO管理','logo',2,0,3,'system.set.logo',0,'fa-file-image-o'),(467,1,'修改LOGO','logo',466,2,1,'system.set.logo',0,NULL),(468,0,'添加版主','add',469,0,1,'bbs.moder.edit',0,NULL),(469,0,'版主管理','moder',55,0,2,NULL,0,NULL),(470,0,'修改版主','edit',469,0,2,'bbs.moder.edit',0,NULL),(471,0,'添加版主操作','add',470,2,1,'bbs.moder',0,NULL),(472,0,'修改版主操作','edit',470,2,1,'bbs.moder',0,NULL),(473,1,'留言配置','config',144,0,2,'operate.message.config',0,'cogs'),(474,0,'修改留言配置','edit',473,2,10,'operate.message.config',0,NULL),(476,0,'移动顺序操作','order',475,2,1,'novel.chapter',0,NULL),(477,1,'功能绑定','article',33,0,3,'system.module.config',1,NULL),(478,0,'功能绑定操作','edit',477,2,1,'system.module.config',0,NULL),(479,1,'功能绑定','picture',50,0,3,'system.module.config',1,NULL),(480,1,'功能绑定','bbs',59,0,3,'system.module.config',1,NULL),(481,1,'功能绑定','app',72,0,3,'system.module.config',1,NULL),(482,1,'功能绑定','novel',87,0,5,'system.module.config',1,NULL),(483,1,'功能绑定','author',103,0,10,'system.module.config',1,NULL),(484,1,'功能绑定','link',126,0,3,'system.module.config',1,NULL),(485,1,'功能绑定','user',117,0,3,'system.module.config',1,'lock'),(486,1,'模块设置','config',36,0,3,'',0,NULL),(487,1,'功能绑定','about',486,0,3,'system.module.config',1,NULL),(488,1,'规则生成','createrewrite',12,0,8,'system.seo.createrewrite',0,'arrows-h'),(489,1,'自定义字段','field',245,0,4,'system.config.field.list',0,'fa-indent'),(490,1,'新增字段','add',489,0,1,'system.config.field.edit',0,NULL),(491,1,'修改字段','edit',489,0,2,'system.config.field.edit',0,NULL),(492,0,'获取模块分类','gettype',489,2,1,'system.config.field',0,NULL),(493,0,'新增字段操作','add',490,2,1,'system.config.field',0,NULL),(494,0,'修改字段操作','edit',491,2,1,'system.config.field',0,NULL),(495,0,'删除字段操作','del',489,2,3,'system.config.field',0,NULL),(496,0,'获得自定义字段','getfield',489,2,2,'system.config.field',0,NULL),(497,1,'缓存性能','cache',1,0,3,'',0,'fa-viacoin'),(498,1,'缓存设置','set',497,0,1,'system.cache.set',0,'fa-list-ul'),(499,1,'清除缓存','clear',497,0,2,'system.cache.clear',0,'fa-refresh'),(500,0,'缓存设置操作','config',498,2,1,'system.cache',0,NULL),(501,0,'清除缓存操作','clear',499,2,2,'system.cache',0,NULL),(502,0,'评论详情','detail',131,0,1,'operate.replay.detail',0,NULL),(503,1,'功能绑定','search',136,0,4,'system.module.config',1,'lock'),(504,0,'拒绝作者审核','refuse_author_apply',95,0,0,'system.apply.refuse',0,NULL),(505,0,'模块设置操作','edit',106,2,0,'author.config',0,NULL),(506,0,'审核作者操作','status',95,2,1,'author.author',2,NULL),(507,0,'删除作者操作','del',95,2,2,'author.author',2,NULL),(508,0,'拒绝作者操作','refuse_author_apply',95,2,3,'system.apply',0,NULL),(509,0,'添加作者操作','add',94,2,1,'author.author',0,NULL),(510,0,'修改作者操作','edit',94,2,2,'author.author',0,NULL),(511,0,'修改作者','edit',95,0,3,'author.author.edit',0,NULL),(512,1,'待审封面','list',96,0,0,'author.novel.cover.list',0,NULL),(513,0,'审核封面操作','status',512,2,1,'author.novel.cover',0,NULL),(514,0,'删除封面操作','del',512,2,2,'author.novel.cover',0,NULL),(515,0,'拒绝封面审核','refuse_author_novel_cover',512,0,1,'system.apply.refuse',0,NULL),(516,0,'拒绝封面审核操作','refuse_author_novel_cover',515,2,1,'system.apply',0,NULL),(517,1,'修改原创申请','update',96,0,1,'author.novel.novelapply.list',0,NULL),(518,0,'删除原创申请操作','del',517,2,1,'author.novel.apply',0,NULL),(519,0,'审核原创申请操作','status',517,2,2,'author.novel.apply',0,NULL),(520,0,'查看变更数据','refuse_author_novel_edit',517,0,1,'system.apply.detail',0,NULL),(521,1,'拒绝小说修改','refuse_author_novel_editnovel',517,0,1,'system.apply.refuse',0,NULL),(522,1,'拒绝小说修改操作','refuse_author_novel_editnovel',521,2,1,'system.apply',0,NULL),(523,0,'查看变更数据','refuse_author_chapter_edit',98,0,1,'system.apply.detail',0,NULL),(524,1,'拒绝章节修改','refuse_author_novel_editchapter',98,0,1,'system.apply.refuse',0,NULL),(525,1,'拒绝章节修改操作','refuse_author_novel_editchapter',98,2,2,'system.apply',0,NULL),(526,1,'审核章节申请操作','status',98,2,3,'author.chapter.apply',0,NULL),(527,1,'清空章节申请操作','clear',98,2,4,'author.chapter.apply',0,NULL),(528,1,'清空小说申请操作','clear',517,2,3,'author.novel.apply',0,NULL),(529,1,'文章投稿','aritcle',92,1,3,'',0,NULL),(530,1,'稿件审核','aritcle_list',529,0,1,'author.article.list',0,NULL),(531,1,'删除章节申请操作','del',530,2,5,'author.chapter.apply',0,NULL),(532,1,'删除文章申请操作','del',530,2,1,'author.article.apply',0,NULL),(533,1,'清空文章申请操作','clear',530,2,2,'author.article.apply',0,NULL),(534,1,'审核文章申请操作','status',530,2,3,'author.article.apply',0,NULL),(535,0,'拒绝文章修改','refuse_author_article_edit',530,0,4,'system.apply.refuse',0,NULL),(536,1,'拒绝文章修改操作','refuse_author_article_editarticle',530,2,10,'system.apply',0,NULL),(537,1,'生成首页html操作','index',15,2,1,'system.seo.html',0,NULL),(538,1,'获得模块分类操作','gettype',15,2,2,'system.seo.html',0,NULL),(539,1,'生成内容HTML操作','content',15,2,3,'system.seo.html',0,NULL),(540,1,'生成列表HTML操作','list',15,2,4,'system.seo.html',0,NULL),(541,1,'生成分类首页HTML操作','tindex',15,2,5,'system.seo.html',0,NULL),(542,1,'生成目录HTML操作','menu',15,2,6,'system.seo.html',0,NULL),(543,1,'网站地图生成','sitemap',12,0,4,'system.seo.sitemap',0,'fa-sitemap'),(544,1,'RSS订阅生成','rss',12,0,5,'system.seo.rss',0,'fa-rss '),(545,1,'网站地图生成操作','sitemap',543,2,1,'system.seo.sitemap',0,NULL),(546,1,'获得模块分类操作','gettype',544,2,1,'system.seo.sitemap',0,NULL),(547,1,'生成rss首页操作','rss',544,2,2,'system.seo.sitemap',0,NULL),(548,1,'生成rss列表操作','list',544,2,3,'system.seo.sitemap',0,NULL),(549,1,'更新配置','update',2,0,7,'system.config.update',0,'fa-refresh'),(550,1,'更新配置操作','update',549,2,1,'system.config.config',0,NULL),(551,1,'自动上传错误操作','autoupload',254,2,3,'system.safe.errlog',0,NULL),(552,1,'云服务','cloud',0,0,6,NULL,0,'fa-cloud'),(553,1,'版本管理','version',552,1,1,NULL,0,'fa-random'),(554,1,'BUG反馈','bug',552,1,2,NULL,0,'fa-bug'),(555,1,'错误日志','err',552,1,3,NULL,0,'fa-archive'),(556,1,'在线升级','update',553,0,1,'cloud.version.update',0,' fa-cloud-upload'),(557,1,'全网反馈','all',554,0,1,'cloud.bug.all',0,'fa-files-o '),(558,1,'我的反馈','my',554,0,2,'cloud.bug.my',0,'fa-sticky-note-o '),(559,1,'我的错误','my',555,0,1,'cloud.err.my',0,'fa-bug'),(560,1,'上传错误日志操作','upload',254,2,4,'system.safe.errlog',0,NULL),(561,1,'获得反馈分类操作','gettype',557,2,1,'cloud.bug',0,NULL),(562,1,'获得反馈列表操作','getlist',557,2,2,'cloud.bug',0,NULL),(563,1,'查看反馈详情','detail',557,0,1,'cloud.bug.detail',0,NULL),(564,1,'提交新的反馈','add',558,0,1,'cloud.bug.add',0,NULL),(565,1,'提交新的反馈操作','add',564,2,3,'cloud.bug',0,NULL),(566,1,'获得错误列表操作','getlist',559,2,1,'cloud.err',0,NULL),(567,1,'获得最新下一版本操作','getnext',559,2,1,'cloud.version',0,NULL),(568,1,'升级操作','update',559,2,2,'cloud.version',0,NULL),(569,1,'获得进度操作','getbarline',559,2,3,'cloud.version',0,NULL),(570,0,'修改作者等级操作','update',104,2,2,'author.level',0,NULL),(571,0,'删除作者等级操作','del',104,2,4,'author.level',0,NULL),(572,1,'添加作者等级','add',104,0,0,'author.level.author.edit',0,NULL),(573,1,'添加作者等级操作','add',104,2,1,'author.level',0,NULL),(574,1,'修改全部作者等级操作','upall',104,2,3,'author.level',0,NULL),(575,1,'添加签约等级','add',105,0,1,'author.level.sign.edit',0,NULL),(576,1,'修改签约等级操作','update',105,2,0,'author.sign',0,NULL),(577,1,'删除签约等级操作','del',105,2,2,'author.sign',0,NULL),(578,1,'添加签约等级操作','add',105,2,3,'author.sign',0,NULL),(579,0,'修改全部签约等级操作','upall',105,2,4,'author.sign',0,NULL),(589,0,'修改道具','propsedit',582,0,4,'props.props.edit',0,NULL),(580,1,'打赏道具','props',92,1,8,NULL,0,NULL),(581,1,'添加道具','propsadd',580,0,3,'props.props.edit',0,NULL),(582,1,'道具列表','propslist',580,0,4,'props.props.list',0,NULL),(583,1,'添加分类','typeadd',580,0,1,'props.type.edit',0,NULL),(584,1,'分类列表','typelist',580,0,2,'props.type.list',0,NULL),(585,0,'添加分类操作','add',583,2,1,'props.type',0,NULL),(586,0,'修改分类操作','edit',584,2,2,'props.type',0,NULL),(587,1,'删除分类操作','del',584,2,1,'props.type',0,NULL),(588,0,'修改分类','typeedit',584,0,3,'props.type.edit',0,NULL),(590,0,'添加道具操作','add',581,2,1,'props.props',0,NULL),(591,0,'修改道具操作','edit',589,2,1,'props.props',0,NULL),(592,0,'删除道具操作','del',582,2,1,'props.props',0,NULL),(593,0,'修改道具状态操作','status',582,2,2,'props.props',0,NULL),(594,1,'销售记录','selllist',580,0,5,'props.sell.list',0,NULL),(595,0,'删除销售记录操作','del',594,2,1,'props.sell',0,NULL),(596,0,'在线签约','add',80,0,5,'novel.sign.add',0,NULL),(597,0,'上架销售','add',80,0,6,'novel.sell.add',0,NULL),(598,0,'在线签约操作','add',596,2,1,'novel.sign',0,NULL),(599,0,'上架销售操作','add',597,2,1,'novel.sell',0,NULL),(600,0,'下架销售操作','remove',597,2,2,'novel.sell',0,NULL),(601,1,'卡密管理','card',107,1,7,'',0,'fa-credit-card'),(602,1,'添加卡密','cardcreate',601,0,1,'user.card.create',0,'fa-list-ol'),(603,1,'卡密列表','cardlist',601,0,2,'user.card.list',0,'fa-cc-mastercard'),(604,0,'创建卡密操作','create',602,2,1,'user.card',0,NULL),(605,1,'卡密下载','carddown',601,0,3,'data.file.list&path=files/card',0,'fa-download'),(606,0,'下载文件操作','down',366,2,5,'data.file',0,NULL),(607,0,'删除卡密操作','del',603,2,1,'user.card',0,NULL),(608,0,'清空卡密操作','clear',603,2,2,'user.card',0,NULL),(609,1,'粉丝互动','',74,1,5,NULL,0,NULL),(610,1,'打赏记录','fansreward',609,0,2,'novel.fans.reward',0,NULL),(611,1,'推荐记录','fansticket',609,0,3,'novel.fans.ticket',0,NULL),(612,1,'订阅记录','fanssub',609,0,4,'novel.fans.sub',0,NULL),(613,1,'粉丝等级','fanslevel',609,0,1,'novel.fans.level',0,NULL),(614,0,'删除打赏记录操作','delreward',610,2,1,'novel.fans',0,NULL),(615,0,'清空打赏记录操作','clearreward',610,2,2,'novel.fans',0,NULL),(616,0,'删除推荐记录操作','delticket',611,2,3,'novel.fans',0,NULL),(617,0,'清空推荐记录操作','clearticket',611,2,4,'novel.fans',0,NULL),(618,0,'删除订阅记录操作','delsub',612,2,5,'novel.fans',0,NULL),(619,0,'清空订阅记录操作','clearsub',612,2,6,'novel.fans',0,NULL),(620,0,'小说粉丝等级添加操作','leveladd',613,2,7,'novel.fans',0,NULL),(621,0,'小说粉丝等级修改操作','leveledit',613,2,8,'novel.fans',0,NULL),(622,0,'小说粉丝等级删除操作','leveldel',613,2,9,'novel.fans',0,NULL),(623,1,'财务设置','config',99,0,8,'finance.set.config',0,'fa-krw'),(624,1,'充值等级','level',99,0,5,'finance.level',0,'fa-align-center'),(626,0,'财务设置操作','edit',623,2,1,'finance.config',0,NULL),(627,0,'充值等级添加操作','leveladd',624,2,1,'finance.level',0,NULL),(628,0,'充值等级修改操作','leveledit',624,2,2,'finance.level',0,NULL),(629,0,'充值等级删除操作','leveldel',624,2,3,'finance.level',0,NULL),(630,0,'删除资金变更记录操作','del',101,2,1,'finance.finance',0,NULL),(631,0,'清空资金变更记录操作','clear',101,2,2,'finance.finance',0,NULL),(632,1,'使用记录','log',601,0,3,'user.card.log',0,'fa-slack'),(633,0,'删除卡号使用记录操作','del',632,2,1,'user.cardlog',0,NULL),(634,0,'清空卡号使用记录操作','clear',632,2,2,'user.cardlog',0,NULL),(635,0,'删除充值记录操作','del',102,2,1,'finance.order.charge',0,NULL),(636,0,'清空充值记录操作','clear',102,2,2,'finance.order.charge',0,NULL),(637,0,'删除提现申请操作','del',100,2,1,'finance.order.cash',0,NULL),(638,0,'清空提现申请操作','clear',100,2,2,'finance.order.cash',0,NULL),(639,0,'处理提现申请操作','status',100,2,3,'finance.order.cash',0,NULL),(640,0,'查看文章投稿详情','refuse_author_article_edit',530,0,1,'system.apply.detail',0,NULL),(641,1,'链接提交','urlpost',12,0,3,'system.seo.urlpost',0,'fa-compress'),(642,0,'链接提交操作','post',641,2,1,'system.seo.urlpost',0,NULL),(643,1,'表情管理','face',130,1,2,'',0,'fa-drupal'),(644,1,'表情安装','install',643,0,1,'operate.face.install',0,'fa-tripadvisor'),(645,0,'表情安装操作','install',644,2,1,'operate.face',0,NULL),(646,1,'登录验证','code',22,0,3,'system.safe.code',3,'codepen'),(647,0,'验证码设置操作','config',646,2,1,'system.safe.code',0,NULL),(648,1,'站群配置','config',662,0,12,'system.site.config',0,'fa-crop'),(649,1,'修改站群配置','edit',648,2,1,'system.site.config',0,NULL),(650,1,'模块安装','module_install',2,0,10,'system.module.install',0,'fa-th-large'),(651,0,'模块安装操作','install',650,2,1,'system.module.install',0,NULL),(652,1,'开发者设置','development',22,0,1,'system.dev.config',0,'fa-connectdevelop'),(653,0,'开发者设置操作','config',652,2,1,'system.dev.config',0,NULL),(654,1,'错误页面','errpage',12,0,14,'system.seo.errpage',0,'fa-pagelines'),(655,1,'蜘蛛记录','spider',12,0,15,'system.seo.spider',0,'fa-opencart'),(656,0,'删除错误页面操作','del',654,2,1,'system.seo.errpage',0,NULL),(657,0,'清空错误页面操作','clear',654,2,2,'system.seo.errpage',0,NULL),(658,0,'删除错误页面操作','del',655,2,1,'system.seo.spider',0,NULL),(659,0,'清空错误页面操作','clear',655,2,2,'system.seo.spider',0,NULL),(660,1,'错误页面图','errpage',162,0,3,'data.chart.errpage',0,NULL),(661,1,'蜘蛛日志图','spider',162,0,4,'data.chart.spider',0,NULL),(662,1,'站群管理','site',1,0,5,NULL,0,'fa-object-group'),(663,1,'站内站点管理','site',662,0,1,'system.site.site',0,'fa-indent'),(664,1,'站外站点管理','product',662,0,2,'system.site.product',0,'fa-dedent'),(665,0,'站外站点添加','add',664,0,1,'system.site.product.edit',0,NULL),(666,0,'站外站点编辑','edit',664,0,2,'system.site.product.edit',0,NULL),(667,0,'删除站外站点操作','del',664,2,1,'system.site.product',0,NULL),(668,0,'清空站外站点操作','clear',664,2,2,'system.site.product',0,NULL),(669,0,'站外站点添加操作','add',665,2,1,'system.site.product',0,NULL),(670,0,'站外站点编辑操作','edit',666,2,1,'system.site.product',0,NULL),(671,0,'站外站点测试操作','test',665,2,2,'system.site.product',0,NULL),(672,0,'站内站点添加','add',663,0,1,'system.site.site.edit',0,NULL),(673,0,'站内站点编辑','edit',663,0,2,'system.site.site.edit',0,NULL),(674,0,'删除站内站点操作','del',663,2,1,'system.site.site',0,NULL),(675,0,'清空站内站点操作','clear',663,2,2,'system.site.site',0,NULL),(676,0,'站内站点添加操作','add',672,2,1,'system.site.site',0,NULL),(677,0,'站内站点编辑操作','edit',673,2,1,'system.site.site',0,NULL),(678,0,'站内站点审核操作','status',663,2,3,'system.site.site',0,NULL),(679,0,'站外站点审核操作','status',664,2,3,'system.site.product',0,NULL),(680,1,'检索条件','novel_list',87,0,4,'system.retrieval.list',1,NULL),(681,0,'删除检索操作','novel_del',680,2,1,'system.retrieval',0,NULL),(682,0,'审核检索操作','novel_status',680,2,2,'system.retrieval',0,NULL),(683,0,'编辑检索','novel_edit',680,0,3,'system.retrieval.edit',0,NULL),(684,0,'添加检索','novel_add',680,0,4,'system.retrieval.edit',0,NULL),(685,0,'添加检索操作','novel_add',684,2,1,'system.retrieval',0,NULL),(686,0,'编辑检索操作','novel_edit',683,2,1,'system.retrieval',0,NULL),(687,1,'检索分类','novel_type',87,0,3,'system.retrieval.type',1,NULL),(688,0,'修改分类操作','novel_type',687,2,1,'system.retrieval',0,NULL),(689,0,'修改分类状态操作','novel_typestatus',687,2,2,'system.retrieval',0,NULL),(690,1,'添加邮件服务','add',173,0,1,'system.email.email.edit',0,NULL),(691,1,'编辑邮件服务','edit',173,0,2,'system.email.email.edit',0,NULL),(692,0,'添加邮件服务操作','add',690,2,11,'system.email.email',0,NULL),(693,0,'编辑邮件服务操作','edit',691,2,1,'system.email.email',0,NULL),(694,0,'邮件服务状态操作','status',173,2,3,'system.email.email',0,NULL),(695,0,'邮件服务删除操作','del',173,2,4,'system.email.email',0,NULL),(696,1,'添加邮件模版','add',173,0,7,'system.email.temp.edit',0,NULL),(697,1,'编辑邮件模版','edit',173,0,8,'system.email.temp.edit',0,NULL),(698,0,'添加邮件模版操作','add',696,2,1,'system.email.temp',0,NULL),(699,0,'编辑邮件模版操作','edit',697,2,1,'system.email.temp',0,NULL),(700,0,'邮件模版状态操作','status',173,2,9,'system.email.temp',0,NULL),(701,0,'邮件模版删除操作','del',173,2,10,'system.email.temp',0,NULL),(702,1,'邮件日志','emaillog',22,0,13,'system.safe.emaillog',0,'fa-university'),(703,1,'邮件日志详情','detail',702,0,1,'system.safe.emaillog.detail',0,NULL),(704,0,'删除邮件日志操作','del',702,2,1,'system.safe.emaillog',0,NULL),(705,0,'清空邮件日志操作','clear',702,2,2,'system.safe.emaillog',0,NULL),(706,1,'阅读记录','list',609,0,5,'novel.fans.read',0,NULL),(707,0,'删除阅读记录','novel_del',706,2,1,'user.read',0,NULL),(708,0,'清空阅读记录','novel_clear',706,2,2,'user.read',0,NULL),(709,0,'推荐关键词操作','rec',137,2,3,'operate.search',0,NULL),(710,1,'开发工具','development',1,0,10,NULL,0,'fa-joomla'),(711,1,'新增页面','addpage',710,0,1,'system.dev.addpage',0,'fa-bookmark'),(712,0,'新增页面操作','add',711,2,1,'system.dev.addpage',0,NULL),(713,1,'财务统计图','finance',162,0,5,'data.chart.finance',0,NULL),(714,1,'默认首页','default_index',9,0,4,'system.menu.default_index',0,'fa-list-ul'),(715,0,'默认首页操作','default_index',714,0,1,'system.menu.menu',0,NULL),(716,0,'销售记录','sell_log',609,0,10,'novel.sell.log',0,NULL),(717,1,'云应用','apps',552,1,0,NULL,0,'fa-cubes'),(718,1,'我的插件','plugin',717,0,2,'cloud.apps.plugin',0,'fa-plug'),(719,0,'安装插件','install',718,2,1,'cloud.apps.plugin',0,NULL),(720,0,'卸载插件','uninstall',718,2,2,'cloud.apps.plugin',0,NULL),(721,0,'插件管理','manager',718,0,1,'cloud.apps.plugin.manager',0,NULL),(722,0,'插件首页','index',721,0,1,'cloud.apps.plugin.index',0,NULL),(723,0,'插件业务管理','business',721,0,2,'cloud.apps.plugin.business',0,NULL),(724,0,'插件配置修改操作','config',723,2,1,'cloud.apps.plugin',0,NULL),(725,0,'水印生成测试','water_test',5,2,2,'system.set.water',0,NULL),(726,1,'新增分类','type_add',149,0,1,'operate.zt.typeedit',0,'fa-plus-circle'),(727,1,'分类列表','type_list',149,0,2,'operate.zt.typelist',0,'fa-indent'),(728,0,'增加分类操作','type_add',726,2,1,'operate.zt.type',0,NULL),(729,0,'修改分类操作','type_edit',731,2,1,'operate.zt.type',0,NULL),(730,0,'删除分类操作','type_del',727,2,2,'operate.zt.type',0,NULL),(731,0,'编辑分类','type_edit',727,0,2,'operate.zt.typeedit',0,NULL),(732,1,'修改配置','config',149,0,9,'operate.zt.config',0,'fa-wrench'),(733,0,'修改配置操作','config_edit',732,2,1,'operate.zt.config',0,NULL),(734,1,'新增分类','type_add',141,0,1,'operate.flash.typeedit',0,'fa-plus-circle'),(735,0,'编辑分类','type_edit',736,0,2,'operate.flash.typeedit',0,NULL),(736,1,'分类列表','type_list',141,0,2,'operate.flash.typelist',0,'fa-indent'),(737,0,'增加分类操作','type_add',734,2,1,'operate.flash.type',0,NULL),(738,0,'修改分类操作','type_edit',735,2,1,'operate.flash.type',0,NULL),(739,0,'删除分类操作','type_del',736,2,2,'operate.flash.type',0,NULL),(740,0,'添加限时免费','add',80,0,7,'novel.timelimit.edit',0,NULL),(741,0,'添加限时免费操作','add',740,2,1,'novel.timelimit',0,NULL),(742,1,'限时免费','timelimit',78,0,4,'novel.timelimit.list',0,NULL),(743,0,'编辑限时免费','edit',742,0,1,'novel.timelimit.edit',0,NULL),(744,0,'编辑限时免费操作','edit',743,2,1,'novel.timelimit',0,NULL),(745,0,'删除限时免费操作','del',742,2,2,'novel.timelimit',0,NULL),(746,0,'福利设置','welfare',80,0,7,'novel.sell.welfare',0,NULL),(747,0,'福利设置操作','edit',746,2,1,'novel.sell.welfare',0,NULL),(748,0,'结算统计','settlement',80,0,8,'novel.sell.settlement',0,NULL),(749,0,'结算申请操作','apply',748,2,1,'novel.sell.settlement',0,NULL),(750,1,'财务申请','apply_list',99,0,0,'finance.apply.list',0,'fa-gg'),(751,0,'财务申请详情','apply_detail',750,0,1,'finance.apply.detail',0,NULL),(752,0,'财务申请处理操作','status',751,2,1,'finance.apply',0,NULL),(753,0,'财务申请删除操作','del',750,2,1,'finance.apply',0,NULL),(754,0,'财务申请清空操作','clear',750,2,2,'finance.apply',0,NULL),(755,1,'新增API','addapi',710,0,2,'system.dev.addapi',0,'fa-random'),(756,0,'新增API操作','add',755,2,1,'system.dev.addapi',0,NULL),(757,1,'URL模式','urlmode',12,0,1,'system.seo.urlmode',0,'fa-link'),(758,0,'URL模式保存','config',757,2,1,'system.seo.urlmode',0,NULL),(759,1,'需求众研','list',554,0,3,'cloud.together.list',0,'fa-houzz'),(760,0,'获得需求列表操作','getlist',759,2,1,'cloud.together',0,NULL),(761,0,'需求操作','operation',759,2,2,'cloud.together',0,NULL),(762,1,'需求详情','detail',759,0,1,'cloud.together.detail',0,NULL),(763,0,'获得需求详情操作','detail',762,2,1,'cloud.together',0,NULL),(764,1,'提交需求','add',759,0,2,'cloud.together.add',0,NULL),(765,0,'提交需求操作','add',764,2,1,'cloud.together',0,NULL),(766,0,'上传txt','upload',84,0,10,'novel.txt.upload',0,NULL),(767,0,'初始化TXT操作','init',766,2,1,'novel.txt',0,NULL),(768,0,'删除上传的TXT操作','del',766,2,2,'novel.txt',0,NULL),(769,0,'导入TXT操作','import',766,2,3,'novel.txt',0,NULL),(770,1,'应用中心','apps',717,0,1,'cloud.apps.index',0,'fa-th'),(771,0,'安装应用','install',770,2,1,'cloud.apps',0,NULL),(772,1,'静态计划','html_plan',12,0,3,'system.seo.html_plan.list',0,'fa-file-text-o'),(773,0,'添加静态计划操作','add',772,2,1,'system.seo.html_plan',0,NULL),(774,0,'删除静态计划操作','del',772,2,2,'system.seo.html_plan',0,NULL),(775,0,'执行静态计划操作','run',772,2,3,'system.seo.html_plan',0,NULL),(776,1,'微信公众号','weixin',130,1,2,NULL,0,'fa-weixin'),(777,1,'公众号列表','account_list',776,0,1,'operate.weixin.account.list',0,'fa-list'),(778,0,'添加公众号','add',777,0,2,'operate.weixin.account.edit',0,NULL),(779,0,'编辑公众号','edit',777,0,2,'operate.weixin.account.edit',0,NULL),(780,0,'添加公众号操作','add',778,2,1,'operate.weixin.account',0,NULL),(781,0,'编辑公众号操作','edit',779,2,2,'operate.weixin.account',0,NULL),(782,0,'删除公众号操作','del',777,2,3,'operate.weixin.account',0,NULL),(783,0,'审核公众号操作','status',777,2,4,'operate.weixin.account',0,NULL),(784,0,'检查公众号操作','check',777,2,5,'operate.weixin.account',0,NULL),(785,0,'设为主号操作','main',777,2,6,'operate.weixin.account',0,NULL),(786,1,'自定义菜单','menu_list',776,0,2,'operate.weixin.menu.list',0,'fa-medium'),(787,0,'添加自定义菜单','add',786,0,2,'operate.weixin.menu.edit',0,NULL),(788,0,'编辑自定义菜单','edit',786,0,2,'operate.weixin.menu.edit',0,NULL),(789,0,'添加自定义菜单操作','add',787,2,1,'operate.weixin.menu',0,NULL),(790,0,'编辑自定义菜单操作','edit',788,2,2,'operate.weixin.menu',0,NULL),(791,0,'删除自定义菜单操作','del',786,2,3,'operate.weixin.menu',0,NULL),(792,0,'审核自定义菜单操作','status',786,2,4,'operate.weixin.menu',0,NULL),(793,0,'推送自定义菜单操作','push',786,2,5,'operate.weixin.menu',0,NULL),(794,0,'复制自定义菜单操作','copy',786,2,6,'operate.weixin.menu',0,NULL),(795,0,'复制自定义菜单','copy',786,0,3,'operate.weixin.menu.copy',0,NULL),(796,1,'自动回复','autoreply_list',776,0,3,'operate.weixin.autoreply.list',0,'fa-retweet'),(797,0,'添加自动回复','add',796,0,2,'operate.weixin.autoreply.edit',0,NULL),(798,0,'编辑自动回复','edit',796,0,2,'operate.weixin.autoreply.edit',0,NULL),(799,0,'复制自动回复','copy',796,0,3,'operate.weixin.autoreply.copy',0,NULL),(800,0,'添加自动回复操作','add',797,2,1,'operate.weixin.autoreply',0,NULL),(801,0,'编辑自动回复操作','edit',798,2,2,'operate.weixin.autoreply',0,NULL),(802,0,'删除自动回复操作','del',796,2,3,'operate.weixin.autoreply',0,NULL),(803,0,'审核自动回复操作','status',796,2,4,'operate.weixin.autoreply',0,NULL),(804,0,'复制自动回复操作','copy',799,2,5,'operate.weixin.autoreply',0,NULL),(805,1,'消息管理','msg_list',776,0,5,'operate.weixin.msg.list',0,'fa-comment-o'),(806,0,'删除消息操作','del',805,2,1,'operate.weixin.msg',0,NULL),(807,0,'查看消息详情','detail',805,0,2,'operate.weixin.msg.detail',0,NULL),(808,1,'素材管理','media_list',776,0,4,'operate.weixin.media.list',0,'fa-paperclip'),(809,0,'查看素材详情','detail',808,0,2,'operate.weixin.media.detail',0,NULL),(810,0,'删除素材操作','del',808,2,1,'operate.weixin.media',0,NULL),(811,0,'添加素材','add',808,0,1,'operate.weixin.media.edit',0,NULL),(812,0,'添加素材操作','add',811,2,2,'operate.weixin.media',0,NULL),(813,1,'粉丝管理','media_list',776,0,6,'operate.weixin.fans.list',0,'fa-street-view'),(814,0,'查看粉丝详情','detail',813,0,2,'operate.weixin.fans.detail',0,NULL),(815,0,'删除粉丝操作','del',813,2,1,'operate.weixin.fans',0,NULL),(816,0,'素材查找带回','lookup',808,0,1,'operate.weixin.media.lookup',0,NULL),(817,1,'检索条件','app_list',68,0,5,'system.retrieval.list',1,NULL),(818,0,'删除检索操作','app_del',817,2,1,'system.retrieval',0,NULL),(819,0,'审核检索操作','app_status',817,2,2,'system.retrieval',0,NULL),(820,0,'编辑检索','app_edit',817,0,3,'system.retrieval.edit',0,NULL),(821,0,'添加检索','app_add',817,0,4,'system.retrieval.edit',0,NULL),(822,0,'添加检索操作','app_add',821,2,1,'system.retrieval',0,NULL),(823,0,'编辑检索操作','app_edit',820,2,1,'system.retrieval',0,NULL),(824,1,'检索分类','app_type',68,0,4,'system.retrieval.type',1,NULL),(825,0,'修改分类操作','app_type',823,2,1,'system.retrieval',0,NULL),(826,0,'修改分类状态操作','app_typestatus',823,2,2,'system.retrieval',0,NULL),(827,0,'查看用户消息详情','detail',116,0,2,'user.msg.detail',0,NULL),(828,1,'新增插件','addplugin',710,0,3,'system.dev.addplugin',0,'fa-slack'),(829,0,'添加插件操作','plugin_add',828,2,1,'system.dev.addplugin',0,NULL),(830,0,'添加插件配置操作','config_add',828,2,2,'system.dev.addplugin',0,NULL),(831,0,'获取插件配置操作','getpluginconfig',828,2,3,'system.dev.addplugin',0,NULL),(832,0,'删除插件配置操作','config_del',828,2,4,'system.dev.addplugin',0,NULL),(833,0,'更新应用','update',718,2,3,'cloud.apps',0,NULL),(834,1,'敏感词库','shield',22,0,22,'system.safe.shield',0,'fa-font'),(835,0,'修改敏感词库操作','config',834,2,1,'system.safe.shield',0,NULL),(836,0,'用户处罚','punish',110,0,4,'user.punish.punish',0,NULL),(837,0,'用户处罚操作','punish',836,2,1,'user.punish',0,NULL),(838,0,'解除用户处罚操作','unpunish',836,2,2,'user.punish',0,NULL),(839,1,'处罚记录','punishlist',108,0,5,'user.punish.list',0,'fa-user-times'),(840,0,'删除用户处罚操作','del',839,2,1,'user.punish',0,NULL),(841,1,'消息模版','msglist',245,0,5,'system.config.msg.list',0,'fa-envelope-o'),(842,0,'新增消息模版','add',841,0,1,'system.config.msg.edit',0,NULL),(843,0,'编辑消息模版','edit',841,0,2,'system.config.msg.edit',0,NULL),(844,0,'新增消息模版操作','add',842,2,1,'system.config.msg',0,NULL),(845,0,'编辑消息模版操作','edit',843,2,1,'system.config.msg',0,NULL),(846,0,'删除消息模版操作','del',841,2,1,'system.config.msg',0,NULL),(871,1,'标签管理','novel_tags',103,0,4,'system.tags.list',1,NULL),(870,0,'删除信息日志','del',867,2,1,'system.safe.msglog',0,NULL),(869,0,'清空信息日志','clear',867,2,2,'system.safe.msglog',0,NULL),(868,1,'信息日志','msglog',22,0,12,'system.safe.msglog',0,'fa-commenting'),(867,1,'短信日志','smslog',22,0,14,'system.set.smslog',0,'fa-envelope'),(853,1,'短信设置','sms',245,0,6,'system.set.sms',0,'fa-envelope'),(854,1,'添加短信模版','add',853,0,1,'system.set.sms.edit',0,NULL),(855,1,'编辑短信模版','edit',853,0,2,'system.set.sms.edit',0,NULL),(856,0,'添加短信模版操作','add',854,2,11,'system.sms',0,NULL),(857,0,'编辑短信模版操作','edit',855,2,1,'system.sms',0,NULL),(858,0,'短信模版状态操作','status',853,2,3,'system.sms',0,NULL),(859,0,'短信模版删除操作','del',853,2,4,'system.sms',0,NULL),(860,0,'短信日志删除操作','del',866,2,4,'system.smslog',0,NULL),(861,0,'短信日志清空操作','clear',866,2,4,'system.smslog',0,NULL),(862,1,'销售报表','report_list',99,0,0,'finance.report.list',0,'fa-bar-chart-o'),(863,0,'结算销售报表确认','confirm',862,2,1,'finance.report',0,NULL),(864,0,'结算销售报表','settlement',862,2,2,'finance.report',0,NULL),(865,1,'结算记录','report_order',99,0,0,'finance.report.order',0,'fa-align-justify'),(866,1,'章节批量操作','batch',86,2,4,'novel.chapter',0,NULL),(872,0,'删除标签操作','novel_del',871,2,3,'system.tags',0,NULL),(873,0,'标签推荐操作','novel_author_rec',871,2,4,'system.tags',0,NULL),(874,0,'编辑标签','novel_edit',871,0,2,'system.tags.edit',0,NULL),(875,0,'添加标签','novel_add',871,0,1,'system.tags.edit',0,NULL),(876,0,'添加标签操作','novel_add',875,2,1,'system.tags',0,NULL),(877,0,'编辑标签操作','novel_edit',874,2,1,'system.tags',0,NULL),(878,0,'清空标签操作','novel_clear',871,2,5,'system.tags',0,NULL),(879,1,'标签分类管理','novel_tags_type',103,0,3,'system.tags.type.list',1,NULL),(880,0,'删除标签分类操作','novel_del',879,2,3,'system.tags.type',0,NULL),(881,0,'编辑标签分类','novel_edit',879,0,2,'system.tags.type.edit',0,NULL),(882,0,'添加标签分类','novel_add',879,0,1,'system.tags.type.edit',0,NULL),(883,0,'添加标签分类操作','novel_add',882,2,1,'system.tags.type',0,NULL),(884,0,'编辑标签分类操作','novel_edit',881,2,1,'system.tags.type',0,NULL),(885,1,'TTS发音人','tts_voicet_list',245,0,8,'system.api.ttsvoicet.list',0,'fa-music'),(886,0,'删除发音人操作','tts_voicet_del',885,2,1,'system.api.ttsvoicet',0,NULL),(887,0,'编辑发音人','tts_voicet_edit',885,0,2,'system.api.ttsvoicet.edit',0,NULL),(888,0,'添加发音人','tts_voicet_add',885,0,3,'system.api.ttsvoicet.add',0,NULL),(889,0,'添加发音人操作','tts_voicet_add',888,2,1,'system.api.ttsvoicet',0,NULL),(890,0,'编辑发音人操作','tts_voicet_edit',887,2,1,'system.api.ttsvoicet',0,NULL),(891,1,'编辑模块','editor',25,0,7,'',0,'fa-columns'),(892,1,'分组管理','group',891,1,1,'',0,NULL),(893,1,'分组列表','group_list',892,1,1,'editor.group.list',0,NULL),(894,1,'编辑管理','editor',891,1,1,'',0,NULL),(895,1,'编辑列表','editor_list',894,1,1,'editor.editor.list',0,NULL),(896,0,'添加编辑分组','add',893,0,1,'editor.group.edit',0,NULL),(897,0,'添加编辑分组操作','add',896,2,1,'editor.group',0,NULL),(898,0,'编辑编辑分组','edit',893,0,2,'editor.group.edit',0,NULL),(899,0,'编辑编辑分组操作','edit',898,2,1,'editor.group',0,NULL),(900,0,'删除编辑分组操作','del',893,2,3,'editor.group',0,NULL),(901,0,'添加编辑','add',895,0,1,'editor.editor.edit',0,NULL),(902,0,'添加编辑操作','add',901,2,1,'editor.editor',0,NULL),(903,0,'修改编辑','edit',895,0,1,'editor.editor.edit',0,NULL),(904,0,'修改编辑操作','edit',903,2,2,'editor.editor',0,NULL),(905,0,'快速审核编辑操作','status',895,2,3,'editor.editor',0,NULL),(906,1,'作品关联','works_list',894,1,1,'editor.works.list',0,NULL),(907,0,'添加作品关联','add',906,0,1,'editor.works.edit',0,NULL),(908,0,'添加作关联操作','add',907,2,1,'editor.works',0,NULL),(909,0,'修改作品关联','edit',906,0,1,'editor.works.edit',0,NULL),(910,0,'修改作品关联操作','edit',909,2,2,'editor.works',0,NULL),(911,0,'删除作品关联操作','del',906,2,3,'editor.works',0,NULL),(912,1,'模块设置','editor',891,1,1,'',0,NULL),(913,1,'功能绑定','editor',912,0,9,'system.module.config',1,NULL),(914,0,'添加编辑分组操作','add',896,2,1,'editor.group',0,NULL),(915,1,'分组成员','editor_bind',892,1,2,'editor.bind.list',0,NULL),(916,0,'添加成员','add',915,0,1,'editor.bind.edit',0,NULL),(917,0,'添加成员操作','add',916,2,1,'editor.bind',0,NULL),(918,0,'修改成员','edit',915,0,1,'editor.bind.edit',0,NULL),(919,0,'修改成员操作','edit',918,2,2,'editor.bind',0,NULL),(920,0,'删除成员操作','del',915,2,3,'editor.bind',0,NULL);
+) ENGINE=MyISAM AUTO_INCREMENT=921 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางเมนูไดเรกทอรีของระบบ';
+INSERT INTO `wm_system_menu` VALUES (1,1,'จัดการระบบ','system',0,0,1,NULL,0,'fa-cog'),(2,1,'ตั้งค่าเว็บไซต์','set',1,0,1,NULL,0,'fa-cogs'),(3,1,'ตั้งค่าพื้นฐาน','config',2,0,1,'system.set.config',0,'fa-wrench'),(4,1,'จัดการ API','api',245,0,1,'system.set.api',0,'fa-random'),(5,1,'อัปโหลดลายน้ำ','water',2,0,3,'system.set.water',0,'fa-cloud-upload'),(6,1,'ตั้งค่าโดเมน','domain',2,0,4,'system.set.domain',0,'fa-bars'),(7,1,'จัดการเทมเพลต','templates',2,0,5,'system.set.templates',0,'fa-clone'),(8,1,'กำจัด BOM','delbom',2,0,8,'system.set.delbom',0,'fa-ban'),(9,1,'จัดการเมนู','menu',1,0,2,NULL,0,'fa-align-justify'),(10,0,'เพิ่มเมนู','add',9,0,1,'system.menu.edit',0,NULL),(11,1,'รายการเมนู','menu',9,0,2,'system.menu.menu',0,'fa-list-ul'),(12,1,'SEO เว็บไซต์','seo',1,0,4,NULL,0,'fa-recycle'),(13,1,'ตั้งค่า SEO','config',12,0,1,'system.seo.keys',0,'fa-refresh'),(14,1,'ลิงก์เสมือน','rewrite',12,0,2,'system.seo.rewrite',0,'fa-square'),(15,1,'สร้างแบบสแตติก','html',12,0,3,'system.seo.html',0,'fa-sticky-note'),(16,1,'จัดการสิทธิ์','competence',1,0,7,'',0,'fa-arrows-alt'),(17,1,'เพิ่มสิทธิ์','edit',16,0,1,'system.competence.edit',0,'fa-plus-square'),(18,1,'รายการสิทธิ์','list',16,0,2,'system.competence.list',0,'fa-list-ul'),(19,1,'บัญชีหลังบ้าน','manager',1,0,8,NULL,0,'fa-user-secret'),(20,1,'เพิ่มผู้ดูแล','edit',19,0,1,'system.manager.edit',0,'fa-user-plus'),(22,1,'จัดการความปลอดภัย','safe',1,0,9,'',0,'fa-tasks'),(21,1,'รายการผู้ดูแลระบบ','manager',19,0,2,'system.manager.list',0,'fa-list-ul'),(23,1,'ประวัติการเข้าสู่ระบบ','log',22,0,5,'system.safe.log',0,'fa-location-arrow'),(24,1,'เปลี่ยนรหัสผ่าน','uppsw',22,0,20,'system.safe.account.uppsw',0,'fa-unlock-alt'),(25,1,'จัดการโมดูล','module',0,0,2,'',0,'fa-th-large'),(26,1,'โมดูลบทความ','article',25,0,1,NULL,0,'fa-file-text'),(27,1,'จัดการหมวดหมู่','type',26,1,1,NULL,0,NULL),(28,1,'เพิ่มหมวดหมู่','add',27,0,1,'article.type.edit',0,NULL),(29,1,'รายการหมวดหมู่','list',27,0,2,'article.type.list',0,NULL),(30,1,'จัดการบทความ','article',26,1,2,'',0,NULL),(31,1,'เพิ่มบทความ','add',30,0,1,'article.article.edit',0,NULL),(32,1,'รายการบทความ','list',30,0,2,'article.article.list',0,NULL),(33,1,'ตั้งค่าโมดูล','set',26,0,3,NULL,0,NULL),(34,1,'แหล่งที่มาผู้แต่ง','author',33,0,1,'article.author.list',0,NULL),(35,1,'กำหนดค่าโมดูล','config',33,0,2,'article.set.config',0,NULL),(36,1,'เกี่ยวกับโมดูล','about',25,0,2,'',0,'fa-info-circle'),(37,1,'เกี่ยวกับหมวดหมู่','type',36,1,1,'',0,NULL),(38,1,'เพิ่มหมวดหมู่','add',37,0,1,'about.type.edit',0,NULL),(39,1,'รายการหมวดหมู่','list',37,0,2,'about.type.list',0,NULL),(40,1,'เกี่ยวกับข้อมูล','about',36,1,2,'',0,NULL),(41,1,'เพิ่มข้อมูล','add',40,0,1,'about.about.edit',0,NULL),(42,1,'รายการข้อมูล','list',40,0,2,'about.about.list',0,NULL),(43,1,'โมดูลอัลบั้มภาพ','picture',25,0,3,'',0,'fa-picture-o'),(44,1,'จัดการหมวดหมู่','type',43,1,1,'',0,NULL),(45,1,'เพิ่มหมวดหมู่','add',44,0,1,'picture.type.edit',0,NULL),(46,1,'รายการหมวดหมู่','list',44,0,2,'picture.type.list',0,NULL),(47,1,'จัดการอัลบั้มภาพ','picture',43,1,2,'',0,NULL),(48,1,'เพิ่มอัลบั้มรูป','add',47,0,1,'picture.picture.edit',0,NULL),(49,1,'รายการอัลบั้มภาพ','list',47,0,2,'picture.picture.list',0,NULL),(50,1,'ตั้งค่าโมดูล','set',43,1,3,'',0,NULL),(51,1,'กำหนดค่าโมดูล','config',50,0,1,'picture.set.config',0,NULL),(52,0,'โมดูลฟอรัม','bbs',25,0,4,'',0,'fa-comments'),(53,1,'จัดการบอร์ด','type',52,1,1,'',0,NULL),(54,1,'เพิ่มบอร์ด','add',53,0,1,'bbs.type.edit',0,NULL),(55,1,'รายการบอร์ด','type',53,0,2,'bbs.type.list',0,NULL),(56,1,'จัดการธีม','bbs',52,1,3,'',0,NULL),(57,1,'รายการธีม','bbs',56,0,1,'bbs.bbs.list',0,NULL),(58,1,'รายการตอบกลับ','replay',56,0,2,'bbs.replay.list',0,NULL),(59,1,'ตั้งค่าโมดูล','set',52,1,4,'',0,NULL),(60,1,'กำหนดค่าโมดูล','config',59,0,1,'bbs.set.config',0,NULL),(61,1,'โมดูลแอป','app',25,0,5,'',0,'fa-android'),(62,1,'จัดการหมวดหมู่','type',61,1,1,'',0,NULL),(63,1,'เพิ่มหมวดหมู่','add',62,0,1,'app.type.edit',0,NULL),(64,1,'รายการหมวดหมู่','list',62,0,2,'app.type.list',0,NULL),(65,1,'จัดการแอป','app',61,1,2,'',0,NULL),(66,1,'เพิ่มแอป','add',65,0,1,'app.app.edit',0,NULL),(67,1,'รายการแอป','list',65,0,2,'app.app.list',0,NULL),(68,1,'คุณสมบัติข้อมูลส่วนตัว','attr',61,1,3,'',0,NULL),(69,1,'ข้อมูลส่วนตัวสำเร็จรูป','abs',68,0,1,'app.attr.abs',0,NULL),(70,1,'เพิ่มผู้จำหน่าย','add',68,0,2,'app.firms.edit',0,NULL),(71,1,'รายการผู้จำหน่าย','list',68,0,3,'app.firms.list',0,NULL),(72,1,'ตั้งค่าโมดูล','set',61,1,4,'',0,NULL),(73,1,'กำหนดค่าโมดูล','config',72,0,1,'app.set.config',0,NULL),(74,1,'โมดูลนิยาย','novel',25,0,0,'',0,'fa-book'),(75,1,'จัดการหมวดหมู่','type',74,1,1,'',0,NULL),(76,1,'เพิ่มหมวดหมู่','add',75,0,1,'novel.type.edit',0,NULL),(77,1,'รายการหมวดหมู่','list',75,0,2,'novel.type.list',0,NULL),(78,1,'จัดการนิยาย','novel',74,1,2,'',0,NULL),(79,1,'เพิ่มนิยาย','add',78,0,1,'novel.novel.edit',0,NULL),(80,1,'รายการนิยาย','list',78,0,2,'novel.novel.list',0,NULL),(81,1,'จัดการเล่ม','volume',74,1,3,'',0,NULL),(82,1,'เพิ่มเล่ม','add',81,0,1,'novel.volume.edit',0,NULL),(83,1,'รายการเล่ม','list',81,0,2,'novel.volume.list',0,NULL),(84,1,'จัดการตอน','chapter',74,1,4,'',0,NULL),(85,1,'เพิ่มตอน','add',84,0,1,'novel.chapter.edit',0,NULL),(86,1,'รายการตอน','list',84,0,2,'novel.chapter.list',0,NULL),(87,1,'ตั้งค่าโมดูล','set',74,1,6,'',0,NULL),(88,1,'จัดการการแนะนำ','rec',78,0,3,'novel.novel.rec',0,NULL),(91,1,'ตั้งค่านิยาย','config',87,0,4,'novel.set.config',0,NULL),(92,1,'โมดูลต้นฉบับ','author',25,0,7,'',0,'fa-users'),(93,1,'จัดการนักเขียน','author',92,1,1,'',0,NULL),(94,1,'เพิ่มนักเขียน','add',93,0,1,'author.author.edit',0,NULL),(95,1,'รายการนักเขียน','list',93,0,2,'author.author.list',0,NULL),(96,1,'นิยายต้นฉบับ','novel',92,1,2,'',0,NULL),(97,1,'รายการต้นฉบับ','list',96,0,2,'author.novel.novel.list',0,NULL),(98,1,'ตอนรอตรวจสอบ','status',96,0,3,'author.novel.chapter.list',0,NULL),(99,1,'จัดการการเงิน','finance',107,1,5,'',0,'fa-jpy'),(100,1,'คำขอถอนเงิน','cash',99,0,1,'finance.order.cash',0,'fa-money'),(101,1,'ประวัติเงินทุน','log',99,0,2,'finance.finance.list',0,'fa-vine'),(102,1,'ประวัติการเติมเงิน','charge',99,0,3,'finance.order.charge',0,' fa-buysellads'),(103,1,'ตั้งค่าโมดูล','set',92,1,9,'',0,NULL),(104,1,'ระดับการเขียนนักเขียน','level',103,0,1,'author.level.author',0,NULL),(105,1,'ระดับสัญญาผลงาน','sign',103,0,2,'author.level.sign',0,NULL),(106,1,'กำหนดค่าโมดูล','config',103,0,5,'author.set.config',0,NULL),(107,1,'โมดูลผู้ใช้','user',0,0,3,'',0,'fa-user'),(108,1,'จัดการผู้ใช้','user',107,1,1,'',0,'fa-user'),(109,1,'เพิ่มผู้ใช้','add',108,0,1,'user.user.edit',0,'fa-user-plus'),(110,1,'รายการผู้ใช้','list',108,0,2,'user.user.list',0,'fa-users'),(111,1,'จัดการค่าสำเร็จรูป','preset',107,1,2,'',0,'fa-tachometer'),(112,1,'รูปโปรไฟล์สำเร็จรูป','head',111,0,1,'user.preset.head',0,'fa-smile-o'),(113,1,'กำหนดค่าระดับ','lv',111,0,2,'user.preset.lv',0,'fa-plane'),(114,1,'จัดการการโต้ตอบ','interactive',107,1,3,'',0,'fa-commenting'),(115,1,'ส่งข้อความภายใน','send',114,0,2,'user.msg.send',0,'fa-paper-plane'),(116,1,'รายการข้อความภายใน','list',114,0,3,'user.msg.list',0,'fa-envelope'),(117,1,'ตั้งค่าโมดูล','set',107,1,4,'',0,'fa-th-large'),(118,1,'กำหนดค่าผู้ใช้','config',117,0,1,'user.set.config',0,'fa-user-secret'),(119,1,'โมดูลลิงก์เพื่อน','link',25,0,8,'',0,'fa-link'),(120,1,'จัดการหมวดหมู่','type',119,1,1,'',0,NULL),(121,1,'เพิ่มหมวดหมู่','add',120,0,1,'link.type.edit',0,NULL),(122,1,'รายการหมวดหมู่','list',120,0,2,'link.type.list',0,NULL),(123,1,'จัดการลิงก์เพื่อน','link',119,0,2,'',0,NULL),(124,1,'เพิ่มลิงก์เพื่อน','add',123,0,1,'link.link.edit',0,NULL),(125,1,'รายการลิงก์เพื่อน','list',123,0,2,'link.link.list',0,NULL),(126,1,'ตั้งค่าโมดูล','set',119,1,3,'',0,NULL),(127,1,'เว็บไซต์ที่ยอดไม่ถึง','owed',126,0,1,'link.owed.list',1,NULL),(128,1,'ประวัติการคลิก','click',126,0,2,'link.click.list',0,NULL),(129,1,'กำหนดค่าโมดูล','config',126,0,3,'link.set.config',0,NULL),(130,1,'ศูนย์ปฏิบัติการ','operations',0,0,4,'',0,'fa-arrows'),(131,1,'จัดการความคิดเห็น','replay',130,1,1,'',0,'fa-comment'),(132,1,'ความคิดเห็นวันนี้','today',131,0,1,'operate.replay.list',1,'fa-square'),(133,1,'ความคิดเห็นยอดนิยม','hot',131,0,2,'operate.replay.list',1,'fa-th-large'),(134,1,'ความคิดเห็นทั้งหมด','all',131,0,3,'operate.replay.list',1,'fa-th'),(135,1,'กำหนดค่าความคิดเห็น','config',131,0,4,'operate.replay.config',0,'fa-wrench'),(136,1,'จัดการการค้นหา','search',130,1,2,'',0,'fa-search'),(137,1,'ค้นหาทั้งหมด','all',136,0,1,'operate.search.list',1,'fa-search-plus'),(138,1,'ค้นหาหัวข้อ','name',136,0,2,'operate.search.list',1,'fa-search-minus'),(139,1,'ค้นหาผู้แต่ง','author',136,0,3,'operate.search.list',1,'fa-search-minus'),(140,1,'ค้นหาแท็ก','tag',136,0,4,'operate.search.list',1,'fa-search-minus'),(141,1,'จัดการสไลด์','falsh',130,1,3,'',0,'fa-file-video-o'),(142,1,'เพิ่มสไลด์','add',141,0,3,'operate.flash.edit',0,'fa-plus-circle'),(143,1,'รายการสไลด์','flash',141,0,4,'operate.flash.list',0,'fa-file-text-o'),(144,1,'จัดการข้อความ','message',130,1,4,'',0,'fa-commenting'),(145,1,'รายการข้อความ','message',144,0,1,'operate.message.list',0,'fa-list'),(146,1,'เทมเพลตสำเร็จรูป','templates',130,1,5,'',0,'fa-align-justify'),(147,1,'อัปโหลดเทมเพลต','add',146,0,1,'system.templates.edit',0,'fa-cloud-upload'),(148,1,'รายการเทมเพลต','list',146,0,2,'system.templates.list',0,'fa-list'),(149,1,'จัดการหัวข้อพิเศษ','zt',130,1,6,'',0,'fa-newspaper-o'),(150,1,'เพิ่มหัวข้อพิเศษ','add',149,0,3,'operate.zt.edit',0,'fa-plus-circle'),(151,1,'รายการหัวข้อพิเศษ','list',149,0,4,'operate.zt.list',0,'fa-indent'),(152,1,'จัดการหน้าเดียว','diy',130,1,7,'',0,'fa-cubes'),(153,1,'เพิ่มหน้าเดียว','add',152,0,1,'operate.diy.edit',0,'fa-plus-circle'),(154,1,'รายการหน้าเดียว','list',152,0,2,'operate.diy.list',0,'fa-list-alt'),(155,1,'จัดการสถิติ','tongji',130,1,8,'',0,'fa-bar-chart'),(156,1,'โค้ดสถิติ','code',155,0,1,'operate.tongji.code',0,'fa-file-code-o'),(157,1,'จัดการโฆษณา','ad',130,1,9,'',0,'fa-dollar'),(158,1,'เพิ่มโฆษณา','add',157,0,3,'operate.ad.edit',0,'fa-plus-circle'),(159,1,'รายการโฆษณา','list',157,0,4,'operate.ad.list',0,'fa-list-ul'),(160,1,'ศูนย์ข้อมูล','data',0,0,5,'',0,'fa-bar-chart'),(161,1,'สถิติข้อมูล','chart',160,0,3,'',0,'fa-area-chart'),(162,1,'ข้อมูลกราฟ','graph',161,1,1,'',0,NULL),(163,1,'กราฟสถิติข้อมูล','tongji',162,0,1,'data.chart.tongji',0,NULL),(164,1,'กราฟการเติบโตข้อมูล','week',162,0,2,'data.chart.add',1,NULL),(165,0,'เก็บรวบรวมข้อมูล','collection',160,0,4,'',0,'fa-list-ul'),(166,1,'จัดการกฎ','rules',165,1,1,'',0,NULL),(167,1,'เพิ่มกฎ','edit',166,0,1,'data.collection.rules',0,NULL),(168,1,'รายการกฎ','rules',166,0,2,'data.collection.rules',0,NULL),(169,1,'จัดการงาน','task',165,1,2,'',0,NULL),(170,1,'เพิ่มงาน','edit',169,0,1,'data.collection.rules',0,NULL),(171,1,'รายการงาน','task',169,0,2,'data.collection.rules',0,NULL),(172,1,'รันงาน','start',169,0,3,'data.collection.rules',0,NULL),(173,1,'ตั้งค่าอีเมล','email',245,0,6,'system.set.email',0,'fa-envelope'),(177,1,'แก้ไขการตั้งค่าพื้นฐาน','system',3,2,1,'system.set.config',0,NULL),(178,1,'แก้ไขการตั้งค่า API','api',4,2,1,'system.set.api',0,NULL),(179,1,'แก้ไขการตั้งค่าอัปโหลด','config',5,2,1,'system.set.water',0,NULL),(180,1,'แก้ไขการตั้งค่าโดเมน','domain',6,2,1,'system.set.domain',0,NULL),(181,1,'แก้ไขเทมเพลต','update',7,2,1,'system.set.templates',0,NULL),(182,1,'ถอนการติดตั้งเทมเพลต','uninstall',7,2,2,'system.set.templates',0,NULL),(183,1,'ติดตั้งเทมเพลต','install',7,2,3,'system.set.templates',0,NULL),(184,1,'แก้ไขการตั้งค่าอีเมล','update',173,2,5,'system.set.email',0,NULL),(185,0,'ส่งอีเมลทดสอบ','test',173,2,6,'system.email.email',0,NULL),(186,1,'ลบ BOM','delbom',8,2,1,'system.set.delbom',0,NULL),(187,1,'แก้ไขลำดับเมนู','order',11,2,1,'system.menu.menu',0,NULL),(188,1,'แก้ไขเมนู','edit',11,2,3,'system.menu.menu',0,NULL),(189,1,'ลบเมนู','del',11,2,4,'system.menu.menu',0,NULL),(190,1,'เพิ่มเมนู','add',11,2,0,'system.menu.menu',0,NULL),(191,1,'เพิ่มหน้า SEO','add',13,0,1,'system.seo.keys.edit',0,NULL),(192,1,'แก้ไขหน้า SEO','edit',13,0,2,'system.seo.keys.edit',0,NULL),(193,1,'เพิ่ม SEO','add',191,2,10,'system.seo.keys',0,NULL),(194,1,'แก้ไข SEO','edit',192,2,10,'system.seo.keys',0,NULL),(195,1,'เพิ่มลิงก์ URL','add',14,0,1,'system.seo.rewrite.edit',0,NULL),(196,1,'แก้ไขลิงก์ URL','edit',14,0,1,'system.seo.rewrite.edit',0,NULL),(197,1,'เพิ่ม URL','add',195,2,1,'system.seo.rewrite',0,NULL),(198,1,'แก้ไข URL','edit',196,2,1,'system.seo.rewrite',0,NULL),(199,1,'ดำเนินการเพิ่มสิทธิ์','add',17,2,1,'system.competence.competence',0,NULL),(200,1,'แก้ไขสิทธิ์','edit',17,2,2,'system.competence.competence',0,NULL),(201,1,'ดำเนินการเพิ่มผู้ดูแลระบบ','add',20,2,1,'system.manager.manager',0,NULL),(202,1,'แก้ไขผู้ดูแลระบบ','edit',20,2,2,'system.manager.manager',0,NULL),(203,1,'ระงับหรือคืนสิทธิ์ผู้ดูแลระบบ','status',20,2,3,'system.manager.manager',0,NULL),(204,1,'ลบบัญชีผู้ดูแลระบบ','del',20,2,4,'system.manager.manager',0,NULL),(205,1,'ลบประวัติเข้าสู่ระบบ','del',23,2,1,'system.safe.log',0,NULL),(206,1,'รายละเอียดประวัติการเข้าสู่ระบบ','detail',23,0,2,'system.safe.log.detail',0,NULL),(207,1,'เปลี่ยนรหัสผ่าน','uppsw',24,2,1,'system.safe.account',0,NULL),(208,1,'สร้างแคชคีย์เวิร์ด','config',13,2,3,'system.seo.keys',0,NULL),(209,1,'สร้างแคช URL','config',14,2,4,'system.seo.rewrite',0,NULL),(210,1,'เพิ่มหมวดหมู่บทความ','add',28,2,1,'article.type',0,NULL),(211,1,'แก้ไขหมวดหมู่บทความ','edit',28,2,1,'article.type',0,NULL),(212,1,'แก้ไขเทมเพลต','edit',147,0,2,'system.templates.edit',0,NULL),(213,1,'ดำเนินการเพิ่มเทมเพลต','add',147,2,1,'system.templates.templates',0,NULL),(214,1,'เลือกเทมเพลตกลับมา','lookup',148,0,1,'system.templates.lookup',0,NULL),(215,1,'บันทึกคำขอ','requset',22,0,7,'system.safe.request',0,'fa-random'),(216,1,'รายละเอียดคำขอ','detail',215,0,1,'system.safe.request.detail',0,NULL),(217,0,'ลบบันทึกคำขอ','del',215,2,2,'system.safe.request',0,NULL),(218,0,'ล้างบันทึกคำขอ','clear',215,2,3,'system.safe.request',0,NULL),(219,0,'ล้างประวัติการเข้าสู่ระบบ','clear',23,2,4,'system.safe.log',0,NULL),(220,1,'บันทึกการทำงาน','operation',22,0,9,'system.safe.operation',0,'fa-list'),(221,0,'ลบบันทึกการทำงาน','del',220,2,1,'system.safe.operation',0,NULL),(222,0,'ล้างประวัติการดำเนินการ','clear',220,2,2,'system.safe.operation',0,NULL),(223,0,'รายละเอียดบันทึกการทำงาน','detail',220,0,1,'system.safe.operation.detail',0,NULL),(224,0,'ลบสิทธิ์','del',18,2,2,'system.competence.competence',0,NULL),(225,0,'แก้ไขบทความ','edit',31,2,1,'article.article',0,NULL),(226,0,'ดำเนินการเพิ่มบทความ','add',31,2,2,'article.article',0,NULL),(227,0,'แก้ไขหมวดหมู่บทความ','edit',27,0,10,'article.type.edit',0,NULL),(228,1,'ลบหมวดหมู่บทความ','del',28,2,2,'article.type',0,NULL),(229,1,'ลบบทความ','del',31,2,3,'article.article',0,NULL),(230,1,'ตรวจสอบบทความ','status',31,2,4,'article.article',0,NULL),(231,1,'ย้ายบทความ','move',31,2,5,'article.article',0,NULL),(232,1,'ดำเนินการตั้งค่าคุณสมบัติ','attr',31,2,6,'article.article',0,NULL),(233,1,'แก้ไขเนื้อหาบทความ','edit',31,0,2,'article.article.edit',0,NULL),(234,1,'ดำเนินการแก้ไขผู้แต่ง','edit',31,2,7,'article.author',0,NULL),(235,1,'ลบผู้แต่ง','del',31,2,8,'article.author',0,NULL),(236,1,'ดำเนินการเพิ่มผู้แต่ง','add',31,2,9,'article.author',0,NULL),(237,1,'แก้ไขแหล่งที่มาผู้แต่ง','edit',34,0,1,'article.author.edit',0,NULL),(238,1,'เพิ่มแหล่งที่มาผู้แต่ง','add',34,0,2,'article.author.edit',0,NULL),(239,1,'รายการการตั้งค่า','list',245,0,1,'system.config.list',0,'fa-list-ul'),(240,1,'แก้ไขการตั้งค่า','edit',239,0,1,'system.config.edit',0,NULL),(241,1,'เพิ่มการตั้งค่า','add',239,0,2,'system.config.edit',0,NULL),(242,1,'ดำเนินการเพิ่มการตั้งค่า','add',241,2,1,'system.config.config',0,NULL),(243,1,'ดำเนินการแก้ไขการตั้งค่า','edit',241,2,2,'system.config.config',0,NULL),(244,1,'ลบการตั้งค่า','del',241,2,3,'system.config.config',0,NULL),(245,1,'จัดการการตั้งค่า','option',1,0,2,'',0,'fa-server'),(246,1,'จัดการตัวเลือก','optionlist',245,0,2,'system.config.option.list',0,'fa-file-text-o'),(247,1,'เพิ่มตัวเลือก','add',246,0,3,'system.config.option.edit',0,NULL),(248,1,'แก้ไขตัวเลือก','edit',246,0,4,'system.config.option.edit',0,NULL),(249,1,'ดำเนินการแก้ไขตัวเลือก','edit',246,2,1,'system.config.option',0,NULL),(250,1,'ดำเนินการเพิ่มตัวเลือก','add',246,2,2,'system.config.option',0,NULL),(251,1,'ดึงการตั้งค่ากลุ่ม','getconfig',246,2,3,'system.config.config',0,NULL),(252,1,'ลบตัวเลือก','del',246,2,4,'system.config.option',0,NULL),(253,1,'แก้ไขการตั้งค่า','edit',35,2,1,'article.config',0,NULL),(254,1,'บันทึกข้อผิดพลาด','errlog',22,0,11,'system.safe.errlog',0,'fa-bug'),(255,1,'รายละเอียดบันทึกข้อผิดพลาด','detail',254,0,1,'system.safe.errlog.detail',0,NULL),(256,1,'ลบบันทึก','del',254,2,1,'system.safe.errlog',0,NULL),(257,1,'ดำเนินการล้างบันทึก','clear',254,2,2,'system.safe.errlog',0,NULL),(258,1,'เลือกแหล่งที่มาผู้แต่ง','lookup',31,0,10,'article.author.lookup',0,NULL),(259,1,'ถังขยะ','recycle',30,0,3,'article.article.recycle',0,NULL),(260,1,'ดำเนินการกู้คืน','reduction',259,2,1,'article.article',0,NULL),(261,1,'ลบถาวร','realdel',259,2,2,'article.article',0,NULL),(262,0,'เพิ่มหมวดหมู่นิยาย','add',76,2,1,'novel.type',0,NULL),(263,0,'แก้ไขหมวดหมู่นิยาย','edit',76,2,2,'novel.type',0,NULL),(264,0,'ลบหมวดหมู่นิยาย','del',77,2,1,'novel.type',0,NULL),(265,1,'ดำเนินการเพิ่มนิยาย','add',79,2,1,'novel.novel',0,NULL),(266,1,'ลบนิยาย','del',80,2,1,'novel.novel',0,NULL),(267,1,'ตรวจสอบนิยาย','status',80,2,2,'novel.novel',0,NULL),(268,1,'ดำเนินการย้ายนิยาย','move',80,2,3,'novel.novel',0,NULL),(269,0,'แนะนำหลายรายการ','rec',80,2,4,'novel.rec',0,NULL),(270,1,'แก้ไขนิยาย','edit',79,2,2,'novel.novel',0,NULL),(271,1,'ดำเนินการเพิ่มเล่ม','add',82,2,1,'novel.volume',0,NULL),(272,1,'ค้นหานิยาย','search',80,2,5,'novel.novel',0,NULL),(273,1,'ลบเล่ม','del',83,2,1,'novel.volume',0,NULL),(274,0,'แก้ไขหมวดหมู่นิยาย','edit',75,0,2,'novel.type.edit',0,NULL),(275,0,'แก้ไขนิยาย','edit',78,0,10,'novel.novel.edit',0,NULL),(276,0,'แก้ไขเล่มนิยาย','edit',81,0,10,'novel.volume.edit',0,NULL),(277,0,'ดำเนินการดึงเล่ม','getvolume',81,2,3,'novel.volume',0,NULL),(278,1,'ดำเนินการเพิ่มตอน','add',85,2,1,'novel.chapter',0,NULL),(279,0,'แก้ไขตอน','edit',85,0,2,'novel.chapter.edit',0,NULL),(280,1,'แก้ไขเนื้อหาตอน','edit',279,2,1,'novel.chapter',0,NULL),(281,1,'ลบตอน','del',86,2,1,'novel.chapter',0,NULL),(282,1,'ดำเนินการล้างตอน','clear',86,2,2,'novel.chapter',0,NULL),(283,0,'ลบรายการแนะนำ','del',88,2,2,'novel.rec',0,NULL),(284,0,'แก้ไขรายการแนะนำ','edit',88,0,1,'novel.novel.rec.edit',0,NULL),(285,0,'แก้ไขรายการแนะนำ','edit',88,2,10,'novel.rec',0,NULL),(286,1,'แก้ไขการตั้งค่า','edit',91,2,10,'novel.config',0,NULL),(287,1,'แก้ไขเล่ม','edit',82,2,2,'novel.volume',0,NULL),(288,1,'ดำเนินการเพิ่มผู้ใช้','add',109,2,1,'user.user',0,NULL),(290,1,'ลบผู้ใช้','del',110,2,1,'user.user',0,NULL),(289,1,'แก้ไขผู้ใช้','edit',292,2,2,'user.user',0,NULL),(291,1,'ตรวจสอบผู้ใช้','status',110,2,2,'user.user',0,NULL),(292,0,'แก้ไขผู้ใช้','edit',110,0,1,'user.user.edit',0,NULL),(293,0,'ลบรูปโปรไฟล์','del',112,2,1,'user.head',0,NULL),(294,0,'ดำเนินการเพิ่มรูปโปรไฟล์','add',112,2,2,'user.head',0,NULL),(295,0,'ดำเนินการเพิ่มระดับ','add',113,2,1,'user.lv',0,NULL),(296,1,'แก้ไขระดับ','edit',113,2,2,'user.lv',0,NULL),(297,0,'ลบระดับ','del',113,2,3,'user.lv',0,NULL),(298,0,'ส่งข้อความ','send',115,2,1,'user.msg',0,NULL),(299,0,'ลบข้อความ','del',116,2,1,'user.msg',0,NULL),(300,0,'ดำเนินการล้างการแจ้งเตือน','clear',116,2,1,'user.msg',0,NULL),(475,0,'ย้ายลำดับตอน','order',84,0,3,'novel.chapter.order',0,NULL),(302,0,'แก้ไขการตั้งค่า','edit',118,2,1,'user.config',0,NULL),(303,0,'ลบความคิดเห็น','del',131,2,1,'operate.replay',0,NULL),(304,0,'ดำเนินการล้างความคิดเห็น','clear',131,2,2,'operate.replay',0,NULL),(305,0,'ดำเนินการตรวจสอบความคิดเห็น','status',131,2,3,'operate.replay',0,NULL),(306,0,'แก้ไขการตั้งค่า','edit',135,2,1,'operate.replay.config',0,NULL),(307,0,'ลบการค้นหา','del',137,2,1,'operate.search',0,NULL),(308,0,'ดำเนินการล้างการค้นหา','clear',137,2,2,'operate.search',0,NULL),(309,0,'แก้ไขสไลด์','edit',143,0,1,'operate.flash.edit',0,NULL),(310,0,'ดำเนินการเพิ่มสไลด์','add',142,2,1,'operate.flash',0,NULL),(311,0,'แก้ไขสไลด์','edit',309,2,2,'operate.flash',0,NULL),(312,0,'แสดงสไลด์','status',143,2,1,'operate.flash',0,NULL),(313,0,'ลบสไลด์','del',143,2,2,'operate.flash',0,NULL),(314,0,'ดำเนินการล้างสไลด์','clear',143,2,3,'operate.flash',0,NULL),(315,0,'ดำเนินการตรวจสอบข้อความ','status',145,2,1,'operate.message',0,NULL),(316,0,'ลบข้อความ','del',145,2,2,'operate.message',0,NULL),(317,0,'ดำเนินการล้างข้อความ','clear',145,2,3,'operate.message',0,NULL),(318,0,'ดึงหมวดหมู่โมดูล','gettype',147,2,1,'system.templates.templates',0,NULL),(319,0,'ลบเทมเพลตสำเร็จรูป','del',147,2,1,'system.templates.templates',0,NULL),(320,0,'ดำเนินการล้างเทมเพลตสำเร็จรูป','clear',147,2,2,'system.templates.templates',0,NULL),(321,0,'แก้ไขเทมเพลตสำเร็จรูป','edit',147,2,2,'system.templates.templates',0,NULL),(322,0,'ดำเนินการเพิ่มหน้าเดียว','add',153,2,1,'operate.diy',0,NULL),(323,0,'ลบหน้าเดียว','del',154,2,1,'operate.diy',0,NULL),(324,0,'ดำเนินการล้างหน้าเดียว','clear',154,2,2,'operate.diy',0,NULL),(325,0,'ตรวจสอบหน้าเดียว','status',154,2,3,'operate.diy',0,NULL),(326,0,'แก้ไขหน้าเดียว','edit',327,2,2,'operate.diy',0,NULL),(327,0,'แก้ไขหน้าเดียว','edit',154,0,1,'operate.diy.edit',0,NULL),(328,0,'แก้ไขสถิติ','edit',156,2,1,'operate.tongji',0,NULL),(329,0,'ดำเนินการเพิ่มโฆษณา','add',158,2,1,'operate.ad',0,NULL),(330,0,'แก้ไขโฆษณา','edit',334,2,1,'operate.ad',0,NULL),(331,1,'ตรวจสอบโฆษณา','status',159,2,1,'operate.ad',0,NULL),(332,1,'ลบโฆษณา','del',159,2,2,'operate.ad',0,NULL),(333,1,'ดำเนินการล้างโฆษณา','clear',159,2,3,'operate.ad',0,NULL),(334,0,'แก้ไขโฆษณา','edit',159,0,1,'operate.ad.edit',0,NULL),(335,1,'เพิ่มหมวดหมู่','add',157,0,1,'operate.ad.type.edit',0,'fa-plus-circle'),(336,1,'รายการหมวดหมู่','list',157,0,2,'operate.ad.type.list',0,'fa-list'),(337,0,'ดำเนินการเพิ่มหมวดหมู่','add',335,2,1,'operate.ad.type',0,NULL),(338,0,'แก้ไขหมวดหมู่','edit',341,2,2,'operate.ad.type',0,NULL),(339,0,'ลบหมวดหมู่','del',336,2,1,'operate.ad.type',0,NULL),(340,0,'ดำเนินการล้างหมวดหมู่','clear',336,2,2,'operate.ad.type',0,NULL),(341,0,'แก้ไขหมวดหมู่','edit',336,0,2,'operate.ad.type.edit',0,NULL),(342,0,'สถิติการเติบโตเดือนนี้','month',162,0,3,'data.chart.add',0,NULL),(343,0,'สถิติการเติบโตปีนี้','year',162,0,4,'data.chart.add',0,NULL),(344,0,'ดำเนินการเพิ่มหัวข้อพิเศษ','add',150,2,1,'operate.zt',0,NULL),(345,0,'ลบหัวข้อพิเศษ','del',151,2,1,'operate.zt',0,NULL),(346,0,'ดำเนินการล้างหัวข้อพิเศษ','clear',151,2,2,'operate.zt',0,NULL),(347,0,'ตรวจสอบหัวข้อพิเศษ','status',151,2,3,'operate.zt',0,NULL),(348,0,'แก้ไขหัวข้อพิเศษ','edit',349,2,4,'operate.zt',0,NULL),(349,0,'แก้ไขหัวข้อพิเศษ','edit',151,0,1,'operate.zt.edit',0,NULL),(350,0,'รายการโหนดหัวข้อพิเศษ','node',151,0,1,'operate.zt.node.list',0,NULL),(351,0,'เพิ่มโหนดหัวข้อพิเศษ','add',350,0,2,'operate.zt.node.edit',0,NULL),(352,0,'แก้ไขโหนดหัวข้อพิเศษ','edit',350,0,3,'operate.zt.node.edit',0,NULL),(353,1,'เพิ่มโหนด','add',351,2,1,'operate.zt.node',0,NULL),(354,1,'แก้ไขโหนด','edit',352,2,1,'operate.zt.node',0,NULL),(355,1,'ลบโหนด','del',350,2,1,'operate.zt.node',0,NULL),(356,1,'ดำเนินการล้างโหนด','clear',350,2,2,'operate.zt.node',0,NULL),(357,1,'ประวัติโหวตชอบไม่ชอบ','dingcai',359,0,1,'operate.operate.list',1,'fa-list-ul'),(358,1,'ประวัติการให้คะแนน','score',359,0,2,'operate.operate.list',1,'fa-list-ul'),(359,1,'จัดการการโต้ตอบ','interaction',130,0,2,'',0,'fa-thumbs-up'),(360,1,'ลบการโต้ตอบ','del',359,2,1,'operate.operate',0,NULL),(361,1,'ดำเนินการล้างข้อมูลการโต้ตอบ','clear',359,2,1,'operate.operate',0,NULL),(362,1,'ประวัติการเช็คอิน','sign',114,0,1,'user.sign.list',0,'fa-list-ul'),(363,1,'ลบประวัติเช็คอิน','del',362,2,10,'user.sign',0,NULL),(364,1,'ล้างประวัติการเช็คอิน','clear',362,2,10,'user.sign',0,NULL),(365,1,'จัดการไฟล์','file',160,0,2,'',0,'fa-file'),(366,1,'รายการไฟล์','list',365,0,2,'data.file.list',0,'fa-list-ul'),(367,0,'เปลี่ยนชื่อไฟล์','rename',366,0,1,'data.file.rename',0,NULL),(368,0,'ดำเนินการเปลี่ยนชื่อ','rename',367,2,1,'data.file',0,NULL),(370,0,'สร้างโฟลเดอร์','createfolder',367,0,3,'data.file.createfolder',0,NULL),(369,0,'ลบข้อมูล','del',367,2,2,'data.file',0,NULL),(371,0,'สร้างโฟลเดอร์','createfolder',370,2,1,'data.file',0,NULL),(373,1,'ดำเนินการย้ายไฟล์','movefile',372,2,1,'data.file',0,NULL),(372,0,'ย้ายไฟล์','movefile',365,0,1,'data.file.movefile',0,NULL),(374,0,'สร้างไฟล์','create',366,0,1,'data.file.file',0,NULL),(375,0,'แก้ไขไฟล์','edit',366,0,1,'data.file.file',0,NULL),(376,1,'สร้างไฟล์','create',374,2,1,'data.file',0,NULL),(377,1,'ดำเนินการแก้ไขไฟล์','edit',375,2,1,'data.file',0,NULL),(378,1,'จัดการฐานข้อมูล','mysql',160,0,1,'data.mysql',0,'fa-cubes'),(379,1,'รัน SQL','runsql',378,0,2,'data.mysql.runsql',0,'fa-list-ul'),(380,1,'รัน SQL','runsql',379,2,1,'data.mysql',0,NULL),(381,1,'รายการฐานข้อมูล','table',378,0,1,'data.mysql.table',0,'fa-list-ul'),(382,1,'ปรับแต่งตาราง','optimize',381,2,1,'data.mysql',0,NULL),(383,1,'ซ่อมแซมตาราง','repair',381,2,2,'data.mysql',0,NULL),(384,1,'เพิ่มหมวดหมู่','add',121,2,1,'link.type',0,NULL),(385,1,'แก้ไขหมวดหมู่','edit',386,2,1,'link.type',0,NULL),(386,0,'แก้ไขหมวดหมู่ลิงก์เพื่อน','edit',122,0,2,'link.type.edit',0,NULL),(387,0,'ลบหมวดหมู่','del',122,2,2,'link.type',0,NULL),(388,0,'ดำเนินการเพิ่มลิงก์เพื่อน','add',124,2,1,'link.link',0,NULL),(389,0,'แก้ไขลิงก์เพื่อน','edit',395,2,2,'link.link',0,NULL),(390,0,'ลบลิงก์เพื่อน','del',125,2,3,'link.link',0,NULL),(391,0,'ดำเนินการล้างลิงก์เพื่อน','clear',125,2,4,'link.link',0,NULL),(392,0,'ตรวจสอบลิงก์เพื่อน','status',125,2,5,'link.link',0,NULL),(393,0,'แนะนำลิงก์เพื่อน','attr',125,2,6,'link.link',0,NULL),(394,0,'ดำเนินการย้ายลิงก์เพื่อน','move',125,2,7,'link.link',0,NULL),(395,0,'แก้ไขลิงก์เพื่อน','edit',125,0,1,'link.link.edit',0,NULL),(396,0,'ลบประวัติการคลิก','del',128,2,1,'link.click',0,NULL),(397,0,'ล้างประวัติการคลิก','clear',128,2,2,'link.click',0,NULL),(398,0,'แก้ไขการตั้งค่าลิงก์เพื่อน','edit',129,2,1,'link.config',0,NULL),(399,0,'ดำเนินการเพิ่มหมวดหมู่','add',38,2,1,'about.type',0,NULL),(400,0,'แก้ไขหมวดหมู่','edit',39,2,1,'about.type',0,NULL),(401,0,'แก้ไขหมวดหมู่ข้อมูล','edit',39,0,1,'about.type.edit',0,NULL),(402,1,'ลบหมวดหมู่','del',39,2,2,'about.type',0,NULL),(403,0,'แก้ไขข้อมูล','edit',42,0,1,'about.about.edit',0,NULL),(404,0,'ลบข้อมูล','del',42,2,3,'about.about',0,NULL),(405,0,'ดำเนินการล้างข้อมูล','clear',42,2,4,'about.about',0,NULL),(406,0,'ดำเนินการเพิ่มข้อมูล','add',42,2,5,'about.about',0,NULL),(407,0,'แก้ไขข้อมูล','edit',42,2,6,'about.about',0,NULL),(408,0,'ดำเนินการย้ายข้อมูล','move',42,2,7,'about.about',0,NULL),(409,0,'ดำเนินการตรวจสอบลิงก์เพื่อน','checkseo',125,2,8,'link.link',0,NULL),(410,0,'ดำเนินการตรวจสอบลิงก์ตอบกลับ','checkback',125,2,9,'link.link',0,NULL),(411,1,'รางวัลและโทษเหรียญผู้ใช้','reward',110,0,3,'user.user.reward',0,NULL),(412,0,'ดำเนินการรางวัลและโทษเหรียญ','reward',411,2,1,'user.user',0,NULL),(413,0,'แก้ไขหมวดหมู่อัลบั้มภาพ','edit',44,0,2,'picture.type.edit',0,NULL),(414,0,'เพิ่มหมวดหมู่','add',45,2,1,'picture.type',0,NULL),(415,0,'แก้ไขหมวดหมู่','edit',46,2,1,'picture.type',0,NULL),(416,0,'ลบหมวดหมู่','del',46,2,2,'picture.type',0,NULL),(417,0,'ดำเนินการเพิ่มอัลบั้มรูป','add',48,2,1,'picture.picture',0,NULL),(418,0,'แก้ไขอัลบั้มภาพ','edit',49,2,2,'picture.picture',0,NULL),(419,0,'ลบอัลบั้มภาพ','del',49,2,3,'picture.picture',0,NULL),(420,0,'ตรวจสอบอัลบั้มภาพ','status',49,2,4,'picture.picture',0,NULL),(421,0,'ดำเนินการย้ายอัลบั้มรูป','move',49,2,5,'picture.picture',0,NULL),(422,0,'คุณสมบัติอัลบั้มภาพ','attr',49,2,6,'picture.picture',0,NULL),(423,0,'แก้ไขอัลบั้มภาพ','edit',49,0,7,'picture.picture.edit',0,NULL),(424,0,'แก้ไขการตั้งค่า','edit',51,2,1,'picture.config',0,NULL),(425,1,'เมนูลัด','quick',9,0,3,'system.menu.quick',0,'fa-list-ul'),(426,0,'จัดการทรัพยากรสแตติก','static',147,0,3,'system.templates.static',0,NULL),(427,1,'ลบทรัพยากร','delstatic',426,2,1,'system.templates.templates',0,NULL),(428,1,'ลบหมวดหมู่','del',64,2,1,'app.type',0,NULL),(429,1,'ดำเนินการเพิ่มหมวดหมู่','add',63,2,2,'app.type',0,NULL),(430,1,'แก้ไขหมวดหมู่','edit',64,2,3,'app.type',0,NULL),(431,0,'แก้ไขหมวดหมู่แอป','edit',64,0,2,'app.type.edit',0,NULL),(432,0,'แก้ไขแอป','edit',67,0,1,'app.app.edit',0,NULL),(433,0,'ลบแอป','del',67,2,1,'app.app',0,NULL),(434,0,'เพิ่มแอป','add',67,2,2,'app.app',0,NULL),(435,0,'แก้ไขแอป','edit',432,2,3,'app.app',0,NULL),(436,0,'ตรวจสอบแอป','status',67,2,4,'app.app',0,NULL),(437,0,'ดำเนินการย้ายแอป','move',67,2,5,'app.app',0,NULL),(438,0,'คุณสมบัติแอป','attr',67,2,6,'app.app',0,NULL),(439,0,'เพิ่มข้อมูลส่วนตัว','add',69,0,1,'app.attr.edit',0,NULL),(440,0,'แก้ไขข้อมูลส่วนตัว','edit',69,0,1,'app.attr.edit',0,NULL),(441,0,'ดำเนินการเพิ่มข้อมูลส่วนตัว','add',439,2,1,'app.attr',0,NULL),(442,0,'แก้ไขข้อมูลส่วนตัว','edit',440,2,1,'app.attr',0,NULL),(443,0,'ลบข้อมูลส่วนตัว','del',69,2,2,'app.attr',0,NULL),(444,0,'แก้ไขการตั้งค่า','edit',73,2,1,'app.config',0,NULL),(445,0,'ดำเนินการเพิ่มผู้ให้บริการ','add',70,2,1,'app.firms',0,NULL),(446,0,'แก้ไขผู้จำหน่าย','edit',71,2,2,'app.firms',0,NULL),(447,0,'ลบผู้จำหน่าย','del',71,2,3,'app.firms',0,NULL),(448,0,'แก้ไขผู้จำหน่าย','edit',71,0,1,'app.firms.edit',0,NULL),(449,0,'ค้นหาผู้จำหน่าย','search',71,2,1,'app.firms',0,NULL),(450,0,'สำรองข้อมูลโปรแกรม','backup',366,2,1,'data.file',0,NULL),(451,0,'แก้ไขบอร์ดฟอรัม','edit',55,0,2,'bbs.type.edit',0,NULL),(452,0,'เพิ่มบอร์ด','add',54,2,3,'bbs.type',0,NULL),(453,0,'แก้ไขบอร์ด','edit',55,2,1,'bbs.type',0,NULL),(454,0,'ลบบอร์ด','del',55,2,2,'bbs.type',0,NULL),(455,0,'ลบธีม','del',57,2,1,'bbs.bbs',0,NULL),(456,0,'ดำเนินการย้ายหัวข้อ','move',57,2,2,'bbs.bbs',0,NULL),(457,0,'ตรวจสอบธีม','status',57,2,3,'bbs.bbs',0,NULL),(458,0,'คุณสมบัติธีม','attr',57,2,4,'bbs.bbs',0,NULL),(459,0,'แก้ไขการตั้งค่า','edit',60,2,1,'bbs.config',0,NULL),(460,1,'แท็กกำหนดเอง','label',245,0,3,'system.config.label.list',0,'fa-list-ul'),(461,0,'เพิ่มแท็ก','add',460,0,1,'system.config.label.edit',0,NULL),(462,0,'แก้ไขแท็ก','edit',460,0,2,'system.config.label.edit',0,NULL),(463,1,'ดำเนินการเพิ่มแท็ก','add',461,2,1,'system.config.label',0,NULL),(464,1,'แก้ไขแท็ก','edit',462,2,2,'system.config.label',0,NULL),(465,1,'ลบแท็ก','del',460,2,3,'system.config.label',0,NULL),(466,1,'จัดการ LOGO','logo',2,0,3,'system.set.logo',0,'fa-file-image-o'),(467,1,'แก้ไข LOGO','logo',466,2,1,'system.set.logo',0,NULL),(468,0,'เพิ่มผู้ดูแลบอร์ด','add',469,0,1,'bbs.moder.edit',0,NULL),(469,0,'จัดการผู้ดูแลบอร์ด','moder',55,0,2,NULL,0,NULL),(470,0,'แก้ไขผู้ดูแลบอร์ด','edit',469,0,2,'bbs.moder.edit',0,NULL),(471,0,'ดำเนินการเพิ่มผู้ดูแลบอร์ด','add',470,2,1,'bbs.moder',0,NULL),(472,0,'แก้ไขผู้ดูแลบอร์ด','edit',470,2,1,'bbs.moder',0,NULL),(473,1,'กำหนดค่าข้อความ','config',144,0,2,'operate.message.config',0,'cogs'),(474,0,'แก้ไขการตั้งค่าข้อความ','edit',473,2,10,'operate.message.config',0,NULL),(476,0,'ดำเนินการย้ายลำดับ','order',475,2,1,'novel.chapter',0,NULL),(477,1,'ผูกฟังก์ชัน','article',33,0,3,'system.module.config',1,NULL),(478,0,'ผูกฟังก์ชัน','edit',477,2,1,'system.module.config',0,NULL),(479,1,'ผูกฟังก์ชัน','picture',50,0,3,'system.module.config',1,NULL),(480,1,'ผูกฟังก์ชัน','bbs',59,0,3,'system.module.config',1,NULL),(481,1,'ผูกฟังก์ชัน','app',72,0,3,'system.module.config',1,NULL),(482,1,'ผูกฟังก์ชัน','novel',87,0,5,'system.module.config',1,NULL),(483,1,'ผูกฟังก์ชัน','author',103,0,10,'system.module.config',1,NULL),(484,1,'ผูกฟังก์ชัน','link',126,0,3,'system.module.config',1,NULL),(485,1,'ผูกฟังก์ชัน','user',117,0,3,'system.module.config',1,'lock'),(486,1,'ตั้งค่าโมดูล','config',36,0,3,'',0,NULL),(487,1,'ผูกฟังก์ชัน','about',486,0,3,'system.module.config',1,NULL),(488,1,'สร้างกฎ','createrewrite',12,0,8,'system.seo.createrewrite',0,'arrows-h'),(489,1,'ฟิลด์กำหนดเอง','field',245,0,4,'system.config.field.list',0,'fa-indent'),(490,1,'เพิ่มฟิลด์','add',489,0,1,'system.config.field.edit',0,NULL),(491,1,'แก้ไขฟิลด์','edit',489,0,2,'system.config.field.edit',0,NULL),(492,0,'ดึงหมวดหมู่โมดูล','gettype',489,2,1,'system.config.field',0,NULL),(493,0,'ดำเนินการเพิ่มฟิลด์','add',490,2,1,'system.config.field',0,NULL),(494,0,'แก้ไขฟิลด์','edit',491,2,1,'system.config.field',0,NULL),(495,0,'ลบฟิลด์','del',489,2,3,'system.config.field',0,NULL),(496,0,'ดึงฟิลด์กำหนดเอง','getfield',489,2,2,'system.config.field',0,NULL),(497,1,'ประสิทธิภาพแคช','cache',1,0,3,'',0,'fa-viacoin'),(498,1,'ตั้งค่าแคช','set',497,0,1,'system.cache.set',0,'fa-list-ul'),(499,1,'ล้างแคช','clear',497,0,2,'system.cache.clear',0,'fa-refresh'),(500,0,'ดำเนินการตั้งค่าแคช','config',498,2,1,'system.cache',0,NULL),(501,0,'ดำเนินการล้างแคช','clear',499,2,2,'system.cache',0,NULL),(502,0,'รายละเอียดความคิดเห็น','detail',131,0,1,'operate.replay.detail',0,NULL),(503,1,'ผูกฟังก์ชัน','search',136,0,4,'system.module.config',1,'lock'),(504,0,'ปฏิเสธการตรวจผู้แต่ง','refuse_author_apply',95,0,0,'system.apply.refuse',0,NULL),(505,0,'ดำเนินการตั้งค่าโมดูล','edit',106,2,0,'author.config',0,NULL),(506,0,'ตรวจสอบผู้แต่ง','status',95,2,1,'author.author',2,NULL),(507,0,'ลบผู้แต่ง','del',95,2,2,'author.author',2,NULL),(508,0,'ปฏิเสธผู้แต่ง','refuse_author_apply',95,2,3,'system.apply',0,NULL),(509,0,'ดำเนินการเพิ่มผู้แต่ง','add',94,2,1,'author.author',0,NULL),(510,0,'แก้ไขผู้แต่ง','edit',94,2,2,'author.author',0,NULL),(511,0,'แก้ไขผู้แต่ง','edit',95,0,3,'author.author.edit',0,NULL),(512,1,'ปกรอตรวจสอบ','list',96,0,0,'author.novel.cover.list',0,NULL),(513,0,'ตรวจสอบปก','status',512,2,1,'author.novel.cover',0,NULL),(514,0,'ลบปก','del',512,2,2,'author.novel.cover',0,NULL),(515,0,'ปฏิเสธการตรวจปก','refuse_author_novel_cover',512,0,1,'system.apply.refuse',0,NULL),(516,0,'ปฏิเสธการตรวจปก','refuse_author_novel_cover',515,2,1,'system.apply',0,NULL),(517,1,'แก้ไขคำขอต้นฉบับ','update',96,0,1,'author.novel.novelapply.list',0,NULL),(518,0,'ลบคำขอต้นฉบับ','del',517,2,1,'author.novel.apply',0,NULL),(519,0,'ตรวจสอบคำขอต้นฉบับ','status',517,2,2,'author.novel.apply',0,NULL),(520,0,'ดูข้อมูลที่เปลี่ยนแปลง','refuse_author_novel_edit',517,0,1,'system.apply.detail',0,NULL),(521,1,'ปฏิเสธการแก้ไขนิยาย','refuse_author_novel_editnovel',517,0,1,'system.apply.refuse',0,NULL),(522,1,'ปฏิเสธการแก้ไขนิยาย','refuse_author_novel_editnovel',521,2,1,'system.apply',0,NULL),(523,0,'ดูข้อมูลที่เปลี่ยนแปลง','refuse_author_chapter_edit',98,0,1,'system.apply.detail',0,NULL),(524,1,'ปฏิเสธการแก้ไขตอน','refuse_author_novel_editchapter',98,0,1,'system.apply.refuse',0,NULL),(525,1,'ปฏิเสธการแก้ไขตอน','refuse_author_novel_editchapter',98,2,2,'system.apply',0,NULL),(526,1,'ตรวจสอบคำขอตอน','status',98,2,3,'author.chapter.apply',0,NULL),(527,1,'ดำเนินการล้างคำขอตอน','clear',98,2,4,'author.chapter.apply',0,NULL),(528,1,'ดำเนินการล้างคำขอลงนิยาย','clear',517,2,3,'author.novel.apply',0,NULL),(529,1,'ส่งบทความ','aritcle',92,1,3,'',0,NULL),(530,1,'ตรวจสอบต้นฉบับที่ส่งมา','aritcle_list',529,0,1,'author.article.list',0,NULL),(531,1,'ลบคำขอตอน','del',530,2,5,'author.chapter.apply',0,NULL),(532,1,'ลบคำขอบทความ','del',530,2,1,'author.article.apply',0,NULL),(533,1,'ดำเนินการล้างคำขอบทความ','clear',530,2,2,'author.article.apply',0,NULL),(534,1,'ตรวจสอบคำขอบทความ','status',530,2,3,'author.article.apply',0,NULL),(535,0,'ปฏิเสธการแก้ไขบทความ','refuse_author_article_edit',530,0,4,'system.apply.refuse',0,NULL),(536,1,'ปฏิเสธการแก้ไขบทความ','refuse_author_article_editarticle',530,2,10,'system.apply',0,NULL),(537,1,'ดำเนินการสร้างหน้าแรก HTML','index',15,2,1,'system.seo.html',0,NULL),(538,1,'ดำเนินการดึงหมวดหมู่โมดูล','gettype',15,2,2,'system.seo.html',0,NULL),(539,1,'ดำเนินการสร้างเนื้อหา HTML','content',15,2,3,'system.seo.html',0,NULL),(540,1,'ดำเนินการสร้างรายการ HTML','list',15,2,4,'system.seo.html',0,NULL),(541,1,'ดำเนินการสร้างหน้าแรกหมวดหมู่ HTML','tindex',15,2,5,'system.seo.html',0,NULL),(542,1,'ดำเนินการสร้างสารบัญ HTML','menu',15,2,6,'system.seo.html',0,NULL),(543,1,'สร้างแผนผังเว็บไซต์','sitemap',12,0,4,'system.seo.sitemap',0,'fa-sitemap'),(544,1,'สร้าง RSS','rss',12,0,5,'system.seo.rss',0,'fa-rss '),(545,1,'ดำเนินการสร้างแผนผังเว็บไซต์','sitemap',543,2,1,'system.seo.sitemap',0,NULL),(546,1,'ดำเนินการดึงหมวดหมู่โมดูล','gettype',544,2,1,'system.seo.sitemap',0,NULL),(547,1,'ดำเนินการสร้างหน้าแรก RSS','rss',544,2,2,'system.seo.sitemap',0,NULL),(548,1,'ดำเนินการสร้างรายการ RSS','list',544,2,3,'system.seo.sitemap',0,NULL),(549,1,'อัปเดตการตั้งค่า','update',2,0,7,'system.config.update',0,'fa-refresh'),(550,1,'ดำเนินการอัปเดตการตั้งค่า','update',549,2,1,'system.config.config',0,NULL),(551,1,'ดำเนินการอัปโหลดข้อผิดพลาดอัตโนมัติ','autoupload',254,2,3,'system.safe.errlog',0,NULL),(552,1,'บริการคลาวด์','cloud',0,0,6,NULL,0,'fa-cloud'),(553,1,'จัดการเวอร์ชัน','version',552,1,1,NULL,0,'fa-random'),(554,1,'รายงานบั๊ก','bug',552,1,2,NULL,0,'fa-bug'),(555,1,'บันทึกข้อผิดพลาด','err',552,1,3,NULL,0,'fa-archive'),(556,1,'อัปเกรดออนไลน์','update',553,0,1,'cloud.version.update',0,' fa-cloud-upload'),(557,1,'ข้อเสนอแนะทั้งเครือข่าย','all',554,0,1,'cloud.bug.all',0,'fa-files-o '),(558,1,'ข้อเสนอแนะของฉัน','my',554,0,2,'cloud.bug.my',0,'fa-sticky-note-o '),(559,1,'ข้อผิดพลาดของฉัน','my',555,0,1,'cloud.err.my',0,'fa-bug'),(560,1,'อัปโหลดบันทึกข้อผิดพลาด','upload',254,2,4,'system.safe.errlog',0,NULL),(561,1,'ดำเนินการดึงหมวดหมู่ข้อเสนอแนะ','gettype',557,2,1,'cloud.bug',0,NULL),(562,1,'ดำเนินการดึงรายการข้อเสนอแนะ','getlist',557,2,2,'cloud.bug',0,NULL),(563,1,'ดูรายละเอียดข้อเสนอแนะ','detail',557,0,1,'cloud.bug.detail',0,NULL),(564,1,'ส่งข้อเสนอแนะใหม่','add',558,0,1,'cloud.bug.add',0,NULL),(565,1,'ส่งข้อเสนอแนะใหม่','add',564,2,3,'cloud.bug',0,NULL),(566,1,'ดำเนินการดึงรายการข้อผิดพลาด','getlist',559,2,1,'cloud.err',0,NULL),(567,1,'ดำเนินการดึงเวอร์ชันถัดไปล่าสุด','getnext',559,2,1,'cloud.version',0,NULL),(568,1,'อัปเกรด','update',559,2,2,'cloud.version',0,NULL),(569,1,'ดำเนินการดึงความคืบหน้า','getbarline',559,2,3,'cloud.version',0,NULL),(570,0,'แก้ไขระดับผู้แต่ง','update',104,2,2,'author.level',0,NULL),(571,0,'ลบระดับผู้แต่ง','del',104,2,4,'author.level',0,NULL),(572,1,'เพิ่มระดับผู้แต่ง','add',104,0,0,'author.level.author.edit',0,NULL),(573,1,'ดำเนินการเพิ่มระดับผู้แต่ง','add',104,2,1,'author.level',0,NULL),(574,1,'แก้ไขระดับผู้แต่งทั้งหมด','upall',104,2,3,'author.level',0,NULL),(575,1,'เพิ่มระดับการเซ็นสัญญา','add',105,0,1,'author.level.sign.edit',0,NULL),(576,1,'แก้ไขระดับสัญญา','update',105,2,0,'author.sign',0,NULL),(577,1,'ลบระดับสัญญา','del',105,2,2,'author.sign',0,NULL),(578,1,'ดำเนินการเพิ่มระดับการเซ็นสัญญา','add',105,2,3,'author.sign',0,NULL),(579,0,'แก้ไขระดับสัญญาทั้งหมด','upall',105,2,4,'author.sign',0,NULL),(589,0,'แก้ไขไอเทม','propsedit',582,0,4,'props.props.edit',0,NULL),(580,1,'ไอเทมให้ทิป','props',92,1,8,NULL,0,NULL),(581,1,'เพิ่มไอเท็ม','propsadd',580,0,3,'props.props.edit',0,NULL),(582,1,'รายการไอเท็ม','propslist',580,0,4,'props.props.list',0,NULL),(583,1,'เพิ่มหมวดหมู่','typeadd',580,0,1,'props.type.edit',0,NULL),(584,1,'รายการหมวดหมู่','typelist',580,0,2,'props.type.list',0,NULL),(585,0,'ดำเนินการเพิ่มหมวดหมู่','add',583,2,1,'props.type',0,NULL),(586,0,'แก้ไขหมวดหมู่','edit',584,2,2,'props.type',0,NULL),(587,1,'ลบหมวดหมู่','del',584,2,1,'props.type',0,NULL),(588,0,'แก้ไขหมวดหมู่','typeedit',584,0,3,'props.type.edit',0,NULL),(590,0,'ดำเนินการเพิ่มไอเท็ม','add',581,2,1,'props.props',0,NULL),(591,0,'แก้ไขไอเทม','edit',589,2,1,'props.props',0,NULL),(592,0,'ลบไอเทม','del',582,2,1,'props.props',0,NULL),(593,0,'แก้ไขสถานะไอเทม','status',582,2,2,'props.props',0,NULL),(594,1,'ประวัติการขาย','selllist',580,0,5,'props.sell.list',0,NULL),(595,0,'ลบประวัติการขาย','del',594,2,1,'props.sell',0,NULL),(596,0,'เซ็นสัญญาออนไลน์','add',80,0,5,'novel.sign.add',0,NULL),(597,0,'เปิดขาย','add',80,0,6,'novel.sell.add',0,NULL),(598,0,'เซ็นสัญญาออนไลน์','add',596,2,1,'novel.sign',0,NULL),(599,0,'เปิดขาย','add',597,2,1,'novel.sell',0,NULL),(600,0,'ปิดการขาย','remove',597,2,2,'novel.sell',0,NULL),(601,1,'จัดการรหัสบัตร','card',107,1,7,'',0,'fa-credit-card'),(602,1,'เพิ่มรหัสการ์ด','cardcreate',601,0,1,'user.card.create',0,'fa-list-ol'),(603,1,'รายการรหัสบัตร','cardlist',601,0,2,'user.card.list',0,'fa-cc-mastercard'),(604,0,'สร้างรหัสบัตร','create',602,2,1,'user.card',0,NULL),(605,1,'ดาวน์โหลดรหัสบัตร','carddown',601,0,3,'data.file.list&path=files/card',0,'fa-download'),(606,0,'ดาวน์โหลดไฟล์','down',366,2,5,'data.file',0,NULL),(607,0,'ลบรหัสบัตร','del',603,2,1,'user.card',0,NULL),(608,0,'ดำเนินการล้างรหัสการ์ด','clear',603,2,2,'user.card',0,NULL),(609,1,'การโต้ตอบของแฟนคลับ','',74,1,5,NULL,0,NULL),(610,1,'ประวัติการให้ทิป','fansreward',609,0,2,'novel.fans.reward',0,NULL),(611,1,'ประวัติการแนะนำ','fansticket',609,0,3,'novel.fans.ticket',0,NULL),(612,1,'ประวัติการติดตาม','fanssub',609,0,4,'novel.fans.sub',0,NULL),(613,1,'ระดับแฟนคลับ','fanslevel',609,0,1,'novel.fans.level',0,NULL),(614,0,'ลบประวัติการให้ทิป','delreward',610,2,1,'novel.fans',0,NULL),(615,0,'ดำเนินการล้างประวัติการให้รางวัล','clearreward',610,2,2,'novel.fans',0,NULL),(616,0,'ลบประวัติการแนะนำ','delticket',611,2,3,'novel.fans',0,NULL),(617,0,'ดำเนินการล้างประวัติการแนะนำ','clearticket',611,2,4,'novel.fans',0,NULL),(618,0,'ลบประวัติการติดตาม','delsub',612,2,5,'novel.fans',0,NULL),(619,0,'ดำเนินการล้างประวัติการติดตาม','clearsub',612,2,6,'novel.fans',0,NULL),(620,0,'เพิ่มระดับแฟนนิยาย','leveladd',613,2,7,'novel.fans',0,NULL),(621,0,'แก้ไขระดับแฟนนิยาย','leveledit',613,2,8,'novel.fans',0,NULL),(622,0,'ลบระดับแฟนนิยาย','leveldel',613,2,9,'novel.fans',0,NULL),(623,1,'ตั้งค่าการเงิน','config',99,0,8,'finance.set.config',0,'fa-krw'),(624,1,'ระดับเติมเงิน','level',99,0,5,'finance.level',0,'fa-align-center'),(626,0,'ดำเนินการตั้งค่าการเงิน','edit',623,2,1,'finance.config',0,NULL),(627,0,'เพิ่มระดับเติมเงิน','leveladd',624,2,1,'finance.level',0,NULL),(628,0,'แก้ไขระดับเติมเงิน','leveledit',624,2,2,'finance.level',0,NULL),(629,0,'ลบระดับเติมเงิน','leveldel',624,2,3,'finance.level',0,NULL),(630,0,'ลบประวัติการเงิน','del',101,2,1,'finance.finance',0,NULL),(631,0,'ดำเนินการล้างประวัติการเปลี่ยนแปลงเงิน','clear',101,2,2,'finance.finance',0,NULL),(632,1,'ประวัติการใช้งาน','log',601,0,3,'user.card.log',0,'fa-slack'),(633,0,'ลบประวัติใช้บัตร','del',632,2,1,'user.cardlog',0,NULL),(634,0,'ดำเนินการล้างประวัติการใช้บัตร','clear',632,2,2,'user.cardlog',0,NULL),(635,0,'ลบประวัติการเติมเงิน','del',102,2,1,'finance.order.charge',0,NULL),(636,0,'ดำเนินการล้างประวัติการเติมเงิน','clear',102,2,2,'finance.order.charge',0,NULL),(637,0,'ลบคำขอถอนเงิน','del',100,2,1,'finance.order.cash',0,NULL),(638,0,'ดำเนินการล้างคำขอถอนเงิน','clear',100,2,2,'finance.order.cash',0,NULL),(639,0,'ดำเนินการคำขอถอนเงิน','status',100,2,3,'finance.order.cash',0,NULL),(640,0,'ดูรายละเอียดบทความที่ส่งเข้ามา','refuse_author_article_edit',530,0,1,'system.apply.detail',0,NULL),(641,1,'ส่งลิงก์','urlpost',12,0,3,'system.seo.urlpost',0,'fa-compress'),(642,0,'ดำเนินการส่งลิงก์','post',641,2,1,'system.seo.urlpost',0,NULL),(643,1,'จัดการอีโมจิ','face',130,1,2,'',0,'fa-drupal'),(644,1,'ติดตั้งอีโมจิ','install',643,0,1,'operate.face.install',0,'fa-tripadvisor'),(645,0,'ดำเนินการติดตั้งอีโมจิ','install',644,2,1,'operate.face',0,NULL),(646,1,'ยืนยันการเข้าสู่ระบบ','code',22,0,3,'system.safe.code',3,'codepen'),(647,0,'ดำเนินการตั้งค่ารหัสยืนยัน','config',646,2,1,'system.safe.code',0,NULL),(648,1,'กำหนดค่าเครือข่ายเว็บไซต์','config',662,0,12,'system.site.config',0,'fa-crop'),(649,1,'แก้ไขการตั้งค่าหลายเว็บไซต์','edit',648,2,1,'system.site.config',0,NULL),(650,1,'ติดตั้งโมดูล','module_install',2,0,10,'system.module.install',0,'fa-th-large'),(651,0,'ดำเนินการติดตั้งโมดูล','install',650,2,1,'system.module.install',0,NULL),(652,1,'ตั้งค่านักพัฒนา','development',22,0,1,'system.dev.config',0,'fa-connectdevelop'),(653,0,'ตั้งค่านักพัฒนา','config',652,2,1,'system.dev.config',0,NULL),(654,1,'หน้าข้อผิดพลาด','errpage',12,0,14,'system.seo.errpage',0,'fa-pagelines'),(655,1,'บันทึกสไปเดอร์','spider',12,0,15,'system.seo.spider',0,'fa-opencart'),(656,0,'ลบหน้าข้อผิดพลาด','del',654,2,1,'system.seo.errpage',0,NULL),(657,0,'ดำเนินการล้างหน้าข้อผิดพลาด','clear',654,2,2,'system.seo.errpage',0,NULL),(658,0,'ลบหน้าข้อผิดพลาด','del',655,2,1,'system.seo.spider',0,NULL),(659,0,'ดำเนินการล้างหน้าข้อผิดพลาด','clear',655,2,2,'system.seo.spider',0,NULL),(660,1,'กราฟหน้าข้อผิดพลาด','errpage',162,0,3,'data.chart.errpage',0,NULL),(661,1,'กราฟบันทึกสไปเดอร์','spider',162,0,4,'data.chart.spider',0,NULL),(662,1,'จัดการเครือข่ายเว็บไซต์','site',1,0,5,NULL,0,'fa-object-group'),(663,1,'จัดการเว็บไซต์ภายใน','site',662,0,1,'system.site.site',0,'fa-indent'),(664,1,'จัดการเว็บไซต์ภายนอก','product',662,0,2,'system.site.product',0,'fa-dedent'),(665,0,'เพิ่มเว็บไซต์ภายนอก','add',664,0,1,'system.site.product.edit',0,NULL),(666,0,'แก้ไขเว็บไซต์ภายนอก','edit',664,0,2,'system.site.product.edit',0,NULL),(667,0,'ลบเว็บไซต์ภายนอก','del',664,2,1,'system.site.product',0,NULL),(668,0,'ดำเนินการล้างเว็บไซต์ภายนอก','clear',664,2,2,'system.site.product',0,NULL),(669,0,'ดำเนินการเพิ่มเว็บไซต์ภายนอก','add',665,2,1,'system.site.product',0,NULL),(670,0,'ดำเนินการแก้ไขเว็บไซต์ภายนอก','edit',666,2,1,'system.site.product',0,NULL),(671,0,'ดำเนินการทดสอบเว็บไซต์ภายนอก','test',665,2,2,'system.site.product',0,NULL),(672,0,'เพิ่มเว็บไซต์ภายใน','add',663,0,1,'system.site.site.edit',0,NULL),(673,0,'แก้ไขเว็บไซต์ภายใน','edit',663,0,2,'system.site.site.edit',0,NULL),(674,0,'ลบเว็บไซต์ในระบบ','del',663,2,1,'system.site.site',0,NULL),(675,0,'ดำเนินการล้างเว็บไซต์ภายใน','clear',663,2,2,'system.site.site',0,NULL),(676,0,'ดำเนินการเพิ่มเว็บไซต์ภายใน','add',672,2,1,'system.site.site',0,NULL),(677,0,'ดำเนินการแก้ไขเว็บไซต์ภายใน','edit',673,2,1,'system.site.site',0,NULL),(678,0,'ดำเนินการตรวจสอบเว็บไซต์ภายใน','status',663,2,3,'system.site.site',0,NULL),(679,0,'ดำเนินการตรวจสอบเว็บไซต์ภายนอก','status',664,2,3,'system.site.product',0,NULL),(680,1,'เงื่อนไขการค้นหา','novel_list',87,0,4,'system.retrieval.list',1,NULL),(681,0,'ลบการสืบค้น','novel_del',680,2,1,'system.retrieval',0,NULL),(682,0,'ตรวจสอบการสืบค้น','novel_status',680,2,2,'system.retrieval',0,NULL),(683,0,'แก้ไขการค้นหา','novel_edit',680,0,3,'system.retrieval.edit',0,NULL),(684,0,'เพิ่มการค้นหา','novel_add',680,0,4,'system.retrieval.edit',0,NULL),(685,0,'ดำเนินการเพิ่มการค้นหา','novel_add',684,2,1,'system.retrieval',0,NULL),(686,0,'ดำเนินการแก้ไขการค้นหา','novel_edit',683,2,1,'system.retrieval',0,NULL),(687,1,'ค้นหาหมวดหมู่','novel_type',87,0,3,'system.retrieval.type',1,NULL),(688,0,'แก้ไขหมวดหมู่','novel_type',687,2,1,'system.retrieval',0,NULL),(689,0,'แก้ไขสถานะหมวดหมู่','novel_typestatus',687,2,2,'system.retrieval',0,NULL),(690,1,'เพิ่มบริการอีเมล','add',173,0,1,'system.email.email.edit',0,NULL),(691,1,'แก้ไขบริการอีเมล','edit',173,0,2,'system.email.email.edit',0,NULL),(692,0,'ดำเนินการเพิ่มบริการอีเมล','add',690,2,11,'system.email.email',0,NULL),(693,0,'ดำเนินการแก้ไขบริการอีเมล','edit',691,2,1,'system.email.email',0,NULL),(694,0,'เปลี่ยนสถานะบริการอีเมล','status',173,2,3,'system.email.email',0,NULL),(695,0,'ดำเนินการลบบริการอีเมล','del',173,2,4,'system.email.email',0,NULL),(696,1,'เพิ่มเทมเพลตอีเมล','add',173,0,7,'system.email.temp.edit',0,NULL),(697,1,'แก้ไขเทมเพลตอีเมล','edit',173,0,8,'system.email.temp.edit',0,NULL),(698,0,'ดำเนินการเพิ่มเทมเพลตอีเมล','add',696,2,1,'system.email.temp',0,NULL),(699,0,'ดำเนินการแก้ไขเทมเพลตอีเมล','edit',697,2,1,'system.email.temp',0,NULL),(700,0,'เปลี่ยนสถานะเทมเพลตอีเมล','status',173,2,9,'system.email.temp',0,NULL),(701,0,'ดำเนินการลบเทมเพลตอีเมล','del',173,2,10,'system.email.temp',0,NULL),(702,1,'บันทึกอีเมล','emaillog',22,0,13,'system.safe.emaillog',0,'fa-university'),(703,1,'รายละเอียดบันทึกอีเมล','detail',702,0,1,'system.safe.emaillog.detail',0,NULL),(704,0,'ลบบันทึกอีเมล','del',702,2,1,'system.safe.emaillog',0,NULL),(705,0,'ดำเนินการล้างบันทึกอีเมล','clear',702,2,2,'system.safe.emaillog',0,NULL),(706,1,'ประวัติการอ่าน','list',609,0,5,'novel.fans.read',0,NULL),(707,0,'ลบประวัติการอ่าน','novel_del',706,2,1,'user.read',0,NULL),(708,0,'ล้างประวัติการอ่าน','novel_clear',706,2,2,'user.read',0,NULL),(709,0,'แนะนำคำค้น','rec',137,2,3,'operate.search',0,NULL),(710,1,'เครื่องมือนักพัฒนา','development',1,0,10,NULL,0,'fa-joomla'),(711,1,'เพิ่มหน้า','addpage',710,0,1,'system.dev.addpage',0,'fa-bookmark'),(712,0,'ดำเนินการเพิ่มหน้า','add',711,2,1,'system.dev.addpage',0,NULL),(713,1,'กราฟสถิติการเงิน','finance',162,0,5,'data.chart.finance',0,NULL),(714,1,'หน้าแรกเริ่มต้น','default_index',9,0,4,'system.menu.default_index',0,'fa-list-ul'),(715,0,'ดำเนินการตั้งหน้าแรกเริ่มต้น','default_index',714,0,1,'system.menu.menu',0,NULL),(716,0,'ประวัติการขาย','sell_log',609,0,10,'novel.sell.log',0,NULL),(717,1,'แอปคลาวด์','apps',552,1,0,NULL,0,'fa-cubes'),(718,1,'ปลั๊กอินของฉัน','plugin',717,0,2,'cloud.apps.plugin',0,'fa-plug'),(719,0,'ติดตั้งปลั๊กอิน','install',718,2,1,'cloud.apps.plugin',0,NULL),(720,0,'ถอนการติดตั้งปลั๊กอิน','uninstall',718,2,2,'cloud.apps.plugin',0,NULL),(721,0,'จัดการปลั๊กอิน','manager',718,0,1,'cloud.apps.plugin.manager',0,NULL),(722,0,'หน้าแรกปลั๊กอิน','index',721,0,1,'cloud.apps.plugin.index',0,NULL),(723,0,'จัดการธุรกิจปลั๊กอิน','business',721,0,2,'cloud.apps.plugin.business',0,NULL),(724,0,'แก้ไขการตั้งค่าปลั๊กอิน','config',723,2,1,'cloud.apps.plugin',0,NULL),(725,0,'ทดสอบสร้างลายน้ำ','water_test',5,2,2,'system.set.water',0,NULL),(726,1,'เพิ่มหมวดหมู่','type_add',149,0,1,'operate.zt.typeedit',0,'fa-plus-circle'),(727,1,'รายการหมวดหมู่','type_list',149,0,2,'operate.zt.typelist',0,'fa-indent'),(728,0,'เพิ่มหมวดหมู่','type_add',726,2,1,'operate.zt.type',0,NULL),(729,0,'แก้ไขหมวดหมู่','type_edit',731,2,1,'operate.zt.type',0,NULL),(730,0,'ลบหมวดหมู่','type_del',727,2,2,'operate.zt.type',0,NULL),(731,0,'แก้ไขหมวดหมู่','type_edit',727,0,2,'operate.zt.typeedit',0,NULL),(732,1,'แก้ไขการตั้งค่า','config',149,0,9,'operate.zt.config',0,'fa-wrench'),(733,0,'แก้ไขการตั้งค่า','config_edit',732,2,1,'operate.zt.config',0,NULL),(734,1,'เพิ่มหมวดหมู่','type_add',141,0,1,'operate.flash.typeedit',0,'fa-plus-circle'),(735,0,'แก้ไขหมวดหมู่','type_edit',736,0,2,'operate.flash.typeedit',0,NULL),(736,1,'รายการหมวดหมู่','type_list',141,0,2,'operate.flash.typelist',0,'fa-indent'),(737,0,'เพิ่มหมวดหมู่','type_add',734,2,1,'operate.flash.type',0,NULL),(738,0,'แก้ไขหมวดหมู่','type_edit',735,2,1,'operate.flash.type',0,NULL),(739,0,'ลบหมวดหมู่','type_del',736,2,2,'operate.flash.type',0,NULL),(740,0,'เพิ่มฟรีชั่วคราว','add',80,0,7,'novel.timelimit.edit',0,NULL),(741,0,'ดำเนินการเพิ่มฟรีชั่วคราว','add',740,2,1,'novel.timelimit',0,NULL),(742,1,'ฟรีชั่วคราว','timelimit',78,0,4,'novel.timelimit.list',0,NULL),(743,0,'แก้ไขฟรีชั่วคราว','edit',742,0,1,'novel.timelimit.edit',0,NULL),(744,0,'ดำเนินการแก้ไขฟรีชั่วคราว','edit',743,2,1,'novel.timelimit',0,NULL),(745,0,'ลบโปรฟรีชั่วคราว','del',742,2,2,'novel.timelimit',0,NULL),(746,0,'ตั้งค่าสวัสดิการ','welfare',80,0,7,'novel.sell.welfare',0,NULL),(747,0,'ดำเนินการตั้งค่าสวัสดิการ','edit',746,2,1,'novel.sell.welfare',0,NULL),(748,0,'สถิติการชำระบัญชี','settlement',80,0,8,'novel.sell.settlement',0,NULL),(749,0,'ดำเนินการคำขอชำระบัญชี','apply',748,2,1,'novel.sell.settlement',0,NULL),(750,1,'คำขอการเงิน','apply_list',99,0,0,'finance.apply.list',0,'fa-gg'),(751,0,'รายละเอียดคำขอการเงิน','apply_detail',750,0,1,'finance.apply.detail',0,NULL),(752,0,'ดำเนินการจัดการคำขอการเงิน','status',751,2,1,'finance.apply',0,NULL),(753,0,'ดำเนินการลบคำขอการเงิน','del',750,2,1,'finance.apply',0,NULL),(754,0,'ดำเนินการล้างคำขอการเงิน','clear',750,2,2,'finance.apply',0,NULL),(755,1,'เพิ่ม API','addapi',710,0,2,'system.dev.addapi',0,'fa-random'),(756,0,'เพิ่ม API','add',755,2,1,'system.dev.addapi',0,NULL),(757,1,'รูปแบบ URL','urlmode',12,0,1,'system.seo.urlmode',0,'fa-link'),(758,0,'บันทึกรูปแบบ URL','config',757,2,1,'system.seo.urlmode',0,NULL),(759,1,'ร่วมศึกษาความต้องการ','list',554,0,3,'cloud.together.list',0,'fa-houzz'),(760,0,'ดำเนินการดึงรายการความต้องการ','getlist',759,2,1,'cloud.together',0,NULL),(761,0,'ดำเนินการความต้องการ','operation',759,2,2,'cloud.together',0,NULL),(762,1,'รายละเอียดความต้องการ','detail',759,0,1,'cloud.together.detail',0,NULL),(763,0,'ดำเนินการดึงรายละเอียดความต้องการ','detail',762,2,1,'cloud.together',0,NULL),(764,1,'ส่งข้อเสนอความต้องการ','add',759,0,2,'cloud.together.add',0,NULL),(765,0,'ส่งข้อเสนอความต้องการ','add',764,2,1,'cloud.together',0,NULL),(766,0,'อัปโหลด txt','upload',84,0,10,'novel.txt.upload',0,NULL),(767,0,'รีเซ็ตไฟล์ TXT','init',766,2,1,'novel.txt',0,NULL),(768,0,'ลบ TXT ที่อัปโหลด','del',766,2,2,'novel.txt',0,NULL),(769,0,'นำเข้า TXT','import',766,2,3,'novel.txt',0,NULL),(770,1,'ศูนย์แอป','apps',717,0,1,'cloud.apps.index',0,'fa-th'),(771,0,'ติดตั้งแอป','install',770,2,1,'cloud.apps',0,NULL),(772,1,'แผนงานสแตติก','html_plan',12,0,3,'system.seo.html_plan.list',0,'fa-file-text-o'),(773,0,'ดำเนินการเพิ่มแผนงานสแตติก','add',772,2,1,'system.seo.html_plan',0,NULL),(774,0,'ลบแผนงานสแตติก','del',772,2,2,'system.seo.html_plan',0,NULL),(775,0,'รันแผนงานสแตติก','run',772,2,3,'system.seo.html_plan',0,NULL),(776,1,'บัญชีทางการ WeChat','weixin',130,1,2,NULL,0,'fa-weixin'),(777,1,'รายการบัญชีทางการ','account_list',776,0,1,'operate.weixin.account.list',0,'fa-list'),(778,0,'เพิ่มบัญชีทางการ','add',777,0,2,'operate.weixin.account.edit',0,NULL),(779,0,'แก้ไขบัญชีทางการ','edit',777,0,2,'operate.weixin.account.edit',0,NULL),(780,0,'ดำเนินการเพิ่มบัญชีทางการ','add',778,2,1,'operate.weixin.account',0,NULL),(781,0,'ดำเนินการแก้ไขบัญชีทางการ','edit',779,2,2,'operate.weixin.account',0,NULL),(782,0,'ลบบัญชีทางการ','del',777,2,3,'operate.weixin.account',0,NULL),(783,0,'ตรวจสอบบัญชีทางการ','status',777,2,4,'operate.weixin.account',0,NULL),(784,0,'ดำเนินการตรวจสอบบัญชีทางการ','check',777,2,5,'operate.weixin.account',0,NULL),(785,0,'ดำเนินการตั้งเป็นบัญชีหลัก','main',777,2,6,'operate.weixin.account',0,NULL),(786,1,'เมนูกำหนดเอง','menu_list',776,0,2,'operate.weixin.menu.list',0,'fa-medium'),(787,0,'เพิ่มเมนูกำหนดเอง','add',786,0,2,'operate.weixin.menu.edit',0,NULL),(788,0,'แก้ไขเมนูกำหนดเอง','edit',786,0,2,'operate.weixin.menu.edit',0,NULL),(789,0,'ดำเนินการเพิ่มเมนูกำหนดเอง','add',787,2,1,'operate.weixin.menu',0,NULL),(790,0,'ดำเนินการแก้ไขเมนูกำหนดเอง','edit',788,2,2,'operate.weixin.menu',0,NULL),(791,0,'ลบเมนูกำหนดเอง','del',786,2,3,'operate.weixin.menu',0,NULL),(792,0,'ตรวจสอบเมนูกำหนดเอง','status',786,2,4,'operate.weixin.menu',0,NULL),(793,0,'ส่งเมนูกำหนดเอง','push',786,2,5,'operate.weixin.menu',0,NULL),(794,0,'คัดลอกเมนูกำหนดเอง','copy',786,2,6,'operate.weixin.menu',0,NULL),(795,0,'คัดลอกเมนูกำหนดเอง','copy',786,0,3,'operate.weixin.menu.copy',0,NULL),(796,1,'ตอบกลับอัตโนมัติ','autoreply_list',776,0,3,'operate.weixin.autoreply.list',0,'fa-retweet'),(797,0,'เพิ่มการตอบกลับอัตโนมัติ','add',796,0,2,'operate.weixin.autoreply.edit',0,NULL),(798,0,'แก้ไขการตอบกลับอัตโนมัติ','edit',796,0,2,'operate.weixin.autoreply.edit',0,NULL),(799,0,'คัดลอกตอบกลับอัตโนมัติ','copy',796,0,3,'operate.weixin.autoreply.copy',0,NULL),(800,0,'ดำเนินการเพิ่มการตอบกลับอัตโนมัติ','add',797,2,1,'operate.weixin.autoreply',0,NULL),(801,0,'ดำเนินการแก้ไขการตอบกลับอัตโนมัติ','edit',798,2,2,'operate.weixin.autoreply',0,NULL),(802,0,'ลบตอบกลับอัตโนมัติ','del',796,2,3,'operate.weixin.autoreply',0,NULL),(803,0,'ตรวจสอบตอบกลับอัตโนมัติ','status',796,2,4,'operate.weixin.autoreply',0,NULL),(804,0,'คัดลอกตอบกลับอัตโนมัติ','copy',799,2,5,'operate.weixin.autoreply',0,NULL),(805,1,'จัดการการแจ้งเตือน','msg_list',776,0,5,'operate.weixin.msg.list',0,'fa-comment-o'),(806,0,'ลบข้อความ','del',805,2,1,'operate.weixin.msg',0,NULL),(807,0,'ดูรายละเอียดการแจ้งเตือน','detail',805,0,2,'operate.weixin.msg.detail',0,NULL),(808,1,'จัดการสื่อ','media_list',776,0,4,'operate.weixin.media.list',0,'fa-paperclip'),(809,0,'ดูรายละเอียดสื่อ','detail',808,0,2,'operate.weixin.media.detail',0,NULL),(810,0,'ลบสื่อ','del',808,2,1,'operate.weixin.media',0,NULL),(811,0,'เพิ่มสื่อ','add',808,0,1,'operate.weixin.media.edit',0,NULL),(812,0,'ดำเนินการเพิ่มสื่อ','add',811,2,2,'operate.weixin.media',0,NULL),(813,1,'จัดการแฟนคลับ','media_list',776,0,6,'operate.weixin.fans.list',0,'fa-street-view'),(814,0,'ดูรายละเอียดแฟนคลับ','detail',813,0,2,'operate.weixin.fans.detail',0,NULL),(815,0,'ลบแฟนคลับ','del',813,2,1,'operate.weixin.fans',0,NULL),(816,0,'เลือกสื่อกลับมา','lookup',808,0,1,'operate.weixin.media.lookup',0,NULL),(817,1,'เงื่อนไขการค้นหา','app_list',68,0,5,'system.retrieval.list',1,NULL),(818,0,'ลบการสืบค้น','app_del',817,2,1,'system.retrieval',0,NULL),(819,0,'ตรวจสอบการสืบค้น','app_status',817,2,2,'system.retrieval',0,NULL),(820,0,'แก้ไขการค้นหา','app_edit',817,0,3,'system.retrieval.edit',0,NULL),(821,0,'เพิ่มการค้นหา','app_add',817,0,4,'system.retrieval.edit',0,NULL),(822,0,'ดำเนินการเพิ่มการค้นหา','app_add',821,2,1,'system.retrieval',0,NULL),(823,0,'ดำเนินการแก้ไขการค้นหา','app_edit',820,2,1,'system.retrieval',0,NULL),(824,1,'ค้นหาหมวดหมู่','app_type',68,0,4,'system.retrieval.type',1,NULL),(825,0,'แก้ไขหมวดหมู่','app_type',823,2,1,'system.retrieval',0,NULL),(826,0,'แก้ไขสถานะหมวดหมู่','app_typestatus',823,2,2,'system.retrieval',0,NULL),(827,0,'ดูรายละเอียดการแจ้งเตือนผู้ใช้','detail',116,0,2,'user.msg.detail',0,NULL),(828,1,'เพิ่มปลั๊กอิน','addplugin',710,0,3,'system.dev.addplugin',0,'fa-slack'),(829,0,'ดำเนินการเพิ่มปลั๊กอิน','plugin_add',828,2,1,'system.dev.addplugin',0,NULL),(830,0,'ดำเนินการเพิ่มการตั้งค่าปลั๊กอิน','config_add',828,2,2,'system.dev.addplugin',0,NULL),(831,0,'ดำเนินการดึงการตั้งค่าปลั๊กอิน','getpluginconfig',828,2,3,'system.dev.addplugin',0,NULL),(832,0,'ลบการตั้งค่าปลั๊กอิน','config_del',828,2,4,'system.dev.addplugin',0,NULL),(833,0,'อัปเดตแอป','update',718,2,3,'cloud.apps',0,NULL),(834,1,'คลังคำต้องห้าม','shield',22,0,22,'system.safe.shield',0,'fa-font'),(835,0,'แก้ไขคลังคำต้องห้าม','config',834,2,1,'system.safe.shield',0,NULL),(836,0,'ลงโทษผู้ใช้','punish',110,0,4,'user.punish.punish',0,NULL),(837,0,'ดำเนินการลงโทษผู้ใช้','punish',836,2,1,'user.punish',0,NULL),(838,0,'ดำเนินการยกเลิกโทษผู้ใช้','unpunish',836,2,2,'user.punish',0,NULL),(839,1,'ประวัติการลงโทษ','punishlist',108,0,5,'user.punish.list',0,'fa-user-times'),(840,0,'ลบบทลงโทษผู้ใช้','del',839,2,1,'user.punish',0,NULL),(841,1,'เทมเพลตการแจ้งเตือน','msglist',245,0,5,'system.config.msg.list',0,'fa-envelope-o'),(842,0,'เพิ่มเทมเพลตการแจ้งเตือน','add',841,0,1,'system.config.msg.edit',0,NULL),(843,0,'แก้ไขเทมเพลตการแจ้งเตือน','edit',841,0,2,'system.config.msg.edit',0,NULL),(844,0,'ดำเนินการเพิ่มเทมเพลตการแจ้งเตือน','add',842,2,1,'system.config.msg',0,NULL),(845,0,'ดำเนินการแก้ไขเทมเพลตการแจ้งเตือน','edit',843,2,1,'system.config.msg',0,NULL),(846,0,'ลบเทมเพลตข้อความ','del',841,2,1,'system.config.msg',0,NULL),(871,1,'จัดการแท็ก','novel_tags',103,0,4,'system.tags.list',1,NULL),(870,0,'ลบบันทึกข้อมูล','del',867,2,1,'system.safe.msglog',0,NULL),(869,0,'ล้างบันทึกข้อมูล','clear',867,2,2,'system.safe.msglog',0,NULL),(868,1,'บันทึกข้อมูล','msglog',22,0,12,'system.safe.msglog',0,'fa-commenting'),(867,1,'บันทึก SMS','smslog',22,0,14,'system.set.smslog',0,'fa-envelope'),(853,1,'ตั้งค่า SMS','sms',245,0,6,'system.set.sms',0,'fa-envelope'),(854,1,'เพิ่มเทมเพลต SMS','add',853,0,1,'system.set.sms.edit',0,NULL),(855,1,'แก้ไขเทมเพลต SMS','edit',853,0,2,'system.set.sms.edit',0,NULL),(856,0,'ดำเนินการเพิ่มเทมเพลต SMS','add',854,2,11,'system.sms',0,NULL),(857,0,'ดำเนินการแก้ไขเทมเพลต SMS','edit',855,2,1,'system.sms',0,NULL),(858,0,'เปลี่ยนสถานะเทมเพลต SMS','status',853,2,3,'system.sms',0,NULL),(859,0,'ดำเนินการลบเทมเพลต SMS','del',853,2,4,'system.sms',0,NULL),(860,0,'ดำเนินการลบบันทึก SMS','del',866,2,4,'system.smslog',0,NULL),(861,0,'ดำเนินการล้างบันทึก SMS','clear',866,2,4,'system.smslog',0,NULL),(862,1,'รายงานยอดขาย','report_list',99,0,0,'finance.report.list',0,'fa-bar-chart-o'),(863,0,'ยืนยันรายงานยอดขาย','confirm',862,2,1,'finance.report',0,NULL),(864,0,'รายงานยอดขายชำระบัญชี','settlement',862,2,2,'finance.report',0,NULL),(865,1,'ประวัติการชำระบัญชี','report_order',99,0,0,'finance.report.order',0,'fa-align-justify'),(866,1,'ดำเนินการหลายตอนพร้อมกัน','batch',86,2,4,'novel.chapter',0,NULL),(872,0,'ลบแท็ก','novel_del',871,2,3,'system.tags',0,NULL),(873,0,'ดำเนินการแนะนำแท็ก','novel_author_rec',871,2,4,'system.tags',0,NULL),(874,0,'แก้ไขแท็ก','novel_edit',871,0,2,'system.tags.edit',0,NULL),(875,0,'เพิ่มแท็ก','novel_add',871,0,1,'system.tags.edit',0,NULL),(876,0,'ดำเนินการเพิ่มแท็ก','novel_add',875,2,1,'system.tags',0,NULL),(877,0,'ดำเนินการแก้ไขแท็ก','novel_edit',874,2,1,'system.tags',0,NULL),(878,0,'ดำเนินการล้างแท็ก','novel_clear',871,2,5,'system.tags',0,NULL),(879,1,'จัดการหมวดหมู่แท็ก','novel_tags_type',103,0,3,'system.tags.type.list',1,NULL),(880,0,'ลบหมวดหมู่แท็ก','novel_del',879,2,3,'system.tags.type',0,NULL),(881,0,'แก้ไขหมวดหมู่แท็ก','novel_edit',879,0,2,'system.tags.type.edit',0,NULL),(882,0,'เพิ่มหมวดหมู่แท็ก','novel_add',879,0,1,'system.tags.type.edit',0,NULL),(883,0,'ดำเนินการเพิ่มหมวดหมู่แท็ก','novel_add',882,2,1,'system.tags.type',0,NULL),(884,0,'ดำเนินการแก้ไขหมวดหมู่แท็ก','novel_edit',881,2,1,'system.tags.type',0,NULL),(885,1,'เสียงพูด TTS','tts_voicet_list',245,0,8,'system.api.ttsvoicet.list',0,'fa-music'),(886,0,'ลบเสียงพูด','tts_voicet_del',885,2,1,'system.api.ttsvoicet',0,NULL),(887,0,'แก้ไขผู้พากย์เสียง','tts_voicet_edit',885,0,2,'system.api.ttsvoicet.edit',0,NULL),(888,0,'เพิ่มผู้พากย์เสียง','tts_voicet_add',885,0,3,'system.api.ttsvoicet.add',0,NULL),(889,0,'ดำเนินการเพิ่มผู้พากย์เสียง','tts_voicet_add',888,2,1,'system.api.ttsvoicet',0,NULL),(890,0,'ดำเนินการแก้ไขผู้พากย์เสียง','tts_voicet_edit',887,2,1,'system.api.ttsvoicet',0,NULL),(891,1,'แก้ไขโมดูล','editor',25,0,7,'',0,'fa-columns'),(892,1,'จัดการกลุ่ม','group',891,1,1,'',0,NULL),(893,1,'รายการกลุ่ม','group_list',892,1,1,'editor.group.list',0,NULL),(894,1,'แก้ไขผู้ดูแลระบบ','editor',891,1,1,'',0,NULL),(895,1,'แก้ไขรายการ','editor_list',894,1,1,'editor.editor.list',0,NULL),(896,0,'เพิ่มกลุ่มบรรณาธิการ','add',893,0,1,'editor.group.edit',0,NULL),(897,0,'ดำเนินการเพิ่มกลุ่มบรรณาธิการ','add',896,2,1,'editor.group',0,NULL),(898,0,'แก้ไขกลุ่มบรรณาธิการ','edit',893,0,2,'editor.group.edit',0,NULL),(899,0,'ดำเนินการแก้ไขกลุ่มบรรณาธิการ','edit',898,2,1,'editor.group',0,NULL),(900,0,'ลบกลุ่มบรรณาธิการ','del',893,2,3,'editor.group',0,NULL),(901,0,'เพิ่มบรรณาธิการ','add',895,0,1,'editor.editor.edit',0,NULL),(902,0,'ดำเนินการเพิ่มบรรณาธิการ','add',901,2,1,'editor.editor',0,NULL),(903,0,'แก้ไขบรรณาธิการ','edit',895,0,1,'editor.editor.edit',0,NULL),(904,0,'แก้ไขบรรณาธิการ','edit',903,2,2,'editor.editor',0,NULL),(905,0,'ตรวจสอบและแก้ไขเร็ว','status',895,2,3,'editor.editor',0,NULL),(906,1,'เชื่อมโยงผลงาน','works_list',894,1,1,'editor.works.list',0,NULL),(907,0,'เพิ่มการเชื่อมโยงผลงาน','add',906,0,1,'editor.works.edit',0,NULL),(908,0,'ดำเนินการเพิ่มการเชื่อมโยงผลงาน','add',907,2,1,'editor.works',0,NULL),(909,0,'แก้ไขการเชื่อมโยงผลงาน','edit',906,0,1,'editor.works.edit',0,NULL),(910,0,'แก้ไขการเชื่อมโยงผลงาน','edit',909,2,2,'editor.works',0,NULL),(911,0,'ลบการเชื่อมโยงผลงาน','del',906,2,3,'editor.works',0,NULL),(912,1,'ตั้งค่าโมดูล','editor',891,1,1,'',0,NULL),(913,1,'ผูกฟังก์ชัน','editor',912,0,9,'system.module.config',1,NULL),(914,0,'ดำเนินการเพิ่มกลุ่มบรรณาธิการ','add',896,2,1,'editor.group',0,NULL),(915,1,'สมาชิกกลุ่ม','editor_bind',892,1,2,'editor.bind.list',0,NULL),(916,0,'เพิ่มสมาชิกในทีม','add',915,0,1,'editor.bind.edit',0,NULL),(917,0,'ดำเนินการเพิ่มสมาชิกในทีม','add',916,2,1,'editor.bind',0,NULL),(918,0,'แก้ไขสมาชิก','edit',915,0,1,'editor.bind.edit',0,NULL),(919,0,'แก้ไขสมาชิก','edit',918,2,2,'editor.bind',0,NULL),(920,0,'ลบสมาชิก','del',915,2,3,'editor.bind',0,NULL);
 DROP TABLE IF EXISTS `wm_system_menu_default`;
 CREATE TABLE `wm_system_menu_default` (
   `default_id` int NOT NULL AUTO_INCREMENT,
-  `default_controller` varchar(30) NOT NULL COMMENT '控制器名字',
-  `default_mid` int NOT NULL COMMENT '管理员id',
+  `default_controller` varchar(30) NOT NULL COMMENT 'ชื่อคอนโทรลเลอร์',
+  `default_mid` int NOT NULL COMMENT 'id ผู้ดูแลระบบ',
   PRIMARY KEY (`default_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 DROP TABLE IF EXISTS `wm_system_menu_quick`;
 CREATE TABLE `wm_system_menu_quick` (
   `quick_id` int NOT NULL AUTO_INCREMENT,
-  `quick_menu_id` int DEFAULT NULL COMMENT '菜单的id',
-  `quick_order` int DEFAULT '9' COMMENT '快捷菜单的显示顺序',
-  `quick_manager_id` int DEFAULT NULL COMMENT '管理员的id',
+  `quick_menu_id` int DEFAULT NULL COMMENT 'id ของเมนู',
+  `quick_order` int DEFAULT '9' COMMENT 'ลำดับการแสดงเมนูลัด',
+  `quick_manager_id` int DEFAULT NULL COMMENT 'id ของผู้ดูแลระบบ',
   PRIMARY KEY (`quick_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='快捷菜单';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='เมนูลัด';
 DROP TABLE IF EXISTS `wm_system_msg_log`;
 CREATE TABLE `wm_system_msg_log` (
   `log_id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `log_status` tinyint(1) DEFAULT '0' COMMENT '使用状态:0=未使用,1已使用,2=已过期',
-  `log_channel` varchar(20) DEFAULT NULL COMMENT '消息渠道',
-  `log_channel_id` int DEFAULT NULL COMMENT '消息日志ID',
-  `log_receive` varchar(50) DEFAULT NULL COMMENT '消息接收人',
-  `log_params` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci COMMENT '消息内容',
-  `log_time` int DEFAULT '0' COMMENT '发送时间',
-  `log_exptime` int DEFAULT '0' COMMENT '过期时间',
+  `log_status` tinyint(1) DEFAULT '0' COMMENT 'สถานะการใช้ 0=ยังไม่ใช้ 1=ใช้แล้ว 2=หมดอายุ',
+  `log_channel` varchar(20) DEFAULT NULL COMMENT 'ช่องทางข้อความ',
+  `log_channel_id` int DEFAULT NULL COMMENT 'ID บันทึกข้อความ',
+  `log_receive` varchar(50) DEFAULT NULL COMMENT 'ผู้รับข้อความ',
+  `log_params` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci COMMENT 'เนื้อหาข้อความ',
+  `log_time` int DEFAULT '0' COMMENT 'เวลาส่ง',
+  `log_exptime` int DEFAULT '0' COMMENT 'เวลาหมดอายุ',
   PRIMARY KEY (`log_id`),
   KEY `index` (`log_channel`,`log_channel_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='信息发送记录索引';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='ดัชนีบันทึกการส่งข้อมูล';
 DROP TABLE IF EXISTS `wm_system_msg_temp`;
 CREATE TABLE `wm_system_msg_temp` (
-  `temp_id` int NOT NULL AUTO_INCREMENT COMMENT '模版的id',
-  `temp_name` varchar(50) NOT NULL COMMENT '模版名字',
-  `temp_module` varchar(20) DEFAULT NULL COMMENT '所属的模块',
-  `temp_key` varchar(50) NOT NULL COMMENT '模版的标识',
-  `temp_content` text NOT NULL COMMENT '发信内容',
+  `temp_id` int NOT NULL AUTO_INCREMENT COMMENT 'ID ของเทมเพลต',
+  `temp_name` varchar(60) NOT NULL COMMENT 'ชื่อเทมเพลต',
+  `temp_module` varchar(20) DEFAULT NULL COMMENT 'โมดูลที่สังกัด',
+  `temp_key` varchar(50) NOT NULL COMMENT 'ตัวระบุของเทมเพลต',
+  `temp_content` mediumtext NOT NULL COMMENT 'เนื้อหาจดหมาย',
   PRIMARY KEY (`temp_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 COMMENT='消息模版表';
-INSERT INTO `wm_system_msg_temp` VALUES (1,'禁止登录','user','user_punish_login','<p>您已经被系统禁止登录，处罚原因：{原因}。</p>'),(2,'禁止发言','user','user_punish_talk','<p>您已经被系统禁止发言，处罚原因：{原因}。</p>'),(3,'解除禁止登录','user','user_punish_unlogin','<p>您已经被系统解除禁止登录，请牢记平台规则，以免再次被封禁。</p>'),(4,'解除禁止发言','user','user_punish_untalk','<p>您已经被系统解除禁言，请牢记平台规则，以免再次被禁言。</p>'),(5,'预警通知_后台登录','all','warning_admin_login','<p>尊敬的管理员：IP{后台登录ip}于{后台登录时间}登录账号{后台登录账号}，登录状态：{后台登录状态}！</p>'),(6,'预警通知_代码报错','all','warning_code_eroor','<p>尊敬的管理员：网站发生错误，{代码报错详情}！</p>');
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางเทมเพลตข้อความ';
+INSERT INTO `wm_system_msg_temp` VALUES (1,'ห้ามเข้าสู่ระบบ','user','user_punish_login','<p>คุณถูกระบบห้ามเข้าสู่ระบบ เหตุผลในการลงโทษ: {原因}.</p>'),(2,'ห้ามแสดงความคิดเห็น','user','user_punish_talk','<p>คุณถูกระบบห้ามแสดงความคิดเห็น เหตุผลในการลงโทษ: {原因}.</p>'),(3,'ปลดห้ามเข้าสู่ระบบ','user','user_punish_unlogin','<p>ระบบได้ปลดห้ามการเข้าสู่ระบบของคุณแล้ว โปรดจดจำกฎของแพลตฟอร์มเพื่อไม่ให้ถูกแบนอีก</p>'),(4,'ปลดห้ามแสดงความคิดเห็น','user','user_punish_untalk','<p>ระบบได้ปลดห้ามแสดงความคิดเห็นของคุณแล้ว โปรดจดจำกฎของแพลตฟอร์มเพื่อไม่ให้ถูกห้ามแสดงความคิดเห็นอีก</p>'),(5,'แจ้งเตือนล่วงหน้า_เข้าสู่ระบบหลังบ้าน','all','warning_admin_login','<p>เรียนผู้ดูแลระบบ: IP{后台登录ip} เมื่อ{后台登录时间} เข้าสู่ระบบบัญชี{后台登录账号} สถานะ{后台登录状态}!</p>'),(6,'แจ้งเตือนล่วงหน้า_ข้อผิดพลาดของโค้ด','all','warning_code_eroor','<p>เรียนผู้ดูแลระบบ: เว็บไซต์เกิดข้อผิดพลาด {代码报错详情}!</p>');
 DROP TABLE IF EXISTS `wm_system_retrieval`;
 CREATE TABLE `wm_system_retrieval` (
   `retrieval_id` int NOT NULL AUTO_INCREMENT,
-  `retrieval_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '使用状态，0为禁用，1为使用',
-  `retrieval_module` varchar(20) NOT NULL COMMENT '所属模块',
-  `retrieval_type_id` int NOT NULL DEFAULT '0' COMMENT '检索条件类型ID',
-  `retrieval_title` varchar(10) NOT NULL COMMENT '检索条件名字',
-  `retrieval_field` varchar(20) NOT NULL COMMENT '检索条件的字段',
-  `retrieval_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '检索类型，-1为倒序，0为顺序，1为等于，2为小于，3为大于，4为区间,5为首字母，6为相似，7为数字开头',
-  `retrieval_value` varchar(20) NOT NULL COMMENT '检索的值',
-  `retrieval_order` int NOT NULL COMMENT '显示顺序',
+  `retrieval_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'สถานะการใช้งาน 0=ปิดใช้งาน 1=ใช้งาน',
+  `retrieval_module` varchar(20) NOT NULL COMMENT 'โมดูลที่สังกัด',
+  `retrieval_type_id` int NOT NULL DEFAULT '0' COMMENT 'ID ประเภทเงื่อนไขการค้นหา',
+  `retrieval_title` varchar(40) NOT NULL COMMENT 'ชื่อเงื่อนไขการค้นหา',
+  `retrieval_field` varchar(20) NOT NULL COMMENT 'ฟิลด์ของเงื่อนไขการค้นหา',
+  `retrieval_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'ประเภทการค้นหา, -1=ย้อนกลับ, 0=ตามลำดับ, 1=เท่ากับ, 2=น้อยกว่า, 3=มากกว่า, 4=ช่วง, 5=อักษรแรก, 6=คล้ายกัน, 7=ขึ้นต้นด้วยตัวเลข',
+  `retrieval_value` varchar(20) NOT NULL COMMENT 'ค่าที่ค้นหา',
+  `retrieval_order` int NOT NULL COMMENT 'ลำดับการแสดง',
   PRIMARY KEY (`retrieval_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb3 COMMENT='分类检索条件表';
-INSERT INTO `wm_system_retrieval` VALUES (1,1,'novel',1,'全部','novel_process',1,'-1',1),(2,1,'novel',1,'连载','novel_process',1,'1',2),(3,1,'novel',1,'完结','novel_process',1,'2',3),(4,1,'novel',2,'30万以下','novel_wordnumber',2,'300000',2),(5,1,'novel',2,'30-100万','novel_wordnumber',4,'300000,1000000',3),(6,1,'novel',2,'100-200万','novel_wordnumber',4,'1000000,2000000',4),(7,1,'novel',2,'200万以上','novel_wordnumber',3,'2000000',5),(8,1,'novel',2,'全部','novel_wordnumber',1,'-1',1),(9,1,'novel',3,'全部','novel_chapter',1,'-1',1),(10,1,'novel',3,'低于1000章','novel_chapter',2,'1000',2),(11,1,'novel',3,'1000-2000章','novel_chapter',4,'1000,2000',3),(12,1,'novel',3,'2000-3000章','novel_chapter',4,'2000,3000',4),(13,1,'novel',3,'3000章以上','novel_chapter',3,'3000',5),(14,1,'novel',4,'全部','novel_type',1,'-1',1),(15,1,'novel',4,'原创','novel_type',1,'1',2),(16,1,'novel',4,'转载','novel_type',1,'2',3),(17,1,'novel',4,'签约','novel_sign_id',1,'1',4),(18,1,'novel',4,'上架','novel_sell',1,'1',5),(19,1,'novel',4,'买断','novel_copyright',1,'2',6),(20,1,'novel',5,'全部','novel_sell',1,'-1',1),(21,1,'novel',5,'免费','novel_sell',1,'0',2),(22,1,'novel',5,'付费','novel_sell',1,'1',3),(23,1,'novel',7,'更新','novel_uptime',-1,'-1',1),(24,1,'novel',7,'点击','novel_allclick',-1,'',2),(25,1,'novel',7,'推荐','novel_allrec',-1,'',3),(26,1,'novel',7,'收藏','novel_allcoll',-1,'',4),(27,1,'novel',7,'字数','novel_wordnumber',-1,'',5),(28,1,'novel',7,'章节','novel_chapter',-1,'',6),(29,1,'novel',6,'全部','novel_pinyin',5,'-1',1),(30,1,'novel',6,'A','novel_pinyin',5,'a',2),(31,1,'novel',6,'B','novel_pinyin',5,'b',3),(32,1,'novel',6,'C','novel_pinyin',5,'c',4),(33,1,'novel',6,'D','novel_pinyin',5,'d',5),(34,1,'novel',6,'E','novel_pinyin',5,'e',6),(35,1,'novel',6,'F','novel_pinyin',5,'f',7),(36,1,'novel',6,'G','novel_pinyin',5,'g',8),(37,1,'novel',6,'H','novel_pinyin',5,'h',9),(38,1,'novel',6,'I','novel_pinyin',5,'i',10),(39,1,'novel',6,'J','novel_pinyin',5,'j',11),(40,1,'novel',6,'K','novel_pinyin',5,'k',12),(41,1,'novel',6,'L','novel_pinyin',5,'l',13),(42,1,'novel',6,'M','novel_pinyin',5,'m',14),(43,1,'novel',6,'N','novel_pinyin',5,'n',15),(44,1,'novel',6,'O','novel_pinyin',5,'o',16),(45,1,'novel',6,'P','novel_pinyin',5,'p',17),(46,1,'novel',6,'Q','novel_pinyin',5,'q',18),(47,1,'novel',6,'R','novel_pinyin',5,'r',19),(48,1,'novel',6,'S','novel_pinyin',5,'s',20),(49,1,'novel',6,'T','novel_pinyin',5,'t',21),(50,1,'novel',6,'U','novel_pinyin',5,'u',22),(51,1,'novel',6,'V','novel_pinyin',5,'v',23),(52,1,'novel',6,'W','novel_pinyin',5,'w',24),(53,1,'novel',6,'X','novel_pinyin',5,'x',25),(54,1,'novel',6,'Y','novel_pinyin',5,'y',26),(55,1,'novel',6,'Z','novel_pinyin',5,'z',27),(56,1,'novel',6,'0-9','novel_pinyin',7,'0,9',28),(57,1,'app',8,'全部','app_rec',1,'-1',1),(58,1,'app',8,'已推荐','app_rec',1,'1',2),(59,1,'app',8,'未推荐','app_rec',1,'0',3),(60,1,'app',9,'全部','app_lid',1,'-1',1),(61,1,'app',9,'中文','app_lid',8,'9',2),(62,1,'app',9,'英文','app_lid',8,'7',3),(63,1,'app',10,'全部','app_cid',1,'-1',1),(64,1,'app',10,'免费','app_cid',8,'11',2),(65,1,'app',10,'内购','app_cid',8,'5',3),(66,1,'app',10,'破解','app_cid',8,'10',4),(67,1,'app',11,'小于100M','app_size',2,'100',1),(68,1,'app',11,'100-500M','app_size',4,'100,500',2),(69,1,'app',11,'500M-1G','app_size',4,'500,1000',3),(70,1,'app',11,'1-2G','app_size',4,'1000,2000',4),(71,1,'app',11,'2G以上','app_size',3,'2000',5),(72,1,'app',11,'全部','app_size',3,'-1',0),(73,1,'app',12,'全部','app_paid',1,'-1',1),(74,1,'app',12,'安卓','app_paid',8,'4',2),(75,1,'app',12,'苹果','app_paid',8,'8',3),(76,1,'app',12,'塞班','app_paid',8,'6',4),(77,1,'app',13,'默认','app_addtime',1,'-1',1),(78,1,'app',13,'热度','app_read',-1,'',2),(79,1,'app',13,'讨论','app_replay',-1,'',2),(80,1,'app',13,'喜欢','app_ding',-1,'',3),(81,1,'app',13,'讨厌','app_cai',-1,'',4),(82,1,'app',13,'星级','app_start',-1,'',6),(83,1,'app',13,'评分','app_score',-1,'',7);
+) ENGINE=MyISAM AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางเงื่อนไขการค้นหาหมวดหมู่';
+INSERT INTO `wm_system_retrieval` VALUES (1,1,'novel',1,'ทั้งหมด','novel_process',1,'-1',1),(2,1,'novel',1,'กำลังเขียน','novel_process',1,'1',2),(3,1,'novel',1,'จบแล้ว','novel_process',1,'2',3),(4,1,'novel',2,'ต่ำกว่า 3 แสนคำ','novel_wordnumber',2,'300000',2),(5,1,'novel',2,'3-10 แสนคำ','novel_wordnumber',4,'300000,1000000',3),(6,1,'novel',2,'1-2 ล้านคำ','novel_wordnumber',4,'1000000,2000000',4),(7,1,'novel',2,'เกิน 2 ล้านคำ','novel_wordnumber',3,'2000000',5),(8,1,'novel',2,'ทั้งหมด','novel_wordnumber',1,'-1',1),(9,1,'novel',3,'ทั้งหมด','novel_chapter',1,'-1',1),(10,1,'novel',3,'ต่ำกว่า 1,000 ตอน','novel_chapter',2,'1000',2),(11,1,'novel',3,'1,000-2,000 ตอน','novel_chapter',4,'1000,2000',3),(12,1,'novel',3,'2,000-3,000 ตอน','novel_chapter',4,'2000,3000',4),(13,1,'novel',3,'เกิน 3,000 ตอน','novel_chapter',3,'3000',5),(14,1,'novel',4,'ทั้งหมด','novel_type',1,'-1',1),(15,1,'novel',4,'ต้นฉบับ','novel_type',1,'1',2),(16,1,'novel',4,'นำไปเผยแพร่ต่อ','novel_type',1,'2',3),(17,1,'novel',4,'เซ็นสัญญา','novel_sign_id',1,'1',4),(18,1,'novel',4,'วางขาย','novel_sell',1,'1',5),(19,1,'novel',4,'ซื้อขาด','novel_copyright',1,'2',6),(20,1,'novel',5,'ทั้งหมด','novel_sell',1,'-1',1),(21,1,'novel',5,'ฟรี','novel_sell',1,'0',2),(22,1,'novel',5,'เสียเงิน','novel_sell',1,'1',3),(23,1,'novel',7,'อัปเดต','novel_uptime',-1,'-1',1),(24,1,'novel',7,'คลิก','novel_allclick',-1,'',2),(25,1,'novel',7,'แนะนำ','novel_allrec',-1,'',3),(26,1,'novel',7,'รายการโปรด','novel_allcoll',-1,'',4),(27,1,'novel',7,'จำนวนคำ','novel_wordnumber',-1,'',5),(28,1,'novel',7,'ตอน','novel_chapter',-1,'',6),(29,1,'novel',6,'ทั้งหมด','novel_pinyin',5,'-1',1),(30,1,'novel',6,'A','novel_pinyin',5,'a',2),(31,1,'novel',6,'B','novel_pinyin',5,'b',3),(32,1,'novel',6,'C','novel_pinyin',5,'c',4),(33,1,'novel',6,'D','novel_pinyin',5,'d',5),(34,1,'novel',6,'E','novel_pinyin',5,'e',6),(35,1,'novel',6,'F','novel_pinyin',5,'f',7),(36,1,'novel',6,'G','novel_pinyin',5,'g',8),(37,1,'novel',6,'H','novel_pinyin',5,'h',9),(38,1,'novel',6,'I','novel_pinyin',5,'i',10),(39,1,'novel',6,'J','novel_pinyin',5,'j',11),(40,1,'novel',6,'K','novel_pinyin',5,'k',12),(41,1,'novel',6,'L','novel_pinyin',5,'l',13),(42,1,'novel',6,'M','novel_pinyin',5,'m',14),(43,1,'novel',6,'N','novel_pinyin',5,'n',15),(44,1,'novel',6,'O','novel_pinyin',5,'o',16),(45,1,'novel',6,'P','novel_pinyin',5,'p',17),(46,1,'novel',6,'Q','novel_pinyin',5,'q',18),(47,1,'novel',6,'R','novel_pinyin',5,'r',19),(48,1,'novel',6,'S','novel_pinyin',5,'s',20),(49,1,'novel',6,'T','novel_pinyin',5,'t',21),(50,1,'novel',6,'U','novel_pinyin',5,'u',22),(51,1,'novel',6,'V','novel_pinyin',5,'v',23),(52,1,'novel',6,'W','novel_pinyin',5,'w',24),(53,1,'novel',6,'X','novel_pinyin',5,'x',25),(54,1,'novel',6,'Y','novel_pinyin',5,'y',26),(55,1,'novel',6,'Z','novel_pinyin',5,'z',27),(56,1,'novel',6,'0-9','novel_pinyin',7,'0,9',28),(57,1,'app',8,'ทั้งหมด','app_rec',1,'-1',1),(58,1,'app',8,'แนะนำแล้ว','app_rec',1,'1',2),(59,1,'app',8,'ยังไม่แนะนำ','app_rec',1,'0',3),(60,1,'app',9,'ทั้งหมด','app_lid',1,'-1',1),(61,1,'app',9,'จีน','app_lid',8,'9',2),(62,1,'app',9,'อังกฤษ','app_lid',8,'7',3),(63,1,'app',10,'ทั้งหมด','app_cid',1,'-1',1),(64,1,'app',10,'ฟรี','app_cid',8,'11',2),(65,1,'app',10,'ซื้อในแอป','app_cid',8,'5',3),(66,1,'app',10,'แครก','app_cid',8,'10',4),(67,1,'app',11,'ต่ำกว่า 100M','app_size',2,'100',1),(68,1,'app',11,'100-500M','app_size',4,'100,500',2),(69,1,'app',11,'500M-1G','app_size',4,'500,1000',3),(70,1,'app',11,'1-2G','app_size',4,'1000,2000',4),(71,1,'app',11,'2G ขึ้นไป','app_size',3,'2000',5),(72,1,'app',11,'ทั้งหมด','app_size',3,'-1',0),(73,1,'app',12,'ทั้งหมด','app_paid',1,'-1',1),(74,1,'app',12,'Android','app_paid',8,'4',2),(75,1,'app',12,'Apple','app_paid',8,'8',3),(76,1,'app',12,'Symbian','app_paid',8,'6',4),(77,1,'app',13,'ค่าเริ่มต้น','app_addtime',1,'-1',1),(78,1,'app',13,'ความร้อนแรง','app_read',-1,'',2),(79,1,'app',13,'อภิปราย','app_replay',-1,'',2),(80,1,'app',13,'ถูกใจ','app_ding',-1,'',3),(81,1,'app',13,'ไม่ชอบ','app_cai',-1,'',4),(82,1,'app',13,'ระดับดาว','app_start',-1,'',6),(83,1,'app',13,'ให้คะแนน','app_score',-1,'',7);
 DROP TABLE IF EXISTS `wm_system_retrieval_type`;
 CREATE TABLE `wm_system_retrieval_type` (
   `type_id` int NOT NULL AUTO_INCREMENT,
-  `type_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '分类状态，0为隐藏，1为显示',
-  `type_module` varchar(20) NOT NULL COMMENT '分类所属模块',
-  `type_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1为条件，2为排序',
-  `type_name` varchar(20) NOT NULL COMMENT '分类名字',
-  `type_par` varchar(20) NOT NULL COMMENT '分类的参数名字',
-  `type_order` int NOT NULL DEFAULT '99' COMMENT '分类排序',
+  `type_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'สถานะหมวดหมู่ 0=ซ่อน 1=แสดง',
+  `type_module` varchar(20) NOT NULL COMMENT 'โมดูลที่หมวดหมู่อยู่',
+  `type_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=เงื่อนไข 2=การเรียงลำดับ',
+  `type_name` varchar(20) NOT NULL COMMENT 'ชื่อหมวดหมู่',
+  `type_par` varchar(20) NOT NULL COMMENT 'ชื่อพารามิเตอร์ของหมวดหมู่',
+  `type_order` int NOT NULL DEFAULT '99' COMMENT 'ลำดับหมวดหมู่',
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3 COMMENT='检索分类表';
-INSERT INTO `wm_system_retrieval_type` VALUES (1,1,'novel',1,'进程','process',1),(2,1,'novel',1,'字数','word',2),(3,1,'novel',1,'章节','chapter',3),(4,1,'novel',1,'版权','copy',4),(5,1,'novel',1,'费用','cost',5),(6,1,'novel',1,'字母','letter',6),(7,1,'novel',2,'排序','order',7),(8,1,'app',1,'推荐','rec',1),(9,1,'app',1,'语言','lang',2),(10,1,'app',1,'资费','cost',3),(11,1,'app',1,'大小','size',4),(12,1,'app',1,'平台','platform',5),(13,1,'app',2,'排序','order',6);
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางหมวดหมู่การสืบค้น';
+INSERT INTO `wm_system_retrieval_type` VALUES (1,1,'novel',1,'โพรเซส','process',1),(2,1,'novel',1,'จำนวนคำ','word',2),(3,1,'novel',1,'ตอน','chapter',3),(4,1,'novel',1,'ลิขสิทธิ์','copy',4),(5,1,'novel',1,'ค่าใช้จ่าย','cost',5),(6,1,'novel',1,'ตัวอักษร','letter',6),(7,1,'novel',2,'เรียงลำดับ','order',7),(8,1,'app',1,'แนะนำ','rec',1),(9,1,'app',1,'ภาษา','lang',2),(10,1,'app',1,'อัตราค่าบริการ','cost',3),(11,1,'app',1,'ขนาด','size',4),(12,1,'app',1,'แพลตฟอร์ม','platform',5),(13,1,'app',2,'เรียงลำดับ','order',6);
 DROP TABLE IF EXISTS `wm_system_sms`;
 CREATE TABLE `wm_system_sms` (
   `sms_id` int NOT NULL AUTO_INCREMENT,
-  `sms_status` tinyint(1) DEFAULT '1' COMMENT '状态:1=使用,0=禁用',
-  `sms_api_name` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL COMMENT '短信接口',
-  `sms_type` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL COMMENT '模版类型',
-  `sms_sign` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL COMMENT '第三方模版签名',
-  `sms_tempcode` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL COMMENT '第三方模版代码',
-  `sms_params` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL COMMENT '替换参数',
-  `sms_time` int NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `sms_status` tinyint(1) DEFAULT '1' COMMENT 'สถานะ:1=ใช้งาน,0=ปิดใช้งาน',
+  `sms_api_name` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL COMMENT 'อินเทอร์เฟซ SMS',
+  `sms_type` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL COMMENT 'ประเภทเทมเพลต',
+  `sms_sign` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL COMMENT 'ลายเซ็นเทมเพลตของบุคคลที่สาม',
+  `sms_tempcode` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL COMMENT 'โค้ดเทมเพลตของบุคคลที่สาม',
+  `sms_params` varchar(1000) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL COMMENT 'พารามิเตอร์แทนที่',
+  `sms_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาสร้าง',
   PRIMARY KEY (`sms_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci COMMENT='短信模版';
-INSERT INTO `wm_system_sms` VALUES (1,1,'aliyunsms','user_login','阿里云短信测试','SMS_154950909','code:{#123}code{#125}',1647915216),(2,1,'aliyunsms','user_reg','阿里云短信测试','SMS_154950909','code:{#123}code{#125}',1647915222),(3,1,'aliyunsms','user_veremail','阿里云短信测试','SMS_154950909','code:{#123}code{#125}',1647915226),(4,1,'aliyunsms','user_getpsw','阿里云短信测试','SMS_154950909','code:{#123}code{#125}',1647915231),(5,0,'aliyunsms','user_welcome','阿里云短信测试','SMS_154950909','code:{#123}code{#125}',1647915236),(6,1,'tencentsms','user_login','未梦之梦','1345770','1:{#123}code{#125}',1647915216),(7,1,'tencentsms','user_reg','未梦之梦','1345770','1:{#123}code{#125}',1647915222),(8,1,'tencentsms','user_veremail','未梦之梦','1345770','1:{#123}code{#125}',1647915226),(9,1,'tencentsms','user_getpsw','未梦之梦','1345770','1:{#123}code{#125}',1647915231),(10,0,'tencentsms','user_welcome','未梦之梦','1345770','1:{#123}code{#125}',1647915236),(11,1,'aliyunsms','user_bind','阿里云短信测试','SMS_154950909','code:{#123}code{#125}',1647915216),(12,1,'tencentsms','user_bind','未梦之梦','1345770','1:{#123}code{#125}',1647915222),(13,1,'tencentsms','warning_code_eroor','未梦之梦','1345770','代码报错ip:{#123}代码报错ip{#125}\r\n代码报错详情:{#123}代码报错详情{#125}\r\n代码报错代码:{#123}代码报错代码{#125}\r\n代码报错时间:{#123}代码报错时间{#125}\r\n代码报错url:{#123}代码报错url{#125}\r\n代码报错sql:{#123}代码报错sql{#125}',1648901665),(14,1,'tencentsms','warning_admin_login','未梦之梦','1345770','后台登录ip:{#123}后台登录ip{#125}\r\n后台登录账号:{#123}后台登录账号{#125}\r\n后台登录时间:{#123}后台登录时间{#125}\r\n后台登录状态:{#123}后台登录状态{#125}',1648901665),(15,1,'aliyunsms','warning_code_eroor','阿里云短信测试','SMS_154950909','1:{#123}代码报错ip{#125}\r\n2:{#123}代码报错详情{#125}\r\n3:{#123}代码报错代码{#125}\r\n4:{#123}代码报错时间{#125}\r\n5:{#123}代码报错url{#125}\r\n6:{#123}代码报错sql{#125}',1648901665),(16,1,'aliyunsms','warning_admin_login','阿里云短信测试','SMS_154950909','1:{#123}后台登录ip{#125}\r\n2:{#123}后台登录账号{#125}\r\n3:{#123}后台登录时间{#125}\r\n4:{#123}后台登录状态{#125}',1648901665);
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci COMMENT='เทมเพลต SMS';
+INSERT INTO `wm_system_sms` VALUES (1,1,'aliyunsms','user_login','ทดสอบ SMS ของ Aliyun','SMS_154950909','code:{#123}code{#125}',1647915216),(2,1,'aliyunsms','user_reg','ทดสอบ SMS ของ Aliyun','SMS_154950909','code:{#123}code{#125}',1647915222),(3,1,'aliyunsms','user_veremail','ทดสอบ SMS ของ Aliyun','SMS_154950909','code:{#123}code{#125}',1647915226),(4,1,'aliyunsms','user_getpsw','ทดสอบ SMS ของ Aliyun','SMS_154950909','code:{#123}code{#125}',1647915231),(5,0,'aliyunsms','user_welcome','ทดสอบ SMS ของ Aliyun','SMS_154950909','code:{#123}code{#125}',1647915236),(6,1,'tencentsms','user_login','ความฝันของเวยเมิ่ง','1345770','1:{#123}code{#125}',1647915216),(7,1,'tencentsms','user_reg','ความฝันของเวยเมิ่ง','1345770','1:{#123}code{#125}',1647915222),(8,1,'tencentsms','user_veremail','ความฝันของเวยเมิ่ง','1345770','1:{#123}code{#125}',1647915226),(9,1,'tencentsms','user_getpsw','ความฝันของเวยเมิ่ง','1345770','1:{#123}code{#125}',1647915231),(10,0,'tencentsms','user_welcome','ความฝันของเวยเมิ่ง','1345770','1:{#123}code{#125}',1647915236),(11,1,'aliyunsms','user_bind','ทดสอบ SMS ของ Aliyun','SMS_154950909','code:{#123}code{#125}',1647915216),(12,1,'tencentsms','user_bind','ความฝันของเวยเมิ่ง','1345770','1:{#123}code{#125}',1647915222),(13,1,'tencentsms','warning_code_eroor','ความฝันของเวยเมิ่ง','1345770','IP ที่เกิดข้อผิดพลาด:{#123}代码报错ip{#125}\\r\\nรายละเอียดข้อผิดพลาดของโค้ด:{#123}代码报错详情{#125}\\r\\nโค้ดข้อผิดพลาด:{#123}代码报错代码{#125}\\r\\nเวลาที่เกิดข้อผิดพลาด:{#123}代码报错时间{#125}\\r\\nurl ที่เกิดข้อผิดพลาด:{#123}代码报错url{#125}\\r\\nsql ที่เกิดข้อผิดพลาด:{#123}代码报错sql{#125}',1648901665),(14,1,'tencentsms','warning_admin_login','ความฝันของเวยเมิ่ง','1345770','IP ที่เข้าสู่ระบบหลังบ้าน:{#123}后台登录ip{#125}\\r\\nบัญชีที่เข้าสู่ระบบหลังบ้าน:{#123}后台登录账号{#125}\\r\\nเวลาที่เข้าสู่ระบบหลังบ้าน:{#123}后台登录时间{#125}\\r\\nสถานะการเข้าสู่ระบบหลังบ้าน:{#123}后台登录状态{#125}',1648901665),(15,1,'aliyunsms','warning_code_eroor','ทดสอบ SMS ของ Aliyun','SMS_154950909','1:{#123}代码报错ip{#125}\r\n2:{#123}代码报错详情{#125}\r\n3:{#123}代码报错代码{#125}\r\n4:{#123}代码报错时间{#125}\r\n5:{#123}代码报错url{#125}\r\n6:{#123}代码报错sql{#125}',1648901665),(16,1,'aliyunsms','warning_admin_login','ทดสอบ SMS ของ Aliyun','SMS_154950909','1:{#123}后台登录ip{#125}\r\n2:{#123}后台登录账号{#125}\r\n3:{#123}后台登录时间{#125}\r\n4:{#123}后台登录状态{#125}',1648901665);
 DROP TABLE IF EXISTS `wm_system_sms_log`;
 CREATE TABLE `wm_system_sms_log` (
   `log_id` int NOT NULL AUTO_INCREMENT,
-  `log_status` tinyint(1) DEFAULT '0' COMMENT '使用状态:0=未使用,1已使用,2=已过期',
-  `log_send` tinyint(1) DEFAULT '1' COMMENT '发送状态:1=成功,0=失败',
-  `log_type` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL COMMENT '短信类型',
-  `log_remark` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL COMMENT '失败消息',
-  `log_sender` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL COMMENT '发信人',
-  `log_receive` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL COMMENT '收信人',
-  `log_content` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL COMMENT '消息内容',
-  `log_time` int DEFAULT NULL COMMENT '发送时间',
-  `log_exptime` int DEFAULT NULL COMMENT '过期时间',
+  `log_status` tinyint(1) DEFAULT '0' COMMENT 'สถานะการใช้ 0=ยังไม่ใช้ 1=ใช้แล้ว 2=หมดอายุ',
+  `log_send` tinyint(1) DEFAULT '1' COMMENT 'สถานะการส่ง 1=สำเร็จ 0=ล้มเหลว',
+  `log_type` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL COMMENT 'ประเภท SMS',
+  `log_remark` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL COMMENT 'ข้อความล้มเหลว',
+  `log_sender` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL COMMENT 'ผู้ส่ง',
+  `log_receive` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL COMMENT 'ผู้รับ',
+  `log_content` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL COMMENT 'เนื้อหาข้อความ',
+  `log_time` int DEFAULT NULL COMMENT 'เวลาส่ง',
+  `log_exptime` int DEFAULT NULL COMMENT 'เวลาหมดอายุ',
   PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci COMMENT='信息发送日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci COMMENT='ตารางบันทึกการส่งข้อมูล';
 DROP TABLE IF EXISTS `wm_system_tags`;
 CREATE TABLE `wm_system_tags` (
   `tags_id` int NOT NULL AUTO_INCREMENT,
-  `tags_type_id` int NOT NULL DEFAULT '1' COMMENT '所属分类',
-  `tags_module` varchar(20) NOT NULL COMMENT '标签所属的模块',
-  `tags_author_rec` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否推荐展示',
-  `tags_name` varchar(20) NOT NULL COMMENT '标签名字',
-  `tags_pinyin` varchar(50) DEFAULT NULL COMMENT '标签拼音',
-  `tags_data` int NOT NULL DEFAULT '1' COMMENT '标签的数据量',
-  `tags_search` int DEFAULT '0' COMMENT '标签的搜索次数',
-  `tags_time` int NOT NULL DEFAULT '0' COMMENT '标签创建的时间',
+  `tags_type_id` int NOT NULL DEFAULT '1' COMMENT 'หมวดหมู่ที่สังกัด',
+  `tags_module` varchar(20) NOT NULL COMMENT 'โมดูลที่แท็กสังกัด',
+  `tags_author_rec` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'แนะนำให้จัดแสดงหรือไม่',
+  `tags_name` varchar(20) NOT NULL COMMENT 'ชื่อแท็ก',
+  `tags_pinyin` varchar(50) DEFAULT NULL COMMENT 'พินอินแท็ก',
+  `tags_data` int NOT NULL DEFAULT '1' COMMENT 'จำนวนข้อมูลของแท็ก',
+  `tags_search` int DEFAULT '0' COMMENT 'จำนวนครั้งที่ค้นหาแท็ก',
+  `tags_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่สร้างแท็ก',
   PRIMARY KEY (`tags_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='系统标签表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางแท็กของระบบ';
 DROP TABLE IF EXISTS `wm_system_tags_type`;
 CREATE TABLE `wm_system_tags_type` (
   `type_id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `type_module` varchar(20) NOT NULL COMMENT '分类模块',
-  `type_name` varchar(20) NOT NULL COMMENT '分类名字',
-  `type_desc` varchar(100) DEFAULT NULL COMMENT '分类描述',
-  `type_order` int NOT NULL DEFAULT '9' COMMENT '分类排序,越小越靠前',
+  `type_module` varchar(20) NOT NULL COMMENT 'โมดูลหมวดหมู่',
+  `type_name` varchar(20) NOT NULL COMMENT 'ชื่อหมวดหมู่',
+  `type_desc` varchar(100) DEFAULT NULL COMMENT 'คำอธิบายหมวดหมู่',
+  `type_order` int NOT NULL DEFAULT '9' COMMENT 'ลำดับหมวดหมู่ ยิ่งน้อยยิ่งอยู่หน้า',
   PRIMARY KEY (`type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COMMENT='标签分类';
-INSERT INTO `wm_system_tags_type` VALUES (1,'novel','情节','故事情节',1),(2,'novel','题材','情节题材',2),(3,'novel','人物','主要人物',3),(4,'novel','风格','内容风格',4);
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COMMENT='หมวดหมู่แท็ก';
+INSERT INTO `wm_system_tags_type` VALUES (1,'novel','โครงเรื่อง','โครงเรื่อง',1),(2,'novel','แนวเรื่อง','แนวโครงเรื่อง',2),(3,'novel','ตัวละคร','ตัวละครหลัก',3),(4,'novel','สไตล์','สไตล์เนื้อหา',4);
 DROP TABLE IF EXISTS `wm_system_templates`;
 CREATE TABLE `wm_system_templates` (
   `temp_id` int NOT NULL AUTO_INCREMENT,
-  `temp_module` varchar(20) DEFAULT NULL COMMENT '模版所属的模块',
-  `temp_type` varchar(40) DEFAULT NULL COMMENT '模版的类型',
-  `temp_name` varchar(20) DEFAULT NULL COMMENT '模版名字',
-  `temp_temp4` varchar(100) NOT NULL COMMENT '电脑版的模版',
-  `temp_temp3` varchar(100) NOT NULL COMMENT '触屏',
+  `temp_module` varchar(20) DEFAULT NULL COMMENT 'โมดูลที่เทมเพลตสังกัด',
+  `temp_type` varchar(40) DEFAULT NULL COMMENT 'ประเภทของเทมเพลต',
+  `temp_name` varchar(20) DEFAULT NULL COMMENT 'ชื่อเทมเพลต',
+  `temp_temp4` varchar(100) NOT NULL COMMENT 'เทมเพลตเวอร์ชันคอมพิวเตอร์',
+  `temp_temp3` varchar(100) NOT NULL COMMENT 'หน้าจอสัมผัส',
   `temp_temp2` varchar(100) NOT NULL COMMENT '3g',
   `temp_temp1` varchar(100) NOT NULL COMMENT 'wap',
-  `temp_address` tinyint(1) DEFAULT '0' COMMENT '模版存在的路径0为当前，1为根目录计算。',
+  `temp_address` tinyint(1) DEFAULT '0' COMMENT 'พาธที่เทมเพลตอยู่ 0=ปัจจุบัน, 1=คำนวณจากไดเรกทอรีราก.',
   PRIMARY KEY (`temp_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COMMENT='预设模块分类和diy、专题的默认模版';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COMMENT='เทมเพลตเริ่มต้นของหมวดหมู่โมดูลที่ตั้งไว้ล่วงหน้า diy และหัวข้อพิเศษ';
 INSERT INTO `wm_system_templates` VALUES (1,'article','list','test','test.html','test.html','test.html','test.html',0),(2,'article','tindex','eee','eee','eee','eee','eee',0),(3,'article','content','dddd','dddd','dddd','dddd','dddd',0);
 DROP TABLE IF EXISTS `wm_templates_templates`;
 CREATE TABLE `wm_templates_templates` (
   `templates_id` int NOT NULL AUTO_INCREMENT,
-  `templates_path` varchar(20) NOT NULL COMMENT '模版文件夹',
-  `templates_name` varchar(20) NOT NULL COMMENT '模版名字',
-  `templates_appid` varchar(40) NOT NULL COMMENT '模版appid',
+  `templates_path` varchar(20) NOT NULL COMMENT 'โฟลเดอร์เทมเพลต',
+  `templates_name` varchar(20) NOT NULL COMMENT 'ชื่อเทมเพลต',
+  `templates_appid` varchar(40) NOT NULL COMMENT 'appid เทมเพลต',
   PRIMARY KEY (`templates_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='安装使用模板表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางเทมเพลตการติดตั้งและการใช้งาน';
 DROP TABLE IF EXISTS `wm_upload`;
 CREATE TABLE `wm_upload` (
   `upload_id` int NOT NULL AUTO_INCREMENT,
-  `upload_module` varchar(20) NOT NULL COMMENT '所属 模块',
-  `upload_type` varchar(20) DEFAULT NULL COMMENT '模块处理的类型',
-  `upload_ext` varchar(10) DEFAULT NULL COMMENT '附件类型',
-  `upload_mid` int NOT NULL DEFAULT '0' COMMENT '所属主要内容的id，如评论的主题',
-  `upload_cid` int NOT NULL DEFAULT '0' COMMENT '所属内容的id',
-  `user_id` int DEFAULT '0' COMMENT '上传用户的id',
-  `upload_alt` varchar(100) DEFAULT NULL COMMENT '描述',
-  `upload_simg` varchar(200) DEFAULT NULL COMMENT '缩略图路径',
-  `upload_img` varchar(200) DEFAULT NULL COMMENT '文件路径',
-  `upload_size` int NOT NULL DEFAULT '0' COMMENT '文件大小',
-  `upload_width` int DEFAULT '0' COMMENT '图片宽度',
-  `upload_height` int DEFAULT '0' COMMENT '图片高度',
-  `upload_time` int NOT NULL DEFAULT '0' COMMENT '上传时间',
+  `upload_module` varchar(20) NOT NULL COMMENT 'โมดูลที่สังกัด',
+  `upload_type` varchar(20) DEFAULT NULL COMMENT 'ประเภทที่โมดูลดำเนินการ',
+  `upload_ext` varchar(10) DEFAULT NULL COMMENT 'ประเภทไฟล์แนบ',
+  `upload_mid` int NOT NULL DEFAULT '0' COMMENT 'ID ของเนื้อหาหลักที่สังกัด เช่น หัวข้อของความคิดเห็น',
+  `upload_cid` int NOT NULL DEFAULT '0' COMMENT 'ID ของเนื้อหาที่สังกัด',
+  `user_id` int DEFAULT '0' COMMENT 'id ของผู้ใช้อัปโหลด',
+  `upload_alt` varchar(100) DEFAULT NULL COMMENT 'คำอธิบาย',
+  `upload_simg` varchar(200) DEFAULT NULL COMMENT 'พาธรูปย่อ',
+  `upload_img` varchar(200) DEFAULT NULL COMMENT 'พาธไฟล์',
+  `upload_size` int NOT NULL DEFAULT '0' COMMENT 'ขนาดไฟล์',
+  `upload_width` int DEFAULT '0' COMMENT 'ความกว้างรูปภาพ',
+  `upload_height` int DEFAULT '0' COMMENT 'ความสูงรูปภาพ',
+  `upload_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาอัปโหลด',
   PRIMARY KEY (`upload_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='上传记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการอัปโหลด';
 DROP TABLE IF EXISTS `wm_user_apilogin`;
 CREATE TABLE `wm_user_apilogin` (
   `api_id` int NOT NULL AUTO_INCREMENT,
   `api_uid` int NOT NULL DEFAULT '0',
-  `api_type` varchar(30) NOT NULL COMMENT '第三方登录类型',
-  `api_openid` varchar(120) NOT NULL COMMENT '第三方登录唯一ID',
-  `api_unionid` varchar(120) DEFAULT NULL COMMENT '第三方登录联合ID',
+  `api_type` varchar(30) NOT NULL COMMENT 'ประเภทการเข้าสู่ระบบของบุคคลที่สาม',
+  `api_openid` varchar(120) NOT NULL COMMENT 'ID การเข้าสู่ระบบของบุคคลที่สามที่ไม่ซ้ำกัน',
+  `api_unionid` varchar(120) DEFAULT NULL COMMENT 'ID เชื่อมโยงการเข้าสู่ระบบของบุคคลที่สาม',
   PRIMARY KEY (`api_id`),
   KEY `type_index` (`api_type`),
   KEY `openid_index` (`api_openid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='第三方登录记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการเข้าสู่ระบบผ่านบุคคลที่สาม';
 DROP TABLE IF EXISTS `wm_user_card`;
 CREATE TABLE `wm_user_card` (
   `card_id` int NOT NULL AUTO_INCREMENT,
-  `card_type` tinyint(1) DEFAULT '1' COMMENT '卡号类型，1为充值卡',
-  `card_use` tinyint(1) DEFAULT '0' COMMENT '是否已经使用',
-  `card_channel` varchar(20) NOT NULL COMMENT '发布渠道',
-  `card_key` varchar(50) DEFAULT NULL COMMENT '卡号',
-  `card_money` decimal(10,2) DEFAULT '0.00' COMMENT '卡号金额',
-  `card_give` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '使用充值卡可以获赠多少',
-  `card_addtime` int DEFAULT '0' COMMENT '添加时间',
-  `card_user_id` int NOT NULL DEFAULT '0' COMMENT '领取的用户',
-  `card_get_time` int NOT NULL DEFAULT '0' COMMENT '领取的时间',
+  `card_type` tinyint(1) DEFAULT '1' COMMENT 'ประเภทบัตร 1=บัตรเติมเงิน',
+  `card_use` tinyint(1) DEFAULT '0' COMMENT 'ใช้งานแล้วหรือไม่',
+  `card_channel` varchar(20) NOT NULL COMMENT 'ช่องทางเผยแพร่',
+  `card_key` varchar(50) DEFAULT NULL COMMENT 'หมายเลขบัตร',
+  `card_money` decimal(10,2) DEFAULT '0.00' COMMENT 'ยอดเงินในบัตร',
+  `card_give` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'จำนวนโบนัสเมื่อใช้บัตรเติมเงิน',
+  `card_addtime` int DEFAULT '0' COMMENT 'เวลาที่เพิ่ม',
+  `card_user_id` int NOT NULL DEFAULT '0' COMMENT 'ผู้ใช้ที่รับ',
+  `card_get_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่รับ',
   PRIMARY KEY (`card_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='用户充值卡号、邀请码等表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางเลขบัตรเติมเงิน รหัสเชิญ ฯลฯ ของผู้ใช้';
 DROP TABLE IF EXISTS `wm_user_card_log`;
 CREATE TABLE `wm_user_card_log` (
   `log_id` int NOT NULL AUTO_INCREMENT,
-  `log_card_id` int NOT NULL COMMENT '卡号id',
-  `log_user_id` int NOT NULL COMMENT '使用的id',
-  `log_use_time` int NOT NULL DEFAULT '0' COMMENT '使用的时间',
-  `log_touser_id` int NOT NULL DEFAULT '0' COMMENT '对谁使用的',
+  `log_card_id` int NOT NULL COMMENT 'id หมายเลขบัตร',
+  `log_user_id` int NOT NULL COMMENT 'id ที่ใช้',
+  `log_use_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่ใช้',
+  `log_touser_id` int NOT NULL DEFAULT '0' COMMENT 'ใช้กับใคร',
   PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='卡号使用记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการใช้บัตร';
 DROP TABLE IF EXISTS `wm_user_coll`;
 CREATE TABLE `wm_user_coll` (
   `coll_id` int NOT NULL AUTO_INCREMENT,
-  `coll_module` varchar(20) NOT NULL COMMENT '操作的模块',
-  `coll_type` varchar(20) NOT NULL COMMENT '操作类型，coll为收藏，rec为推荐，shelf为书架,sub为自动订阅',
-  `user_id` int NOT NULL DEFAULT '0' COMMENT '用户id',
-  `coll_cid` int NOT NULL DEFAULT '0' COMMENT '操作的内容id',
-  `coll_time` int NOT NULL DEFAULT '0' COMMENT '操作的时间',
+  `coll_module` varchar(20) NOT NULL COMMENT 'โมดูลที่ดำเนินการ',
+  `coll_type` varchar(20) NOT NULL COMMENT 'ประเภทการดำเนินการ, coll=รายการโปรด, rec=แนะนำ, shelf=ชั้นหนังสือ, sub=สมัครอัตโนมัติ',
+  `user_id` int NOT NULL DEFAULT '0' COMMENT 'id ผู้ใช้',
+  `coll_cid` int NOT NULL DEFAULT '0' COMMENT 'ID เนื้อหาที่ดำเนินการ',
+  `coll_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาของการดำเนินการ',
   PRIMARY KEY (`coll_id`),
   KEY `uid` (`user_id`,`coll_cid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='用户收藏、书架、订阅等表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางรายการโปรด ชั้นหนังสือ การสมัครรับ ฯลฯ ของผู้ใช้';
 DROP TABLE IF EXISTS `wm_user_finance`;
 CREATE TABLE `wm_user_finance` (
   `finance_id` int NOT NULL AUTO_INCREMENT,
-  `finance_user_id` int DEFAULT NULL COMMENT '用户id',
-  `finance_realname` varchar(20) DEFAULT NULL COMMENT '真实姓名',
-  `finance_cardid` varchar(30) DEFAULT NULL COMMENT '身份证号码',
-  `finance_address` varchar(50) DEFAULT NULL COMMENT '家庭住址',
-  `finance_zipcode` varchar(10) DEFAULT NULL COMMENT '邮编',
-  `finance_bank` varchar(20) DEFAULT NULL COMMENT '开户行',
-  `finance_bankaddress` varchar(50) DEFAULT NULL COMMENT '开户行地址',
-  `finance_bankcard` varchar(30) DEFAULT NULL COMMENT '开户行卡号',
-  `finance_bankmaster` varchar(20) DEFAULT NULL COMMENT '持卡人姓名',
-  `finance_alipay` varchar(50) DEFAULT NULL COMMENT '支付宝账号',
+  `finance_user_id` int DEFAULT NULL COMMENT 'id ผู้ใช้',
+  `finance_realname` varchar(20) DEFAULT NULL COMMENT 'ชื่อ-นามสกุลจริง',
+  `finance_cardid` varchar(30) DEFAULT NULL COMMENT 'หมายเลขบัตรประชาชน',
+  `finance_address` varchar(50) DEFAULT NULL COMMENT 'ที่อยู่บ้าน',
+  `finance_zipcode` varchar(10) DEFAULT NULL COMMENT 'รหัสไปรษณีย์',
+  `finance_bank` varchar(20) DEFAULT NULL COMMENT 'ธนาคารที่เปิดบัญชี',
+  `finance_bankaddress` varchar(50) DEFAULT NULL COMMENT 'ที่อยู่ธนาคารที่เปิดบัญชี',
+  `finance_bankcard` varchar(30) DEFAULT NULL COMMENT 'หมายเลขบัญชีของธนาคารที่เปิดบัญชี',
+  `finance_bankmaster` varchar(20) DEFAULT NULL COMMENT 'ชื่อผู้ถือบัตร',
+  `finance_alipay` varchar(50) DEFAULT NULL COMMENT 'บัญชี Alipay',
   PRIMARY KEY (`finance_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='用户财务信息表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางข้อมูลการเงินของผู้ใช้';
 DROP TABLE IF EXISTS `wm_user_finance_log`;
 CREATE TABLE `wm_user_finance_log` (
   `log_id` int NOT NULL AUTO_INCREMENT,
-  `log_status` tinyint(1) DEFAULT '1' COMMENT '1为收入，2为消费',
-  `log_module` varchar(20) DEFAULT NULL COMMENT '模块',
-  `log_type` varchar(20) DEFAULT NULL COMMENT '类型',
-  `log_user_id` int NOT NULL DEFAULT '0' COMMENT '消费或者收入的用户id',
-  `log_tuser_id` int NOT NULL DEFAULT '0' COMMENT '对谁使用或者谁赠送的用户id',
-  `log_cid` varchar(35) NOT NULL DEFAULT '0' COMMENT '购买的内容id或者来源id',
-  `log_gold1_before` decimal(10,3) DEFAULT '0.000' COMMENT '交易前的金币1的数量',
-  `log_gold1` decimal(10,3) DEFAULT '0.000' COMMENT '金币1的数量',
-  `log_gold1_after` decimal(10,3) DEFAULT '0.000' COMMENT '交易后的金币1的数量',
-  `log_gold2_before` decimal(10,3) DEFAULT '0.000' COMMENT '交易前的金币2的数量',
-  `log_gold2` decimal(10,3) NOT NULL DEFAULT '0.000' COMMENT '金币2的数量',
-  `log_gold2_after` decimal(10,3) DEFAULT '0.000' COMMENT '交易后的金币2的数量',
-  `log_remark` varchar(100) DEFAULT NULL COMMENT '备注信息',
-  `log_time` int NOT NULL DEFAULT '0' COMMENT '购买的时间',
+  `log_status` tinyint(1) DEFAULT '1' COMMENT '1=รายรับ 2=รายจ่าย',
+  `log_module` varchar(20) DEFAULT NULL COMMENT 'โมดูล',
+  `log_type` varchar(20) DEFAULT NULL COMMENT 'ประเภท',
+  `log_user_id` int NOT NULL DEFAULT '0' COMMENT 'ID ผู้ใช้ที่ใช้จ่ายหรือรับรายได้',
+  `log_tuser_id` int NOT NULL DEFAULT '0' COMMENT 'ID ผู้ใช้ที่ถูกใช้หรือผู้ที่มอบให้',
+  `log_cid` varchar(35) NOT NULL DEFAULT '0' COMMENT 'id เนื้อหาที่ซื้อ หรือ id ต้นทาง',
+  `log_gold1_before` decimal(10,3) DEFAULT '0.000' COMMENT 'จำนวนเหรียญ 1 ก่อนทำรายการ',
+  `log_gold1` decimal(10,3) DEFAULT '0.000' COMMENT 'จำนวนเหรียญ1',
+  `log_gold1_after` decimal(10,3) DEFAULT '0.000' COMMENT 'จำนวนเหรียญ 1 หลังทำรายการ',
+  `log_gold2_before` decimal(10,3) DEFAULT '0.000' COMMENT 'จำนวนเหรียญ 2 ก่อนทำรายการ',
+  `log_gold2` decimal(10,3) NOT NULL DEFAULT '0.000' COMMENT 'จำนวนเหรียญ2',
+  `log_gold2_after` decimal(10,3) DEFAULT '0.000' COMMENT 'จำนวนเหรียญ 2 หลังทำรายการ',
+  `log_remark` varchar(100) DEFAULT NULL COMMENT 'ข้อมูลหมายเหตุ',
+  `log_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาของการซื้อ',
   PRIMARY KEY (`log_id`),
   KEY `status_index` (`log_status`),
   KEY `module_index` (`log_module`),
   KEY `type_index` (`log_type`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='用户购买使用赠送等财务记录日志';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='บันทึกการเงินของผู้ใช้ เช่น การซื้อ การใช้ การมอบให้';
 DROP TABLE IF EXISTS `wm_user_head`;
 CREATE TABLE `wm_user_head` (
   `head_id` int NOT NULL AUTO_INCREMENT,
-  `head_src` varchar(200) NOT NULL COMMENT '头像地址',
-  `head_order` int NOT NULL DEFAULT '50' COMMENT '头像排序',
+  `head_src` varchar(200) NOT NULL COMMENT 'ที่อยู่รูปโปรไฟล์',
+  `head_order` int NOT NULL DEFAULT '50' COMMENT 'ลำดับรูปโปรไฟล์',
   PRIMARY KEY (`head_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3 COMMENT='预设头像表';
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางรูปประจำตัวที่ตั้งไว้ล่วงหน้า';
 INSERT INTO `wm_user_head` VALUES (1,'/upload/userhead/20141201125121.jpg',20),(2,'/upload/userhead/20141201125122.jpg',20),(5,'/upload/userhead/20141201125124.jpg',20),(6,'/upload/userhead/20141201125125.jpg',20),(7,'/upload/userhead/20141201125126.jpg',20),(8,'/upload/userhead/20141201125128.jpg',20),(9,'/upload/userhead/20141201125129.png',20),(10,'/upload/userhead/20141201125131.jpg',20),(11,'/upload/userhead/20141201125133.jpg',20),(12,'/upload/userhead/20141201125134.jpg',20),(13,'/upload/userhead/20141201125410.jpg',20),(14,'/upload/userhead/20141201125412.jpg',20),(15,'/upload/userhead/20141201125414.jpg',20),(16,'/upload/userhead/20141201125416.png',20),(17,'/upload/userhead/20141201125422.jpg',20),(18,'/upload/userhead/20141201125419.jpg',20),(19,'/upload/userhead/20141201125424.jpg',20),(20,'/upload/userhead/20141201125426.jpg',20),(21,'/upload/userhead/20141201125432.jpg',20),(22,'/upload/userhead/20141201125430.jpg',20),(23,'/upload/userhead/20141201125431.png',20),(24,'/upload/userhead/20141201125428.png',20),(25,'/upload/userhead/20141201125513.png',20),(26,'/upload/userhead/20141201125512.png',20),(27,'/upload/userhead/20141201125511.png',20),(28,'/upload/userhead/20141201125510.jpg',20);
 DROP TABLE IF EXISTS `wm_user_level`;
 CREATE TABLE `wm_user_level` (
   `level_id` int NOT NULL AUTO_INCREMENT,
-  `level_start` int NOT NULL COMMENT '等级开始经验',
-  `level_end` int NOT NULL COMMENT '等级结束经验',
-  `level_name` varchar(20) NOT NULL COMMENT '等级名字',
-  `level_order` int DEFAULT NULL COMMENT '等级排序',
-  `level_coll` int NOT NULL DEFAULT '0' COMMENT '等级收藏量',
-  `level_shelf` int NOT NULL DEFAULT '0' COMMENT '等级总书架量',
-  `level_rec` int NOT NULL DEFAULT '0' COMMENT '每日登录赠送推荐量',
-  `level_month` int NOT NULL DEFAULT '0' COMMENT '每日登录赠送月票',
+  `level_start` int NOT NULL COMMENT 'ประสบการณ์เริ่มต้นของระดับ',
+  `level_end` int NOT NULL COMMENT 'ประสบการณ์สิ้นสุดของระดับ',
+  `level_name` varchar(40) NOT NULL COMMENT 'ชื่อระดับ',
+  `level_order` int DEFAULT NULL COMMENT 'การเรียงลำดับระดับ',
+  `level_coll` int NOT NULL DEFAULT '0' COMMENT 'จำนวนรายการโปรดของระดับ',
+  `level_shelf` int NOT NULL DEFAULT '0' COMMENT 'จำนวนชั้นหนังสือรวมของระดับ',
+  `level_rec` int NOT NULL DEFAULT '0' COMMENT 'โควตาโหวตแนะนำที่ให้เมื่อเข้าสู่ระบบทุกวัน',
+  `level_month` int NOT NULL DEFAULT '0' COMMENT 'โหวตรายเดือนที่ให้เมื่อเข้าสู่ระบบทุกวัน',
   PRIMARY KEY (`level_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb3 COMMENT='经验等级';
-INSERT INTO `wm_user_level` VALUES (23,0,100,'斗者',1,5,5,0,0),(24,100,300,'斗徒',2,6,6,0,0),(25,300,600,'斗师',3,7,7,0,0),(26,600,1000,'斗灵',4,8,8,0,0),(27,1000,2000,'斗王',5,9,9,0,0),(28,2000,5000,'斗皇',6,10,10,0,0),(29,5000,10000,'斗宗',7,15,15,0,0),(30,10000,20000,'斗尊',8,20,20,0,0),(31,20000,50000,'斗圣',9,25,25,0,0),(32,50000,100000,'斗帝',10,30,30,0,0);
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb3 COMMENT='ระดับประสบการณ์';
+INSERT INTO `wm_user_level` VALUES (23,0,100,'โต้วเจ่อ',1,5,5,0,0),(24,100,300,'โต้วถู',2,6,6,0,0),(25,300,600,'โต้วซือ',3,7,7,0,0),(26,600,1000,'โต้วหลิง',4,8,8,0,0),(27,1000,2000,'โต้วหวัง',5,9,9,0,0),(28,2000,5000,'โต้วหวง',6,10,10,0,0),(29,5000,10000,'โต้วจง',7,15,15,0,0),(30,10000,20000,'โต้วจุน',8,20,20,0,0),(31,20000,50000,'โต้วเซิ่ง',9,25,25,0,0),(32,50000,100000,'โต้วตี้',10,30,30,0,0);
 DROP TABLE IF EXISTS `wm_user_login`;
 CREATE TABLE `wm_user_login` (
   `login_id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL DEFAULT '0' COMMENT '用户id',
-  `login_time` int NOT NULL DEFAULT '0' COMMENT '登录时间',
-  `login_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1为账号',
-  `login_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0为登录失败，1为登录成功，2为密码错误',
-  `login_remark` varchar(100) CHARACTER SET gbk COLLATE gbk_chinese_ci DEFAULT '登录成功' COMMENT '备注详情',
-  `login_ip` varchar(40) DEFAULT NULL COMMENT '登录IP',
-  `login_ua` varchar(1000) DEFAULT NULL COMMENT '登录浏览器ua',
-  `login_browser` varchar(250) DEFAULT NULL COMMENT '浏览器',
+  `user_id` int NOT NULL DEFAULT '0' COMMENT 'id ผู้ใช้',
+  `login_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่เข้าสู่ระบบ',
+  `login_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=บัญชี',
+  `login_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=เข้าสู่ระบบล้มเหลว 1=เข้าสู่ระบบสำเร็จ 2=รหัสผ่านผิด',
+  `login_remark` varchar(255) DEFAULT 'เข้าสู่ระบบสำเร็จ' COMMENT 'รายละเอียดหมายเหตุ',
+  `login_ip` varchar(40) DEFAULT NULL COMMENT 'IP ที่เข้าสู่ระบบ',
+  `login_ua` varchar(1000) DEFAULT NULL COMMENT 'ua ของเบราว์เซอร์ที่เข้าสู่ระบบ',
+  `login_browser` varchar(250) DEFAULT NULL COMMENT 'เบราว์เซอร์',
   PRIMARY KEY (`login_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COMMENT='用户登录记录表';
-INSERT INTO `wm_user_login` VALUES (1,1,1613889751,1,2,'密码错误','127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36','chrome');
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการเข้าสู่ระบบของผู้ใช้';
+INSERT INTO `wm_user_login` VALUES (1,1,1613889751,1,2,'รหัสผ่านไม่ถูกต้อง','127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36','chrome');
 DROP TABLE IF EXISTS `wm_user_msg`;
 CREATE TABLE `wm_user_msg` (
   `msg_id` int NOT NULL AUTO_INCREMENT,
-  `msg_fuid` int NOT NULL DEFAULT '0' COMMENT '发送用户id',
-  `msg_tuid` int NOT NULL COMMENT '接受用户id',
-  `msg_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0为未阅读，1为已阅读',
-  `msg_content` varchar(1000) DEFAULT NULL COMMENT '消息内容',
-  `msg_time` int NOT NULL DEFAULT '0' COMMENT '发送时间',
+  `msg_fuid` int NOT NULL DEFAULT '0' COMMENT 'id ผู้ใช้ที่ส่ง',
+  `msg_tuid` int NOT NULL COMMENT 'ID ผู้ใช้ที่รับ',
+  `msg_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=ยังไม่ได้อ่าน 1=อ่านแล้ว',
+  `msg_content` varchar(1000) DEFAULT NULL COMMENT 'เนื้อหาข้อความ',
+  `msg_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาส่ง',
   PRIMARY KEY (`msg_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='用户消息记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกข้อความของผู้ใช้';
 DROP TABLE IF EXISTS `wm_user_punish`;
 CREATE TABLE `wm_user_punish` (
   `punish_id` int NOT NULL AUTO_INCREMENT,
-  `punish_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0为失效,1为正常',
-  `punish_uid` int NOT NULL DEFAULT '0' COMMENT '用户id',
-  `punish_type` varchar(20) NOT NULL COMMENT 'login禁止登陆,talk禁言',
-  `punish_remark` varchar(50) DEFAULT NULL COMMENT '备注',
-  `punish_starttime` int NOT NULL DEFAULT '0' COMMENT '处罚开始时间',
-  `punish_endtime` int NOT NULL DEFAULT '0' COMMENT '处罚结束时间',
-  `punish_createtime` int NOT NULL DEFAULT '0' COMMENT '处罚创建时间',
+  `punish_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0=ใช้ไม่ได้ 1=ปกติ',
+  `punish_uid` int NOT NULL DEFAULT '0' COMMENT 'id ผู้ใช้',
+  `punish_type` varchar(20) NOT NULL COMMENT 'login=ห้ามเข้าสู่ระบบ talk=ห้ามแสดงความคิดเห็น',
+  `punish_remark` varchar(50) DEFAULT NULL COMMENT 'หมายเหตุ',
+  `punish_starttime` int NOT NULL DEFAULT '0' COMMENT 'เวลาเริ่มลงโทษ',
+  `punish_endtime` int NOT NULL DEFAULT '0' COMMENT 'เวลาสิ้นสุดการลงโทษ',
+  `punish_createtime` int NOT NULL DEFAULT '0' COMMENT 'เวลาสร้างการลงโทษ',
   PRIMARY KEY (`punish_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='用户处罚记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการลงโทษผู้ใช้';
 DROP TABLE IF EXISTS `wm_user_read`;
 CREATE TABLE `wm_user_read` (
   `read_id` int NOT NULL AUTO_INCREMENT,
-  `read_module` varchar(20) NOT NULL DEFAULT 'novel' COMMENT '阅读模块',
-  `read_cid` int NOT NULL DEFAULT '0' COMMENT '内容id',
-  `read_nid` int DEFAULT '0' COMMENT '内容的父id',
-  `read_title` varchar(50) DEFAULT NULL COMMENT '标题',
-  `read_uid` int NOT NULL DEFAULT '0' COMMENT '用户id',
-  `read_time` int NOT NULL DEFAULT '0' COMMENT '首次阅读时间',
-  `read_lasttime` int NOT NULL DEFAULT '0' COMMENT '上次阅读时间',
+  `read_module` varchar(20) NOT NULL DEFAULT 'novel' COMMENT 'โมดูลการอ่าน',
+  `read_cid` int NOT NULL DEFAULT '0' COMMENT 'id เนื้อหา',
+  `read_nid` int DEFAULT '0' COMMENT 'id เนื้อหาแม่',
+  `read_title` varchar(50) DEFAULT NULL COMMENT 'หัวข้อ',
+  `read_uid` int NOT NULL DEFAULT '0' COMMENT 'id ผู้ใช้',
+  `read_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาอ่านครั้งแรก',
+  `read_lasttime` int NOT NULL DEFAULT '0' COMMENT 'เวลาอ่านครั้งล่าสุด',
   PRIMARY KEY (`read_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='阅读记录表，只存储最新的阅读记录';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการอ่าน, เก็บเฉพาะบันทึกการอ่านล่าสุด';
 DROP TABLE IF EXISTS `wm_user_read_log`;
 CREATE TABLE `wm_user_read_log` (
   `read_id` int NOT NULL AUTO_INCREMENT,
-  `read_module` varchar(20) NOT NULL DEFAULT 'novel' COMMENT '阅读模块',
-  `read_cid` int NOT NULL DEFAULT '0' COMMENT '内容id',
-  `read_nid` int DEFAULT '0' COMMENT '内容的父id',
-  `read_title` varchar(50) DEFAULT NULL COMMENT '标题',
-  `read_uid` int NOT NULL DEFAULT '0' COMMENT '用户id',
-  `read_time` int NOT NULL DEFAULT '0' COMMENT '阅读时间',
+  `read_module` varchar(20) NOT NULL DEFAULT 'novel' COMMENT 'โมดูลการอ่าน',
+  `read_cid` int NOT NULL DEFAULT '0' COMMENT 'id เนื้อหา',
+  `read_nid` int DEFAULT '0' COMMENT 'id เนื้อหาแม่',
+  `read_title` varchar(50) DEFAULT NULL COMMENT 'หัวข้อ',
+  `read_uid` int NOT NULL DEFAULT '0' COMMENT 'id ผู้ใช้',
+  `read_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาอ่าน',
   PRIMARY KEY (`read_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='阅读记录表，所有阅读记录';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการอ่าน, บันทึกการอ่านทั้งหมด';
 DROP TABLE IF EXISTS `wm_user_sign`;
 CREATE TABLE `wm_user_sign` (
   `sign_id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL DEFAULT '0' COMMENT '签到用户',
-  `sign_sum` int NOT NULL DEFAULT '0' COMMENT '总共签到天数',
-  `sign_con` int NOT NULL DEFAULT '0' COMMENT '连续签到天数',
-  `sign_prerank` int NOT NULL DEFAULT '0' COMMENT '上次签到排名',
-  `sign_pretime` int NOT NULL DEFAULT '0' COMMENT '上次签到时间',
-  `sign_rank` int NOT NULL DEFAULT '0' COMMENT '本次签到排名',
-  `sign_time` int NOT NULL DEFAULT '0' COMMENT '本次签到时间',
+  `user_id` int NOT NULL DEFAULT '0' COMMENT 'ผู้ใช้ที่เช็คอิน',
+  `sign_sum` int NOT NULL DEFAULT '0' COMMENT 'จำนวนวันเช็คอินทั้งหมด',
+  `sign_con` int NOT NULL DEFAULT '0' COMMENT 'จำนวนวันเช็คอินต่อเนื่อง',
+  `sign_prerank` int NOT NULL DEFAULT '0' COMMENT 'อันดับเช็คอินครั้งล่าสุด',
+  `sign_pretime` int NOT NULL DEFAULT '0' COMMENT 'เวลาเช็คอินครั้งล่าสุด',
+  `sign_rank` int NOT NULL DEFAULT '0' COMMENT 'อันดับเช็คอินครั้งนี้',
+  `sign_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาเช็คอินครั้งนี้',
   PRIMARY KEY (`sign_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='用户签到表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางการเช็คอินของผู้ใช้';
 DROP TABLE IF EXISTS `wm_user_sign_log`;
 CREATE TABLE `wm_user_sign_log` (
   `log_id` int NOT NULL AUTO_INCREMENT,
-  `log_user_id` int NOT NULL COMMENT '签到用户',
-  `log_gold1` int NOT NULL DEFAULT '0' COMMENT '赠送金币1',
-  `log_gold2` int NOT NULL DEFAULT '0' COMMENT '赠送金币2',
-  `log_exp` int NOT NULL DEFAULT '0' COMMENT '赠送经验',
-  `log_rec` int NOT NULL DEFAULT '0' COMMENT '赠送推荐票',
-  `log_month` int NOT NULL DEFAULT '0' COMMENT '赠送月票',
-  `log_rank` int NOT NULL COMMENT '签到排名',
-  `log_date` date NOT NULL COMMENT '签到日期',
-  `log_time` int NOT NULL COMMENT '签到时间',
+  `log_user_id` int NOT NULL COMMENT 'ผู้ใช้ที่เช็คอิน',
+  `log_gold1` int NOT NULL DEFAULT '0' COMMENT 'เหรียญที่แจกให้1',
+  `log_gold2` int NOT NULL DEFAULT '0' COMMENT 'เหรียญที่แจกให้2',
+  `log_exp` int NOT NULL DEFAULT '0' COMMENT 'ประสบการณ์ที่แจกให้',
+  `log_rec` int NOT NULL DEFAULT '0' COMMENT 'โหวตแนะนำที่แจกให้',
+  `log_month` int NOT NULL DEFAULT '0' COMMENT 'โหวตรายเดือนที่แจกให้',
+  `log_rank` int NOT NULL COMMENT 'อันดับการเช็คอิน',
+  `log_date` date NOT NULL COMMENT 'วันที่เช็คอิน',
+  `log_time` int NOT NULL COMMENT 'เวลาเช็คอิน',
   PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COMMENT='签到日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการเช็คอิน';
 INSERT INTO `wm_user_sign_log` VALUES (1,1,0,0,1,0,0,1,'2021-01-30',1611983872);
 DROP TABLE IF EXISTS `wm_user_ticket`;
 CREATE TABLE `wm_user_ticket` (
   `ticket_id` int NOT NULL AUTO_INCREMENT,
-  `ticket_user_id` int NOT NULL COMMENT '用户id',
-  `ticket_module` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'novel' COMMENT '所属模块',
-  `ticket_rec` int NOT NULL DEFAULT '0' COMMENT '用户推荐票数量',
-  `ticket_month` int NOT NULL DEFAULT '0' COMMENT '用户月票数量',
+  `ticket_user_id` int NOT NULL COMMENT 'id ผู้ใช้',
+  `ticket_module` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'novel' COMMENT 'โมดูลที่สังกัด',
+  `ticket_rec` int NOT NULL DEFAULT '0' COMMENT 'จำนวนโหวตแนะนำของผู้ใช้',
+  `ticket_month` int NOT NULL DEFAULT '0' COMMENT 'จำนวนโหวตรายเดือนของผู้ใช้',
   PRIMARY KEY (`ticket_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='用户票类集合表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางรวมประเภทโหวตของผู้ใช้';
 DROP TABLE IF EXISTS `wm_user_ticket_log`;
 CREATE TABLE `wm_user_ticket_log` (
   `log_id` int NOT NULL AUTO_INCREMENT,
-  `log_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1为获得，2为使用',
-  `log_module` varchar(20) DEFAULT NULL COMMENT '模块，all为全部模块',
-  `log_cid` int DEFAULT '0' COMMENT '内容id，',
-  `log_user_id` int NOT NULL DEFAULT '0' COMMENT '用户id',
-  `log_rec` int NOT NULL DEFAULT '0' COMMENT '推荐票数量',
-  `log_month` int NOT NULL DEFAULT '0' COMMENT '月票数量',
-  `log_remark` varchar(500) DEFAULT NULL COMMENT '来源/使用说明',
-  `log_time` int NOT NULL COMMENT '来源/使用时间',
+  `log_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=ได้รับ 2=ใช้ไป',
+  `log_module` varchar(20) DEFAULT NULL COMMENT 'โมดูล, all=ทุกโมดูล',
+  `log_cid` int DEFAULT '0' COMMENT 'id เนื้อหา,',
+  `log_user_id` int NOT NULL DEFAULT '0' COMMENT 'id ผู้ใช้',
+  `log_rec` int NOT NULL DEFAULT '0' COMMENT 'จำนวนโหวตแนะนำ',
+  `log_month` int NOT NULL DEFAULT '0' COMMENT 'จำนวนโหวตรายเดือน',
+  `log_remark` varchar(500) DEFAULT NULL COMMENT 'แหล่งที่มา/คำอธิบายการใช้งาน',
+  `log_time` int NOT NULL COMMENT 'แหล่งที่มา/เวลาที่ใช้',
   PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='月票、推荐票等来源日志记录';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='บันทึกแหล่งที่มาของโหวตรายเดือน โหวตแนะนำ ฯลฯ';
 DROP TABLE IF EXISTS `wm_user_user`;
 CREATE TABLE `wm_user_user` (
   `user_id` int NOT NULL AUTO_INCREMENT,
-  `user_type` varchar(20) NOT NULL DEFAULT 'default' COMMENT '账号注册来源',
-  `user_name` varchar(50) NOT NULL COMMENT '账号/第三方ID',
-  `user_salt` varchar(50) DEFAULT '' COMMENT '密码盐（bcrypt 后不再使用，仅为兼容旧哈希保留）',
-  `user_psw` varchar(255) NOT NULL COMMENT '密码',
-  `user_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1为正常,0为审核中',
-  `user_display` tinyint(1) DEFAULT '1' COMMENT '0为永久封禁，1为正常，2为定时封禁',
-  `user_nickname` varchar(40) NOT NULL COMMENT '昵称',
-  `user_email` varchar(50) DEFAULT NULL COMMENT '邮箱',
-  `user_emailtrue` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1为验证，0为未验证',
-  `user_qq` varchar(15) DEFAULT NULL COMMENT '用户QQ号',
-  `user_tel` varchar(18) DEFAULT NULL COMMENT '用户的手机号',
-  `user_teltrue` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1为验证,0为未验证',
-  `user_sex` int NOT NULL DEFAULT '1' COMMENT '性别',
-  `user_birthday` date NOT NULL DEFAULT '1991-10-24' COMMENT '用户的出生年月日',
-  `user_head` varchar(200) NOT NULL COMMENT '头像',
-  `user_sign` varchar(100) NOT NULL COMMENT '签名',
-  `user_money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '账户余额',
-  `user_money_freeze` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '账户被冻结的余额',
-  `user_gold1` decimal(10,3) NOT NULL DEFAULT '0.000' COMMENT '金币1',
-  `user_gold2` decimal(10,3) NOT NULL DEFAULT '0.000' COMMENT '金币2',
-  `user_ischarge` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否首冲过了',
-  `user_exp` int NOT NULL DEFAULT '0' COMMENT '经验',
-  `user_browse` int NOT NULL DEFAULT '0' COMMENT '空间浏览量',
-  `user_topic` int NOT NULL DEFAULT '0' COMMENT '主题量',
-  `user_retopic` int NOT NULL DEFAULT '0' COMMENT '回帖数',
-  `user_replay` int NOT NULL DEFAULT '0' COMMENT '评论数',
-  `user_logintime` int NOT NULL DEFAULT '0' COMMENT '上次登录时间',
-  `user_regtime` int NOT NULL DEFAULT '0' COMMENT '注册时间',
-  `user_regip` varchar(15) NOT NULL DEFAULT '0.0.0.0' COMMENT '注册IP',
-  `user_displaytime` int NOT NULL DEFAULT '0' COMMENT '如果是时间段，那么就是封禁的时间段',
+  `user_type` varchar(20) NOT NULL DEFAULT 'default' COMMENT 'แหล่งที่มาของการสมัครบัญชี',
+  `user_name` varchar(50) NOT NULL COMMENT 'บัญชี/ID บุคคลที่สาม',
+  `user_salt` varchar(50) DEFAULT '' COMMENT 'ซอล์ตรหัสผ่าน（เลิกใช้หลัง bcrypt เก็บไว้รองรับแฮชเก่า）',
+  `user_psw` varchar(255) NOT NULL COMMENT 'รหัสผ่าน',
+  `user_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=ปกติ 0=รอตรวจสอบ',
+  `user_display` tinyint(1) DEFAULT '1' COMMENT '0=แบนถาวร 1=ปกติ 2=แบนตามกำหนดเวลา',
+  `user_nickname` varchar(40) NOT NULL COMMENT 'ชื่อเล่น',
+  `user_email` varchar(50) DEFAULT NULL COMMENT 'อีเมล',
+  `user_emailtrue` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1=ยืนยันแล้ว 0=ยังไม่ยืนยัน',
+  `user_qq` varchar(15) DEFAULT NULL COMMENT 'หมายเลข QQ ของผู้ใช้',
+  `user_tel` varchar(18) DEFAULT NULL COMMENT 'หมายเลขมือถือของผู้ใช้',
+  `user_teltrue` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1=ยืนยันแล้ว 0=ยังไม่ยืนยัน',
+  `user_sex` int NOT NULL DEFAULT '1' COMMENT 'เพศ',
+  `user_birthday` date NOT NULL DEFAULT '1991-10-24' COMMENT 'วันเดือนปีเกิดของผู้ใช้',
+  `user_head` varchar(200) NOT NULL COMMENT 'รูปโปรไฟล์',
+  `user_sign` varchar(100) NOT NULL COMMENT 'ลายเซ็น',
+  `user_money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'ยอดคงเหลือในบัญชี',
+  `user_money_freeze` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'ยอดคงเหลือที่ถูกอายัดในบัญชี',
+  `user_gold1` decimal(10,3) NOT NULL DEFAULT '0.000' COMMENT 'เหรียญ1',
+  `user_gold2` decimal(10,3) NOT NULL DEFAULT '0.000' COMMENT 'เหรียญ2',
+  `user_ischarge` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'เคยเติมเงินครั้งแรกแล้วหรือไม่',
+  `user_exp` int NOT NULL DEFAULT '0' COMMENT 'ประสบการณ์',
+  `user_browse` int NOT NULL DEFAULT '0' COMMENT 'ยอดเข้าชมพื้นที่',
+  `user_topic` int NOT NULL DEFAULT '0' COMMENT 'จำนวนหัวข้อ',
+  `user_retopic` int NOT NULL DEFAULT '0' COMMENT 'จำนวนโพสต์ตอบ',
+  `user_replay` int NOT NULL DEFAULT '0' COMMENT 'จำนวนความคิดเห็น',
+  `user_logintime` int NOT NULL DEFAULT '0' COMMENT 'เวลาเข้าสู่ระบบครั้งล่าสุด',
+  `user_regtime` int NOT NULL DEFAULT '0' COMMENT 'เวลาสมัคร',
+  `user_regip` varchar(15) NOT NULL DEFAULT '0.0.0.0' COMMENT 'IP ที่สมัคร',
+  `user_displaytime` int NOT NULL DEFAULT '0' COMMENT 'หากเป็นช่วงเวลา จะเป็นช่วงเวลาที่ถูกแบน',
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COMMENT='用户表';
-INSERT INTO `wm_user_user` VALUES (1,'default','weimeng','','280a2b0b4a054aa53596a1b7106b4060f1f91aad',1,1,'我是大笨蛋','1747699213@qq.com',1,'1747699213','15123931801',0,1,'1991-10-24','/upload/userhead/20141201125513.png','你想要的不一定来，但是未来一定会来！',0.00,0.00,17.000,1.130,1,539,122,10,3,33,1613889715,1452754424,'0.0.0.0',1038770);
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COMMENT='ตารางผู้ใช้';
+INSERT INTO `wm_user_user` VALUES (1,'default','weimeng','','280a2b0b4a054aa53596a1b7106b4060f1f91aad',1,1,'ฉันนี่มันโง่จริงๆ','1747699213@qq.com',1,'1747699213','15123931801',0,1,'1991-10-24','/upload/userhead/20141201125513.png','สิ่งที่คุณต้องการอาจไม่มาถึง แต่อนาคตจะมาถึงแน่นอน!',0.00,0.00,17.000,1.130,1,539,122,10,3,33,1613889715,1452754424,'0.0.0.0',1038770);
 DROP TABLE IF EXISTS `wm_user_vist`;
 CREATE TABLE `wm_user_vist` (
   `vist_id` int NOT NULL AUTO_INCREMENT,
-  `vist_fuid` int NOT NULL DEFAULT '0' COMMENT '访客id',
-  `vist_uid` int NOT NULL DEFAULT '0' COMMENT '主人id',
-  `vist_time` int NOT NULL DEFAULT '0' COMMENT '浏览时间',
+  `vist_fuid` int NOT NULL DEFAULT '0' COMMENT 'id ผู้เยี่ยมชม',
+  `vist_uid` int NOT NULL DEFAULT '0' COMMENT 'id เจ้าของ',
+  `vist_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่เข้าชม',
   PRIMARY KEY (`vist_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='用户参观记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกการเยี่ยมชมของผู้ใช้';
 DROP TABLE IF EXISTS `wm_weixin_account`;
 CREATE TABLE `wm_weixin_account` (
   `account_id` int NOT NULL AUTO_INCREMENT,
-  `account_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '布尔值，是否使用',
-  `account_name` varchar(50) NOT NULL COMMENT '公众号名字',
-  `account_account` varchar(50) NOT NULL COMMENT '公众号账号',
-  `account_gid` varchar(32) NOT NULL COMMENT '公众号原始id',
-  `account_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1订阅号，2服务号',
-  `account_auth` tinyint(1) NOT NULL DEFAULT '0' COMMENT '布尔值，是否认证',
-  `account_appid` varchar(50) NOT NULL COMMENT '公众号appid',
-  `account_secret` varchar(100) NOT NULL COMMENT '公众号secret',
-  `account_access` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否接入',
-  `account_main` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否是主公众号',
-  `account_follow` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否需要关注后访问',
-  `account_token` varchar(100) NOT NULL COMMENT '公众号的token',
-  `account_aeskey` varchar(100) NOT NULL COMMENT '公众号的消息加密key',
-  `account_welcome` varchar(200) DEFAULT NULL COMMENT '关注公众号的欢迎信息',
-  `account_welcome_temp` varchar(500) DEFAULT NULL COMMENT '关注公众号的欢迎信息模版',
-  `account_default` varchar(200) DEFAULT NULL COMMENT '没有匹配到消息的时候回复',
-  `account_default_temp` varchar(500) DEFAULT NULL COMMENT '没有匹配到消息的时候回复模版',
-  `account_time` int NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `account_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'ค่าบูลีน, ใช้งานหรือไม่',
+  `account_name` varchar(50) NOT NULL COMMENT 'ชื่อบัญชีทางการ',
+  `account_account` varchar(50) NOT NULL COMMENT 'บัญชีเข้าสู่ระบบของบัญชีทางการ',
+  `account_gid` varchar(32) NOT NULL COMMENT 'id ตั้งต้นของบัญชีทางการ',
+  `account_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=บัญชีสมัครสมาชิก 2=บัญชีบริการ',
+  `account_auth` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'ค่าบูลีน, ยืนยันตัวตนหรือไม่',
+  `account_appid` varchar(50) NOT NULL COMMENT 'appid ของบัญชีทางการ',
+  `account_secret` varchar(100) NOT NULL COMMENT 'secret ของบัญชีทางการ',
+  `account_access` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'เชื่อมต่อแล้วหรือไม่',
+  `account_main` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'เป็นบัญชีทางการหลักหรือไม่',
+  `account_follow` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'ต้องติดตามก่อนเข้าชมหรือไม่',
+  `account_token` varchar(100) NOT NULL COMMENT 'token ของบัญชีทางการ',
+  `account_aeskey` varchar(100) NOT NULL COMMENT 'key เข้ารหัสข้อความของบัญชีทางการ',
+  `account_welcome` varchar(200) DEFAULT NULL COMMENT 'ข้อความต้อนรับเมื่อติดตามบัญชีทางการ',
+  `account_welcome_temp` varchar(500) DEFAULT NULL COMMENT 'เทมเพลตข้อความต้อนรับเมื่อติดตามบัญชีทางการ',
+  `account_default` varchar(200) DEFAULT NULL COMMENT 'คำตอบเมื่อไม่พบข้อความที่ตรงกัน',
+  `account_default_temp` varchar(500) DEFAULT NULL COMMENT 'เทมเพลตคำตอบเมื่อไม่พบข้อความที่ตรงกัน',
+  `account_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่เพิ่ม',
   PRIMARY KEY (`account_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='微信公众号列表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='รายการบัญชีทางการ WeChat';
 DROP TABLE IF EXISTS `wm_weixin_autoreply`;
 CREATE TABLE `wm_weixin_autoreply` (
   `autoreply_id` int NOT NULL AUTO_INCREMENT,
-  `autoreply_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '使用状态，布尔值',
-  `autoreply_default` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0为不设置，1为关注回复，2为默认回复',
-  `autoreply_account_id` int NOT NULL DEFAULT '0' COMMENT '使用的公众号',
-  `autoreply_name` varchar(50) NOT NULL COMMENT '自动回复名字',
-  `autoreply_key` varchar(50) NOT NULL COMMENT '自动回复接受的关键字',
-  `autoreply_match` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1为完全匹配，2为全文模糊匹配，3为开始匹配，4为最后匹配',
-  `autoreply_content` varchar(500) NOT NULL COMMENT '回复内容',
-  `autoreply_temp` text NOT NULL COMMENT '回复内容的模版',
-  `autoreply_type` varchar(20) NOT NULL DEFAULT 'text' COMMENT 'text为文字，image为图片',
-  `autoreply_media_id` varchar(100) DEFAULT NULL COMMENT '素材id',
-  `autoreply_addtime` int NOT NULL COMMENT '添加时间',
+  `autoreply_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'สถานะการใช้งาน เป็นค่าบูลีน',
+  `autoreply_default` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=ไม่ตั้งค่า 1=ตอบกลับผู้ติดตาม 2=ตอบกลับอัตโนมัติ',
+  `autoreply_account_id` int NOT NULL DEFAULT '0' COMMENT 'บัญชีทางการที่ใช้',
+  `autoreply_name` varchar(50) NOT NULL COMMENT 'ชื่อการตอบกลับอัตโนมัติ',
+  `autoreply_key` varchar(50) NOT NULL COMMENT 'คำค้นที่การตอบกลับอัตโนมัติรับไว้',
+  `autoreply_match` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=ตรงทั้งหมด 2=ค้นหาคลุมเครือทั้งข้อความ 3=ตรงต้นข้อความ 4=ตรงท้ายข้อความ',
+  `autoreply_content` varchar(500) NOT NULL COMMENT 'เนื้อหาตอบกลับ',
+  `autoreply_temp` text NOT NULL COMMENT 'เทมเพลตเนื้อหาตอบกลับ',
+  `autoreply_type` varchar(20) NOT NULL DEFAULT 'text' COMMENT 'text=ข้อความ image=รูปภาพ',
+  `autoreply_media_id` varchar(100) DEFAULT NULL COMMENT 'id ของสื่อ',
+  `autoreply_addtime` int NOT NULL COMMENT 'เวลาที่เพิ่ม',
   PRIMARY KEY (`autoreply_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='微信公众号自动回复表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางตอบกลับอัตโนมัติของบัญชีทางการ WeChat';
 DROP TABLE IF EXISTS `wm_weixin_fans`;
 CREATE TABLE `wm_weixin_fans` (
   `fans_id` int NOT NULL AUTO_INCREMENT,
-  `fans_account_id` int NOT NULL COMMENT '所属公众号',
-  `fans_openid` varchar(100) NOT NULL COMMENT '用户的标识，对当前公众号唯一',
-  `fans_unionid` varchar(100) DEFAULT NULL COMMENT '只有在用户将公众号绑定到微信开放平台帐号后才会有这个字段',
-  `fans_subscribe` tinyint(1) NOT NULL DEFAULT '1' COMMENT '用户是否订阅该公众号标识，值为0时，代表此用户没有关注该公众号，拉取不到其余信息。',
-  `fans_nickname` varchar(50) NOT NULL COMMENT '用户的昵称',
-  `fans_headimgurl` varchar(255) NOT NULL COMMENT '用户的头像',
-  `fans_sex` tinyint(1) NOT NULL DEFAULT '1' COMMENT '用户的性别，值为1时是男性，值为2时是女性，值为0时是未知',
-  `fans_country` varchar(20) NOT NULL COMMENT '	用户所在国家',
-  `fans_province` varchar(10) NOT NULL COMMENT '用户所在省份',
-  `fans_city` varchar(30) NOT NULL COMMENT '用户所在城市',
-  `fans_remark` varchar(200) DEFAULT NULL COMMENT '公众号运营者对粉丝的备注，公众号运营者可在微信公众平台用户管理界面对粉丝添加备注',
-  `fans_subscribe_time` int NOT NULL DEFAULT '0' COMMENT '用户关注时间，为时间戳。如果用户曾多次关注，则取最后关注时间',
-  `fans_unsubtime` int NOT NULL DEFAULT '0' COMMENT '用户取消关注时间',
-  `fans_json` varchar(500) NOT NULL COMMENT '用户数据json',
-  `fans_time` int NOT NULL DEFAULT '0' COMMENT '数据入库时间',
+  `fans_account_id` int NOT NULL COMMENT 'บัญชีทางการที่สังกัด',
+  `fans_openid` varchar(100) NOT NULL COMMENT 'ตัวระบุของผู้ใช้ ซึ่งไม่ซ้ำกันภายในบัญชีทางการปัจจุบัน',
+  `fans_unionid` varchar(100) DEFAULT NULL COMMENT 'ฟิลด์นี้มีเฉพาะเมื่อผูกบัญชีทางการกับบัญชี WeChat Open Platform แล้ว',
+  `fans_subscribe` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'สถานะการติดตามบัญชีทางการของผู้ใช้ ค่า 0 หมายถึงผู้ใช้ยังไม่ได้ติดตามบัญชีทางการนี้ จึงดึงข้อมูลอื่นไม่ได้',
+  `fans_nickname` varchar(50) NOT NULL COMMENT 'ชื่อเล่นของผู้ใช้',
+  `fans_headimgurl` varchar(255) NOT NULL COMMENT 'รูปโปรไฟล์ของผู้ใช้',
+  `fans_sex` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'เพศของผู้ใช้ ค่า 1 คือชาย ค่า 2 คือหญิง ค่า 0 คือไม่ทราบ',
+  `fans_country` varchar(20) NOT NULL COMMENT '	ประเทศของผู้ใช้',
+  `fans_province` varchar(10) NOT NULL COMMENT 'จังหวัดของผู้ใช้',
+  `fans_city` varchar(30) NOT NULL COMMENT 'เมืองของผู้ใช้',
+  `fans_remark` varchar(200) DEFAULT NULL COMMENT 'หมายเหตุแฟนที่ผู้ดูแลบัญชีทางการตั้งไว้ในหน้าจัดการผู้ใช้ WeChat',
+  `fans_subscribe_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่ผู้ใช้กดติดตาม เป็น timestamp หากผู้ใช้ติดตามหลายครั้ง ให้ใช้เวลาติดตามครั้งล่าสุด',
+  `fans_unsubtime` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่ผู้ใช้เลิกติดตาม',
+  `fans_json` varchar(500) NOT NULL COMMENT 'ข้อมูลผู้ใช้แบบ json',
+  `fans_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาบันทึกข้อมูลเข้าฐานข้อมูล',
   PRIMARY KEY (`fans_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='微信粉丝信息表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางข้อมูลแฟนคลับ WeChat';
 DROP TABLE IF EXISTS `wm_weixin_media`;
 CREATE TABLE `wm_weixin_media` (
   `media_id` int NOT NULL AUTO_INCREMENT,
-  `media_account_id` int NOT NULL DEFAULT '0' COMMENT '公众号id',
-  `media_filename` varchar(255) NOT NULL COMMENT '素材名字',
-  `media_filepath` varchar(500) NOT NULL COMMENT '素材路径',
-  `media_media_id` varchar(255) NOT NULL COMMENT '微信素材id',
-  `media_width` int NOT NULL DEFAULT '0' COMMENT '素材宽',
-  `media_height` int NOT NULL DEFAULT '0' COMMENT '素材高',
-  `media_type` varchar(20) NOT NULL DEFAULT 'image' COMMENT '素材类型，图片image、语音voice、视频video和缩略图thumb',
-  `media_islong` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否是永久素材，布尔值',
-  `media_time` int NOT NULL DEFAULT '0' COMMENT '上传时间',
+  `media_account_id` int NOT NULL DEFAULT '0' COMMENT 'id ของบัญชีทางการ',
+  `media_filename` varchar(255) NOT NULL COMMENT 'ชื่อสื่อ',
+  `media_filepath` varchar(500) NOT NULL COMMENT 'พาธสื่อ',
+  `media_media_id` varchar(255) NOT NULL COMMENT 'ID สื่อของ WeChat',
+  `media_width` int NOT NULL DEFAULT '0' COMMENT 'ความกว้างสื่อ',
+  `media_height` int NOT NULL DEFAULT '0' COMMENT 'ความสูงสื่อ',
+  `media_type` varchar(20) NOT NULL DEFAULT 'image' COMMENT 'ประเภทสื่อ รูปภาพ image, เสียง voice, วิดีโอ video และรูปย่อ thumb',
+  `media_islong` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'เป็นสื่อถาวรหรือไม่, ค่าบูลีน',
+  `media_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาอัปโหลด',
   PRIMARY KEY (`media_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='微信素材表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางสื่อของ WeChat';
 DROP TABLE IF EXISTS `wm_weixin_menu`;
 CREATE TABLE `wm_weixin_menu` (
   `menu_id` int NOT NULL AUTO_INCREMENT,
-  `menu_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '布尔值，使用状态',
-  `menu_account_id` int NOT NULL COMMENT '所属公众号id',
-  `menu_name` varchar(20) NOT NULL COMMENT '菜单备注名',
-  `menu_data` text NOT NULL COMMENT '菜单json数据',
-  `menu_addtime` int NOT NULL DEFAULT '0' COMMENT '添加时间',
-  `menu_updatetime` int NOT NULL DEFAULT '0' COMMENT '最后更新时间',
-  `menu_pushtime` int NOT NULL DEFAULT '0' COMMENT '最后推送时间',
+  `menu_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'ค่าบูลีน, สถานะการใช้งาน',
+  `menu_account_id` int NOT NULL COMMENT 'ID บัญชีทางการที่สังกัด',
+  `menu_name` varchar(20) NOT NULL COMMENT 'ชื่อหมายเหตุของเมนู',
+  `menu_data` text NOT NULL COMMENT 'ข้อมูล json ของเมนู',
+  `menu_addtime` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่เพิ่ม',
+  `menu_updatetime` int NOT NULL DEFAULT '0' COMMENT 'เวลาอัปเดตล่าสุด',
+  `menu_pushtime` int NOT NULL DEFAULT '0' COMMENT 'เวลาส่งล่าสุด',
   PRIMARY KEY (`menu_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='微信公众号自定义菜单表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางเมนูกำหนดเองของบัญชีทางการ WeChat';
 DROP TABLE IF EXISTS `wm_weixin_msg`;
 CREATE TABLE `wm_weixin_msg` (
   `msg_id` int NOT NULL AUTO_INCREMENT,
-  `msg_account_id` int NOT NULL DEFAULT '0' COMMENT '所属公众号的id',
-  `msg_from` varchar(100) NOT NULL COMMENT '微信用户openid',
-  `msg_type` varchar(20) NOT NULL DEFAULT 'text' COMMENT '消息类型',
-  `msg_content` varchar(2000) DEFAULT NULL COMMENT '消息内容',
-  `msg_attr` varchar(500) DEFAULT NULL COMMENT '附加消息内容',
-  `msg_picurl` varchar(255) DEFAULT NULL COMMENT '图片消息的图片地址',
-  `msg_url` varchar(255) DEFAULT NULL COMMENT '超链接消息的url',
-  `msg_media_id` varchar(255) DEFAULT NULL COMMENT '微信临时素材媒体资源id',
-  `msg_recognition` varchar(255) DEFAULT NULL COMMENT '语音消息识别结果',
-  `msg_get` varchar(2000) NOT NULL COMMENT '网站接受到的用户消息内容',
-  `msg_send` varchar(2000) NOT NULL COMMENT '网站回复消息内容',
-  `msg_time` int NOT NULL DEFAULT '0' COMMENT '用户发送消息时间',
-  `msg_sendtime` int NOT NULL DEFAULT '0' COMMENT '网站回复消息时间',
+  `msg_account_id` int NOT NULL DEFAULT '0' COMMENT 'ID ของบัญชีทางการที่สังกัด',
+  `msg_from` varchar(100) NOT NULL COMMENT 'openid ผู้ใช้ WeChat',
+  `msg_type` varchar(20) NOT NULL DEFAULT 'text' COMMENT 'ประเภทข้อความ',
+  `msg_content` varchar(2000) DEFAULT NULL COMMENT 'เนื้อหาข้อความ',
+  `msg_attr` varchar(500) DEFAULT NULL COMMENT 'เนื้อหาข้อความเพิ่มเติม',
+  `msg_picurl` varchar(255) DEFAULT NULL COMMENT 'ที่อยู่รูปภาพของข้อความรูปภาพ',
+  `msg_url` varchar(255) DEFAULT NULL COMMENT 'url ของข้อความไฮเปอร์ลิงก์',
+  `msg_media_id` varchar(255) DEFAULT NULL COMMENT 'ID สื่อทรัพยากรชั่วคราวของ WeChat',
+  `msg_recognition` varchar(255) DEFAULT NULL COMMENT 'ผลลัพธ์การรู้จำข้อความเสียง',
+  `msg_get` varchar(2000) NOT NULL COMMENT 'เนื้อหาข้อความจากผู้ใช้ที่เว็บไซต์ได้รับ',
+  `msg_send` varchar(2000) NOT NULL COMMENT 'เนื้อหาข้อความตอบกลับของเว็บไซต์',
+  `msg_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่ผู้ใช้ส่งข้อความ',
+  `msg_sendtime` int NOT NULL DEFAULT '0' COMMENT 'เวลาตอบกลับข้อความของเว็บไซต์',
   PRIMARY KEY (`msg_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='微信对话消息记录表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางบันทึกข้อความสนทนาของ WeChat';
 DROP TABLE IF EXISTS `wm_zt_node`;
 CREATE TABLE `wm_zt_node` (
   `node_id` int NOT NULL AUTO_INCREMENT,
-  `node_zt_id` int NOT NULL DEFAULT '0' COMMENT '所属的专题id',
-  `node_name` varchar(50) DEFAULT NULL COMMENT '节点名字',
-  `node_pinyin` varchar(20) NOT NULL COMMENT '专题标识',
-  `node_type` tinyint(1) DEFAULT '2' COMMENT '1为图片，2为普通内容输出，3为循环标签',
-  `node_img` varchar(200) DEFAULT NULL COMMENT '图片地址',
-  `node_content` text COMMENT '内容',
-  `node_label` varchar(1000) DEFAULT NULL COMMENT '节点标签',
-  `node_time` int DEFAULT NULL COMMENT '节点创建时间',
+  `node_zt_id` int NOT NULL DEFAULT '0' COMMENT 'ID ของหัวข้อพิเศษที่สังกัด',
+  `node_name` varchar(50) DEFAULT NULL COMMENT 'ชื่อโหนด',
+  `node_pinyin` varchar(20) NOT NULL COMMENT 'ตัวระบุหัวข้อพิเศษ',
+  `node_type` tinyint(1) DEFAULT '2' COMMENT '1=รูปภาพ 2=แสดงเนื้อหาปกติ 3=แท็กวนซ้ำ',
+  `node_img` varchar(200) DEFAULT NULL COMMENT 'ที่อยู่รูปภาพ',
+  `node_content` text COMMENT 'เนื้อหา',
+  `node_label` varchar(1000) DEFAULT NULL COMMENT 'แท็กโหนด',
+  `node_time` int DEFAULT NULL COMMENT 'เวลาสร้างโหนด',
   PRIMARY KEY (`node_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='专题节点表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางโหนดหัวข้อพิเศษ';
 DROP TABLE IF EXISTS `wm_zt_type`;
 CREATE TABLE `wm_zt_type` (
   `type_id` int NOT NULL AUTO_INCREMENT,
-  `type_topid` int NOT NULL DEFAULT '0' COMMENT '上级id',
-  `type_pid` varchar(20) NOT NULL DEFAULT '0' COMMENT '子栏目id',
-  `type_rec` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否推荐分类',
-  `type_name` varchar(10) NOT NULL COMMENT '分类名',
-  `type_cname` varchar(10) DEFAULT NULL COMMENT '类型简称',
-  `type_pinyin` varchar(50) DEFAULT NULL COMMENT '类型拼音',
-  `type_order` int NOT NULL COMMENT '排序',
-  `type_ico` varchar(200) DEFAULT NULL COMMENT '分类图标',
-  `type_info` varchar(100) DEFAULT NULL COMMENT '分类信息',
-  `type_tempid` int NOT NULL DEFAULT '0' COMMENT '分类页模版',
-  `type_ctempid` int NOT NULL DEFAULT '0' COMMENT '内容页模版',
-  `type_title` varchar(80) DEFAULT NULL COMMENT '页面标题',
-  `type_key` varchar(100) DEFAULT NULL COMMENT '页面关键字',
-  `type_desc` varchar(120) DEFAULT NULL COMMENT '页面描述',
+  `type_topid` int NOT NULL DEFAULT '0' COMMENT 'id ระดับเหนือขึ้นไป',
+  `type_pid` varchar(20) NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่ย่อย',
+  `type_rec` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'แนะนำหมวดหมู่หรือไม่',
+  `type_name` varchar(10) NOT NULL COMMENT 'ชื่อหมวดหมู่',
+  `type_cname` varchar(10) DEFAULT NULL COMMENT 'ชื่อย่อของประเภท',
+  `type_pinyin` varchar(50) DEFAULT NULL COMMENT 'พินอินของประเภท',
+  `type_order` int NOT NULL COMMENT 'เรียงลำดับ',
+  `type_ico` varchar(200) DEFAULT NULL COMMENT 'ไอคอนหมวดหมู่',
+  `type_info` varchar(100) DEFAULT NULL COMMENT 'ข้อมูลหมวดหมู่',
+  `type_tempid` int NOT NULL DEFAULT '0' COMMENT 'เทมเพลตหน้าหมวดหมู่',
+  `type_ctempid` int NOT NULL DEFAULT '0' COMMENT 'เทมเพลตหน้าเนื้อหา',
+  `type_title` varchar(80) DEFAULT NULL COMMENT 'หัวข้อหน้าเพจ',
+  `type_key` varchar(100) DEFAULT NULL COMMENT 'คำค้นของหน้าเพจ',
+  `type_desc` varchar(120) DEFAULT NULL COMMENT 'คำอธิบายหน้าเพจ',
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='专题分类表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางหมวดหมู่หัวข้อพิเศษ';
 DROP TABLE IF EXISTS `wm_zt_zt`;
 CREATE TABLE `wm_zt_zt` (
   `zt_id` int NOT NULL AUTO_INCREMENT,
-  `type_id` int NOT NULL DEFAULT '0' COMMENT '专题分类id',
-  `zt_status` tinyint(1) DEFAULT '1' COMMENT '审核状态',
-  `zt_name` varchar(20) NOT NULL COMMENT '专题名字',
-  `zt_pinyin` varchar(20) DEFAULT NULL COMMENT '专题拼音',
-  `zt_info` varchar(200) DEFAULT NULL COMMENT '导读',
-  `zt_banner` varchar(200) DEFAULT NULL COMMENT '专题横幅',
-  `zt_simg` varchar(200) DEFAULT NULL COMMENT '专题图片',
-  `zt_read` int DEFAULT '0' COMMENT '阅读量',
-  `zt_replay` int NOT NULL DEFAULT '0' COMMENT '评论量',
-  `zt_content` varchar(2000) NOT NULL COMMENT '内容',
-  `zt_time` int NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `type_id` int NOT NULL DEFAULT '0' COMMENT 'id หมวดหมู่หัวข้อพิเศษ',
+  `zt_status` tinyint(1) DEFAULT '1' COMMENT 'สถานะการตรวจสอบ',
+  `zt_name` varchar(20) NOT NULL COMMENT 'ชื่อหัวข้อพิเศษ',
+  `zt_pinyin` varchar(20) DEFAULT NULL COMMENT 'พินอินหัวข้อพิเศษ',
+  `zt_info` varchar(200) DEFAULT NULL COMMENT 'บทนำ',
+  `zt_banner` varchar(200) DEFAULT NULL COMMENT 'แบนเนอร์หัวข้อพิเศษ',
+  `zt_simg` varchar(200) DEFAULT NULL COMMENT 'รูปภาพหัวข้อพิเศษ',
+  `zt_read` int DEFAULT '0' COMMENT 'ยอดอ่าน',
+  `zt_replay` int NOT NULL DEFAULT '0' COMMENT 'จำนวนความคิดเห็น',
+  `zt_content` varchar(2000) NOT NULL COMMENT 'เนื้อหา',
+  `zt_time` int NOT NULL DEFAULT '0' COMMENT 'เวลาที่เพิ่ม',
   PRIMARY KEY (`zt_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='专题表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='ตารางหัวข้อพิเศษ';

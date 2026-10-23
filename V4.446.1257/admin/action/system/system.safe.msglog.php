@@ -19,13 +19,13 @@ if ( $type == 'del' )
 	$logMod->Del($where);
 	//写入操作记录
 	SetOpLog( '删除了信息发送记录' , 'system' , 'delete' , $table , $where);
-	Ajax('信息发送记录删除成功!');
+	Ajax('ลบบันทึกการส่งข้อความสำเร็จ!');
 }
 else if( $type == 'clear' )
 {
 	$logMod->Clear();
 	//写入操作记录
 	SetOpLog( '清空了信息发送记录' , 'system' , 'delete' , $table , $where);
-	Ajax('信息发送记录清空成功!');
+	Ajax('ล้างบันทึกการส่งข้อความสำเร็จ!');
 }
 ?>

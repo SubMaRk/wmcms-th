@@ -33,9 +33,9 @@
                                         <div class="x-detail__book--info">
                                             <p class="x-detail__info--title">{名字}</p>
                                             <p class="x-detail__info--author">{作者}</p>
-                                            <p class="x-detail__info--words">字数：{字数简写:{字数}}</p>
+                                            <p class="x-detail__info--words">จำนวนคำ:{แบบย่อจำนวน:{字数}}</p>
                                             <p class="x-detail__info--reads">
-                                                阅读：{字数简写:{总点击}}
+                                                อ่าน:{แบบย่อจำนวน:{总点击}}
                                                 <span>{进程}</span>
                                             </p>
                                         </div>
@@ -43,20 +43,20 @@
                                 </div>
                             </div>
                             <div class="x-detail__operator">
-                                <span class="x-detail__operator--item" onclick="addshujia('{加入书架}')">加入书架</span>
-                                <span class="to-read"><a href="{立即阅读}">开始阅读</a></span>
+                                <span class="x-detail__operator--item" onclick="addshujia('{加入书架}')">เพิ่มเข้าชั้นหนังสือ</span>
+                                <span class="to-read"><a href="{立即阅读}">เริ่มอ่าน</a></span>
                             </div>
                         </div>
                         <div class="x-detail__ticket">
                             <div class="x-detail__ticket--box">
                                 <span onclick="digg('{id}','ding')" class="x-detail__ticket--item van-hairline--right">
-                                    {顶} <i>顶</i>
+                                    {顶} <i>กดชอบ</i>
                                 </span>
                                 <span onclick="digg('{id}','cai')" class="x-detail__ticket--item van-hairline--right">
-                                    {踩} <i>踩</i>
+                                    {踩} <i>ไม่ชอบ</i>
                                 </span>
                                 <span onclick="tuijian('{投推荐票}')" class="x-detail__ticket--item">
-                                    {总推荐}票 <i>推荐票</i>
+                                    {总推荐}โหวต <i>โหวตแนะนำ</i>
                                 </span>
                             </div>
                         </div>
@@ -71,20 +71,20 @@
                     </div>
                     <div class="x-city__part x-detail__part hr-bottom">
                         <div class="x-part__title">
-                            目录
-                            <span class="x-catalog__total">(共{章节数量}章)</span>
-                            <span class="x-catalog__update">更新于：{更新时间}</span>
+                            สารบัญ
+                            <span class="x-catalog__total">(รวม {章节数量} ตอน)</span>
+                            <span class="x-catalog__update">อัปเดตเมื่อ:{更新时间}</span>
                         </div>
                         <div class="x-part__content">
                             {已阅读}<a href="{上次阅读}">
                                 <div class="x-catalog__new" style="justify-content: unset;">
-                                    <span style="padding: 0.1rem 0.1rem;margin-right: 10px;">上次阅读</span>{上次阅读章节名字}
+                                    <span style="padding: 0.1rem 0.1rem;margin-right: 10px;">อ่านครั้งล่าสุด</span>{上次阅读章节名字}
                                 </div>
                             </a>{/已阅读}
                             <a href="{最新章节}" {eq:{最新章节名字}:0}style="display: none;"{/eq}>
                                 <div class="x-catalog__new">
                                     {最新章节名字}
-                                    <span>最新</span>
+                                    <span>ล่าสุด</span>
                                 </div>
                             </a>
                             <div class="x-catalog__list van-hairline--bottom">
@@ -92,7 +92,7 @@
                                 <a href="{url}"><p class="x-catalog__list--item">{小说章节名字}</p></a>
                                 {/小说章节列表}
                             </div>
-                            <div class="x-catalog__more">更多目录&gt;</div>
+                            <div class="x-catalog__more">สารบัญเพิ่มเติม&gt;</div>
                         </div>
                     </div>
                     <div class="x-city__part x-detail__part hr-bottom">
@@ -102,8 +102,8 @@
                             			<div class="global-nav">
                             				<ul>
                             					<li>
-                            						<h4 class="pull-left" style="display: inline-block;font-weight: initial;font-size: 16px">精彩评论</h4>
-                            						<h5 class="pull-left" style="display: inline-block;font-weight: initial;font-size:12px">已盖 <span style="color:#f10">{评论量}</span> 楼</h5>
+                            						<h4 class="pull-left" style="display: inline-block;font-weight: initial;font-size: 16px">ความคิดเห็นเด่น</h4>
+                            						<h5 class="pull-left" style="display: inline-block;font-weight: initial;font-size:12px">มีความเห็นแล้ว <span style="color:#f10">{评论量}</span> ชั้น</h5>
                             					</li>
                             				</ul>
                             			</div>
@@ -119,14 +119,14 @@
                             							<div class="postborder">
 																						{未登录}
                             								<div style="background:#fff;
-                            								width: 99.8%;height: 80px;font-size: 12px;box-sizing:border-box;padding:10px">您还未登录，请先 <a href="/user/user/login.html" style="color:#f20" target="_parent">登录</a> 后再发表评论。</div>
+                            								width: 99.8%;height: 80px;font-size: 12px;box-sizing:border-box;padding:10px">คุณยังไม่ได้เข้าสู่ระบบ กรุณา <a href="/user/user/login.html" style="color:#f20" target="_parent">เข้าสู่ระบบ</a> แล้วจึงแสดงความคิดเห็น</div>
                             								</div>
 																						{/未登录}
 																						{已登录}
 																						<textarea name="content"></textarea>
 																						{发表评论验证码开启}
 																						<div style="display: flex;align-items: center;margin-top:10px;">
-																							<input type="text" name="code" style="border:1px solid #f8f8f8;border-radius: 4px; height: 30px;padding: 0 10px;" placeholder="请输入验证码">
+																							<input type="text" name="code" style="border:1px solid #f8f8f8;border-radius: 4px; height: 30px;padding: 0 10px;" placeholder="กรุณากรอกรหัสยืนยัน">
 																							<div style="display: flex;align-items: center;margin-left: 10px;">
 																								<span>{发表评论验证码}</span>
 																							</div>
@@ -134,7 +134,7 @@
 																						{/发表评论验证码开启}
 																						{/已登录}
                             							<div style="display: block;text-align: right;margin-top:8px">
-                            								<button class="btn btn-info ajaxpost" type="submit" target-form="form-x">发 送</button>
+                            								<button class="btn btn-info ajaxpost" type="submit" target-form="form-x">ส่ง</button>
                             							</div>
                             						</div>
                             						<input type="hidden" name="mid" value="19136">
@@ -146,7 +146,7 @@
                             		<span id="nav-box">
                             			<div class="nav">
                             				<div class="nav-left">
-                            					<span style="font-size: 16px;"> 最新评论</span>
+                            					<span style="font-size: 16px;"> ความคิดเห็นล่าสุด</span>
                             				</div>
                             				<div class="claer"></div>
                             			</div>
@@ -177,13 +177,13 @@
                             							<div class="time-ago">{评论楼层} {评论时间}</div>
                             							<ul>
                             								<li>
-                            									<a onclick="javascript:location.href='{评论顶链接}';" title="顶一下" href="javascript:void(0);" class="action">
+                            									<a onclick="javascript:location.href='{评论顶链接}';" title="ดันขึ้น" href="javascript:void(0);" class="action">
                             										<span></span>
-                            										点赞<span style="font-size: 12px">（{评论顶}）</span>
+                            										ไลก์<span style="font-size: 12px">（{评论顶}）</span>
                             									</a> <em>•</em>
                             								</li>
                             								<li class="reply">
-                            									<a class="action" href="javascript:void(0);" onclick="reply(this,{$list['mid']|default=0},{$list['id']|default=0},'{$list['type']|default='novel'}');">回复</a>
+                            									<a class="action" href="javascript:void(0);" onclick="reply(this,{$list['mid']|default=0},{$list['id']|default=0},'{$list['type']|default='novel'}');">ตอบกลับ</a>
                             								</li>
                             								<div class="claer"></div>
                             							</ul>
@@ -204,7 +204,7 @@
                         </div>
                     </div>
                     <div class="x-city__part x-detail__part">
-                        <div class="x-part__title">同类作品</div>
+                        <div class="x-part__title">ผลงานประเภทเดียวกัน</div>
                         <div class="x-part__content">
                             <div class="x-detail__part--book">
                                 {同标签小说:数量=3;}
@@ -225,13 +225,13 @@
         </div>
         <!-- <div class="ui-line"></div> -->
         <footer class="index">
-            <div class="m-right"><p>{网站名}版权所有©2018-<span id="J_Copyright">2019</span></p></div>
+            <div class="m-right"><p>{网站名}ลิขสิทธิ์©2018-<span id="J_Copyright">2019</span></p></div>
         </footer>
     </div>
     <div class="chapter-list">
         <div class="x-page__header van-hairline--bottom">
             <a href="javascript:" id="chapter_back"></a>
-            <span class="x-page__title">目录</span>
+            <span class="x-page__title">สารบัญ</span>
         </div>
         <div class="x-page__content">
             <div class="x-catalog">

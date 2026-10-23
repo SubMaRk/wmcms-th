@@ -3,12 +3,12 @@
 	<input name="nid" type="hidden" class="input-text" value="<?php echo $nid;?>">
 	<input name="cid" type="hidden" class="input-text" value="<?php echo $cid;?>">
 		<fieldset>
-			<legend>小说推荐属性编辑</legend>
+			<legend>แก้ไขคุณสมบัติแนะนำนิยาย</legend>
             <div class="tab-pane fade active in">
 				<table class="table table-border table-bordered table-bg table-sort">
 					<tr>
 					    <td valign="top" width="30%">
-					    	<b>移动到：</b>
+					    	<b>ย้ายไปที่:</b>
 	                        <select style="border: 1px solid #c3ced5;height: 25px;border-radius: 4px;width: 250px;" name="order">
 							<?php 
 	                        if( $data )
@@ -21,8 +21,8 @@
 	                        ?>
 	                        </select>
 							<select data-toggle="selectpicker" name="localtion">
-								<option value="0">前面</option>
-								<option value="1">后面</option>
+								<option value="0">ด้านหน้า</option>
+								<option value="1">ด้านหลัง</option>
 	                        </select>
                         </td>
 					</tr>
@@ -34,8 +34,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 

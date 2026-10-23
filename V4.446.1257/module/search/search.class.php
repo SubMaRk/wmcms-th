@@ -48,7 +48,7 @@ class search
 			
 			'推荐' =>'search_rec',
 			'是' =>'1',
-			'否' =>'0',
+			'ไม่' =>'0',
 		);
 	
 		return tpl::GetWhere($where,$arr);

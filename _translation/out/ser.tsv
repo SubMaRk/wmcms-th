@@ -1,0 +1,51 @@
+API密钥\";s	คีย์ API\";s
+API密钥\";}	คีย์ API\";}
+云APISecretId\"	SecretId ของ API คลาวด์\"
+云APISecretKey\"	SecretKey ของ API คลาวด์\"
+从COS获得的API_KEY\";}s:13	API_KEY ที่ได้จาก COS\";}s:13
+从COS获得的APP_ID\";}s:10	APP_ID ที่ได้จาก COS\";}s:10
+从COS获得的SC_KEY\";}}','	SC_KEY ที่ได้จาก COS\";}}','
+从OSS获得的AccessKeyId\";}s:10	AccessKeyId ที่ได้จาก OSS\";}s:10
+从OSS获得的AccessKeySecret\";}}','	AccessKeySecret ที่ได้จาก OSS\";}}','
+从七牛云对象存储获得的accessKey\";}s:13:\"api_secretk	accessKey ที่ได้จากที่เก็บข้อมูล Qiniu\";}s:13:\"api_secretk
+从七牛云对象存储获得的secretKey\";}}','七牛云的存储',3,'a:2	secretKey ที่ได้จากที่เก็บข้อมูล Qiniu\";}}','ที่เก็บข้อมูล Qiniu',3,'a:2
+从新浪云对象存储获得的AccessKey\";}s:13:\"api_secretk	AccessKey ที่ได้จากที่เก็บข้อมูล Sina\";}s:13:\"api_secretk
+从新浪云对象存储获得的SecretKey\";}}','新浪云的存储',4,'a:1	SecretKey ที่ได้จากที่เก็บข้อมูล Sina\";}}','ที่เก็บข้อมูล Sina',4,'a:1
+企业微信URL\";s:5:\	URL ของ WeCom\";s:5:\
+企业微信的WEBHOOK通知URL\";}}'),(27,11	URL แจ้งเตือน WEBHOOK ของ WeCom\";}}'),(27,11
+合作身份者id\";}s:10:\	ID พาร์ทเนอร์\";}s:10:\
+域名\";s	โดเมน\";s
+安全检验码\";}s:13:\	รหัสตรวจสอบความปลอดภัย\";}s:13:\
+小程序ID\";}s:	ID มินิโปรแกรม\";}s:
+小程序密钥\";}}','微信	คีย์มินิโปรแกรม\";}}','WeChat
+应用API Key\";}	API Key ของแอป\";}
+应用Secret Key\";}	Secret Key ของแอป\";}
+应用apikey\";}	apikey ของแอป\";}
+应用appid\";}	appid ของแอป\";}
+应用id\";}	id ของแอป\";}
+应用secretkey\";}	secretkey ของแอป\";}
+应用的APPID\";s:6	APPID ของแอป\";s:6
+应用的APPID\";}s:	APPID ของแอป\";}s:
+支付宝公匙\";s:6:\"r	Public key ของ Alipay\";s:6:\"r
+支付宝公匙\";}}','支付	Public key ของ Alipay\";}}','ชำระเงิน
+支付宝私匙\";s:6:\"r	Private key ของ Alipay\";s:6:\"r
+支付宝私匙\";}s:13:\	Private key ของ Alipay\";}s:13:\
+请输入您的API密钥\";}s:13:\"api	กรุณากรอกคีย์ API ของคุณ\";}s:13:\"api
+请输入您的APPID\";}s:10:\	กรุณากรอก APPID ของคุณ\";}s:10:\
+请输入您的Appsecret\";}}','微信	กรุณากรอก Appsecret ของคุณ\";}}','WeChat
+请输入您的apikey\";}s:13:\	กรุณากรอก apikey ของคุณ\";}s:13:\
+请输入您的appid\";}s:10:\	กรุณากรอก appid ของคุณ\";}s:10:\
+请输入您的secretkey\";}}','<s	กรุณากรอก secretkey ของคุณ\";}}','<s
+请输入您的token\";}s:13:\	กรุณากรอก token ของคุณ\";}s:13:\
+请输入您的域名，无需加http://\";}s:10:\"api_apikey\	กรุณากรอกโดเมนของคุณ ไม่ต้องใส่ http://\";}s:10:\"api_apikey\
+请输入您的应用API Key\";}s:13:\"api	กรุณากรอก API Key ของแอปคุณ\";}s:13:\"api
+请输入您的应用APP ID\";}s:10:\"api	กรุณากรอก APP ID ของแอปคุณ\";}s:10:\"api
+请输入您的应用APP Key\";}s:13:\"api	กรุณากรอก APP Key ของแอปคุณ\";}s:13:\"api
+请输入您的应用App Key\";}s:13:\"api	กรุณากรอก App Key ของแอปคุณ\";}s:13:\"api
+请输入您的应用App Secret\";}}','新浪微博账号	กรุณากรอก App Secret ของแอปคุณ\";}}','บัญชี Sina Weibo
+请输入您的应用Appsecret\";}}','微信登录，需	กรุณากรอก Appsecret ของแอปคุณ\";}}','เข้าสู่ระบบ WeChat ต้อง
+请输入您的应用ID\";}s:10:\"api	กรุณากรอก ID ของแอปคุณ\";}s:10:\"api
+请输入您的应用Secret Key\";}}','百度账号登录	กรุณากรอก Secret Key ของแอปคุณ\";}}','เข้าสู่ระบบบัญชี Baidu
+账号APPID\";}	APPID ของบัญชี\";}
+钉钉URL\";s	URL ของ DingTalk\";s
+钉钉的WEBHOOK通知URL\";}}'),(2	URL แจ้งเตือน WEBHOOK ของ DingTalk\";}}'),(2

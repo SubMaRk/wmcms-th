@@ -2,7 +2,7 @@
     <form action="index.php?a=yes&c=user.user&t=<?php echo $type;?>" data-reload="false" data-toggle="validate" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
 	<input name="user_id" type="hidden" class="input-text" value="<?php echo $id;?>">
 		<fieldset>
-			<legend>用户信息编辑</legend>
+			<legend>แก้ไขข้อมูลผู้ใช้</legend>
             <ul class="nav nav-tabs" role="tablist">
             	<li class="active"><a href="#<?php echo $cFun.$type;?>base" role="tab" data-toggle="tab">基本信息</a></li>
             	<li><a href="#<?php echo $cFun.$type;?>finance" id="<?php echo $cFun.$type;?>finance_tab" role="tab" data-toggle="tab">财务信息</a></li>
@@ -13,26 +13,26 @@
 			            <tbody>
 			                <tr>
 			                    <td colspan="5">
-			                        <b>用户账号：</b>
+			                        <b>บัญชีผู้ใช้:</b>
 			                        <input type="text" name="user[user_name]" value="<?php echo C('user_name',null,'data');?>" data-rule="required">
 			                    </td>
 			                </tr>
 			                <tr>
 			                    <td colspan="5">
-			                        <b>用户密码：</b>
+			                        <b>รหัสผ่านผู้ใช้:</b>
 			                        <input type="text" name="user[user_psw]">
 			                    </td>
 			                </tr>
 			                <tr>
 				                <td>
-				                	<b>账号审核状态：</b>
+				                	<b>สถานะตรวจสอบบัญชี:</b>
 				                    <select data-toggle="selectpicker" name="user[user_status]">
 		                            	<option value="1" <?php if(C('user_status',null,'data') == '1'){ echo 'selected=""';}?>>审核通过</option>
 		                                <option value="0" <?php if(C('user_status',null,'data') == '0'){ echo 'selected=""';}?>>待审核</option>
 		                            </select>
 				                </td>
 			                   <td>
-			                        <b>账号封禁状态：</b>
+			                        <b>สถานะแบนบัญชี:</b>
 			                        <select data-toggle="selectpicker" name="user[user_display]">
 			                        <?php 
 			                        foreach ($displayArr as $k=>$v)
@@ -44,13 +44,13 @@
 		                            </select>
 			                   </td>
 			                   <td>
-			                        <b>封禁时间：</b>
+			                        <b>เวลาระงับ:</b>
 			                        <input type="text" name="user[user_displaytime]" value="<?php echo date('Y-m-d H:i:s',C('user_displaytime',null,'data'));?>" data-toggle="datepicker" data-pattern="yyyy-MM-dd H:m:s" size="19">
 			                   </td>
 			                </tr>
 			                <tr>
 			                   <td colspan="5">
-			                        <b>用户头像：</b>
+			                        <b>รูปโปรไฟล์ผู้ใช้:</b>
 			                        <div style="line-height: 25px;">
 				                        <img width="100" id="user_head_img" height="100" src="<?php echo C('user_head',null,'data')?>" /><br/>
 				                        <a target="_blank" href="<?php echo C('user_head',null,'data');?>">点击查看原图</a><br/>
@@ -62,96 +62,96 @@
 			                </tr>
 			                <tr>
 			                   <td>
-			                        <b>用户昵称：</b>
+			                        <b>ชื่อเล่นผู้ใช้:</b>
 			                        <input type="text" name="user[user_nickname]" data-rule="required" value="<?php echo C('user_nickname',null,'data');?>">
 			                    </td>
 			                   <td>
-			                        <b>用户邮箱：</b>
+			                        <b>อีเมลผู้ใช้:</b>
 			                        <input type="text" name="user[user_email]" data-rule="email" value="<?php echo C('user_email',null,'data');?>">
 			                    </td>
 			                   <td>
-			                        <b>邮箱验证：</b>
+			                        <b>ยืนยันอีเมล:</b>
 			                        <input name="user[user_emailtrue]" type="radio" data-toggle="icheck" data-label="已验证" value="1" <?php if(C('user_emailtrue',null,'data') == '1'){ echo 'checked="1"';}?> />
 			                        <input name="user[user_emailtrue]" type="radio" data-toggle="icheck" data-label="未验证" value="0" <?php if(C('user_emailtrue',null,'data') == '0'){ echo 'checked="0"';}?> />
 			                    </td>
 			                </tr>
 			                <tr>
 			                   <td>
-			                        <b>用户出生日期：</b>
+			                        <b>วันเกิดผู้ใช้:</b>
 			                        <input type="text" data-toggle="datepicker" data-pattern="yyyy-MM-dd" name="user[user_birthday]"  value="<?php echo C('user_birthday',null,'data');?>" size="13">
 			                    </td>
 			                   <td>
-			                        <b>用户手机号：</b>
+			                        <b>เบอร์มือถือผู้ใช้:</b>
 			                        <input type="text" size="13" data-rule="number" name="user[user_tel]"  value="<?php echo C('user_tel',null,'data');?>">
 			                    </td>
 			                   <td>
-			                        <b>手机号验证：</b>
+			                        <b>ยืนยันหมายเลขโทรศัพท์:</b>
 			                        <input name="user[user_teltrue]" type="radio" data-toggle="icheck" data-label="已验证" value="1" <?php if(C('user_teltrue',null,'data') == '1'){ echo 'checked="1"';}?> />
 			                        <input name="user[user_teltrue]" type="radio" data-toggle="icheck" data-label="未验证" value="0" <?php if(C('user_teltrue',null,'data') == '0'){ echo 'checked="0"';}?> />
 			                    </td>
 			                </tr>
 			                <tr>
 			                   <td>
-			                        <b>用户性别：</b>
-			                        <input name="user[user_sex]" type="radio" data-toggle="icheck" data-label="男" value="1" <?php if(C('user_sex',null,'data') == '1'){ echo 'checked="1"';}?> />
+			                        <b>เพศผู้ใช้:</b>
+			                        <input name="user[user_sex]" type="radio" data-toggle="icheck" data-label="ชาย" value="1" <?php if(C('user_sex',null,'data') == '1'){ echo 'checked="1"';}?> />
 			                        <input name="user[user_sex]" type="radio" data-toggle="icheck" data-label="女" value="2" <?php if(C('user_sex',null,'data') == '2'){ echo 'checked="2"';}?> />
 			                    </td>
 			                   <td>
-			                        <b>空间浏览量：</b>
+			                        <b>ยอดเข้าชมพื้นที่:</b>
 			                        <input type="text" data-rule="number" size="10" name="user[user_browse]"  value="<?php echo C('user_browse',null,'data');?>">
 			                    </td>
 			                </tr>
 			                <tr>
 			                   <td>
-			                        <b>用户经验值：</b>
+			                        <b>ค่าประสบการณ์ผู้ใช้:</b>
 			                        <input type="text" size="10" data-rule="number" name="user[user_exp]"  value="<?php echo C('user_exp',null,'data');?>">
 			                    </td>
 			                   <td>
-			                        <b>用户qq：</b>
+			                        <b>qq ผู้ใช้:</b>
 			                        <input type="text" size="13" data-rule="number" name="user[user_qq]"  value="<?php echo C('user_qq',null,'data');?>">
 			                    </td>
 			                </tr>
 			                <tr>
 			                   <td>
-			                        <b>用户余额：</b>
+			                        <b>ยอดเงินผู้ใช้:</b>
 			                        <input type="text" size="10" data-rule="number" readonly value="<?php echo C('user_money',null,'data');?>">
 			                    </td>
 			                   <td>
-			                        <b>金币1数量：</b>
+			                        <b>จำนวนเหรียญ 1:</b>
 			                        <input type="text" size="10" data-rule="number" readonly value="<?php echo C('user_gold1',null,'data');?>">
 			                    </td>
 			                   <td>
-			                        <b>金币2数量：</b>
+			                        <b>จำนวนเหรียญ 2:</b>
 			                        <input type="text" size="10" data-rule="number" readonly value="<?php echo C('user_gold2',null,'data');?>">
 			                    </td>
 			                </tr>
 			                <tr>
 			                   <td>
-			                        <b>用户主题量：</b>
+			                        <b>จำนวนกระทู้ผู้ใช้:</b>
 			                        <input type="text" size="10" data-rule="number" name="user[user_topic]"  value="<?php echo C('user_topic',null,'data');?>">
 			                    </td>
 			                   <td>
-			                        <b>用户回帖量：</b>
+			                        <b>จำนวนตอบกลับผู้ใช้:</b>
 			                        <input type="text" size="10" data-rule="number" name="user[user_retopic]"  value="<?php echo C('user_retopic',null,'data');?>">
 			                    </td>
 			                   <td>
-			                        <b>用户评论量：</b>
+			                        <b>จำนวนความคิดเห็นผู้ใช้:</b>
 			                        <input type="text" size="10" data-rule="number" name="user[user_replay]"  value="<?php echo C('user_replay',null,'data');?>">
 			                    </td>
 			                </tr>
 			                <tr>
 			                   <td colspan="3">
-			                        <b>用户签名：</b>
+			                        <b>ลายเซ็นผู้ใช้:</b>
 			                        <textarea cols="70" rows="1" name="user[user_sign]" data-toggle="autoheight"><?php echo C('user_sign',null,'data');?></textarea>
 			                    </td>
 			                </tr>
 			                <tr>
 			                   <td>
-			                        <b>上次登录时间：</b>
+			                        <b>เวลาเข้าสู่ระบบครั้งล่าสุด：</b>
 			                        <input type="text" name="user[user_logintime]" value="<?php echo date('Y-m-d H:i:s',C('user_logintime',null,'data'));?>" data-toggle="datepicker" data-pattern="yyyy-MM-dd H:m:s" size="19">
 			                   </td>
 			                   <td>
-			                        <b>注册时间：</b>
+			                        <b>เวลาสมัคร:</b>
 			                        <input type="text" name="user[user_regtime]" value="<?php echo date('Y-m-d H:i:s',C('user_regtime',null,'data'));?>" data-toggle="datepicker" data-pattern="yyyy-MM-dd H:m:s" size="19">
 			                   </td>
 			                </tr>
@@ -164,47 +164,47 @@
 		            <tbody>
 		                <tr>
 		                   <td>
-		                        <b>真实姓名：</b>
+		                        <b>ชื่อจริง:</b>
 		                        <input size="15" name="finance[finance_realname]" value="<?php echo C('finance_realname',null,'data');?>">
 		                    </td>
 		                   <td>
-		                        <b>&nbsp;&nbsp;&nbsp;&nbsp;身 份 证：</b>
+		                        <b>&nbsp;&nbsp;&nbsp;&nbsp;เลขบัตรประชาชน：</b>
 		                        <input size="35" name="finance[finance_cardid]" value="<?php echo C('finance_cardid',null,'data');?>">
 		                    </td>
 		                </tr>
 		                <tr>
 		                   <td>
-		                        <b>邮政编码：</b>
+		                        <b>รหัสไปรษณีย์:</b>
 		                        <input size="15" name="finance[finance_zipcode]" value="<?php echo C('finance_zipcode',null,'data');?>">
 		                    </td>
 		                   <td>
-		                        <b> 居 住 地 址：</b>
+		                        <b> ที่อยู่ที่พัก:</b>
 		                        <input size="35" name="finance[finance_address]" value="<?php echo C('finance_address',null,'data');?>">
 		                    </td>
 		                </tr>
 		                <tr>
 		                   <td>
-		                        <b> 开 户 行 ：</b>
+		                        <b> ธนาคาร:</b>
 		                        <input size="15" name="finance[finance_bank]" value="<?php echo C('finance_bank',null,'data');?>">
 		                    </td>
 		                   <td>
-		                        <b>开户行地址：</b>
+		                        <b>ที่อยู่ธนาคาร:</b>
 		                        <input size="35" name="finance[finance_bankaddress]" value="<?php echo C('finance_bankaddress',null,'data');?>">
 		                    </td>
 		                </tr>
 		                <tr>
 		                   <td>
-		                        <b> 持 卡 人 ：</b>
+		                        <b> ผู้ถือบัตร:</b>
 		                        <input size="15" name="finance[finance_bankmaster]" value="<?php echo C('bankmaster',null,'data');?>">
 		                    </td>
 		                   <td>
-		                        <b> 银 行 卡 号：</b>
+		                        <b> หมายเลขบัตรธนาคาร:</b>
 		                        <input size="35" name="finance[finance_bankcard]" value="<?php echo C('finance_bankcard',null,'data');?>">
 		                    </td>
 		                </tr>
 		                <tr>
 		                   <td colspan="3">
-		                        <b> 支 付 宝 ：</b>
+		                        <b> Alipay:</b>
 		                        <input size="25" name="finance[finance_alipay]" value="<?php echo C('finance_alipay',null,'data');?>">
 		                    </td>
 		                </tr>
@@ -217,8 +217,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 

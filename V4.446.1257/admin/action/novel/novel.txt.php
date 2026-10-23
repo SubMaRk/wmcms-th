@@ -26,12 +26,12 @@ if ( $type == 'init' )
 	$expData['exp_indent'] = Post('exp_indent');
 	if( !file_exists($expData['exp_path']) )
 	{
-		Ajax('对不起，需要导入的TXT不存在！',300);
+		Ajax('ไม่พบ TXT ที่ต้องการนำเข้า!',300);
 	}
 	else
 	{
 		$result = $txtMod->ExpChapter($expData);
-		Ajax('TXT初始化成功!',200,$result);
+		Ajax('เริ่มต้น TXT สำเร็จ!',200,$result);
 	}
 }
 //删除TXT
@@ -40,11 +40,11 @@ else if ( $type == 'del' )
 	$path = Post('path');
 	if( file::DelFile(WMROOT.$path) == false )
 	{
-		Ajax('对不起，需要删除的TXT不存在或已被删除！',300);
+		Ajax('ไม่พบ TXT ที่ต้องการลบ หรือถูกลบไปแล้ว!',300);
 	}
 	else
 	{
-		Ajax('TXT删除成功!');
+		Ajax('ลบ TXT สำเร็จ!');
 	}
 }
 //导入txt操作
@@ -61,7 +61,7 @@ else if ( $type == 'import' )
 	
 	if( !file_exists($expData['exp_path']) )
 	{
-		Ajax('对不起，该TXT已经导入或者文件不存在！',300);
+		Ajax('TXT นี้ถูกนำเข้าแล้วหรือไม่พบไฟล์!',300);
 	}
 	else
 	{
@@ -73,7 +73,7 @@ else if ( $type == 'import' )
 		{
 			//删除小说
 			file::DelFile($expData['exp_path']);
-			Ajax('对不起，导入的TXT无法读取章节！',300);
+			Ajax('ไม่สามารถอ่านตอนจาก TXT ที่นำเข้าได้!',300);
 		}
 		else
 		{
@@ -153,7 +153,7 @@ else if ( $type == 'import' )
 		file::DelFile($expData['exp_path']);
 		//写入操作记录
 		SetOpLog( '导入了小说'.$novelData['novel_name'] , 'novel' , 'insert');
-		Ajax('恭喜您，TXT导入成功！');
+		Ajax('นำเข้า TXT สำเร็จ!');
 	}
 }
 ?>

@@ -2,7 +2,7 @@
     <form action="index.php?a=yes&c=operate.zt&t=<?php echo $type;?>" data-reload="false" data-toggle="validate" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
 	<input name="id[zt_id]" type="hidden" class="input-text" value="<?php echo $id;?>">
 		<fieldset>
-			<legend>专题编辑</legend>
+			<legend>แก้ไขหัวข้อพิเศษ</legend>
             <ul class="nav nav-tabs" role="tablist">
             	<li class="active"><a href="#<?php echo $cFun.$type;?>base" role="tab" data-toggle="tab">基本设置</a></li>
             </ul>
@@ -12,7 +12,7 @@
 			            <tbody>
 		            	<tr>
 						  <td colspan="2">
-						  	<b>专 题 分 类：</b>
+						  	<b>หมวดหมู่หัวข้อพิเศษ：</b>
 							<input id="<?php echo $cFun.$type;?>type_id" name="zt[type_id]" type="hidden" value="<?php echo C('type_id',null,'data');?>">
 					      	<input type="text" id="<?php echo $cFun.$type;?>_ztree_input" data-toggle="selectztree" data-tree="#<?php echo $cFun.$type;?>_ztree_select" readonly value="<?php echo C('type_name',null,'data');?>">
                             <ul id="<?php echo $cFun.$type;?>_ztree_select" class="ztree hide" data-toggle="ztree" data-expand-all="true" data-check-enable="true" data-chk-style="radio" data-radio-type="all" data-on-check="<?php echo $cFun.$type;?>S_NodeCheck" data-on-click="<?php echo $cFun.$type;?>S_NodeClick">
@@ -31,17 +31,17 @@
 						</tr>
 					    <tr>
 					      <td width="40%">
-						      <b>专 题 名 字：</b>
+						      <b>ชื่อหัวข้อพิเศษ：</b>
 						      <input name="zt[zt_name]" data-rule="required" type="text" class="input-text" value="<?php echo C('zt_name',null,'data');?>">
 						  </td>
 					      <td>
-						      <b>专 题 拼 音：</b>
+						      <b>พินอินหัวข้อพิเศษ：</b>
 						      <input name="zt[zt_pinyin]" type="text" class="input-text" value="<?php echo C('zt_pinyin',null,'data');?>">
 						  </td>
 						</tr>
 						<tr>
 							<td>
-								<b>专 题 状 态：</b>
+								<b>สถานะหัวข้อพิเศษ：</b>
 								<select data-toggle="selectpicker" name="zt[zt_status]">
 								<?php 
 								foreach ($statusArr as $k=>$v)
@@ -53,31 +53,31 @@
 								</select>
 							 </td>
 							<td>
-								<b>专题浏览量：</b><input size="10" name="zt[zt_read]" type="text" class="input-text" value="<?php echo C('zt_read',null,'data');?>">
+								<b>ยอดเข้าชมหัวข้อพิเศษ：</b><input size="10" name="zt[zt_read]" type="text" class="input-text" value="<?php echo C('zt_read',null,'data');?>">
 							</td>
 						</tr>
 					    <tr>
 					      <td colspan="2">
-					      	<b>专 题 封 面：</b>
+					      	<b>ปกหัวข้อพิเศษ：</b>
 					      	<input size="40" name="zt[zt_simg]" type="text" class="input-text" value="<?php echo C('zt_simg',null,'data');?>">
 					      	<span class="upload" data-uploader="index.php?a=yes&c=upload&t=img" data-on-upload-success="<?php echo $cFun.$type;?>upload_success" data-file-type-exts="*.jpg;*.png;*.gif;*.mpg" data-toggle="upload" data-icon="cloud-upload"></span>
 					      </td>
 						</tr>
 					    <tr>
 					      <td colspan="2">
-					      	<b>专 题 横 幅：</b>
+					      	<b>แบนเนอร์หัวข้อพิเศษ：</b>
 					      	<input size="40" name="zt[zt_banner]" type="text" class="input-text" value="<?php echo C('zt_banner',null,'data');?>">
 					      	<span class="upload" data-uploader="index.php?a=yes&c=upload&t=img" data-on-upload-success="<?php echo $cFun.$type;?>upload_success" data-file-type-exts="*.jpg;*.png;*.gif;*.mpg" data-toggle="upload" data-icon="cloud-upload"></span>
 					      </td>
 						</tr>
 					    <tr>
 					      <td colspan="2">
-					      	<b>专 题 介 绍：</b>
+					      	<b>แนะนำหัวข้อพิเศษ：</b>
 					      	<textarea name="zt[zt_info]" cols="70" rows="6"><?php echo C('zt_info',null,'data');?></textarea>
 					      </td>
 						</tr>
 						<tr>
-					      <td colspan="2"><b>专 题 内 容：</b>
+					      <td colspan="2"><b>เนื้อหาหัวข้อพิเศษ：</b>
 							<?php echo Ueditor('width: 98%;height:250px' , 'zt[zt_content]' , C('zt_content',null,'data'), 'editor.operate_zt');?>
 					    </tr>
 			            </tbody>
@@ -90,8 +90,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 
@@ -108,7 +108,7 @@ function <?php echo $cFun;?>(json){
     $(this).navtab("switchTab",tabid);	// 切换Tab页面
 }
 
-//上传封面
+//上传บล็อก面
 function <?php echo $cFun.$type;?>upload_success(file,json,$element){
 	json = $.parseJSON(json);
 	if ( json.statusCode == 300){

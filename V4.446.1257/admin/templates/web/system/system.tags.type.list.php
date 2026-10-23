@@ -10,9 +10,9 @@ thead th {
 <div class="bjui-pageHeader">
 	<div class="row cl pt-10 pb-10 pl-10">
 		<div class="f-l" style="margin-left:10px">
-			<a href="index.php?a=yes&c=system.tags.type&t=<?php echo $module;?>_del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
+			<a href="index.php?a=yes&c=system.tags.type&t=<?php echo $module;?>_del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
 			
-			<a class="btn btn-success radius size-MINI" data-toggle="dialog" data-mask="true" data-title="添加标签分类" href="index.php?d=yes&c=system.tags.type.edit&t=<?php echo $module;?>_add" data-width="450" data-height="250" ><i class="fa fa-plus"></i> 添加标签分类</a>
+			<a class="btn btn-success radius size-MINI" data-toggle="dialog" data-mask="true" data-title="เพิ่มหมวดหมู่แท็ก" href="index.php?d=yes&c=system.tags.type.edit&t=<?php echo $module;?>_add" data-width="450" data-height="250" ><i class="fa fa-plus"></i> เพิ่มหมวดแท็ก</a>
 		</div>
 		<div class="f-l">
 			<form id="pagerForm" name="<?php echo $cFun;?>Form" data-toggle="ajaxsearch" data-loadingmask="true" action="index.php?c=system.tags.type.list&t=<?php echo $module?>_list" method="post">
@@ -31,10 +31,10 @@ thead th {
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="7%" data-order-field="type_id">ID</th>
-	            <th width="18%">分类名字</th>
-	            <th>分类描述</th>
-	            <th width="9%">分类排序</th>
-	            <th width="12%">操作</th>
+	            <th width="18%">ชื่อหมวดหมู่</th>
+	            <th>คำอธิบายหมวดหมู่</th>
+	            <th width="9%">การเรียงหมวดหมู่</th>
+	            <th width="12%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody>
@@ -52,8 +52,8 @@ thead th {
 							<td style="text-align: center;">'.$v['type_desc'].'</td>
 							<td style="text-align: center;">'.$v['type_order'].'</td>
 							<td style="text-align: center;">
-				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" data-on-close="onClose" href="index.php?d=yes&c=system.tags.type.edit&t='.$module.'_edit&id='.$v['type_id'].'"  data-toggle="dialog" data-title="修改标签分类" data-width="450" data-height="250" >编辑</a> 
-				           		<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['type_id'].')">删除</a>
+				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" data-on-close="onClose" href="index.php?d=yes&c=system.tags.type.edit&t='.$module.'_edit&id='.$v['type_id'].'"  data-toggle="dialog" data-title="修改หมวดแท็ก" data-width="450" data-height="250" >แก้ไข</a> 
+				           		<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['type_id'].')">ลบ</a>
                 			</td>
 						</tr>';
 					$i++;
@@ -70,7 +70,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -79,7 +79,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div id="asd" class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>

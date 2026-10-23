@@ -14,7 +14,7 @@ class Weixin_AccountModel
 	public $replyTable = '@weixin_autoreply';
 	public $msgTable = '@weixin_msg';
 	public $mediaTable = '@weixin_media';
-	public $status = array(0=>'审核中',1=>'已通过');
+	public $status = array(0=>'审核中',1=>'อนุมัติแล้ว');
 	public $access = array(0=>'未接入',1=>'已接入');
 	public $follow = array(0=>'不限制',1=>'强制关注');
 	public $type = array(1=>'订阅号',2=>'服务号');

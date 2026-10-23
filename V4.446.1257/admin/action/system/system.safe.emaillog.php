@@ -20,7 +20,7 @@ if ( $type == 'del' )
 	//写入操作记录
 	SetOpLog( '删除了邮件发送日志' , 'system' , 'delete' , $table , $where);
 	wmsql::Delete($table, $where);
-	Ajax('邮件发送日志删除成功!');
+	Ajax('ลบบันทึกการส่งอีเมลสำเร็จ!');
 }
 //清空登录记录
 else if ( $type == 'clear' )
@@ -28,6 +28,6 @@ else if ( $type == 'clear' )
 	wmsql::Exec('TRUNCATE TABLE `@'.$table.'`');
 	//写入操作记录
 	SetOpLog( '清空了邮件发送日志' , 'system' , 'delete');
-	Ajax('所有邮件发送日志成功清空！');
+	Ajax('ล้างข้อมูลบันทึกการส่งอีเมลทั้งหมดสำเร็จ!');
 }
 ?>

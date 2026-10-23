@@ -1,7 +1,7 @@
 <div class="bjui-pageContent">	                       
     <form action="index.php?a=yes&c=user.msg&t=send" data-reload="false" data-toggle="validate" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
 		<fieldset>
-			<legend>发送内信</legend>
+			<legend>ส่งข้อความภายใน</legend>
     		<table class="table table-border table-bordered table-bg table-sort">
 	            <tbody>
 	                <tr>

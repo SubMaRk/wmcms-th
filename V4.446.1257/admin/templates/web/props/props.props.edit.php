@@ -2,7 +2,7 @@
     <form action="index.php?a=yes&c=props.props&t=<?php echo $type;?>" data-reload="false" data-toggle="validate" method="post" <?php if($d) { echo 'data-callback="'.$cFun.$type.'"';}?>>
 	<input name="id[props_id]" id="<?php echo $cFun.$type;?>_id" type="hidden" class="input-text" value="<?php echo $id;?>">
 		<fieldset>
-			<legend>打赏道具信息编辑</legend>
+			<legend>แก้ไขข้อมูลไอเท็มให้รางวัล</legend>
 			<ul class="nav nav-tabs" role="tablist">
             	<li class="active"><a href="#<?php echo $cFun.$type;?>base" role="tab" data-toggle="tab">基本信息</a></li>
             	<li><a href="#<?php echo $cFun.$type;?>option" role="tab" data-toggle="tab">道具属性</a></li>
@@ -12,7 +12,7 @@
 					<table class="table table-border table-bordered table-bg table-sort">
 		            <tbody>
 		            	<tr>
-						  <td width="100"><b>道具分类：</b></td>
+						  <td width="100"><b>หมวดไอเท็ม:</b></td>
 						  <td>
 							<input id="<?php echo $cFun.$type;?>type_id" name="props[props_type_id]" type="hidden" value="<?php echo C('props_type_id',null,'data');?>">
 					      	<input type="text" id="<?php echo $cFun.$type;?>_ztree_input" data-toggle="selectztree" data-tree="#<?php echo $cFun.$type;?>_ztree_select" readonly value="<?php echo C('type_name',null,'data');?>">
@@ -31,13 +31,13 @@
 					      </td>
 						</tr>
 		                <tr>
-		                    <td><b>道具名字：</b></td>
+		                    <td><b>ชื่อไอเท็ม:</b></td>
 						  	<td>
 		                        <input type="text" name="props[props_name]" value="<?php echo C('props_name',null,'data');?>" data-rule="required">
 		                    </td>
 		                </tr>
 		                <tr>
-		                   <td><b>道具封面：</b></td>
+		                   <td><b>ปกไอเท็ม:</b></td>
 						  	<td>
 		                        <input type="text" name="props[props_cover]" value="<?php echo C('props_cover',null,'data');?>" size="20">
 								<span class="upload" data-uploader="index.php?a=yes&c=upload&t=img&module=author&utype=props&cid=<?php echo $id;?>" data-on-upload-success="<?php echo $cFun.$type;?>upload_success" data-file-type-exts="*.jpg;*.png;*.gif;*.mpg" data-toggle="upload" data-icon="cloud-upload"></span>
@@ -45,7 +45,7 @@
 		                    </td>
 		                </tr>
 		                <tr>
-		                    <td><b>道具状态：</b></td>
+		                    <td><b>สถานะไอเท็ม:</b></td>
 						  	<td>
 			                    <select data-toggle="selectpicker" name="props[props_status]">
 	                            	<option value="1" <?php if(C('props_status',null,'data') == '1'){ echo 'selected=""';}?>>上架</option>
@@ -54,13 +54,13 @@
 		                    </td>
 		                </tr>
 		                <tr>
-		                    <td><b>剩余库存：</b></td>
+		                    <td><b>สต็อกคงเหลือ:</b></td>
 						  	<td>
 		                        <input type="text" name="props[props_stock]" value="<?php echo C('props_stock',null,'data');?>" data-rule="required;digits" size="10">
 		                    </td>
 		                </tr>
 		                <tr>
-		                    <td><b>消费类型：</b></td>
+		                    <td><b>ประเภทการใช้จ่าย:</b></td>
 						  	<td>
 			                    <select data-toggle="selectpicker" name="props[props_cost]">
 	                            	<option value="1" <?php if(C('props_cost',null,'data') == '1'){ echo 'selected=""';}?>><?php echo $propsSer->GetCost(1);?></option>
@@ -69,32 +69,32 @@
 		                    </td>
 		                </tr>
 		                <tr id="<?php echo $cFun.$type;?>cost1">
-		                    <td><b>站内货币：</b></td>
+		                    <td><b>สกุลเงินในเว็บไซต์:</b></td>
 						  <td>
 		                        <input type="text" name="props[props_gold1]" value="<?php echo C('props_gold1',null,'data');?>" data-rule="required;number" size="10"> <?php echo $userConfig['gold1_name']?>&nbsp;&nbsp;&nbsp;&nbsp;
 		                        <input type="text" name="props[props_gold2]" value="<?php echo C('props_gold2',null,'data');?>" data-rule="required;number" size="10"> <?php echo $userConfig['gold2_name']?>
 		                    </td>
 		                </tr>
 		                <tr id="<?php echo $cFun.$type;?>cost2">
-		                    <td><b>现金价格：</b></td>
+		                    <td><b>ราคาเงินสด:</b></td>
 						  	<td>
 		                        <input type="text" name="props[props_money]" value="<?php echo C('props_money',null,'data');?>" data-rule="required;number" size="10"> 元
 		                    </td>
 		                </tr>
 		                <tr>
-		                    <td><b>道具介绍：</b></td>
+		                    <td><b>แนะนำไอเท็ม:</b></td>
 						  	<td>
 		                        <textarea cols="35" rows="6" name="props[props_desc]"><?php echo C('props_desc',null,'data');?></textarea>
 		                    </td>
 		                </tr>
 		                <tr>
-		                    <td><b>显示顺序：</b></td>
+		                    <td><b>ลำดับการแสดง:</b></td>
 						  	<td>
 		                        <input type="text" name="props[props_order]" value="<?php echo C('props_order',null,'data');?>" data-rule="required;digits" size="10">
 		                    </td>
 		                </tr>
 		            	<tr>
-						  <td><b>入库时间：</b></td>
+						  <td><b>เวลาเข้าคลัง：</b></td>
 						  <td>
 							<input type="text" name="props[props_time]" value="<?php echo date('Y-m-d H:i:s',C('props_time',null,'data'));?>" data-toggle="datepicker" data-pattern="yyyy-MM-dd H:m:s" size="19">
 					      </td>
@@ -107,34 +107,34 @@
 					<table class="table table-border table-bordered table-bg table-sort">
 		            <tbody>
 		                <tr>
-		                    <td colspan="2"><b style="color:red">使用道具后获得效果</b></td>
+		                    <td colspan="2"><b style="color:red">เอฟเฟกต์ที่ได้รับหลังใช้ไอเทม</b></td>
 		                </tr>
 		                <tr>
-		                    <td width="150"><b><?php echo $userConfig['ticket_rec'];?>增加：</b></td>
+		                    <td width="150"><b><?php echo $userConfig['ticket_rec'];?>เพิ่ม:</b></td>
 		                    <td>
 		                    	<input type="text" name="option[rec]" value="<?php echo C('rec',null,'option');?>" data-rule="required;digits" size="10">
 		                    </td>
 		                </tr>
 		                <tr>
-		                   <td><b><?php echo $userConfig['ticket_month'];?>增加：</b></td>
+		                   <td><b><?php echo $userConfig['ticket_month'];?>เพิ่ม:</b></td>
 		                    <td>
 		                    	<input type="text" name="option[month]" value="<?php echo C('month',null,'option');?>" data-rule="required;digits" size="10">
 		                    </td>
 		                </tr>
 		                <tr>
-		                    <td><b>作者经验增加：</b></td>
+		                    <td><b>เพิ่มค่าประสบการณ์ผู้แต่ง：</b></td>
 		                    <td>
 		                    	<input type="text" name="option[author_exp]" value="<?php echo C('author_exp',null,'option');?>" data-rule="required;digits" size="10">
 		                    </td>
 		                </tr>
 		                <tr>
-		                    <td><b>粉丝经验增加：</b></td>
+		                    <td><b>เพิ่มค่าประสบการณ์แฟนคลับ:</b></td>
 		                    <td>
 		                    	<input type="text" name="option[fans_exp]" value="<?php echo C('fans_exp',null,'option');?>" data-rule="required;digits" size="10">
 		                    </td>
 		                </tr>
 		                <tr>
-		                    <td><b>用户经验增加：</b></td>
+		                    <td><b>เพิ่มค่าประสบการณ์ผู้ใช้:</b></td>
 		                    <td>
 		                    	<input type="text" name="option[user_exp]" value="<?php echo C('user_exp',null,'option');?>" data-rule="required;digits" size="10">
 		                    </td>
@@ -149,8 +149,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 
@@ -173,7 +173,7 @@ function <?php echo $cFun.$type;?>(json){
     $(this).navtab("reload",op);	// 刷新Tab页面
     $(this).navtab("switchTab",tabid);	// 切换Tab页面
 }
-//上传封面
+//上传บล็อก面
 function <?php echo $cFun.$type;?>upload_success(file,json,$element){
 	json = $.parseJSON(json);
 	if ( json.statusCode == 300){

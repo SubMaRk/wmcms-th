@@ -1,7 +1,7 @@
 <div class="bjui-pageHeader">
 	<div class="bjui-searchBar">
-   		<button type="button" class="btn-green" data-toggle="dialog" data-id="<?php echo $cFun;?>add" data-mask="true" data-url="index.php?c=author.level.sign.edit&t=add" data-width="465" data-height="350" data-title="添加签约等级" data-icon="plus">添加签约等级</button>&nbsp;
-    	<span style="color: red">注意：签约只是获得作品版权，所有收入必须是上架后才能体现。</span>
+   		<button type="button" class="btn-green" data-toggle="dialog" data-id="<?php echo $cFun;?>add" data-mask="true" data-url="index.php?c=author.level.sign.edit&t=add" data-width="465" data-height="350" data-title="เพิ่มระดับการเซ็นสัญญา" data-icon="plus">添加签约等级</button>&nbsp;
+    	<span style="color: red">หมายเหตุ: การเซ็นสัญญาได้เพียงลิขสิทธิ์ผลงาน รายได้ทั้งหมดจะแสดงหลังเผยแพร่แล้วเท่านั้น</span>
     </div>
 </div>
 
@@ -14,12 +14,12 @@
 			<form name="<?php echo $cFun;?>EditForm" action="index.php?a=yes&c=author.sign&t=upall" data-reload="false" data-toggle="validate" method="post" data-callback="<?php echo $cFun;?>ajaxCallBack">
 	  			<table class="table table-border table-bordered table-bg table-sort">
 			    <tr>
-			      <td>签约等级</td>
-			      <td width="240">收入分成比例【如：7(网站):3(作者)】</td>
-			      <td width="240">用户阅读：每千字/<?php echo $config['gold1_name']?></td>
-			      <td width="200">用户阅读：每千字/<?php echo $config['gold2_name']?></td>
-			      <td width="150">排序</td>
-				  <td width="150">操作</td>
+			      <td>ระดับเซ็นสัญญา</td>
+			      <td width="240">สัดส่วนแบ่งรายได้ [เช่น 7(เว็บไซต์):3(ผู้แต่ง)]</td>
+			      <td width="240">การอ่านของผู้ใช้: ต่อพันคำ/<?php echo $config['gold1_name']?></td>
+			      <td width="200">การอ่านของผู้ใช้: ต่อพันคำ/<?php echo $config['gold2_name']?></td>
+			      <td width="150">เรียงลำดับ</td>
+				  <td width="150">ดำเนินการ</td>
 			    </tr>
 			    <?php 
 			    if( isset($lvArr['novel']) )
@@ -35,7 +35,7 @@
 					      <td><input name="level['.$v['sign_id'].'][data][sign_order]"  value="'.$v['sign_order'].'"  type="text" size="10"/></td>
 					     <td>
 	  						<a class="btn btn-secondary radius size-MINI '.$cFun.'updateAjax">修改</a>
-	  						<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['sign_id'].')">删除</a></td>
+	  						<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['sign_id'].')">ลบ</a></td>
 					    </tr>';
 				    }
 				}
@@ -52,8 +52,8 @@
 			  
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 全部更改</button></li>
+        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> เปลี่ยนทั้งหมด</button></li>
     </ul>
 </div>
 

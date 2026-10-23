@@ -2,7 +2,7 @@
     <form action="index.php?a=yes&c=props.type&t=<?php echo $type;?>" data-reload="false" data-toggle="validate" method="post" <?php if($d) { echo 'data-callback="'.$cFun.$type.'"';}?>>
 	<input name="type_id" id="<?php echo $cFun.$type;?>_id" type="hidden" class="input-text" value="<?php echo $id;?>">
 		<fieldset>
-			<legend>打赏道具分类编辑</legend>
+			<legend>แก้ไขหมวดหมู่ไอเท็มให้รางวัล</legend>
 			<ul class="nav nav-tabs" role="tablist">
             	<li class="active"><a href="#<?php echo $cFun.$type;?>base" role="tab" data-toggle="tab">基本信息</a></li>
             </ul>
@@ -11,12 +11,12 @@
 					<table class="table table-border table-bordered table-bg table-sort">
 		            <tbody>
 		            	<tr>
-						  <td valign="top" width="150"><b>所属分类：</b></td>
+						  <td valign="top" width="150"><b>หมวดหมู่ที่สังกัด:</b></td>
 					      <td valign="top">
 							<input id="<?php echo $cFun.$type;?>type_pid" name="type[type_topid]" type="hidden" value="<?php echo C('type_topid',null,'data');?>">
 					      	<input type="text" id="<?php echo $cFun.$type;?>_ztree_input" data-toggle="selectztree" data-tree="#<?php echo $cFun.$type;?>_ztree_select" readonly value="<?php echo C('name',null,'top');?>">
                             <ul id="<?php echo $cFun.$type;?>_ztree_select" class="ztree hide" data-toggle="ztree" data-expand-all="true" data-check-enable="true" data-chk-style="radio" data-radio-type="all" data-on-check="<?php echo $cFun.$type;?>S_NodeCheck" data-on-click="<?php echo $cFun.$type;?>S_NodeClick">
-                                <li data-id="0">顶级分类</li>
+                                <li data-id="0">หมวดระดับบนสุด</li>
                                 <?php 
 								if( $typeArr )
 								{
@@ -31,7 +31,7 @@
 					      </td>
 						</tr>
 		                <tr>
-		                    <td><b>所属模块：</td>
+		                    <td><b>โมดูลที่สังกัด:</td>
 		                    <td><select data-toggle="selectpicker" name="type[type_module]">
 	                            	<?php
 				                	foreach ($moduleArr as $k=>$v)
@@ -44,19 +44,19 @@
 		                    </td>
 		                </tr>
 		                <tr>
-		                    <td><b>分类名字：</b></td>
+		                    <td><b>ชื่อหมวดหมู่:</b></td>
 		                    <td>
 		                        <input type="text" name="type[type_name]" value="<?php echo C('type_name',null,'data');?>" data-rule="required">
 		                    </td>
 		                </tr>
 		                <tr>
-		                    <td><b>分类简称：</b></td>
+		                    <td><b>ชื่อย่อหมวดหมู่:</b></td>
 		                    <td>
 		                        <input type="text" name="type[type_cname]" value="<?php echo C('type_cname',null,'data');?>">
 		                    </td>
 		                </tr>
 		                <tr>
-		                    <td><b>分类排序：</b></td>
+		                    <td><b>การเรียงหมวดหมู่:</b></td>
 		                    <td>
 		                        <input type="text" name="type[type_order]" value="<?php echo C('type_order',null,'data');?>" data-rule="required;digits" size="10">
 		                    </td>
@@ -70,8 +70,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 

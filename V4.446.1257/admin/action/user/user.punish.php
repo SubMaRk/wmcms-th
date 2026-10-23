@@ -19,7 +19,7 @@ if ( $type == "punish"  )
 	$data['punish_endtime'] = strtotime($data['punish_endtime']);
 	if( $punishMod->GetOne($data['punish_uid'],$data['punish_type']) )
 	{
-		Ajax('该用户已经在处罚中!',300);
+		Ajax('ผู้ใช้นี้อยู่ระหว่างการลงโทษ!',300);
 	}
 	else
 	{
@@ -27,7 +27,7 @@ if ( $type == "punish"  )
 		//发送模板消息
 		$msgMod->SendTempMsg('user_punish_'.$data['punish_type'],$data['punish_uid'],array('原因'=>$data['punish_remark']));
 		SetOpLog( '插入了处罚记录' , 'user' , 'insert' , $table);
-		Ajax('处罚成功!');
+		Ajax('ลงโทษสำเร็จ!');
 	}
 }
 //解除处罚记录
@@ -41,7 +41,7 @@ else if ( $type == 'unpunish' )
 	$where['punish_uid'] = $uid;
 	$where['punish_type'] = $st;
 	SetOpLog( '解除了处罚记录' , 'user' , 'update' , $table , $where);
-	Ajax('处罚解除成功!');
+	Ajax('ยกเลิกการลงโทษสำเร็จ!');
 }
 //删除处罚记录
 else if ( $type == 'del' )
@@ -49,6 +49,6 @@ else if ( $type == 'del' )
 	$where['punish_id'] = GetDelId();
 	$punishMod->Delete($where);
 	SetOpLog( '删除了处罚记录' , 'user' , 'delete' , $table , $where);
-	Ajax('处罚记录删除成功!');
+	Ajax('ลบบันทึกการลงโทษสำเร็จ!');
 }
 ?>

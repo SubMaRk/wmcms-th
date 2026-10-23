@@ -3,7 +3,7 @@
 <input type="hidden" name="path" value="<?php echo $path;?>">
 <table class="table table-border table-bordered table-bg table-sort">
     <tr>
-      <td valign="top"><b>新的文件夹名：</b></td>
+      <td valign="top"><b>ชื่อโฟลเดอร์ใหม่:</b></td>
       <td valign="top"><input name="newname" type="text" class="input-text" data-rules="required"></td>
 	</tr>
 </table>
@@ -12,8 +12,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close btn btn-danger"><i class="fa fa-times"></i> 关闭</button></li>
-        <li><button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> 确定</button></li>
+        <li><button type="button" class="btn-close btn btn-danger"><i class="fa fa-times"></i> ปิด</button></li>
+        <li><button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> ยืนยัน</button></li>
     </ul>
 </div>
 

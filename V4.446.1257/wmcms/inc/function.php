@@ -158,7 +158,7 @@ function Inc( $path , $name = ''){
 	{
 		if ( DEVELOPER )
 		{
-			echo '载入文件：'.$path.'<br/>';
+			echo 'กำลังโหลดไฟล์: '.$path.'<br/>';
 		}
 		//是否需要返回配置文件内容
 		if( $name != '')
@@ -200,7 +200,7 @@ function NewClass( $name , $data = '' , $path = WMCLASS , $type = 'class' )
 	{
 		if ( DEVELOPER )
 		{
-			echo '载入文件：'.$file.'<br/>';
+			echo 'กำลังโหลดไฟล์: '.$file.'<br/>';
 		}
 
 		if( $type == 'model' )
@@ -378,23 +378,23 @@ function GetLang($langKey,$repArr = array())
 function GetModuleName( $name = '' , $filter = true)
 {
 	$arr = array(
-		'all'=>'全站首页',
-		'novel'=>'小说模块',
-		'app'=>'应用模块',
-		'article'=>'文章模块',
-		'picture'=>'图集模块',
-		'message'=>'留言模块',
-		'bbs'=>'论坛模块',
-		'link'=>'友链模块',
-		'author'=>'原创模块',
-		'user'=>'用户模块',
-		'zt'=>'专题模块',
-		'about'=>'信息模块',
-		'editor'=>'编辑模块',
-		'diy'=>'单页模块',
-		'down'=>'下载模块',
-		'replay'=>'评论模块',
-		'search'=>'搜索模块',
+		'all'=>'หน้าแรกทั้งเว็บ',
+		'novel'=>'โมดูลนิยาย',
+		'app'=>'โมดูลแอป',
+		'article'=>'โมดูลบทความ',
+		'picture'=>'โมดูลแกลเลอรี',
+		'message'=>'โมดูลข้อความ',
+		'bbs'=>'โมดูลฟอรัม',
+		'link'=>'โมดูลลิงก์เพื่อน',
+		'author'=>'โมดูลต้นฉบับ',
+		'user'=>'โมดูลผู้ใช้',
+		'zt'=>'โมดูลหัวข้อพิเศษ',
+		'about'=>'โมดูลข้อมูล',
+		'editor'=>'โมดูลบรรณาธิการ',
+		'diy'=>'โมดูลหน้าเดียว',
+		'down'=>'โมดูลดาวน์โหลด',
+		'replay'=>'โมดูลความคิดเห็น',
+		'search'=>'โมดูลค้นหา',
 	);
 	$notModule = explode(',', NOTMODULE);
 	foreach ($notModule as $k=>$v)
@@ -455,7 +455,7 @@ function GetModuleName( $name = '' , $filter = true)
 function GetModuleId( $name = '')
 {
 	$arr = array(
-		'小说'=>'novel',
+		'นิยาย'=>'novel',
 		'应用'=>'app',
 		'文章'=>'article',
 		'图集'=>'picture',
@@ -1187,7 +1187,7 @@ function Call($class='',$func='',$data='')
 		}
 		else if( DEBUG == TRUE && ERR == false)
 		{
-			tpl::ErrInfo('方法 '.$func.' 不存在!');
+			tpl::ErrInfo('ไม่พบเมธอด '.$func.'!');
 		}
 		else if( DEBUG == TRUE)
 		{
@@ -1215,7 +1215,7 @@ function Call($class='',$func='',$data='')
 				}
 				else if( DEBUG == TRUE && ERR == false)
 				{
-					tpl::ErrInfo('方法 '.$class.'::'.$func.' 不存在!');
+					tpl::ErrInfo('ไม่พบเมธอด '.$class.'::'.$func.'!');
 				}
 				else if( DEBUG == TRUE )
 				{
@@ -1237,7 +1237,7 @@ function Call($class='',$func='',$data='')
 				}
 				else if( DEBUG == TRUE && ERR == false)
 				{
-					tpl::ErrInfo('方法 '.$class.'->'.$func.' 不存在!');
+					tpl::ErrInfo('ไม่พบเมธอด '.$class.'->'.$func.'!');
 				}
 				else if( DEBUG == TRUE )
 				{
@@ -1345,9 +1345,11 @@ function AuditLog( $action , $detail = '' )
 	{
 		$uid = 'user:'.user::GetUid();
 	}
-	$line = date('Y-m-d H:i:s')."	".$uid."	".GetIp()."	".$action."	".str_replace(array("","
+	$line = date('Y-m-d H:i:s')."	".$uid."	".GetIp()."	".$action."	".str_replace(array("
+","
 ","	"), ' ', (string)$detail);
-	file::CreateFile($dir.date('d').'.log', $line."
+	file::CreateFile($dir.date('d').'.log', $line."
+
 ");
 	return true;
 }

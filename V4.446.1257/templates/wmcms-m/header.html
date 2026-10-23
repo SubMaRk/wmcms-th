@@ -23,17 +23,17 @@ wx.config({
     'onMenuShareAppMessage','onMenuShareTimeline',
     'onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone'],
     success:function(){
-    	alert('分享成功');
+    	alert('แชร์สำเร็จ');
     }
 })
 wx.ready(function () {
     var shareData = { 
-        title: '润看文学',
-        desc: '分享来自WMCMS',
+        title: 'หรุนคานเหวินเสวีย',
+        desc: 'แชร์จาก WMCMS',
         link: '{当前url}',
         imgUrl: '{网站地址}{logo}',
         success: function () {
-        	alert('分享成功');
+        	alert('แชร์สำเร็จ');
         }
 	};
     wx.onMenuShareTimeline(shareData);

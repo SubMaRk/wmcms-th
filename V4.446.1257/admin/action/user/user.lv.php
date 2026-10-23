@@ -19,7 +19,7 @@ if ( $type == "add" || $type == "edit" )
 		$data = str::Escape( GetKey($post,'level'), 'e' );
 		if( !$data )
 		{
-			Ajax('对不起，请添加数据后再点击保存!',300);
+			Ajax('กรุณาเพิ่มข้อมูลก่อนกดบันทึก!',300);
 		}
 		foreach ($data as $k=>$v)
 		{
@@ -57,6 +57,6 @@ else if ( $type == 'del')
 	//写入操作记录
 	SetOpLog( '删除了用户等级' , 'user' , 'delete' , $table , $where);
 	
-	Ajax('用户等级删除成功!');
+	Ajax('ลบระดับผู้ใช้สำเร็จ!');
 }
 ?>

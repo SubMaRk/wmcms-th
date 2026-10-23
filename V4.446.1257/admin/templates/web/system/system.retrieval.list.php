@@ -15,9 +15,9 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                <span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
+                <span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
 				<select data-toggle="selectpicker" id="<?php echo $cFun;?>type" name="tid" data-width="100">
-                	<option value="">全部类型</option>
+                	<option value="">ทุกประเภท</option>
                 	<?php
                 	foreach ($typeArr as $k=>$v)
                 	{
@@ -27,10 +27,10 @@ thead th {
                 	?>
                 	
                 </select>
-                <input type="text" placeholder="请输入关键词" value="<?php echo $name;?>" name="name" size="10">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
-				<a class="btn btn-success radius size-MINI" data-toggle="dialog" data-mask="true" data-title="添加条件" href="index.php?d=yes&c=system.retrieval.edit&t=<?php echo $module?>_add" data-width="450" data-height="420" ><i class="fa fa-plus"></i> 添加条件</a> &nbsp;
+                <input type="text" placeholder="请输入คำสำคัญ" value="<?php echo $name;?>" name="name" size="10">
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
+				<a class="btn btn-success radius size-MINI" data-toggle="dialog" data-mask="true" data-title="เพิ่มเงื่อนไข" href="index.php?d=yes&c=system.retrieval.edit&t=<?php echo $module?>_add" data-width="450" data-height="420" ><i class="fa fa-plus"></i> เพิ่มเงื่อนไข</a> &nbsp;
 			</form>
 		</div>
 	</div>
@@ -41,14 +41,14 @@ thead th {
 			<thead>
 				<tr>
 				<th width="5%" data-order-field="retrieval_id">ID</th>
-				<th width="6%" data-order-field="retrieval_status">使用状态</th>
-				<th width="6%" data-order-field="retrieval_type_id">条件分类</th>
-	            <th width="8%">条件名字</th>
-	            <th width="13%">字段名</th>
-	            <th width="5%">查询类型</th>
-	            <th width="8%">字段值</th>
-	            <th width="8%">显示顺序</th>
-	            <th width="10%">操作</th>
+				<th width="6%" data-order-field="retrieval_status">สถานะการใช้งาน</th>
+				<th width="6%" data-order-field="retrieval_type_id">หมวดเงื่อนไข</th>
+	            <th width="8%">ชื่อเงื่อนไข</th>
+	            <th width="13%">ชื่อฟิลด์</th>
+	            <th width="5%">ประเภทการสืบค้น</th>
+	            <th width="8%">ค่าฟิลด์</th>
+	            <th width="8%">ลำดับการแสดง</th>
+	            <th width="10%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody>
@@ -70,8 +70,8 @@ thead th {
 							<td style="text-align: center;">'.$v['retrieval_value'].'</td>
 							<td style="text-align: center;">'.$v['retrieval_order'].'</td>
 							<td style="text-align: center;">
-				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" data-on-close="onClose" href="index.php?d=yes&c=system.retrieval.edit&t='.$module.'_edit&id='.$v['retrieval_id'].'"  data-toggle="dialog" data-title="修改检索条件" data-width="450" data-height="420" >编辑</a> 
-				           		<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['retrieval_id'].')">删除</a>
+				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" data-on-close="onClose" href="index.php?d=yes&c=system.retrieval.edit&t='.$module.'_edit&id='.$v['retrieval_id'].'"  data-toggle="dialog" data-title="修改เงื่อนไขการค้นหา" data-width="450" data-height="420" >แก้ไข</a> 
+				           		<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['retrieval_id'].')">ลบ</a>
                 			</td>
 						</tr>';
 					$i++;
@@ -88,7 +88,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -97,7 +97,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div id="asd" class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>
@@ -134,11 +134,11 @@ function <?php echo $cFun;?>StatusAjax(status,id)
 	switch(status)
 	{
 		case 0:
-			type = "禁用";
+			type = "ปิดใช้งาน";
 	  		break;
 	  		
 		default:
-			type = "使用";
+			type = "ใช้";
 	  		break;
 	}
 	

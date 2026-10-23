@@ -22,39 +22,39 @@
         <!-- start 头部 -->
         <header class="bar bar-nav">
             <a class="button button-link button-nav pull-left" href="javascript:history.back();">
-                <span style="color: #2e9de7;">&lt; 返回</span>
+                <span style="color: #2e9de7;">&lt; ย้อนกลับ</span>
             </a>
-            <h1 class="title">在线充值</h1>
+            <h1 class="title">เติมเงินออนไลน์</h1>
         </header>
         
         <!-- end 头部 -->
         <div class="content">
             <!-- start 账号 -->
             <div class="account-wrap cf chargeTypeBox">
-                <a class="chargeType" data-val="2" style="float: right;">卡密充值</a>
-                <a class="chargeType" data-val="1" style="border-bottom: #1196d4 2px solid;">在线充值</a>
+                <a class="chargeType" data-val="2" style="float: right;">เติมเงินด้วยรหัสบัตร</a>
+                <a class="chargeType" data-val="1" style="border-bottom: #1196d4 2px solid;">เติมเงินออนไลน์</a>
             </div>
             <!-- start 账号 -->
             <div class="account-wrap cf">
                 <span>
 	                <select id="account_type" name="account_type" style="background: transparent;border:none">
-	                	<option value="0">为自己充值</option>
-	                	<option value="1">为好友充值</option>
+	                	<option value="0">เติมเงินให้ตัวเอง</option>
+	                	<option value="1">เติมเงินให้เพื่อน</option>
 	                </select>
                 </span>
-                <em>充值账号</em>
+                <em>บัญชีเติมเงิน</em>
             </div>
             <div class="account-wrap account">
                 <span>
-	                <input type="text" size="25" placeholder="好友的登录账号" id="account" name="account" />
+	                <input type="text" size="25" placeholder="บัญชีเข้าสู่ระบบของเพื่อน" id="account" name="account" />
                 </span>
-                <em>好友账号</em>
+                <em>บัญชีเพื่อน</em>
             </div>
             <div class="account-wrap account" style="margin-top:-12px">
                 <span>
-	                <input type="text" size="25" placeholder="重复好友的登录账号" id="reAccount" name="reAccount" />
+	                <input type="text" size="25" placeholder="กรอกบัญชีเข้าสู่ระบบของเพื่อนอีกครั้ง" id="reAccount" name="reAccount" />
                 </span>
-                <em>重复好友账号</em>
+                <em>บัญชีเพื่อนซ้ำ</em>
             </div>
             <!-- end 账号 -->
             
@@ -63,7 +63,7 @@
 	            <div class="select-trench">
 	                <ul>
 	                	{支付方式:支付类型=wap支付;数量=10}
-		                {无数据}<li class="system"><a href="javascript:"><div class="border-box"><div class="trench-name"><h3>暂未开启任何支付方式</h3></div></div> </a></li>{/无数据}
+		                {无数据}<li class="system"><a href="javascript:"><div class="border-box"><div class="trench-name"><h3>ยังไม่ได้เปิดใช้วิธีชำระเงินใดๆ</h3></div></div> </a></li>{/无数据}
 	                    <li class="{支付方式标识}" data-id="{支付方式标识}">
 	                        <a href="javascript:">
 	                            <span class="sprite"></span>
@@ -94,7 +94,7 @@
 	                    <li class="custom">
 	                        <div class="item-box">
 	                            <i id="ortherGold2Html">0 {金币2名字}</i>
-								<input class="lbf-text-input" id="OtherMoeny" type="text" value="" hidefocus="true" maxlength="5" placeholder="输入自定义金额">
+								<input class="lbf-text-input" id="OtherMoeny" type="text" value="" hidefocus="true" maxlength="5" placeholder="กรอกจำนวนเงินที่กำหนดเอง">
 							</div>
 	                    </li>
 	                </ul>
@@ -107,20 +107,20 @@
             <div id="cardBox" style="display:none">
 	            <div class="account-wrap">
 	                <span style="float:none;padding-left: 30px;">
-		                <input type="text" style="width:300px" placeholder="请输入您的卡密"  id="cardKey" name="cardKey" />
+		                <input type="text" style="width:300px" placeholder="กรุณากรอกรหัสบัตรของคุณ"  id="cardKey" name="cardKey" />
 	                </span>
-	                <em>卡密</em>
+	                <em>รหัสบัตร</em>
 	            </div>
 	            <div class="account-wrap">
 	                <em>
-	            <a href="{卡号购买地址}" target="_blank" class="imgCheckBtn">点此获得充值卡密</a></em>
+	            <a href="{卡号购买地址}" target="_blank" class="imgCheckBtn">คลิกที่นี่เพื่อรับรหัสบัตรเติมเงิน</a></em>
 	            </div>
             </div>
           	<!-- end 卡号充值 -->
 			
             <!-- start 按钮 -->
             <div class="btn-wrap" style="display:none">
-                <a id="pay" class="blue-btn" href="javascript:" data-tamount="10" data-method="1">立即支付 <span>¥0</span></a>
+                <a id="pay" class="blue-btn" href="javascript:" data-tamount="10" data-method="1">ชำระเงินทันที <span>¥0</span></a>
             </div>
             <!-- end 按钮 -->
             
@@ -252,15 +252,15 @@ $(document).ready(function(){
 		var payMoney=$("#payMoney").val();
 
 		if(accountType == 1 && (account.length>16 || account.length<5)){
-			easydialog_autoclose('对不起，账号长度只能为5-16个字符!');
+			easydialog_autoclose('ขออภัย บัญชีต้องมีความยาว 5-16 ตัวอักษร!');
 			return false;
 		}else if(accountType == 1 && (reAccount != account) ){
-			easydialog_autoclose('对不起，两次输入的账号不一致!');
+			easydialog_autoclose('ขออภัย บัญชีที่กรอกสองครั้งไม่ตรงกัน!');
 			return false;
 		//在线充值
 		}else if( chargeType== '1'){
 			if( payMoney < 10 ){
-				easydialog_autoclose('对不起，至少充值十元!');
+				easydialog_autoclose('ขออภัย ต้องเติมเงินอย่างน้อยสิบหยวน!');
 				return false;
 			}else{
 				$('[name=accounttype]').val(accountType);
@@ -274,7 +274,7 @@ $(document).ready(function(){
 		//卡号充值
 		}else if( chargeType== '2'){
 			if( cardKey.length != 16 && cardKey.length != 32 ){
-				easydialog_autoclose('对不起，请输入正确的卡密!');
+				easydialog_autoclose('ขออภัย กรุณากรอกรหัสบัตรให้ถูกต้อง!');
 				return false;
 			}else{
 				$.ajax({
@@ -284,7 +284,7 @@ $(document).ready(function(){
 					dataType:"json",
 					success:function(data){
 						if( data.code == 200 ){
-							easydialog_autoclose('卡密使用成功，跳转中，请稍候...','success',30000);
+							easydialog_autoclose('ใช้รหัสบัตรสำเร็จ กำลังเปลี่ยนหน้า กรุณารอสักครู่...','success',30000);
 							setTimeout(function(){window.parent.location='{用户中心}';},1000);
 						}else{
 							easydialog_autoclose(data.msg,'error');

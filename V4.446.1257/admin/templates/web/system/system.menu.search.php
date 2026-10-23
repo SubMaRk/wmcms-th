@@ -10,10 +10,10 @@
 			<thead>
 				<tr>
 				<th style="text-align: center;" width="10%">ID</th>
-				<th style="text-align: center;" width="35%">菜单位置</th>
-				<th style="text-align: center;" width="20%">菜单标识</th>
-				<th style="text-align: center;" width="20%">菜单文件</th>
-				<th style="text-align: center;" width="15%">操作</th>
+				<th style="text-align: center;" width="35%">ตำแหน่งเมนู</th>
+				<th style="text-align: center;" width="20%">ตัวระบุเมนู</th>
+				<th style="text-align: center;" width="20%">ไฟล์เมนู</th>
+				<th style="text-align: center;" width="15%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody>
@@ -47,7 +47,7 @@
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -56,7 +56,7 @@
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>"></div>
 </div>

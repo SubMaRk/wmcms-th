@@ -3,15 +3,15 @@
 	  <form name="<?php echo $cFun;?>Form" action="index.php?a=yes&c=system.retrieval&t=<?php echo $module;?>_type" data-reload="false" data-toggle="validate" method="post" data-callback="<?php echo $cFun;?>ajaxCallBack">
 	  <table class="table table-border table-bordered table-bg table-sort">
 	    <tr>
-	      <td colspan="6"><strong><?php echo GetModuleName($module);?>检索分类设置</strong></td>
+	      <td colspan="6"><strong><?php echo GetModuleName($module);?>ตั้งค่าหมวดค้นหา</strong></td>
 	    </tr>
 	    <tr>
-	      <td style="text-align: center;">分类ID</td>
-	      <td style="text-align: center;width:200px">分类名字</td>
-	      <td style="text-align: center;">分类状态</td>
-	      <td style="text-align: center;">检索类型</td>
-	      <td style="text-align: center;">参数名字</td>
-	      <td style="text-align: center;">排序</td>
+	      <td style="text-align: center;">ID หมวดหมู่</td>
+	      <td style="text-align: center;width:200px">ชื่อหมวดหมู่</td>
+	      <td style="text-align: center;">สถานะหมวดหมู่</td>
+	      <td style="text-align: center;">ประเภทค้นหา</td>
+	      <td style="text-align: center;">ชื่อพารามิเตอร์</td>
+	      <td style="text-align: center;">เรียงลำดับ</td>
 	    </tr>
 	    
 	    <?php 
@@ -40,8 +40,8 @@
 	  
 		<div class="bjui-pageFooter">
 		    <ul>
-		        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-		        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 提交更改</button></li>
+		        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+		        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> ส่งการเปลี่ยนแปลง</button></li>
 		    </ul>
 		</div>
 	</form>
@@ -67,11 +67,11 @@ function <?php echo $cFun;?>StatusAjax(status,id)
 	switch(status)
 	{
 		case 0:
-			type = "禁用";
+			type = "ปิดใช้งาน";
 	  		break;
 	  		
 		default:
-			type = "使用";
+			type = "ใช้";
 	  		break;
 	}
 	

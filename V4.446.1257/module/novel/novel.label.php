@@ -64,7 +64,7 @@ class novellabel extends novel
 		tpl::Label('{小说:[s]}[a]{/小说}','content', self::$CF, $repFun['a']);
 		//小说标签
 		$repFun['a']['novellabel'] = 'PublicTag';
-		tpl::Label('{小说标签:[s]}[a]{/小说标签}',array('explode','小说'),'key', $repFun['a']);
+		tpl::Label('{小说标签:[s]}[a]{/小说标签}',array('explode','นิยาย'),'key', $repFun['a']);
 		
 		//小说章节
 		$repFun['a']['novellabel'] = 'PublicChapter';
@@ -239,7 +239,7 @@ class novellabel extends novel
 				'小说作者生日'=>GetKey($v, 'user_birthday'),
 				'小说作者签名'=>GetKey($v, 'user_sign'),
 				'小说作者头像'=>GetKey($v, 'user_head'),
-				'小说封面'=>$v['novel_cover'],
+				'ปกนิยาย'=>$v['novel_cover'],
 				'小说点评'=>$v['novel_comment'],
 				'小说简介'=>$v['novel_info'],
 				'小说标签'=>$v['novel_tags'],
@@ -300,7 +300,7 @@ class novellabel extends novel
 				'删除收藏'=>common::GetUrl('user.delcoll' , array('cid'=>isset($v['coll_id'])?$v['coll_id']:0) ),
 			);
 			//合并两组标签
-			$arr = RepField($arr2,$arr1, $v,2,'小说');
+			$arr = RepField($arr2,$arr1, $v,2,'นิยาย');
 			//替换标签
 			$lcode = tpl::rep($arr,$lcode);
 
@@ -516,7 +516,7 @@ class novellabel extends novel
 		$where = explode(',', C('page.label_where'));
 		for( $i = 1; $i <= 22 ; $i++ )
 		{
-			if( in_array('全部' , $where) || in_array($i , $where) )
+			if( in_array('ทั้งหมด' , $where) || in_array($i , $where) )
 			{
 				$repArr = array(
 					'url'=> tpl::Rep( array('type'=>$i) , $url),

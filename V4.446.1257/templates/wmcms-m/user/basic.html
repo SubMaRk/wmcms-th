@@ -15,7 +15,7 @@
 			<div class="app_header_detail2">
 				<div class="app_header_back"></div>
 				<div class="app_header_h1">
-					修改资料
+					แก้ไขข้อมูล
 					<a href="{我的书架}"> <i class="shujiaIco"></i>
 					</a> <i class="moreIco"></i>
 				</div>
@@ -23,16 +23,16 @@
 			<div class="app_header_second" style="display: none;">
 				<ul>
 					<li class="icon1">
-						<a href="/">首页</a>
+						<a href="/">หน้าแรก</a>
 					</li>
 					<li class="icon2">
-						<a href="{全部小说}">书库</a>
+						<a href="{全部小说}">คลังหนังสือ</a>
 					</li>
 					<li class="icon3">
-						<a href="{我的书架}">书架</a>
+						<a href="{我的书架}">ชั้นหนังสือ</a>
 					</li>
 					<li class="icon4">
-						<a href="{用户中心}">账户</a>
+						<a href="{用户中心}">บัญชี</a>
 					</li>
 				</ul>
 			</div>
@@ -43,39 +43,39 @@
 		        <div class="app_lisBlockSpan">
 		            <ul>
 		                <li>
-		                    <span class="left">我的昵称：</span>
+		                    <span class="left">ชื่อเล่นของฉัน:</span>
 		                    <input type="text" value="{用户昵称}" name="nickname">
 		                </li>
 										<li>
-										    <span class="left">联系QQ：</span>
+										    <span class="left">QQ ติดต่อ:</span>
 										    <input type="text" value="{用户qq}" name="qq">
 										</li>
 										<li>
-										    <span class="left">出生日期：</span>
+										    <span class="left">วันเกิด:</span>
 										    <input type="date" value="{用户出生日期}" name="birthday">
 										</li>
 										<li>
-										    <span class="left">我的性别：</span>
+										    <span class="left">เพศของฉัน:</span>
 												<div style="display: flex;width: 3rem;height: 1.375rem;">
 													<div style="width: 2rem;display: flex;align-items: center;justify-content: center;">
 														<input name="sex" style="height: 0.4rem;" type="radio" value="1" {eq:1:{用户性别码}}checked=""{/eq}>
-														<span>男</span>
+														<span>ชาย</span>
 													</div>
 													<div style="width: 2rem;display: flex;align-items: center;justify-content: center;margin-left: 0.8rem;">
 														<input name="sex" style="height: 0.4rem;" type="radio" value="2" {eq:2:{用户性别码}}checked=""{/eq}>
-														<span>女</span>
+														<span>หญิง</span>
 													</div>
 												</div>
 										</li>
 		                <li>
-		                    <span class="left">个人签名：</span>
-		                    <textarea cols="30" name="sign" rows="5" placeholder="请输入您的签名" maxlength="50">{用户签名}</textarea>
+		                    <span class="left">ลายเซ็นส่วนตัว:</span>
+		                    <textarea cols="30" name="sign" rows="5" placeholder="กรุณากรอกลายเซ็นของคุณ" maxlength="50">{用户签名}</textarea>
 		                </li>
 		            </ul>
 		        </div>
 		        <div class="app_listBlockButton app_marginStyle1" style="padding-bottom: 1.5rem">
 							{表单锁}
-		        	<button id="submitbtn" ajax-post="app_lisBlockSpan" url="{表单提交地址}&ajax=yes">确认</button>
+		        	<button id="submitbtn" ajax-post="app_lisBlockSpan" url="{表单提交地址}&ajax=yes">ยืนยัน</button>
 		        </div>
 		    </div>
 		</div>

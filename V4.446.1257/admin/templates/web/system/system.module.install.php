@@ -6,9 +6,9 @@
 	<form name="form1" action="index.php?a=yes&c=system.module.install&t=install" method="post" data-toggle="validate">
 	
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-      <thead><tr><th colspan="4" style="text-align:left;"><b>安装功能模块</b></th></tr></thead>
+      <thead><tr><th colspan="4" style="text-align:left;"><b>ติดตั้งโมดูลฟังก์ชัน</b></th></tr></thead>
       <tr>
-        <td width="200">安装功能模块：</td>
+        <td width="200">ติดตั้งโมดูลฟังก์ชัน:</td>
        	<td colspan="3" style="line-height:30px">
         <?php
         	$i = 1;
@@ -37,7 +37,7 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>

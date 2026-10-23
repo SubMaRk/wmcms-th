@@ -20,17 +20,17 @@ else
 					<table class="table table-border table-bordered table-bg table-sort">
 		            <tbody>
 		                <tr>
-		                    <td width="120"><b>小说名字：</b></td>
+		                    <td width="120"><b>ชื่อนิยาย:</b></td>
 						  	<td>《<?php echo $novelData['novel_name']?>》（id:<?php echo $novelData['novel_id']?>）</td>
 		                </tr>
 		                <tr>
-		                    <td width="120"><b>字数奖励：</b></td>
+		                    <td width="120"><b>รางวัลตามจำนวนคำ:</b></td>
 						  	<td>
-						  		<input type="text" name="data[welfare_number]" value="<?php echo C('welfare_number',null,'data');?>" size="14" placeholder="请输入价格"> <?php echo $goldName;?> / 每千字
+						  		<input type="text" name="data[welfare_number]" value="<?php echo C('welfare_number',null,'data');?>" size="14" placeholder="请输入价格"> <?php echo $goldName;?> / ต่อ 1,000 คำ
 						  	</td>
 		                </tr>
 		                <tr>
-		                    <td width="120"><b>分成设置：</b></td>
+		                    <td width="120"><b>ตั้งค่าการแบ่งรายได้:</b></td>
 						  	<td>
 						  		<input type="checkbox" name="data[welfare_type][sub]" value="1" data-toggle="icheck" <?php if(C('welfare_type.sub',null,'data') == '1'){echo 'checked';}?> data-label="订阅分成">
 						  		<input type="checkbox" name="data[welfare_type][prop]" value="1" data-toggle="icheck" <?php if(C('welfare_type.prop',null,'data') == '1'){echo 'checked';}?> data-label="礼物分成">
@@ -38,14 +38,14 @@ else
 						  	</td>
 		                </tr>
 		                <tr>
-		                    <td width="120"><b>更新奖：</b></td>
+		                    <td width="120"><b>รางวัลการอัปเดต:</b></td>
 						  	<td>
 						  		<ul id="<?php echo $cFun;?>Update">
 					    			<?php
 							        if( intval(C('welfare_id',null,'data')) < 1 || !C('welfare_update',null,'data') )
 							        {
-							        	echo '<li style="height: 30px;"><input type="text" class="form-control" name="data[welfare_update][where][]" placeholder="字数" style="width:100px"> 万字
-										&nbsp;&nbsp;<input type="text" class="form-control" name="data[welfare_update][val][]" placeholder="奖励" style="width:100px"> '.$goldName.'
+							        	echo '<li style="height: 30px;"><input type="text" class="form-control" name="data[welfare_update][where][]" placeholder="คำ数" style="width:100px"> 万字
+										&nbsp;&nbsp;<input type="text" class="form-control" name="data[welfare_update][val][]" placeholder="รางวัล" style="width:100px"> '.$goldName.'
 										&nbsp;&nbsp;<a href="javascript:'.$cFun.'add(\''.$cFun.'Update\',\'data[welfare_update]\')"><i class="fa fa-plus-square"></i></a></li>';
 							        }
 							        else
@@ -55,8 +55,8 @@ else
 							        	foreach ($optionArr['where'] as $key=>$val)
 							        	{
 							        		echo '<li style="height: 30px;">';
-							        		echo '<input type="text" class="form-control" name="data[welfare_update][where][]" placeholder="字数" value="'.$val.'" style="width:100px"> 万字
-											&nbsp;&nbsp;<input type="text" class="form-control" name="data[welfare_update][val][]" placeholder="奖励" value="'.$optionArr['val'][$key].'" style="width:100px"> '.$goldName.'
+							        		echo '<input type="text" class="form-control" name="data[welfare_update][where][]" placeholder="คำ数" value="'.$val.'" style="width:100px"> 万字
+											&nbsp;&nbsp;<input type="text" class="form-control" name="data[welfare_update][val][]" placeholder="รางวัล" value="'.$optionArr['val'][$key].'" style="width:100px"> '.$goldName.'
 											&nbsp;&nbsp;<a href="javascript:'.$cFun.'add(\''.$cFun.'Update\',\'data[welfare_update]\')"><i class="fa fa-plus-square"></i></a>';
 							        		if( $i > 1)
 							        		{
@@ -71,14 +71,14 @@ else
 							</td>
 		                </tr>
 		                <tr>
-		                    <td width="120"><b>全勤奖：</b></td>
+		                    <td width="120"><b>โบนัสความสม่ำเสมอ：</b></td>
 						  	<td>
 						  		<ul id="<?php echo $cFun;?>Full">
 					    			<?php
 							        if( intval(C('welfare_id',null,'data')) < 1 )
 							        {
-							        	echo '<li style="height: 30px;"><input type="text" class="form-control" name="data[welfare_full][where][]" placeholder="出勤天数" style="width:100px"> 天数
-										&nbsp;&nbsp;<input type="text" class="form-control" name="data[welfare_full][val][]" placeholder="奖励" style="width:100px"> '.$goldName.'
+							        	echo '<li style="height: 30px;"><input type="text" class="form-control" name="data[welfare_full][where][]" placeholder="出勤วัน数" style="width:100px"> 天数
+										&nbsp;&nbsp;<input type="text" class="form-control" name="data[welfare_full][val][]" placeholder="รางวัล" style="width:100px"> '.$goldName.'
 										&nbsp;&nbsp;<a href="javascript:'.$cFun.'add(\''.$cFun.'Full\',\'data[welfare_full]\')"><i class="fa fa-plus-square"></i></a></li>';
 							        }
 							        else
@@ -88,8 +88,8 @@ else
 							        	foreach ($optionArr['where'] as $key=>$val)
 							        	{
 							        		echo '<li style="height: 30px;">';
-							        		echo '<input type="text" class="form-control" name="data[welfare_full][where][]" placeholder="出勤天数" value="'.$val.'" style="width:100px"> 天数
-											&nbsp;&nbsp;<input type="text" class="form-control" name="data[welfare_full][val][]" placeholder="奖励" value="'.$optionArr['val'][$key].'" style="width:100px"> '.$goldName.'
+							        		echo '<input type="text" class="form-control" name="data[welfare_full][where][]" placeholder="出勤วัน数" value="'.$val.'" style="width:100px"> 天数
+											&nbsp;&nbsp;<input type="text" class="form-control" name="data[welfare_full][val][]" placeholder="รางวัล" value="'.$optionArr['val'][$key].'" style="width:100px"> '.$goldName.'
 											&nbsp;&nbsp;<a href="javascript:'.$cFun.'add(\''.$cFun.'Full\',\'data[welfare_full]\')"><i class="fa fa-plus-square"></i></a>';
 							        		if( $i > 1)
 							        		{
@@ -104,14 +104,14 @@ else
 							</td>
 		                </tr>
 		                <tr>
-		                    <td width="120"><b>完本奖：</b></td>
+		                    <td width="120"><b>รางวัลจบเรื่อง:</b></td>
 						  	<td>
 						  		<ul id="<?php echo $cFun;?>Finish">
 					    			<?php
 							        if( intval(C('welfare_id',null,'data')) < 1 )
 							        {
-							        	echo '<li style="height: 30px;"><input type="text" class="form-control" name="data[welfare_finish][where][]" placeholder="字数" style="width:100px"> 万字
-										&nbsp;&nbsp;<input type="text" class="form-control" name="data[welfare_finish][val][]" placeholder="奖励" style="width:100px"> '.$goldName.'
+							        	echo '<li style="height: 30px;"><input type="text" class="form-control" name="data[welfare_finish][where][]" placeholder="คำ数" style="width:100px"> 万字
+										&nbsp;&nbsp;<input type="text" class="form-control" name="data[welfare_finish][val][]" placeholder="รางวัล" style="width:100px"> '.$goldName.'
 										&nbsp;&nbsp;<a href="javascript:'.$cFun.'add(\''.$cFun.'Finish\',\'data[welfare_finish]\')"><i class="fa fa-plus-square"></i></a></li>';
 							        }
 							        else
@@ -121,8 +121,8 @@ else
 							        	foreach ($optionArr['where'] as $key=>$val)
 							        	{
 							        		echo '<li style="height: 30px;">';
-							        		echo '<input type="text" class="form-control" name="data[welfare_finish][where][]" placeholder="字数" value="'.$val.'" style="width:100px"> 万字
-											&nbsp;&nbsp;<input type="text" class="form-control" name="data[welfare_finish][val][]" placeholder="奖励" value="'.$optionArr['val'][$key].'" style="width:100px"> '.$goldName.'
+							        		echo '<input type="text" class="form-control" name="data[welfare_finish][where][]" placeholder="คำ数" value="'.$val.'" style="width:100px"> 万字
+											&nbsp;&nbsp;<input type="text" class="form-control" name="data[welfare_finish][val][]" placeholder="รางวัล" value="'.$optionArr['val'][$key].'" style="width:100px"> '.$goldName.'
 											&nbsp;&nbsp;<a href="javascript:'.$cFun.'add(\''.$cFun.'Finish\',\'data[welfare_finish]\')"><i class="fa fa-plus-square"></i></a>';
 							        		if( $i > 1)
 							        		{
@@ -146,17 +146,17 @@ else
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">提交</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">ส่งข้อมูล</button></li>
     </ul>
 </div>
 
 
 <script>
 function <?php echo $cFun;?>add(id,inputName){
-	var input1place = '字数';
+	var input1place = 'จำนวนคำ';
 	var input1text = '万字';
-	var input2place = '奖励';
+	var input2place = 'รางวัล';
 	var input2text = '<?php echo $goldName;?>';
 	switch(id){
 		case '<?php echo $cFun;?>Full':

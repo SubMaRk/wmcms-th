@@ -24,7 +24,7 @@ if ( $type == "send"  )
 	}
 	else if ( $data['msg_content'] == '' )
 	{
-		Ajax('对不起，消息内容为空！',300);
+		Ajax('เนื้อหาข้อความว่าง!',300);
 	}
 	
 
@@ -57,7 +57,7 @@ if ( $type == "send"  )
 	
 	//写入操作记录
 	SetOpLog( '群发了消息' , 'user' , 'insert' , $table , $where , $data );
-	Ajax('恭喜您，消息发送成功！');
+	Ajax('ส่งข้อความสำเร็จ!');
 }
 //删除请求记录
 else if ( $type == 'del' )
@@ -67,7 +67,7 @@ else if ( $type == 'del' )
 	wmsql::Delete($table, $where);
 	SetOpLog( '删除了消息记录' , 'user' , 'delete' , $table , $where);
 	
-	Ajax('消息删除成功!');
+	Ajax('ลบข้อความสำเร็จ!');
 }
 //清空请求记录
 else if ( $type == 'clear' )
@@ -76,6 +76,6 @@ else if ( $type == 'clear' )
 
 	//写入操作记录
 	SetOpLog( '清空了消息记录' , 'user' , 'delete');
-	Ajax('所有消息成功清空！');
+	Ajax('ล้างข้อมูลข้อความทั้งหมดสำเร็จ!');
 }
 ?>

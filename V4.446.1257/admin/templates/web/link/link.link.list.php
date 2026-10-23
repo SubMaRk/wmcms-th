@@ -12,10 +12,10 @@ thead th {
 <div class="bjui-pageHeader">
 	<div class="row cl pt-10 pl-10">
 		<div class="list-tool pl-15">
-            <span >快捷操作：</span>
-			<a href="index.php?a=yes&c=link.link&t=status&status=1" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要审核选中项吗？" data-callback="<?php echo $cFun;?>ajaxCallBack" class="btn btn-warning radius"> 批量审核</a>
-			<a href="javascript:;" onClick="<?php echo $cFun?>MoveDiv()" class="btn btn-warning  radius"> 批量移动</a>
-			<a href="index.php?a=yes&c=link.link&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
+            <span >การดำเนินการด่วน:</span>
+			<a href="index.php?a=yes&c=link.link&t=status&status=1" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要审核选中项吗？" data-callback="<?php echo $cFun;?>ajaxCallBack" class="btn btn-warning radius"> ตรวจสอบหลายรายการ</a>
+			<a href="javascript:;" onClick="<?php echo $cFun?>MoveDiv()" class="btn btn-warning  radius"> ย้ายหลายรายการ</a>
+			<a href="index.php?a=yes&c=link.link&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
 		</div>
 		<div class="list-tool">
 			<form id="pagerForm" name="<?php echo $cFun;?>Form" data-toggle="ajaxsearch" data-loadingmask="true" action="<?php echo $url;?>" method="post">
@@ -23,12 +23,12 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                <span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
+                <span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
                 
 				<input name="tid" type="hidden" value="<?php echo $tid;?>">
 		      	<input name="tname" type="text" data-toggle="selectztree" data-tree="#<?php echo $cFun;?>_ztree_select" readonly value="<?php echo $tname;?>">
 	             <ul id="<?php echo $cFun;?>_ztree_select" class="ztree hide" data-toggle="ztree" data-expand-all="true" data-check-enable="true" data-chk-style="radio" data-radio-type="all" data-on-check="<?php echo $cFun;?>S_NodeCheck" data-on-click="<?php echo $cFun;?>S_NodeClick" style="width:120px">
-	             <li data-id="">全部分类</li>
+	             <li data-id="">ทุกหมวดหมู่</li>
 	             <?php 
 	             if( $typeArr )
 	             {
@@ -41,13 +41,13 @@ thead th {
 				 ?>
 	             </ul>
 				<select data-toggle="selectpicker" name="attr" data-width="100">
-                	<option value="">全部</option>
+                	<option value="">ทั้งหมด</option>
                 	<option value="fixed" <?php echo str::CheckElse( 'fixed' , $attr , 'selected=""' );?>>已固链友链</option>
                 	<option value="rec" <?php echo str::CheckElse( 'rec' , $attr , 'selected=""' );?>>已推荐友链</option>
                 </select>
                 <input type="text" placeholder="<?php echo $name;?>" name="name" size="15">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
 			</form>
 		</div>
 	</div>
@@ -59,17 +59,17 @@ thead th {
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="5%" data-order-field="link_id">ID</th>
-				<th width="7%" data-order-field="l.type_id">友链分类</th>
-				<th width="5%" data-order-field="link_status">是否审核</th>
-				<th width="5%" data-order-field="link_show">显示方式</th>
-				<th data-order-field="link_name">友链名字</th>
-				<th width="4%"><a href="#" data-toggle="tooltip" data-placement="bottom" title="该友链在当前分类下的显示顺序">排序</a></th>
-				<th width="4%" data-order-field="link_rec">推荐</th>
-				<th width="4%" data-order-field="link_fixed">固链</th>
-				<th width="7%">权重</th>
-				<th width="10%">回链检测</th>
-	            <th width="15%" data-order-field="link_lastintime">最后进入</th>
-	            <th width="17%">操作</th>
+				<th width="7%" data-order-field="l.type_id">หมวดหมู่ลิงก์เพื่อน</th>
+				<th width="5%" data-order-field="link_status">ตรวจสอบหรือไม่</th>
+				<th width="5%" data-order-field="link_show">วิธีแสดง</th>
+				<th data-order-field="link_name">ชื่อลิงก์เพื่อน</th>
+				<th width="4%"><a href="#" data-toggle="tooltip" data-placement="bottom" title="该友链在当前分类下的แสดงลำดับ">เรียงลำดับ</a></th>
+				<th width="4%" data-order-field="link_rec">แนะนำ</th>
+				<th width="4%" data-order-field="link_fixed">ลิงก์แบบถาวร</th>
+				<th width="7%">น้ำหนัก</th>
+				<th width="10%">ตรวจสอบลิงก์ย้อนกลับ</th>
+	            <th width="15%" data-order-field="link_lastintime">เข้าล่าสุด</th>
+	            <th width="17%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody id="<?php echo $cFun?>List">
@@ -81,8 +81,8 @@ thead th {
 				{
 					$cur = str::CheckElse( $i%2 , 0 , '' , 'even_index_row');
 					$linkDomain = GetDomain($v['link_url'] , false);
-					$status = str::CheckElse( $v['link_status'] , 0 , '<a href="javascript:;" onClick="'.$cFun.'StatusAjax(1,'.$v['link_id'].')"><span style="color:red">未审核</span></a>' , '<a href="javascript:;" onClick="'.$cFun.'StatusAjax(0,'.$v['link_id'].')"><span style="color:green">已审核</span></a>');
-					$show = str::CheckElse( $v['link_show'] , 0 , '<a href="javascript:;" onClick="'.$cFun.'AttrAjax(\'show\',1,'.$v['link_id'].')" style="color:red">直链显示</a>' , '<a href="javascript:;" onClick="'.$cFun.'AttrAjax(\'show\',0,'.$v['link_id'].')"><span style="color:green">跳转链接</span></a>');
+					$status = str::CheckElse( $v['link_status'] , 0 , '<a href="javascript:;" onClick="'.$cFun.'StatusAjax(1,'.$v['link_id'].')"><span style="color:red">未审核</span></a>' , '<a href="javascript:;" onClick="'.$cFun.'StatusAjax(0,'.$v['link_id'].')"><span style="color:green">ตรวจสอบแล้ว</span></a>');
+					$show = str::CheckElse( $v['link_show'] , 0 , '<a href="javascript:;" onClick="'.$cFun.'AttrAjax(\'show\',1,'.$v['link_id'].')" style="color:red">直链显示</a>' , '<a href="javascript:;" onClick="'.$cFun.'AttrAjax(\'show\',0,'.$v['link_id'].')"><span style="color:green">ลิงก์ปลายทาง</span></a>');
 					$rec = str::CheckElse( $v['link_rec'] , 0 , '<a href="javascript:;" onClick="'.$cFun.'AttrAjax(\'rec\',1,'.$v['link_id'].')">否</a>' , '<a href="javascript:;" onClick="'.$cFun.'AttrAjax(\'rec\',0,'.$v['link_id'].')"><span style="color:green">是</span></a>');
 					$fixed = str::CheckElse( $v['link_fixed'] , 0 , '<a href="javascript:;" onClick="'.$cFun.'AttrAjax(\'fixed\',1,'.$v['link_id'].')">否</a>' , '<a href="javascript:;" onClick="'.$cFun.'AttrAjax(\'fixed\',0,'.$v['link_id'].')"><span style="color:green">是</span></a>');
 					echo '<tr class="'.$cur.'">
@@ -100,8 +100,8 @@ thead th {
 							<td style="text-align: center;">'.date( 'Y-m-d H:i:s' , $v['link_lastintime']).'</td>
 							<td style="text-align: center;" data-noedit="true">
 				            	<a class="btn btn-success radius size-MINI" onClick="'.$cFun.'CheckSeo(this,\''.GetHttpDomain($v['link_url'] , false).'\')">检查友链</a> 
-				            	<a class="btn btn-secondary radius size-MINI" data-toggle="navtab" data-id="link-link-edit" data-title="编辑友链内容" href="index.php?d=yes&c=link.link.edit&t=edit&id='.$v['link_id'].'">编辑</a> 
-								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['link_id'].')">删除</a>
+				            	<a class="btn btn-secondary radius size-MINI" data-toggle="navtab" data-id="link-link-edit" data-title="บรรณาธิการ友链เนื้อหา" href="index.php?d=yes&c=link.link.edit&t=edit&id='.$v['link_id'].'">แก้ไข</a> 
+								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['link_id'].')">ลบ</a>
 				            </td>
 						</tr>';
 					$i++;
@@ -118,7 +118,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -127,17 +127,17 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>
 </div>
 
 
-<!-- 批量移动操作层 -->
+<!-- ย้ายหลายรายการ操作层 -->
 <div id="<?php echo $cFun;?>MoveDiv" data-noinit="true" class="hide" align="center">
 	<input name="move_tid" id="<?php echo $cFun;?>move_tid" type="hidden">
-	批量移动到：
+	ย้ายหลายรายการ到：
 	<input type="text" data-toggle="selectztree" data-tree="#<?php echo $cFun;?>_move_ztree_select" readonly value="<?php echo $tname;?>">
 	<ul id="<?php echo $cFun;?>_move_ztree_select" class="ztree hide" data-toggle="ztree" data-expand-all="true" data-check-enable="true" data-chk-style="radio" data-radio-type="all" data-on-check="<?php echo $cFun;?>S_NodeCheck" data-on-click="<?php echo $cFun;?>S_NodeClick" style="width:120px">
 	    <?php 
@@ -152,7 +152,7 @@ thead th {
     </ul>
     <div class="pt-10" style="margin-left: 80px">
 		<button onClick="<?php echo $cFun;?>MoveAjax()" type="button" class="btn-green" data-icon="location-arrow">移动</button>
-		<button type="button" class="btn-close" data-icon="close">关闭</button>
+		<button type="button" class="btn-close" data-icon="close">ปิด</button>
 	</div>
 </div>
 
@@ -176,20 +176,20 @@ function getChecked() {
 	});
 	return records;
 }
-//批量移动窗口打开
+//ย้ายหลายรายการ窗口打开
 function <?php echo $cFun;?>MoveDiv()
 {
 	<?php echo $cFun;?>ZtreeInputName = 'move_tid';
 	var ajaxOptions=new Array();
 	
 	ajaxOptions['target'] = "#<?php echo $cFun;?>MoveDiv";
-	ajaxOptions['title'] = "批量移动";
+	ajaxOptions['title'] = "ย้ายหลายรายการ";
 	ajaxOptions['width'] = "300";
 	ajaxOptions['height'] = "100";
 	ajaxOptions['mask'] = "true";
 	$(this).dialog(ajaxOptions);
 }
-//批量移动操作请求
+//ย้ายหลายรายการ操作请求
 function <?php echo $cFun;?>MoveAjax()
 {
 	var tid = $("#<?php echo $cFun;?>move_tid").val();
@@ -201,7 +201,7 @@ function <?php echo $cFun;?>MoveAjax()
 		ajaxOptions['idName'] = "ids";
 		ajaxOptions['group'] = "ids";
 		ajaxOptions['isNavtab'] = true;
-		ajaxOptions['confirmMsg'] = "确定要批量移动选中项吗？";
+		ajaxOptions['confirmMsg'] = "确定要ย้ายหลายรายการ选中项吗？";
 		ajaxOptions['callback'] = "<?php echo $cFun;?>ajaxCallBack";
 		$(this).bjuiajax('doAjaxChecked', ajaxOptions);
 	}
@@ -233,22 +233,22 @@ function <?php echo $cFun;?>AttrAjax(attr,val,id)
 	switch(attr)
 	{
 		case "rec":
-			msg = "推荐";
+			msg = "แนะนำ";
 	  		break;
 	  		
 		case "show":
-			msg = "跳转链接";
+			msg = "ลิงก์ปลายทาง";
 	  		break;
 	  		
 		case "fixed":
-			msg = "固链";
+			msg = "ลิงก์ถาวร";
 	  		break;
 	}
 	//操作类型设置
 	switch(val)
 	{
 		case 0:
-			type = "取消";
+			type = "ยกเลิก";
 	  		break;
 	  		
 		default:

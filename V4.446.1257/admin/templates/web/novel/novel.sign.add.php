@@ -11,11 +11,11 @@
 					<table class="table table-border table-bordered table-bg table-sort">
 		            <tbody>
 		                <tr>
-		                    <td width="120"><b>小说名字：</b></td>
+		                    <td width="120"><b>ชื่อนิยาย:</b></td>
 						  	<td>《<?php echo $data['novel_name']?>》（id:<?php echo $data['novel_id']?>）</td>
 		                </tr>
 		                <tr>
-		                    <td width="120"><b>签约状态：</b></td>
+		                    <td width="120"><b>สถานะเซ็นสัญญา:</b></td>
 						  	<td style="<?php if($data['novel_copyright'] >= 1 ){?>color:red<?php }?>">
 						  	<?php if($data['novel_copyright'] >= 1 ){
 						  		echo '该小说已签约';
@@ -24,17 +24,17 @@
 						  	}?></td>
 		                </tr>
 		                <tr>
-		                    <td><b>签约类型：</b></td>
+		                    <td><b>ประเภทเซ็นสัญญา:</b></td>
 						  	<td>
 			                    <input type="radio" name="copy" value="1" data-toggle="icheck" data-label="签约分成" <?php if($data['novel_copyright'] == 1 ){ echo 'checked';}?> <?php if($data['novel_copyright'] >= 1 ){ echo 'disabled';}?>>
 			                    <input type="radio" name="copy" value="2" data-toggle="icheck" data-label="买断版权" <?php if($data['novel_copyright'] == 2 ){ echo 'checked';}?> <?php if($data['novel_copyright'] >= 1 ){ echo 'disabled';}?>>
 		                    </td>
 		                </tr>
 		                <tr id="<?php echo $cFun.$type?>sid"<?php if($data['novel_copyright'] == 2 ){ echo 'style="display:none"';}?>>
-		                    <td><b>签约等级：</b></td>
+		                    <td><b>ระดับเซ็นสัญญา:</b></td>
 						  	<td>
 			                    <select data-toggle="selectpicker" name="sid" <?php if($data['novel_copyright'] >= 1 ){ echo 'disabled';}?>>
-			                    	<option value="0">请选择签约等级</option>
+			                    	<option value="0">กรุณาเลือกระดับเซ็นสัญญา</option>
 			                    	<?php foreach ($signArr as $k=>$v)
 			                    	{
 			                    		$selected = str::CheckElse($v['sign_id'], $data['novel_sign_id'],'selected=""');
@@ -54,7 +54,7 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
         <li><button type="submit" class="btn-green" data-icon="save"><?php if($data['novel_copyright'] >= 1 ){ echo '取消签约';}else{echo '立即签约';}?></button></li>
     </ul>
 </div>

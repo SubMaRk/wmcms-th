@@ -11,12 +11,12 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>《<?php echo $data['novel_name'];?>》基本销售数据统计【签约等级：<b style="color:red"><?php echo $data['sign']['sign_name']?></b>，分成比例：<b style="color:red"><?php echo $data['sign']['sign_divide']?></b>】</h3>
+                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>《<?php echo $data['novel_name'];?>》基本销售数据统计【签约等级：<b style="color:red"><?php echo $data['sign']['sign_name']?></b>, อัตราส่วนแบ่ง:<b style="color:red"><?php echo $data['sign']['sign_divide']?></b>】</h3>
                     </div>
                     <div class="panel-body" style="font-size: 18px">
                     	 <table class="table table-border table-bordered table-bg table-sort <?php echo $cFun?>Table">
                     	 <tr>
-					        <td width="150" class="titleTd">选择日期</td>
+					        <td width="150" class="titleTd">เลือกวันที่</td>
 					        <td class="titleTd" colspan="4">
 					        	<form id="pagerForm" name="<?php echo $cFun;?>Form" data-toggle="ajaxsearch" data-loadingmask="true" action="<?php echo $url;?>" method="post">
 					        		<input type="hidden" name="nid" value="<?php echo $nid;?>">
@@ -27,21 +27,21 @@
 					        	</form>
 					        </td>
 					     <tr>
-					        <td width="50" class="titleTd">日期</td>
-					        <td width="100" class="titleTd">订阅销售</td>
-					        <td width="100" class="titleTd">打赏销售</td>
-					        <td width="100" class="titleTd">道具销售</td>
-					      	<td width="100" class="titleTd">盈利统计</td>
+					        <td width="50" class="titleTd">วันที่</td>
+					        <td width="100" class="titleTd">ยอดขายจากการสมัครรับ</td>
+					        <td width="100" class="titleTd">ยอดขายจากการให้รางวัล</td>
+					        <td width="100" class="titleTd">ยอดขายไอเท็ม</td>
+					      	<td width="100" class="titleTd">สถิติกำไร</td>
 					      </tr>
 					     <tr style="height:40px;">
-					        <td class="titleTd">区间统计</td>
+					        <td class="titleTd">สถิติตามช่วง</td>
 					        <td><?php echo $data['between']['sub'];?></td>
 					        <td><?php echo $data['between']['props'];?></td>
 					        <td><?php echo $data['between']['reward'];?></td>
 					      	<td><?php echo $data['between']['all'];?></td>
 					      </tr>
 					     <tr style="height:40px;">
-					        <td class="titleTd">全部</td>
+					        <td class="titleTd">ทั้งหมด</td>
 					        <td><?php echo $data['all']['sub'];?></td>
 					        <td><?php echo $data['all']['props'];?></td>
 					        <td><?php echo $data['all']['reward'];?></td>
@@ -59,19 +59,19 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>今日/昨日销售数据统计</h3>
+                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>สถิติยอดขายวันนี้/เมื่อวาน</h3>
                     </div>
                     <div class="panel-body" style="font-size: 18px">
                     	 <table class="table table-border table-bordered table-bg table-sort <?php echo $cFun?>Table">
 					     <tr>
-					        <td width="50" class="titleTd">日期</td>
-					        <td width="100" class="titleTd">订阅销售</td>
-					        <td width="100" class="titleTd">打赏销售</td>
-					        <td width="100" class="titleTd">道具销售</td>
-					      	<td width="100" class="titleTd">盈利统计</td>
+					        <td width="50" class="titleTd">วันที่</td>
+					        <td width="100" class="titleTd">ยอดขายจากการสมัครรับ</td>
+					        <td width="100" class="titleTd">ยอดขายจากการให้รางวัล</td>
+					        <td width="100" class="titleTd">ยอดขายไอเท็ม</td>
+					      	<td width="100" class="titleTd">สถิติกำไร</td>
 					      </tr>
 					     <tr style="height:40px">
-					        <td class="titleTd">今日</td>
+					        <td class="titleTd">วันนี้</td>
 					        <td><?php echo $data['sub']['today']?><br/>
 					        	<?php
 					        	if($data['sub']['today']-$data['sub']['yesterday']>0)
@@ -138,7 +138,7 @@
 					        </td>
 					      </tr>
 					     <tr style="height:40px">
-					        <td class="titleTd">昨日</td>
+					        <td class="titleTd">เมื่อวาน</td>
 					        <td><?php echo $data['sub']['yesterday'];?></td>
 					        <td><?php echo $data['reward']['yesterday'];?></td>
 					        <td><?php echo $data['props']['yesterday'];?></td>
@@ -156,7 +156,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>实时销售数据</h3>
+                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>ข้อมูลยอดขายเรียลไทม์</h3>
                     </div>
                     <div class="panel-body">
 					    <div id="<?php echo $cFun;?>timecanvas"></div>
@@ -172,7 +172,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>累积销售方式统计</h3>
+                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>สถิติวิธีขายสะสม</h3>
                     </div>
                     <div class="panel-body">
 					    <div id="<?php echo $cFun;?>allTypecanvas"></div>
@@ -185,7 +185,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>今日销售方式排行</h3>
+                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>อันดับวิธีขายวันนี้</h3>
                     </div>
                     <div class="panel-body">
 					    <div id="<?php echo $cFun;?>todayTypecanvas"></div>
@@ -206,11 +206,11 @@ var chart = new AChart({
     }, 
     series: [
         {
-            name:'今日',
+            name:'วันนี้',
             data:[<?php foreach ($data['sub']['todayTime'] as $v){ echo "{$v},";}?>]
         },
         {
-            name:'昨日',
+            name:'เมื่อวาน',
             data:[<?php foreach ($data['sub']['yesterdayTime'] as $v){ echo "{$v},";}?>]
         }
     ]
@@ -230,7 +230,7 @@ var chart = new AChart({
       yAxis : {position : 'bottom',min : 0},
       seriesOptions : {columnCfg : {}},
       series: [{
-              name:'今日',
+              name:'วันนี้',
               data:[<?php foreach ($data['sell']['today'] as $v){ echo "{$v},";}?>]
       }]
     });
@@ -272,6 +272,6 @@ allTypechart.render();
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ปิด</button></li>
     </ul>
 </div>

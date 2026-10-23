@@ -1,6 +1,6 @@
 <div class="bjui-pageContent">
 	<fieldset>
-		<legend>发信服务设置</legend>
+		<legend>ตั้งค่าบริการส่งข้อความ</legend>
        		<ul class="nav nav-tabs" role="tablist" id="<?php echo $cFun.$type;?>emailLis">
             	<li <?php if(Request('tab')!='temp'){echo 'class="active"';}?>><a href="#<?php echo $cFun.$type;?>account" role="tab" data-toggle="tab">邮件服务设置</a></li>
             	<li <?php if(Request('tab')=='temp'){echo 'class="active"';}?>><a href="#<?php echo $cFun.$type;?>temp" role="tab" data-toggle="tab">邮件模版设置</a></li>
@@ -8,18 +8,18 @@
             
             <div class="tab-content"> 
             	<div class="tab-pane fade <?php if(Request('tab')!='temp'){echo 'active in';}?>" id="<?php echo $cFun.$type;?>account">
-					<a class="btn btn-secondary radius size-MINI" style="margin-bottom:10px;" data-toggle="dialog" data-mask="true" data-title="添加服务" href="index.php?d=yes&c=system.email.email.edit&t=add" data-width="450" data-height="420" ><i class="fa fa-plus"></i> 添加服务</a> &nbsp;&nbsp;&nbsp;&nbsp;多个smtp服务器会随机选择一个发送。
+					<a class="btn btn-secondary radius size-MINI" style="margin-bottom:10px;" data-toggle="dialog" data-mask="true" data-title="เพิ่มบริการ" href="index.php?d=yes&c=system.email.email.edit&t=add" data-width="450" data-height="420" ><i class="fa fa-plus"></i> เพิ่มบริการ</a> &nbsp;&nbsp;&nbsp;&nbsp;หากมีเซิร์ฟเวอร์ smtp หลายตัว ระบบจะสุ่มเลือกหนึ่งตัวเพื่อส่ง
 					<table class="table table-border table-bordered table-hover table-bg table-sort">
 						<thead>
 							<tr>
 							<th width="5%">ID</th>
-							<th width="5%">状态</th>
-							<th width="10%">发送方式</th>
-							<th width="12%">邮件服务器</th>
-							<th width="5%">端口</th>
-							<th width="10%">登录账号</th>
-							<th width="10%">发信账户</th>
-							<th width="12%">操作</th>
+							<th width="5%">สถานะ</th>
+							<th width="10%">วิธีส่ง</th>
+							<th width="12%">เซิร์ฟเวอร์อีเมล</th>
+							<th width="5%">พอร์ต</th>
+							<th width="10%">บัญชีเข้าสู่ระบบ</th>
+							<th width="10%">บัญชีผู้ส่ง</th>
+							<th width="12%">ดำเนินการ</th>
 							</tr>
 						</thead>
 						
@@ -42,8 +42,8 @@
 										<td>'.$v['email_send'].'</td>
 										<td style="text-align: center;">
 											<a class="btn btn-success radius" onclick="'.$cFun.'TestAjax('.$v['email_id'].')">测试</a>
-											<a class="btn btn-secondary radius size-MINI" data-mask="true" href="index.php?d=yes&c=system.email.email.edit&t=edit&id='.$v['email_id'].'"  data-toggle="dialog" data-title="修改邮箱信息" data-width="450" data-height="420" >编辑</a> 
-											<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['email_id'].',1)">删除</a>
+											<a class="btn btn-secondary radius size-MINI" data-mask="true" href="index.php?d=yes&c=system.email.email.edit&t=edit&id='.$v['email_id'].'"  data-toggle="dialog" data-title="修改อีเมล信息" data-width="450" data-height="420" >แก้ไข</a> 
+											<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['email_id'].',1)">ลบ</a>
 										</td>
 									</tr>';
 								$i++;
@@ -59,15 +59,15 @@
 		    	</div>
 		    	
 		    	<div class="tab-pane fade <?php if(Request('tab')=='temp'){echo 'active in';}?>"" id="<?php echo $cFun.$type;?>temp">
-					<a class="btn btn-secondary radius size-MINI" style="margin-bottom:10px;" data-toggle="dialog" data-mask="true" data-title="添加模版" href="index.php?d=yes&c=system.email.temp.edit&t=add" data-width="850" data-height="670" ><i class="fa fa-plus"></i> 添加模版</a>
+					<a class="btn btn-secondary radius size-MINI" style="margin-bottom:10px;" data-toggle="dialog" data-mask="true" data-title="เพิ่มเทมเพลต" href="index.php?d=yes&c=system.email.temp.edit&t=add" data-width="850" data-height="670" ><i class="fa fa-plus"></i> เพิ่มเทมเพลต</a>
 					<table class="table table-border table-bordered table-hover table-bg table-sort">
 						<thead>
 							<tr>
 							<th width="15%">ID</th>
-							<th width="10%">状态</th>
-							<th width="20%">模版名字</th>
-							<th width="30%">模版描述</th>
-							<th width="10%">操作</th>
+							<th width="10%">สถานะ</th>
+							<th width="20%">ชื่อเทมเพลต</th>
+							<th width="30%">คำอธิบายเทมเพลต</th>
+							<th width="10%">ดำเนินการ</th>
 							</tr>
 						</thead>
 						
@@ -86,8 +86,8 @@
 										<td>'.$v['temp_name'].'</td>
 										<td>'.$v['temp_desc'].'</td>
 										<td style="text-align: center;">
-											<a class="btn btn-secondary radius size-MINI" data-mask="true" href="index.php?d=yes&c=system.email.temp.edit&t=edit&id='.$v['temp_id'].'"  data-toggle="dialog" data-title="修改模版信息" data-width="850" data-height="670" >编辑</a> 
-											<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax(\''.$v['temp_id'].'\',2)">删除</a>
+											<a class="btn btn-secondary radius size-MINI" data-mask="true" href="index.php?d=yes&c=system.email.temp.edit&t=edit&id='.$v['temp_id'].'"  data-toggle="dialog" data-title="แก้ไขเทมเพลต信息" data-width="850" data-height="670" >แก้ไข</a> 
+											<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax(\''.$v['temp_id'].'\',2)">ลบ</a>
 										</td>
 									</tr>';
 								$i++;
@@ -160,11 +160,11 @@ function <?php echo $cFun;?>StatusAjax(status,id,stt)
 	switch(status)
 	{
 		case 0:
-			type = "禁用";
+			type = "ปิดใช้งาน";
 	  		break;
 	  		
 		default:
-			type = "使用";
+			type = "ใช้";
 	  		break;
 	}
 	

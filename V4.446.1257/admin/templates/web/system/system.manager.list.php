@@ -6,7 +6,7 @@
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
 			</form>
 		</div>
 	</div>
@@ -16,13 +16,13 @@
 		<table class="table table-border table-bordered table-hover table-bg table-sort">
 			<thead>
 				<tr>
-				<th width="5%" data-order-field="comp_id">编号</th>
-				<th width="12%">登录账号</th>
-				<th width="12%">账号状态</th>
-				<th>管理权限</th>
-				<th>最后登录IP</th>
-				<th>最后登录时间</th>
-	            <th width="18%">操作</th>
+				<th width="5%" data-order-field="comp_id">รหัส</th>
+				<th width="12%">บัญชีเข้าสู่ระบบ</th>
+				<th width="12%">สถานะบัญชี</th>
+				<th>สิทธิ์การจัดการ</th>
+				<th>IP เข้าสู่ระบบล่าสุด</th>
+				<th>เวลาเข้าสู่ระบบล่าสุด</th>
+	            <th width="18%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody>
@@ -34,11 +34,11 @@
 				{
 					if( $v['manager_status'] == '0' )
 					{
-						$status = '<a class="btn btn-success radius" onclick="'.$cFun.'statusAjax('.$v['manager_id'].',1)">使用</a>';
+						$status = '<a class="btn btn-success radius" onclick="'.$cFun.'statusAjax('.$v['manager_id'].',1)">ใช้</a>';
 					}
 					else
 					{
-						$status = '<a class="btn btn-warning radius" onclick="'.$cFun.'statusAjax('.$v['manager_id'].',0)">禁用</a>';
+						$status = '<a class="btn btn-warning radius" onclick="'.$cFun.'statusAjax('.$v['manager_id'].',0)">ปิดใช้งาน</a>';
 					}
 					$cur = str::CheckElse( $i%2 , 0 , '' , 'even_index_row');
 					echo '<tr class="'.$cur.'">
@@ -50,8 +50,8 @@
 							<td>'.date("Y-m-d H:i:s" , $v['manager_lasttime']).'</td>
 							<td style="text-align: center;" data-noedit="true">
 								'.$status.'
-				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" data-on-close="onClose" href="index.php?d=yes&c=system.manager.edit&t=edit&id='.$v['manager_id'].'"  data-toggle="dialog" data-title="修改管理员账号信息" data-width="510" data-height="360" >修改</a>
-								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['manager_id'].')">删除</a>
+				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" data-on-close="onClose" href="index.php?d=yes&c=system.manager.edit&t=edit&id='.$v['manager_id'].'"  data-toggle="dialog" data-title="修改ผู้ดูแลระบบ账号信息" data-width="510" data-height="360" >修改</a>
+								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['manager_id'].')">ลบ</a>
 				            </td>
 						</tr>';
 					$i++;
@@ -68,7 +68,7 @@
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -77,7 +77,7 @@
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>"></div>
 </div>

@@ -1,0 +1,768 @@
+"SUCCESS",
+    "list" => $list,
+    "start" => $start,
+    "total" => count($files)
+));
+return $result;
+/**
+ * 遍历获取目录下的指定类型的文件
+ * @param $path
+ * @param array $files
+ * @return array
+ */
+function getfiles($path, $allowFiles, &$files = array())
+{
+    if (!is_dir($path)) return null;
+    if(substr($path, strlen($path) - 1) != '/') $path .= '/';
+    $handle = opendir($path);
+    while (false !== ($file = readdir($handle))) {
+        if ($file != '.' && $file != '..') {
+            $path2 = $path . $file;
+            if (is_dir($path2)) {
+                getfiles($path2, $allowFiles, $files);
+            } else {
+                if (preg_match("/\.(".$allowFiles.")$/i", $file)) {
+                    $files[] = array(
+                        'url'=> substr($path2, strlen($_SERVER['DOCUMENT_ROOT'])),
+                        'mtime'=> filemtime($path2)
+                    );
+                }
+            }
+        }
+    }
+    return $files;
+}
+"no match file",
+        "list" => array(),
+        "start" => $start,
+        "total" => count($files)
+    ));
+}
+/* 获取指定范围的列表 */
+$len = count($files);
+for ($i = min($end, $len) - 1, $list = array(); $i
+"临时文件错误",
+        "ERROR_TMP_FILE_NOT_FOUND" => "找不到临时文件",
+        "ERROR_SIZE_EXCEED" => "文件大小超出网站限制",
+        "ERROR_TYPE_NOT_ALLOWED" => "文件类型不允许",
+        "ERROR_CREATE_DIR" => "目录创建失败",
+        "ERROR_DIR_NOT_WRITEABLE" => "目录没有写权限",
+        "ERROR_FILE_MOVE" => "文件保存时出错",
+        "ERROR_FILE_NOT_FOUND" => "找不到上传文件",
+        "ERROR_WRITE_CONTENT" => "写入文件内容错误",
+        "ERROR_UNKNOWN" => "未知错误",
+        "ERROR_DEAD_LINK" => "链接不可用",
+        "ERROR_HTTP_LINK" => "链接不是http链接",
+        "ERROR_HTTP_CONTENTTYPE" => "链接contentType不正确",
+        "INVALID_URL" => "非法 URL",
+        "INVALID_IP" => "非法 IP"
+    );
+    /**
+     * 构造函数
+     * @param string $fileField 表单名称
+     * @param array $config 配置项
+     * @param bool $base64 是否解析base64编码，可省略。若开启，则$fileField代表的是base64编码的字符串表单名
+     */
+    public function __construct($fileField, $config, $type = "upload")
+    {
+    	global $C;
+    	if( $_GET['action'] == 'uploadimage' )
+    	{
+    		$this->uploadType = 'images/';
+    	}
+    	else
+    	{
+    		$this->uploadType = 'files/';
+    	}
+    	$this->saveType = $C['config']['web']['upload_savetype'];
+        $this->fileField = $fileField;
+        $this->config = $config;
+        $this->type = $type;
+        if ($type == "remote") {
+            $this->saveRemote();
+        } else if($type == "base64") {
+            $this->upBase64();
+        } else {
+            $this->upFile();
+        }
+    }
+    /**
+     * 上传文件的主处理方法
+     * @return mixed
+     */
+    private function upFile()
+    {
+        $file = $this->file = $_FILES[$this->fileField];
+        if (!$file) {
+            $this->stateInfo = $this->getStateInfo("ERROR_FILE_NOT_FOUND");
+            return;
+        }
+        if ($this->file['error']) {
+            $this->stateInfo = $this->getStateInfo($file['error']);
+            return;
+        } else if (!file_exists($file['tmp_name'])) {
+            $this->stateInfo = $this->getStateInfo("ERROR_TMP_FILE_NOT_FOUND");
+            return;
+        } else if (!is_uploaded_file($file['tmp_name'])) {
+            $this->stateInfo = $this->getStateInfo("ERROR_TMPFILE");
+            return;
+        }
+        $this->oriName = $file['name'];
+        $this->fileSize = $file['size'];
+        $this->fileType = $this->getFileExt();
+        $this->fullName = $this->getFullName();
+        $this->filePath = $this->getFilePath();
+        $this->fileName = $this->getFileName();
+        $dirname = dirname($this->filePath);
+        //检查文件大小是否超出限制
+        if (!$this->checkSize()) {
+            $this->stateInfo = $this->getStateInfo("ERROR_SIZE_EXCEED");
+            return;
+        }
+        //检查是否不允许的文件格式
+        if (!$this->checkType()) {
+            $this->stateInfo = $this->getStateInfo("ERROR_TYPE_NOT_ALLOWED");
+            return;
+        }
+        //如果是远程保存
+        if( $this->saveType != '0' )
+        {
+	        //保存文件
+	        $uploadSer = NewClass('upload' , $_FILES['upfile']);
+			$uploadSer->set_base_directory('upload/'.$this->uploadType);
+	        $result = $uploadSer->copy_file();
+	        if( $result['code'] == '200' )
+	        {
+       			$this->fullName = $result['file'];
+				$this->stateInfo = $this->stateMap[0];
+	        }
+	        else
+	        {
+	        	$this->stateInfo = $result['msg'];
+	        }
+        }
+        else
+        {
+	        //创建目录失败
+	        if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
+	            $this->stateInfo = $this->getStateInfo("ERROR_CREATE_DIR");
+	            return;
+	        } else if (!is_writeable($dirname)) {
+	            $this->stateInfo = $this->getStateInfo("ERROR_DIR_NOT_WRITEABLE");
+	            return;
+	        }
+	        //移动文件
+	            $this->stateInfo = $this->getStateInfo("ERROR_FILE_MOVE");
+	        } else { //移动成功
+	            $this->stateInfo = $this->stateMap[0];
+	        }
+        }
+    }
+    /**
+     * 处理base64编码的图片上传
+     * @return mixed
+     */
+    private function upBase64()
+    {
+        $base64Data = $_POST[$this->fileField];
+        $img = base64_decode($base64Data);
+        $this->oriName = $this->config['oriName'];
+        $this->fileSize = strlen($img);
+        $this->fileType = $this->getFileExt();
+        $this->fullName = $this->getFullName();
+        $this->filePath = $this->getFilePath();
+        $this->fileName = $this->getFileName();
+        $dirname = dirname($this->filePath);
+        //检查文件大小是否超出限制
+        if (!$this->checkSize()) {
+            $this->stateInfo = $this->getStateInfo("ERROR_SIZE_EXCEED");
+            return;
+        }
+	    //创建目录失败
+        if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
+            $this->stateInfo = $this->getStateInfo("ERROR_CREATE_DIR");
+            return;
+        } else if (!is_writeable($dirname)) {
+            $this->stateInfo = $this->getStateInfo("ERROR_DIR_NOT_WRITEABLE");
+            return;
+        }
+        //移动文件
+            $this->stateInfo = $this->getStateInfo("ERROR_WRITE_CONTENT");
+        } else { //移动成功
+        	//如果是远程保存
+        	if( $this->saveType != '0' )
+        	{
+        		$imgInfo = getimagesize($this->filePath);
+        		$fileInfo['type'] = $imgInfo['mime'];
+        		$fileInfo['size'] = filesize($this->filePath);
+        		$fileInfo['name'] = 'tuya.png';
+        		$fileInfo['tmp_name'] = $this->filePath;
+        		$uploadSer = NewClass('upload' , $fileInfo);
+        		$uploadSer->set_base_directory('upload/'.$this->uploadType);
+        		$result = $uploadSer->copy_file();
+        		if( $result['code'] == '200' )
+        		{
+        			unlink($this->filePath);
+        			$this->fullName = $result['file'];
+        			$this->stateInfo = $this->stateMap[0];
+        		}
+        		else
+        		{
+        			$this->stateInfo = $result['msg'];
+        		}
+        	}
+        	else
+        	{
+            	$this->stateInfo = $this->stateMap[0];
+        	}
+        }
+    }
+    /**
+     * 拉取远程图片
+     * @return mixed
+     */
+    private function saveRemote()
+    {
+        $imgUrl = htmlspecialchars($this->fileField);
+        $imgUrl = str_replace("&amp;", "&", $imgUrl);
+        //http开头验证
+        if (strpos($imgUrl, "http") !== 0) {
+            $this->stateInfo = $this->getStateInfo("ERROR_HTTP_LINK");
+            return;
+        }
+        //地址必须是公网 http/https：内网、回环、169.254 和保留地址一律拒绝
+        if (!IsPublicHttpUrl($imgUrl)) {
+            $this->stateInfo = $this->getStateInfo("INVALID_IP");
+            return;
+        }
+        //获取请求头并检测死链
+        $heads = get_headers($imgUrl, 1);
+        if (!(stristr($heads[0], "200") && stristr($heads[0], "OK"))) {
+            $this->stateInfo = $this->getStateInfo("ERROR_DEAD_LINK");
+            return;
+        }
+        //格式验证(扩展名验证和Content-Type验证)
+        $fileType = strtolower(strrchr($imgUrl, '.'));
+            $this->stateInfo = $this->getStateInfo("ERROR_HTTP_CONTENTTYPE");
+            return;
+        }
+        //打开输出缓冲区并获取远程图片
+        ob_start();
+        $context = stream_context_create(
+            array('http' => array(
+                'follow_location' => false // don't follow redirects
+            ))
+        );
+        readfile($imgUrl, false, $context);
+        $img = ob_get_contents();
+        ob_end_clean();
+        preg_match("/[\/]([^\/]*)[\.]?[^\.\/]*$/", $imgUrl, $m);
+        $this->oriName = $m ? $m[1]:"";
+        $this->fileSize = strlen($img);
+        $this->fileType = $this->getFileExt();
+        $this->fullName = $this->getFullName();
+        $this->filePath = $this->getFilePath();
+        $this->fileName = $this->getFileName();
+        $dirname = dirname($this->filePath);
+        //检查文件大小是否超出限制
+        if (!$this->checkSize()) {
+            $this->stateInfo = $this->getStateInfo("ERROR_SIZE_EXCEED");
+            return;
+        }
+        //创建目录失败
+        if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
+            $this->stateInfo = $this->getStateInfo("ERROR_CREATE_DIR");
+            return;
+        } else if (!is_writeable($dirname)) {
+            $this->stateInfo = $this->getStateInfo("ERROR_DIR_NOT_WRITEABLE");
+            return;
+        }
+        //移动文件
+            $this->stateInfo = $this->getStateInfo("ERROR_WRITE_CONTENT");
+        } else { //移动成功
+            $this->stateInfo = $this->stateMap[0];
+        }
+    }
+    /**
+     * 上传错误检查
+     * @param $errCode
+     * @return string
+     */
+    private function getStateInfo($errCode)
+    {
+    }
+    /**
+     * 获取文件扩展名
+     * @return string
+     */
+    private function getFileExt()
+    {
+        return strtolower(strrchr($this->oriName, '.'));
+    }
+    /**
+     * 重命名文件
+     * @return string
+     */
+    private function getFullName()
+    {
+        //替换日期事件
+        $t = time();
+        $d = explode('-', date("Y-y-m-d-H-i-s"));
+        $format = $this->config["pathFormat"];
+        $format = str_replace("{yyyy}", $d[0], $format);
+        $format = str_replace("{yy}", $d[1], $format);
+        $format = str_replace("{mm}", $d[2], $format);
+        $format = str_replace("{dd}", $d[3], $format);
+        $format = str_replace("{hh}", $d[4], $format);
+        $format = str_replace("{ii}", $d[5], $format);
+        $format = str_replace("{ss}", $d[6], $format);
+        $format = str_replace("{hm}", GetMtime(), $format);
+        $format = str_replace("{time}", $t, $format);
+        //过滤文件名的非法自负,并替换文件名
+        $oriName = substr($this->oriName, 0, strrpos($this->oriName, '.'));
+        $oriName = preg_replace("/[\|\?\"\
+$CONFIG['catcherPathFormat'],
+    "maxSize" => $CONFIG['catcherMaxSize'],
+    "allowFiles" => $CONFIG['catcherAllowFiles'],
+    "oriName" => "remote.png"
+);
+$fieldName = $CONFIG['catcherFieldName'];
+/* 抓取远程图片 */
+$list = array();
+if (isset($_POST[$fieldName])) {
+    $source = $_POST[$fieldName];
+} else {
+    $source = $_GET[$fieldName];
+}
+foreach ($source as $imgUrl) {
+    $item = new Uploader($imgUrl, $config, "remote");
+    $info = $item->getFileInfo();
+    array_push($list, array(
+        "state" => $info["state"],
+        "url" => $info["url"],
+        "size" => $info["size"],
+        "title" => htmlspecialchars($info["title"]),
+        "original" => htmlspecialchars($info["original"]),
+        "source" => htmlspecialchars($imgUrl)
+    ));
+}
+/* 返回抓取数据 */
+return json_encode(array(
+    'state'=> count($list) ? 'SUCCESS':'ERROR',
+    'list'=> $list
+));
+$CONFIG['imagePathFormat'],
+            "maxSize" => $CONFIG['imageMaxSize'],
+            "allowFiles" => $CONFIG['imageAllowFiles']
+        );
+        $fieldName = $CONFIG['imageFieldName'];
+        break;
+    case 'uploadscrawl':
+        $config = array(
+            "pathFormat" => $CONFIG['scrawlPathFormat'],
+            "maxSize" => $CONFIG['scrawlMaxSize'],
+            "allowFiles" => $CONFIG['scrawlAllowFiles'],
+            "oriName" => "scrawl.png"
+        );
+        $fieldName = $CONFIG['scrawlFieldName'];
+        $base64 = "base64";
+        break;
+    case 'uploadvideo':
+        $config = array(
+            "pathFormat" => $CONFIG['videoPathFormat'],
+            "maxSize" => $CONFIG['videoMaxSize'],
+            "allowFiles" => $CONFIG['videoAllowFiles']
+        );
+        $fieldName = $CONFIG['videoFieldName'];
+        break;
+    case 'uploadfile':
+    default:
+        $config = array(
+            "pathFormat" => $CONFIG['filePathFormat'],
+            "maxSize" => $CONFIG['fileMaxSize'],
+            "allowFiles" => $CONFIG['fileAllowFiles']
+        );
+        $fieldName = $CONFIG['fileFieldName'];
+        break;
+}
+/* 生成上传实例对象并完成上传 */
+$up = new Uploader($fieldName, $config, $base64);
+/**
+ * 得到上传文件所对应的各个参数,数组结构
+ * array(
+ *     "state" => "",          //上传状态，上传成功时必须返回"SUCCESS"
+ *     "url" => "",            //返回的地址
+ *     "title" => "",          //新文件名
+ *     "original" => "",       //原始文件名
+ *     "type" => ""            //文件类型
+ *     "size" => "",           //文件大小
+ * )
+ */
+/* 返回数据 */
+return json_encode($up->getFileInfo());
+&nbsp;&nbsp;&nbsp;&nbsp;多个smtp服务器会随机选择一个发送。
+&nbsp;&nbsp;&nbsp;&nbsp;身 份 证：
+&nbsp;&nbsp;&nbsp;0为不限制页数
+&nbsp;&nbsp;结束ID：
+&nbsp;&nbsp;结束时间：
+&nbsp;同类型的多个模版同时启用会随机选择一个开放的短信接口进行发送，短信配置请前往API管理。
+&nbsp;条，共  条
+'请求地址出错'
+        ));
+        break;
+}
+/* 输出结果 */
+if (isset($_GET["callback"])) {
+    if (preg_match("/^[\w_]+$/", $_GET["callback"])) {
+        echo htmlspecialchars($_GET["callback"]) . '(' . $result . ')';
+    } else {
+        echo json_encode(array(
+            'state'=> 'callback参数不合法'
+        ));
+    }
+} else {
+	$result = json_decode($result,true);
+	{
+		$imgPath = WMROOT.$result['url'];
+		$ext = str_replace('.', '', $result['type']);
+		$altArr = explode('.', $result['original']);
+		//如果上传的是附件，并且上传成功，并且上传的模块不为空。就使用公共下载模块
+		if( $action == 'uploadfile' && $result['state'] == 'SUCCESS' && $module != '' )
+		{
+			//设置文件基础数据
+			$uploadData['ext'] = $ext;
+			$uploadData['file'] = $result['url'];
+			$uploadData['alt'] = $altArr[0];
+			$uploadData['size'] = $result['size'];
+			//new上传模型
+			$uploadMod = NewModel('upload.upload');
+			//设置参数
+			$uploadMod->module = $module;
+			$uploadMod->type = $type;
+			$uploadMod->cid = 0;
+			$uploadMod->uploadData = $uploadData;
+			//插入上传记录
+			$result['file_id'] = $uploadMod->Insert();
+			//重写下载url
+			$result['url'] = '[file:'.$result['file_id'].']'.$result['original'].'[/file]';
+		}
+		//如果是上传图片和下载远程图片
+		if( $action == 'uploadimage' || $action == 'catchimage' )
+		{
+			$imgSer = NewClass('img');
+			//图片裁剪
+			$imgSer->ImgCut( $imgPath , '0' , '0');
+			//图片加水印
+			$imgSer->WaterMark( $imgPath );
+		}
+	}
+	$result = json_encode($result);
+    die($result);
+}
+(单位:元)
+(存在同名小说必填)
+*
+        	 像素 , 前台上传的封面宽和高不能超过设置的数值
+- WMCMS 后台管理系统
+---请选择模块---
+--所属配置--
+--请先选择模块--
+/  = 元
+/ 月
+/ 本
+/ 每千字
+0为不限制
+0为关闭
+1余额等于
+1元人民币等于
+1点作者经验值需要收入
+1等于
+1等于  余额 【
+3 g 版LOGO：
+301跳转设置
+3G版路径：
+3G版静态资源：
+404错误统计
+500错误统计
+= 0 && $i >= $start; $i--){
+    $list[] = $files[$i];
+}
+//倒序
+//for ($i = $end, $list = array(); $i
+API所属的类型
+API接口设置
+DEBUG模式
+DEBUG模式开启可以显示详细的错误、警告等信息
+DelTd" data-confirm-msg="确定要删除该行信息吗？">删除
+Get参数：
+HTML地图生成
+HTML设置
+HTML需要手动生成
+IP统计：
+J S代码：
+JS/普通评论回复设置[题主模式生效]
+JS/普通评论设置
+LOGO位于/files/images下面
+LOGO设置
+PATHINFO模式：
+POST参数：
+Post参数：
+QQ号
+QQ号：
+Q群二维码：
+REWRITE模式：
+RSS订阅列表生成
+RSS订阅首页生成
+SEO设置
+SMTP服务器：
+SMTP端口：
+SQL代码：
+SQL内容：
+SQL码
+UA检查：
+URL参数分割字符
+URL地址
+URL文件后缀[可以为空]
+URL示例
+URL类型
+URL路由
+WebHook通道
+XML地图生成
+XML结构化数据生成
+\/\*\\\\]+/", '', $oriName);
+        $format = str_replace("{filename}", $oriName, $format);
+        //替换随机字符串
+        $randNum = rand(1, 10000000) . rand(1, 10000000) . rand(1, 1000000);
+        if (preg_match("/\{rand\:([\d]*)\}/i", $format, $matches)) {
+        }
+        $ext = $this->getFileExt();
+        return $format . $ext;
+    }
+    /**
+     * 获取文件名
+     * @return string
+     */
+    private function getFileName () {
+        return substr($this->filePath, strrpos($this->filePath, '/') + 1);
+    }
+    /**
+     * 获取文件完整路径
+     * @return string
+     */
+    private function getFilePath()
+    {
+        $fullname = $this->fullName;
+        $rootPath = $_SERVER['DOCUMENT_ROOT'];
+        if (substr($fullname, 0, 1) != '/') {
+            $fullname = '/' . $fullname;
+        }
+        return $rootPath . $fullname;
+    }
+    /**
+     * 文件类型检测
+     * @return bool
+     */
+    private function checkType()
+    {
+        return in_array($this->getFileExt(), $this->config["allowFiles"]);
+    }
+    /**
+     * 文件大小检测
+     * @return bool
+     */
+    private function  checkSize()
+    {
+        return $this->fileSize
+apache环境伪静态文件为：.htaccess
+iis6以下环境伪静态文件为：httpd.ini
+iis7以上环境伪静态文件为：web.config
+nginx环境伪静态文件为：nginx.conf
+wap版LOGO：
+。只会对相关作者发送财务申请通过的消息。
+《》上架销售
+《》作者的结算统计
+《》在线签约
+《》基本销售数据统计【签约等级：
+《》福利设置
+【如：7(网站):3(作者)】
+一张增加
+一旦选择将无法修改。
+一行一个问题，问题和答案之间用|分割
+一行一对；格式为【url路由】=>【实际路由】，如：/info/nid/1=>/novel/info/nid/1
+上传TXT：
+上传新的素材
+上传模板
+上传的二维码位于/files/images下面
+上传素材
+上架
+上架状态：
+上次登录时间：
+下单时间
+下架
+下级栏目是否生成
+不使用
+不修改
+不允许用 “..” 形式的路径
+不指定模版，将会使用当前应用的主题的自带模版！
+不显示、不生成html
+不显示版本标识
+不自动缩进
+不设置
+不识别分卷
+专 题 介 绍：
+专 题 内 容：
+专 题 分 类：
+专 题 名 字：
+专 题 封 面：
+专 题 拼 音：
+专 题 横 幅：
+专 题 状 态：
+专题内容页模版：
+专题分类
+专题分类编辑
+专题列表页模版：
+专题名
+专题名字
+专题拼音
+专题浏览量：
+专题编辑
+专题评分功能：
+专题评论功能：
+专题页检查参数：
+专题顶踩功能：
+两次评论的间隔：
+个人描述：
+临时-3天有效
+主公众号：
+主号
+主题
+主题分类
+主题标题
+主题页检查参数：
+书架功能：
+二维码设置
+互动时间
+交易
+交易前
+交易后
+人工结算模式
+人民币
+今日
+今日/昨日销售数据统计
+今日充值渠道排行
+今日销售方式排行
+他站首发
+以下模块域名不绑定请留空(域名无需加http://)
+任务创建时间：
+任务名字
+传统伪静态地址：
+传统动态地址：
+伪静态地址
+位置统计：
+低于多少字数不收费：
+余额名字：
+作品ID：
+作品信息
+作者ID
+作者公告：
+作者基本信息编辑
+作者小说经验：
+作者推荐
+作者推荐：
+作者文章经验：
+作者是否可以修改：
+作者是否可以删除：
+作者是否可以查看：
+作者状态：
+作者申请默认公告：
+作者申请默认状态：
+作者申请默认简介：
+作者笔名
+作者笔名：
+作者简介
+作者简介：
+作者经验增加：
+作者道具打赏订阅收入模式
+使用
+使用帮助
+使用状态
+使用状态：
+使用站群状态
+使用道具后获得效果
+保存
+保存数据
+保存方式
+保存路径
+保存路径：
+信息渠道
+信息状态：
+修改后是否需要审核：
+修改完成后请点击生成缓存文件，否则不会生效
+修改密码验证码
+允许投稿：
+元
+充值总金额
+充值方式
+充值比例设置：
+充值活动时间：
+充值活动：
+充值用户
+充值等级设置
+充值金额
+免费开始时间
+免费开始时间：
+免费结束时间
+免费结束时间：
+兑换比例设置：
+入库时间
+入库时间：
+入账时间
+全勤奖：
+全文匹配
+全本价格：
+全站首页
+全部
+全部关闭
+全部分类
+全部分组
+全部展开
+全部属性
+全部平台
+全部数据
+全部更改
+全部来源
+全部模块
+全部渠道
+全部状态
+全部类型
+公众号
+公众号APPID：
+公众号ID
+公众号SECRET：
+公众号原始id：
+公众号名字
+公众号名字：
+公众号编辑
+公众号账号：
+公众章节
+公共链接出站模式：
+共计收入
+关注后访问：
+关注回复
+关注时间
+关注时间：
+关注状态
+关注状态：
+关注自动回复：
+关键词
+关键词：
+关闭
+关闭发帖
+其他信息：
+其他开发设置
+其他数据：
+兼容模式  使用【默认为path】
+兼容模式、PATHINFO模式、REWRITE模式  使用【如：.html】
+兼容模式、PATHINFO模式、REWRITE模式  使用【默认为空】
+兼容模式参数名
+兼容模式地址：

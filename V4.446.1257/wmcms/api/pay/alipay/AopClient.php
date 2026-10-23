@@ -124,7 +124,7 @@ class AopClient {
 			$res = openssl_get_privatekey($priKey);
 		}
 
-		($res) or die('您使用的私钥格式错误，请检查RSA私钥配置'); 
+		($res) or die('รูปแบบคีย์ส่วนตัวไม่ถูกต้อง กรุณาตรวจสอบการตั้งค่าคีย์ส่วนตัว RSA'); 
 
 		if ("RSA2" == $signType) {
 			openssl_sign($data, $sign, $res, OPENSSL_ALGO_SHA256);
@@ -161,7 +161,7 @@ class AopClient {
 			$res = openssl_get_privatekey($priKey);
 		}
 
-		($res) or die('您使用的私钥格式错误，请检查RSA私钥配置'); 
+		($res) or die('รูปแบบคีย์ส่วนตัวไม่ถูกต้อง กรุณาตรวจสอบการตั้งค่าคีย์ส่วนตัว RSA'); 
 
 		if ("RSA2" == $signType) {
 			openssl_sign($data, $sign, $res, OPENSSL_ALGO_SHA256);
@@ -668,7 +668,7 @@ class AopClient {
 			$res = openssl_get_publickey($pubKey);
 		}
 
-		($res) or die('支付宝RSA公钥错误。请检查公钥文件格式是否正确');  
+		($res) or die('คีย์สาธารณะ RSA ของ Alipay ไม่ถูกต้อง กรุณาตรวจสอบว่ารูปแบบไฟล์คีย์สาธารณะถูกต้องหรือไม่');  
 
 		//调用openssl内置方法验签，返回bool值
 
@@ -753,7 +753,7 @@ class AopClient {
 			$res = openssl_get_publickey($pubKey);
 		}
 
-		($res) or die('支付宝RSA公钥错误。请检查公钥文件格式是否正确'); 
+		($res) or die('คีย์สาธารณะ RSA ของ Alipay ไม่ถูกต้อง กรุณาตรวจสอบว่ารูปแบบไฟล์คีย์สาธารณะถูกต้องหรือไม่'); 
 		$blocks = $this->splitCN($data, 0, 30, $charset);
 		$chrtext  = null;
 		$encodes  = array();
@@ -784,7 +784,7 @@ class AopClient {
 			$priKey = file_get_contents($this->rsaPrivateKeyFilePath);
 			$res = openssl_get_privatekey($priKey);
 		}
-		($res) or die('您使用的私钥格式错误，请检查RSA私钥配置'); 
+		($res) or die('รูปแบบคีย์ส่วนตัวไม่ถูกต้อง กรุณาตรวจสอบการตั้งค่าคีย์ส่วนตัว RSA'); 
 		//转换为openssl格式密钥
 		$decodes = explode(',', $data);
 		$strnull = "";

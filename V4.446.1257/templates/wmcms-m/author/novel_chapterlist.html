@@ -12,7 +12,7 @@
 		<div class="app">
 			<div class="header">
 				<a href="javascript:history.back(-1)" style="left: 0.1rem;" class="close">〈</a>
-				<a href="{小说新建草稿}" class="more">发表新章节</a>
+				<a href="{小说新建草稿}" class="more">เผยแพร่ตอนใหม่</a>
 			</div>
 			<div class="chapterlist">
 				{小说分卷列表:}
@@ -33,7 +33,7 @@
 		<script>
 			function show(obj,vid){
 				if($(obj).attr('data-list')=='false'){
-					var index = layer.open({type: 2,content: '加载中'});
+					var index = layer.open({type: 2,content: 'กำลังโหลด'});
 					$.ajax({
 						type:"POST",
 						url:"{url:ajax;novel.getchapterlist&order=chapter_order&order_type=desc}",
@@ -46,7 +46,7 @@
 								$(obj).attr('data-list','true')
 								$(obj).children('.list-b').append(objToHtml(data.data , tmpl));
 							}else if(data.code==201){
-								layer.open({content:'该分卷暂无章节',time: 2})
+								layer.open({content:'เล่มนี้ยังไม่มีตอน',time: 2})
 							}else{
 								layer.open({content:data.msg,time: 2})
 							}

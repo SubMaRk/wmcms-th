@@ -233,7 +233,7 @@ class ua{
 		if( $proxyVisit == '0' && ( isset($_SERVER['HTTP_X_FORWARDED_FOR']) || isset($_SERVER['HTTP_VIA']) || isset($_SERVER['HTTP_PROXY_CONNECTION']) || isset($_SERVER['HTTP_USER_AGENT_VIA']) ))
 		{
 			// 禁止代理访问
-			exit('禁止代理访问');
+			exit('ห้ามเข้าถึงผ่านพร็อกซี');
 		}
 	}
 

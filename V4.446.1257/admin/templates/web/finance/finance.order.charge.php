@@ -12,9 +12,9 @@ thead th {
 <div class="bjui-pageHeader">
 	<div class="row cl pt-10 pb-10 pl-10">
 		<div class="f-l" style="margin-left:10px">
-            <span >快捷操作：</span>
-			<a href="index.php?a=yes&c=finance.order.charge&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
-			<a href="index.php?a=yes&c=finance.order.charge&t=clear" data-toggle="doajax" data-confirm-msg="确定清空记录要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> 清空记录</a>
+            <span >การดำเนินการด่วน:</span>
+			<a href="index.php?a=yes&c=finance.order.charge&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
+			<a href="index.php?a=yes&c=finance.order.charge&t=clear" data-toggle="doajax" data-confirm-msg="ยืนยันล้างบันทึก要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> ล้างบันทึก</a>
 		</div>
 		<div class="list-tool">
 			<form id="pagerForm" name="<?php echo $cFun;?>Form" data-toggle="ajaxsearch" data-loadingmask="true" action="<?php echo $url;?>" method="post">
@@ -22,7 +22,7 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-				<span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
+				<span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
 				
 				<select data-toggle="selectpicker" name="status" data-width="100">
                 	<option value="" <?php echo str::CheckElse( $status , '' , 'selected=""' );?>>全部</option>
@@ -31,7 +31,7 @@ thead th {
                 </select>
                 
 				<select data-toggle="selectpicker" name="type" data-width="100">
-                	<option value="">全部</option>
+                	<option value="">ทั้งหมด</option>
 					<?php 
 					foreach ($typeArr as $key=>$val)
 					{
@@ -40,9 +40,9 @@ thead th {
 					}
 					?>
                 </select>
-                <input type="text" value="<?php echo $uid;?>" placeholder="用户ID" name="uid" size="15">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $cFun;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+                <input type="text" value="<?php echo $uid;?>" placeholder="ผู้ใช้ID" name="uid" size="15">
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+				<a id="<?php echo $cFun;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
              </form>
 		</div>
 	</div>
@@ -54,14 +54,14 @@ thead th {
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="6%" data-order-field="charge_id">ID</th>
-				<th>订单号</th>
-				<th width="5%" data-order-field="charge_status">支付状态</th>
-				<th width="9%" data-order-field="charge_type">充值方式</th>
-				<th width="12%">充值用户</th>
-				<th width="8%" data-order-field="charge_money">充值金额</th>
-	            <th width="8%" data-order-field="charge_gold2">获得<?php echo $config['gold2_name']?></th>
-				<th width="15%" data-order-field="log_time">下单时间</th>
-	            <th width="15%" data-order-field="log_time">支付时间</th>
+				<th>เลขที่คำสั่งซื้อ</th>
+				<th width="5%" data-order-field="charge_status">สถานะการชำระเงิน</th>
+				<th width="9%" data-order-field="charge_type">วิธีเติมเงิน</th>
+				<th width="12%">ผู้ใช้ที่เติมเงิน</th>
+				<th width="8%" data-order-field="charge_money">จำนวนเงินที่เติม</th>
+	            <th width="8%" data-order-field="charge_gold2">ได้รับ<?php echo $config['gold2_name']?></th>
+				<th width="15%" data-order-field="log_time">เวลาสั่งซื้อ</th>
+	            <th width="15%" data-order-field="log_time">เวลาชำระเงิน</th>
 	            </tr>
 			</thead>
 			<tbody id="<?php echo $cFun?>List">
@@ -72,7 +72,7 @@ thead th {
 				foreach ($dataArr as $k=>$v)
 				{
 					$cur = str::CheckElse( $i%2 , 0 , '' , 'even_index_row');
-					$status = str::CheckElse( $v['charge_status'] , 1 , '<span style="color:green">已支付</span>' , '<span style="color:red">待支付</span>');
+					$status = str::CheckElse( $v['charge_status'] , 1 , '<span style="color:green">ชำระแล้ว</span>' , '<span style="color:red">待支付</span>');
 					$payTime = '------';
 					if( $v['charge_status'] == 1)
 					{
@@ -104,7 +104,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -113,7 +113,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>

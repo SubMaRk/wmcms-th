@@ -18,7 +18,7 @@ if ( $type == 'del' )
 	//写入操作记录
 	SetOpLog( '删除了错误日志' , 'system' , 'delete' , $table , $where);
 	wmsql::Delete($table, $where);
-	Ajax('错误日志删除成功!');
+	Ajax('ลบบันทึกข้อผิดพลาดสำเร็จ!');
 }
 //清空登录记录
 else if ( $type == 'clear' )
@@ -26,7 +26,7 @@ else if ( $type == 'clear' )
 	wmsql::Exec('TRUNCATE TABLE `@'.$table.'`');
 	//写入操作记录
 	SetOpLog( '清空了错误日志' , 'system' , 'delete');
-	Ajax('所有错误日志成功清空！');
+	Ajax('ล้างข้อมูลบันทึกข้อผิดพลาดทั้งหมดสำเร็จ!');
 }
 //处理自动上传设置
 else if ( $type == 'autoupload' )
@@ -39,7 +39,7 @@ else if ( $type == 'autoupload' )
 	
 	//写入操作记录
 	SetOpLog( '从错误列表修改自动上传设置' , 'system' , 'update');
-	Ajax('自动上传错误日志修改成功！');
+	Ajax('แก้ไขบันทึกข้อผิดพลาดของการอัปโหลดอัตโนมัติสำเร็จ!');
 }
 //上传错误日志
 else if ( $type == 'upload' )

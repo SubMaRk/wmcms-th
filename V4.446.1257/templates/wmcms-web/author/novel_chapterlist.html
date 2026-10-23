@@ -118,7 +118,7 @@ $(document).ready(function(){
   	//字数统计
 	$("#tongji").click(function(){
 		var str = $("[name=content]").val();
-		easydialog_alert('当前共有'+wordsNumber(str)+'个字符！','','','');
+		easydialog_alert('ขณะนี้มีทั้งหมด'+wordsNumber(str)+'ตัวอักษร!','','','');
 	});
 	//实时检查字数
 	$("#content").keyup(function(e){
@@ -229,7 +229,7 @@ $(document).ready(function(){
 		if(window.confirm("การลบจะไม่สามารถกู้คืนได้ คุณต้องการลบหรือไม่?")){
 			var cid = $("#cid").val();
 			if( !isPositiveNum(cid) ){
-				easydialog_alert('对不起，章节id错误！','','','');
+				easydialog_alert('ขออภัย id ของตอนไม่ถูกต้อง!','','','');
 			}else{
 				$.ajax({
 					type:"POST",

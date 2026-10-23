@@ -72,7 +72,7 @@ thead th {
 							<td style="text-align: center;">'.date( 'Y-m-d H:i:s' , $v['msg_time']).'</td>
 							<td style="text-align: center;" data-noedit="true">
 								<a class="btn btn-secondary radius size-MINI" href="index.php?d=yes&c=user.msg.detail&id='.$v['msg_id'].'" data-mask="true" data-toggle="dialog" data-title="ดูรายละเอียดด้านใน" data-width="600" data-height="550" >รายละเอียด</a>
-								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['msg_id'].')">删除</a>
+								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['msg_id'].')">ลบ</a>
 				            </td>
 						</tr>';
 					$i++;

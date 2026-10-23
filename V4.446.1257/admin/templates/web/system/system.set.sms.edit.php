@@ -8,7 +8,7 @@
 	<form action="index.php?a=yes&c=system.sms&t=<?php echo $type;?>" name="<?php echo $cFun.$type;?>Form" class="form form-horizontal" data-reload="false" data-toggle="ajaxform" method="post" data-callback="<?php echo $cFun.$type;?>">
     	<input type="hidden" name="sms_id" value="<?php echo $id;?>"/>
 	    <div class="row cl">
-			<label class="form-label col-md-2">是否启用：</label>
+			<label class="form-label col-md-2">เปิดใช้งานหรือไม่:</label>
 			<div class="formControls col-md-8">
 		      	<select data-toggle="selectpicker" name="data[sms_status]">
 		        <option value="1" <?php if(C('sms_status',null,'data')=='1'){ echo 'selected=""';}?>>正常</option>
@@ -17,7 +17,7 @@
 			</div>
 		</div>
 	    <div class="row cl">
-			<label class="form-label col-md-2">短信接口：</label>
+			<label class="form-label col-md-2">อินเทอร์เฟซ SMS:</label>
 			<div class="formControls col-md-8">
 		      	<select data-toggle="selectpicker" name="data[sms_api_name]">
 				<?php
@@ -31,25 +31,25 @@
 			</div>
 		</div>
 	    <div class="row cl">
-			<label class="form-label col-md-2">模版类型：</label>
+			<label class="form-label col-md-2">ประเภทเทมเพลต:</label>
 	    	<div class="formControls col-md-8">
-				<input type="text" class="form-control" placeholder="模版类型" name="data[sms_type]" size="24" value="<?php echo C('sms_type',null,'data');?>">
+				<input type="text" class="form-control" placeholder="ประเภทเทมเพลต" name="data[sms_type]" size="24" value="<?php echo C('sms_type',null,'data');?>">
 			</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-2">模版签名：</label>
+			<label class="form-label col-md-2">ลายเซ็นเทมเพลต:</label>
 	    	<div class="formControls col-md-8">
-				<input type="text" class="form-control" placeholder="第三方模版签名" name="data[sms_sign]" size="24" value="<?php echo C('sms_sign',null,'data');?>">
+				<input type="text" class="form-control" placeholder="ลายเซ็นเทมเพลตของบุคคลที่สาม" name="data[sms_sign]" size="24" value="<?php echo C('sms_sign',null,'data');?>">
 			</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-2">模版代码：</label>
+			<label class="form-label col-md-2">โค้ดเทมเพลต:</label>
 	    	<div class="formControls col-md-8">
-				<input type="text" class="form-control" placeholder="第三方模版代码" name="data[sms_tempcode]" size="24" value="<?php echo C('sms_tempcode',null,'data');?>">
+				<input type="text" class="form-control" placeholder="โค้ดเทมเพลตของบุคคลที่สาม" name="data[sms_tempcode]" size="24" value="<?php echo C('sms_tempcode',null,'data');?>">
 			</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-2">替换参数：</label>
+			<label class="form-label col-md-2">พารามิเตอร์แทนที่:</label>
 	    	<div class="formControls col-md-8">
 	        	<textarea name="data[sms_params]" cols="25" rows="3"><?php if($type=='add'){echo 'code:{code}';}else{echo $data['sms_params'];}?></textarea>
 	    	</div>
@@ -58,8 +58,8 @@
 	</form>
 	<div class="bjui-pageFooter">
 	    <ul>
-	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 保存</button></li>
+	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> บันทึก</button></li>
 	    </ul>
 	</div>
 </div>

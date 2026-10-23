@@ -18,7 +18,7 @@ if ( $type == 'del')
 	SetOpLog( '删除了卡号使用记录！' , 'user' , 'delete' , $table , $where);
 	wmsql::Delete($table , $where);
 	
-	Ajax('卡号使用记录批量删除成功!');
+	Ajax('ลบบันทึกการใช้บัตรหลายรายการสำเร็จ!');
 }
 //清空数据
 else if ( $type == 'clear')
@@ -26,6 +26,6 @@ else if ( $type == 'clear')
 	//写入操作记录
 	SetOpLog( '清空了所有卡号使用记录！' , 'user' , 'delete' , $table);
 	wmsql::Delete($table);
-	Ajax('卡号使用记录全部清空成功！');
+	Ajax('ล้างบันทึกการใช้บัตรทั้งหมดสำเร็จ!');
 }
 ?>

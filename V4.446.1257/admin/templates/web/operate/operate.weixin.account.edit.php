@@ -2,24 +2,24 @@
     <form action="index.php?a=yes&c=operate.weixin.account&t=<?php echo $type;?>" data-reload="false" data-toggle="validate" method="post"  <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
 	<input name="id[account_id]" type="hidden" class="input-text" value="<?php echo $id;?>">
 		<fieldset>
-			<legend>公众号编辑</legend>
+			<legend>แก้ไขบัญชีทางการ</legend>
             	<div class="tab-pane fade active in" id="<?php echo $cFun.$type;?>base">
 					<table class="table table-border table-bordered table-bg table-sort">
 		                <tr>
-					      <td valign="top" width="170"><b>公众号名字：</b></td>
+					      <td valign="top" width="170"><b>ชื่อบัญชีทางการ：</b></td>
 					      <td valign="top"><input type="text" size="15" name="account[account_name]" value="<?php echo C('account_name',null,'data');?>" data-rule="required"></td>
-						  <td valign="top" width="170"><b>公众号账号：</b></td>
+						  <td valign="top" width="170"><b>หมายเลขบัญชีทางการ：</b></td>
 					      <td valign="top"><input type="text" size="15" name="account[account_account]" value="<?php echo C('account_account',null,'data');?>" data-rule="required"></td>
 						</tr>
 		                <tr>
 		                    <td>
-		                        <b>公众号原始id：</b>
+		                        <b>id เริ่มต้นบัญชีทางการ：</b>
 		                    </td>
 		                    <td>
 		                        <input type="text" size="15" name="account[account_gid]" value="<?php echo C('account_gid',null,'data');?>" data-rule="required">
 		                    </td>
 		                    <td>
-		                        <b>审 核 状 态：</b>
+		                        <b>สถานะการตรวจสอบ:</b>
 		                    </td>
 		                    <td>
 		                        <select data-toggle="selectpicker" name="account[account_status]">
@@ -35,7 +35,7 @@
 		                </tr>
 		                <tr>
 		                    <td>
-		                        <b>账 号 类 型：</b>
+		                        <b>ประเภทบัญชี:</b>
 		                    </td>
 		                    <td>
 		                        <select data-toggle="selectpicker" name="account[account_type]">
@@ -49,7 +49,7 @@
 		                        </select>
 		                    </td>
 		                    <td>
-		                        <b>是 否 认 证：</b>
+		                        <b>ยืนยันหรือไม่:</b>
 		                    </td>
 		                    <td>
 		                        <select data-toggle="selectpicker" name="account[account_auth]">
@@ -65,7 +65,7 @@
 		                </tr>
 		                <tr>
 		                    <td>
-		                        <b>主公众号：</b>
+		                        <b>บัญชีทางการหลัก：</b>
 		                    </td>
 		                    <td>
 		                        <select data-toggle="selectpicker" name="account[account_main]">
@@ -79,7 +79,7 @@
 		                        </select>
 		                    </td>
 		                    <td>
-		                        <b>关注后访问：</b><br/><span style="color:red">强制关注有封号风险</span>
+		                        <b>เข้าชมหลังติดตาม：</b><br/><span style="color:red">การบังคับติดตามมีความเสี่ยงถูกระงับบัญชี</span>
 		                    </td>
 		                    <td>
 		                        <select data-toggle="selectpicker" name="account[account_follow]">
@@ -95,27 +95,27 @@
 		                </tr>
 			             <tr>
 		                    <td>
-		                        <b>公众号APPID：</b>
+		                        <b>APPID บัญชีทางการ：</b>
 		                    </td>
 		                    <td>
 		                        <input type="text" name="account[account_appid]" value="<?php echo C('account_appid',null,'data');?>" data-rule="required" size="30">
 		                    </td>
 		                    <td>
-		                        <b>公众号SECRET：</b>
+		                        <b>SECRET บัญชีทางการ：</b>
 		                    </td>
 		                    <td>
 		                        <input type="text" name="account[account_secret]" value="<?php echo C('account_secret',null,'data');?>" data-rule="required" size="30">
 		                    </td>
 		                </tr>
 			             <tr>
-		                    <td><b>关注自动回复：</b><br/>可在自动回复里面设置</td>
+		                    <td><b>ตอบกลับอัตโนมัติเมื่อติดตาม：</b><br/>ตั้งค่าได้ในการตอบกลับอัตโนมัติ</td>
 		                    <td><textarea cols="30" rows="3" name="account[account_welcome]"><?php echo C('account_welcome',null,'data');?></textarea></td>
-		                    <td><b>默认回复：</b><br/>可在自动回复里面设置</td>
+		                    <td><b>ตอบกลับเริ่มต้น:</b><br/>ตั้งค่าได้ในการตอบกลับอัตโนมัติ</td>
 		                    <td><textarea cols="30" rows="3" name="account[account_default]"><?php echo C('account_default',null,'data');?></textarea></td>
 		                </tr>
 		                <tr>
 		                    <td>
-		                        <b>是否接入：</b><br/>自定义菜单无需接入即可
+		                        <b>เชื่อมต่อหรือไม่:</b><br/>เมนูกำหนดเองไม่ต้องเชื่อมต่อก็ใช้ได้
 		                    </td>
 		                    <td>
 		                       	<?php echo C('account_access',null,'data');?>
@@ -129,7 +129,7 @@
 		                       	<?php echo C('account_token',null,'data');?>
 		                    </td>
 		                    <td>
-		                        <b>消息加密key：</b>
+		                        <b>คีย์เข้ารหัสข้อความ:</b>
 		                    </td>
 		                    <td>
 		                       	<?php echo C('account_aeskey',null,'data');?>
@@ -144,8 +144,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 

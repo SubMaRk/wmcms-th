@@ -1,7 +1,7 @@
 <div class="bjui-pageContent">
     <form action="index.php?a=yes&c=system.set.api&t=api" id="j_form_form" class="pageForm" data-toggle="validate">
             <fieldset>
-                <legend>API接口设置</legend>
+                <legend>ตั้งค่าอินเทอร์เฟซ API</legend>
                 <ul class="nav nav-tabs" role="tablist">
                 	<?php
                 	$i = true;
@@ -119,7 +119,7 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>

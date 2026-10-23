@@ -12,31 +12,31 @@ if( !is_array($data) )
       <td valign="top"><?php echo $data['errlog_id']?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>访问IP：</b></td>
+      <td valign="top" width="150"><b>IP ที่เข้าถึง:</b></td>
       <td valign="top"><?php echo $data['errlog_ip']?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>错误地址：</b></td>
+      <td valign="top" width="150"><b>ที่อยู่ผิดพลาด:</b></td>
       <td valign="top"><?php echo str::Escape($data['errlog_url'])?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>SQL代码：</b></td>
+      <td valign="top" width="150"><b>โค้ด SQL：</b></td>
       <td valign="top"><?php echo $data['errlog_state']?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>错误代码：</b></td>
+      <td valign="top" width="150"><b>รหัสข้อผิดพลาด:</b></td>
       <td valign="top"><?php echo $data['errlog_code']?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>详细信息：</b></td>
+      <td valign="top" width="150"><b>ข้อมูลโดยละเอียด:</b></td>
       <td valign="top"><?php echo str::Escape($data['errlog_msg'])?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>错误的sql：</b></td>
+      <td valign="top" width="150"><b>sql ที่ผิดพลาด:</b></td>
       <td valign="top"><?php echo str::Escape($data['errlog_sql'])?></td>
 	</tr>
     <tr>
-      <td valign="top" width="150"><b>错误时间：</b></td>
+      <td valign="top" width="150"><b>เวลาข้อผิดพลาด:</b></td>
       <td valign="top"><?php echo date("Y-m-d H:i:s" , $data['errlog_time'])?></td>
 	</tr>
 </table>
@@ -45,6 +45,6 @@ if( !is_array($data) )
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ปิด</button></li>
     </ul>
 </div>

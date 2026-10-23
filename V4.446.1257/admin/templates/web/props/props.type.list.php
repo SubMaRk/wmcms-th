@@ -7,10 +7,10 @@
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
 				<input type="hidden" name="open" value="<?php echo $open;?>">
-				<a href="index.php?c=props.type.edit&t=typeadd" data-toggle="navtab" data-id="author-props-typeadd" data-title="新增分类" data-width="350" data-height="330" class="btn btn-primary radius size-MINI"><i class="fa fa-plus"></i> 新增分类</a>
+				<a href="index.php?c=props.type.edit&t=typeadd" data-toggle="navtab" data-id="author-props-typeadd" data-title="เพิ่มหมวดหมู่" data-width="350" data-height="330" class="btn btn-primary radius size-MINI"><i class="fa fa-plus"></i> เพิ่มหมวดหมู่</a>
 				
 				<select data-toggle="selectpicker" id="<?php echo $cFun;?>module" name="module" data-width="100">
-                	<option value="">全部模块</option>
+                	<option value="">ทุกโมดูล</option>
                 	<?php
                 	foreach ($moduleArr as $k=>$v)
                 	{
@@ -21,7 +21,7 @@
                 </select>
                 <a onclick="<?php echo $cFun?>setOpen(1)" class="btn btn-warning  radius"> 全部展开 </a>
 				<a onclick="<?php echo $cFun?>setOpen(0)" class="btn btn-secondary  radius"> 全部关闭 </a>
-				<a id="<?php echo $cFun?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+				<a id="<?php echo $cFun?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
 			</form>
 		</div>
 	</div>
@@ -32,12 +32,12 @@
 		<table class="table table-border table-bordered table-hover table-bg table-sort">
 			<thead>
 				<tr class="text-c">
-					<th align="center" width="47">折叠</th>
-					<th align="center" width="90">所属模块</th>
+					<th align="center" width="47">ย่อ</th>
+					<th align="center" width="90">โมดูลที่สังกัด</th>
 					<th align="center" width="65">ID</th>
-					<th align="center" width="65">排序</th>
-					<th style="text-align:left">栏目名称 </th>
-					<th align="center" width="120">操作</th>
+					<th align="center" width="65">เรียงลำดับ</th>
+					<th style="text-align:left">ชื่อหมวด </th>
+					<th align="center" width="120">ดำเนินการ</th>
 				</tr>
 			</thead>
 			<tbody>

@@ -3,11 +3,11 @@
 <input type="hidden" name="path" value="<?php echo $path;?>">
 <table class="table table-border table-bordered table-bg table-sort">
     <tr>
-      <td valign="top" width="100"><b>旧名称：</b></td>
+      <td valign="top" width="100"><b>ชื่อเดิม:</b></td>
       <td valign="top"><input name="oldname" readonly="true" type="text" class="input-text" value="<?php echo $name;?>"></td>
 	</tr>
     <tr>
-      <td valign="top"><b>新名称：</b></td>
+      <td valign="top"><b>ชื่อใหม่:</b></td>
       <td valign="top"><input name="newname" type="text" class="input-text" data-rules="required"></td>
 	</tr>
 </table>
@@ -16,8 +16,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close btn btn-danger"><i class="fa fa-times"></i> 关闭</button></li>
-        <li><button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> 确定</button></li>
+        <li><button type="button" class="btn-close btn btn-danger"><i class="fa fa-times"></i> ปิด</button></li>
+        <li><button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> ยืนยัน</button></li>
     </ul>
 </div>
 

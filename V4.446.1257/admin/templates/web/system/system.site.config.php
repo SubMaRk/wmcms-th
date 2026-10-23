@@ -9,13 +9,13 @@
 	<form name="form1" action="index.php?a=yes&c=system.site.config&t=edit" method="post" data-toggle="validate">
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun;?>Table">
       <thead><tr><th colspan="4" style="text-align:left;">
-      <b style="color:red;font-size:14px;">站群配置【在编辑了站内(站外)站点后请到此点击保存，更新一下配置信息才能生效。】</b>
+      <b style="color:red;font-size:14px;">การตั้งค่าเครือข่ายเว็บไซต์[หลังแก้ไขเว็บไซต์ใน(นอก)เครือข่ายแล้ว โปรดคลิกบันทึกที่นี่เพื่ออัปเดตข้อมูลการตั้งค่าจึงจะมีผล]</b>
       </th></tr></thead>
 
       <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun;?>Table">
 		<thead>
 		      <tr>
-		        <td width="150">使用站群状态</td>
+		        <td width="150">สถานะการใช้งานกลุ่มเว็บไซต์</td>
 		        <td>
 					<?php echo $manager->GetForm('site' , 'site_open');?>
 		         </td>
@@ -28,8 +28,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 

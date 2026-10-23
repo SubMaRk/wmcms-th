@@ -3,13 +3,13 @@
 <table class="table table-border table-bordered table-hover table-bg table-sort">
 <thead>
   <tr>
-    <th width="20%"><strong>表名</strong></th>
-    <th width="8%"><strong>数据量</strong></th>
-    <th width="10%"><strong>数据大小</strong></th>
-    <th width="10%"><strong>冗余数据</strong></th>
-    <th width="10%"><strong>语言</strong></th>
-    <th width="15%"><strong>创建时间</strong></th>
-    <th width="15%"><strong>操作</strong></th>
+    <th width="20%"><strong>ชื่อตาราง</strong></th>
+    <th width="8%"><strong>ปริมาณข้อมูล</strong></th>
+    <th width="10%"><strong>ขนาดข้อมูล</strong></th>
+    <th width="10%"><strong>ข้อมูลซ้ำซ้อน</strong></th>
+    <th width="10%"><strong>ภาษา</strong></th>
+    <th width="15%"><strong>เวลาสร้าง</strong></th>
+    <th width="15%"><strong>ดำเนินการ</strong></th>
     
   </tr>
 </thead>
@@ -27,8 +27,8 @@ if( $tableArr )
 			   <td>'.$v['Collation'].'</td>
 			   <td>'.$v['Create_time'].'</td>
 			   <td>
-			   		<a data-toggle="doajax" data-confirm-msg="确定要优化吗？" class="optimize btn btn-success radius size-MINI" href="index.php?a=yes&c=data.mysql&t=optimize&table='.$v['Name'].'">优化表</a>
-					<a data-toggle="doajax" data-confirm-msg="确定要修复吗？" class="optimize btn btn-warning radius size-MINI" href="index.php?a=yes&c=data.mysql&t=repair&table='.$v['Name'].'">修复表</a>
+			   		<a data-toggle="doajax" data-confirm-msg="ยืนยัน要优化吗？" class="optimize btn btn-success radius size-MINI" href="index.php?a=yes&c=data.mysql&t=optimize&table='.$v['Name'].'">优化表</a>
+					<a data-toggle="doajax" data-confirm-msg="ยืนยัน要修复吗？" class="optimize btn btn-warning radius size-MINI" href="index.php?a=yes&c=data.mysql&t=repair&table='.$v['Name'].'">修复表</a>
 			   </td>
 			</tr>';
 	}

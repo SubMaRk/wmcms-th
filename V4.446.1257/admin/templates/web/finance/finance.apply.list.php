@@ -12,9 +12,9 @@ thead th {
 <div class="bjui-pageHeader">
 	<div class="row cl pt-10 pb-10 pl-10">
 		<div class="f-l" style="margin-left:10px">
-            <span >快捷操作：</span>
-			<a href="index.php?a=yes&c=finance.apply&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
-			<a href="index.php?a=yes&c=finance.apply&t=clear" data-toggle="doajax" data-confirm-msg="确定清空财务申请要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> 清空申请</a>
+            <span >การดำเนินการด่วน:</span>
+			<a href="index.php?a=yes&c=finance.apply&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
+			<a href="index.php?a=yes&c=finance.apply&t=clear" data-toggle="doajax" data-confirm-msg="ยืนยัน清空คำขอการเงิน要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> ล้างคำขอ</a>
 		</div>
 		<div class="f-l">
 			<form id="pagerForm" name="<?php echo $cFun;?>Form" data-toggle="ajaxsearch" data-loadingmask="true" action="<?php echo $url;?>" method="post">
@@ -22,7 +22,7 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-				<a id="<?php echo $cFun;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+				<a id="<?php echo $cFun;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
              </form>
 		</div>
 	</div>
@@ -34,13 +34,13 @@ thead th {
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="6%" data-order-field="apply_id">ID</th>
-				<th width="7%" data-order-field="apply_status">申请状态</th>
-				<th width="10%" data-order-field="aname">申请人</th>
-				<th>申请备注</th>
-				<th width="7%" data-order-field="apply_month">结算月份</th>
-				<th width="10%" data-order-field="apply_real">实际到账</th>
-				<th width="15%" data-order-field="apply_time">申请时间</th>
-				<th width="12%">操作</th>
+				<th width="7%" data-order-field="apply_status">สถานะคำขอ</th>
+				<th width="10%" data-order-field="aname">ผู้ยื่นคำขอ</th>
+				<th>หมายเหตุคำขอ</th>
+				<th width="7%" data-order-field="apply_month">เดือนที่ชำระบัญชี</th>
+				<th width="10%" data-order-field="apply_real">ยอดเข้าบัญชีจริง</th>
+				<th width="15%" data-order-field="apply_time">เวลายื่นคำขอ</th>
+				<th width="12%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody id="<?php echo $cFun?>List">
@@ -57,7 +57,7 @@ thead th {
 							$status = '<span style="color:red">待处理</span>';
 							break;
 						case '1':
-							$status = '<span style="color:green">已通过</span>';
+							$status = '<span style="color:green">ผ่านแล้ว</span>';
 							break;
 						case '2':
 							$status = '<span style="color:#a9a9a9">未通过</span>';
@@ -73,8 +73,8 @@ thead th {
 							<td style="text-align: center;">'.$v['apply_real'].$goldName.'</td>
 							<td style="text-align: center;">'.date( 'Y-m-d H:i:s' , $v['apply_time']).'</td>
 							<td style="text-align: center;" data-noedit="true">
-				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" href="index.php?d=yes&c=finance.apply.detail&t=apply_detail&id='.$v['apply_id'].'&d=yes"  data-toggle="dialog" data-title="查看申请详情" data-width="800" data-height="490" >详情</a> 
-				            	<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['apply_id'].')">删除</a>
+				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" href="index.php?d=yes&c=finance.apply.detail&t=apply_detail&id='.$v['apply_id'].'&d=yes"  data-toggle="dialog" data-title="ดู申请详情" data-width="800" data-height="490" >详情</a> 
+				            	<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['apply_id'].')">ลบ</a>
 				            </td>
 						</tr>';
 					$i++;
@@ -91,7 +91,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -100,7 +100,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>

@@ -8,7 +8,7 @@
 	<form action="index.php?a=yes&c=system.email.email&t=<?php echo $type;?>" name="<?php echo $cFun.$type;?>Form" class="form form-horizontal" data-reload="false" data-toggle="ajaxform" method="post" data-callback="<?php echo $cFun.$type;?>">
     	<input type="hidden" name="email_id" value="<?php echo $id;?>"/>
 	    <div class="row cl">
-			<label class="form-label col-md-4">是否启用：</label>
+			<label class="form-label col-md-4">เปิดใช้งานหรือไม่:</label>
 			<div class="formControls col-md-8">
 		      	<select data-toggle="selectpicker" name="data[email_status]">
 		        <option value="1" <?php if(C('email_status',null,'data')=='1'){ echo 'selected=""';}?>>正常</option>
@@ -17,7 +17,7 @@
 			</div>
 		</div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">发信类型：</label>
+			<label class="form-label col-md-4">ประเภทการส่ง:</label>
 	    	<div class="formControls col-md-8">
 				<?php
 				$input['type'] = 'select';
@@ -30,21 +30,21 @@
 	    	</div>
 	    </div>
 	    <div class="row cl smtp">
-			<label class="form-label col-md-4">SMTP服务器：</label>
+			<label class="form-label col-md-4">เซิร์ฟเวอร์ SMTP：</label>
 	    	<div class="formControls col-md-8">
 	    		<input type="text" class="form-control" placeholder="如：smtp.163.com" name="data[email_smtp]" size="24" value="<?php echo C('email_smtp',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl smtp">
-			<label class="form-label col-md-4">SMTP端口：</label>
+			<label class="form-label col-md-4">พอร์ต SMTP：</label>
 	    	<div class="formControls col-md-8">
 	    		<input type="text" class="form-control" placeholder="如：25" name="data[email_port]" size="24" value="<?php echo C('email_port',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl smtp">
-			<label class="form-label col-md-4">邮箱登录账号：</label>
+			<label class="form-label col-md-4">บัญชีเข้าสู่ระบบอีเมล:</label>
 	    	<div class="formControls col-md-8">
-	    		<input type="text" class="form-control" placeholder="邮箱的登录账号" name="data[email_name]" size="24" value="<?php echo C('email_name',null,'data');?>">
+	    		<input type="text" class="form-control" placeholder="อีเมล的บัญชีเข้าสู่ระบบ" name="data[email_name]" size="24" value="<?php echo C('email_name',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl smtp">
@@ -56,7 +56,7 @@
 	    	</div>
 	    </div>
 	    <div class="row cl smtp">
-			<label class="form-label col-md-4">邮件发送账户：</label>
+			<label class="form-label col-md-4">บัญชีผู้ส่งอีเมล:</label>
 	    	<div class="formControls col-md-8">
 	        	<input type="text" class="form-control" placeholder="发送邮件的账号" name="data[email_send]" size="24" value="<?php echo C('email_send',null,'data');?>">
 	    	</div>
@@ -65,8 +65,8 @@
 	</form>
 	<div class="bjui-pageFooter">
 	    <ul>
-	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 保存</button></li>
+	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> บันทึก</button></li>
 	    </ul>
 	</div>
 </div>

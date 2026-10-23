@@ -12,9 +12,9 @@ thead th {
 <div class="bjui-pageHeader">
 	<div class="row cl pt-10 pl-10">
 		<div class="list-tool pl-15">
-            <span >快捷操作：</span>
-			<a href="index.php?a=yes&c=author.author&t=status&status=1" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要审核选中项吗？" data-callback="<?php echo $cFun;?>ajaxCallBack" class="btn btn-warning radius"> 批量审核</a>
-			<a href="index.php?a=yes&c=author.author&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
+            <span >การดำเนินการด่วน:</span>
+			<a href="index.php?a=yes&c=author.author&t=status&status=1" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要审核选中项吗？" data-callback="<?php echo $cFun;?>ajaxCallBack" class="btn btn-warning radius"> ตรวจสอบหลายรายการ</a>
+			<a href="index.php?a=yes&c=author.author&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
 		</div>
 		<div class="list-tool">
 			<form id="pagerForm" name="<?php echo $cFun;?>Form" data-toggle="ajaxsearch" data-loadingmask="true" action="<?php echo $url;?>" method="post">
@@ -22,7 +22,7 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                <span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
+                <span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
                
 				<select data-toggle="selectpicker" name="type" data-width="100">
                 	<?php
@@ -34,8 +34,8 @@ thead th {
                 	?>
                 </select>
                 <input type="text" placeholder="<?php echo $name;?>" name="name" size="15">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
 			</form>
 		</div>
 	</div>
@@ -46,15 +46,15 @@ thead th {
 			<thead>
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
-				<th width="5%" data-order-field="author_id">作者ID</th>
-				<th width="7%" data-order-field="user_id">用户id</th>
-				<th width="5%" data-order-field="author_status">是否审核</th>
-				<th data-order-field="author_nickname">作者笔名</th>
-				<th width="10%" data-order-field="user_name">用户账号</th>
-				<th width="10%" data-order-field="user_nickname">用户昵称</th>
-				<th width="20%" data-order-field="author_info">作者简介</th>
-				<th width="15%" data-order-field="author_time">申请时间</th>
-	            <th width="12%">操作</th>
+				<th width="5%" data-order-field="author_id">ID ผู้แต่ง</th>
+				<th width="7%" data-order-field="user_id">id ผู้ใช้</th>
+				<th width="5%" data-order-field="author_status">ตรวจสอบหรือไม่</th>
+				<th data-order-field="author_nickname">นามปากกาผู้แต่ง</th>
+				<th width="10%" data-order-field="user_name">บัญชีผู้ใช้</th>
+				<th width="10%" data-order-field="user_nickname">ชื่อเล่นผู้ใช้</th>
+				<th width="20%" data-order-field="author_info">เรื่องย่อผู้แต่ง</th>
+				<th width="15%" data-order-field="author_time">เวลายื่นคำขอ</th>
+	            <th width="12%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody id="<?php echo $cFun?>List">
@@ -71,7 +71,7 @@ thead th {
 							$status = '<a href="javascript:;" onClick="'.$cFun.'StatusAjax(1,'.$v['author_id'].')"><span style="color:red">未审核</span></a>';
 							break;
 						case '1':
-							$status = '<a href="javascript:;" onClick="'.$cFun.'StatusAjax(0,'.$v['author_id'].')"><span style="color:green">已审核</span></a>';
+							$status = '<a href="javascript:;" onClick="'.$cFun.'StatusAjax(0,'.$v['author_id'].')"><span style="color:green">ตรวจสอบแล้ว</span></a>';
 							break;
 						default:
 							$status = '<span style="color:#A09E9E">已拒绝</span>';
@@ -88,14 +88,14 @@ thead th {
 							<td style="text-align: center;">'.$v['author_info'].'</td>
 							<td style="text-align: center;">'.date( 'Y-m-d H:i:s' , $v['author_time']).'</td>
 							<td style="text-align: center;" data-noedit="true">
-                				<button type="button" class="btn btn-warning radius" data-toggle="dropdown">操作<span class="caret"></span></button>
+                				<button type="button" class="btn btn-warning radius" data-toggle="dropdown">ดำเนินการ<span class="caret"></span></button>
 								<ul class="dropdown-menu" style="width:90px">
-							      <li><a data-toggle="navtab" data-id="author-author-edit" data-title="编辑作者信息" href="index.php?d=yes&c=author.author.edit&t=edit&id='.$v['author_id'].'">编辑作者信息</a></li>
+							      <li><a data-toggle="navtab" data-id="author-author-edit" data-title="บรรณาธิการ作者信息" href="index.php?d=yes&c=author.author.edit&t=edit&id='.$v['author_id'].'">编辑作者信息</a></li>
 							      <li class="divider"></li>
 								  <li><a href="javascript:;" onClick="'.$cFun.'StatusAjax(1,'.$v['author_id'].')">通过审核</a></li>
-								  <li><a href="index.php?d=yes&c=system.apply.refuse&t=refuse_author_apply&module=author&type=apply&uid='.$v['user_id'].'&cid='.$v['author_id'].'" data-mask="true" data-toggle="dialog" data-title="拒绝作者审核" data-width="630" data-height="510">拒绝通过</a></li>
+								  <li><a href="index.php?d=yes&c=system.apply.refuse&t=refuse_author_apply&module=author&type=apply&uid='.$v['user_id'].'&cid='.$v['author_id'].'" data-mask="true" data-toggle="dialog" data-title="ปฏิเสธการตรวจผู้แต่ง" data-width="630" data-height="510">拒绝通过</a></li>
 								</ul>
-				            	<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['author_id'].')">删除</a>
+				            	<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['author_id'].')">ลบ</a>
 				            </td>
 						</tr>';
 					$i++;
@@ -112,7 +112,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -121,7 +121,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>

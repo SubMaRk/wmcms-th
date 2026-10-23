@@ -11,7 +11,7 @@ else
 .<?php echo $cFun?>Table .titleTd{font-size:14px}
 </style>
 <div class="bjui-pageContent">
-	<form action="index.php?a=yes&c=novel.sell.settlement&t=apply" data-reload="false" data-toggle="validate" method="post" data-confirm-msg="确定要提交<?php echo $year.'年'.$month.'月';?>的结算申请吗？">
+	<form action="index.php?a=yes&c=novel.sell.settlement&t=apply" data-reload="false" data-toggle="validate" method="post" data-confirm-msg="ยืนยัน要ส่งข้อมูล<?php echo $year.'年'.$month.'月';?>的ชำระบัญชี申请吗？">
 	<input name="nid" type="hidden" value="<?php echo $nid;?>">
 	<input name="total" type="hidden" value="<?php echo $total;?>">
 	<input name="real" type="hidden" value="<?php echo $real;?>">
@@ -27,7 +27,7 @@ else
                     <div class="panel-body" style="font-size: 18px">
                     	 <table class="table table-border table-bordered table-bg table-sort <?php echo $cFun?>Table">
 					     <tr>
-					        <td width="150" class="titleTd">选择日期</td>
+					        <td width="150" class="titleTd">เลือกวันที่</td>
 					        <td class="titleTd" colspan="3">
 					        	<select data-toggle="selectpicker" id="<?php echo $cFun;?>year">
 				        		<?php
@@ -51,7 +51,7 @@ else
 					        </td>
 					      </tr>
 					      <tr>
-					        <td width="150" class="titleTd">结算状态</td>
+					        <td width="150" class="titleTd">สถานะชำระบัญชี</td>
 					        <td class="titleTd" colspan="3">
 				        	<?php 
 			        		if($applyData)
@@ -62,7 +62,7 @@ else
 			        			}
 			        			else if( $applyData['apply_status'] == '1' )
 			        			{
-			        				echo '<b style="color:#a3aba3">已结算</b>';
+			        				echo '<b style="color:#a3aba3">ชำระบัญชีแล้ว</b>';
 			        			}
 			        			else if( $applyData['apply_status'] == '2' )
 			        			{
@@ -71,19 +71,19 @@ else
 			        		}
 			        		else
 			        		{
-			        			echo '<b style="color:green">未结算</b>';
+			        			echo '<b style="color:green">ยังไม่ชำระบัญชี</b>';
 			        		}
 				        	?>
 					        </td>
 					      </tr>
 					      <tr>
-					        <td width="150" class="titleTd">小说总字数</td>
-					        <td class="titleTd" colspan="3"><?php echo $novelData['novel_wordnumber'];?> 字</td>
+					        <td width="150" class="titleTd">จำนวนคำทั้งหมดของนิยาย</td>
+					        <td class="titleTd" colspan="3"><?php echo $novelData['novel_wordnumber'];?> คำ</td>
 					      </tr>
 					      <tr>
-					        <td width="150" class="titleTd">小说状态</td>
-					        <td width="250" class="titleTd">连载中</td>
-					        <td width="150" class="titleTd">完本奖励</td>
+					        <td width="150" class="titleTd">สถานะนิยาย</td>
+					        <td width="250" class="titleTd">กำลังเขียน</td>
+					        <td width="150" class="titleTd">รางวัลจบเรื่อง</td>
 					        <td class="titleTd" colspan="3">
 					        	<?php 
 				        		if( $novelData['novel_process'] == '2' )
@@ -112,13 +112,13 @@ else
 					        </td>
 					      </tr>
 					      <tr>
-					        <td width="150" class="titleTd">更新统计</td>
+					        <td width="150" class="titleTd">อัปเดตสถิติ</td>
 					        <td width="250" class="titleTd">
 					        	本月更新章节：<?php echo $updateChapterCount;?> 章<br/>本月更新字数：<?php echo $updateChapterNumber/10000;?> 万字
 								<br/>-----------------------<br/>
 					        	本月更新Vip章节：<?php echo $updateChapterVipCount;?> 章<br/>本月更新Vip字数：<?php echo $updateChapterVipNumber/10000;?> 万字
 					        </td>
-					        <td width="150" class="titleTd">更新奖励</td>
+					        <td width="150" class="titleTd">รางวัลการอัปเดต</td>
 					        <td class="titleTd">
 					        	<?php 
 					        		if( $updateNowNumber == 0 && $updateNowGold2 == 0 )
@@ -140,9 +140,9 @@ else
 					        </td>
 					      </tr>
 					      <tr>
-					        <td width="150" class="titleTd">出勤统计</td>
-					        <td width="250" class="titleTd"><?php echo $fullCount;?> 天</td>
-					        <td width="150" class="titleTd">出勤奖励</td>
+					        <td width="150" class="titleTd">สถิติการเข้าใช้งาน</td>
+					        <td width="250" class="titleTd"><?php echo $fullCount;?> วัน</td>
+					        <td width="150" class="titleTd">รางวัลการเข้าใช้งาน</td>
 					        <td class="titleTd">
 					        	<?php 
 					        		if( $fullNowDay == 0 && $fullNowGold2 == 0 )
@@ -164,31 +164,31 @@ else
 					        </td>
 					      </tr>
 					      <tr>
-					        <td width="150" class="titleTd">共计收入</td>
+					        <td width="150" class="titleTd">รายได้รวม</td>
 					        <td class="titleTd" colspan="3" style="color:red"><?php echo '<b id="'.$cFun.'total">'.$total.'</b> '.$goldName;?></td>
 					      </tr>
 					      <tr>
-					        <td width="150" class="titleTd">额外奖金</td>
+					        <td width="150" class="titleTd">โบนัสพิเศษ</td>
 					        <td width="250" class="titleTd">
 					        	<input size="7" <?php if($applyData && $applyData['apply_status'] != '2'){echo 'disabled';}?> name="bonus_gold2" type="text" class="input-text" placeholder="不扣奖金请填0" value="0"> <?php echo $goldName;?>
 					        </td>
-					        <td width="150" class="titleTd">奖励原因</td>
+					        <td width="150" class="titleTd">เหตุผลรางวัล</td>
 					        <td class="titleTd"><textarea name="bonus_remark" <?php if($applyData && $applyData['apply_status'] != '2'){echo 'disabled';}?> data-toggle="autoheight" cols="50" rows="1"></textarea></td>
 					      </tr>
 					      <tr>
-					        <td width="150" class="titleTd">扣除奖金</td>
+					        <td width="150" class="titleTd">หักเงินรางวัล</td>
 					        <td width="250" class="titleTd"><input size="7" <?php if($applyData && $applyData['apply_status'] != '2'){echo 'disabled';}?> name="deduct_gold2" type="text" class="input-text" placeholder="不扣奖金请填0" value="0"> <?php echo $goldName;?></td>
-					        <td width="150" class="titleTd">扣除原因</td>
+					        <td width="150" class="titleTd">เหตุผลการหัก</td>
 					        <td class="titleTd"><textarea <?php if($applyData && $applyData['apply_status'] != '2'){echo 'disabled';}?> name="deduct_remark" data-toggle="autoheight" cols="50" rows="1"></textarea></td>
 					      </tr>
 					      <tr>
-					        <td width="150" class="titleTd">实际收入</td>
+					        <td width="150" class="titleTd">รายได้จริง</td>
 					        <td class="titleTd" colspan="3" style="color:green">
 					        	<?php echo '<b id="'.$cFun.'real">'.$real.'</b> '.$goldName;?>
 					        	/
 					        	<?php echo $financeConfig['rmb_to_gold2'];?>
 					        	=
-					        	<span id="<?php echo $cFun;?>real_money">0</span>元
+					        	<span id="<?php echo $cFun;?>real_money">0</span>หยวน
 					        </td>
 					      </tr>
 					    </table>
@@ -203,7 +203,7 @@ else
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ปิด</button></li>
         <?php 
         	if( $applyData )
         	{

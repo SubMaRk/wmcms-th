@@ -22,18 +22,18 @@ if ( $type == 'edit' || $type == "add" )
 	{
 		if( $v == '' )
 		{
-			Ajax('对不起，所有项都不能为空！' , 300);
+			Ajax('ทุกช่องห้ามว่าง!' , 300);
 		}
 	}
 	//判断用户id是否存在
 	if( !$userMod->GetOne($uid) )
 	{
-		Ajax('对不起，用户ID不存在！' , 300);
+		Ajax('ไม่พบ ID ผู้ใช้นี้!' , 300);
 	}
 	//判断用户是否已经添加了
 	if( $editorMod->CheckExist($uid,$where['editor_id']) )
 	{
-		Ajax('对不起，当前用户id已存在！' , 300);
+		Ajax('id ผู้ใช้นี้มีอยู่แล้ว!' , 300);
 	}
 	
 	
@@ -44,7 +44,7 @@ if ( $type == 'edit' || $type == "add" )
 		$where['editor_id'] = $editorMod->Insert($data);
 		//写入操作记录
 		SetOpLog( '新增了编辑'.$data['editor_name'] , 'editor' , 'insert' , $table , $where , $data );
-		Ajax('编辑新增成功!');
+		Ajax('เพิ่มบรรณาธิการสำเร็จ!');
 	}
 	//如果是增加页面
 	else
@@ -53,7 +53,7 @@ if ( $type == 'edit' || $type == "add" )
 		SetOpLog( '修改编辑' , 'editor' , 'update' , $table  , $where , $data );
 		//修改数据
 		$editorMod->Update($data,$where);
-		Ajax('编辑修改成功！');
+		Ajax('แก้ไขบรรณาธิการสำเร็จ!');
 	}
 }
 //快速切换状态
@@ -72,6 +72,6 @@ else if( $type == 'status' )
 	//写入操作记录
 	SetOpLog( $msg.'了编辑' , 'editor' , 'update' , $table , $where);
 	$editorMod->Update( $data, $where);
-	Ajax('编辑'.$msg.'成功!');
+	Ajax('บรรณาธิการ'.$msg.'สำเร็จ!');
 }
 ?>

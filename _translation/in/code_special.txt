@@ -1,0 +1,8 @@
+<b style="color:red;">对不起,模版文件"
+<html><head></head><body>任务完成，本次共生成
+<html><head><meta http-equiv="refresh" content="1;url="></head><body>生成中....[
+分类ID：
+在模版文件夹【
+对不起，没有“
+文件：
+方法 

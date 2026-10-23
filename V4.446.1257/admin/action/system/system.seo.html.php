@@ -31,7 +31,7 @@ function pathIsHtml($url)
 {
 	if( str_replace('.php', '', $url) != $url )
 	{
-		Ajax('对不起，当前链接没有设置伪静态的保存路径！' , 300);
+		Ajax('ลิงก์นี้ยังไม่ได้ตั้งค่าพาธสำหรับบันทึกแบบ pseudo-static!' , 300);
 	}
 	return $url;
 }
@@ -39,7 +39,7 @@ function pathIsHtml($url)
 //检查是否开启了html访问
 if( $C['config']['route']['ishtml'] != '1' )
 {
-	Ajax('对不起，网站没有开启HTML静态访问！' , 300);
+	Ajax('เว็บไซต์ยังไม่ได้เปิดการเข้าถึงแบบ HTML static!' , 300);
 }
 //生成首页
 else if ( $type == 'index' )
@@ -49,7 +49,7 @@ else if ( $type == 'index' )
 	
 	if( $module == '' || $id == '' )
 	{
-		Ajax('参数错误!',300);
+		Ajax('พารามิเตอร์ไม่ถูกต้อง!',300);
 	}
 	else
 	{
@@ -67,7 +67,7 @@ else if ( $type == 'index' )
 		
 		if($url == '' || $path == '' )
 		{
-			Ajax('对不起，当前分类首页不存在！');
+			Ajax('ไม่พบหน้าแรกของหมวดหมู่นี้!');
 		}
 		else
 		{
@@ -98,7 +98,7 @@ else if ( $type == 'gettype' )
 	if( $module == '' )
 	{
 		$data[] = array('type_id'=>0,'type_topid'=>0,'type_pid'=>0,'type_name'=>'对不起，请选择模块');
-		Ajax('获取成功' , 200 , $data);
+		Ajax('ดึงข้อมูลสำเร็จ' , 200 , $data);
 	}
 	else
 	{
@@ -111,7 +111,7 @@ else if ( $type == 'gettype' )
 		}
 		$data = wmsql::GetAll($wheresql);
 
-		Ajax('获取成功' , 200 , $data);
+		Ajax('ดึงข้อมูลสำเร็จ' , 200 , $data);
 	}
 }
 
@@ -123,7 +123,7 @@ else if( $type == 'list' && $step == 'init')
 {
 	if( Request('module') == '' )
 	{
-		Ajax('请选择模块!' , 300);
+		Ajax('กรุณาเลือกโมดูล!' , 300);
 	}
 	$child = Post('child');
 	$all = Post('all');
@@ -260,11 +260,11 @@ else if( $type == 'list' && $step == 'init')
 		//记录开始时间
 		$cacheData['start_time'] = time();
 		file::CreateFile(WMCACHE.'createhtml/'.$module.'_type.txt', serialize($cacheData),1);
-		Ajax('初始化成功！' , 200 );
+		Ajax('เริ่มต้นระบบสำเร็จ!' , 200 );
 	}
 	else
 	{
-		Ajax('没有需要生成的数据!' , 300);
+		Ajax('ไม่มีข้อมูลที่ต้องสร้าง!' , 300);
 	}
 }
 //生成列表操作
@@ -272,7 +272,7 @@ else if( $type == 'list' && $step == 'create')
 {
 	if( Request('module') == '' )
 	{
-		Ajax('请选择模块!' , 300);
+		Ajax('กรุณาเลือกโมดูล!' , 300);
 	}
 	else
 	{
@@ -369,7 +369,7 @@ else if( $type == 'content' && $step == 'init')
 	$pageType = Post('pagetype');
 	if( Request('module') == '' )
 	{
-		Ajax('请选择模块!' , 300);
+		Ajax('กรุณาเลือกโมดูล!' , 300);
 	}
 	$cTable = $tableSer->tableArr[$module]['table'];
 	$cidName = $tableSer->tableArr[$module]['id'];
@@ -445,11 +445,11 @@ else if( $type == 'content' && $step == 'init')
 		//记录开始时间
 		$cacheData['start_time'] = time();
 		file::CreateFile(WMCACHE.'createhtml/'.$module.'_content.txt', serialize($cacheData),1);
-		Ajax('初始化成功！' , 200 );
+		Ajax('เริ่มต้นระบบสำเร็จ!' , 200 );
 	}
 	else
 	{
-		Ajax('没有需要生成的数据!' , 300);
+		Ajax('ไม่มีข้อมูลที่ต้องสร้าง!' , 300);
 	}
 }
 //生成内容html操作
@@ -457,7 +457,7 @@ else if( $type == 'content' && $step == 'create')
 {
 	if( Request('module') == '' )
 	{
-		Ajax('请选择模块!' , 300);
+		Ajax('กรุณาเลือกโมดูล!' , 300);
 	}
 	else
 	{
@@ -541,7 +541,7 @@ else if( $type == 'tindex' && $step == 'init')
 {
 	if( Request('module') == '' )
 	{
-		Ajax('请选择模块!' , 300);
+		Ajax('กรุณาเลือกโมดูล!' , 300);
 	}
 	$child = Post('child');
 	$tTable = $tableSer->tableArr[$module.'type']['table'];
@@ -568,11 +568,11 @@ else if( $type == 'tindex' && $step == 'init')
 				'tpinyin'=>$v['type_pinyin'],
 			);
 		}
-		Ajax('初始化成功！' , 200 , $newData , count($data));
+		Ajax('เริ่มต้นระบบสำเร็จ!' , 200 , $newData , count($data));
 	}
 	else
 	{
-		Ajax('没有需要生成的数据!' , 300);
+		Ajax('ไม่มีข้อมูลที่ต้องสร้าง!' , 300);
 	}
 }
 //生成分类首页html操作
@@ -580,12 +580,12 @@ else if( $type == 'tindex' && $step == 'create')
 {
 	if( Request('module') == '' || Request('tid') == '')
 	{
-		Ajax('参数错误!' , 300);
+		Ajax('พารามิเตอร์ไม่ถูกต้อง!' , 300);
 	}
 	$htmlPath = GetKey($C,'config,seo,htmls,'.$module.','.$tid.',tindex,path4');
 	if( $htmlPath == '' )
 	{
-		Ajax('当前分类没有设置列表HTML保存路径!');
+		Ajax('หมวดหมู่นี้ยังไม่ได้ตั้งค่าพาธบันทึก HTML ของรายการ!');
 	}
 	else
 	{
@@ -601,7 +601,7 @@ else if( $type == 'tindex' && $step == 'create')
 
 		$html = $httpSer->GetUrl($domain.$url);
 		file::CreateFile(WMROOT.$htmlPath, $html , 1);
-		Ajax('分类ID：'.$tid.'的分类首页生成成功！');
+		Ajax('รหัสหมวดหมู่: '.$tid.' สร้างหน้าแรกหมวดหมู่สำเร็จ!');
 	}
 }
 
@@ -610,7 +610,7 @@ else if( $type == 'menu' && $step == 'init')
 {
 	if( Request('module') == '' )
 	{
-		Ajax('请选择模块!' , 300);
+		Ajax('กรุณาเลือกโมดูล!' , 300);
 	}
 	$child = Post('child');
 	$tTable = $tableSer->tableArr[$module.'type']['table'];
@@ -722,11 +722,11 @@ else if( $type == 'menu' && $step == 'init')
 		//记录开始时间
 		$cacheData['start_time'] = time();
 		file::CreateFile(WMCACHE.'createhtml/'.$module.'_menu.txt', serialize($cacheData),1);
-		Ajax('初始化成功！' , 200 );
+		Ajax('เริ่มต้นระบบสำเร็จ!' , 200 );
 	}
 	else
 	{
-		Ajax('没有需要生成的数据!' , 300);
+		Ajax('ไม่มีข้อมูลที่ต้องสร้าง!' , 300);
 	}
 }
 //生成目录列表html操作
@@ -734,7 +734,7 @@ else if( $type == 'menu' && $step == 'create')
 {
 	if( Request('module') == '' )
 	{
-		Ajax('请选择模块!' , 300);
+		Ajax('กรุณาเลือกโมดูล!' , 300);
 	}
 	else
 	{

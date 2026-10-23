@@ -20,24 +20,24 @@
 					<span>{作家笔名}</span>
 				</div>
 				<div class="sign u-f-ajc">
-					<span>欢迎{作家笔名}来到作家系统</span>
+					<span>ยินดีต้อนรับ{作家笔名}สู่ระบบนักเขียน</span>
 				</div>
 				<div class="menu u-f-ajc">
-					<a href="{小说收入列表}">收入明细</a>
-					<a href="{作家基本资料}">我的资料</a>
+					<a href="{小说收入列表}">รายละเอียดรายได้</a>
+					<a href="{作家基本资料}">ข้อมูลของฉัน</a>
 				</div>
 			</div>
 			<!-- Info -->
 			<div class="info">
 				<div class="title">
-					<span>公告</span>
+					<span>ประกาศ</span>
 				</div>
 				<div class="gonggao">
 					<span>{作家公告}</span>
 				</div>
 				<div class="line"></div>
 				<div class="title">
-					<span>简介</span>
+					<span>เรื่องย่อ</span>
 				</div>
 				<div class="gonggao">
 					<span>{作家简介}</span>
@@ -45,12 +45,12 @@
 				
 				<div class="line"></div>
 				<div class="title">
-					<span>小说</span>
+					<span>นิยาย</span>
 					<a href="{小说作品列表}" class="more">More</a>
 				</div>
 				<div class="gonggao">
 					{作者小说:小说作者id={作家id};数量=10;}
-					{无数据}您还没有开始写作呢！{/无数据}
+					{无数据}คุณยังไม่ได้เริ่มเขียนเลย!{/无数据}
 					<div class="u-f list">
 						<div class="cover">
 							<img src="{小说封面}" alt="{小说名字}">
@@ -58,8 +58,8 @@
 						<div class="info u-f1">
 							<h2>{小说名字}</h2>
 							<h5>{小说分类名字}</h5>
-							<p>上次写作时间 : {小说更新时间}</p>
-							<a href="/module/author/novel_draftedit.php?nid={小说id}" class="next">继续写作</a>
+							<p>เวลาเขียนครั้งล่าสุด : {小说更新时间}</p>
+							<a href="/module/author/novel_draftedit.php?nid={小说id}" class="next">เขียนต่อ</a>
 						</div>
 					</div>
 					{/作者小说}
@@ -67,13 +67,13 @@
 				
 				<div class="line"></div>
 				<div class="title">
-					<span>文章</span>
+					<span>บทความ</span>
 					<a href="{文章投稿列表}" class="more">More</a>
 				</div>
 				<div class="gonggao">
 					<ul>
 						{作者文章:文章作者id={作家id};数量=10;}
-						{无数据}您还未投稿任何文章！{/无数据}
+						{无数据}คุณยังไม่ได้ส่งบทความใดเลย!{/无数据}
 						<li><a href="/module/author/article_articleedit.php?id={文章id}">{文章标题}</a></li>
 						{/作者文章}
 					</ul>

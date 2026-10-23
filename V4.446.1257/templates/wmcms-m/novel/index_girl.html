@@ -22,31 +22,31 @@
                <a class="user" style="background-image: url({用户头像});" href="{用户中心}">{用户昵称}</a>
                {/已登录}
            		{未登录}
-               <a class="account" href="{登录}">帐户</a>
+               <a class="account" href="{登录}">บัญชี</a>
                {/未登录}
            </div>
            <ul class="menu f-cb van-hairline--bottom">
                <li>
-                   <a href="{首页}">首页</a>
+                   <a href="{首页}">หน้าแรก</a>
                </li>
            		<li>
-           		    <a href="{小说男生版}">男生</a>
+           		    <a href="{小说男生版}">ชาย</a>
            		</li>
            		<li>
-           		    <a href="{小说女生版}" class="crt">女生</a>
+           		    <a href="{小说女生版}" class="crt">หญิง</a>
            		</li>
            		<li>
-           		    <a href="{全部小说}">书库</a>
+           		    <a href="{全部小说}">คลังหนังสือ</a>
            		</li>
            		<li>
-           		    <a href="{小说排行列表}">排行</a>
+           		    <a href="{小说排行列表}">อันดับ</a>
            		</li>
            		<li>
-           		    <a href="{全部文章}">文章</a>
+           		    <a href="{全部文章}">บทความ</a>
            		</li>
            </ul>
             <section class="x-city__part hr-top">
-                <div class="x-part__title">重磅推荐</div>
+                <div class="x-part__title">แนะนำพิเศษ</div>
                 <div class="x-part__books">
                     <div class="x-part__books--cover">
                         {小说:数量=6;分类=[in-id->3,4,5,7];}
@@ -63,7 +63,7 @@
                 </div>
             </section>
             <section class="x-city__part hr-top">
-                <div class="x-part__title">大家都在看</div>
+                <div class="x-part__title">ทุกคนกำลังอ่าน</div>
                 <div class="x-part__books">
                     <div class="x-part__books--cover">
                         {小说:数量=6;分类=[in-id->3,4,5,7];排序=总点击;}
@@ -84,7 +84,7 @@
                 </div>
             </section>
             <section class="x-city__part hr-top">
-                <div class="x-part__title">最近更新</div>
+                <div class="x-part__title">อัปเดตล่าสุด</div>
                 <div class="x-part__books">
                     <div class="x-city__swiper--item">
                         {小说:数量=10;排序=最新更新;分类=[in-id->3,4,5,7];}
@@ -107,7 +107,7 @@
         </div>
         <div class="ui-line"></div>
         <footer class="index">
-            <div class="m-right"><p>{网站名}版权所有©2018-<span id="J_Copyright">2019</span></p></div>
+            <div class="m-right"><p>{网站名}ลิขสิทธิ์©2018-<span id="J_Copyright">2019</span></p></div>
         </footer>
     </div>
 <script type="text/javascript" src="{templates}/static/js/jquery.min.js"></script>

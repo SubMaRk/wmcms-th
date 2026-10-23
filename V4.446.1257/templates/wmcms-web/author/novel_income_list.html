@@ -16,37 +16,37 @@ $(document).ready(function(){
 </style>
 
 <div class="mainRight pb260 fl">
-	<div class="crumbsWrap"> <i><span>收入管理</span></i> </div>
+	<div class="crumbsWrap"> <i><span>จัดการรายได้</span></i> </div>
 	<div class="tabSwitch cf">
-	    <span {cur:type=all}class="act"{/cur}><a href="{小说收入列表}">总收入</a></span>
-	    <span {cur:type=props}class="act"{/cur}><a href="{小说收入列表:props}">道具收入</a></span>
-	    <span {cur:type=reward}class="act"{/cur}><a href="{小说收入列表:reward}">打赏收入</a></span>
-	    <span {cur:type=sub}class="act"{/cur}><a href="{小说收入列表:sub}">订阅收入</a></span>
+	    <span {cur:type=all}class="act"{/cur}><a href="{小说收入列表}">รายได้รวม</a></span>
+	    <span {cur:type=props}class="act"{/cur}><a href="{小说收入列表:props}">รายได้จากไอเท็ม</a></span>
+	    <span {cur:type=reward}class="act"{/cur}><a href="{小说收入列表:reward}">รายได้จากการให้ทิป</a></span>
+	    <span {cur:type=sub}class="act"{/cur}><a href="{小说收入列表:sub}">รายได้จากการสมัครรับ</a></span>
 	</div>
 	<div class="incomeWrap">
 		<div class="filter-box income cf">
-			<em>您当前共有 {用户金币2数量} {金币2名字}</em>
-			<a class="button" href="{提现申请}">申请提现</a>
+			<em>ขณะนี้คุณมี {用户金币2数量} {金币2名字}</em>
+			<a class="button" href="{提现申请}">ขอถอนเงิน</a>
 		</div>
 		<div class="filter-box income cf" style="display:none">
-			<em>查看方式：</em>
+			<em>รูปแบบการดู:</em>
 			<div class="whereBox">
 				<select name="nid">
-					<option value="">全部</option>
+					<option value="">ทั้งหมด</option>
 					{！--小说列表:数量=10}<option value="{小说id}">{小说名字}</option>{/小说列表--！}
 				</select>
 				<select name="year" id="year">
-					<option value="0">全部</option>
+					<option value="0">ทั้งหมด</option>
 				</select>
 				<select name="month" id="month">
-					<option value="0">全部</option>
+					<option value="0">ทั้งหมด</option>
 				</select>
 			</div>
-			<a class="button" href="javascript:" id="searchBtn">查看</a>
+			<a class="button" href="javascript:" id="searchBtn">ดู</a>
 		</div>
 
     	<div class="reserveListWrap">
-        	<h3 class="reserveTitle"><em class="icon reward"></em>收入明细</h3>
+        	<h3 class="reserveTitle"><em class="icon reward"></em>รายละเอียดรายได้</h3>
 	        <div class="detailWrap mb10">
 	            <table class="detailTable" width="100%" border="0" cellspacing="0">
 	            <colgroup>
@@ -59,17 +59,17 @@ $(document).ready(function(){
 	            </colgroup>
 	            <thead>
 	                <tr>
-	                    <th>时间</th>
-	                    <th>状态</th>
-	                    <th>作品</th>
-	                    <th>收入来源</th>
-	                    <th>收入{金币2名字}</th>
-	                    <th>备注信息</th>
+	                    <th>เวลา</th>
+	                    <th>สถานะ</th>
+	                    <th>ผลงาน</th>
+	                    <th>แหล่งรายได้</th>
+	                    <th>ได้รับ{金币2名字}</th>
+	                    <th>ข้อมูลหมายเหตุ</th>
 	                </tr>
 	            </thead>
                 <tbody>
                 	{收入列表:数量=20;排序=收入时间}
-	                {无数据}<tr><td colspan="6">暂无任何数据</td></tr>{/无数据}
+	                {无数据}<tr><td colspan="6">ยังไม่มีข้อมูลใดๆ</td></tr>{/无数据}
 	                <tr>
 	                    <td>{收入时间}</td>
 	                    <td>{收入状态}</td>
@@ -81,11 +81,11 @@ $(document).ready(function(){
 	    			{/收入列表}
 	    			<tr>
 	                    <td colspan="6">
-	                    <a href="{第一页}">首页</a> . 
-	                    <a href="{上一页}">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
-	                    	共{当前页}/{总页数}页 &nbsp;&nbsp;&nbsp;&nbsp;
-	                    <a href="{下一页}">下一页</a> . 
-	                    <a href="{最后页}">末页</a>
+	                    <a href="{第一页}">หน้าแรก</a> . 
+	                    <a href="{上一页}">ก่อนหน้า</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	                    	ทั้งหมด {当前页}/{总页数} หน้า &nbsp;&nbsp;&nbsp;&nbsp;
+	                    <a href="{下一页}">ถัดไป</a> . 
+	                    <a href="{最后页}">หน้าสุดท้าย</a>
 	                    </td>
 	    			</tr>
 				</tbody>

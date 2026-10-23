@@ -31,8 +31,8 @@
                             			<div class="global-nav">
                             				<ul>
                             					<li>
-                            						<h4 class="pull-left" style="display: inline-block;font-weight: initial;font-size: 16px">精彩评论</h4>
-                            						<h5 class="pull-left" style="display: inline-block;font-weight: initial;font-size:12px">已盖 <span style="color:#f10">{评论量}</span> 楼</h5>
+                            						<h4 class="pull-left" style="display: inline-block;font-weight: initial;font-size: 16px">ความคิดเห็นเด่น</h4>
+                            						<h5 class="pull-left" style="display: inline-block;font-weight: initial;font-size:12px">มีความเห็นแล้ว <span style="color:#f10">{评论量}</span> ชั้น</h5>
                             					</li>
                             				</ul>
                             			</div>
@@ -48,14 +48,14 @@
                             							<div class="postborder">
                             								{未登录}
                             								<div style="background:#fff;
-                            								width: 99.8%;height: 80px;font-size: 12px;box-sizing:border-box;padding:10px">您还未登录，请先 <a href="{登录}" style="color:#f20" target="_parent">登录</a> 后再发表评论。</div>
+                            								width: 99.8%;height: 80px;font-size: 12px;box-sizing:border-box;padding:10px">คุณยังไม่ได้เข้าสู่ระบบ กรุณา <a href="{登录}" style="color:#f20" target="_parent">เข้าสู่ระบบ</a> แล้วจึงแสดงความคิดเห็น</div>
                             								</div>
                             								{/未登录}
                             								{已登录}
                             								<textarea name="content"></textarea>
                             								{发表评论验证码开启}
                             								<div style="display: flex;align-items: center;margin-top:10px;">
-                            									<input type="text" name="code" style="border:1px solid #f8f8f8;border-radius: 4px; height: 30px;padding: 0 10px;" placeholder="请输入验证码">
+                            									<input type="text" name="code" style="border:1px solid #f8f8f8;border-radius: 4px; height: 30px;padding: 0 10px;" placeholder="กรุณากรอกรหัสยืนยัน">
                             									<div style="display: flex;align-items: center;margin-left: 10px;">
                             										<span>{发表评论验证码}</span>
                             									</div>
@@ -63,7 +63,7 @@
                             								{/发表评论验证码开启}
                             								{/已登录}
                             							<div style="display: block;text-align: right;margin-top:8px">
-                            								<button class="btn btn-info ajaxpost" type="submit" target-form="form-x">发 送</button>
+                            								<button class="btn btn-info ajaxpost" type="submit" target-form="form-x">ส่ง</button>
                             							</div>
                             						</div>
                             						<input type="hidden" name="mid" value="19136">
@@ -75,7 +75,7 @@
                             		<span id="nav-box">
                             			<div class="nav">
                             				<div class="nav-left">
-                            					<span style="font-size: 16px;"> 最新评论</span>
+                            					<span style="font-size: 16px;"> ความคิดเห็นล่าสุด</span>
                             				</div>
                             				<div class="claer"></div>
                             			</div>
@@ -106,13 +106,13 @@
                             							<div class="time-ago">{评论楼层} {评论时间}</div>
                             							<ul>
                             								<li>
-                            									<a onclick="javascript:location.href='{评论顶链接}';" title="顶一下" href="javascript:void(0);" class="action">
+                            									<a onclick="javascript:location.href='{评论顶链接}';" title="ดันขึ้น" href="javascript:void(0);" class="action">
                             										<span></span>
-                            										点赞<span style="font-size: 12px">（{评论顶}）</span>
+                            										ไลก์<span style="font-size: 12px">（{评论顶}）</span>
                             									</a> <em>•</em>
                             								</li>
                             								<li class="reply">
-                            									<a class="action" href="javascript:void(0);" onclick="reply(this,{$list['mid']|default=0},{$list['id']|default=0},'{$list['type']|default='novel'}');">回复</a>
+                            									<a class="action" href="javascript:void(0);" onclick="reply(this,{$list['mid']|default=0},{$list['id']|default=0},'{$list['type']|default='novel'}');">ตอบกลับ</a>
                             								</li>
                             								<div class="claer"></div>
                             							</ul>
@@ -133,7 +133,7 @@
                         </div>
                     </div>
                     <div class="x-city__part x-detail__part hr-bottom">
-                        <div class="x-part__title">推荐小说</div>
+                        <div class="x-part__title">นิยายแนะนำ</div>
                         <div class="x-part__content">
                             <div class="x-detail__part--book">
                                 {推荐小说:数量=3;排序=随机;}

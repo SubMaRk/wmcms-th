@@ -5,7 +5,7 @@
 <div class="bjui-pageContent">
 	<form name="form1" action="index.php?a=yes&c=operate.face&t=install" method="post" data-toggle="validate">
 	<fieldset>
-		<legend>表情安装使用</legend>
+		<legend>ติดตั้งและใช้อีโมจิ</legend>
 		<ul class="nav nav-tabs" role="tablist">
            <li class="active" id="tab_install"><a href="#<?php echo $type.$cFun?>replay" role="tab" data-toggle="tab">评论表情</a></li>
            <li id="tab_list"><a href="#<?php echo $type.$cFun?>editor" role="tab" data-toggle="tab">编辑器表情</a></li>
@@ -83,8 +83,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 

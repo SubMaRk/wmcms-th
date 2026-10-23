@@ -1,6 +1,6 @@
 <div class="bjui-pageContent">
 	<fieldset>
-		<legend>短信服务设置</legend>
+		<legend>ตั้งค่าบริการ SMS</legend>
        		<ul class="nav nav-tabs" role="tablist" id="<?php echo $cFun.$type;?>smsLis">
             	<li class="active"><a href="#<?php echo $cFun.$type;?>temp" role="tab" data-toggle="tab">短信模版设置</a></li>
             </ul>
@@ -13,9 +13,9 @@
             				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
             				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
             				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                            <span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
+                            <span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
             				<select data-toggle="selectpicker" id="api_name" name="api_name" data-width="100">
-                            	<option value="">全部渠道</option>
+                            	<option value="">ทุกช่องทาง</option>
                             	<?php
                             	foreach ($apiList as $k=>$v)
                             	{
@@ -24,8 +24,8 @@
                             	}
                             	?>
                             </select>
-            				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-                        	<a class="btn btn-secondary radius size-MINI" data-toggle="dialog" data-mask="true" data-title="添加短信模版" href="index.php?d=yes&c=system.set.sms.edit&t=add" data-width="650" data-height="440"><i class="fa fa-plus"></i> 添加短信模版</a> &nbsp;同类型的多个模版同时启用会随机选择一个开放的短信接口进行发送，短信配置请前往API管理。
+            				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+                        	<a class="btn btn-secondary radius size-MINI" data-toggle="dialog" data-mask="true" data-title="เพิ่มเทมเพลต SMS" href="index.php?d=yes&c=system.set.sms.edit&t=add" data-width="650" data-height="440"><i class="fa fa-plus"></i> เพิ่มเทมเพลต SMS</a> &nbsp;หากเปิดเทมเพลตประเภทเดียวกันหลายอันพร้อมกัน ระบบจะสุ่มเลือกเกตเวย์ SMS ที่เปิดใช้งานหนึ่งช่องเพื่อส่ง ตั้งค่า SMS ที่การจัดการ API
             			</form>
             		</div>
             	</div>
@@ -38,14 +38,14 @@
 						<thead>
 							<tr>
 							<th width="5%">ID</th>
-							<th width="5%">状态</th>
-							<th width="8%">短信接口</th>
-							<th width="8%">模版类型</th>
-							<th width="12%">第三方签名</th>
-							<th width="12%">第三方模版代码</th>
-							<th>替换参数</th>
-							<th width="15%">创建时间</th>
-							<th width="15%">操作</th>
+							<th width="5%">สถานะ</th>
+							<th width="8%">อินเทอร์เฟซ SMS</th>
+							<th width="8%">ประเภทเทมเพลต</th>
+							<th width="12%">ลายเซ็นบุคคลที่สาม</th>
+							<th width="12%">โค้ดเทมเพลตบุคคลที่สาม</th>
+							<th>พารามิเตอร์แทนที่</th>
+							<th width="15%">เวลาสร้าง</th>
+							<th width="15%">ดำเนินการ</th>
 							</tr>
 						</thead>
 						
@@ -68,8 +68,8 @@
 										<td>'.$v['sms_params'].'</td>
 										<td>'.date('Y-m-d H:i:s',$v['sms_time']).'</td>
 										<td style="text-align: center;">
-											<a class="btn btn-secondary radius size-MINI" data-mask="true" href="index.php?d=yes&c=system.set.sms.edit&t=edit&id='.$v['sms_id'].'"  data-toggle="dialog" data-title="修改短信模版" data-width="650" data-height="440" >编辑</a> 
-											<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax(\''.$v['sms_id'].'\')">删除</a>
+											<a class="btn btn-secondary radius size-MINI" data-mask="true" href="index.php?d=yes&c=system.set.sms.edit&t=edit&id='.$v['sms_id'].'"  data-toggle="dialog" data-title="修改เทมเพลต SMS" data-width="650" data-height="440" >แก้ไข</a> 
+											<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax(\''.$v['sms_id'].'\')">ลบ</a>
 										</td>
 									</tr>';
 								$i++;
@@ -122,11 +122,11 @@ function <?php echo $cFun;?>StatusAjax(status,id,stt)
 	switch(status)
 	{
 		case 0:
-			type = "禁用";
+			type = "ปิดใช้งาน";
 	  		break;
 	  		
 		default:
-			type = "使用";
+			type = "ใช้";
 	  		break;
 	}
 	

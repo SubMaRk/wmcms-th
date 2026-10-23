@@ -11,11 +11,11 @@
         <table id="<?php echo $cFun?>AddTable" class="table table-bordered table-hover table-striped table-top" data-toggle="tabledit" data-initnum="0" data-single-noindex="true">
             <thead>
                 <tr>
-                   <th title="充值金额"><input type="text" name="level[#index#][level_money]" data-rule="required" size="10"></th>
-                   <th title="实际付款（折扣后价格）"><input type="text" name="level[#index#][level_real]" data-rule="required" size="10"></th>
-                   <th title="赠送<?php echo $userConfig['gold2_name']?>"><input type="text" name="level[#index#][level_reward_gold2]" data-rule="required" size="10"></th>
-                   <th title="操作" data-addtool="false" width="300">
-                        <a href="javascript:<?php echo $cFun;?>DelEdit()" class="btn btn-red row-del" data-confirm-msg="确定要删除该行信息吗？">取消</a>
+                   <th title="จำนวนเงินเติม"><input type="text" name="level[#index#][level_money]" data-rule="required" size="10"></th>
+                   <th title="ยอดชำระจริง (ราคาหลังหักส่วนลด)"><input type="text" name="level[#index#][level_real]" data-rule="required" size="10"></th>
+                   <th title="แถม<?php echo $userConfig['gold2_name']?>"><input type="text" name="level[#index#][level_reward_gold2]" data-rule="required" size="10"></th>
+                   <th title="ดำเนินการ" data-addtool="false" width="300">
+                        <a href="javascript:<?php echo $cFun;?>DelEdit()" class="btn btn-red row-del" data-confirm-msg="ยืนยัน要ลบ该行信息吗？">取消</a>
                     </th>
                 </tr>
             </thead>
@@ -26,14 +26,14 @@
 	  <form name="<?php echo $cFun;?>EditForm" action="index.php?a=yes&c=finance.level&t=leveledit" data-reload="false" data-toggle="validate" method="post" data-callback="<?php echo $cFun;?>ajaxCallBack">
 	  <table class="table table-border table-bordered table-bg table-sort">
 	    <tr>
-	      <td colspan="5"><strong>充值等级设置</strong></td>
+	      <td colspan="5"><strong>ตั้งค่าระดับการเติมเงิน</strong></td>
 	    </tr>
 	    <tr>
-	      <td>编号</td>
-	      <td>充值金额</td>
-	      <td>实际付款（折扣后价格）</td>
-	      <td>赠送<?php echo $userConfig['gold2_name']?></td>
-	     <td width="300">操作</td>
+	      <td>รหัส</td>
+	      <td>จำนวนเงินที่เติม</td>
+	      <td>ยอดชำระจริง (ราคาหลังหักส่วนลด)</td>
+	      <td>แถม<?php echo $userConfig['gold2_name']?></td>
+	     <td width="300">ดำเนินการ</td>
 	    </tr>
 	    
 	    <?php 
@@ -48,7 +48,7 @@
 					<input name="level['.$v['level_id'].'][data][level_money]" value="'.$v['level_money'].'" type="text" size="10"/></td>
 			       <td><input name="level['.$v['level_id'].'][data][level_real]" value="'.$v['level_real'].'" type="text" size="10"/></td>
 			       <td><input name="level['.$v['level_id'].'][data][level_reward_gold2]" value="'.$v['level_reward_gold2'].'" type="text" size="10"/></td>
-			       <td><a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['level_id'].')">删除</a></td>
+			       <td><a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['level_id'].')">ลบ</a></td>
 			    </tr>';
 		    	$i++;
 		    }
@@ -62,8 +62,8 @@
 	  
 		<div class="bjui-pageFooter">
 		    <ul>
-		        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-		        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 提交更改</button></li>
+		        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+		        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> ส่งการเปลี่ยนแปลง</button></li>
 		    </ul>
 		</div>
 	</form>

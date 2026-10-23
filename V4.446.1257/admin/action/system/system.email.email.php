@@ -33,7 +33,7 @@ if ( $type == 'edit' || $type == "add" )
 		$where['email_id'] = $emailMod->EmailInsert($data);
 		//写入操作记录
 		SetOpLog( '新增了邮件服务' , 'system' , 'insert' , $table , $where , $data );
-		Ajax('邮件服务新增成功!');
+		Ajax('เพิ่มบริการอีเมลสำเร็จ!');
 	}
 	//如果是增加页面
 	else
@@ -42,7 +42,7 @@ if ( $type == 'edit' || $type == "add" )
 		SetOpLog( '修改邮件服务' , 'system' , 'update' , $table  , $where , $data );
 		//修改数据
 		$emailMod->EmailUpdate($data,$where);
-		Ajax('邮件服务修改成功！');
+		Ajax('แก้ไขบริการอีเมลสำเร็จ!');
 	}
 }
 //删除邮件服务
@@ -52,7 +52,7 @@ else if ( $type == 'del' )
 	$emailMod->EmailDel($where);
 	//写入操作记录
 	SetOpLog( '删除了邮件服务' , 'system' , 'delete' , $table , $where);
-	Ajax('邮件服务删除成功!');
+	Ajax('ลบบริการอีเมลสำเร็จ!');
 }
 //使用禁用邮件服务
 else if ( $type == 'status' )
@@ -71,8 +71,8 @@ else if ( $type == 'status' )
 	$emailMod->EmailUpdate($data,$where);
 	
 	//写入操作记录
-	SetOpLog( '邮件服务'.$msg , 'system' , 'update' , $table , $where);
-	Ajax('邮件服务'.$msg);
+	SetOpLog( 'บริการอีเมล'.$msg , 'system' , 'update' , $table , $where);
+	Ajax('บริการอีเมล'.$msg);
 }
 //发送测试邮件
 else if ( $type == 'test' )
@@ -87,16 +87,16 @@ else if ( $type == 'test' )
 		SetOpLog( '发送了测试邮件' , 'system' , 'update' );
 		if ( $result['code'] == '200' )
 		{
-			Ajax('邮件发送成功，请前往邮箱查看!');
+			Ajax('ส่งอีเมลสำเร็จ กรุณาไปตรวจสอบที่กล่องจดหมาย!');
 		}
 		else
 		{
-			Ajax('测试邮件发送失败!'.$result['msg'],300);
+			Ajax('ส่งอีเมลทดสอบไม่สำเร็จ!'.$result['msg'],300);
 		}
 	}
 	else
 	{
-		Ajax('对不起，邮件配置不存在!',300);
+		Ajax('ไม่พบการตั้งค่าอีเมล!',300);
 	}
 }
 ?>

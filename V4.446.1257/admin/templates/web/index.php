@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title><?php echo C('config.web.webname');?> - WMCMS 后台管理系统</title>
+<title><?php echo C('config.web.webname');?> - ระบบจัดการหลังบ้าน WMCMS</title>
 <!-- bootstrap - css -->
 <link href="<?php echo $tempPath;?>BJUI/themes/css/bootstrap.css" rel="stylesheet">
 <!-- core - css -->
@@ -209,19 +209,19 @@ if( $apiAppid == 0 || $apiApikey == '0000' || $apiApikey == '0000' )
 				<li><span class="wrap_bjui_btn_box" style="position: relative; display: inline-block;"><input type="text" placeholder="搜索菜单" id="searchMenuKey" class="doc_lookup form-control" size="10" ><a class="bjui-lookup" href="javascript:;" onClick="SerachMenu()" style="height: 22px; line-height: 22px;"><i class="fa fa-search"></i></a></span></li>
                 <li class="datetime"><div><span id="bjui-date"></span> <span id="bjui-clock"></span></div></li>
                 <!--<li><a href="#">消息 <span class="badge">4</span></a></li>-->
-                <li><a href="/" target="_blank">返回首页 </a></li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo Session('admin_name');?>，您好！ <span class="caret"></span></a>
+                <li><a href="/" target="_blank">กลับหน้าแรก </a></li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo Session('admin_name');?>, สวัสดี! <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="index.php?a=yes&c=logout" class="red">&nbsp;<span class="glyphicon glyphicon-off"></span> 注销登陆</a></li>
+                        <li><a href="index.php?a=yes&c=logout" class="red">&nbsp;<span class="glyphicon glyphicon-off"></span> ออกจากระบบ</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#" class="dropdown-toggle theme blue" data-toggle="dropdown" title="切换皮肤"><i class="fa fa-tree"></i></a>
                     <ul class="dropdown-menu" role="menu" id="bjui-themes">
-                        <li><a href="javascript:;" class="theme_default" data-toggle="theme" data-theme="default">&nbsp;<i class="fa fa-tree"></i> 黑白分明&nbsp;&nbsp;</a></li>
-                        <li><a href="javascript:;" class="theme_orange" data-toggle="theme" data-theme="orange">&nbsp;<i class="fa fa-tree"></i> 橘子红了</a></li>
-                        <li><a href="javascript:;" class="theme_purple" data-toggle="theme" data-theme="purple">&nbsp;<i class="fa fa-tree"></i> 紫罗兰</a></li>
-                        <li class="active"><a href="javascript:;" class="theme_blue" data-toggle="theme" data-theme="blue">&nbsp;<i class="fa fa-tree"></i> 天空蓝</a></li>
-                        <li><a href="javascript:;" class="theme_green" data-toggle="theme" data-theme="green">&nbsp;<i class="fa fa-tree"></i> 绿草如茵</a></li>
+                        <li><a href="javascript:;" class="theme_default" data-toggle="theme" data-theme="default">&nbsp;<i class="fa fa-tree"></i> ขาวดำชัดเจน&nbsp;&nbsp;</a></li>
+                        <li><a href="javascript:;" class="theme_orange" data-toggle="theme" data-theme="orange">&nbsp;<i class="fa fa-tree"></i> ส้มแดง</a></li>
+                        <li><a href="javascript:;" class="theme_purple" data-toggle="theme" data-theme="purple">&nbsp;<i class="fa fa-tree"></i> ไวโอเล็ต</a></li>
+                        <li class="active"><a href="javascript:;" class="theme_blue" data-toggle="theme" data-theme="blue">&nbsp;<i class="fa fa-tree"></i> ฟ้าใส</a></li>
+                        <li><a href="javascript:;" class="theme_green" data-toggle="theme" data-theme="green">&nbsp;<i class="fa fa-tree"></i> หญ้าเขียวชอุ่ม</a></li>
                     </ul>
                 </li>
             </ul>
@@ -246,9 +246,9 @@ if( $apiAppid == 0 || $apiApikey == '0000' || $apiApikey == '0000' )
             <div id="bjui-hnav-navbar-box">
                 <ul id="bjui-hnav-navbar">
                 
-                	<li class="active"><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-home"></i> 管理首页</a>
+                	<li class="active"><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-home"></i> จัดการหน้าแรก</a>
                         <div class="items" data-noinit="true">
-                            <ul class="menu-items" data-faicon="star-o" data-tit="快捷菜单">
+                            <ul class="menu-items" data-faicon="star-o" data-tit="เมนูลัด">
                             <?php
                             if ( $quickMenuArr )
                             {
@@ -259,7 +259,7 @@ if( $apiAppid == 0 || $apiApikey == '0000' || $apiApikey == '0000' )
 	                            	{
 	                            		$quickIco = 'fa-caret-right';
 	                            	}
-	                            	echo '<li><a style="width:20%;float:right" title="取消快捷菜单" class="fa fa-star" onClick="QuickMenu(this,'.$v['menu_id'].')" href="javascript:;"></a> <a href="index.php?c='.$v['menu_file'].'" data-options="{id:\'quick-'.$v['menu_id'].'\', faicon:\''.$quickIco.'\'}" data-title="快捷菜单">'.$v['menu_title'].'</a></li>';
+	                            	echo '<li><a style="width:20%;float:right" title="ยกเลิกเมนูลัด" class="fa fa-star" onClick="QuickMenu(this,'.$v['menu_id'].')" href="javascript:;"></a> <a href="index.php?c='.$v['menu_file'].'" data-options="{id:\'quick-'.$v['menu_id'].'\', faicon:\''.$quickIco.'\'}" data-title="เมนูลัด">'.$v['menu_title'].'</a></li>';
 	                            }
                             }
                             else
@@ -304,12 +304,12 @@ if( $apiAppid == 0 || $apiApikey == '0000' || $apiApikey == '0000' )
 		                				//如果快捷菜单存在
 		                				if ( in_array($v2['menu_id'], $newQuickArr))
 		                				{
-		                					$title = '取消';
+		                					$title = 'ยกเลิก';
 		                					$className='fa fa-star';
 		                				}
 		                				else
 		                				{
-		                					$title = '添加';
+		                					$title = 'เพิ่ม';
 		                					$className='fa fa-star-o';
 		                				}
 		                				echo '<li data-id="'.$v2['menu_id'].'" data-QuickMenu=true data-QuickMenuClass="'.$className.'" data-QuickMenuTitle="'.$title.'" data-pid="'.$v2['menu_pid'].'" data-url="index.php?c='.$v2['menu_file'].$t.'" data-tabid="'.$v['menu_name'].'-'.$v1['menu_name'].'-'.$v2['menu_name'].'" data-faicon="caret-right">'.$v2['menu_title'].'</li>';
@@ -326,15 +326,15 @@ if( $apiAppid == 0 || $apiApikey == '0000' || $apiApikey == '0000' )
 	                				//如果快捷菜单存在
 	                				if ( in_array($v1['menu_id'], $newQuickArr))
 	                				{
-	                					$title = '取消';
+	                					$title = 'ยกเลิก';
 	                					$className='fa fa-star';
 	                				}
 	                				else
 	                				{
-	                					$title = '添加';
+	                					$title = 'เพิ่ม';
 	                					$className='fa fa-star-o';
 	                				}
-                					echo '<li><a style="width:20%;float:right" title="'.$title.'快捷菜单" class="'.$className.'" onClick="QuickMenu(this,'.$v1['menu_id'].')" href="javascript:;"></a> <a href="index.php?c='.$v1['menu_file'].$t.'" data-options="{id:\''.$v['menu_name'].'-'.$v1['menu_name'].'\', faicon:\''.$v1['menu_ico'].'\'}">'.$v1['menu_title'].'</a></li>';
+                					echo '<li><a style="width:20%;float:right" title="'.$title.'เมนูลัด" class="'.$className.'" onClick="QuickMenu(this,'.$v1['menu_id'].')" href="javascript:;"></a> <a href="index.php?c='.$v1['menu_file'].$t.'" data-options="{id:\''.$v['menu_name'].'-'.$v1['menu_name'].'\', faicon:\''.$v1['menu_ico'].'\'}">'.$v1['menu_title'].'</a></li>';
                 				}
                 			}
                 			echo '</ul>';
@@ -343,7 +343,7 @@ if( $apiAppid == 0 || $apiApikey == '0000' || $apiApikey == '0000' )
                 		echo '</div></li>';
                 	}
                 	?>
-                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-question-circle"></i> 帮助中心 <span class="caret"></span></a>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-question-circle"></i> ศูนย์ช่วยเหลือ <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a target="_blank" href="<?php echo WMURL?>">程序官网</a></li>
                             <li class="divider"></li>
@@ -363,7 +363,7 @@ if( $apiAppid == 0 || $apiApikey == '0000' || $apiApikey == '0000' )
                 <div class="collapse"></div>
             </div>
             <div id="bjui-sidebar">
-                <div class="toggleCollapse"><h2><i class="fa fa-bars"></i> 导航栏 <i class="fa fa-bars"></i></h2><a href="javascript:;" class="lock"><i class="fa fa-lock"></i></a></div>
+                <div class="toggleCollapse"><h2><i class="fa fa-bars"></i> แถบนำทาง <i class="fa fa-bars"></i></h2><a href="javascript:;" class="lock"><i class="fa fa-lock"></i></a></div>
                 <div class="panel-group panel-main" data-toggle="accordion" id="bjui-accordionmenu" data-heightbox="#bjui-sidebar" data-offsety="26">
                 </div>
             </div>

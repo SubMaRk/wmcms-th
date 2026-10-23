@@ -1,7 +1,7 @@
 <div class="bjui-pageContent">
 	<form action="index.php?a=yes&c=system.set.water&t=config" method="post" data-toggle="validate">
 	<fieldset>
-		<legend>水印上传设置</legend>
+		<legend>ตั้งค่าอัปโหลดลายน้ำ</legend>
     	<table class="table table-border table-bordered table-bg table-sort">
 	      	<?php
             foreach ($configArr as $key=>$val)
@@ -146,7 +146,7 @@
            ?>
            <tr>
         		<td width="20%">
-        			<b>测试水印，需保存后生效</b><br/>
+        			<b>ทดสอบลายน้ำ ต้องบันทึกก่อนจึงมีผล</b><br/>
 					<span class="STYLE2"><a class="btn btn-secondary radius" onclick="<?php echo $cFun;?>WaterTest()">立即生成</a></span>
 				</td>
                 <td><img id="<?php echo $cFun;?>WaterImg" style="display:none" src='' alt=" "></td>
@@ -159,8 +159,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 

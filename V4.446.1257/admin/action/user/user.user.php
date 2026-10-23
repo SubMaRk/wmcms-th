@@ -34,11 +34,11 @@ if ( $type == 'edit' || $type == "add"  )
 
 	if ( $data['user_name'] == '' || $data['user_nickname'] == '' || $data['user_email'] == '' )
 	{
-		Ajax('对不起，用户账号、昵称和邮箱地址必须填写！',300);
+		Ajax('ต้องกรอกบัญชีผู้ใช้ ชื่อเล่น และอีเมล!',300);
 	}
 	else if ( str::CheckEmail($data['user_email']) == false )
 	{
-		Ajax('对不起，邮箱格式错误！',300);
+		Ajax('รูปแบบอีเมลไม่ถูกต้อง!',300);
 	}
 	if ( $data['user_psw'] != '' )
 	{
@@ -53,7 +53,7 @@ if ( $type == 'edit' || $type == "add"  )
 	$wheresql['where']['user_name'] = $data['user_name'];
 	if ( wmsql::GetCount($wheresql) > 0 )
 	{
-		Ajax('对不起，该用户名已经注册了！',300);
+		Ajax('ชื่อผู้ใช้นี้ถูกใช้ไปแล้ว!',300);
 	}
 	
 	//用户邮箱检查
@@ -63,7 +63,7 @@ if ( $type == 'edit' || $type == "add"  )
 	$wheresql['where']['user_email'] = $data['user_email'];
 	if ( wmsql::GetCount($wheresql) > 0 )
 	{
-		Ajax('对不起，该邮箱已经注册了！',300);
+		Ajax('อีเมลนี้ถูกใช้สมัครไปแล้ว!',300);
 	}
 	
 	//用户昵称检查
@@ -73,7 +73,7 @@ if ( $type == 'edit' || $type == "add"  )
 	$wheresql['where']['user_nickname'] = $data['user_nickname'];
 	if ( wmsql::GetCount($wheresql) > 0 )
 	{
-		Ajax('对不起，用户昵称已经被注册了！',300);
+		Ajax('ชื่อเล่นผู้ใช้นี้ถูกใช้ไปแล้ว!',300);
 	}
 	
 	
@@ -82,7 +82,7 @@ if ( $type == 'edit' || $type == "add"  )
 	{
 		if ( $data['user_psw'] == '' )
 		{
-			Ajax('对不起，用户密码不能为空！',300);
+			Ajax('รหัสผ่านผู้ใช้ห้ามว่าง!',300);
 		}
 		//插入作者信息
 		$where['user_id'] = wmsql::Insert($table, $data);
@@ -123,7 +123,7 @@ else if ( $type == 'del')
 	wmsql::Delete('@user_apilogin' , array('api_uid'=>GetDelId()));
 	//写入操作记录
 	SetOpLog( '删除了用户' , 'user' , 'delete' , $table , $where);
-	Ajax('用户删除成功!');
+	Ajax('ลบผู้ใช้สำเร็จ!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -143,7 +143,7 @@ else if ( $type == 'status' )
 	SetOpLog( $msg.'了用户' , 'user' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('用户'.$msg.'成功!');
+	Ajax('ผู้ใช้'.$msg.'สำเร็จ!');
 }
 //用户金币奖惩操作
 else if ( $type == 'reward' )
@@ -157,11 +157,11 @@ else if ( $type == 'reward' )
 
 	if( !str::Number($id) )
 	{
-		Ajax('用id错误!',300);
+		Ajax('id ผู้ใช้ไม่ถูกต้อง!',300);
 	}
 	else if( $gold1 == '0' && $gold2 == '0' && $money == '0')
 	{
-		Ajax('奖惩金币不能为空!',300);
+		Ajax('จำนวนเหรียญรางวัลและการลงโทษห้ามว่าง!',300);
 	}
 	else
 	{
@@ -173,7 +173,7 @@ else if ( $type == 'reward' )
 		//如果用户不存在
 		if( $count < 1 )
 		{
-			Ajax('用信息不存在!',300);
+			Ajax('ไม่พบข้อมูลผู้ใช้!',300);
 		}
 		else
 		{
@@ -211,7 +211,7 @@ else if ( $type == 'reward' )
 			$msg .= '<br/>'.$operator.$gold2.$userConfig['gold2_name'].'!';
 			$msgMod->Insert($id , $msg);
 			
-			Ajax($remark.'成功!');
+			Ajax($remark.'สำเร็จ!');
 		}
 	}
 }

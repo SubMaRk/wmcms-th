@@ -531,7 +531,7 @@ class img {
 				default:die($formatMsg);
 			}
 		}else{
-			die("需要加水印的图片不存在！");
+			die("ไม่พบรูปภาพที่ต้องใส่ลายน้ำ!");
 		}
 
 		//图片水印
@@ -612,7 +612,7 @@ class img {
 				$G = hexdec(substr($textColor,3,2));
 				$B = hexdec(substr($textColor,5));
 			}else{
-				die("水印文字颜色格式不正确！");
+				die("รูปแบบสีของข้อความลายน้ำไม่ถูกต้อง!");
 			}
 
 			ImageTTFText($ground_im,$textFont,0, $posX, $posY,imagecolorallocate($ground_im, $R, $G, $B), $fontPath,$waterText);

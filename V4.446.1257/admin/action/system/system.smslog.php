@@ -19,13 +19,13 @@ if ( $type == 'del' )
 	$logMod->Del($where);
 	//写入操作记录
 	SetOpLog( '删除了短信发送记录' , 'system' , 'delete' , $table , $where);
-	Ajax('短信发送记录删除成功!');
+	Ajax('ลบบันทึกการส่ง SMS สำเร็จ!');
 }
 else if( $type == 'clear' )
 {
 	wmsql::Exec('TRUNCATE TABLE `@'.$table.'`');
 	//写入操作记录
 	SetOpLog( '清空了短信发送记录' , 'system' , 'delete' , $table , $where);
-	Ajax('短信发送记录清空成功!');
+	Ajax('ล้างข้อมูลบันทึกการส่ง SMS สำเร็จ!');
 }
 ?>

@@ -4,11 +4,11 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>网站运行时间统计</h3>
+                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>สถิติเวลาทำงานเว็บไซต์</h3>
                     </div>
                     <div class="panel-body" style="font-size: 18px">
-                    	网站创建于：<?php echo $startTime;?>
-                    	距离今日 共稳定运行<span style="color: red;font-size: 18px"><?php echo $runTime;?></span> 天
+                    	สร้างเว็บไซต์เมื่อ:<?php echo $startTime;?>
+                    	距离今日 共稳定运行                      距离今日 共稳定运行<span style="color: red;font-size: 18px"><?php echo $runTime;?></span> วัน
 					</div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>数据统计图</h3>
+                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>กราฟสถิติข้อมูล</h3>
                     </div>
                     <div class="panel-body">
 					    <div id="<?php echo $cFun;?>canvas"></div>
@@ -75,6 +75,6 @@ var chart = new AChart({
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ปิด</button></li>
     </ul>
 </div>

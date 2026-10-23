@@ -104,7 +104,7 @@ class article
 		{
 			$data[0] = array(
 				'type_name'=>'全部分类',
-				'type_cname'=>'全部',
+				'type_cname'=>'ทั้งหมด',
 				'type_id'=>'0',
 				'type_pid'=>'0',
 				'type_topid'=>'0',
@@ -167,7 +167,7 @@ class article
 			'加粗' =>'article_strong',
 
 			'是' =>'1',
-			'否' =>'0',
+			'ไม่' =>'0',
 		);
 
 		return tpl::GetWhere($where,$arr);

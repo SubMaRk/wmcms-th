@@ -12,9 +12,9 @@ thead th {
 <div class="bjui-pageHeader">
 	<div class="row cl pt-10 pl-10">
 		<div class="list-tool pl-15">
-            <span >快捷操作：</span>
-			<a href="index.php?a=yes&c=operate.ad.type&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $type.$cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
-			<a href="index.php?a=yes&c=operate.ad.type&t=clear" data-toggle="doajax" data-confirm-msg="此操作不可撤回确定要清空吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> 清空记录</a>
+            <span >การดำเนินการด่วน:</span>
+			<a href="index.php?a=yes&c=operate.ad.type&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $type.$cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
+			<a href="index.php?a=yes&c=operate.ad.type&t=clear" data-toggle="doajax" data-confirm-msg="此ดำเนินการ不可撤回ยืนยัน要清空吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> ล้างบันทึก</a>
 		</div>
 		<div class="list-tool">
 			<form id="pagerForm" name="<?php echo $cFun.$type;?>Form" data-toggle="ajaxsearch" data-loadingmask="true" action="<?php echo $url;?>" method="post">
@@ -22,11 +22,11 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                <span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
+                <span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
                 
-                <input type="text" placeholder="请输入关键字" value="<?php echo $name;?>" name="name" size="15">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $type.$cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+                <input type="text" placeholder="请输入关键คำ" value="<?php echo $name;?>" name="name" size="15">
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+				<a id="<?php echo $type.$cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
 			</form>
 		</div>
 	</div>
@@ -38,9 +38,9 @@ thead th {
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="5%" data-order-field="type_id">ID</th>
-				<th width="20%">分类名</th>
-				<th>分类描述</th>
-	            <th width="15%">操作</th>
+				<th width="20%">ชื่อหมวดหมู่</th>
+				<th>คำอธิบายหมวดหมู่</th>
+	            <th width="15%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody id="<?php echo $type.$cFun?>List">
@@ -57,8 +57,8 @@ thead th {
 							<td style="text-align: center;">'.$v['type_name'].'</td>
 							<td style="text-align: center;">'.$v['type_info'].'</td>
 							<td style="text-align: center;" data-noedit="true">
-				            	<a class="btn btn-secondary radius size-MINI" data-toggle="dialog" data-mask="true" data-width="480" data-height="220" data-title="编辑广告分类" href="index.php?d=yes&c=operate.ad.type.edit&t=edit&id='.$v['type_id'].'">编辑</a> 
-								<a class="btn btn-danger radius" onclick="'.$type.$cFun.'delAjax('.$v['type_id'].')">删除</a>
+				            	<a class="btn btn-secondary radius size-MINI" data-toggle="dialog" data-mask="true" data-width="480" data-height="220" data-title="บรรณาธิการโฆษณา分类" href="index.php?d=yes&c=operate.ad.type.edit&t=edit&id='.$v['type_id'].'">แก้ไข</a> 
+								<a class="btn btn-danger radius" onclick="'.$type.$cFun.'delAjax('.$v['type_id'].')">ลบ</a>
 				            </td>
 						</tr>';
 					$i++;
@@ -75,7 +75,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -84,7 +84,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>

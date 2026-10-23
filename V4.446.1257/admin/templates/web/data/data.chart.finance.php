@@ -11,19 +11,19 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>基本财务数据统计</h3>
+                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>สถิติข้อมูลการเงินพื้นฐาน</h3>
                     </div>
                     <div class="panel-body" style="font-size: 18px">
                     	 <table class="table table-border table-bordered table-bg table-sort <?php echo $cFun?>Table">
 					     <tr>
-					        <td width="50" class="titleTd">日期</td>
-					        <td width="150" class="titleTd">订单总金额</td>
-					        <td width="150" class="titleTd">充值总金额</td>
-					        <td width="150" class="titleTd">提现总金额</td>
-					      	<td width="150" class="titleTd">盈利小计</td>
+					        <td width="50" class="titleTd">วันที่</td>
+					        <td width="150" class="titleTd">ยอดรวมคำสั่งซื้อ</td>
+					        <td width="150" class="titleTd">ยอดเติมเงินรวม</td>
+					        <td width="150" class="titleTd">ยอดถอนรวม</td>
+					      	<td width="150" class="titleTd">กำไรย่อย</td>
 					      </tr>
 					     <tr style="height:50px">
-					        <td class="titleTd">今日</td>
+					        <td class="titleTd">วันนี้</td>
 					        <td><?php echo $data['today']['money']?><br/>
 					        	<?php
 					        	if($data['today']['money']-$data['yesterday']['money']>0)
@@ -90,14 +90,14 @@
 					        </td>
 					      </tr>
 					     <tr style="height:40px">
-					        <td class="titleTd">昨日</td>
+					        <td class="titleTd">เมื่อวาน</td>
 					        <td><?php echo $data['yesterday']['money']?></td>
 					        <td><?php echo $data['yesterday']['charge']?></td>
 					        <td><?php echo $data['yesterday']['cash']?></td>
 					      	<td><?php echo $data['yesterday']['total']?></td>
 					      </tr>
 					     <tr style="height:40px;">
-					        <td class="titleTd">全部</td>
+					        <td class="titleTd">ทั้งหมด</td>
 					        <td><?php echo $data['all']['money']?></td>
 					        <td><?php echo $data['all']['charge']?></td>
 					        <td><?php echo $data['all']['cash']?></td>
@@ -115,7 +115,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>实时充值</h3>
+                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>เติมเงินแบบเรียลไทม์</h3>
                     </div>
                     <div class="panel-body">
 					    <div id="<?php echo $cFun;?>timecanvas"></div>
@@ -131,7 +131,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>累积充值渠道统计</h3>
+                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>สถิติช่องทางเติมเงินสะสม</h3>
                     </div>
                     <div class="panel-body">
 					    <div id="<?php echo $cFun;?>allTypecanvas"></div>
@@ -144,7 +144,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>今日充值渠道排行</h3>
+                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>อันดับช่องทางเติมเงินวันนี้</h3>
                     </div>
                     <div class="panel-body">
 					    <div id="<?php echo $cFun;?>todayTypecanvas"></div>
@@ -165,11 +165,11 @@ var chart = new AChart({
     }, 
     series: [
         {
-            name:'今日',
+            name:'วันนี้',
             data:[<?php foreach ($data['todayTime'] as $v){ echo "{$v},";}?>]
         },
         {
-            name:'昨日',
+            name:'เมื่อวาน',
             data:[<?php foreach ($data['yesterdayTime'] as $v){ echo "{$v},";}?>]
         }
     ]
@@ -189,7 +189,7 @@ var chart = new AChart({
       yAxis : {position : 'bottom',min : 0},
       seriesOptions : {columnCfg : {}},
       series: [{
-              name:'今日',
+              name:'วันนี้',
               data:[<?php if(!empty($data['todayTypeMoney'])){foreach ($data['todayTypeMoney'] as $v){ echo "{$v},";}}?>]
       }]
     });
@@ -234,6 +234,6 @@ allTypechart.render();
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ปิด</button></li>
     </ul>
 </div>

@@ -19,7 +19,7 @@ if ( $type == 'edit' || $type == "add" )
 	{
 		if( $v == '' )
 		{
-			Ajax('对不起，所有项都不能为空！' , 300);
+			Ajax('ทุกช่องห้ามว่าง!' , 300);
 		}
 	}
 	
@@ -52,7 +52,7 @@ else if ( $type == 'del' )
 	$smsMod->Del($where);
 	//写入操作记录
 	SetOpLog( '删除了短信模版' , 'system' , 'delete' , $table , $where);
-	Ajax('短信模版删除成功!');
+	Ajax('ลบเทมเพลต SMS สำเร็จ!');
 }
 //使用禁用短信模版
 else if ( $type == 'status' )
@@ -71,7 +71,7 @@ else if ( $type == 'status' )
 	$smsMod->Update($data,$where);
 	
 	//写入操作记录
-	SetOpLog( '短信模版'.$msg , 'system' , 'update' , $table , $where);
-	Ajax('短信模版'.$msg);
+	SetOpLog( 'เทมเพลต SMS'.$msg , 'system' , 'update' , $table , $where);
+	Ajax('เทมเพลต SMS'.$msg);
 }
 ?>

@@ -1,11 +1,11 @@
 <div class="bjui-pageContent">
 	<form name="form1" action="index.php?a=yes&c=system.set.delbom&t=delbom" method="post" data-reload="false" data-toggle="validate">
 	<fieldset>
-		<legend>去除文件BOM</legend>
+		<legend>ลบ BOM ของไฟล์</legend>
     	<table class="table table-border table-bordered table-bg table-sort">
 	      	<tr>
-        		<td width="30%"><b>选择文件夹</b><br />
-				<span class="STYLE2">需要删除BOM的文件夹(如果模版出现头部空出一行可使用)</span></td>
+        		<td width="30%"><b>เลือกโฟลเดอร์</b><br />
+				<span class="STYLE2">โฟลเดอร์ที่ต้องลบ BOM(ใช้ได้หากเทมเพลตมีบรรทัดว่างด้านบน)</span></td>
                 <td>
                 	<select data-toggle="selectpicker" name="path">
 	                	<?php
@@ -20,7 +20,7 @@
             </tr>
 	      	<tr>
                 <td colspan="2">
-               		<button type="submit" class="btn-secondary">确定删除</button>
+               		<button type="submit" class="btn-secondary">ยืนยันการลบ</button>
                 </td>
             </tr>
 		</table>

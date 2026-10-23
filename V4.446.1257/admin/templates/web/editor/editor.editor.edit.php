@@ -8,7 +8,7 @@
 	<form action="index.php?a=yes&c=editor.editor&t=<?php echo $type;?>" name="<?php echo $cFun.$type;?>Form" class="form form-horizontal" data-reload="false" data-toggle="ajaxform" method="post" data-callback="<?php echo $cFun.$type;?>">
     	<input type="hidden" name="editor_id" value="<?php echo $id;?>"/>
 	    <div class="row cl">
-			<label class="form-label col-md-4">状态：</label>
+			<label class="form-label col-md-4">สถานะ:</label>
 	    	<div class="formControls col-md-8">
 	        	<select data-toggle="selectpicker" name="data[editor_status]">
 		      	    <?php
@@ -22,53 +22,53 @@
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">绑定用户ID：</label>
+			<label class="form-label col-md-4">ID ผู้ใช้ที่ผูก:</label>
 	    	<div class="formControls col-md-8">
-	        	<input type="text" class="form-control" placeholder="输入绑定的用户ID" name="data[editor_uid]" size="24" value="<?php echo C('editor_uid',null,'data');?>">
+	        	<input type="text" class="form-control" placeholder="输入绑定的ผู้ใช้ID" name="data[editor_uid]" size="24" value="<?php echo C('editor_uid',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">编辑名字：</label>
+			<label class="form-label col-md-4">ชื่อบรรณาธิการ:</label>
 	    	<div class="formControls col-md-8">
-	        	<input type="text" class="form-control" placeholder="编辑名字" name="data[editor_name]" size="24" value="<?php echo C('editor_name',null,'data');?>">
+	        	<input type="text" class="form-control" placeholder="ชื่อบรรณาธิการ" name="data[editor_name]" size="24" value="<?php echo C('editor_name',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">编辑真实姓名：</label>
+			<label class="form-label col-md-4">แก้ไขชื่อจริง:</label>
 	    	<div class="formControls col-md-8">
-	        	<input type="text" class="form-control" placeholder="编辑的真实姓名" name="data[editor_realname]" size="24" value="<?php echo C('editor_realname',null,'data');?>">
+	        	<input type="text" class="form-control" placeholder="บรรณาธิการ的真实ชื่อ-นามสกุล" name="data[editor_realname]" size="24" value="<?php echo C('editor_realname',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">QQ号：</label>
+			<label class="form-label col-md-4">หมายเลข QQ：</label>
 	    	<div class="formControls col-md-8">
-	        	<input type="text" class="form-control" placeholder="编辑的QQ号" name="data[editor_qq]" size="24" value="<?php echo C('editor_qq',null,'data');?>">
+	        	<input type="text" class="form-control" placeholder="บรรณาธิการ的หมายเลข QQ" name="data[editor_qq]" size="24" value="<?php echo C('editor_qq',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">微信号：</label>
+			<label class="form-label col-md-4">ID WeChat:</label>
 	    	<div class="formControls col-md-8">
-	        	<input type="text" class="form-control" placeholder="编辑的微信号" name="data[editor_weixin]" size="24" value="<?php echo C('editor_weixin',null,'data');?>">
+	        	<input type="text" class="form-control" placeholder="บรรณาธิการ的ID WeChat" name="data[editor_weixin]" size="24" value="<?php echo C('editor_weixin',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">手机号：</label>
+			<label class="form-label col-md-4">หมายเลขโทรศัพท์:</label>
 	    	<div class="formControls col-md-8">
-	        	<input type="text" class="form-control" placeholder="编辑的手机号" name="data[editor_tel]" size="24" value="<?php echo C('editor_tel',null,'data');?>">
+	        	<input type="text" class="form-control" placeholder="บรรณาธิการ的หมายเลขโทรศัพท์" name="data[editor_tel]" size="24" value="<?php echo C('editor_tel',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">个人描述：</label>
+			<label class="form-label col-md-4">คำอธิบายส่วนตัว：</label>
 	    	<div class="formControls col-md-8">
-	    	    <textarea class="form-control" 	cols="24" rows="5" placeholder="编辑的个人描述" name="data[editor_desc]"><?php echo C('editor_desc',null,'data');?></textarea>
+	    	    <textarea class="form-control" 	cols="24" rows="5" placeholder="บรรณาธิการ的รายการ人คำอธิบาย" name="data[editor_desc]"><?php echo C('editor_desc',null,'data');?></textarea>
 	    	</div>
 	    </div>
 	</div>
 	</form>
 	<div class="bjui-pageFooter">
 	    <ul>
-	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 保存</button></li>
+	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> บันทึก</button></li>
 	    </ul>
 	</div>
 </div>

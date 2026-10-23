@@ -12,9 +12,9 @@ thead th {
 <div class="bjui-pageHeader">
 	<div class="row cl pt-10 pl-10">
 		<div class="list-tool pl-15">
-            <span >快捷操作：</span>
-			<a href="index.php?a=yes&c=novel.fans&t=delreward" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
-			<a href="index.php?a=yes&c=novel.fans&t=clearreward" data-toggle="doajax" data-confirm-msg="确定清空记录要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> 清空记录</a>
+            <span >การดำเนินการด่วน:</span>
+			<a href="index.php?a=yes&c=novel.fans&t=delreward" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
+			<a href="index.php?a=yes&c=novel.fans&t=clearreward" data-toggle="doajax" data-confirm-msg="ยืนยันล้างบันทึก要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> ล้างบันทึก</a>
 		</div>
 		<div class="list-tool">
 			<form id="pagerForm" name="<?php echo $cFun;?>Form" data-toggle="ajaxsearch" data-loadingmask="true" action="<?php echo $url;?>" method="post">
@@ -22,10 +22,10 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-				<span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
-                <input type="text" value="<?php echo $uid;?>" placeholder="用户ID" name="uid" size="15">
-                <input type="text" value="<?php echo $cid;?>" placeholder="内容ID" name="cid" size="15">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
+				<span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
+                <input type="text" value="<?php echo $uid;?>" placeholder="ผู้ใช้ID" name="uid" size="15">
+                <input type="text" value="<?php echo $cid;?>" placeholder="ID เนื้อหา" name="cid" size="15">
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
              </form>
 		</div>
 	</div>
@@ -37,12 +37,12 @@ thead th {
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="7%" data-order-field="log_id">ID</th>
-				<th>小说名字</th>
-				<th width="15%" data-order-field="log_user_id">打赏用户</th>
+				<th>ชื่อนิยาย</th>
+				<th width="15%" data-order-field="log_user_id">ผู้ใช้ที่ให้รางวัล</th>
 				<th width="10%" data-order-field="log_gold1"><?php echo $config['gold1_name']?></th>
 	            <th width="10%" data-order-field="log_gold2"><?php echo $config['gold2_name']?></th>
-	            <th width="20%">备注信息</th>
-	            <th width="15%" data-order-field="log_time">打赏时间</th>
+	            <th width="20%">ข้อมูลหมายเหตุ</th>
+	            <th width="15%" data-order-field="log_time">เวลาให้รางวัล</th>
 	            </tr>
 			</thead>
 			<tbody id="<?php echo $cFun?>List">
@@ -77,7 +77,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -86,7 +86,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>

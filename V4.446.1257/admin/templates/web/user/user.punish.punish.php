@@ -37,8 +37,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close btn btn-danger"><i class="fa fa-times"></i> 关闭</button></li>
-        <li><button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> 确定</button></li>
+        <li><button type="button" class="btn-close btn btn-danger"><i class="fa fa-times"></i> ปิด</button></li>
+        <li><button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> ยืนยัน</button></li>
     </ul>
 </div>
 

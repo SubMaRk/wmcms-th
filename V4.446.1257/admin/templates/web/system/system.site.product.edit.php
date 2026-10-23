@@ -8,7 +8,7 @@
 	<form action="index.php?a=yes&c=system.site.product&t=<?php echo $type;?>" name="<?php echo $cFun.$type;?>Form" class="form form-horizontal" data-reload="false" data-toggle="ajaxform" method="post" data-callback="<?php echo $cFun.$type;?>">
     	<input type="hidden" name="product_id" value="<?php echo $id;?>"/>
 	    <div class="row cl">
-			<label class="form-label col-md-4">是否可用：</label>
+			<label class="form-label col-md-4">ใช้งานได้หรือไม่:</label>
 			<div class="formControls col-md-8">
 		      	<select data-toggle="selectpicker" name="data[product_status]">
 		        <option value="1" <?php if(C('product_status',null,'data')=='1'){ echo 'selected=""';}?>>正常</option>
@@ -17,48 +17,48 @@
 			</div>
 		</div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">站点名字：</label>
+			<label class="form-label col-md-4">ชื่อเว็บไซต์:</label>
 	    	<div class="formControls col-md-8">
-	        	<input type="text" class="form-control" placeholder="站点的名字" name="data[product_title]" size="24" value="<?php echo C('product_title',null,'data');?>">
+	        	<input type="text" class="form-control" placeholder="站点的名คำ" name="data[product_title]" size="24" value="<?php echo C('product_title',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">站点域名：</label>
+			<label class="form-label col-md-4">โดเมนเว็บไซต์:</label>
 	    	<div class="formControls col-md-8">
 	    		<input type="text" class="form-control" placeholder="网站的域名" name="data[product_domain]" size="24" value="<?php echo C('product_domain',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">后台文件夹：</label>
+			<label class="form-label col-md-4">โฟลเดอร์หลังบ้าน:</label>
 	    	<div class="formControls col-md-8">
-	    		<input type="text" class="form-control" placeholder="后台管理的文件夹名字" name="data[product_admin]" size="24" value="<?php echo C('product_admin',null,'data');?>">
+	    		<input type="text" class="form-control" placeholder="后台管理的文件夹名คำ" name="data[product_admin]" size="24" value="<?php echo C('product_admin',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">登录账号：</label>
+			<label class="form-label col-md-4">บัญชีเข้าสู่ระบบ:</label>
 	    	<div class="formControls col-md-8">
-	    		<input type="text" class="form-control" placeholder="登录管理员的账号" name="data[product_name]" size="24" value="<?php echo C('product_name',null,'data');?>">
+	    		<input type="text" class="form-control" placeholder="登录ผู้ดูแลระบบ的账号" name="data[product_name]" size="24" value="<?php echo C('product_name',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">登录密码：</label>
+			<label class="form-label col-md-4">รหัสผ่านเข้าสู่ระบบ:</label>
 	    	<div class="formControls col-md-8">
-	    		<input type="text" class="form-control" placeholder="登录管理员的密码" name="data[product_psw]" size="24" value="<?php echo C('product_psw',null,'data');?>">
+	    		<input type="text" class="form-control" placeholder="登录ผู้ดูแลระบบ的密码" name="data[product_psw]" size="24" value="<?php echo C('product_psw',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">显示顺序：</label>
+			<label class="form-label col-md-4">ลำดับการแสดง:</label>
 	    	<div class="formControls col-md-8">
-	        	<input type="text" class="form-control" placeholder="站点显示的顺序" name="data[product_order]" size="24" value="<?php echo C('product_order',null,'data');?>">
+	        	<input type="text" class="form-control" placeholder="站点แสดง的ลำดับ" name="data[product_order]" size="24" value="<?php echo C('product_order',null,'data');?>">
 	    	</div>
 	    </div>
 	</div>
 	</form>
 	<div class="bjui-pageFooter">
 	    <ul>
-	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 保存</button></li>
-	        <li><button type="button" id="<?php echo $cFun.$type;?>test" class="btn btn-primary size-MINI radius"><i class="fa fa-exchange"></i> 测试通讯</button></li>
+	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> บันทึก</button></li>
+	        <li><button type="button" id="<?php echo $cFun.$type;?>test" class="btn btn-primary size-MINI radius"><i class="fa fa-exchange"></i> ทดสอบการเชื่อมต่อ</button></li>
 	    </ul>
 	</div>
 </div>

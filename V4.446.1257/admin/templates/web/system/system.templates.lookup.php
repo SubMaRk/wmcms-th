@@ -7,9 +7,9 @@
 	<input type="hidden" name="module" value="<?php echo $module;?>">
 	<input type="hidden" name="page" value="<?php echo $page;?>">
         <div class="bjui-searchBar">
-            <label>模版关键字：</label><input type="text" id="key" value="<?php echo $key;?>" name="key" size="10" />&nbsp;
-            <button type="submit" class="btn-default" data-icon="search">查询</button>&nbsp;
-            <a class="btn btn-orange" href="javascript:;" data-icon="undo">清空查询</a>&nbsp;
+            <label>คีย์เวิร์ดเทมเพลต:</label><input type="text" id="key" value="<?php echo $key;?>" name="key" size="10" />&nbsp;
+            <button type="submit" class="btn-default" data-icon="search">สืบค้น</button>&nbsp;
+            <a class="btn btn-orange" href="javascript:;" data-icon="undo">ล้างการสืบค้น</a>&nbsp;
         </div>
     </form>
 </div>
@@ -19,12 +19,12 @@
 		<thead>
 			<tr>
 			<th width="20" data-order-field="templates_id">ID</th>
-			<th style="width:150px">名称</th>
-			<th style="width:60px">简版</th>
+			<th style="width:150px">ชื่อ</th>
+			<th style="width:60px">เวอร์ชันเรียบง่าย</th>
 			<th style="width:60px">3G</th>
-			<th style="width:60px">触屏</th>
-			<th style="width:60px">电脑</th>
-            <th width="10" style="text-align: center;">操作</th>
+			<th style="width:60px">ทัชสกรีน</th>
+			<th style="width:60px">คอมพิวเตอร์</th>
+            <th width="10" style="text-align: center;">ดำเนินการ</th>
             </tr>
 		</thead>
 		<tbody>
@@ -65,7 +65,7 @@
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -74,7 +74,7 @@
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>"></div>
 </div>

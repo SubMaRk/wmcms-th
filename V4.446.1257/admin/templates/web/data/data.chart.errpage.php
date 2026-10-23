@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>错误页面记录走势图</h3>
+                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>กราฟบันทึกหน้าข้อผิดพลาด</h3>
                     </div>
                     <div class="panel-body">
 					    <div id="<?php echo $cFun;?>canvas"></div>
@@ -60,6 +60,6 @@ chart.render();
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ปิด</button></li>
     </ul>
 </div>

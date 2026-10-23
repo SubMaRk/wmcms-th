@@ -1,0 +1,47 @@
+API密钥	คีย์ API
+云APISecretId	SecretId ของ API คลาวด์
+云APISecretKey	SecretKey ของ API คลาวด์
+从COS获得的API_KEY	API_KEY ที่ได้จาก COS
+从COS获得的APP_ID	APP_ID ที่ได้จาก COS
+从COS获得的SC_KEY	SC_KEY ที่ได้จาก COS
+从OSS获得的AccessKeyId	AccessKeyId ที่ได้จาก OSS
+从OSS获得的AccessKeySecret	AccessKeySecret ที่ได้จาก OSS
+从七牛云对象存储获得的accessKey	accessKey ที่ได้จากที่เก็บข้อมูลแบบออบเจกต์ Qiniu Cloud
+从七牛云对象存储获得的secretKey	secretKey ที่ได้จากที่เก็บข้อมูลแบบออบเจกต์ Qiniu Cloud
+从新浪云对象存储获得的AccessKey	AccessKey ที่ได้จากที่เก็บข้อมูลแบบออบเจกต์ Sina Cloud
+从新浪云对象存储获得的SecretKey	SecretKey ที่ได้จากที่เก็บข้อมูลแบบออบเจกต์ Sina Cloud
+企业微信URL	URL ของ WeCom
+企业微信的WEBHOOK通知URL	URL แจ้งเตือน WEBHOOK ของ WeCom
+合作身份者id	id ของผู้ร่วมมือ
+域名	โดเมน
+安全检验码	รหัสตรวจสอบความปลอดภัย
+小程序ID	ID ของมินิโปรแกรม
+小程序密钥	คีย์ของมินิโปรแกรม
+应用API Key	API Key ของแอป
+应用Secret Key	Secret Key ของแอป
+应用apikey	apikey ของแอป
+应用appid	appid ของแอป
+应用id	id ของแอป
+应用secretkey	secretkey ของแอป
+应用的APPID	APPID ของแอป
+支付宝公匙	คีย์สาธารณะของ Alipay
+支付宝私匙	คีย์ส่วนตัวของ Alipay
+请输入您的API密钥	กรุณากรอกคีย์ API ของคุณ
+请输入您的APPID	กรุณากรอก APPID ของคุณ
+请输入您的Appsecret	กรุณากรอก Appsecret ของคุณ
+请输入您的apikey	กรุณากรอก apikey ของคุณ
+请输入您的appid	กรุณากรอก appid ของคุณ
+请输入您的secretkey	กรุณากรอก secretkey ของคุณ
+请输入您的token	กรุณากรอก token ของคุณ
+请输入您的域名，无需加http://	กรุณากรอกโดเมนของคุณ ไม่ต้องใส่ http://
+请输入您的应用API Key	กรุณากรอก API Key ของแอปของคุณ
+请输入您的应用APP ID	กรุณากรอก APP ID ของแอปของคุณ
+请输入您的应用APP Key	กรุณากรอก APP Key ของแอปของคุณ
+请输入您的应用App Key	กรุณากรอก App Key ของแอปของคุณ
+请输入您的应用App Secret	กรุณากรอก App Secret ของแอปของคุณ
+请输入您的应用Appsecret	กรุณากรอก Appsecret ของแอปของคุณ
+请输入您的应用ID	กรุณากรอก ID ของแอปของคุณ
+请输入您的应用Secret Key	กรุณากรอก Secret Key ของแอปของคุณ
+账号APPID	APPID ของบัญชี
+钉钉URL	URL ของ DingTalk
+钉钉的WEBHOOK通知URL	URL แจ้งเตือน WEBHOOK ของ DingTalk

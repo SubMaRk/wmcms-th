@@ -141,7 +141,7 @@ function <?php echo $cFun;?>(json){
     $(this).navtab("reload",op);	// 刷新Tab页面
     $(this).navtab("switchTab",tabid);	// 切换Tab页面
 }
-//上传封面
+//上传บล็อก面
 function <?php echo $cFun;?>upload_success(file,json,$element){
 	json = $.parseJSON(json);
 	if ( json.statusCode == 300){

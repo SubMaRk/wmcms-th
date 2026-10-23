@@ -15,20 +15,20 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                <span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
+                <span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
                 <input type="text" placeholder="<?php echo $name;?>" name="name" size="15">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a> &nbsp;
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a> &nbsp;
 			</form>
 		</div>
 	</div>
 	<div class="row cl pt-10 pb-10 pl-10">
 		<div class="f-l">
             <span class="" style="float:left;margin:5px 0 0 15px;"> </span>
-			<a href="index.php?a=yes&c=system.site.site&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
-			<a href="index.php?a=yes&c=system.site.site&t=clear" data-toggle="doajax" data-confirm-msg="确定清空记录要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> 清空记录</a>
-			<div class="alert alert-danger search-inline"><i class="fa fa-info-circle"></i> 此处添加站内站点，添加后需要保存一下站群配置才会生效。</div>
-            <a class="btn btn-secondary radius size-MINI" data-toggle="dialog" data-mask="true" data-title="添加站点" href="index.php?d=yes&c=system.site.site.edit&t=add" data-width="450" data-height="420" ><i class="fa fa-plus"></i> 添加站点</a> &nbsp;	
+			<a href="index.php?a=yes&c=system.site.site&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
+			<a href="index.php?a=yes&c=system.site.site&t=clear" data-toggle="doajax" data-confirm-msg="ยืนยันล้างบันทึก要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> ล้างบันทึก</a>
+			<div class="alert alert-danger search-inline"><i class="fa fa-info-circle"></i> เพิ่มเว็บไซต์ในเครือข่ายที่นี่ หลังเพิ่มแล้วต้องบันทึกการตั้งค่าเครือข่ายเว็บไซต์จึงจะมีผล</div>
+            <a class="btn btn-secondary radius size-MINI" data-toggle="dialog" data-mask="true" data-title="เพิ่มเว็บไซต์" href="index.php?d=yes&c=system.site.site.edit&t=add" data-width="450" data-height="420" ><i class="fa fa-plus"></i> เพิ่มเว็บไซต์</a> &nbsp;	
 		</div>
 	</div>
 </div>
@@ -39,15 +39,15 @@ thead th {
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="5%" data-order-field="site_id">ID</th>
-				<th width="7%" data-order-field="site_status">站点状态</th>
-				<th width="10%">站点名字</th>
-				<th width="15%">站点域名</th>
-				<th width="8%">域名类型</th>
-				<th width="8%">站点类型</th>
-	            <th width="12%">模版文件</th>
-	            <th width="7%">显示顺序</th>
-	            <th width="14%">添加时间</th>
-	            <th width="10%">操作</th>
+				<th width="7%" data-order-field="site_status">สถานะเว็บไซต์</th>
+				<th width="10%">ชื่อเว็บไซต์</th>
+				<th width="15%">โดเมนเว็บไซต์</th>
+				<th width="8%">ประเภทโดเมน</th>
+				<th width="8%">ประเภทเว็บไซต์</th>
+	            <th width="12%">ไฟล์เทมเพลต</th>
+	            <th width="7%">ลำดับการแสดง</th>
+	            <th width="14%">เวลาเพิ่ม</th>
+	            <th width="10%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			
@@ -72,8 +72,8 @@ thead th {
 							<td>'.$v['site_order'].'</td>
 							<td style="text-align: center;">'.date("Y-m-d H:i:s" , $v['site_time']).'</td>
 							<td style="text-align: center;">
-				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" href="index.php?d=yes&c=system.site.site.edit&t=edit&id='.$v['site_id'].'"  data-toggle="dialog" data-title="修改站点信息" data-width="450" data-height="420" >编辑</a> 
-				            	<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['site_id'].')">删除</a>
+				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" href="index.php?d=yes&c=system.site.site.edit&t=edit&id='.$v['site_id'].'"  data-toggle="dialog" data-title="修改站点信息" data-width="450" data-height="420" >แก้ไข</a> 
+				            	<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['site_id'].')">ลบ</a>
                 			</td>
 						</tr>';
 					$i++;
@@ -90,7 +90,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -99,7 +99,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div id="asd" class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>
@@ -137,11 +137,11 @@ function <?php echo $cFun;?>StatusAjax(status,id)
 	switch(status)
 	{
 		case 0:
-			type = "禁用";
+			type = "ปิดใช้งาน";
 	  		break;
 	  		
 		default:
-			type = "使用";
+			type = "ใช้";
 	  		break;
 	}
 	

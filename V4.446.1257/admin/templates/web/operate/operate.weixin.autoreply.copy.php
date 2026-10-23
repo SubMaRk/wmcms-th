@@ -2,12 +2,12 @@
     <form action="index.php?a=yes&c=operate.weixin.autoreply&t=copy" data-reload="false" data-toggle="validate" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
 		<input name="rid" type="hidden" class="input-text" value="<?php echo $rid;?>">
 		<fieldset>
-			<legend>复制自动回复</legend>
+			<legend>คัดลอกการตอบกลับอัตโนมัติ</legend>
             <div class="tab-pane fade active in">
 				<table class="table table-border table-bordered table-bg table-sort">
 					<tr>
 					    <td valign="top" width="30%">
-					    	<b>复制到：</b>
+					    	<b>คัดลอกไปยัง:</b>
 	                        <select data-toggle="selectpicker" name="aid">
 							<?php 
 	                        if( $data )
@@ -29,8 +29,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 

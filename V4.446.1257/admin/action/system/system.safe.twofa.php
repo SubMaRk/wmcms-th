@@ -38,7 +38,7 @@ else if ( $type == 'enable' )
 	}
 	if( !TotpVerify($secret, $code) )
 	{
-		Ajax( '驗證碼ไม่ถูกต้อง' , 300 );
+		Ajax( 'รหัสยืนยันไม่ถูกต้อง' , 300 );
 	}
 	$twofaMod->SaveSecret($managerId, $secret);
 	Session('admin_twofa_pending','delete');
@@ -52,7 +52,7 @@ else if ( $type == 'disable' )
 	$secret = $twofaMod->GetSecret($managerId);
 	if( $secret != '' && !TotpVerify($secret, $code) )
 	{
-		Ajax( '驗證碼ไม่ถูกต้อง' , 300 );
+		Ajax( 'รหัสยืนยันไม่ถูกต้อง' , 300 );
 	}
 	$twofaMod->DeleteSecret($managerId);
 	SetOpLog( 'ปิดการยืนยันตัวตนสองขั้นตอน' , 'system' , 'update' );

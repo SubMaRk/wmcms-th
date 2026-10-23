@@ -6,75 +6,75 @@
 	<form name="form1" action="index.php?a=yes&c=article.config&t=edit" method="post" data-toggle="validate">
 	
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-      <thead><tr><th colspan="4" style="text-align:left;"><b>模块基本设置</b></th></tr></thead>
+      <thead><tr><th colspan="4" style="text-align:left;"><b>ตั้งค่าพื้นฐานโมดูล</b></th></tr></thead>
       <tr>
-        <td>前台调用缺省缩略图：</td>
+        <td>รูปย่อเริ่มต้นที่หน้าเว็บเรียกใช้:</td>
         <td colspan="3"><?php echo $manager->GetForm('article' , 'default_simg');?></td>
       </tr>
       <tr>
-        <td width="200">后台发布文章默认状态：</td>
+        <td width="200">สถานะเริ่มต้นการเผยแพร่บทความจากหลังบ้าน:</td>
         <td colspan="3"><?php echo $manager->GetForm('article' , 'admin_add');?></td>
       </tr>
       <tr>
-        <td>删除数据方式：</td>
+        <td>วิธีลบข้อมูล:</td>
         <td colspan="3"><?php echo $manager->GetForm('article' , 'admin_del');?></td>
       </tr>
       <tr>
-        <td>文章页检查参数：</td>
+        <td>พารามิเตอร์ตรวจสอบหน้าบทความ:</td>
         <td colspan="3"><?php echo $manager->GetForm('article' , 'par_article');?></td>
       </tr>
       <tr>
-        <td>评论页检查参数：</td>
+        <td>พารามิเตอร์ตรวจสอบหน้าความคิดเห็น:</td>
         <td colspan="3"><?php echo $manager->GetForm('article' , 'par_replay');?></td>
       </tr>
       <tr>
-        <td>自动生成文章HTML：</td>
+        <td>สร้าง HTML บทความอัตโนมัติ:</td>
         <td colspan="3"><?php echo $manager->GetForm('article' , 'auto_create_html');?></td>
       </tr>
       <tr>
-        <td>文章内容保存方式：</td>
+        <td>วิธีบันทึกเนื้อหาบทความ:</td>
         <td colspan="3"><?php echo $manager->GetForm('article' , 'data_save_type');?></td>
       </tr>
       <tr>
-        <td>文件内容保存路径：</td>
+        <td>พาธบันทึกเนื้อหาไฟล์:</td>
         <td colspan="3"><?php echo $manager->GetForm('article' , 'data_save_path');?>（保存方式为文件的时候生效）</td>
       </tr>
     </table>
     
 
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-      <thead><tr><th colspan="6" style="text-align:left;"><b>模块互动设置</b></th></tr></thead>
+      <thead><tr><th colspan="6" style="text-align:left;"><b>ตั้งค่าการโต้ตอบโมดูล</b></th></tr></thead>
        <tr>
-        <td width="200">文章顶踩功能：</td>
+        <td width="200">ฟังก์ชันโหวตขึ้น/ลงบทความ:</td>
         <td><?php echo $manager->GetForm('article' , 'dingcai_open');?></td>
-        <td width="200">顶踩是需要否登录：</td>
+        <td width="200">โหวตต้องเข้าสู่ระบบหรือไม่:</td>
         <td><?php echo $manager->GetForm('article' , 'dingcai_login');?></td>
-        <td width="200">每日每篇文章顶踩次数：</td>
+        <td width="200">จำนวนโหวตต่อบทความต่อวัน:</td>
         <td><?php echo $manager->GetForm('article' , 'dingcai_count');?></td>
       </tr>
       <tr>
-        <td>文章评分功能：</td>
+        <td>ฟังก์ชันให้คะแนนบทความ:</td>
         <td><?php echo $manager->GetForm('article' , 'score_open');?></td>
-        <td>评分是否需要登录：</td>
+        <td>ให้คะแนนต้องเข้าสู่ระบบหรือไม่:</td>
         <td><?php echo $manager->GetForm('article' , 'score_login');?></td>
-        <td>每日每篇文章评分次数：</td>
+        <td>จำนวนให้คะแนนต่อบทความต่อวัน:</td>
         <td><?php echo $manager->GetForm('article' , 'score_count');?></td>
       </tr>
       <tr>
-        <td>文章评论功能：</td>
+        <td>ฟังก์ชันความคิดเห็นบทความ:</td>
         <td><?php echo $manager->GetForm('article' , 'replay_open');?></td>
-        <td>评论是否需要登录：</td>
+        <td>ความคิดเห็นต้องเข้าสู่ระบบหรือไม่:</td>
         <td colspan="3"><?php echo $manager->GetForm('article' , 'replay_login');?></td>
       </tr>
     </table>
     
     
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-      <thead><tr><th colspan="4" style="text-align:left;"><b>模块搜索设置</b></th></tr></thead>
+      <thead><tr><th colspan="4" style="text-align:left;"><b>ตั้งค่าค้นหาโมดูล</b></th></tr></thead>
       <tr>
-        <td width="200">文章搜索功能：</td>
+        <td width="200">ฟังก์ชันค้นหาบทความ:</td>
         <td><?php echo $manager->GetForm('article' , 'search_open');?></td>
-        <td>每次搜索的间隔时间(单位：秒)：</td>
+        <td>ระยะห่างการค้นหาแต่ละครั้ง(วินาที):</td>
         <td><?php echo $manager->GetForm('article' , 'search_time');?></td>
       </tr>
     </table>
@@ -85,8 +85,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 <script>

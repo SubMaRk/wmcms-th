@@ -14,7 +14,7 @@
 			<div class="main" id="main">
 				<div class="header">
 					<a href="javascript:history.back(-1)" style="left: 0.1rem;" class="close">〈</a>
-					<a href="javascript:;" id="menu" class="more">管理</a>
+					<a href="javascript:;" id="menu" class="more">จัดการ</a>
 				</div>
 				
 				<div class="newBook">
@@ -23,16 +23,16 @@
 						<div class="u-f u-f-jsb">
 							<div class="left">
 								<div class="input">
-									<input type="text" name="title" autocomplete="off" placeholder="文章标题" value="{标题}">
+									<input type="text" name="title" autocomplete="off" placeholder="หัวข้อบทความ" value="{标题}">
 								</div>
 								<div class="input">
-									<input type="text" name="cname" autocomplete="off" placeholder="文章短标题" value="{短标题}">
+									<input type="text" name="cname" autocomplete="off" placeholder="หัวข้อสั้นของบทความ" value="{短标题}">
 								</div>
 								<div class="input">
-									<input type="text" name="source" autocomplete="off" placeholder="来源" value="{来源}">
+									<input type="text" name="source" autocomplete="off" placeholder="ที่มา" value="{来源}">
 								</div>
 								<div class="input">
-									<input type="text" name="tags" autocomplete="off" placeholder="标签	" value="{标签}">
+									<input type="text" name="tags" autocomplete="off" placeholder="แท็ก" value="{标签}">
 								</div>
 								<div class="input">
 									{文章分类列表:允许投稿=是}
@@ -49,7 +49,7 @@
 								<input type="file" id="hide_button" class="hide_button" style="display: none;" name="hide_button"/>
 							</div>
 						</div>
-						<textarea class="edit" id="info" placeholder="简介" name="info">{简介}</textarea>
+						<textarea class="edit" id="info" placeholder="เรื่องย่อ" name="info">{简介}</textarea>
 						<script type="text/javascript" src="/files/js/wangeditor/wangeditor.js"></script>
 						<textarea id="content" name="content" style="display:none">{内容}</textarea>
 						<div id="content_editor" style="background: #FFFFFF;">{内容}</div>
@@ -70,7 +70,7 @@
 						}
 						editor.create();
 						</script>
-						<button type="button" class="submit" id="save" style="background-color: #FF5722;">保存</button>
+						<button type="button" class="submit" id="save" style="background-color: #FF5722;">บันทึก</button>
 					</form>
 				</div>
 			</div>
@@ -91,14 +91,14 @@
 			        	if( data.code == 500 ){
 			            	layer.open({content:data.msg,time: 2});
 										$('#hide_button').clone().val('');
-										$('#upload_button').val('上传新封面');
+										$('#upload_button').val('อัปโหลดปกใหม่');
 			        	}else{
 								//设置封面
 								$("#cover").attr("src", data.data.file);
 								$("[name=simg]").val(data.data.file);
 								//还原按钮
 								$('#hide_button').clone().val('');
-								$('#upload_button').val('上传新封面');
+								$('#upload_button').val('อัปโหลดปกใหม่');
 									layer.open({content:data.msg,time: 2});
 			        	}
 			        },
@@ -116,11 +116,11 @@
 				var tid = $("[name=tid]").val();
 				
 				if( name == '' || source == '' || tags == '' || content == '' ){
-					layer.open({content:'对不起，文章名字、来源、标签、内容不能为空！',time: 2});
+					layer.open({content:'ขออภัย ชื่อบทความ แหล่งที่มา แท็ก และเนื้อหาห้ามว่าง!',time: 2});
 				}else if( !isPositiveNum(tid) ){
-					layer.open({content:'对不起，请选择文章分类！',time: 2});
+					layer.open({content:'ขออภัย กรุณาเลือกหมวดหมู่บทความ!',time: 2});
 				}else if( content.length < 20 || content.length > 50000  ){
-					layer.open({content:'对不起，描述只能在20-50000个字符之间！',time: 2});
+					layer.open({content:'ขออภัย คำอธิบายต้องอยู่ระหว่าง 20-50000 ตัวอักษร!',time: 2});
 				}else{
 					$.ajax({
 						type:"POST",

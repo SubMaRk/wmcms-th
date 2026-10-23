@@ -41,30 +41,30 @@
 				
 				
                 <tr class="online_box">
-                    <th>充值金额：</th>
+                    <th>ยอดเติมเงิน:</th>
                     <td class="mutilLine" id="EventList">
-                    	{充值等级:数量=10}<a title="充值{充值金额}元" data-money="{充值金额}" data-real="{充值折扣}" data-reward_gold2="{充值赠送金币2}" href="javascript:void(0);" class="moneyRadio {i:1}moneyRadioSel{/i}">{充值金额}元</a>{/充值等级}
-						<input placeholder="其他金额" class="inputTxt customMoney" id="OtherCash" name="OtherCash" onkeyup="this.value=this.value.replace(/[^\d]/g,'');" /><span> 元（人民币）</span>
+                    	{充值等级:数量=10}<a title="เติมเงิน{充值金额}หยวน" data-money="{充值金额}" data-real="{充值折扣}" data-reward_gold2="{充值赠送金币2}" href="javascript:void(0);" class="moneyRadio {i:1}moneyRadioSel{/i}">{充值金额}หยวน</a>{/充值等级}
+						<input placeholder="จำนวนเงินอื่น" class="inputTxt customMoney" id="OtherCash" name="OtherCash" onkeyup="this.value=this.value.replace(/[^\d]/g,'');" /><span> หยวน (หยวนจีน)</span>
                     </td>
                 </tr>
                 <tr class="online_box">
-                    <th>充值渠道：</th>
+                    <th>ช่องทางเติมเงิน:</th>
                     <td class="bank" id="payType">
                    		{支付方式:支付类型=pc支付;数量=10}
-                   		{无数据}后台暂未设置支付信息{/无数据}
+                   		{无数据}หลังบ้านยังไม่ได้ตั้งค่าข้อมูลการชำระเงิน{/无数据}
 						<a title="{支付方式名字}" data-id="{支付方式标识}" href="javascript:void(0)" class="{i:1}qdRadioSel{/i} qdRadio qd_01" style="background: url('/files/images/pay/{支付方式标识}.jpg');background-size: 90%;background-position: 15px 41px;"><i></i></a>
 						{/支付方式}
 					</td>
                 </tr>
                 <tr class="online_box">
-                    <th>实际支付：</th>
-                    <td><input type="hidden" id="money" value="{充值等级:数量=1}{充值金额}{/充值等级}"><b id="PayMoney">{充值等级:数量=1}{充值折扣}</b>元&nbsp;&nbsp;得 <b id="rewardMoney" style="color:#4C7CC6">{运算:{充值金额}*{充值比例}+{充值赠送金币2}}</b> {金币2名字}{/充值等级}</td>
+                    <th>ยอดชำระจริง:</th>
+                    <td><input type="hidden" id="money" value="{充值等级:数量=1}{充值金额}{/充值等级}"><b id="PayMoney">{充值等级:数量=1}{充值折扣}</b>หยวน&nbsp;&nbsp;ได้รับ <b id="rewardMoney" style="color:#4C7CC6">{运算:{充值金额}*{充值比例}+{充值赠送金币2}}</b> {金币2名字}{/充值等级}</td>
                 </tr>
 				
 				
                 <tr class="card_box" style="display:none">
                     <th>บัตรเติมเงิน : </th>
-                    <td><input type="text" class="inputTxt account" value="" placeholder="输入您购买的卡密" id="cardKey" name="cardKey">
+                    <td><input type="text" class="inputTxt account" value="" placeholder="กรอกรหัสบัตรที่คุณซื้อ" id="cardKey" name="cardKey">
 						<a href="{卡号购买地址}" target="_blank" class="imgCheckBtn">คลิกที่นี่เพื่อรับการ์ด</a>
 					</td>
                 </tr>

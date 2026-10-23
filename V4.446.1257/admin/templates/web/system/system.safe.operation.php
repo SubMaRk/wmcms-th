@@ -10,8 +10,8 @@ thead th {
 <div class="bjui-pageHeader">
 	<div class="row cl pt-10 pb-10 pl-10">
 		<div class="f-l" style="margin-left:10px">
-			<a href="index.php?a=yes&c=system.safe.operation&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
-			<a href="index.php?a=yes&c=system.safe.operation&t=clear" data-toggle="doajax" data-confirm-msg="确定清空操作记录吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> 清空记录</a>
+			<a href="index.php?a=yes&c=system.safe.operation&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
+			<a href="index.php?a=yes&c=system.safe.operation&t=clear" data-toggle="doajax" data-confirm-msg="ยืนยัน清空บันทึกการทำงาน吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> ล้างบันทึก</a>
 		</div>
 		<div class="f-l">
 			<form id="pagerForm" name="<?php echo $cFun;?>Form" data-toggle="ajaxsearch" data-loadingmask="true" action="index.php?c=system.safe.operation" method="post">
@@ -19,7 +19,7 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-				<a id="<?php echo $cFun;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+				<a id="<?php echo $cFun;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
 			</form>
 		</div>
 	</div>
@@ -29,13 +29,13 @@ thead th {
 			<thead>
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
-				<th width="7%" data-order-field="request_id">编号</th>
-				<th width="12%">管理员</th>
-				<th width="10%">操作模块</th>
-				<th width="10%">操作类型</th>
-				<th width="15%">操作时间</th>
-				<th width="25%">操作备注</th>
-	            <th width="13%">操作</th>
+				<th width="7%" data-order-field="request_id">รหัส</th>
+				<th width="12%">ผู้ดูแลระบบ</th>
+				<th width="10%">โมดูลที่ดำเนินการ</th>
+				<th width="10%">ประเภทการดำเนินการ</th>
+				<th width="15%">เวลาดำเนินการ</th>
+				<th width="25%">หมายเหตุการดำเนินการ</th>
+	            <th width="13%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody>
@@ -55,8 +55,8 @@ thead th {
 							<td style="text-align: center;">'.date("Y-m-d H:i:s" , $v['operation_time']).'</td>
 							<td style="text-align: center;">'.$v['operation_remark'].'</td>
 							<td style="text-align: center;" data-noedit="true">
-								<a class="btn btn-secondary radius size-MINI" href="index.php?c=system.safe.operation.detail&id='.$v['operation_id'].'"  data-mask="true" data-toggle="dialog" data-title="查看操作记录日志的详细信息" data-width="600" data-height="450" >详情</a>
-								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['operation_id'].')">删除</a>
+								<a class="btn btn-secondary radius size-MINI" href="index.php?c=system.safe.operation.detail&id='.$v['operation_id'].'"  data-mask="true" data-toggle="dialog" data-title="ดูบันทึกการทำงาน日志的详细信息" data-width="600" data-height="450" >详情</a>
+								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['operation_id'].')">ลบ</a>
 				            </td>
 						</tr>';
 					$i++;
@@ -73,7 +73,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -82,7 +82,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>"></div>
 </div>

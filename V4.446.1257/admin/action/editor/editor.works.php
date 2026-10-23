@@ -23,14 +23,14 @@ if ( $type == 'edit' || $type == "add" )
 	{
 		if( $v == '' )
 		{
-			Ajax('对不起，所有项都不能为空！' , 300);
+			Ajax('ทุกช่องห้ามว่าง!' , 300);
 		}
 	}
 	//获取分组绑定的数据
 	$bindData = $bindMod->GetById($bindId);
 	if( !$bindData )
 	{
-		Ajax('对不起，分组绑定id不存在！' , 300);
+		Ajax('ไม่พบ id ที่ผูกกับกลุ่มนี้!' , 300);
 	}
 	$data['works_module'] = $bindData['bind_module'];
 	$data['works_editor_id'] = $bindData['bind_editor_id'];
@@ -38,12 +38,12 @@ if ( $type == 'edit' || $type == "add" )
 	//判断内容id是否存在
 	if( $tableSer->GetCount($data['works_module'],$cid)=='0' )
 	{
-		Ajax('对不起，内容ID不存在！' , 300);
+		Ajax('ไม่พบ ID เนื้อหานี้!' , 300);
 	}
 	//检查是否存在同样的数据了
 	if( $worksMod->CheckExist($data,$where['works_id']) )
 	{
-		Ajax('对不起，已存在重复的数据！' , 300);
+		Ajax('มีข้อมูลซ้ำอยู่แล้ว!' , 300);
 	}
 	
 	//如果是新增
@@ -53,7 +53,7 @@ if ( $type == 'edit' || $type == "add" )
 		$where['works_id'] = $worksMod->Insert($data);
 		//写入操作记录
 		SetOpLog( '新增了作品关联' , 'editor' , 'insert' , $table , $where , $data );
-		Ajax('作品关联新增成功!');
+		Ajax('เพิ่มข้อมูลเชื่อมโยงผลงานสำเร็จ!');
 	}
 	//如果是增加页面
 	else
@@ -62,7 +62,7 @@ if ( $type == 'edit' || $type == "add" )
 		SetOpLog( '修改作品关联' , 'editor' , 'update' , $table  , $where , $data );
 		//修改数据
 		$worksMod->Update($data,$where);
-		Ajax('作品关联修改成功！');
+		Ajax('แก้ไขข้อมูลเชื่อมโยงผลงานสำเร็จ!');
 	}
 }
 //删除关联
@@ -72,6 +72,6 @@ else if( $type == 'del' )
 	$worksMod->Del($where);
 	//写入操作记录
 	SetOpLog( '删除了作品关联' , 'editor' , 'delete' , $table , $where);
-	Ajax('删除了分组作品关联!');
+	Ajax('ลบข้อมูลเชื่อมโยงผลงานของกลุ่มแล้ว!');
 }
 ?>

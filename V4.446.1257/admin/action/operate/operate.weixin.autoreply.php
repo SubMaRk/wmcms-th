@@ -20,18 +20,18 @@ if ( $type == 'edit' || $type == "add"  )
 	
 	if ( $data['autoreply_name'] == '' || $data['autoreply_key'] == '' || $data['autoreply_content'] == '')
 	{
-		Ajax('对不起，自动回复名字、匹配关键字和回复内容必须填写！',300);
+		Ajax('ต้องกรอกชื่อการตอบกลับอัตโนมัติ คำสำคัญที่ใช้จับคู่ และเนื้อหาการตอบกลับ!',300);
 	}
 	else if( !str::Number(GetKey($data,'autoreply_account_id')) )
 	{
-		Ajax('对不起，所属公众号必须选择！',300);
+		Ajax('ต้องเลือกบัญชีทางการที่สังกัด!',300);
 	}
 	else if( $data['autoreply_default'] > 0 && $replyMod->CheckExists(array(
 			'autoreply_account_id'=>$data['autoreply_account_id'],
 			'autoreply_default'=>$data['autoreply_default']
 			) , $where['autoreply_id']) )
 	{
-		Ajax('对不起，同一公众号的自动回复和默认回复同时只能存在一个，如需更换请先取消现在的设置！',300);
+		Ajax('บัญชีทางการเดียวกันมีการตอบกลับอัตโนมัติหรือการตอบกลับค่าเริ่มต้นได้เพียงอย่างเดียว หากต้องการเปลี่ยนกรุณายกเลิกการตั้งค่าปัจจุบันก่อน!',300);
 	}
 	
 	//获取模版内容
@@ -69,7 +69,7 @@ else if ( $type == 'del' )
 	$replyMod->Del($where);
 	//写入操作记录
 	SetOpLog( '删除了自动回复' , 'system' , 'delete' , $table , $where);
-	Ajax('自动回复删除成功!');
+	Ajax('ลบการตอบกลับอัตโนมัติสำเร็จ!');
 }
 //复制
 else if ( $type == 'copy' )
@@ -79,7 +79,7 @@ else if ( $type == 'copy' )
 	$data = $replyMod->GetById($rid);
 	if( $data  && $data['autoreply_type'] == 'image' )
 	{
-		Ajax('非文字回复不能复制!',300);
+		Ajax('ไม่สามารถคัดลอกการตอบกลับที่ไม่ใช่ข้อความ!',300);
 	}
 	else if( $data )
 	{
@@ -94,7 +94,7 @@ else if ( $type == 'copy' )
 		$where['autoreply_id'] = $replyMod->Insert($saveData);
 		SetOpLog( '复制了自动回复' , 'system' , 'insert' , $table , $where);
 	}
-	Ajax('自动回复复制成功!');
+	Ajax('คัดลอกการตอบกลับอัตโนมัติสำเร็จ!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -114,6 +114,6 @@ else if ( $type == 'status' )
 	SetOpLog( $msg.'了自动回复' , 'system' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('自动回复'.$msg.'成功!');
+	Ajax('ตอบกลับอัตโนมัติ'.$msg.'สำเร็จ!');
 }
 ?>

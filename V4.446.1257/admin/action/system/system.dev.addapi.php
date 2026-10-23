@@ -17,7 +17,7 @@ if( $type == 'add'  )
 	
 	if( $data['api_title'] == '' || $data['api_name'] == '' )
 	{
-		Ajax('对不起，接口名和标识必须填写！',300);
+		Ajax('ต้องกรอกชื่ออินเทอร์เฟซและตัวระบุ!',300);
 	}
 	else
 	{
@@ -45,7 +45,7 @@ if( $type == 'add'  )
 		
 		//写入操作记录
 		SetOpLog( '新增了接口'.$data['api_title'], 'system' , 'insert' );
-		Ajax('接口新增成功！');
+		Ajax('เพิ่ม API สำเร็จ!');
 	}
 	
 }

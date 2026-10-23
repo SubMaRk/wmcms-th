@@ -23,14 +23,14 @@ if ( $type == 'del'  )
 	SetOpLog( '删除了财务申请！' , 'finance' , 'delete' , $applyTable , $where);
 	wmsql::Delete($applyTable , $where);
 	
-	Ajax('财务申请批量删除成功!');
+	Ajax('ลบคำขอทางการเงินหลายรายการสำเร็จ!');
 }
 //清空数据记录
 else if ( $type == 'clear')
 {
 	SetOpLog( '清空了所有财务申请！' , 'finance' , 'delete' , $applyTable);
 	wmsql::Delete($applyTable);
-	Ajax('财务申请全部清空成功！');
+	Ajax('ล้างข้อมูลคำขอทางการเงินทั้งหมดสำเร็จ!');
 }
 //审核操作
 else if ( $type == 'status')
@@ -41,7 +41,7 @@ else if ( $type == 'status')
 	$data = $applyMod->GetById($id);
 	if( $data['apply_status'] != '0' )
 	{
-		Ajax('对不起，该财务申请已经处理过了！',300);
+		Ajax('คำขอทางการเงินนี้ได้รับการดำเนินการไปแล้ว!',300);
 	}
 	else
 	{
@@ -88,7 +88,7 @@ else if ( $type == 'status')
 			}
 			$msgMod->Insert($data['apply_to_user_id'] , $msg);
 		}
-		Ajax('财务申请处理成功！');
+		Ajax('ดำเนินการคำขอทางการเงินสำเร็จ!');
 	}
 }
 ?>

@@ -8,7 +8,7 @@
 	<form action="index.php?a=yes&c=system.tags&t=<?php echo $module.'_'.$type;?>" name="<?php echo $cFun.$type;?>Form" class="form form-horizontal" data-reload="false" data-toggle="ajaxform" method="post" data-callback="<?php echo $cFun.$type;?>">
     	<input type="hidden" name="tags_id" value="<?php echo $id;?>"/>
 	    <div class="row cl">
-			<label class="form-label col-md-4">标签分类：</label>
+			<label class="form-label col-md-4">หมวดแท็ก:</label>
 	    	<div class="formControls col-md-8">
 	        	<select data-toggle="selectpicker" name="data[tags_type_id]">
 		      	    <?php
@@ -28,7 +28,7 @@
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">作者推荐：</label>
+			<label class="form-label col-md-4">แนะนำผู้แต่ง：</label>
 	    	<div class="formControls col-md-8">
 	        	<select data-toggle="selectpicker" name="data[tags_author_rec]">
 		      	    <?php
@@ -45,17 +45,17 @@
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">标签名字：</label>
+			<label class="form-label col-md-4">ชื่อแท็ก:</label>
 	    	<div class="formControls col-md-8">
-	        	<input type="text" class="form-control" placeholder="标签的名字，多个用,分割" name="data[tags_name]" size="24" value="<?php echo C('tags_name',null,'data');?>">
+	        	<input type="text" class="form-control" placeholder="标签的名คำ，多รายการ用,分割" name="data[tags_name]" size="24" value="<?php echo C('tags_name',null,'data');?>">
 	    	</div>
 	    </div>
 	</div>
 	</form>
 	<div class="bjui-pageFooter">
 	    <ul>
-	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 保存</button></li>
+	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> บันทึก</button></li>
 	    </ul>
 	</div>
 </div>

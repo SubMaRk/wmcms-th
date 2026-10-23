@@ -10,7 +10,7 @@ thead th {
 <div class="bjui-pageHeader">
 	<div class="row cl pt-10 pb-10 pl-10">
 		<div class="f-l" style="margin-left:10px">
-			<a href="index.php?a=yes&c=system.api.ttsvoicet&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
+			<a href="index.php?a=yes&c=system.api.ttsvoicet&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
 		</div>
 		<div class="f-l">
 			<form id="pagerForm" name="<?php echo $cFun;?>Form" data-toggle="ajaxsearch" data-loadingmask="true" action="index.php?c=system.api.ttsvoicet.list&t=list" method="post">
@@ -18,9 +18,9 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                <span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
+                <span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
                 <select data-toggle="selectpicker" id="type_id" name="type_id" data-width="100">
-                	<option value="">所有</option>
+                	<option value="">ทั้งหมด</option>
                 	<?php
                 	if( $typeData )
                 	{
@@ -32,9 +32,9 @@ thead th {
                 	}
                 	?>
                 </select>
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
-				<a class="btn btn-success radius size-MINI" data-toggle="dialog" data-mask="true" data-title="添加发音人" href="index.php?d=yes&c=system.api.ttsvoicet.edit&t=add" data-width="450" data-height="350" ><i class="fa fa-plus"></i> 添加发音人</a> &nbsp;
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
+				<a class="btn btn-success radius size-MINI" data-toggle="dialog" data-mask="true" data-title="เพิ่มผู้พากย์เสียง" href="index.php?d=yes&c=system.api.ttsvoicet.edit&t=add" data-width="450" data-height="350" ><i class="fa fa-plus"></i> เพิ่มผู้พากย์เสียง</a> &nbsp;
 			</form>
 		</div>
 	</div>
@@ -46,12 +46,12 @@ thead th {
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="5%" data-order-field="voicet_id">ID</th>
-				<th width="6%">状态</th>
-	            <th width="10%">所属接口</th>
-	            <th width="10%">发音人ID</th>
-	            <th width="15%">发音人名字</th>
-	            <th width="5%">排序</th>
-	            <th width="8%">操作</th>
+				<th width="6%">สถานะ</th>
+	            <th width="10%">อินเทอร์เฟซที่สังกัด</th>
+	            <th width="10%">ID นักพากย์</th>
+	            <th width="15%">ชื่อนักพากย์</th>
+	            <th width="5%">เรียงลำดับ</th>
+	            <th width="8%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody>
@@ -62,7 +62,7 @@ thead th {
 				foreach ($list as $k=>$v)
 				{
 					$cur = str::CheckElse( $i%2 , 0 , '' , 'even_index_row');
-					$status = str::CheckElse( $v['voicet_status'] , 0 , '<a href="javascript:;"><span style="color:red">禁用</span></a>' , '<a href="javascript:;"><span style="color:green">使用</span></a>');
+					$status = str::CheckElse( $v['voicet_status'] , 0 , '<a href="javascript:;"><span style="color:red">ปิดใช้งาน</span></a>' , '<a href="javascript:;"><span style="color:green">ใช้</span></a>');
 					
 					echo '<tr class="'.$cur.'">
 							<td style="text-align: center;"><input type="checkbox" name="ids" data-toggle="icheck" value="'.$v['voicet_id'].'"></td>
@@ -73,8 +73,8 @@ thead th {
 							<td style="text-align: center;">'.$v['voicet_name'].'</td>
 							<td style="text-align: center;">'.$v['voicet_order'].'</td>
 							<td style="text-align: center;">
-				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" data-on-close="onClose" href="index.php?d=yes&c=system.api.ttsvoicet.edit&t=edit&id='.$v['voicet_id'].'"  data-toggle="dialog" data-title="修改发音人" data-width="450" data-height="350" >编辑</a> 
-				           		<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['voicet_id'].')">删除</a>
+				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" data-on-close="onClose" href="index.php?d=yes&c=system.api.ttsvoicet.edit&t=edit&id='.$v['voicet_id'].'"  data-toggle="dialog" data-title="修改发音人" data-width="450" data-height="350" >แก้ไข</a> 
+				           		<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['voicet_id'].')">ลบ</a>
                 			</td>
 						</tr>';
 					$i++;
@@ -91,7 +91,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -100,7 +100,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div id="asd" class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>

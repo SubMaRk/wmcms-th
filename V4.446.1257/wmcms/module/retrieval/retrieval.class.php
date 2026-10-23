@@ -73,7 +73,7 @@ class retrieval
 			'分类类型' =>'type_type',
 			'条件' =>'1',
 			'排序' =>'2',
-			'小说' =>'novel',
+			'นิยาย' =>'novel',
 			'文章' =>'article',
 			'图集' =>'picture',
 			'应用' =>'app',

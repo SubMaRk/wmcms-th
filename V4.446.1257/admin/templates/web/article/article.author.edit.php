@@ -2,11 +2,11 @@
     <form action="index.php?a=yes&c=article.author&t=<?php echo $type;?>" data-reload="false" data-toggle="validate" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
 	<input name="id[author_id]" type="hidden" class="input-text" value="<?php echo $id;?>">
 		<fieldset>
-			<legend>文章作者来源编辑</legend>
+			<legend>แก้ไขแหล่งที่มาผู้แต่งบทความ</legend>
             	<div class="tab-pane fade active in">
 					<table class="table table-border table-bordered table-bg table-sort">
 					<tr>
-				      <td valign="top"><b>数据类型：</b></td>
+				      <td valign="top"><b>ประเภทข้อมูล:</b></td>
 				      <td valign="top">
 				      	<select data-toggle="selectpicker" name="author[author_type]" data-width="100">
 		                	<?php
@@ -20,11 +20,11 @@
 		               </td>
 					</tr>
 				    <tr>
-				      <td valign="top"><b>数据名字：</b></td>
+				      <td valign="top"><b>ชื่อข้อมูล:</b></td>
 				      <td valign="top"><input data-rule="数据名字:required;" name="author[author_name]" type="text" class="input-text" value="<?php echo C('author_name',null,'data');?>"></td>
 					</tr>
 				    <tr>
-				      <td valign="top"><b>是否默认：</b></td>
+				      <td valign="top"><b>เป็นค่าเริ่มต้นหรือไม่:</b></td>
 				      <td valign="top">
 				      	<select data-toggle="selectpicker" name="author[author_default]" data-width="100">
 				      		<option value="0" <?php if( C('author_default',null,'data')== '0'){echo 'selected=""';}?>>非默认</option>
@@ -33,7 +33,7 @@
 		             </td>
 					</tr>
 				    <tr>
-				      <td valign="top"><b>数据条数：</b></td>
+				      <td valign="top"><b>จำนวนรายการข้อมูล:</b></td>
 				      <td valign="top"><input data-rule="digits;" data-rule="required;number;" name="author[author_data]" type="text" class="input-text" value="<?php echo C('author_data',null,'data');?>"></td>
 					</tr>
 				</table>
@@ -44,8 +44,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 

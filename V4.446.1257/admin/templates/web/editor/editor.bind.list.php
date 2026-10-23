@@ -18,9 +18,9 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                <span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
+                <span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
                 <select data-toggle="selectpicker" id="group_id" name="group_id" data-width="100">
-                	<option value="">全部分组</option>
+                	<option value="">ทุกกลุ่ม</option>
                 	<?php
                 	if( $groupArr )
                 	{
@@ -32,10 +32,10 @@ thead th {
                 	}
                 	?>
                 </select>
-                <input type="text" placeholder="编辑ID" name="editor_id" size="10" value="<?php echo $editorId;?>">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
-				<a class="btn btn-success radius size-MINI" data-toggle="dialog" data-mask="true" data-title="添加成员" href="index.php?d=yes&c=editor.bind.edit&t=add" data-width="490" data-height="260" ><i class="fa fa-plus"></i> 添加成员</a> &nbsp;
+                <input type="text" placeholder="บรรณาธิการID" name="editor_id" size="10" value="<?php echo $editorId;?>">
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
+				<a class="btn btn-success radius size-MINI" data-toggle="dialog" data-mask="true" data-title="เพิ่มสมาชิกในทีม" href="index.php?d=yes&c=editor.bind.edit&t=add" data-width="490" data-height="260" ><i class="fa fa-plus"></i> เพิ่มสมาชิก</a> &nbsp;
 			</form>
 		</div>
 	</div>
@@ -46,11 +46,11 @@ thead th {
 			<thead>
 				<tr>
 				<th width="8%" data-order-field="bind_id">ID</th>
-	            <th width="14%">编辑组</th>
-	            <th width="18%">编辑类型</th>
-	            <th width="18%">编辑</th>
-	            <th width="16%">添加时间</th>
-	            <th width="14%">操作</th>
+	            <th width="14%">กลุ่มบรรณาธิการ</th>
+	            <th width="18%">ประเภทบรรณาธิการ</th>
+	            <th width="18%">แก้ไข</th>
+	            <th width="16%">เวลาเพิ่ม</th>
+	            <th width="14%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody>
@@ -70,8 +70,8 @@ thead th {
 							<td style="text-align: center;">'.$v['editor_name'].'(ID:'.$v['bind_editor_id'].')</td>
 							<td style="text-align: center;">'.date('Y-m-d H:i:s',$v['bind_time']).'</td>
 							<td style="text-align: center;">
-				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" data-on-close="onClose" href="index.php?d=yes&c=editor.bind.edit&t=edit&id='.$v['bind_id'].'"  data-toggle="dialog" data-title="修改成员" data-width="490" data-height="260" >编辑</a> 
-								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['bind_id'].')">删除</a>
+				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" data-on-close="onClose" href="index.php?d=yes&c=editor.bind.edit&t=edit&id='.$v['bind_id'].'"  data-toggle="dialog" data-title="แก้ไขสมาชิก" data-width="490" data-height="260" >แก้ไข</a> 
+								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['bind_id'].')">ลบ</a>
                 			</td>
 						</tr>';
 					$i++;
@@ -88,7 +88,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -97,7 +97,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div id="asd" class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>

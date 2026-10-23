@@ -107,6 +107,6 @@ else if ( $type == 'getvolume' )
 	$where['where'] = Request();
 	$where['order'] = 'volume_order desc';
 	$data = wmsql::GetAll($where);
-	Ajax('成功!',null,$data);
+	Ajax('สำเร็จ!',null,$data);
 }
 ?>

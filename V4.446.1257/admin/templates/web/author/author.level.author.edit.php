@@ -8,7 +8,7 @@
 <div class="bjui-pageContent">
 	<form action="index.php?a=yes&c=author.level&t=add" class="form form-horizontal" data-reload="false" data-toggle="validate" method="post" data-callback="<?php echo $cFun;?>">
 	    <div class="row cl">
-			<label class="form-label col-md-4">等级模块：</label>
+			<label class="form-label col-md-4">โมดูลระดับ:</label>
 			<div class="formControls col-md-8">
 		      	<select data-toggle="selectpicker" name="level[level_module]">
 		        <?php
@@ -21,25 +21,25 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-md-4">等级名字：</label>
+			<label class="form-label col-md-4">ชื่อระดับ:</label>
 			<div class="formControls col-md-8">
 		      	<input type="text" value="" name="level[level_name]" class="form-control" data-rule="required">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-md-4">等级开始经验：</label>
+			<label class="form-label col-md-4">ค่าประสบการณ์เริ่มต้นระดับ:</label>
 			<div class="formControls col-md-8">
 		      	<input type="text" value="" name="level[level_start]" class="form-control" data-rule="required;digits">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-md-4">等级结束经验：</label>
+			<label class="form-label col-md-4">ค่าประสบการณ์สิ้นสุดระดับ:</label>
 			<div class="formControls col-md-8">
 		      	<input type="text" value="" name="level[level_end]" class="form-control" data-rule="required;digits">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-md-4">等级排序：</label>
+			<label class="form-label col-md-4">การเรียงระดับ:</label>
 			<div class="formControls col-md-8">
 		      	<input type="text" value="0" name="level[level_order]" class="form-control" data-rule="required;digits">
 			</div>
@@ -47,8 +47,8 @@
 	</div>
 	<div class="bjui-pageFooter">
 	    <ul>
-	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 提交</button></li>
+	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> ส่งข้อมูล</button></li>
 	    </ul>
 	</div>
 	</form>

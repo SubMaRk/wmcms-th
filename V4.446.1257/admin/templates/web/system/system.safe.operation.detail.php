@@ -8,35 +8,35 @@ if( !is_array($data) )
 <div class="bjui-pageContent">
 <table class="table table-border table-bordered table-bg table-sort">
     <tr>
-      <td valign="top" width="150"><b>记录ID：</b></td>
+      <td valign="top" width="150"><b>ID บันทึก:</b></td>
       <td valign="top"><?php echo $data['operation_id']?></td>
 	</tr>
     <tr>
-      <td valign="top"><b>管理员：</b></td>
+      <td valign="top"><b>ผู้ดูแลระบบ:</b></td>
       <td valign="top"><?php echo $data['manager_name']?></td>
 	</tr>
     <tr>
-      <td valign="top"><b>操作的模块：</b></td>
+      <td valign="top"><b>โมดูลของการดำเนินการ:</b></td>
       <td valign="top"><?php echo $data['operation_module']?></td>
 	</tr>
     <tr>
-      <td valign="top"><b>操作的类型：</b></td>
+      <td valign="top"><b>ประเภทของการดำเนินการ:</b></td>
       <td valign="top"><?php echo $data['operation_type']?></td>
 	</tr>
     <tr>
-      <td valign="top"><b>操作的备注：</b></td>
+      <td valign="top"><b>หมายเหตุของการดำเนินการ:</b></td>
       <td valign="top"><?php echo $data['operation_remark']?></td>
 	</tr>
     <tr>
-      <td valign="top"><b>操作的时间：</b></td>
+      <td valign="top"><b>เวลาของการดำเนินการ:</b></td>
       <td valign="top"><?php echo date("Y-m-d H:i:s" ,$data['operation_time'])?></td>
 	</tr>
     <tr>
-      <td valign="top"><b>操作的表：</b></td>
+      <td valign="top"><b>ตารางที่ดำเนินการ:</b></td>
       <td valign="top"><?php echo $data['operation_table']?></td>
 	</tr>
     <tr>
-      <td valign="top"><b>操作的数据：</b></td>
+      <td valign="top"><b>ข้อมูลที่ดำเนินการ:</b></td>
       <td valign="top">
       <?php
       if( $operation )
@@ -58,11 +58,11 @@ if( !is_array($data) )
       </td>
 	</tr>
     <tr>
-      <td valign="top"><b>数据的镜像：</b></td>
+      <td valign="top"><b>มิเรอร์ของข้อมูล:</b></td>
       <td valign="top"><?php echo $data['operation_backdata']?></td>
 	</tr>
     <tr>
-      <td valign="top"><b>请求时间：</b></td>
+      <td valign="top"><b>เวลาคำขอ:</b></td>
       <td valign="top"><?php echo date("Y-m-d H:i:s" , $data['operation_time'])?></td>
 	</tr>
     <tr></tr>
@@ -72,7 +72,7 @@ if( !is_array($data) )
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save" disabled>回滚数据</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ปิด</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save" disabled>ย้อนคืนข้อมูล</button></li>
     </ul>
 </div>

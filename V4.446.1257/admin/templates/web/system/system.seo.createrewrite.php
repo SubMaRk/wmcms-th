@@ -7,11 +7,11 @@
 	
     
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-      <thead><tr><th colspan="4" style="text-align:left;"><b>生成伪静态规则</b></th></tr></thead>
+      <thead><tr><th colspan="4" style="text-align:left;"><b>สร้างกฎสแตติกเทียม</b></th></tr></thead>
       <tr>
         <td>
         	<select data-toggle="selectpicker" id="<?php echo $cFun;?>server" data-width="130">
-            	<option value="">选择php环境</option>
+            	<option value="">เลือกสภาพแวดล้อม php</option>
             	<option value="iis6">windows + iis6</option>
             	<option value="iis7">windows + iis7</option>
             	<option value="apache">linux + apache</option>
@@ -19,7 +19,7 @@
          	</select>
          	
         	<select data-toggle="selectpicker" id="<?php echo $cFun;?>module" name="module" data-width="100">
-            	<option value="">选择模块</option>
+            	<option value="">เลือกโมดูล</option>
                 <?php
                 foreach ($moduleArr as $k=>$v)
                 {
@@ -50,17 +50,17 @@
     </table>
     
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
-      <thead><tr><th colspan="4" style="text-align:left;"><b>当前伪静态规则</b></th></tr></thead>
+      <thead><tr><th colspan="4" style="text-align:left;"><b>กฎ URL แบบสแตติกปัจจุบัน</b></th></tr></thead>
       <tr>
         <td width="360" style="font-size:14px;">
-        	<span style="color: red"><strong>本系统生成的伪静态规则仅供参考，请根据实际情况做修改。</strong></span><br/>
-        	<span style="color: green">当出现{xx}（xx为任意字符）或者“pt={pt}&”可以将其参数删除。</span><br/>
-        	<span style="color: blue"><strong>当出现{s}可以将替换为(.*?)。</strong></span><br/><br/>
-			iis6以下环境伪静态文件为：httpd.ini<br/>
-			iis7以上环境伪静态文件为：web.config<br/>
-			apache环境伪静态文件为：.htaccess<br/>
-			nginx环境伪静态文件为：nginx.conf<br/>
-        	当您选择完成后复制右边的内容到伪静态文件即可。<br/>
+        	<span style="color: red"><strong>กฎสแตติกเทียมที่ระบบสร้างขึ้นใช้เป็นข้อมูลอ้างอิงเท่านั้น โปรดแก้ไขตามสถานการณ์จริง</strong></span><br/>
+        	<span style="color: green">เมื่อพบ {xx} (xx คืออักขระใด ๆ) หรือ "pt={pt}&" สามารถลบพารามิเตอร์นั้นได้</span><br/>
+        	<span style="color: blue"><strong>เมื่อพบ {s} สามารถแทนที่ด้วย (.*?)</strong></span><br/><br/>
+			ไฟล์ pseudo-static ของ iis6 หรือต่ำกว่า：httpd.ini<br/>
+			ไฟล์ pseudo-static ของ iis7 ขึ้นไป：web.config<br/>
+			ไฟล์ pseudo-static ของ apache：.htaccess<br/>
+			ไฟล์ pseudo-static ของ nginx：nginx.conf<br/>
+        	เมื่อเลือกเสร็จแล้ว ให้คัดลอกเนื้อหาด้านขวาไปยังไฟล์ URL แบบสแตติก<br/>
         </td>
         <td>
         	<ul id="<?php echo $cFun?>rewritelist"></ul>

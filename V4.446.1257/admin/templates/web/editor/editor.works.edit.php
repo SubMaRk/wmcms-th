@@ -8,23 +8,23 @@
 	<form action="index.php?a=yes&c=editor.works&t=<?php echo $type;?>" name="<?php echo $cFun.$type;?>Form" class="form form-horizontal" data-reload="false" data-toggle="ajaxform" method="post" data-callback="<?php echo $cFun.$type;?>">
     	<input type="hidden" name="works_id" value="<?php echo $id;?>"/>
 	    <div class="row cl">
-			<label class="form-label col-md-4">作品ID：</label>
+			<label class="form-label col-md-4">ID ผลงาน：</label>
 	    	<div class="formControls col-md-8">
 	        	<input type="text" class="form-control" placeholder="作品的ID" name="data[works_cid]" size="24" value="<?php echo C('works_cid',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">分组成员ID：</label>
+			<label class="form-label col-md-4">ID สมาชิกกลุ่ม:</label>
 	    	<div class="formControls col-md-8">
-	        	<input type="text" class="form-control" placeholder="分组成员的ID" name="data[works_bind_id]" size="24" value="<?php echo C('works_bind_id',null,'data');?>">
+	        	<input type="text" class="form-control" placeholder="กลุ่ม成员的ID" name="data[works_bind_id]" size="24" value="<?php echo C('works_bind_id',null,'data');?>">
 	    	</div>
 	    </div>
 	</div>
 	</form>
 	<div class="bjui-pageFooter">
 	    <ul>
-	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 保存</button></li>
+	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> บันทึก</button></li>
 	    </ul>
 	</div>
 </div>

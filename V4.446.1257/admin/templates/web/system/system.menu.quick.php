@@ -2,13 +2,13 @@
 	  <form name="<?php echo $cFun;?>EditForm" action="index.php?a=yes&c=system.menu.menu&t=quickorder" data-toggle="validate" method="post">
 	  <table class="table table-border table-bordered table-bg table-sort">
 	    <tr>
-	      <td colspan="9"><strong>快捷菜单设置</strong></td>
+	      <td colspan="9"><strong>ตั้งค่าเมนูด่วน</strong></td>
 	    </tr>
 	    <tr>
-	      <td>菜单ID</td>
-	      <td>菜单名字</td>
-	      <td>菜单文件</td>
-	      <td>菜单排序</td>
+	      <td>ID เมนู</td>
+	      <td>ชื่อเมนู</td>
+	      <td>ไฟล์เมนู</td>
+	      <td>การเรียงเมนู</td>
 	    </tr>
 	    
 	    <?php 
@@ -33,8 +33,8 @@
 	  
 		<div class="bjui-pageFooter">
 		    <ul>
-		        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-		        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 提交更改</button></li>
+		        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+		        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> ส่งการเปลี่ยนแปลง</button></li>
 		    </ul>
 		</div>
 	</form>

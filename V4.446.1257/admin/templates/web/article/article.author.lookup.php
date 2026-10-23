@@ -6,9 +6,9 @@
 	<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
 	<input type="hidden" name="st" value="<?php echo $st;?>">
         <div class="bjui-searchBar">
-            <label>模版关键字：</label><input type="text" value="<?php echo $key;?>" name="key" size="10" />&nbsp;
-            <button type="submit" class="btn-default" data-icon="search">查询</button>&nbsp;
-            <a class="btn btn-orange" href="javascript:;" data-icon="undo">清空查询</a>&nbsp;
+            <label>คีย์เวิร์ดเทมเพลต:</label><input type="text" value="<?php echo $key;?>" name="key" size="10" />&nbsp;
+            <button type="submit" class="btn-default" data-icon="search">สืบค้น</button>&nbsp;
+            <a class="btn btn-orange" href="javascript:;" data-icon="undo">ล้างการสืบค้น</a>&nbsp;
         </div>
     </form>
 </div>
@@ -18,10 +18,10 @@
 		<thead>
 			<tr>
 			<th width="15%" data-order-field="author_id">ID</th>
-			<th width="25%" >类型</th>
-			<th width="30%" >数据值</th>
-			<th width="20%" data-order-field="author_data">数据量</th>
-            <th width="10" style="text-align: center;">操作</th>
+			<th width="25%" >ประเภท</th>
+			<th width="30%" >ค่าข้อมูล</th>
+			<th width="20%" data-order-field="author_data">ปริมาณข้อมูล</th>
+            <th width="10" style="text-align: center;">ดำเนินการ</th>
             </tr>
 		</thead>
 		<tbody>
@@ -42,14 +42,14 @@
 				foreach ($data as $k=>$v)
 				{
 					$cur = str::CheckElse( $i%2 , 0 , '' , 'even_index_row');
-					$author = '文章作者';
+					$author = 'ผู้แต่งบทความ';
 					if( $v['author_type'] == 's' )
 					{
-						$author = '文章来源';
+						$author = 'แหล่งที่มาบทความ';
 					}
 					else if( $v['author_type'] == 'e')
 					{
-						$author = '文章编辑';
+						$author = 'แก้ไขบทความ';
 					}
 					
 					echo '<tr class="'.$cur.'">
@@ -75,7 +75,7 @@
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -84,7 +84,7 @@
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>"></div>
 </div>

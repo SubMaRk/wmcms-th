@@ -39,7 +39,7 @@ class UserModel
 					$userType[$key] = $val['api_title'];
 				}
 			}
-			$userType['default'] = '普通注册';
+			$userType['default'] = 'สมัครปกติ';
 			$this->userType = $userType;
 		}
 		if( $type != '' )

@@ -6,21 +6,21 @@
 	<form name="<?php echo $cFun.$type;?>Form" action="index.php?a=yes&c=data.file&t=<?php echo $type;?>" method="post" data-toggle="validate" <?php if($d) { echo 'data-callback="'.$cFun.$type.'"';}?>>
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
       <tr>
-        <td width="100">工作目录：</td>
+        <td width="100">ไดเรกทอรีทำงาน:</td>
         <td>
-        	<input type="text" class="input-text" name="path" <?php if($type == 'edit'){ echo 'readonly';}?> value="<?php echo $path;?>" size="30" placeholder="保存目录"/>
-			<small>空白表示根目录 ，不允许用 “..” 形式的路径</small>
+        	<input type="text" class="input-text" name="path" <?php if($type == 'edit'){ echo 'readonly';}?> value="<?php echo $path;?>" size="30" placeholder="บันทึก目录"/>
+			<small>เว้นว่างหมายถึงไดเรกทอรีราก ไม่อนุญาตพาธแบบ ".."</small>
 		</td>
 	</tr>
 	<tr>
-        <td>文件名称：</td>
+        <td>ชื่อไฟล์:</td>
         <td>
-        	<input type="text" class="input-text" name="filename" <?php if($type == 'edit'){ echo 'readonly';}?> value="<?php echo $file;?>" size="30" data-rule="required" placeholder="文件名称"/>
-        	<small>不允许用 “..” 形式的路径</div>
+        	<input type="text" class="input-text" name="filename" <?php if($type == 'edit'){ echo 'readonly';}?> value="<?php echo $file;?>" size="30" data-rule="required" placeholder="文件ชื่อ"/>
+        	<small>ไม่อนุญาตพาธรูปแบบ “..”</div>
 		</td>
 	</tr>
 	<tr>
-        <td>文件内容：</td>
+        <td>เนื้อหาไฟล์:</td>
         <td>
 			<textarea id="<?php echo $cFun.$type;?>edit" name="content" style="height:400px;"><?php echo $fileContent;?></textarea>
 		</td>
@@ -31,8 +31,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close btn btn-danger"><i class="fa fa-times"></i> 关闭</button></li>
-        <li><button id="<?php echo $cFun.$type;?>sub" type="button" class="btn btn-success"><i class="fa fa-floppy-o"></i> 提交</button></li>
+        <li><button type="button" class="btn-close btn btn-danger"><i class="fa fa-times"></i> ปิด</button></li>
+        <li><button id="<?php echo $cFun.$type;?>sub" type="button" class="btn btn-success"><i class="fa fa-floppy-o"></i> ส่งข้อมูล</button></li>
     </ul>
 </div>
 

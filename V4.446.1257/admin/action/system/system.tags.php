@@ -23,7 +23,7 @@ if ( $type == 'edit' || $type == "add" )
 	{
 		if( $v == '' )
 		{
-			Ajax(GetModuleName($module).'对不起，所有项都不能为空！' , 300);
+			Ajax(GetModuleName($module).'ทุกช่องห้ามว่าง!' , 300);
 		}
 	}
 	

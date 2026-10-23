@@ -8,7 +8,7 @@
 	<form action="index.php?a=yes&c=system.api.ttsvoicet&t=<?php echo $type;?>" name="<?php echo $cFun.$type;?>Form" class="form form-horizontal" data-reload="false" data-toggle="ajaxform" method="post" data-callback="<?php echo $cFun.$type;?>">
     	<input type="hidden" name="voicet_id" value="<?php echo $id;?>"/>
     	<div class="row cl">
-			<label class="form-label col-md-4">状态：</label>
+			<label class="form-label col-md-4">สถานะ:</label>
 	    	<div class="formControls col-md-8">
 	        	<select data-toggle="selectpicker" name="data[voicet_status]">
 		      	    <option value="1" <?php if(C('voicet_status',null,'data')=='1'){echo 'selected=""';}?>>使用</option>
@@ -17,7 +17,7 @@
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">所属接口：</label>
+			<label class="form-label col-md-4">อินเทอร์เฟซที่สังกัด:</label>
 	    	<div class="formControls col-md-8">
 	        	<select data-toggle="selectpicker" name="data[voicet_api_id]">
 		      	    <?php
@@ -37,29 +37,29 @@
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">发音人ID：</label>
+			<label class="form-label col-md-4">ID นักพากย์:</label>
 	    	<div class="formControls col-md-8">
-	        	<input type="text" class="form-control" placeholder="标签的名字，多个用,分割" name="data[voicet_ids]" size="24" value="<?php echo C('voicet_ids',null,'data');?>">
+	        	<input type="text" class="form-control" placeholder="标签的名คำ，多รายการ用,分割" name="data[voicet_ids]" size="24" value="<?php echo C('voicet_ids',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">发音人名字：</label>
+			<label class="form-label col-md-4">ชื่อนักพากย์:</label>
 	    	<div class="formControls col-md-8">
-	        	<input type="text" class="form-control" placeholder="标签的名字，多个用,分割" name="data[voicet_name]" size="24" value="<?php echo C('voicet_name',null,'data');?>">
+	        	<input type="text" class="form-control" placeholder="标签的名คำ，多รายการ用,分割" name="data[voicet_name]" size="24" value="<?php echo C('voicet_name',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-4">排序：</label>
+			<label class="form-label col-md-4">เรียงลำดับ:</label>
 	    	<div class="formControls col-md-8">
-	        	<input type="text" class="form-control" placeholder="数字，越小越靠前" name="data[voicet_order]" size="24" value="<?php echo C('voicet_order',null,'data');?>">
+	        	<input type="text" class="form-control" placeholder="数คำ，ยิ่งน้อยยิ่งอยู่หน้า" name="data[voicet_order]" size="24" value="<?php echo C('voicet_order',null,'data');?>">
 	    	</div>
 	    </div>
 	</div>
 	</form>
 	<div class="bjui-pageFooter">
 	    <ul>
-	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 保存</button></li>
+	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> บันทึก</button></li>
 	    </ul>
 	</div>
 </div>

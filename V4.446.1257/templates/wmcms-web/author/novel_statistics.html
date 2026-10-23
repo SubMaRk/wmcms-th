@@ -30,55 +30,55 @@ $(document).ready(function(){
 <div class="mainRight fl">
     <div class="crumbsWrap">
         <div style="float: right;">
-            <span style="color:red">切换显示</span>
+            <span style="color:red">สลับการแสดงผล</span>
             <select id="novel_select" class="modify hidden showselect valid" id="novel" style="display: inline-block; visibility: visible;height: 45px;border: 1px solid #4ea8ff;border-radius: 5px;cursor: pointer;">
                 {小说列表:排序=最新入库}
                     <option value="{小说id}">ID：{小说id}，{小说名字}</option>
             	{/小说列表}
 			</select>
 		</div>
-        <i><span>数据统计</span></i>
+        <i><span>สถิติข้อมูล</span></i>
     </div>
     
     <div id="loading" class="worksCtrlWrap" style="text-align: center;margin-top: 300px;">
-        加载中...
+        กำลังโหลด...
     </div>
     <div id="bookManageExist" class="worksCtrlWrap" style="display:none">
         <!--书籍基本信息开始-->
         <div class="workStateWrap cf">
-            <div id="ticketMonthRank">月票NO:<span>0</span></div>
-            <div id="ticketRecRank">推荐票<br/>NO:<span>0</span></div>
+            <div id="ticketMonthRank">โหวตรายเดือน NO:<span>0</span></div>
+            <div id="ticketRecRank">โหวตแนะนำ<br/>NO:<span>0</span></div>
             <div class="fmBox fl">
                <div class="fm"><img src="/files/images/nocover.jpg" id="cover" width="114" height="152"></div>
             </div>
             <div class="workSetList fl borderRight">
                 <ul>
-                	<li><em>书号：</em><b id="novel_id">0</b></li>
-                	<li><em>作品名称：</em><b id="novel_name" style="width: 205px;"></b></li>
-                	<li><em>作品分类：</em><b id="type_name"></b></li>
-                	<li><em>发表日期：</em><b id="novel_createtime">0</b></li>
-                	<li><em>章节字数：</em><b id="novel_wordnumber">0</b></li>
-                	<li><em>最后更新：</em><b id="novel_updateime">0</b></li>
+                	<li><em>รหัสหนังสือ:</em><b id="novel_id">0</b></li>
+                	<li><em>ชื่อผลงาน:</em><b id="novel_name" style="width: 205px;"></b></li>
+                	<li><em>หมวดหมู่ผลงาน:</em><b id="type_name"></b></li>
+                	<li><em>วันที่โพสต์:</em><b id="novel_createtime">0</b></li>
+                	<li><em>จำนวนคำในตอน:</em><b id="novel_wordnumber">0</b></li>
+                	<li><em>อัปเดตล่าสุด:</em><b id="novel_updateime">0</b></li>
 				</ul>
             </div>
             <div class="workSetList fl w250 borderRight">
                 <ul>
-                	<li><em>总订阅：</em><b id="sub_all">0</b></li>
-                	<li><em>今日：</em><b id="sub_today">0</b></li>
-                	<li><em>昨日：</em><b id="sub_lastday">0</b></li>
-                	<li><em>本月：</em><b id="sub_month">0</b></li>
-                	<li><em>最高：</em><b id="sub_max">0</b></li>
-                	<li><em>平均：</em><b id="sub_avg">0</b></li>
+                	<li><em>ยอดติดตามรวม:</em><b id="sub_all">0</b></li>
+                	<li><em>วันนี้:</em><b id="sub_today">0</b></li>
+                	<li><em>เมื่อวาน:</em><b id="sub_lastday">0</b></li>
+                	<li><em>เดือนนี้:</em><b id="sub_month">0</b></li>
+                	<li><em>สูงสุด:</em><b id="sub_max">0</b></li>
+                	<li><em>เฉลี่ย:</em><b id="sub_avg">0</b></li>
 				</ul>
             </div>
             <div class="workSetList fl w250">
                 <ul>
-                	<li><em>总打赏：</em><b id="reward_all">0</b></li>
-                	<li><em>今日：</em><b id="reward_today">0</b></li>
-                	<li><em>昨日：</em><b id="reward_lastday">0</b></li>
-                	<li><em>本月：</em><b id="reward_month">0</b></li>
-                	<li><em>最高：</em><b id="reward_max">0</b></li>
-                	<li><em>平均：</em><b id="reward_avg">0</b></li>
+                	<li><em>ยอดสนับสนุนรวม:</em><b id="reward_all">0</b></li>
+                	<li><em>วันนี้:</em><b id="reward_today">0</b></li>
+                	<li><em>เมื่อวาน:</em><b id="reward_lastday">0</b></li>
+                	<li><em>เดือนนี้:</em><b id="reward_month">0</b></li>
+                	<li><em>สูงสุด:</em><b id="reward_max">0</b></li>
+                	<li><em>เฉลี่ย:</em><b id="reward_avg">0</b></li>
 				</ul>
             </div>
         </div>
@@ -87,30 +87,30 @@ $(document).ready(function(){
         <div class="workStateWrap cf">
             <div class="workSetList fl w250 card">
                 <ul>
-                	<li><em>字数</em><span class="tag" id="chapter_all" style="width: 65px;margin-left: 59px;">0</span></li>
-                	<li><em>今日</em><b><span id="chapter_today">0</span><span class="proportion" id="chapter_proportion"></span></b></li>
-                	<li><em>昨日</em><b id="chapter_lastday">0</b></li>
+                	<li><em>จำนวนคำ</em><span class="tag" id="chapter_all" style="width: 65px;margin-left: 59px;">0</span></li>
+                	<li><em>วันนี้</em><b><span id="chapter_today">0</span><span class="proportion" id="chapter_proportion"></span></b></li>
+                	<li><em>เมื่อวาน</em><b id="chapter_lastday">0</b></li>
 				</ul>
             </div>
             <div class="workSetList fl w250 card">
                 <ul>
-                	<li><em>书架</em><span class="tag" id="shelf_all">0</span></li>
-                	<li><em>今日</em><b><span id="shelf_today">0</span><span class="proportion" id="shelf_proportion">0</span></b></li>
-                	<li><em>昨日</em><b id="shelf_lastday">0</b></li>
+                	<li><em>ชั้นหนังสือ</em><span class="tag" id="shelf_all">0</span></li>
+                	<li><em>วันนี้</em><b><span id="shelf_today">0</span><span class="proportion" id="shelf_proportion">0</span></b></li>
+                	<li><em>เมื่อวาน</em><b id="shelf_lastday">0</b></li>
 				</ul>
             </div>
             <div class="workSetList fl w250 card">
                 <ul>
-                	<li><em>阅读</em><span class="tag" id="read_all style="width: 65px;margin-left: 59px;"">0</span></li>
-                	<li><em>今日</em><b><span id="read_today">0</span><span class="proportion" id="read_proportion"></span></b></li>
-                	<li><em>昨日</em><b id="read_lastday">0</b></li>
+                	<li><em>อ่าน</em><span class="tag" id="read_all style="width: 65px;margin-left: 59px;"">0</span></li>
+                	<li><em>วันนี้</em><b><span id="read_today">0</span><span class="proportion" id="read_proportion"></span></b></li>
+                	<li><em>เมื่อวาน</em><b id="read_lastday">0</b></li>
 				</ul>
             </div>
             <div class="workSetList fl w250 card">
                 <ul>
-                	<li><em>评论</em><span class="tag" id="replay_all">0</span></li>
-                	<li><em>今日</em><b><span id="replay_today">0</span><span class="proportion" id="replay_proportion">0</span></b></li>
-                	<li><em>昨日</em><b id="replay_lastday">0</b></li>
+                	<li><em>ความคิดเห็น</em><span class="tag" id="replay_all">0</span></li>
+                	<li><em>วันนี้</em><b><span id="replay_today">0</span><span class="proportion" id="replay_proportion">0</span></b></li>
+                	<li><em>เมื่อวาน</em><b id="replay_lastday">0</b></li>
 				</ul>
             </div>
         </div>
@@ -183,7 +183,7 @@ function GetData(nid){
                 $('#sub_month').html(sub.month);
                 $('#sub_max').html(subMax+subMaxDay);
                 $('#sub_avg').html(sub.avg);
-                //打赏
+                //ให้ทิป
                 $('#reward_all').html(reward.all);
                 $('#reward_today').html(reward.today);
                 $('#reward_lastday').html(reward.lastday);
@@ -214,13 +214,13 @@ function GetData(nid){
                 if( ticketMonth.month ){
                     $('#ticketMonthRank span').html(ticketMonth.month.rank);
                 }else{
-                    $('#ticketMonthRank span').html('未上榜');
+                    $('#ticketMonthRank span').html('ยังไม่ติดอันดับ');
                 }
                 //推荐票排名
                 if( ticketRec.month ){
                     $('#ticketRecRank span').html(ticketRec.month.rank);
                 }else{
-                    $('#ticketRecRank span').html('未上榜');
+                    $('#ticketRecRank span').html('ยังไม่ติดอันดับ');
                 }
                 	
                 var chartDom = document.getElementById('main');
@@ -229,13 +229,13 @@ function GetData(nid){
                 option = {
                   legend: {},tooltip: {},
                   dataset: {
-                    dimensions: ['product', '点击排名', '收藏排名', '推荐排名'],
+                    dimensions: ['product', 'อันดับการคลิก', 'อันดับรายการโปรด', 'อันดับการแนะนำ'],
                     source: [
-                      { product: '总排名', '点击排名': click.all.rank, '收藏排名': coll.all.rank, '推荐排名': rec.all.rank },
-                      { product: '今年', '点击排名': click.year.rank, '收藏排名': coll.year.rank, '推荐排名': rec.year.rank },
-                      { product: '本月', '点击排名': click.month.rank, '收藏排名': coll.month.rank, '推荐排名': rec.month.rank },
-                      { product: '本周', '点击排名': click.week.rank, '收藏排名': coll.week.rank, '推荐排名': rec.week.rank},
-                      { product: '今日', '点击排名': click.today.rank, '收藏排名': coll.today.rank, '推荐排名': rec.today.rank }
+                      { product: 'อันดับรวม', 'อันดับการคลิก': click.all.rank, 'อันดับรายการโปรด': coll.all.rank, 'อันดับการแนะนำ': rec.all.rank },
+                      { product: 'ปีนี้', 'อันดับการคลิก': click.year.rank, 'อันดับรายการโปรด': coll.year.rank, 'อันดับการแนะนำ': rec.year.rank },
+                      { product: 'เดือนนี้', 'อันดับการคลิก': click.month.rank, 'อันดับรายการโปรด': coll.month.rank, 'อันดับการแนะนำ': rec.month.rank },
+                      { product: 'สัปดาห์นี้', 'อันดับการคลิก': click.week.rank, 'อันดับรายการโปรด': coll.week.rank, 'อันดับการแนะนำ': rec.week.rank},
+                      { product: 'วันนี้', 'อันดับการคลิก': click.today.rank, 'อันดับรายการโปรด': coll.today.rank, 'อันดับการแนะนำ': rec.today.rank }
                     ]
                   },
                   xAxis: { type: 'category' },yAxis: {},series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]

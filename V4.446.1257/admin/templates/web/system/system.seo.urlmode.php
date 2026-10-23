@@ -10,54 +10,54 @@
 	<form name="form1" action="index.php?a=yes&c=system.seo.urlmode&t=config" method="post" data-toggle="validate">
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
       <thead><tr><th colspan="4" style="text-align:left;">
-      <b style="color:red;font-size:14px;">提示:URL可以在“伪静态”里面修改！</b>
+      <b style="color:red;font-size:14px;">คำแนะนำ: แก้ไข URL ได้ใน "URL แบบสแตติก"!</b>
       </th></tr></thead>
 
       <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
 		<thead>
 		      <tr>
-		        <td width="150">是否开启HTML</td>
+		        <td width="150">เปิดใช้ HTML หรือไม่</td>
 		        <td width="400">
 		        	<?php echo $manager->GetForm( $configArr['ishtml'] );?>
 		         	<span class="<?php echo $cFun;?>sptype_info" id="<?php echo $cFun;?>sptype_info_baidu">提示：每次最多只能提交2000条链接，每天可以提交5000000条</span>
 				</td>
-		        <td>HTML需要手动生成</td>
+		        <td>HTML ต้องสร้างด้วยตนเอง</td>
 		      </tr>
 		      <tr>
-		        <td width="150">URL类型</td>
+		        <td width="150">ประเภท URL</td>
 		        <td>
 		        	<?php echo $manager->GetForm( $configArr['url_type'] );?>
 				</td>
 		        <td id="<?php echo $cFun;?>urldesc"></td>
 		      </tr>
 		      <tr>
-		        <td width="150">URL示例</td>
+		        <td width="150">ตัวอย่าง URL</td>
 		        <td id="<?php echo $cFun;?>url" colspan="2"></td>
 		      </tr>
 		      <tr class="urlmode3 urlmode4 urlmode5 urlmode6">
-		        <td width="150">URL参数分割字符</td>
+		        <td width="150">อักขระแบ่งพารามิเตอร์ URL</td>
 		        <td><?php echo $manager->GetForm( $configArr['urlmode_exp'] );?></td>
-		        <td>普通模式、兼容模式、PATHINFO模式、REWRITE模式  使用【默认为/】</td>
+		        <td>โหมดปกติ โหมดเข้ากันได้ PATHINFO REWRITE  ใช้[ค่าเริ่มต้นคือ /]</td>
 		      </tr>
 		      <tr class="urlmode4 urlmode5 urlmode6">
-		        <td width="150">URL文件后缀[可以为空]</td>
+		        <td width="150">นามสกุลไฟล์ URL[เว้นว่างได้]</td>
 		        <td><?php echo $manager->GetForm( $configArr['urlmode_suffix'] );?></td>
-		        <td>兼容模式、PATHINFO模式、REWRITE模式  使用【如：.html】</td>
+		        <td>โหมดเข้ากันได้ โหมด PATHINFO โหมด REWRITE  ใช้【เช่น：.html】</td>
 		      </tr>
 		      <tr class="urlmode3">
-		        <td width="150">普通模式参数名</td>
+		        <td width="150">ชื่อพารามิเตอร์โหมดปกติ</td>
 		        <td><?php echo $manager->GetForm( $configArr['urlmode_par_odnr1'] );?>&nbsp;&nbsp;<?php echo $manager->GetForm( $configArr['urlmode_par_odnr2'] );?></td>
-		        <td>普通模式  使用【默认为module和file】</td>
+		        <td>โหมดปกติ  ใช้[ค่าเริ่มต้นคือ module และ file]</td>
 		      </tr>
 		      <tr class="urlmode4">
-		        <td width="150">兼容模式参数名</td>
+		        <td width="150">ชื่อพารามิเตอร์โหมดเข้ากันได้</td>
 		        <td><?php echo $manager->GetForm( $configArr['urlmode_par_cptb'] );?></td>
-		        <td>兼容模式  使用【默认为path】</td>
+		        <td>โหมดเข้ากันได้  ใช้【ค่าเริ่มต้น path】</td>
 		      </tr>
 		      <tr class="urlmode4 urlmode5 urlmode6">
-		        <td width="150">URL路由</td>
+		        <td width="150">เส้นทาง URL</td>
 		        <td><?php echo $manager->GetForm( $configArr['urlmode_route'] );?></td>
-		        <td>兼容模式、PATHINFO模式、REWRITE模式  使用【默认为空】<br/>一行一对；格式为【url路由】=>【实际路由】，如：/info/nid/1=>/novel/info/nid/1</td>
+		        <td>โหมดเข้ากันได้ โหมด PATHINFO โหมด REWRITE  ใช้【ค่าเริ่มต้นว่าง】<br/>หนึ่งบรรทัดต่อหนึ่งคู่ รูปแบบ【เส้นทาง url】=>【เส้นทางจริง】 เช่น：/info/nid/1=>/novel/info/nid/1</td>
 		      </tr>
 		</thead>
 	</table>
@@ -67,8 +67,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 

@@ -11,12 +11,12 @@
         <table id="<?php echo $cFun?>AddTable" class="table table-bordered table-hover table-striped table-top" data-toggle="tabledit" data-initnum="0" data-single-noindex="true">
             <thead>
                 <tr>
-                    <th title="等级名字"><input type="text" name="level[#index#][level_name]" data-rule="required" size="10"></th>
-                    <th title="等级开始经验"><input value="0" type="text" name="level[#index#][level_start]" data-rule="digits" size="10"></th>
-                    <th title="等级结束经验"><input value="0" type="text" name="level[#index#][level_end]" data-rule="digits" size="10"></th>
-                    <th title="等级排序"><input value="0" type="text" name="level[#index#][level_order]" data-rule="digits" size="10"></th>
-                    <th title="操作" data-addtool="false" width="100">
-                        <a href="javascript:<?php echo $cFun;?>DelEdit()" class="btn btn-red row-del" data-confirm-msg="确定要删除该行信息吗？">取消</a>
+                    <th title="ชื่อระดับ"><input type="text" name="level[#index#][level_name]" data-rule="required" size="10"></th>
+                    <th title="ประสบการณ์เริ่มต้นของระดับ"><input value="0" type="text" name="level[#index#][level_start]" data-rule="digits" size="10"></th>
+                    <th title="ประสบการณ์สิ้นสุดของระดับ"><input value="0" type="text" name="level[#index#][level_end]" data-rule="digits" size="10"></th>
+                    <th title="การเรียงลำดับระดับ"><input value="0" type="text" name="level[#index#][level_order]" data-rule="digits" size="10"></th>
+                    <th title="ดำเนินการ" data-addtool="false" width="100">
+                        <a href="javascript:<?php echo $cFun;?>DelEdit()" class="btn btn-red row-del" data-confirm-msg="ยืนยัน要ลบ该行信息吗？">取消</a>
                     </th>
                 </tr>
             </thead>
@@ -27,14 +27,14 @@
 	  <form name="<?php echo $cFun;?>EditForm" action="index.php?a=yes&c=novel.fans&t=leveledit" data-reload="false" data-toggle="validate" method="post" data-callback="<?php echo $cFun;?>ajaxCallBack">
 	  <table class="table table-border table-bordered table-bg table-sort">
 	    <tr>
-	      <td colspan="5"><strong>小说粉丝等级设置</strong></td>
+	      <td colspan="5"><strong>ตั้งระดับแฟนนิยาย</strong></td>
 	    </tr>
 	    <tr>
-	      <td>等级名字</td>
-	      <td>等级开始经验</td>
-	      <td>等级结束经验</td>
-	      <td>等级排序</td>
-	     <td>操作</td>
+	      <td>ชื่อระดับ</td>
+	      <td>ค่าประสบการณ์เริ่มต้นระดับ</td>
+	      <td>ค่าประสบการณ์สิ้นสุดระดับ</td>
+	      <td>การเรียงระดับ</td>
+	     <td>ดำเนินการ</td>
 	    </tr>
 	    
 	    <?php 
@@ -48,7 +48,7 @@
 			      <td><input name="level['.$v['level_id'].'][data][level_start]" value="'.$v['level_start'].'"  type="text" size="10"/></td>
 			      <td><input name="level['.$v['level_id'].'][data][level_end]" value="'.$v['level_end'].'"  type="text" size="10"/></td>
 			      <td><input name="level['.$v['level_id'].'][data][level_order]"  value="'.$v['level_order'].'"  type="text" size="10"/></td>
-			       <td><a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['level_id'].')">删除</a></td>
+			       <td><a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['level_id'].')">ลบ</a></td>
 			    </tr>';
 		    }
 		}
@@ -61,8 +61,8 @@
 	  
 		<div class="bjui-pageFooter">
 		    <ul>
-		        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-		        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 提交更改</button></li>
+		        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+		        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> ส่งการเปลี่ยนแปลง</button></li>
 		    </ul>
 		</div>
 	</form>

@@ -7,20 +7,20 @@
 <div class="bjui-pageContent">
     <table class="table table-border table-bordered table-hover table-bg table-sort <?php echo $cFun?>Table">
       <thead><tr><th colspan="4" style="text-align:left;">
-      <b style="color:red;font-size:14px;">提示:保存路径使用的是sitemap的伪静态路径！</b>
+      <b style="color:red;font-size:14px;">คำแนะนำ: พาธบันทึกใช้พาธแบบสแตติกของ sitemap!</b>
       </th></tr></thead>
 
       <thead>
 	      <tr>
-	      	<td width="150">RSS订阅首页生成</td>
-	        <td colspan="2"><a class="btn btn-success radius size-MINI" onClick="createRss()">生成RSS地图</a></td>
+	      	<td width="150">สร้างหน้าแรกสมัครรับ RSS</td>
+	        <td colspan="2"><a class="btn btn-success radius size-MINI" onClick="createRss()">สร้างแผนที่ RSS</a></td>
 	      </tr>
 	      <tr>
-	      	<td width="150" rowspan="6">RSS订阅列表生成</td>
-	        <td width="150">模块选择</td>
+	      	<td width="150" rowspan="6">สร้างรายการสมัครรับ RSS</td>
+	        <td width="150">เลือกโมดูล</td>
 	        <td>
 	        	<select data-toggle="selectpicker" data-width="130" id="<?php echo $cFun?>module">
-	            	<option value="">请选择模块</option>
+	            	<option value="">กรุณาเลือกโมดูล</option>
 	            	<?php 
 	            	foreach ($moduleArr as $k=>$v)
 	            	{
@@ -31,26 +31,26 @@
 			</td>
 	      </tr>
 	      <tr>
-	        <td>分类选择</td>
+	        <td>เลือกหมวดหมู่</td>
 	        <td><input id="<?php echo $cFun;?>type" type="hidden">
 			    <div class="formControls" id="<?php echo $cFun;?>_ztree_select_box">
-	        		<div style="margin-top: 8px;font-size: 14px;">--请先选择模块--</div>
+	        		<div style="margin-top: 8px;font-size: 14px;">--กรุณาเลือกโมดูลก่อน--</div>
 	        	</div>
 	        </td>
 	      </tr>
 	      <tr>
-			<td>下级栏目是否生成</td><td><input type="checkbox" value="1" id="<?php echo $cFun;?>child" data-toggle="icheck" data-label="是"></td>
+			<td>สร้างหมวดหมู่ย่อยหรือไม่</td><td><input type="checkbox" value="1" id="<?php echo $cFun;?>child" data-toggle="icheck" data-label="是"></td>
 		  </tr>
 	      <tr>
-	        <td colspan="2"><a class="btn btn-success radius size-MINI" onClick="createList()">生成RSS列表</a></td>
+	        <td colspan="2"><a class="btn btn-success radius size-MINI" onClick="createList()">สร้างรายการ RSS</a></td>
 	      </tr>
 	      <tr id="<?php echo $cFun?>barline_box" style="display:none"><td colspan="2">
       		<!-- 进度条 -->
 			<div class="barline"><div class="barline_text_box" id="<?php echo $cFun?>text_box"><span id="<?php echo $cFun?>text">0</span>%</div></div>
-			<div class="barline_perc">总进度<span id="<?php echo $cFun?>now">0</span>/<span id="<?php echo $cFun?>sum">1</span></div>
+			<div class="barline_perc">ความคืบหน้ารวม<span id="<?php echo $cFun?>now">0</span>/<span id="<?php echo $cFun?>sum">1</span></div>
 			<div class="barline_msg" id="<?php echo $cFun?>msg"></div>
 		</td></tr>
-		<tr id="<?php echo $cFun?>loading" style="display:none"><td colspan="2"><img src="/files/images/loading.gif">请稍候,初始化数据中....</td></tr>
+		<tr id="<?php echo $cFun?>loading" style="display:none"><td colspan="2"><img src="/files/images/loading.gif">กรุณารอสักครู่ กำลังเริ่มต้นข้อมูล....</td></tr>
 	    
       <thead>
 	 </table>
@@ -62,7 +62,7 @@ $(document).ready(function(){
 	$('#<?php echo $cFun;?>module').change(function() {
 		var module = $(this).val();
 		if(module == '' ){
-			$(this).alertmsg('error', '请选择模块!');
+			$(this).alertmsg('error', 'กรุณาเลือกโมดูล!');
 			return false;
 		}else{
 			var op = new Array();

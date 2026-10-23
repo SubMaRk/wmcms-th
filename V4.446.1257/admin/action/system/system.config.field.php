@@ -54,7 +54,7 @@ if ( $type == 'edit' || $type == "add"  )
 	$wheresql['where']['field_id'] = array('<>',$where['field_id']);
 	if ( wmsql::GetCount($wheresql) > 0 )
 	{
-		Ajax('对不起，该模块的分类自定义字段已经存在！',300);
+		Ajax('ฟิลด์กำหนดเองของหมวดหมู่ในโมดูลนี้มีอยู่แล้ว!',300);
 	}
 	
 	//如果子级分类有效就进行查询

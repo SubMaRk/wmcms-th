@@ -200,7 +200,7 @@ else if ( $type == 'del' )
 	}
 	
 	
-	Ajax('小说删除成功!');
+	Ajax('ลบนิยายสำเร็จ!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -224,7 +224,7 @@ else if ( $type == 'status' )
 	SetOpLog( $msg.'了小说' , 'novel' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('小说'.$msg.'成功!');
+	Ajax('นิยาย'.$msg.'สำเร็จ!');
 }
 //移动数据
 else if ( $type == 'move' )
@@ -236,7 +236,7 @@ else if ( $type == 'move' )
 	SetOpLog( '移动了小说' , 'novel' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('小说移动成功!');
+	Ajax('ย้ายนิยายสำเร็จ!');
 }
 //小说搜索操作
 else if ( $type == 'search' )
@@ -271,6 +271,6 @@ else if ( $type == 'search' )
 		}
 	}
 	
-	Ajax('查询成功!',null,$data);
+	Ajax('ค้นหาข้อมูลสำเร็จ!',null,$data);
 }
 ?>

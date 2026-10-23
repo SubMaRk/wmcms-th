@@ -15,9 +15,9 @@ thead th {
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                <span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
+                <span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
 				<select data-toggle="selectpicker" id="<?php echo $cFun;?>module" name="module" data-width="100">
-                	<option value="">全部模块</option>
+                	<option value="">ทุกโมดูล</option>
                 	<?php
                 	foreach ($moduleArr as $k=>$v)
                 	{
@@ -27,10 +27,10 @@ thead th {
                 	?>
                 </select>
                 <input type="text" placeholder="<?php echo $name;?>" name="name" size="15">
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>
-				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a> &nbsp;
-				<div class="alert alert-danger search-inline"><i class="fa fa-info-circle"></i> 请不要随意修改配置，否则会造成网站无法访问</div>
-            	<a class="btn btn-secondary radius size-MINI" data-toggle="dialog" data-mask="true" data-title="添加配置" href="index.php?d=yes&c=system.config.edit&t=add" data-width="470" data-height="600" ><i class="fa fa-plus"></i> 添加配置</a> &nbsp;
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>
+				<a id="<?php echo $cFun;?>refresh" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a> &nbsp;
+				<div class="alert alert-danger search-inline"><i class="fa fa-info-circle"></i> โปรดอย่าแก้ไขการตั้งค่าตามอำเภอใจ มิฉะนั้นเว็บไซต์จะเข้าถึงไม่ได้</div>
+            	<a class="btn btn-secondary radius size-MINI" data-toggle="dialog" data-mask="true" data-title="เพิ่มการตั้งค่า" href="index.php?d=yes&c=system.config.edit&t=add" data-width="470" data-height="600" ><i class="fa fa-plus"></i> เพิ่มการตั้งค่า</a> &nbsp;
 			</form>
 		</div>
 	</div>
@@ -41,16 +41,16 @@ thead th {
 			<thead>
 				<tr>
 				<th width="2%" data-order-field="config_id">ID</th>
-				<th width="5%">状态</th>
-				<th width="8%">分组</th>
-	            <th width="8%">模块</th>
-	            <th width="10%">标题</th>
-	            <th width="10%">参数名</th>
-	            <th width="7%">表单类型</th>
-	            <th>参数值</th>
-	            <th width="15%">备注</th>
-	            <th width="4%">顺序</th>
-	            <th width="10%">操作</th>
+				<th width="5%">สถานะ</th>
+				<th width="8%">กลุ่ม</th>
+	            <th width="8%">โมดูล</th>
+	            <th width="10%">หัวข้อ</th>
+	            <th width="10%">ชื่อพารามิเตอร์</th>
+	            <th width="7%">ประเภทฟอร์ม</th>
+	            <th>ค่าพารามิเตอร์</th>
+	            <th width="15%">หมายเหตุ</th>
+	            <th width="4%">ลำดับ</th>
+	            <th width="10%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			
@@ -74,8 +74,8 @@ thead th {
 							<td>'.$v['config_remark'].'</td>
 							<td>'.$v['config_order'].'</td>
 							<td style="text-align: center;">
-				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" href="index.php?d=yes&c=system.config.edit&t=edit&id='.$v['config_id'].'"  data-toggle="dialog" data-title="修改配置信息" data-width="470" data-height="600" >编辑</a> 
-				            	<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['config_id'].')">删除</a>
+				            	<a class="btn btn-secondary radius size-MINI" data-mask="true" href="index.php?d=yes&c=system.config.edit&t=edit&id='.$v['config_id'].'"  data-toggle="dialog" data-title="แก้ไขการตั้งค่า信息" data-width="470" data-height="600" >แก้ไข</a> 
+				            	<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['config_id'].')">ลบ</a>
                 			</td>
 						</tr>';
 					$i++;
@@ -92,7 +92,7 @@ thead th {
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -101,7 +101,7 @@ thead th {
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div id="asd" class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>">
     </div>

@@ -53,7 +53,7 @@ class OtherLogin{
 		}
 		else
 		{
-			tpl::ErrInfo('验证失败！');
+			tpl::ErrInfo('ตรวจสอบไม่สำเร็จ!');
 		}
 	}
 }

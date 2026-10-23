@@ -2,7 +2,7 @@
     <form action="index.php?a=yes&c=link.link&t=<?php echo $type;?>" data-reload="false" data-toggle="validate" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
 	<input name="id[link_id]" id="<?php echo $cFun.$type;?>_cid" type="hidden" class="input-text" value="<?php echo $id;?>">
 		<fieldset>
-			<legend>友链内容编辑</legend>
+			<legend>แก้ไขเนื้อหาลิงก์เพื่อน</legend>
             <ul class="nav nav-tabs" role="tablist">
             	<li class="active"><a href="#<?php echo $cFun.$type;?>base" role="tab" data-toggle="tab">基本信息</a></li>
             	<li><a href="#<?php echo $cFun.$type;?>senior" id="<?php echo $cFun.$type;?>senior_tab" role="tab" data-toggle="tab">高级信息</a></li>
@@ -14,7 +14,7 @@
 		            <tbody>
 		            	<tr>
 						  <td colspan="2">
-						  	<b>友链分类：</b>
+						  	<b>หมวดหมู่ลิงก์เพื่อน:</b>
 							<input id="<?php echo $cFun.$type;?>type_id" name="link[type_id]" type="hidden" value="<?php echo C('type_id',null,'data');?>">
 					      	<input type="text" id="<?php echo $cFun.$type;?>_ztree_input" data-toggle="selectztree" data-tree="#<?php echo $cFun.$type;?>_ztree_select" readonly value="<?php echo C('type_name',null,'data');?>">
                             <ul id="<?php echo $cFun.$type;?>_ztree_select" class="ztree hide" data-toggle="ztree" data-expand-all="true" data-check-enable="true" data-chk-style="radio" data-radio-type="all" data-on-check="<?php echo $cFun.$type;?>S_NodeCheck" data-on-click="<?php echo $cFun.$type;?>S_NodeClick">
@@ -33,36 +33,36 @@
 						</tr>
 		                <tr>
 		                    <td width="50%">
-		                        <b>友链名字：</b>
+		                        <b>ชื่อลิงก์เพื่อน:</b>
 		                        <input type="text" name="link[link_name]" value="<?php echo C('link_name',null,'data');?>" data-rule="required">
-					                        　　　<b>友链拼音：</b>
+					                        　　　<b>พินอินลิงก์เพื่อน:</b>
 		                        <input type="text" name="link[link_pinyin]" value="<?php echo C('link_pinyin',null,'data');?>" size="10">
 		                    </td>
 		                    <td>
-		                        <b>友链简称：</b>
+		                        <b>ชื่อย่อลิงก์เพื่อน:</b>
 		                        <input type="text" name="link[link_cname]" value="<?php echo C('link_cname',null,'data');?>">
 		                    </td>
 		                </tr>
 		                <tr>
 		                    <td>
-		                        <b>回链地址：</b>
+		                        <b>ที่อยู่ลิงก์ย้อนกลับ:</b>
 		                        <input type="text" name="link[link_url]" value="<?php echo C('link_url',null,'data');?>" data-rule="required" size="40">
 		                    </td>
 		                    <td>
-		                        <b>点入跳转：</b>
+		                        <b>คลิกแล้วไปที่:</b>
 		                        <input type="text" name="link[link_in_jump]" value="<?php echo C('link_in_jump',null,'data');?>" size="40">
 		                    </td>
 		                </tr>
 		                <tr>
 		                    <td>
-		                        <b>友链状态：</b>
+		                        <b>สถานะลิงก์เพื่อน:</b>
 		                        <select data-toggle="selectpicker" name="link[link_status]">
                                     <option value="1" <?php if(C('link_status',null,'data') == '1'){ echo 'selected=""';}?>>审核通过</option>
                                     <option value="0" <?php if(C('link_status',null,'data') == '0'){ echo 'selected=""';}?>>待审核</option>
                                 </select>
 		                    </td>
 		                    <td>
-		                        <b>友链状态：</b>
+		                        <b>สถานะลิงก์เพื่อน:</b>
 		                        <select data-toggle="selectpicker" name="link[link_show]">
                                     <option value="1" <?php if(C('link_show',null,'data') == '1'){ echo 'selected=""';}?>>显示链接</option>
                                     <option value="0" <?php if(C('link_show',null,'data') == '0'){ echo 'selected=""';}?>>显示直链</option>
@@ -71,14 +71,14 @@
 		                </tr>
 		                <tr>
 		                    <td>
-		                        <b>是否固链：</b>
+		                        <b>เป็นลิงก์ถาวรหรือไม่:</b>
 		                        <select data-toggle="selectpicker" name="link[link_fixed]">
                                     <option value="1" <?php if(C('link_fixed',null,'data') == '1'){ echo 'selected=""';}?>>已固链</option>
                                     <option value="0" <?php if(C('link_fixed',null,'data') == '0'){ echo 'selected=""';}?>>未固链</option>
                                 </select>
 		                    </td>
 		                    <td>
-		                        <b>是否推荐：</b>
+		                        <b>แนะนำหรือไม่:</b>
 		                        <select data-toggle="selectpicker" name="link[link_rec]">
                                     <option value="1" <?php if(C('link_rec',null,'data') == '1'){ echo 'selected=""';}?>>已推荐</option>
                                     <option value="0" <?php if(C('link_rec',null,'data') == '0'){ echo 'selected=""';}?>>未推荐</option>
@@ -87,7 +87,7 @@
 		                </tr>
 		                <tr>
 		                   <td colspan="3">
-		                        <b>友链图标：</b>
+		                        <b>ไอคอนลิงก์เพื่อน:</b>
 		                        <input type="text" id="link_ico" name="link[link_ico]" value="<?php echo C('link_ico',null,'data');?>" size="40">
 								<span class="upload" data-uploader="index.php?a=yes&c=upload&t=img" data-on-upload-success="<?php echo $cFun.$type;?>upload_success" data-file-type-exts="*.jpg;*.png;*.gif;*.mpg" data-toggle="upload" data-icon="cloud-upload"></span>
 								<?php if( C('link_ico',null,'data') != '' ){ echo '<a target="_blank" href="'.C('link_ico',null,'data').'">点击查看图片</a>';}?>
@@ -95,17 +95,17 @@
 		                </tr>
 		                <tr>
 		                   <td>
-		                        <b>友链排序：</b>
+		                        <b>การเรียงลิงก์เพื่อน:</b>
 		                        <input type="text" name="link[link_order]" value="<?php echo C('link_order',null,'data');?>">
 		                    </td>
 		                   <td>
-		                        <b>联系QQ：</b>
+		                        <b>QQ ติดต่อ:</b>
 		                        <input type="text" name="link[link_qq]" value="<?php echo C('link_qq',null,'data');?>">
 		                    </td>
 		                </tr>
 		                <tr>
 		                   <td colspan="2">
-		                        <b>友链简介：</b>
+		                        <b>เรื่องย่อลิงก์เพื่อน:</b>
 		                        <textarea cols="70" rows="1" name="link[link_info]" data-toggle="autoheight"><?php echo C('link_info',null,'data');?></textarea>
 		                    </td>
 		                </tr>
@@ -117,58 +117,58 @@
 		       		<table class="table table-condensed table-hover" width="100%">
 		            <tbody>
 		            	<tr>
-						  <td colspan="2"><b> 热门度 ：</b>
+						  <td colspan="2"><b> ความนิยม :</b>
 							<input size="7" name="link[link_read]" value="<?php echo C('link_read',null,'data');?>">
 					     </td>
-						  <td colspan="2"><b> 顶 ：</b>
+						  <td colspan="2"><b> โหวตขึ้น :</b>
 							<input size="7" name="link[link_ding]" value="<?php echo C('link_ding',null,'data');?>">
 					      </td>
-						  <td colspan="2"><b> 踩 ：</b>
+						  <td colspan="2"><b> โหวตลง :</b>
 							<input size="7" name="link[link_cai]" value="<?php echo C('link_cai',null,'data');?>">
 					      </td>
 						</tr>
 		            	<tr>
-						  <td><b> 日 点 入 ：</b>
+						  <td><b> คลิกเข้า/วัน:</b>
 							<input size="7" name="link[link_inday]" value="<?php echo C('link_inday',null,'data');?>">
 					     </td>
-						  <td><b> 周 点 入 ：</b>
+						  <td><b> คลิกเข้า/สัปดาห์:</b>
 							<input size="7" name="link[link_inweek]" value="<?php echo C('link_inweek',null,'data');?>">
 					      </td>
-						  <td><b> 月 点 入 ：</b>
+						  <td><b> คลิกเข้า/เดือน:</b>
 							<input size="7" name="link[link_inmonth]" value="<?php echo C('link_inmonth',null,'data');?>">
 					      </td>
-						  <td><b> 年 点 入 ：</b>
+						  <td><b> คลิกเข้า/ปี:</b>
 							<input size="7" name="link[link_inyear]" value="<?php echo C('link_inyear',null,'data');?>">
 					      </td>
-						  <td><b> 总 点 入 ：</b>
+						  <td><b> คลิกเข้ารวม:</b>
 							<input size="7" name="link[link_insum]" value="<?php echo C('link_insum',null,'data');?>">
 					      </td>
 						</tr>
 		            	<tr>
-						  <td><b> 日 点 出 ：</b>
+						  <td><b> คลิกออก/วัน:</b>
 							<input size="7" name="link[link_outday]" value="<?php echo C('link_outday',null,'data');?>">
 					     </td>
-						  <td><b> 周 点 出 ：</b>
+						  <td><b> คลิกออก/สัปดาห์:</b>
 							<input size="7" name="link[link_outweek]" value="<?php echo C('link_outweek',null,'data');?>">
 					      </td>
-						  <td><b> 月 点 出 ：</b>
+						  <td><b> คลิกออก/เดือน:</b>
 							<input size="7" name="link[link_outmonth]" value="<?php echo C('link_outmonth',null,'data');?>">
 					      </td>
-						  <td><b> 年 点 出 ：</b>
+						  <td><b> คลิกออก/ปี:</b>
 							<input size="7" name="link[link_outyear]" value="<?php echo C('link_outyear',null,'data');?>">
 					      </td>
-						  <td><b> 总 点 出 ：</b>
+						  <td><b> คลิกออกรวม:</b>
 							<input size="7" name="link[link_outsum]" value="<?php echo C('link_outsum',null,'data');?>">
 					      </td>
 						</tr>
 		            	<tr>
-						  <td colspan="2"><b>最后点入时间：</b>
+						  <td colspan="2"><b>เวลาคลิกเข้าล่าสุด:</b>
 							<input type="text" name="link[link_lastintime]" value="<?php echo date('Y-m-d H:i:s',C('link_lastintime',null,'data'));?>" data-toggle="datepicker" data-pattern="yyyy-MM-dd H:m:s" size="19">
 					      </td>
-						  <td colspan="2"><b>最后点出时间：</b>
+						  <td colspan="2"><b>เวลาคลิกออกล่าสุด:</b>
 							<input type="text" name="link[link_lastouttime]" value="<?php echo date('Y-m-d H:i:s',C('link_lastouttime',null,'data'));?>" data-toggle="datepicker" data-pattern="yyyy-MM-dd H:m:s" size="19">
 					      </td>
-						  <td colspan="2"><b>友链加入时间：</b>
+						  <td colspan="2"><b>เวลาเพิ่มลิงก์เพื่อน:</b>
 							<input type="text" name="link[link_jointime]" value="<?php echo date('Y-m-d H:i:s',C('link_jointime',null,'data'));?>" data-toggle="datepicker" data-pattern="yyyy-MM-dd H:m:s" size="19">
 					      </td>
 						</tr>
@@ -186,8 +186,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 
@@ -214,7 +214,7 @@ function <?php echo $cFun;?>(json){
 	    $(this).navtab("switchTab",tabid);	// 切换Tab页面
 	}
 }
-//上传封面
+//上传บล็อก面
 function <?php echo $cFun.$type;?>upload_success(file,json,$element){
 	json = $.parseJSON(json);
 	if ( json.statusCode == 300){

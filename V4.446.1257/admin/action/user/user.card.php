@@ -33,23 +33,23 @@ if ( $type == 'create'  )
 	
 	if( $cType == '' )
 	{
-		Ajax('对不起，请选择卡号类型！' , 300);
+		Ajax('กรุณาเลือกประเภทบัตร!' , 300);
 	}
 	else if( $number == '' )
 	{
-		Ajax('对不起，请输入生成数量！' , 300);
+		Ajax('กรุณากรอกจำนวนที่ต้องการสร้าง!' , 300);
 	}
 	else if( $channel == '' )
 	{
-		Ajax('对不起，请输入发布渠道！' , 300);
+		Ajax('กรุณากรอกช่องทางการเผยแพร่!' , 300);
 	}
 	else if( $start == '1' && $startStr == '')
 	{
-		Ajax('对不起，请输入指定开头字符串！' , 300);
+		Ajax('กรุณากรอกสตริงที่ขึ้นต้นตามที่กำหนด!' , 300);
 	}
 	else if( $cType == 1 && $money == '' )
 	{
-		Ajax('对不起，请输入卡号金额！' , 300);
+		Ajax('กรุณากรอกจำนวนเงินของบัตร!' , 300);
 	}
 	
 	
@@ -99,7 +99,7 @@ else if ( $type == 'del')
 	SetOpLog( '删除了卡号！' , 'user' , 'delete' , $table , $where);
 	wmsql::Delete($table , $where);
 	
-	Ajax('卡号批量删除成功!');
+	Ajax('ลบบัตรหลายรายการสำเร็จ!');
 }
 //清空数据
 else if ( $type == 'clear')
@@ -107,6 +107,6 @@ else if ( $type == 'clear')
 	//写入操作记录
 	SetOpLog( '清空了所有卡号！' , 'user' , 'delete' , $table);
 	wmsql::Delete($table);
-	Ajax('卡号全部清空成功！');
+	Ajax('ล้างบัตรทั้งหมดสำเร็จ!');
 }
 ?>

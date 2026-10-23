@@ -209,7 +209,7 @@ if( !empty( $moduleClass ) )
 			{
 				if ( DEVELOPER )
 				{
-					echo '载入文件：'.$langPath.'<br/>';
+					echo 'กำลังโหลดไฟล์: '.$langPath.'<br/>';
 				}
 				require_once $langPath;
 			}

@@ -19,11 +19,11 @@ if ( $type == 'edit' || $type == "add"  )
 	
 	if ( $data['menu_name'] == '' )
 	{
-		Ajax('对不起，自定义菜单名字必须填写！',300);
+		Ajax('ต้องกรอกชื่อเมนูที่กำหนดเอง!',300);
 	}
 	else if( !str::Number(GetKey($data,'menu_account_id')) )
 	{
-		Ajax('对不起，所属公众号必须选择！',300);
+		Ajax('ต้องเลือกบัญชีทางการที่สังกัด!',300);
 	}
 	//新增数据
 	if( $type == 'add' )
@@ -50,7 +50,7 @@ else if ( $type == 'del' )
 	$menuMod->Del($where);
 	//写入操作记录
 	SetOpLog( '删除了自定义菜单' , 'system' , 'delete' , $table , $where);
-	Ajax('自定义菜单删除成功!');
+	Ajax('ลบเมนูกำหนดเองสำเร็จ!');
 }
 //推送
 else if ( $type == 'push' )
@@ -74,7 +74,7 @@ else if ( $type == 'push' )
 			//推送后修改数据操作
 			$menuMod->PushMenu($data['account_id'],$id);
 			SetOpLog( '推送了自定义菜单' , 'system' , 'delete' , $table , $where);
-			Ajax('自定义菜单推送成功!');
+			Ajax('ส่งเมนูกำหนดเองสำเร็จ!');
 		}
 	}
 }
@@ -92,6 +92,6 @@ else if ( $type == 'copy' )
 		$where['menu_id'] = $menuMod->Insert($saveData);
 		SetOpLog( '复制了自定义菜单' , 'system' , 'insert' , $table , $where);
 	}
-	Ajax('自定义菜单复制成功!');
+	Ajax('คัดลอกเมนูกำหนดเองสำเร็จ!');
 }
 ?>

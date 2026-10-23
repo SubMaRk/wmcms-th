@@ -9,7 +9,7 @@
 	<form action="index.php?a=yes&c=system.config.config&t=<?php echo $type;?>" class="form form-horizontal" data-reload="false" data-toggle="ajaxform" method="post" <?php if($type=='edit') { echo 'data-callback="'.$cFun.'"';}?>>
     	<input type="hidden" name="id[config_id]" value="<?php echo $id;?>"/>
 	    <div class="row cl">
-			<label class="form-label col-md-3">显示状态：</label>
+			<label class="form-label col-md-3">สถานะการแสดง:</label>
 			<div class="formControls col-md-8">
 		      	<select data-toggle="selectpicker" name="data[config_status]" <?php if($type=='edit' && !DEVELOPER){echo 'readonly disabled';}?>>
 		        <option value="1" <?php if(C('config_status',null,'data')=='1'){ echo 'selected=""';}?>>显示</option>
@@ -18,7 +18,7 @@
 			</div>
 		</div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">所属分组：</label>
+			<label class="form-label col-md-3">กลุ่มที่สังกัด:</label>
 			<div class="formControls col-md-8">
 		      	<select data-toggle="selectpicker" name="data[group_id]" <?php if($type=='edit' && !DEVELOPER){echo 'readonly disabled';}?>>
 		        <?php
@@ -32,7 +32,7 @@
 			</div>
 		</div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">所属模块：</label>
+			<label class="form-label col-md-3">โมดูลที่สังกัด:</label>
 			<div class="formControls col-md-8">
 		      	<select data-toggle="selectpicker" name="data[config_module]" <?php if($type=='edit' && !DEVELOPER){echo 'readonly disabled';}?>>
 		        <?php
@@ -46,25 +46,25 @@
 			</div>
 		</div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">参数名：</label>
+			<label class="form-label col-md-3">ชื่อพารามิเตอร์:</label>
 	    	<div class="formControls col-md-8">
 	        	<input type="text" class="form-control"  name="data[config_name]" <?php if($type=='edit' && !DEVELOPER){echo 'readonly disabled';}?> size="30" value="<?php echo C('config_name',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">参数标题：</label>
+			<label class="form-label col-md-3">หัวข้อพารามิเตอร์:</label>
 	    	<div class="formControls col-md-8">
 	    		<input type="text" class="form-control" name="data[config_title]" size="30" value="<?php echo C('config_title',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">参数值：</label>
+			<label class="form-label col-md-3">ค่าพารามิเตอร์:</label>
 	    	<div class="formControls col-md-8">
 	    		<textarea name="data[config_value]" style="width: 300px;" data-toggle="autoheight"><?php echo str::Escape(C('config_value',null,'data'));?></textarea>
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">表单类型：</label>
+			<label class="form-label col-md-3">ประเภทฟอร์ม:</label>
 			<div class="formControls col-md-8">
 		      	<select data-toggle="selectpicker" name="data[config_formtype]" <?php if($type=='edit' && !DEVELOPER){echo 'readonly disabled';}?>>
 		        <?php
@@ -78,13 +78,13 @@
 			</div>
 		</div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">备注：</label>
+			<label class="form-label col-md-3">หมายเหตุ:</label>
 	    	<div class="formControls col-md-8">
 	        	<input type="text" class="form-control" name="data[config_remark]" size="30" value="<?php echo C('config_remark',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl">
-			<label class="form-label col-md-3">显示顺序：</label>
+			<label class="form-label col-md-3">ลำดับการแสดง:</label>
 	    	<div class="formControls col-md-8">
 	        	<input type="text" class="form-control"  name="data[config_order]" size="30" value="<?php echo C('config_order',null,'data');?>">
 	    	</div>
@@ -93,8 +93,8 @@
 	</form>
 	<div class="bjui-pageFooter">
 	    <ul>
-	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 保存</button></li>
+	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> บันทึก</button></li>
 	    </ul>
 	</div>
 </div>

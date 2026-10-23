@@ -1,8 +1,8 @@
 <div class="bjui-pageHeader">
 	<div class="row cl pt-10 pb-10 pl-10">
 		<div class="f-l" style="margin-left:10px">
-			<a href="index.php?a=yes&c=system.safe.log&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
-			<a href="index.php?a=yes&c=system.safe.log&t=clear" data-toggle="doajax" data-confirm-msg="确定清空记录要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> 清空记录</a>
+			<a href="index.php?a=yes&c=system.safe.log&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
+			<a href="index.php?a=yes&c=system.safe.log&t=clear" data-toggle="doajax" data-confirm-msg="ยืนยันล้างบันทึก要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> ล้างบันทึก</a>
 		</div>
 		<div class="f-l">
 			<form id="pagerForm" name="<?php echo $cFun;?>Form"  data-toggle="ajaxsearch" data-loadingmask="true" action="index.php?c=system.safe.log" method="post">
@@ -10,7 +10,7 @@
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-                <!--<span class="" style="float:left;margin:5px 0 0 15px;">快速查询：</span>
+                <!--<span class="" style="float:left;margin:5px 0 0 15px;">ค้นหาด่วน:</span>
 				<select id="adminid" class="select radius size-MINI" name="adminid" style="width:120px;float:left;margin-right:2px;height: 24px;">
 					<option value="0">选择管理员</option>
 					<option value="1">系统管理员</option>
@@ -25,8 +25,8 @@
 				<span class="" style="float:left;margin:5px 0 0 15px;">IP地址：</span>
 				<input type="text" class="input-text size-MINI radius form-control" name="ip" size="15">
 
-				<button type="submit" class="btn btn-warning radius" data-icon="search">查询</button>  -->
-				<a id="<?php echo $cFun;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+				<button type="submit" class="btn btn-warning radius" data-icon="search">สืบค้น</button>  -->
+				<a id="<?php echo $cFun;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
 			</form>
 		</div>
 	</div>
@@ -36,14 +36,14 @@
 			<thead>
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
-				<th width="5%" data-order-field="login_id">编号</th>
-				<th width="10%">登录账号</th>
-				<th width="10%">登录状态</th>
-				<th width="14%">登录IP</th>
-				<th width="10%">登录浏览器</th>
-				<th width="10%">登录备注</th>
-				<th width="14%">登录时间</th>
-	            <th width="13%">操作</th>
+				<th width="5%" data-order-field="login_id">รหัส</th>
+				<th width="10%">บัญชีเข้าสู่ระบบ</th>
+				<th width="10%">สถานะเข้าสู่ระบบ</th>
+				<th width="14%">IP เข้าสู่ระบบ</th>
+				<th width="10%">เบราว์เซอร์ที่เข้าสู่ระบบ</th>
+				<th width="10%">หมายเหตุเข้าสู่ระบบ</th>
+				<th width="14%">เวลาเข้าสู่ระบบ</th>
+	            <th width="13%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody>
@@ -65,8 +65,8 @@
 							<td>'.mb_substr($v['login_remark'],0,12).'</td>
 							<td>'.date("Y-m-d H:i:s" , $v['login_time']).'</td>
 							<td style="text-align: center;" data-noedit="true">
-								<a class="btn btn-secondary radius size-MINI" href="index.php?c=system.safe.log.detail&id='.$v['login_id'].'" data-mask="true" data-toggle="dialog" data-title="查看登录记录的详细信息" data-width="600" data-height="450" >详情</a>
-								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['login_id'].')">删除</a>
+								<a class="btn btn-secondary radius size-MINI" href="index.php?c=system.safe.log.detail&id='.$v['login_id'].'" data-mask="true" data-toggle="dialog" data-title="ดูประวัติการเข้าสู่ระบบ的详细信息" data-width="600" data-height="450" >详情</a>
+								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['login_id'].')">ลบ</a>
 				            </td>
 						</tr>';
 					$i++;
@@ -83,7 +83,7 @@
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -92,7 +92,7 @@
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>"></div>
 </div>

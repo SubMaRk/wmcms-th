@@ -11,7 +11,7 @@ class PunishModel
 {
 	public $table = '@user_punish';
 	public $userTable = '@user_user';
-	public $typeArr = ['login'=>'禁止登陆','talk'=>'禁止发言'];
+	public $typeArr = ['login'=>'ห้ามเข้าสู่ระบบ','talk'=>'ห้ามแสดงความคิดเห็น'];
 	public $statusArr = ['0'=>'已失效','1'=>'执行中'];
 	
 	//构造函数

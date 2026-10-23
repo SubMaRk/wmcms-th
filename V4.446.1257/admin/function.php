@@ -251,7 +251,7 @@ function CheckLogin($c='')
 	{
 		if ( IsAjax() && $c != 'login')
 		{
-			Ajax('登录超时！',301);
+			Ajax('หมดเวลาการเข้าสู่ระบบ!',301);
 		}
 		else
 		{
@@ -333,7 +333,7 @@ function Competence( $a , $c ,$t )
 			//不存在权限
 			if( !$data )
 			{
-				Ajax('对不起，您的操作权限不足！',300);
+				Ajax('คุณมีสิทธิ์ไม่เพียงพอสำหรับการดำเนินการนี้!',300);
 			}
 		}
 	}
@@ -712,7 +712,7 @@ function DelType($module='')
 	$idArr = GetDelId('id','ids',true);
 	if( !$idArr )
 	{
-		Ajax('对不起，请选择分类id！',300);
+		Ajax('กรุณาเลือก id หมวดหมู่!',300);
 	}
 	else
 	{

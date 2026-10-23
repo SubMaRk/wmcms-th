@@ -9,25 +9,25 @@ $(document).ready(function(){
 <link rel="stylesheet" type="text/css" href="{templates}/static/css/author/basic.css">
 
 <div class="mainRight fl">
-	<div class="crumbsWrap"><i><span>编辑资料</span></i></div>
+	<div class="crumbsWrap"><i><span>แก้ไขข้อมูล</span></i></div>
 	<div class="baseInfo tabBox" style="margin-top: 20px;">
 		<div class="infoListWrap">
 			<form id="basicForm" name="basicForm" method="post" action="{表单提交地址}">
   				<ul>
-					<li><em>编辑ID</em>{编辑id}</li>
-			        <li><em>编辑昵称</em><input class="midInput" type="text" name="name" value="{编辑名字}"></li>
-			        <li><em>编辑姓名</em><input class="midInput" type="text" name="realname" value="{编辑姓名}"></li>
-			        <li><em>编辑qq</em><input class="midInput" type="text" name="qq" value="{编辑qq}"></li>
-			        <li><em>编辑微信</em><input class="midInput" type="text" name="weixin" value="{编辑微信}"></li>
-			        <li><em>编辑手机</em><input class="midInput" type="text" name="tel" value="{编辑手机}" /></li>
+					<li><em>ID บรรณาธิการ</em>{编辑id}</li>
+			        <li><em>ชื่อเล่นบรรณาธิการ</em><input class="midInput" type="text" name="name" value="{编辑名字}"></li>
+			        <li><em>ชื่อบรรณาธิการ</em><input class="midInput" type="text" name="realname" value="{编辑姓名}"></li>
+			        <li><em>qq บรรณาธิการ</em><input class="midInput" type="text" name="qq" value="{编辑qq}"></li>
+			        <li><em>WeChat บรรณาธิการ</em><input class="midInput" type="text" name="weixin" value="{编辑微信}"></li>
+			        <li><em>มือถือบรรณาธิการ</em><input class="midInput" type="text" name="tel" value="{编辑手机}" /></li>
 			        <li>
-						<em>作家简介</em>
+						<em>แนะนำนักเขียน</em>
 						<p class="place">
 						<textarea name="desc" style="width:400px;height:80px;" id="desc">{编辑简介}</textarea>
 						</p>
 			        </li>
      			 </ul>
-			      <p class="infoBtn"><a id="editBasicBtn" class="button" href="javascript:">修改</a></p>
+			      <p class="infoBtn"><a id="editBasicBtn" class="button" href="javascript:">แก้ไข</a></p>
 			</form>
 		</div>
 	</div>
@@ -36,7 +36,7 @@ $(document).ready(function(){
 	$(document).ready(function(){
 		$("#editBasicBtn").click(function(){
 			if( $("[name=name]").val() == '' || $("[name=realname]").val() == '' || $("[name=qq]").val() == '' || $("[name=weixin]").val() == ''){
-				easydialog_alert("对不起，昵称、姓名、QQ和微信必须填写！");
+				easydialog_alert("ขออภัย ต้องกรอกชื่อเล่น ชื่อ QQ และ WeChat!");
 			}else{
 				$("#basicForm").submit();
 			}

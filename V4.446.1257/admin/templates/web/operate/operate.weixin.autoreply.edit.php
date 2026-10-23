@@ -5,11 +5,11 @@
     <form action="index.php?a=yes&c=operate.weixin.autoreply&t=<?php echo $type;?>" data-reload="false" data-toggle="validate" method="post"  <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
 	<input name="id[autoreply_id]" type="hidden" class="input-text" value="<?php echo $id;?>">
 		<fieldset>
-			<legend>自动回复编辑</legend>
+			<legend>แก้ไขตอบกลับอัตโนมัติ</legend>
             	<div class="tab-pane fade active in" id="<?php echo $cFun.$type;?>base">
 					<table class="table table-border table-bordered table-bg table-sort">
 		                <tr>
-					      <td valign="top" width="170"><b>所属公众号：</b></td>
+					      <td valign="top" width="170"><b>บัญชีทางการที่สังกัด:</b></td>
 					      <td valign="top" width="300">
 					      		<select data-toggle="selectpicker" name="autoreply[autoreply_account_id]">
 		                       	<?php 
@@ -28,18 +28,18 @@
 		                       	?>
 		                        </select>
 						  </td>
-						  <td valign="top" width="220"><b>自动回复名字：</b></td>
+						  <td valign="top" width="220"><b>ชื่อตอบกลับอัตโนมัติ:</b></td>
 					      <td valign="top"><input type="text" size="15" name="autoreply[autoreply_name]" value="<?php echo C('autoreply_name',null,'data');?>" data-rule="required"></td>
 						</tr>
 						<tr>
-					      <td valign="top"><b>使用状态：</b></td>
+					      <td valign="top"><b>สถานะการใช้งาน：</b></td>
 					      <td valign="top">
 				      		<select data-toggle="selectpicker" name="autoreply[autoreply_status]">
 	                        	<option value="0" <?php echo str::CheckElse( C('autoreply_status',null,'data') , 0 , 'selected=""' );?>>禁用</option>
 		                		<option value="1" <?php echo str::CheckElse( C('autoreply_status',null,'data') , 1 , 'selected=""' );?>>使用</option>
 	                        </select>
 						  </td>
-					      <td valign="top"><b>默认设置：</b><br/>同时只能一条关注回复或默认回复</td>
+					      <td valign="top"><b>การตั้งค่าเริ่มต้น:</b><br/>ใช้ได้เพียงการตอบกลับผู้ติดตามหรือค่าเริ่มต้นอย่างละหนึ่งรายการ</td>
 					      <td valign="top">
 				      		<select data-toggle="selectpicker" name="autoreply[autoreply_default]">
 	                        	<option value="0" <?php echo str::CheckElse( C('autoreply_default',null,'data') , 0 , 'selected=""' );?>>不设置</option>
@@ -49,9 +49,9 @@
 						  </td>
 						</tr>
 		                <tr>
-		                    <td><b>匹配关键字：</b></td>
+		                    <td><b>คำสำคัญที่ตรงกัน:</b></td>
 		                    <td><input type="text" size="20" name="autoreply[autoreply_key]" value="<?php echo C('autoreply_key',null,'data');?>" data-rule="required"></td>
-						    <td valign="top"><b>匹配方式：</b></td>
+						    <td valign="top"><b>วิธีการจับคู่:</b></td>
 						      <td valign="top">
 					      		<select data-toggle="selectpicker" name="autoreply[autoreply_match]">
 			                		<option value="1" <?php echo str::CheckElse( C('autoreply_match',null,'data') , 1 , 'selected=""' );?>>完全匹配</option>
@@ -62,7 +62,7 @@
 							  </td>
 		                </tr>
 		                <tr>
-		                    <td><b>回复类型：</b></td>
+		                    <td><b>ประเภทการตอบกลับ:</b></td>
 		                    <td valign="top" colspan="3">
 					      		<select id="<?php echo $cFun.$type;?>autoreply_type" data-toggle="selectpicker" name="autoreply[autoreply_type]">
 		                        <?php 
@@ -76,13 +76,13 @@
 							</td>
 		                </tr>
 		                <tr class="autoreply_content_box" id="<?php echo $cFun.$type;?>textBox">
-		                    <td><b>回复内容：</b></td>
+		                    <td><b>เนื้อหาการตอบกลับ:</b></td>
 		                    <td valign="top" colspan="3">
 		                    	<textarea cols="60" rows="10" name="autoreply[autoreply_content]" data-rule="required"><?php echo C('autoreply_content',null,'data');?></textarea>
 		                    </td>
 		                </tr>
 		                <tr class="autoreply_content_box" id="<?php echo $cFun.$type;?>imageBox">
-		                    <td><b>素材ID：</b></td>
+		                    <td><b>ID สื่อ:</b></td>
 		                    <td valign="top" colspan="3">
 		                    	<input type="text" size="30" data-toggle="lookup" data-url="index.php?c=operate.weixin.media.lookup&st=a&aid=<?php echo $aid;?>" data-width="820" data-title="选择素材" id="<?php echo $cFun.$type;?>autoreply_media_id" name="autoreply[autoreply_media_id]"  value="<?php echo C('autoreply_media_id',null,'data');?>">
 						    </td>
@@ -96,8 +96,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 

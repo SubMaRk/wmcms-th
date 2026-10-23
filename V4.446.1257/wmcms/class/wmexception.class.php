@@ -262,16 +262,16 @@ class WMException
 			//前台报错
 			if( !WMMANAGER )
 			{
-				tpl::ErrInfo('页面出错，我们已经记录了该信息！！');
+				tpl::ErrInfo('หน้าเว็บเกิดข้อผิดพลาด เราได้บันทึกข้อมูลนี้ไว้แล้ว!!');
 			}
 			else
 			{
-				Ajax('页面出错，我们已经记录了该信息！！',300);
+				Ajax('หน้าเว็บเกิดข้อผิดพลาด เราได้บันทึกข้อมูลนี้ไว้แล้ว!!',300);
 			}
 		}
 		else if( !file_exists(WMTEMPLATE.'system/wmcode.html') )
 		{
-			tpl::ErrInfo('对不起,系统模版“wmcode.html”不存在！');
+			tpl::ErrInfo('ไม่พบเทมเพลตระบบ “wmcode.html”!');
 		}
 		else
 		{

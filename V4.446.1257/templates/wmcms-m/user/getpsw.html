@@ -18,23 +18,23 @@
 			<div class="app_header_detail2">
 				<div class="app_header_back"></div>
 				<div class="app_header_h1">
-					找回密码
+					กู้คืนรหัสผ่าน
 					<i class="moreIco"></i>
 				</div>
 			</div>
 			<div class="app_header_second" style="display: none;">
 				<ul>
 					<li class="icon1">
-						<a href="/">首页</a>
+						<a href="/">หน้าแรก</a>
 					</li>
 					<li class="icon2">
-						<a href="{全部小说}">书库</a>
+						<a href="{全部小说}">คลังหนังสือ</a>
 					</li>
 					<li class="icon3">
-						<a href="{我的书架}">书架</a>
+						<a href="{我的书架}">ชั้นหนังสือ</a>
 					</li>
 					<li class="icon4">
-						<a href="{用户中心}">账户</a>
+						<a href="{用户中心}">บัญชี</a>
 					</li>
 				</ul>
 			</div>
@@ -49,35 +49,35 @@
 					<ul>
 						{表单锁}
 						<li class="username">
-							<input id="name" type="text" name="name" placeholder="登录账号">
+							<input id="name" type="text" name="name" placeholder="บัญชีเข้าสู่ระบบ">
 						</li>
 						<li class="email">
-							<input id="receive" type="text" name="receive" placeholder="绑定的邮箱/手机号">
+							<input id="receive" type="text" name="receive" placeholder="อีเมล/เบอร์มือถือที่ผูกไว้">
 						</li>
 						<li class="password">
 							<div class="app_listBlockButton" style="width: 40%;padding-top: 0.11rem;float: right;">
-            					<button id="get_smscode" data-id="user_getpsw" style="border-radius: 0.2rem;">发送验证码</button>
+            					<button id="get_smscode" data-id="user_getpsw" style="border-radius: 0.2rem;">ส่งรหัสยืนยัน</button>
             				</div>
-							<input type="text" name="sms_code" style="width:60%" placeholder="收到的验证码">
+							<input type="text" name="sms_code" style="width:60%" placeholder="รหัสยืนยันที่ได้รับ">
 						</li>
 						{找回密码验证码开启}
 						<li class="code" style="position: unset;padding-right: unset;">
 						    <div style="clear:both"></div>
 							{找回密码验证码}
-							<span style="width:40%"><input id="code" type="text" name="code" placeholder="请输入验证码"></span>
+							<span style="width:40%"><input id="code" type="text" name="code" placeholder="กรุณากรอกรหัสยืนยัน"></span>
 						</li>
 						{/找回密码验证码开启}
 					</ul>
 				</div>
 				<div class="app_listBlockButton" style="padding-top: 0.36rem">
-					<button id="loginbtn" ajax-post='app_lisLoinSpan' url="{找回密码提交地址}&ajax=yes" callback="GetPswCallBack">立即找回</button>
+					<button id="loginbtn" ajax-post='app_lisLoinSpan' url="{找回密码提交地址}&ajax=yes" callback="GetPswCallBack">กู้คืนทันที</button>
 				</div>
 				<div class="app_registerList">
 					<span class="public_AddFloatLeft">
-						<a href="{注册}">我要注册</a>
+						<a href="{注册}">สมัครสมาชิก</a>
 					</span>
 					<span class="public_AddFloatRight">
-						<a href="{登录}">立即登录</a>
+						<a href="{登录}">เข้าสู่ระบบเลย</a>
 					</span>
 				</div>
 			</div>

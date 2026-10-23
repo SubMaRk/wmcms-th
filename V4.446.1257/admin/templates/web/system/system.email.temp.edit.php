@@ -7,7 +7,7 @@
 <div class="bjui-pageContent">
 	<form action="index.php?a=yes&c=system.email.temp&t=<?php echo $type;?>" name="<?php echo $cFun.$type;?>Form" class="form form-horizontal" data-reload="false" data-toggle="ajaxform" method="post" data-callback="<?php echo $cFun.$type;?>">
 	    <div class="row cl">
-			<label class="form-label col-md-2">是否启用：</label>
+			<label class="form-label col-md-2">เปิดใช้งานหรือไม่:</label>
 			<div class="formControls col-md-8">
 		      	<select data-toggle="selectpicker" name="data[temp_status]">
 		        <option value="1" <?php if(C('temp_status',null,'data')=='1'){ echo 'selected=""';}?>>正常</option>
@@ -16,31 +16,31 @@
 			</div>
 		</div>
 	    <div class="row cl smtp">
-			<label class="form-label col-md-2">模版ID：</label>
+			<label class="form-label col-md-2">ID เทมเพลต:</label>
 	    	<div class="formControls col-md-8">
 				<input type="text" class="form-control" placeholder="模版ID" name="data[temp_id]" size="24" value="<?php echo C('temp_id',null,'data');?>">
 			</div>
 	    </div>
 	    <div class="row cl smtp">
-			<label class="form-label col-md-2">发信模版名字：</label>
+			<label class="form-label col-md-2">ชื่อเทมเพลตข้อความ:</label>
 	    	<div class="formControls col-md-8">
-				<input type="text" class="form-control" placeholder="发信模版名字" name="data[temp_name]" size="24" value="<?php echo C('temp_name',null,'data');?>">
+				<input type="text" class="form-control" placeholder="发信模版名คำ" name="data[temp_name]" size="24" value="<?php echo C('temp_name',null,'data');?>">
 			</div>
 	    </div>
 	    <div class="row cl smtp">
-			<label class="form-label col-md-2">发信模版描述：</label>
+			<label class="form-label col-md-2">คำอธิบายเทมเพลตข้อความ:</label>
 	    	<div class="formControls col-md-8">
-				<input type="text" class="form-control" placeholder="发信模版描述" name="data[temp_desc]" size="24" value="<?php echo C('temp_desc',null,'data');?>">
+				<input type="text" class="form-control" placeholder="发信模版คำอธิบาย" name="data[temp_desc]" size="24" value="<?php echo C('temp_desc',null,'data');?>">
 			</div>
 	    </div>
 	    <div class="row cl smtp">
-			<label class="form-label col-md-2">邮件标题：</label>
+			<label class="form-label col-md-2">หัวข้ออีเมล:</label>
 	    	<div class="formControls col-md-8">
-	    		<input type="text" class="form-control" placeholder="邮件标题" name="data[temp_title]" size="24" value="<?php echo C('temp_title',null,'data');?>">
+	    		<input type="text" class="form-control" placeholder="邮件หัวข้อ" name="data[temp_title]" size="24" value="<?php echo C('temp_title',null,'data');?>">
 	    	</div>
 	    </div>
 	    <div class="row cl smtp">
-			<label class="form-label col-md-2">邮件内容：</label>
+			<label class="form-label col-md-2">เนื้อหาอีเมล:</label>
 	    	<div class="formControls col-md-8">
 	        	<?php echo Ueditor('height:200px;width:600px' , 'data[temp_content]',C('temp_content',null,'data'), 'editor.email');?>
 	    	</div>
@@ -49,8 +49,8 @@
 	</form>
 	<div class="bjui-pageFooter">
 	    <ul>
-	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> 关闭</button></li>
-	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> 保存</button></li>
+	        <li><button type="button" class="btn-close btn btn-danger size-MINI radius"><i class="fa fa-times"></i> ปิด</button></li>
+	        <li><button type="submit" class="btn btn-success size-MINI radius"><i class="fa fa-floppy-o"></i> บันทึก</button></li>
 	    </ul>
 	</div>
 </div>

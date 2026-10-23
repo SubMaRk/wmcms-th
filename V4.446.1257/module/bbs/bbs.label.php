@@ -495,7 +495,7 @@ class bbslabel extends bbs
 			}
 		
 			//自由标签替换
-			tpl::IfRep( $v['bbs_status'] , '=' , 0 , '待审核', '已审核' );
+			tpl::IfRep( $v['bbs_status'] , '=' , 0 , 'รอตรวจสอบ', '已审核' );
 			parent::GetAttr( '荐' , $v['bbs_rec'] );
 			parent::GetAttr( '精' , $v['bbs_es'] );
 			parent::GetAttr( '置顶' , $v['bbs_top'] );

@@ -1,9 +1,9 @@
 <div class="bjui-pageHeader">
 	<div class="row cl pt-10 pb-10 pl-10">
 		<div class="f-l" style="margin-left:10px">
-			<div class="alert alert-success search-inline"><i class="fa fa-info-circle"></i> 更加直观的图形化统计，请到数据中心里面查看！</div>
-			<a href="index.php?a=yes&c=system.seo.errpage&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
-			<a href="index.php?a=yes&c=system.seo.errpage&t=clear" data-toggle="doajax" data-confirm-msg="确定清空记录要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> 清空记录</a>
+			<div class="alert alert-success search-inline"><i class="fa fa-info-circle"></i> สถิติแบบกราฟิกที่เห็นภาพกว่า ไปดูได้ที่ศูนย์ข้อมูล!</div>
+			<a href="index.php?a=yes&c=system.seo.errpage&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
+			<a href="index.php?a=yes&c=system.seo.errpage&t=clear" data-toggle="doajax" data-confirm-msg="ยืนยันล้างบันทึก要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> ล้างบันทึก</a>
 		</div>
 		<div class="f-l">
 			<form id="pagerForm" name="<?php echo $cFun;?>Form"  data-toggle="ajaxsearch" data-loadingmask="true" action="index.php?c=system.seo.errpage" method="post">
@@ -11,7 +11,7 @@
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-				<a id="<?php echo $cFun;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+				<a id="<?php echo $cFun;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
 			</form>
 		</div>
 	</div>
@@ -23,11 +23,11 @@
 				<tr>
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="5%" data-order-field="errpage_id">ID</th>
-				<th width="5%" data-order-field="errpage_code">错误类型</th>
-				<th width="20%">错误URL</th>
-				<th width="25%">浏览器UA</th>
-				<th width="12%">记录时间</th>
-	            <th width="7%">操作</th>
+				<th width="5%" data-order-field="errpage_code">ประเภทข้อผิดพลาด</th>
+				<th width="20%">URL ผิดพลาด</th>
+				<th width="25%">UA เบราว์เซอร์</th>
+				<th width="12%">เวลาบันทึก</th>
+	            <th width="7%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody>
@@ -46,7 +46,7 @@
 							<td style="text-align: center;">'.$v['errpage_ua'].'</td>
 							<td style="text-align: center;">'.date("Y-m-d H:i:s" , $v['errpage_time']).'</td>
 							<td style="text-align: center;" data-noedit="true">
-								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['errpage_id'].')">删除</a>
+								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['errpage_id'].')">ลบ</a>
 				            </td>
 						</tr>';
 					$i++;
@@ -63,7 +63,7 @@
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -72,7 +72,7 @@
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>"></div>
 </div>

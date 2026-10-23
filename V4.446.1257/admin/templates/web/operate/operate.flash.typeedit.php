@@ -2,7 +2,7 @@
     <form action="index.php?a=yes&c=operate.flash.type&t=<?php echo $type;?>" data-reload="false" data-toggle="validate" method="post" <?php if($d) { echo 'data-callback="'.$cFun.'"';}?>>
 	<input name="type_id" id="<?php echo $cFun.$type;?>type_id" type="hidden" class="input-text" value="<?php echo $id;?>">
 		<fieldset>
-			<legend>专题分类编辑</legend>
+			<legend>แก้ไขหมวดหมู่หัวข้อพิเศษ</legend>
             <ul class="nav nav-tabs" role="tablist">
             	<li class="active"><a href="#<?php echo $cFun.$type;?>base" role="tab" data-toggle="tab">基本设置</a></li>
             </ul>
@@ -10,12 +10,12 @@
             	<div class="tab-pane fade active in" id="<?php echo $cFun.$type;?>base">
 					<table class="table table-border table-bordered table-bg table-sort">
 					    <tr>
-						  <td valign="top" width="150"><b>所属分类：</b></td>
+						  <td valign="top" width="150"><b>หมวดหมู่ที่สังกัด:</b></td>
 					      <td valign="top">
 							<input id="<?php echo $cFun.$type;?>type_pid" name="type[type_topid]" type="hidden" value="<?php echo C('type_topid',null,'data');?>">
 					      	<input type="text" id="<?php echo $cFun.$type;?>_ztree_input" data-toggle="selectztree" data-tree="#<?php echo $cFun.$type;?>_ztree_select" readonly value="<?php echo C('name',null,'top');?>">
                             <ul id="<?php echo $cFun.$type;?>_ztree_select" class="ztree hide" data-toggle="ztree" data-expand-all="true" data-check-enable="true" data-chk-style="radio" data-radio-type="all" data-on-check="<?php echo $cFun.$type;?>S_NodeCheck" data-on-click="<?php echo $cFun.$type;?>S_NodeClick">
-                                <li data-id="0">顶级分类</li>
+                                <li data-id="0">หมวดระดับบนสุด</li>
                                 <?php 
                                 if( $typeArr )
                                 {
@@ -30,19 +30,19 @@
 					      </td>
 						</tr>
 					    <tr>
-					      <td valign="top"><b>分类名字：</b></td>
+					      <td valign="top"><b>ชื่อหมวดหมู่:</b></td>
 					      <td valign="top"><input data-rule="分类名字:required;" name="type[type_name]" type="text" class="input-text" value="<?php echo C('type_name',null,'data');?>"></td>
 						</tr>
 					    <tr>
-					      <td valign="top"><b>分类拼音：</b></td>
+					      <td valign="top"><b>พินอินหมวดหมู่:</b></td>
 					      <td valign="top"><input name="type[type_pinyin]" type="text" class="input-text" value="<?php echo C('type_pinyin',null,'data');?>"></td>
 						</tr>
 					    <tr>
-					      <td valign="top"><b>分类排序：</b></td>
+					      <td valign="top"><b>การเรียงหมวดหมู่:</b></td>
 					      <td valign="top"><input data-rule="required;number;" name="type[type_order]" type="text" class="input-text" value="<?php echo C('type_order',null,'data');?>"></td>
 						</tr>
 					    <tr>
-					      <td valign="top"><b>分类简介：</b></td>
+					      <td valign="top"><b>เรื่องย่อหมวดหมู่:</b></td>
 					      <td valign="top"><textarea name="type[type_info]" class="form-control" cols="40" rows="6"><?php echo C('type_info',null,'data');?></textarea></td>
 						</tr>
 					</table>
@@ -54,8 +54,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 

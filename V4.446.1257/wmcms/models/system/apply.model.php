@@ -357,7 +357,7 @@ class ApplyModel
     			$lang = GetModuleLang('novel');
     			//设置字段的名字
     			$keyTitle=array(
-    				'novel_cover'=>'小说封面'
+    				'novel_cover'=>'ปกนิยาย'
     			);
     		}
     		//小说章节

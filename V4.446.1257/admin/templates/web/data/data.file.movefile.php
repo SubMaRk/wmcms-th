@@ -4,14 +4,14 @@
 <input type="hidden" name="file" value="<?php echo $file;?>">
 <table class="table table-border table-bordered table-bg table-sort">
     <tr>
-      <td valign="top" colspan="2"><b>提示:新位置前面不加'/'表示相对于当前位置，加'/'表示相对于根目录。</td>
+      <td valign="top" colspan="2"><b>คำแนะนำ: ตำแหน่งใหม่ที่ไม่ขึ้นต้นด้วย '/' คือเทียบกับตำแหน่งปัจจุบัน ถ้ามี '/' คือเทียบกับไดเรกทอรีราก</td>
 	</tr>
     <tr>
       <td valign="top" width="100"><b>移动的文件：</b></td>
       <td valign="top"><?php echo $file;?></td>
 	</tr>
     <tr>
-      <td valign="top" width="100"><b>移动到：</b></td>
+      <td valign="top" width="100"><b>ย้ายไปที่:</b></td>
       <td valign="top"><input name="newpath" type="text" size="30" class="input-text"></td>
 	</tr>
 </table>
@@ -20,8 +20,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close btn btn-danger"><i class="fa fa-times"></i> 关闭</button></li>
-        <li><button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> 确定</button></li>
+        <li><button type="button" class="btn-close btn btn-danger"><i class="fa fa-times"></i> ปิด</button></li>
+        <li><button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> ยืนยัน</button></li>
     </ul>
 </div>
 

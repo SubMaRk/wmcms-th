@@ -75,40 +75,40 @@ max-height: 120px;
     <h2 class="mbn"> {用户名} <span class="xw0">(UID: {用户id}  )</span> </h2>
     <div class="userlist_box cl">
       <ul class="bbda pbn mbn cl">
-        <li style="display:none;"><em>空间访问量</em><strong class="xi1">{用户人气}</strong></li>
-                <li><em>性别：</em>{用户性别}</li>
-                <li><em>年龄：</em>{用户年龄}({用户出生日期})</li>
-                <li><em>等级：</em>{用户等级}</li>
+        <li style="display:none;"><em>ยอดเข้าชมพื้นที่</em><strong class="xi1">{用户人气}</strong></li>
+                <li><em>เพศ:</em>{用户性别}</li>
+                <li><em>อายุ:</em>{用户年龄}({用户出生日期})</li>
+                <li><em>ระดับ:</em>{用户等级}</li>
               </ul>
       <ul class="cl mtn">
-        <li> <em>级别：</em> {用户等级}{用户经验}/{下级经验}(差{升级经验}升{下一等级})</li>
+        <li> <em>ระดับ:</em> {用户等级}{用户经验}/{下级经验}(ขาดอีก{升级经验}เพื่อขึ้น{下一等级})</li>
       </ul>
     </div>
   </div>
    
    
     <div id="psts" class="userlist cl">
-    <h2 class="mbn">统计信息</h2>
+    <h2 class="mbn">ข้อมูลสถิติ</h2>
     <div class="userlist_box cl">
       <ul class="pf_l">
         <li><em>{余额名字}：</em>{用户余额}</li>
         <li><em>{金币1名字}：</em>{用户金币1数量}</li>
         <li><em>{金币2名字}：</em>{用户金币2数量}</li>
-        <li><em>回帖：</em>{用户回帖量} </li>
-        <li><em>评论：</em>{用户评论量} </li>
+        <li><em>ตอบกลับ:</em>{用户回帖量} </li>
+        <li><em>ความคิดเห็น:</em>{用户评论量} </li>
       </ul>
     </div>
   </div>
   <div class="userlist cl">
-    <h2 class="mbn">其它信息</h2>
+    <h2 class="mbn">ข้อมูลอื่นๆ</h2>
     <div class="userlist_box cl">
       <ul>
                 <li><em>QQ：</em>{用户qq}</li>
-                <li><em>手机：</em>{用户手机}</li>
-                <li><em>邮箱：</em>{用户邮箱}</li>
-				<li><em>登录：</em>{用户登陆时间}</li>
-				<li><em>注册时间：</em>{用户注册时间}</li>
-				<li><em>总共签到：</em>{总共签到天数}天</li>
+                <li><em>มือถือ:</em>{用户手机}</li>
+                <li><em>อีเมล:</em>{用户邮箱}</li>
+				<li><em>เข้าสู่ระบบ:</em>{用户登陆时间}</li>
+				<li><em>เวลาสมัครสมาชิก:</em>{用户注册时间}</li>
+				<li><em>เช็คอินสะสม:</em>{总共签到天数}วัน</li>
               </ul>
      
     </div>
@@ -135,5 +135,5 @@ jQuery(function(){
   );
 });
 </script>
-<div class="btBox"><div class="bt2"><a href="javascript:history.go(-1);">返回上页</a><a href="{首页}">返回首页</a></div></div>	
+<div class="btBox"><div class="bt2"><a href="javascript:history.go(-1);">กลับหน้าก่อนหน้า</a><a href="{首页}">กลับหน้าแรก</a></div></div>	
 {footer:footer.html}

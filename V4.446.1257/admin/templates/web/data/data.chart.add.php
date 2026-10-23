@@ -4,10 +4,10 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>日期查询</h3>
+                    	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>ค้นหาตามวันที่</h3>
                     </div>
                     <div class="panel-body">
-                    	请选择查询方式：
+                    	กรุณาเลือกวิธีสืบค้น:
                     	<select data-toggle="selectpicker" id="<?php echo $cFun;?>Time">
                     	<?php
                     	foreach ($timeType as $k=>$v)
@@ -29,7 +29,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                     	<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>
-                    	<?php echo $nowTitle;?>数据增长走势图
+                    	<?php echo $nowTitle;?>กราฟการเติบโตของข้อมูล
                     	</h3>
                     </div>
                     <div class="panel-body">
@@ -60,11 +60,11 @@ var chart = new AChart({
 	  }
   },
   series: [{
-		  name: '用户',
+		  name: 'ผู้ใช้',
 		  data: [<?php foreach ($userArr as $k=>$v){echo "{$v},";}?>]
 
 	  },{
-		  name: '小说',
+		  name: 'นิยาย',
 		  data: [<?php foreach ($novelArr as $k=>$v){echo "{$v},";}?>]
 
 	  },{
@@ -72,7 +72,7 @@ var chart = new AChart({
 		  data: [<?php foreach ($articleArr as $k=>$v){echo "{$v},";}?>]
 
 	  },{
-		  name: '主题',
+		  name: 'ธีม',
 		  data: [<?php foreach ($bbsArr as $k=>$v){echo "{$v},";}?>]
 
 	  },{
@@ -100,6 +100,6 @@ $(document).ready(function(){
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ปิด</button></li>
     </ul>
 </div>

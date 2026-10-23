@@ -21,7 +21,7 @@ if ( $type == 'edit' || $type == "add"  )
 	
 	if ( $data['ad_name'] == '')
 	{
-		Ajax('对不起，广告标题必须填写！',300);
+		Ajax('ต้องกรอกหัวข้อโฆษณา!',300);
 	}
 	$data['ad_start_time'] = strtotime($data['ad_start_time']);
 	$data['ad_end_time'] = strtotime($data['ad_end_time']);
@@ -65,7 +65,7 @@ else if ( $type == 'del' )
 	//删除广告文件
 	$adSer->DelAdFile(GetDelId());
 	
-	Ajax('广告删除成功!');
+	Ajax('ลบโฆษณาสำเร็จ!');
 }
 //清空请求记录
 else if ( $type == 'clear' )
@@ -76,7 +76,7 @@ else if ( $type == 'clear' )
 	
 	//写入操作记录
 	SetOpLog( '清空了广告' , 'system' , 'delete' , $table);
-	Ajax('所有广告成功清空！');
+	Ajax('ล้างข้อมูลโฆษณาทั้งหมดสำเร็จ!');
 }
 //审核数据
 else if ( $type == 'status' )
@@ -96,6 +96,6 @@ else if ( $type == 'status' )
 	SetOpLog( $msg.'了广告' , 'system' , 'update' , $table , $where);
 	
 	wmsql::Update($table, $data, $where);
-	Ajax('广告'.$msg.'成功!');
+	Ajax('โฆษณา'.$msg.'สำเร็จ!');
 }
 ?>

@@ -19,7 +19,7 @@
 					<div class="u-f u-f-jsb">
 						<div class="left">
 							<div class="input">
-								<input type="text" name="name" placeholder="小说名" value="{名字}">
+								<input type="text" name="name" placeholder="ชื่อนิยาย" value="{名字}">
 							</div>
 							<div class="input">
 								<select name="process">
@@ -40,7 +40,7 @@
 							<div class="input">
 								{cur:id=0}
 								<select name="tid">
-								<option>选择分类</option>
+								<option>เลือกหมวดหมู่</option>
 								{小说分类:父级分类=0}
 								<option value="{小说分类id}">{小说分类名字}</option>{/小说分类}
 								</select>
@@ -63,8 +63,8 @@
 							<input type="file" id="hide_button" class="hide_button" style="display: none;" name="hide_button"/>
 						</div>
 					</div>
-					<textarea class="edit" placeholder="小说简介" name="intro">{简介}</textarea>
-					<button class="submit" id="sub">提交</button>
+					<textarea class="edit" placeholder="เรื่องย่อนิยาย" name="intro">{简介}</textarea>
+					<button class="submit" id="sub">ส่งข้อมูล</button>
 				</form>
 			</div>
 		</div>
@@ -89,7 +89,7 @@
 								$("[name=cover]").val(data.data.file);
 								//还原按钮
 								$('#hide_button').clone().val('');
-								$('#upload_button').val('上传新封面');
+								$('#upload_button').val('อัปโหลดปกใหม่');
 			    		
 								alert(data.msg);
 			        	}
@@ -104,11 +104,11 @@
 				var intro = $("#intro").val();
 				var tid = $("[name=tid]").val();
 				if( name == '' ){
-					layer.open({content:'对不起，小说名字不能为空！',time: 2});
+					layer.open({content:'ขออภัย ชื่อนิยายห้ามว่าง!',time: 2});
 				}else if( !isPositiveNum(tid) ){
-					layer.open({content:'对不起，请选择小说分类！',time: 2});
+					layer.open({content:'ขออภัย กรุณาเลือกหมวดหมู่นิยาย!',time: 2});
 				}else if( intro.length < 20 || intro.length > 1000  ){
-					layer.open({content:'对不起，描述只能在20-1000个字符之间！',time: 2});
+					layer.open({content:'ขออภัย คำอธิบายต้องอยู่ระหว่าง 20-1000 ตัวอักษร!',time: 2});
 				}else{
 					$.ajax({
 						type:"POST",

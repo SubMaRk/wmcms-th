@@ -2,9 +2,9 @@
 	<div class="row cl pt-10 pb-10 pl-10">
 		<div class="f-l" style="margin-left:10px">
 			<?php echo $manager->GetForm('system' , 'err_auto_upload');?>
-			<div class="alert alert-success search-inline"><i class="fa fa-info-circle"></i> 开启自动上传错误到WMCMS官方云服务器，会加快错误修复速度！</div>
-			<a href="index.php?a=yes&c=system.safe.errlog&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="确定要删除选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> 批量删除</a>
-			<a href="index.php?a=yes&c=system.safe.errlog&t=clear" data-toggle="doajax" data-confirm-msg="确定清空记录要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> 清空记录</a>
+			<div class="alert alert-success search-inline"><i class="fa fa-info-circle"></i> เปิดการอัปโหลดข้อผิดพลาดไปยังคลาวด์ WMCMS อย่างเป็นทางการ จะช่วยให้แก้ไขเร็วขึ้น!</div>
+			<a href="index.php?a=yes&c=system.safe.errlog&t=del" data-toggle="doajaxchecked" data-idname="ids" data-group="ids" data-confirm-msg="ยืนยัน要ลบ选中项吗？" class="btn btn-danger size-MINI radius" data-callback="<?php echo $cFun;?>ajaxCallBack"> <i class="fa fa-remove"></i> ลบหลายรายการ</a>
+			<a href="index.php?a=yes&c=system.safe.errlog&t=clear" data-toggle="doajax" data-confirm-msg="ยืนยันล้างบันทึก要吗？" class="btn btn-danger size-MINI radius"><i class="fa fa-trash-o"></i> ล้างบันทึก</a>
 		</div>
 		<div class="f-l">
 			<form id="pagerForm" name="<?php echo $cFun;?>Form"  data-toggle="ajaxsearch" data-loadingmask="true" action="index.php?c=system.safe.errlog" method="post">
@@ -12,7 +12,7 @@
 				<input type="hidden" name="pageCurrent" value="<?php echo $pageCurrent;?>">
 				<input type="hidden" name="orderField" value="<?php echo $orderField;?>">
 				<input type="hidden" name="orderDirection" value="<?php echo $orderDirection;?>">
-				<a id="<?php echo $cFun;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> 刷新</a>
+				<a id="<?php echo $cFun;?>refresh" style="margin-left:10px;" class="btn size-MINI btn-primary radius"><i class="fa fa-refresh fa-spin"></i> รีเฟรช</a>
 			</form>
 		</div>
 	</div>
@@ -24,12 +24,12 @@
 				<th style="text-align: center;" width="2%;"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
 				<th width="5%" data-order-field="errlog_id">ID</th>
 				<th width="20%">URL</th>
-				<th width="20%">错误信息</th>
-				<th width="6%">SQL码</th>
-				<th width="6%">错误码</th>
-				<th width="8%">访问IP</th>
-				<th width="15%">错误时间</th>
-	            <th width="18%">操作</th>
+				<th width="20%">ข้อมูลข้อผิดพลาด</th>
+				<th width="6%">รหัส SQL</th>
+				<th width="6%">รหัสข้อผิดพลาด</th>
+				<th width="8%">IP ที่เข้าถึง</th>
+				<th width="15%">เวลาข้อผิดพลาด</th>
+	            <th width="18%">ดำเนินการ</th>
 	            </tr>
 			</thead>
 			<tbody>
@@ -58,9 +58,9 @@
 							<td style="text-align: center;">'.$v['errlog_ip'].'</td>
 							<td style="text-align: center;">'.date("Y-m-d H:i:s" , $v['errlog_time']).'</td>
 							<td style="text-align: center;" data-noedit="true">
-								<a class="btn btn-secondary radius size-MINI" href="index.php?c=system.safe.errlog.detail&id='.$v['errlog_id'].'" data-mask="true" data-toggle="dialog" data-title="查看错误日志的详细信息" data-width="600" data-height="450" >详情</a>
+								<a class="btn btn-secondary radius size-MINI" href="index.php?c=system.safe.errlog.detail&id='.$v['errlog_id'].'" data-mask="true" data-toggle="dialog" data-title="ดูบันทึกข้อผิดพลาด的详细信息" data-width="600" data-height="450" >详情</a>
 								'.$upload.'
-								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['errlog_id'].')">删除</a>
+								<a class="btn btn-danger radius" onclick="'.$cFun.'delAjax('.$v['errlog_id'].')">ลบ</a>
 				            </td>
 						</tr>';
 					$i++;
@@ -77,7 +77,7 @@
 
 <div class="bjui-pageFooter">
     <div class="pages">
-        <span>每页&nbsp;</span>
+        <span>ต่อหน้า&nbsp;</span>
         <div class="selectPagesize">
             <select data-toggle="selectpicker" data-toggle-change="changepagesize">
                 <option value="20">20</option>
@@ -86,7 +86,7 @@
                 <option value="120">120</option>
             </select>
         </div>
-        <span>&nbsp;条，共 <?php echo $total;?> 条</span>
+        <span>&nbsp; รายการ จากทั้งหมด <?php echo $total;?> 条</span>
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="<?php echo $total;?>" data-page-size="<?php echo $pageSize;?>" data-pageCurrent="<?php echo $pageCurrent?>"></div>
 </div>

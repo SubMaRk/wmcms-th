@@ -137,7 +137,7 @@ $("#sub").click(function(){
 /*上传封面按妞*/
 $('#hide_button').live('change',function(){
 	//禁用按钮
-	$('#upload_button').val('上传中...');
+	$('#upload_button').val('กำลังอัปโหลด...');
     $.ajaxFileUpload
     ({
         url: '/wmcms/action/index.php?action=upload.articlesimg', //用于文件上传的服务器端请求地址

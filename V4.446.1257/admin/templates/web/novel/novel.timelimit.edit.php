@@ -3,23 +3,23 @@
 	<input name="timelimit_id" type="hidden" class="input-text" value="<?php echo $id;?>">
 	<input name="timelimit[timelimit_nid]" type="hidden" class="input-text" value="<?php echo C('timelimit_nid',null,'data');?>">
 		<fieldset>
-			<legend>小说限时免费编辑</legend>
+			<legend>แก้ไขนิยายฟรีชั่วคราว</legend>
             <div class="tab-pane fade active in">
 				<table class="table table-border table-bordered table-bg table-sort">
 					<tr>
-					    <td valign="top" width="30%"><b>小说分类：</b></td>
+					    <td valign="top" width="30%"><b>หมวดหมู่นิยาย:</b></td>
 						<td valign="top"><?php echo C('type_name',null,'data');?></td>
 					</tr>
 					<tr>
-					    <td valign="top"><b>所属小说：</b></td>
+					    <td valign="top"><b>นิยายที่สังกัด:</b></td>
 						<td valign="top"><?php echo C('novel_name',null,'data');?></td>
 					</tr>
 					<tr>
-					    <td valign="top"><b>小说作者：</b></td>
+					    <td valign="top"><b>ผู้แต่งนิยาย:</b></td>
 						<td valign="top"><?php echo C('novel_author',null,'data');?></td>
 					</tr>
 				    <tr>
-				      <td valign="top"><b>是否免费：</b></td>
+				      <td valign="top"><b>ฟรีหรือไม่:</b></td>
 				      <td valign="top">
 		              	<select data-toggle="selectpicker" name="timelimit[timelimit_status]">
                         	<option value="1" <?php if(C('timelimit_status',null,'data') == '1'){ echo 'selected=""';}?>>限时免费</option>
@@ -28,19 +28,19 @@
                      </td>
 					</tr>
 	            	<tr>
-					  <td valign="top"><b>免费开始时间：</b></td>
+					  <td valign="top"><b>เวลาเริ่มฟรี：</b></td>
 				      <td valign="top">
 						<input type="text" name="timelimit[timelimit_starttime]" value="<?php echo date('Y-m-d H:i:s',C('timelimit_starttime',null,'data'));?>" data-toggle="datepicker" data-pattern="yyyy-MM-dd H:m:s" size="19">
 	            	  </td>
 					</tr>
 	            	<tr>
-					  <td valign="top"><b>免费结束时间：</b></td>
+					  <td valign="top"><b>เวลาสิ้นสุดฟรี：</b></td>
 				      <td valign="top">
 						<input type="text" name="timelimit[timelimit_endtime]" value="<?php echo date('Y-m-d H:i:s',C('timelimit_endtime',null,'data'));?>" data-toggle="datepicker" data-pattern="yyyy-MM-dd H:m:s" size="19">
 	            	  </td>
 					</tr>
 					<tr>
-					    <td valign="top"><b>显示顺序：</b></td>
+					    <td valign="top"><b>ลำดับการแสดง:</b></td>
 						<td valign="top"><input size="10" name="timelimit[timelimit_order]" type="text" class="input-text" value="<?php echo C('timelimit_order',null,'data');?>"></td>
 					</tr>
 				</table>
@@ -51,8 +51,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 

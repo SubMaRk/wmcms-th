@@ -3,11 +3,11 @@
 	<input name="file_id" type="hidden" class="input-text" value="0">
 	<input name="media[media_type]" type="hidden" class="input-text" value="image">
 		<fieldset>
-			<legend>上传新的素材</legend>
+			<legend>อัปโหลดสื่อใหม่</legend>
             	<div class="tab-pane fade active in" id="<?php echo $cFun.$type;?>base">
 					<table class="table table-border table-bordered table-bg table-sort">
 		                 <tr>
-					      <td valign="top" width="150"><b>所属公众号：</b></td>
+					      <td valign="top" width="150"><b>บัญชีทางการที่สังกัด:</b></td>
 					      <td valign="top">
 					      		<select data-toggle="selectpicker" name="media[media_account_id]" data-rule="required">
 		                       	<?php 
@@ -28,23 +28,23 @@
 						  </td>
 						</tr>
 						<tr>
-					      <td valign="top" width="150"><b>素材有效期：</b></td>
+					      <td valign="top" width="150"><b>อายุใช้งานสื่อ:</b></td>
 					      <td valign="top">
 					      		<select data-toggle="selectpicker" name="media[media_islong]" data-rule="required">
-		                       		<option value="1">永久有效</option>
-		                       		<option value="0">临时-3天有效</option>
+		                       		<option value="1">ใช้ได้ตลอดไป</option>
+		                       		<option value="0">ชั่วคราว-ใช้ได้ 3 วัน</option>
 		                        </select>
 						  </td>
 						</tr>
 						<tr>
-		                    <td width="150"><b>上传素材<br/></b></td>
+		                    <td width="150"><b>อัปโหลดสื่อ<br/></b></td>
 		                    <td>
 		                    	<input type="text" name="media[media_filepath]" size="20">
 								<span class="upload" data-uploader="index.php?a=yes&c=upload&t=weixin_media" data-on-upload-success="<?php echo $cFun.$type;?>upload_success" data-file-type-exts="*.jpg;*.png;*.gif;*.mpg" data-toggle="upload" data-icon="cloud-upload"></span>
 		                    </td>
 		                </tr>
 						<tr>
-					      <td valign="top" width="150"><b>素材名字：</b></td>
+					      <td valign="top" width="150"><b>ชื่อสื่อ:</b></td>
 					      <td valign="top">
 					      	<input type="text" size="20" name="media[media_filename]" value="" data-rule="required">
 						  </td>
@@ -58,8 +58,8 @@
 
 <div class="bjui-pageFooter">
     <ul>
-        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="submit" class="btn-green" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-close" data-icon="close">ยกเลิก</button></li>
+        <li><button type="submit" class="btn-green" data-icon="save">บันทึก</button></li>
     </ul>
 </div>
 
