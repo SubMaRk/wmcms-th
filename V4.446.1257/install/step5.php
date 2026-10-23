@@ -34,7 +34,7 @@ else
 ?>
 <div class="main cc">
 	<div class="success_tip">
-		<a href="/index.php" class="f16 b">ติดตั้งเสร็จสิ้น คลิ๊กเพื่อเข้าชม</a>
+		<a href="/index.php" class="f16 b">ติดตั้งเสร็จสิ้น คลิกเพื่อเข้าชม</a>
 		<p>หลังติดตั้งเสร็จสิ้นแล้ว โปรดลบโฟลเดอร์ install <span style="color:red">และสร้างการกำหนดค่าส่วนติดตั้ง API ในพื้นหลังแล้ว</span><br/>เบราว์เซอร์จะเปลี่ยนหน้าโดยอัตโนมัติ</p>
 	</div>
 </div>

@@ -89,7 +89,7 @@ else if ( $type == "leveladd" || $type == "leveledit" )
 		$data = str::Escape( GetKey($post,'level'), 'e' );
 		if( !$data )
 		{
-			Ajax('ขออภัย! โปรดเพิ่มข้อมูลแล้วคลิ๊กจัดเก็บ',300);
+			Ajax('ขออภัย! โปรดเพิ่มข้อมูลแล้วคลิกจัดเก็บ',300);
 		}
 		foreach ($data as $k=>$v)
 		{

@@ -28,7 +28,7 @@ if ( $type == 'edit' || $type == "add"  )
 		SetOpLog( 'แก้ไขข้อมูลคำค้น' , 'system' , 'update' , $table  , $where , $post );
 		//修改数据
 		WMSql::Update($table, $post, $where);
-		Ajax('แก้ไขคำค้นสำเร็จ! โปรดคลิ๊กอัปเดทแคชเพื่อแสดงผลบน Header');
+		Ajax('แก้ไขคำค้นสำเร็จ! โปรดคลิกอัปเดทแคชเพื่อแสดงผลบน Header');
 	}
 	//如果是增加页面
 	else

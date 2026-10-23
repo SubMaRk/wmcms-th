@@ -50,7 +50,7 @@
 					      <td valign="top"><b>ไอคอน : </b></td>
 					      <td valign="top" colspan="5"><input type="text" name="type[type_ico]" value="<?php echo C('type_ico',null,'data');?>" size="35">
 								<span class="upload" data-uploader="index.php?a=yes&c=upload&t=img" data-on-upload-success="<?php echo $cFun;?>upload_success" data-file-type-exts="*.jpg;*.png;*.gif;*.mpg" data-toggle="upload" data-icon="cloud-upload"></span>
-								<?php if( C('type_ico',null,'data') != '' ){ echo '<a target="_blank" href="'.C('type_ico',null,'data').'">คลิ๊กเพื่อดูรูปภาพ</a>';}?>
+								<?php if( C('type_ico',null,'data') != '' ){ echo '<a target="_blank" href="'.C('type_ico',null,'data').'">คลิกเพื่อดูรูปภาพ</a>';}?>
 						  </td>
 						</tr>
 					    <tr>

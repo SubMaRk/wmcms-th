@@ -119,7 +119,7 @@ function <?php echo $cFun;?>delAjax(id)
 	ajaxData.id = id;
 	ajaxOptions['data'] = ajaxData;
 	ajaxOptions['url'] = "index.php?a=yes&c=user.card&t=del";
-	ajaxOptions['confirmMsg'] = "คุณต้องการลบหมายเหขปัจจุบันทันทีหรือไม่?";
+	ajaxOptions['confirmMsg'] = "คุณต้องการลบหมายเหตุปัจจุบันทันทีหรือไม่?";
 	ajaxOptions['callback'] = "<?php echo $cFun;?>ajaxCallBack";
 	$(".btn-danger").bjuiajax('doAjax', ajaxOptions);
 }

@@ -27,7 +27,7 @@ if ( $type == 'edit' || $type == "add"  )
 		//写入操作记录
 		SetOpLog( 'แก้ไขข้อมูลลิ้งก์ SEO' , 'system' , 'update' , $table, $where , $post );
 		WMSql::Update($table, $post, $where);
-		Ajax('อัปเดทลิ้งก์แบบคงที่สำเร็จ! โปรดคลิ๊กอัปเดทแคชเพื่อแสดงผลบน Header');
+		Ajax('อัปเดทลิ้งก์แบบคงที่สำเร็จ! โปรดคลิกอัปเดทแคชเพื่อแสดงผลบน Header');
 	}
 	//如果是增加页面
 	else

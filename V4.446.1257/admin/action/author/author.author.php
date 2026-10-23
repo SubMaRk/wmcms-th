@@ -61,7 +61,7 @@ if ( $type == 'edit' || $type == "add"  )
 		
 		//插入消息
 		$msgMod = NewModel('user.msg');
-		$msgMod->Insert($data['user_id'] , 'ได้กลายเป็นผู้แต่่งแล้ว!');
+		$msgMod->Insert($data['user_id'] , 'ได้กลายเป็นผู้แต่งแล้ว!');
 
 		$info = 'ยินดีด้วย! เพิ่มผู้แต่งสำเร็จแล้ว';
 		//写入操作记录

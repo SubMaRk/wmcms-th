@@ -67,13 +67,13 @@
 		                        <b>หน้าปก : </b>
 		                        <input type="text" id="app_simg" name="app[app_simg]" value="<?php echo C('app_simg',null,'data');?>" size="35">
 								<span class="upload" data-uploader="index.php?a=yes&c=upload&t=img" data-on-upload-success="<?php echo $cFun;?>upload_success" data-file-type-exts="*.jpg;*.png;*.gif;*.mpg" data-toggle="upload" data-icon="cloud-upload"></span>
-								<?php if( C('app_simg',null,'data') != '' ){ echo '<a target="_blank" href="'.C('app_simg',null,'data').'">คลิ๊กเพื่อดูรูปภาพ</a>';}?>
+								<?php if( C('app_simg',null,'data') != '' ){ echo '<a target="_blank" href="'.C('app_simg',null,'data').'">คลิกเพื่อดูรูปภาพ</a>';}?>
 		                    </td>
 		                   <td>
 		                        <b>ไอคอน : </b>
 		                        <input type="text" id="app_ico" name="app[app_ico]" value="<?php echo C('app_ico',null,'data');?>" size="35">
 								<span class="upload" data-uploader="index.php?a=yes&c=upload&t=img" data-on-upload-success="<?php echo $cFun;?>upload_success" data-file-type-exts="*.jpg;*.png;*.gif;*.mpg" data-toggle="upload" data-icon="cloud-upload"></span>
-								<?php if( C('app_ico',null,'data') != '' ){ echo '<a target="_blank" href="'.C('app_ico',null,'data').'">คลิ๊กเพื่อดูรูปภาพ</a>';}?>
+								<?php if( C('app_ico',null,'data') != '' ){ echo '<a target="_blank" href="'.C('app_ico',null,'data').'">คลิกเพื่อดูรูปภาพ</a>';}?>
 		                    </td>
 		                </tr>     
 		                <tr>
